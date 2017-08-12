@@ -36,7 +36,24 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+			<li class="dropdown">
+                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+					Requisiciones<span class="caret"></span>
+                           </a>
+	   		   <ul class="dropdown-menu" role="menu">
+                              <li><a href="#" >Listar Requisiciones</a></li>
+                              <li><a href="#" >Nueva Requisición</a></li>
+                           </ul>
+			</li>
+			<li class="dropdown">
+                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+					Órdenes de Compra<span class="caret"></span>
+                           </a>
+	   		   <ul class="dropdown-menu" role="menu">
+                              <li><a href="#" >Listar Órdenes de Compra</a></li>
+                              <li><a href="#" >Nueva Orden de Compra</a></li>
+                           </ul>
+			</li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -52,6 +69,9 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
+				   @permission('cambio-password')
+                                    <li><a href="#">Cambio de Contraseña</a></li>
+				   @endpermission
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
@@ -62,7 +82,7 @@
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
-                                    </li>
+                                    </li>                                    
                                 </ul>
                             </li>
                         @endif
