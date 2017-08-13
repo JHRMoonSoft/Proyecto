@@ -1,0 +1,32 @@
+* Creación de requisicion automática cada intervalo
+
+Estados RQS (Actividades de RQS)
+
+Requerido
+Autorizado
+Rechazado
+Entrega Parcial
+Entregado
+
+Flujo RQS (Acciones de RQS)
+
+Requerido-Autorizado-Entregado
+Requerido-Autorizado-Entrega Parcial-Entregado
+Requerido-Rechazado
+
+-------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------
+
+Estado de Compra (Actividades de Compra)
+
+Consolidado RQS
+Solicitud de Compra
+Orden de Compra
+Facturacion
+Ingreso a Almacen
+Almacen
+
+Flujo Compra (Acciones de Compra)
+
+Solicitud de Compra-Orden de Compra-Facturacion-Ingreso a Almacen-Almacen
+Consolidado RQS-Solicitud de Compra-Orden de Compra-Facturacion-Ingreso a Almacen-Almacen
