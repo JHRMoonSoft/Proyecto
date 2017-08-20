@@ -68,8 +68,8 @@
 					Configuración<span class="caret"></span>
                            	</a>
 	   		   	<ul class="dropdown-menu" role="menu">
-                              	    <li><a href="/roles" >Listar Roles</a></li>
-                                    <li><a href="/permissions" >Listar Permisos</a></li>
+                              	    <li><a href="#" >Listar Roles</a></li>
+                                    <li><a href="#" >Listar Permisos</a></li>
                            	</ul>
 			    </li>
                             <li class="dropdown">
