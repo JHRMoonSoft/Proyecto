@@ -1,14 +1,14 @@
 @extends('layouts.app')
 @section('content')  
-@section('pagetitle') 
-  <h3>Formato de Orden de compras</h3>   
+@section('pagetitle')
+  <h3>Formato de Factura de compras</h3>   
 @stop
 @section('x_search')
 	<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-						
-		<div class="input-group">
+						 
+		<div class="input-group"> 
 		<input type="text" class="form-control" placeholder="Search for...">
-		<span class="input-group-btn"> 
+		<span class="input-group-btn">
 				  <button class="btn btn-default" type="button">Go!</button>
 			  </span>
 		</div>
@@ -20,7 +20,7 @@
 
     <div class="x_panel">
 	    <div class="x_title">
-			<h2>Nueva Orden de compras</h2>
+			<h2>Nueva Factura de compras</h2>
 		
 			<ul class="nav navbar-right panel_toolbox">
 			
@@ -41,7 +41,7 @@
 			<div class="clearfix"></div>
 	    </div>
 		<div class="x_content">
-			<ul class="list-unstyled timeline">
+		  <ul class="list-unstyled timeline">
 				<li>
 					<div class="block ">
 						<div class="tags">
@@ -52,166 +52,155 @@
 						<div class="block_content">
 								<h4>Espacio exclusivo para el Asistente de Gestión Administrativa<h4><br>
 						
-							<div class="x_content">
-								<div class="panel panel-default">
-									<div class="panel-heading ">
-										<form class="form-horizontal form-label-left">	
-										  <div class="col-md-2 	col-sm-6 col-xs-12">
-											<label for="ex1">Cod.OCM</label>
-											<input class="form-control input-sm" id="ex1" type="text" disabled>
-										  </div>
-										  <div class="col-md-2 	col-sm-6 col-xs-12">
-												 <label for="single_cal2">Fecha</label>
-												<input type="text" class="form-control input-sm has-feedback-left " id="single_cal2" placeholder="First Name" aria-describedby="inputSuccess2Status2">
-												
-										  </div>
-											<div class="col-md-2 col-sm-6 col-xs-12">
-												<label for="ex3">Empresa</label>
-												<input class="form-control input-sm" id="ex3" type="text" disabled>
-											</div>
-											<div class="col-md-2 col-sm-6 col-xs-12">
-												<label for="ex1">Nit. Empresa</label>
+								<div class="x_content">
+									<div class="panel panel-default">
+										<div class="panel-heading ">
+											<form class="form-horizontal form-label-left">	
+											  <div class="col-md-2 	col-sm-6 col-xs-12">
+												<label for="ex1">Cod.Factura</label>
 												<input class="form-control input-sm" id="ex1" type="text" disabled>
-											</div>
-									
-											<div class="col-md-2 col-sm-6 col-xs-12">
-												<label for="ex2">Realizado</label>
-												<input class="form-control input-sm" id="ex2" type="text" disabled>
-											</div>
-											<div class="col-md-2 col-sm-6 col-xs-12">
-												<label for="ex3">No. OCM</label>
-												<input class="form-control input-sm" id="ex3" type="text">
-											</div>
-										</form>
+											  </div>
+											  <div class="col-md-2 	col-sm-6 col-xs-12">
+													 <label for="single_cal2">Fecha</label>
+													<input type="text" class="form-control input-sm has-feedback-left " id="single_cal2" placeholder="First Name" aria-describedby="inputSuccess2Status2">
+													
+											  </div>
+												<div class="col-md-2 col-sm-6 col-xs-12">
+													<label for="ex3">Empresa</label>
+													<input class="form-control input-sm" id="ex3" type="text" disabled>
+												</div>
+												<div class="col-md-2 col-sm-6 col-xs-12">
+													<label for="ex1">Nit. Empresa</label>
+													<input class="form-control input-sm" id="ex1" type="text" disabled>
+												</div>
+										
+												<div class="col-md-2 col-sm-6 col-xs-12">
+													<label for="ex2">Realizado</label>
+													<input class="form-control input-sm" id="ex2" type="text" disabled>
+												</div>
+												<div class="col-md-2 col-sm-6 col-xs-12">
+													<label for="ex3">No. Factura</label>
+													<input class="form-control input-sm" id="ex3" type="text">
+												</div>
+											</form>
+										</div>
+										
 									</div>
 									
-								</div>
-								
-								<div class="x_panel">
-									<div class=" row ">	
-										<div class=" col-sm-3 col-xs-6">
-											<div class="form-group">
-												<label for="ex1">Proveedor</label>
-												<select class="form-control input-sm " id="exampleSelect1">
-													<option value="volvo" selected>Seleccionar</option>
-													<option>ALMACENES EXITO</option>
-													<option>MEGA TIENDAS </option>
-												</select>
+									<div class="x_panel">
+										<div class=" row ">	
+											<div class=" col-sm-3 col-xs-6">
+												<div class="form-group">
+													<label for="ex1">Proveedor</label>
+													<select class="form-control input-sm " id="exampleSelect1">
+														<option value="volvo" selected>Seleccionar</option>
+														<option>ALMACENES EXITO</option>
+														<option>MEGA TIENDAS </option>
+													</select>
+												</div>
 											</div>
-										</div>
 										
-										<div class=" col-sm-3 col-xs-6">
-											<div class="form-group">
-												<label for="ex1">Nit.Proveedor</label>
-												<input class="form-control input-sm" id="ex1" type="text" disabled>
+											<div class=" col-sm-3 col-xs-6">
+												<div class="form-group">
+													<label for="ex1">Nit/Rut</label>
+													<input class="form-control input-sm" id="ex1" type="text" disabled>
+												</div>
 											</div>
-										</div>
-										
-										<div class="col-sm-3 col-xs-6">
-											<div class="form-group">
-												<label for="ex2">Dirección</label>
-												<input class="form-control input-sm" id="ex2" type="text" disabled>
-											</div>	
-										</div>
-										<div class="col-sm-3 col-xs-6">
-											<div class="form-group">
-												<label for="ex3">Ciudad</label>
-												<input class="form-control input-sm" id="ex3" type="text" disabled>
+											
+											<div class="col-sm-3 col-xs-6">
+												<div class="form-group">
+													<label for="ex2">Dirección</label>
+													<input class="form-control input-sm" id="ex2" type="text" disabled>
+												</div>	
 											</div>
-										</div>
-										<div class="col-sm-3 col-xs-6">
-											<div class="form-group">
-												<label for="ex1">Teléfono</label>
-												<input class="form-control input-sm" id="ex1" type="text" disabled>
+											<div class="col-sm-3 col-xs-6">
+												<div class="form-group">
+													<label for="ex3">Ciudad</label>
+													<input class="form-control input-sm" id="ex3" type="text" disabled>
+												</div>
 											</div>
-										</div>
-								
-										<div class="col-sm-3 col-xs-6">
-											<div class="form-group">
-												<label for="ex2">E-mail</label>
-												<input class="form-control input-sm" id="ex2" type="text" disabled>
+											<div class="col-sm-3 col-xs-6">
+												<div class="form-group">
+													<label for="ex1">Teléfono</label>
+													<input class="form-control input-sm" id="ex1" type="text" disabled>
+												</div>
 											</div>
-										</div>
-										<div class="col-sm-3 col-xs-6">
-											<label for="ex3">Concepto</label>
-											<input class="form-control input-sm" id="ex3" type="text">
-										</div>
-										<div class="col-sm-3 col-xs-6">
-											<div class="form-group">
-												<label for="ex1">Autorizado por</label>
-												<input class="form-control input-sm" id="ex1" type="text">
+									
+											<div class="col-sm-3 col-xs-6">
+												<div class="form-group">
+													<label for="ex2">E-mail</label>
+													<input class="form-control input-sm" id="ex2" type="text" disabled>
+												</div>
 											</div>
-										</div>
-										<div class="col-sm-3 col-xs-6">
-											<div class="form-group">
-												<label for="ex1">Forma de pago</label>
-												<select class="form-control input-sm" id="exampleSelect1">
-													<option value="volvo " selected>Seleccionar</option>
-													<option>CONTADO</option>
-													<option>CREDITO</option>
-												</select>
-											</div>
-										</div>
-								
-										<div class="col-sm-3 col-xs-6">
-											<div class="form-group">
-												<label for="ex2">Dias de credito</label>
-												<input class="form-control input-sm" id="ex2" type="text">
-											</div>
-										</div>
-										<div class="col-sm-3 col-xs-6">
-											<div class="form-group">
-												<label for="ex3">Tiempo de entrega</label>
+											<div class="col-sm-3 col-xs-6">
+												<label for="ex3">Concepto</label>
 												<input class="form-control input-sm" id="ex3" type="text">
 											</div>
-										</div>
-										<div class="col-sm-3 col-xs-6">
-											<div class="form-group">
-												<label for="ex3">Otro</label>
-												<input class="form-control input-sm" id="ex3" type="text">
+											<div class="col-sm-3 col-xs-6">
+												<div class="form-group">
+													<label for="ex1">Comprado por</label>
+													<input class="form-control input-sm" id="ex1" type="text">
+												</div>
 											</div>
-										</div>
-										
+											<div class="col-sm-3 col-xs-6">
+												<div class="form-group">
+													<label for="ex1">Forma de pago</label>
+													<select class="form-control input-sm" id="exampleSelect1">
+														<option value="volvo " selected>Seleccionar</option>
+														<option>CONTADO</option>
+														<option>CREDITO</option>
+													</select>
+												</div>
+											</div>
+									
+											<div class="col-sm-3 col-xs-6">
+												<div class="form-group">
+													<label for="ex2">Dias de credito</label>
+													<input class="form-control input-sm" id="ex2" type="text">
+												</div>
+											</div>
+											<div class="col-sm-3 col-xs-6"> 
+												<div class="form-group">
+													<label for="ex3">Tiempo de entrega</label>
+													<input class="form-control input-sm" id="ex3" type="text">
+												</div>
+											</div>
+											<div class="col-sm-3 col-xs-6">
+												<div class="form-group">
+													<label for="ex3">Otro</label>
+													<input class="form-control input-sm" id="ex3" type="text">
+												</div>
+											</div>
+											
+										</div>		
 									</div>		
 								</div>		
-							</div>		
 									
 						</div>
 																			
 						<div class="panel-heading ">
-							<div class=" row ">		
+							<div class=" row ">	
 								<div class="col-xs-3"><br/>
-									<label for="ex3">Categoria</label>
-									<select class="form-control">
-									  <option value="volvo" selected>Seleccionar</option>
-									  <option value="saab">Taller de Cocina</option>
-									  <option value="vw">Papeleria</option>
-									  <option value="audi" >Didacticos</option>
-									  <option value="audi" >Aseo</option>
-									</select>
-								</div>
-								<div class="col-xs-3"><br/>
-									<label for="ex3">Producto</label>
-									<select class="form-control">
-									  <option value="volvo" selected>Seleccionar</option>
-									  <option value="saab">Todos</option>
-									  <option value="saab">Aceite</option>
-									  <option value="vw">Arepas antioqueñas precocidas </option>
-									  <option value="audi" >Arroz  (bolsas de medio kilo)</option>
-									  <option value="audi" >Bocadillo</option>
-									</select>
+										<label for="ex3">Documento OCM</label>
+										<select class="form-control " id="exampleSelect1">
+											<option value="volvo " selected>Seleccionar</option>
+											<option value="volvo" selected>Seleccionar</option>
+											<option value="saab">Orden de compra 0283</option>
+											<option value="saab">Orden de compra 0284</option>
+											<option value="vw">Orden de compra 0282</option>
+											<option value="audi" >Orden de compra 0245)</option>
+										</select>
 								</div>
 								<div class="col-xs-2"><br/>
 									<label for="ex3">Acciones</label><br>
 										<button type="submit" class="btn btn-primary   ">Consultar</button>
 								</div>
 							</div>
-							<h5>Productos penites por orden de compra<h5>
 						
 						</div>
 						
 						
-						<div class="panel-body ">	
+						<div class="panel-body ">
 							<div class="panel panel-default">
 								<div class="panel-heading text-center">
 									<span><strong><span class="glyphicon glyphicon-th-list"> </span> Productos</strong></span>
@@ -228,7 +217,6 @@
 												<th> IVA. Unt</th>
 												<th> Val. Unitario</th>
 												<th> Val. Total</th>
-												<th> Vence</th>
 												<th><a></a></th>	
 								
 											</tr>
@@ -294,14 +282,6 @@
 														<input type="text" class="form-control input-sm" id="Schoolname" name="Schoolname[]" value="" placeholder="">
 													</div>
 												</td>
-												
-												<td class="nopadding" >
-													<input class="form-control" name="registration_date" id="registration-date" type="date">
-													<span class="input-group-btn">
-													</span>
-
-												</td>
-												
 												<td class="nopadding" >
 													<div class="input-group-btn">
 														<button class="btn btn-sm btn-primary glyphicon glyphicon-plus btn-xs" type="button"  onclick="education_fields2();"> <span  aria-hidden="true"></span> </button>
@@ -315,7 +295,7 @@
 						
 							</div>
 							<small>Pulse + para agregar otro producto /  Pulse - para eliminar un producto.</small>
-						
+							
 							<div class="panel-default ">
 								<div class="row ">
 									<div class="col-xs-9 "><br />
@@ -366,8 +346,8 @@
 			</div>
 
         </div>
-		
-		   <!-- Productos modal -->		  
+
+		     <!-- Productos modal -->		  
 
 		  <div class="modal fade producto" tabindex="-1" role="dialog" aria-hidden="true">
 			<div class="modal-dialog modal-sm">
@@ -426,9 +406,12 @@
 			</div>
 		  </div>
 		  <!-- /modals -->
+		
+		
 	</div>		
+	
 @stop
-	<script>
+    <script>
 		var room = 1;
 		function education_fields2() {
 		 
@@ -437,7 +420,7 @@
 			var divtest = document.createElement("tbody");
 			divtest.setAttribute("class", "form-group tr removeclass"+room);
 			var rdiv = 'removeclass'+room;
-			divtest.innerHTML = '<tr><td>' + (room) + '</td><td class="nopadding" ><select class="form-control input-sm" id="educationDate" name="educationDate[]"><option value="" selected>Seleccionar</option><option name="" value="">Aceite</option><option value="">Arepas antioqueñas precocidas </option><option value="" >Arroz  (bolsas de medio kilo)</option><option value="" >Bocadillo</option></select></td><td class="nopadding" ><select class="form-control input-sm" id="educationDate" name="educationDate[]"><option value="" selected>Seleccionar</option><option name="" value="">Barra</option><option name="" value="">Bloque</option><option name="" value="">Bolsa</option><option name="" value="">Botella</option><option name="" value="">Caja</option><option name="" value="">Frasco</option><option value="">Lata</option><option value="">Paquete</option><option value="">Pote</option><option value="">Tarro</option><option value="">Tubo</option><option value="">Vaso</option><option name="" value="">Unidad</option><option value="">Kg</option><option value="">Kilo</option><option value="">Litro</option><option value="">Lonjas</option></select></td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control input-sm" id="Schoolname" name="Schoolname[]" value="" placeholder=""></div></td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control input-sm" id="Schoolname" name="Schoolname[]" value="" placeholder=""></div></td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control input-sm" id="Schoolname" name="Schoolname[]" value="0%" placeholder=""></div></td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control input-sm" id="Schoolname" name="Schoolname[]" value="" placeholder=""></div></td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control input-sm" id="Schoolname" name="Schoolname[]" value="" placeholder=""></div></td><td class="nopadding" ><input class="form-control" name="registration_date" id="registration-date" type="date"><span class="input-group-btn"></span></td><td class="nopadding" ><div class="input-group-btn"><button class="btn btn-sm btn-danger glyphicon glyphicon-minus btn-xs" type="button" onclick="remove_education_fields2('+ room +');"> <span  aria-hidden="true"></span> </button></div></td></tr>';
+			divtest.innerHTML = '<tr><td>' + (room) + '</td><td class="nopadding" ><select class="form-control input-sm" id="educationDate" name="educationDate[]"><option value="" selected>Seleccionar</option><option name="" value="">Aceite</option><option value="">Arepas antioqueñas precocidas </option><option value="" >Arroz  (bolsas de medio kilo)</option><option value="" >Bocadillo</option></select></td><td class="nopadding" ><select class="form-control input-sm" id="educationDate" name="educationDate[]"><option value="" selected>Seleccionar</option><option name="" value="">Barra</option><option name="" value="">Bloque</option><option name="" value="">Bolsa</option><option name="" value="">Botella</option><option name="" value="">Caja</option><option name="" value="">Frasco</option><option value="">Lata</option><option value="">Paquete</option><option value="">Pote</option><option value="">Tarro</option><option value="">Tubo</option><option value="">Vaso</option><option name="" value="">Unidad</option><option value="">Kg</option><option value="">Kilo</option><option value="">Litro</option><option value="">Lonjas</option></select></td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control input-sm" id="Schoolname" name="Schoolname[]" value="" placeholder=""></div></td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control input-sm" id="Schoolname" name="Schoolname[]" value="" placeholder=""></div></td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control input-sm" id="Schoolname" name="Schoolname[]" value="0%" placeholder=""></div></td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control input-sm" id="Schoolname" name="Schoolname[]" value="" placeholder=""></div></td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control input-sm" id="Schoolname" name="Schoolname[]" value="" placeholder=""></div></td><td class="nopadding" ><div class="input-group-btn"><button class="btn btn-sm btn-danger glyphicon glyphicon-minus btn-xs" type="button" onclick="remove_education_fields2('+ room +');"> <span  aria-hidden="true"></span> </button></div></td></tr>';
 			
 			objTo.appendChild(divtest)
 			  

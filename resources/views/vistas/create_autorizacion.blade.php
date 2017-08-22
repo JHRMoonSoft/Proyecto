@@ -1,598 +1,491 @@
 @extends('layouts.app')
-@section('content')
-        <!-- page content -->
-        <div class="right_col" role="main">
-          <div class="">
-            <div class="clearfix"></div>
+@section('content')  
+@section('pagetitle')
+  <h3>Formato de Requisición interna</h3>
+@stop
+@section('x_search')
+	<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+						
+		<div class="input-group">
+		<input type="text" class="form-control" placeholder="Search for...">
+		<span class="input-group-btn">
+				  <button class="btn btn-default" type="button">Go!</button>
+			  </span>
+		</div>
+	</div>   
+	
+@stop
 
-            <div class="row">
+@section('x_content')
 
-              <div class="col-md-12 col-sm-12 col-xs-12">
-			  
-							<!------------->
-					 <div class="x_panel">
-						<div class="x_title">
-						  <h2>Autorizacion RQS</h2>
-						  <ul class="nav navbar-right panel_toolbox">
-							<li><p data-placement="top" data-toggle="tooltip" title="Regresar"><a href="/workflow/proceso" class="btn btn-default btn-xs" data-title="Ver"><span class="glyphicon glyphicon-arrow-left"></span></a></p></li>
-							<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+    <div class="x_panel">
+	    <div class="x_title">
+			<h2>Autorización RQS interna</h2>
+		
+			<ul class="nav navbar-right panel_toolbox">
+			
+			  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+			  </li>
+			  <li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+				<ul class="dropdown-menu" role="menu">
+				  <li><a href="#">Settings 1</a>
+				  </li>
+				  <li><a href="#">Settings 2</a>
+				  </li>
+				</ul>
+			  </li>
+			  <li><a class="close-link"><i class="fa fa-close"></i></a>
+			  </li>
+			</ul>
+			<div class="clearfix"></div>
+	    </div>
+		<div class="x_content">
+		  <ul class="list-unstyled timeline">
+				<li>
+				  <div class="block">
+					<div class="tags">
+					  <a href="" class="tag">
+						<span>Paso 1</span>
+					  </a>
+					</div>
+					<div class="block_content">
+						<h2 class="title">
+									  <a>Espacio exclusivo para el Asistente de Gestión Administrativa:</a>
+								  </h2>
+						<br />
+						
+						<div class="container">
 							
-						  </ul>
-						  <div class="clearfix"></div>
-						</div>
-						<div class="x_content">
-						<!---->
-							<div id="wid-id-0">
-								<!-- widget div-->
-								<div role="content">
-									<!-- widget content -->
-									<div class="widget-body">
+							<div class="row ">
+								<div class="btn-group  col-md-12">
+									<label for="success" class="btn btn-success">Solicitud Consumo  <input type="checkbox" id="success" class="badgebox"><span class="badge">&check;</span></label>
+									<label for="warning" class="btn btn-warning">Solicitud Inversión  <input type="checkbox" id="warning" class="badgebox"><span class="badge">&check;</span></label>
+								</div>
+								<div class="btn-group   col-md-4" data-toggle="buttons"><br>
+									<h5>Proveedor Autorizado</h5>
+									
+									<label class="btn btn-primary ">
+										<input type="radio" name="options" id="option2" autocomplete="off" chacked>SI
+										<span class="glyphicon glyphicon-ok"></span>
+									</label>
 
-										<div class="row">
-											<form id="wizard-1" novalidate="novalidate">
-												<div id="bootstrap-wizard-1" class="col-sm-12">
-													<div class="form-bootstrapWizard">
-														<ul class="bootstrapWizard form-wizard">
-															<li class="active" data-target="#step1">
-																<a href="#tab1" data-toggle="tab" > <span class="step">1</span> <span class="title">Requisicion</span> </a>
-															</li>
-															<li data-target="#step2" class="">
-																<a href="#tab2" data-toggle="tab"> <span class="step">2</span> <span class="title">Revisión</span> </a>
-															</li>
-															<li data-target="#step3" class="">
-																<a href="#tab3" data-toggle="tab"> <span class="step">3</span> <span class="title">Autorizacion</span> </a>
-															</li><br><br>
-														   
-														</ul>
-														<div class="clearfix"></div>
-													</div>
-													<div class=" tab-content">
-														<div class="tab-pane active" id="tab1">
-															<br><br><br>
-															<ul class="list-unstyled timeline">
-																<li>
-																   <div class="block">
-																		<div class="tags">
-																		  <a href="" class="tag">
-																			<span>Paso 1</span>
-																		  </a>
-																		</div>
-																		<div class="block_content">
-																			<div class="x_panel">
-																				<div class="x_title">
-																					<h2>Requisicion Interna</h2>
-																					<div class="clearfix"></div>
-																			    </div>
-																				<div class="x_content">
-																					<div class="panel panel-default">
-																						
-																						<div class="table-responsive">
-																							<table id="datatable-buttons" class="table table-striped table-bordered ">
-																								<thead>
-																								   <tr>
-																										<th>Cod. RQS</th>
-																										<th>Fecha RQS</th>																																																				
-																										<th>Asunto</th>
-																										<th>Fecha entrega</th>	
-																										<th>Justificacion</th>
-																										<th>Estado</th>
-																										<th>Solicitante</th>
-																										<th>Cargo</th>
-																										<th>Detalle</th>
-																										
-																										
-																									</tr>
-																								</thead>
-																								<tbody>
-																									
-																									<tr>
-																									  <td>0023933</td>
-																										<td>26-06-2017</td>
-																										<td>solicitud compa prueba</td>
-																										<td>06-07-2017</td>
-																										<td>Mensaje Justificacion prueba </td>
-																										<td>Activo</td>
-																										<td>Belkis Buelvas</td>
-																										<td>Cargo</td>
-																										<td>Area - Coordinacion</td>	
-																										
-																									</tr> 
-																								</tbody>
-																							</table>
-																						</div>
-																					</div>
-																				</div>
-																			</div>
-																			<div class="x_panel">
-																			   <div class="x_title">
-																					<h2>Sugeido de Proveedores</h2>
-																					<ul class="nav navbar-right panel_toolbox ">
-																						<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-																						</li>
-																					</ul>
-																					<div class="clearfix"></div>
-																				</div>
-																		
-																				<div class="x_content">
-																					<div class="panel panel-default">
-																						<div class="panel-heading text-center">
-																							<span><strong><span class="glyphicon glyphicon-th-list"> </span> Proveedores</strong></span>
-																						</div>
-																						<table class="table table-bordered table-hover vmiddle">
-																							<thead>
-																								<tr>
-																									<th>No.</th>
-																									<th>Nombre Proveedor</th>
-																									<th>Telefonos</th>
-																									<th>E-mail</th>
-																									<th>observacion</th>
-																									<th>Crear</th>
-																									
-																									
-																								</tr>
-																							</thead>
-																							<tbody>
-																								<tr>
-																									<td>1</td>
-																									<td>Mega tiendas</td>
-																									<td>77777777</td>
-																									<td>compras@megatiendas.com.co</td>
-																									<td>prueba</td>
-																									<td class="text-center">
-																										<a href="#"><span class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs"></span></a>
-																									</td>
-																								</tr>
-																								
-																								
-																							</tbody>
-																						</table>
-																					</div>
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-																</li>
-															</ul>
-														</div>
-														<div class="tab-pane" id="tab2">
-														
-															<br><br><br>
-															<ul class="list-unstyled timeline">
-																<li>
-																	<div class="block">
-																		<div class="tags">
-																		  <a href="" class="tag">
-																			<span>Paso 1</span>
-																		  </a>
-																		</div>
-																		<div class="block_content">
-																			<div class="x_panel">
-																				<div class="x_title">
-																					<h2>Aprobar solicitud RQS </h2>
-																					<div class="clearfix"></div>
-																				</div>
-																				<div class="x_content">
-																					<div class="row ">
-																						<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left"><br>
-																							<div class="col-md-6 col-md-offset-3 ">
-																								<div class="form-group">
-																									<label for="formGroupExampleInput">Cod.RQS</label>
-																									<input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input"disabled>
-																								</div>
-																							</div>
-																							<div class="col-md-6 col-md-offset-3 ">
-																								<div class="form-group">
-																									<label for="exampleSelect1">Estado RQS</label>
-																									<select class="form-control" id="exampleSelect1">
-																									  <option> AUTORIZAR / SOLICITUD DE COMPRAS</option>
-																									  <option>RECHAZAR / REQUISICION</option>
-																									</select>
-																								</div>	
-																							</div><!--
-																							<div class="form-group">
-																								<label class="control-label col-md-3 col-sm-3 col-xs-12" for="exampleSelect1">Estado RQS</label>
-																								<div class="col-md-6 col-sm-6 col-xs-12">
-																									<select class="form-control " id="exampleSelect1">
-																									  <option> ENTREGADO / REQUISICION</option>
-																									  <option>PENDIETE / REQUISICION</option>
-																									</select><br>
-																								</div>
-																							</div>-->
-																							<div class="col-md-6 col-md-offset-3 ">
-																								<div class="form-group">
-																									<label class="control-label " for="last-name">Observacion</label><br>
-																									<div class="col-md-12 col-sm-12 col-xs-12">
-																									  <textarea type="text" id="last-name"  name="last-name"rows="4" required="required" class="form-control col-md-6 col-xs-12"></textarea>
-																									</div>
-																								</div>
-																							</div>
-																						</form>
-																					</div>
-																				</div>	
-																				
-																				<!--
-																				<div class="x_panel">
-																					<div class="x_title">
-																						<h2>Listado SCM</h2>
-																						<ul class="nav navbar-right panel_toolbox">
-																						  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-																						  </li>
-																						</ul>
-																						<div class="clearfix"></div>
-																					</div>
-																					<div class="x_content">
-																						<div class="panel panel-default">
-																							<div class="panel-heading text-center">
-																								<span><strong><span class="glyphicon glyphicon-shopping-cart"> </span> Productos</strong></span>
-																							</div>
-																							
-																							
-																							<div class="table-responsive">
-																								<table class="table table-bordered table-hover vmiddle">
-																									<thead>
-																										<tr>
-																											<th>No.</th>
-																											<th> Categoria</th>
-																											<th> Producto</th>
-																											<th> Disponible</th>
-																											<th> Cantidad</th>
-																											<th> Unidad</th>
-																											<th> Descripcion </th>	
-																										</tr>
-																									</thead>
-																									<tbody>
-																											<tr>
-																											<td>
-																												1
-																											</td>
-																											
-																											<td>
-																												<div class="form-group ">
-																													<select class="input-sm"disabled>
-																													  <option value="volvo" selected>Seleccionar</option>
-																													  <option value="saab">Taller de Cocina</option>
-																													  <option value="vw">Papeleria</option>
-																													  <option value="audi" >Didacticos</option>
-																													  <option value="audi" >Aseo</option>
-																													</select>
-																												</div>
-																											</td>
-																											<td>
-																												<div class="form-group ">
-																													<select class="input-sm"disabled>
-																													  <option value="volvo" selected>Seleccionar</option>
-																													  <option value="saab">Aceite</option>
-																													  <option value="vw">Arepas antioqueñas precocidas </option>
-																													  <option value="audi" >Arroz  (bolsas de medio kilo)</option>
-																													  <option value="audi" >Bocadillo</option>
-																													</select>
-																												</div>
-																											</td>
-																											<td>
-																												1 Caja de 5 UND
-																											</td>
-																											<td class="form-group col-xs-2">
-																												<div class="form-group ">
-																													<input class="form-control input-sm" id="inputsm" type="text">
-																												</div>
-																											</td>
-																											<td>
-																												<div class="form-group ">
-																													<select class="input-sm">
-																													<option value="saab">Barra</option>
-																													<option value="saab">Bloque</option>
-																													<option value="saab">Bolsa</option>
-																													<option value="saab">Botella</option>
-																													<option value="saab">Caja</option>
-																													<option value="saab">Frasco</option>
-																													<option value="vw">Lata</option>
-																													<option value="vw">Paquete</option>
-																													<option value="vw">Pote</option>
-																													<option value="vw">Tarro</option>
-																													<option value="vw">Tubo</option>
-																													<option value="vw">Vaso</option>
-																													<option value="saab">Unidad</option>
-																													<option value="vw">Kg</option>
-																													<option value="vw">Kilo</option>
-																													<option value="vw">Litro</option>
-																													<option value="vw">Lonjas</option>
-																													</select>	
-																												</div>
-																											</td>
-																											<td>
-																												<div class="form-group">
-																													<input class="form-control input-sm" id="inputsm" type="text"disabled>
-																												</div>
-																											</td>
-																											
-																										</tr>
-																									</tbody>
-																								</table>
-																							</div>
-																						</div>
-																					</div>
-																				</div>-->
-																			</div>
-																		</div>
-																		<div class="x_panel">
-																					<div class="x_title">
-																						<h2>Detalles del producto</h2>
-																						<ul class="nav navbar-right panel_toolbox">
-																						  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-																						  </li>
-																						</ul>
-																						<div class="clearfix"></div>
-																					</div>
-																					<div class="x_content">
-																						<div class="panel panel-default">
-																							<div class="panel-heading text-center">
-																								<span><strong><span class="glyphicon glyphicon-shopping-cart"> </span> Productos</strong></span>
-																							</div>
-																							
-																							
-																							<div class="table-responsive">
-																								<table class="table table-bordered table-hover vmiddle">
-																									<thead>
-																										<tr>
-																											<th>No.</th>
-																											<th> <a href="#"><span class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs"></span></a> Categoria</th>
-																											<th> <a href="#"><span class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs"></span></a>Producto</th>
-																											<th>Cantidad</th>
-																											<th> <a href="#"><span class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs"></span></a>Unidad</th>
-																											<th>Descripcion </th>
-																											
-																											
-																										</tr>
-																									</thead>
-																									<tbody>
-																											<tr>
-																											<td>
-																												1
-																											</td>
-																											
-																											<td>
-																												<div class="form-group ">
-																													<select class="input-sm">
-																													  <option value="volvo" selected>Seleccionar</option>
-																													  <option value="saab">Taller de Cocina</option>
-																													  <option value="vw">Papeleria</option>
-																													  <option value="audi" >Didacticos</option>
-																													  <option value="audi" >Aseo</option>
-																													</select>
-																												</div>
-																											</td>
-																											<td>
-																												<div class="form-group ">
-																													<select class="input-sm">
-																													  <option value="volvo" selected>Seleccionar</option>
-																													  <option value="saab">Aceite</option>
-																													  <option value="vw">Arepas antioqueñas precocidas </option>
-																													  <option value="audi" >Arroz  (bolsas de medio kilo)</option>
-																													  <option value="audi" >Bocadillo</option>
-																													</select>
-																												</div>
-																											</td>
-																											<td class="form-group col-xs-2">
-																												<div class="form-group ">
-																													<input class="form-control input-sm" id="inputsm" type="text">
-																												</div>
-																											</td>
-																											<td>
-																												<div class="form-group ">
-																													<select class="input-sm">
-																													<option value="saab">Barra</option>
-																													<option value="saab">Bloque</option>
-																													<option value="saab">Bolsa</option>
-																													<option value="saab">Botella</option>
-																													<option value="saab">Caja</option>
-																													<option value="saab">Frasco</option>
-																													<option value="vw">Lata</option>
-																													<option value="vw">Paquete</option>
-																													<option value="vw">Pote</option>
-																													<option value="vw">Tarro</option>
-																													<option value="vw">Tubo</option>
-																													<option value="vw">Vaso</option>
-																													<option value="saab">Unidad</option>
-																													<option value="vw">Kg</option>
-																													<option value="vw">Kilo</option>
-																													<option value="vw">Litro</option>
-																													<option value="vw">Lonjas</option>
-																													</select>	
-																												</div>
-																											</td>
-																											<td>
-																												<div class="form-group">
-																													<input class="form-control input-sm" id="inputsm" type="text">
-																												</div>
-																											</td>
-																											
-																										</tr>
-																									</tbody>
-																								</table>
-																							</div>
-																						</div>
-																					</div>
-																				</div>
-																		
-																	</div>
-																</li>
-															</ul>
-														</div>	
-														<div class="tab-pane" id="tab3">
-															<br><br><br>
-															<ul class="list-unstyled timeline">
-																<li>
-																    <div class="block">
-																		<div class="tags">
-																		  <a href="" class="tag">
-																			<span>Paso 1</span>
-																		  </a>
-																		</div>
-																		<div class="block_content">
-																			<div class="form-group">
-																				<div class="x_panel">
-																					<div class="x_title">
-																						<h2>Autorizar RQS </h2><br>
-																						<div class="clearfix"></div>
-																					</div>
-																					<div class="panel-body message">
-																						
-																					 <h5 class="title"> <a> Espacio exclusivo para el Asistente de Gestión Administrativa: </a> </h5><br>
-																						<div class="container">
-																							
-																							<div class="row ">
-																								<div class="btn-group  col-md-12">
-																									<label for="success" class="btn btn-success">Solicitud Consumo  <input type="checkbox" id="success" class="badgebox"><span class="badge">&check;</span></label>
-																									<label for="warning" class="btn btn-warning">Solicitud Inversión  <input type="checkbox" id="warning" class="badgebox"><span class="badge">&check;</span></label>
-																								</div>
-																								<div class="btn-group   col-md-4" data-toggle="buttons"><br>
-																									<h5>Proveedor Autorizado</h5>
-																									
-																									<label class="btn btn-primary ">
-																										<input type="radio" name="options" id="option2" autocomplete="off" chacked>SI
-																										<span class="glyphicon glyphicon-ok"></span>
-																									</label>
+									<label class="btn btn-danger">
+										<input type="radio" name="options" id="option1" autocomplete="off">No
+										<span class="glyphicon glyphicon-ok"></span>
+									</label>
+								
+								</div>
+								<div class="btn-group  col-md-4 " data-toggle="buttons"><br>
+									
+									
+									<h5>Aprobado en comite</h5>
+									<label class="btn btn-primary ">
+										<input type="radio" name="options" id="option2" autocomplete="off" chacked>SI
+										<span class="glyphicon glyphicon-ok"></span>
+									</label>
 
-																									<label class="btn btn-danger">
-																										<input type="radio" name="options" id="option1" autocomplete="off">No
-																										<span class="glyphicon glyphicon-ok"></span>
-																									</label>
-																								
-																								</div>
-																								<div class="btn-group  col-md-4 " data-toggle="buttons"><br>
-																									
-																									
-																									<h5>Aprobado en comite</h5>
-																									<label class="btn btn-primary ">
-																										<input type="radio" name="options" id="option2" autocomplete="off" chacked>SI
-																										<span class="glyphicon glyphicon-ok"></span>
-																									</label>
-
-																									<label class="btn btn-danger">
-																										<input type="radio" name="options" id="option1" autocomplete="off">No
-																										<span class="glyphicon glyphicon-ok"></span>
-																									</label>
-																								
-																								</div>	
-																								<div class="form-group   col-md-4"><br>
-																									<h5>Fecha</h5>
-																									<div class="input-group registration-date-time">
-																										<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
-																										<input class="form-control" name="registration_date" id="registration-date" type="date">
-																										<span class="input-group-btn">
-																										</span>
-																									</div>
-																								</div>	
-																									
-																							</div>
-																							<br><p class=""> Notificar Autorizacion</p>
-																							<form class="form-horizontal" role="form">
-																								<div class="form-group">
-																									<label for="to" class="col-sm-1 control-label">Para:</label>
-																									<div class="col-sm-11">
-																										  <input type="email" class="form-control select2-offscreen" id="to" placeholder="" tabindex="-1">
-																									</div>
-																								</div>
-																								<div class="form-group">
-																									<label for="cc" class="col-sm-1 control-label">Asunto:</label>
-																									<div class="col-sm-11">
-																										  <input type="email" class="form-control select2-offscreen" id="cc" placeholder="" tabindex="-1">
-																									</div>
-																								</div>
-																							  
-																							</form>
-																					
-																							<div class="col-sm-11 col-sm-offset-1">
-																								
-																								<div class="btn-toolbar" role="toolbar">
-																									
-																									<div class="btn-group">
-																										<button class="btn btn-default"><span class="fa fa-bold"></span></button>
-																										<button class="btn btn-default"><span class="fa fa-italic"></span></button>
-																										<button class="btn btn-default"><span class="fa fa-underline"></span></button>
-																									</div>
-
-																									<div class="btn-group">
-																										<button class="btn btn-default"><span class="fa fa-align-left"></span></button>
-																										<button class="btn btn-default"><span class="fa fa-align-right"></span></button>
-																										<button class="btn btn-default"><span class="fa fa-align-center"></span></button>
-																										<button class="btn btn-default"><span class="fa fa-align-justify"></span></button>
-																									</div>
-																									
-																									<div class="btn-group">
-																										<button class="btn btn-default"><span class="fa fa-indent"></span></button>
-																										<button class="btn btn-default"><span class="fa fa-outdent"></span></button>
-																									</div>
-																									
-																									<div class="btn-group">
-																										<button class="btn btn-default"><span class="fa fa-list-ul"></span></button>
-																										<button class="btn btn-default"><span class="fa fa-list-ol"></span></button>
-																									</div>
-																									<button class="btn btn-default"><span class="fa fa-trash-o"></span></button>	
-																									<button class="btn btn-default"><span class="fa fa-paperclip"></span></button>
-																									<div class="btn-group">
-																										<button class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="fa fa-tags"></span> <span class="caret"></span></button>
-																										<ul class="dropdown-menu">
-																											<li><a href="#">add label <span class="label label-danger"> Home</span></a></li>
-																											<li><a href="#">add label <span class="label label-info">Job</span></a></li>
-																											<li><a href="#">add label <span class="label label-success">Clients</span></a></li>
-																											<li><a href="#">add label <span class="label label-warning">News</span></a></li>
-																										</ul>
-																									</div>
-																								</div>
-																								<br>	
-																								
-																								<div class="form-group">
-																									<textarea class="form-control" id="message" name="body" rows="8" placeholder="Escribir Mensaje"></textarea>
-																								</div>
-																								<!--
-																								<div class="form-group">	
-																									<button type="submit" class="btn btn-success">Send</button>
-																									<button type="submit" class="btn btn-default">Draft</button>
-																									<button type="submit" class="btn btn-danger">Discard</button>
-																								</div>-->
-																							</div>
-																						</div>
-																					</div>
-																				</div>
-																			</div>
-																		</div>
-																	</div>																	  
-																</li>
-															</ul>
-														</div>
-													</div>
-												</div>
-											</form>
-										</div>
-
+									<label class="btn btn-danger">
+										<input type="radio" name="options" id="option1" autocomplete="off">No
+										<span class="glyphicon glyphicon-ok"></span>
+									</label>
+								
+								</div>	
+								<div class="form-group   col-md-4"><br>
+									<h5>Fecha</h5>
+									<div class="input-group registration-date-time">
+										<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
+										<input class="form-control" name="registration_date" id="registration-date" type="date">
+										<span class="input-group-btn">
+										</span>
 									</div>
-									<div class="form-group right ">	
-																			
-										<button type="submit" class="btn btn-danger">Deshacer</button>
-										<button type="submit" class="btn btn-default">Guardar</button>
-										<button type="submit" class="btn btn-success">Enviar</button>
-									</div>
-									<!-- end widget content --> 
+								</div>	
+									
+							</div>
+							<br><p class=""> Notificar Autorización</p>
+							<form class="form-horizontal" role="form">
+								<div class="form-group">
+									<label for="to" class="col-sm-1 control-label">Para:</label>
+									<div class="col-sm-11">
+										  <input type="email" class="form-control select2-offscreen" id="to" placeholder="" tabindex="-1">
 									</div>
 								</div>
+								<div class="form-group">
+									<label for="cc" class="col-sm-1 control-label">Asunto:</label>
+									<div class="col-sm-11">
+										  <input type="email" class="form-control select2-offscreen" id="cc" placeholder="" tabindex="-1">
+									</div>
+								</div>
+							  
+							</form>
+					
+							<div class="col-sm-11 col-sm-offset-1">
+								
+								  <div class="x_content">
+										  <div id="alerts"></div>
+										  <div class="btn-toolbar editor" data-role="editor-toolbar" data-target="#editor-one">
+											<div class="btn-group">
+											  <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font"><i class="fa fa-font"></i><b class="caret"></b></a>
+											  <ul class="dropdown-menu">
+											  </ul>
+											</div>
+
+											<div class="btn-group">
+											  <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font Size"><i class="fa fa-text-height"></i>&nbsp;<b class="caret"></b></a>
+											  <ul class="dropdown-menu">
+												<li>
+												  <a data-edit="fontSize 5">
+													<p style="font-size:17px">Huge</p>
+												  </a>
+												</li>
+												<li>
+												  <a data-edit="fontSize 3">
+													<p style="font-size:14px">Normal</p>
+												  </a>
+												</li>
+												<li>
+												  <a data-edit="fontSize 1">
+													<p style="font-size:11px">Small</p>
+												  </a>
+												</li>
+											  </ul>
+											</div>
+
+											<div class="btn-group">
+											  <a class="btn" data-edit="bold" title="Bold (Ctrl/Cmd+B)"><i class="fa fa-bold"></i></a>
+											  <a class="btn" data-edit="italic" title="Italic (Ctrl/Cmd+I)"><i class="fa fa-italic"></i></a>
+											  <a class="btn" data-edit="strikethrough" title="Strikethrough"><i class="fa fa-strikethrough"></i></a>
+											  <a class="btn" data-edit="underline" title="Underline (Ctrl/Cmd+U)"><i class="fa fa-underline"></i></a>
+											</div>
+
+											<div class="btn-group">
+											  <a class="btn" data-edit="insertunorderedlist" title="Bullet list"><i class="fa fa-list-ul"></i></a>
+											  <a class="btn" data-edit="insertorderedlist" title="Number list"><i class="fa fa-list-ol"></i></a>
+											  <a class="btn" data-edit="outdent" title="Reduce indent (Shift+Tab)"><i class="fa fa-dedent"></i></a>
+											  <a class="btn" data-edit="indent" title="Indent (Tab)"><i class="fa fa-indent"></i></a>
+											</div>
+
+											<div class="btn-group">
+											  <a class="btn" data-edit="justifyleft" title="Align Left (Ctrl/Cmd+L)"><i class="fa fa-align-left"></i></a>
+											  <a class="btn" data-edit="justifycenter" title="Center (Ctrl/Cmd+E)"><i class="fa fa-align-center"></i></a>
+											  <a class="btn" data-edit="justifyright" title="Align Right (Ctrl/Cmd+R)"><i class="fa fa-align-right"></i></a>
+											  <a class="btn" data-edit="justifyfull" title="Justify (Ctrl/Cmd+J)"><i class="fa fa-align-justify"></i></a>
+											</div>
+
+											<div class="btn-group">
+											  <a class="btn dropdown-toggle" data-toggle="dropdown" title="Hyperlink"><i class="fa fa-link"></i></a>
+											  <div class="dropdown-menu input-append">
+												<input class="span2" placeholder="URL" type="text" data-edit="createLink" />
+												<button class="btn" type="button">Add</button>
+											  </div>
+											  <a class="btn" data-edit="unlink" title="Remove Hyperlink"><i class="fa fa-cut"></i></a>
+											</div>
+
+											<div class="btn-group">
+											  <a class="btn" title="Insert picture (or just drag & drop)" id="pictureBtn"><i class="fa fa-picture-o"></i></a>
+											  <input type="file" data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage" />
+											</div>
+
+											<div class="btn-group">
+											  <a class="btn" data-edit="undo" title="Undo (Ctrl/Cmd+Z)"><i class="fa fa-undo"></i></a>
+											  <a class="btn" data-edit="redo" title="Redo (Ctrl/Cmd+Y)"><i class="fa fa-repeat"></i></a>
+											</div>
+										  </div>
+
+										  <div id="editor-one" class="editor-wrapper"></div>
+
+										  <textarea name="descr" id="descr" style="display:none;"></textarea>
+										  
+										  <br />
+										</div>
+								<!--
+								<div class="form-group">	
+									<button type="submit" class="btn btn-success">Send</button>
+									<button type="submit" class="btn btn-default">Draft</button>
+									<button type="submit" class="btn btn-danger">Discard</button>
+								</div>-->
 							</div>
-						  <!-------->
-			  
+						</div>
+							
+					  
+					</div>
+				  </div>
+				</li>
+				<li>
+				  <div class="block">
+					<div class="tags">
+					  <a href="" class="tag">
+						<span>Paso 2</span>
+					  </a>
+					</div>
+					<div class="block_content">
+						<h2 class="title">
+									  <a>Detalles de la autorización</a>
+						 </h2>
+						<br />		
+							
+							<div class="table-responsive">
+								<table id="datatable-buttons" class="table table-striped table-bordered ">
+									<thead>
+									   <tr>
+											<th>Cod. RQS</th>
+											<th>Fecha RQS</th>																																																				
+											<th>Asunto</th>	
+											<th>Justificacion</th>
+											<th>Estado</th>
+											<th>Solicitante</th>
+											<th>Cargo</th>
+											<th>Detalle</th>
+											
+											
+										</tr>
+									</thead>
+									<tbody>
+										
+										<tr>
+										  <td>0023933</td>
+											<td>26-06-2017</td>
+											<td>solicitud compa prueba</td>
+											<td>Mensaje Justificacion prueba </td>
+											<td>Activo</td>
+											<td>Belkis Buelvas</td>
+											<td>Cargo</td>
+											<td>Area - Coordinacion</td>	
+											
+										</tr> 
+									</tbody>
+								</table>
+							</div>
+						
+							<div class="form-group">
+									<label for="exampleSelect1">Estado de la autorización</label>
+									<select class="form-control" id="exampleSelect1">
+									  <option value="" selected>Seleccionar</option>
+									  <option> AUTORIZAR / SOLICITUD DE COMPRAS</option>
+									  <option>RECHAZAR / REQUISICION</option>
+									</select>
+								</div>
+							
+					<div class="panel panel-default">
+						<div class="panel-heading text-center">
+							<span><strong><span class="glyphicon glyphicon-th-list"> </span> Productos</strong></span>
+						</div>
+						<div class="table-responsive">
+							<table class="table table-bordered table-hover" id="education_fields2">
+							<thead>
+								<tr >
+									<th>#</th>
+									<th><button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-toggle="modal" data-target=".categoria"></button>Categoria</th>
+									<th><button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-toggle="modal" data-target=".producto"></button>Producto</th>
+									<th>Cantidad</th>
+									<th><button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-toggle="modal" data-target=".unidad"></button>Unidad</th>
+									<th>Detalle del producto</th>	
+									<th><a></a></th>
+					
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										1
+									</td>
+									<td>
+										<div class="form-group ">
+											<select class="form-control">
+											  <option value="" selected>Seleccionar</option>
+											  <option value="">Taller de Cocina</option>
+											  <option value="">Papeleria</option>
+											  <option value="" >Didacticos</option>
+											  <option value="" >Aseo</option>
+											</select>
+										</div>
+									</td>
+									<td class="nopadding" >
+										<select class="form-control" id="educationDate" name="educationDate[]">
+											<option value="" selected>Seleccionar</option>
+											<option name="" value="">Aceite</option>
+											<option value="">Arepas antioqueñas precocidas </option>
+											<option value="" >Arroz  (bolsas de medio kilo)</option>
+											<option value="" >Bocadillo</option>
+									  </select>
+									</td>
+									<td class="nopadding" >
+										<div class="form-group">
+											<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Cantidad">
+										</div>
+									</td>
+									<td class="nopadding" >
+										<select class="form-control" id="educationDate" name="educationDate[]">
+											<option value="" selected>Seleccionar</option>
+											<option name="" value="">Barra</option>
+											<option name="" value="">Bloque</option>
+											<option name="" value="">Bolsa</option>
+											<option name="" value="">Botella</option>
+											<option name="" value="">Caja</option>
+											<option name="" value="">Frasco</option>
+											<option value="">Lata</option>
+											<option value="">Paquete</option>
+											<option value="">Pote</option>
+											<option value="">Tarro</option>
+											<option value="">Tubo</option>
+											<option value="">Vaso</option>
+											<option name="" value="">Unidad</option>
+											<option value="">Kg</option>
+											<option value="">Kilo</option>
+											<option value="">Litro</option>
+											<option value="">Lonjas</option>
+									  </select>
+									</td>
+									
+									<td class="nopadding" >
+										<div class="form-group">
+											<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Detalle">
+										</div>
+									</td>
+									
+									<td class="nopadding" >
+										<div class="input-group-btn">
+											<button class="btn btn-sm btn-primary glyphicon glyphicon-plus btn-xs" type="button"  onclick="education_fields2();"> <span  aria-hidden="true"></span> </button>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+					  
+						</table>
+						</div>
+						
+					</div>
+					<small>Pulse + para agregar otro producto /  Pulse - para eliminar un producto.</small>
+					<br />	
+						
+						
+					</div>
+				  </div>
+				</li>
+			</ul>			
+			<div class="form-group right ">	
+																	
+				<button type="submit" class="btn btn-danger">Deshacer</button>
+				<button type="submit" class="btn btn-default">Guardar</button>
+				<button type="submit" class="btn btn-success">Enviar</button>
+			</div>
 
         </div>
-        <!-- /page content -->
-		<!--
-		<script type="text/javascript">
-			$(document).ready(function(){
-				function onFinishCallback(){
-				$('#wizard').smartWizard('showMessage','Finish Clicked');
-			} 
-			});
-			
-			
-		</script>
-		-->
+	
+
+		  <!-- Categoria modal -->		  
+
+		  <div class="modal fade categoria" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog modal-sm">
+			  <div class="modal-content">
+
+				<div class="modal-header">
+				  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+				  </button>
+				  <h4 class="modal-title" id="myModalLabel2">Nueva Categoria</h4>
+				</div>
+				<div class="modal-body">
+					<label class="control-label " for="first-name"> Categoria</label>
+					<div class="form-group input-group ">
+						<input name="multiple[]" class="form-control ">
+						<span class="input-group-btn"><button type="button" class="btn btn-primary btn-add">+</button></span>
+					</div>
+					<small>Pulse + para agregar otra categoria /  Pulse - para eliminar una categoria.</small>
+				</div>
+				<div class="modal-footer"><!--
+				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+				  <button type="submit" class="btn btn-danger">Deshacer</button>
+				  <button type="button" class="btn btn-primary">Guardar</button>
+				</div>
+
+			  </div>
+			</div>
+		  </div>
+		  <!-- /modals -->
+		    <!-- Productos modal -->		  
+
+		  <div class="modal fade producto" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog modal-sm">
+			  <div class="modal-content">
+
+				<div class="modal-header">
+				  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+				  </button>
+				  <h4 class="modal-title" id="myModalLabel2">Nuevo Producto</h4>
+				</div>
+				<div class="modal-body">
+					<label class="control-label " for="first-name"> Producto</label>
+					<div class="form-group input-group ">
+						<input name="multiple[]" class="form-control ">
+						<span class="input-group-btn"><button type="button" class="btn btn-primary btn-add">+</button></span>
+					</div>
+					<small>Pulse + para agregar otro producto /  Pulse - para eliminar un producto.</small>
+				</div>
+				<div class="modal-footer"><!--
+				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+				  <button type="submit" class="btn btn-danger">Deshacer</button>
+				  <button type="button" class="btn btn-primary">Guardar</button>
+				</div>
+
+			  </div>
+			</div>
+		  </div>
+		  <!-- /modals -->
+		  
+		   <!-- Unidad modal -->		  
+
+		  <div class="modal fade unidad" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog modal-sm">
+			  <div class="modal-content">
+
+				<div class="modal-header">
+				  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+				  </button>
+				  <h4 class="modal-title" id="myModalLabel2">Nueva Unidad</h4>
+				</div>
+				<div class="modal-body">
+					<label class="control-label " for="first-name"> Unidad</label>
+					<div class="form-group input-group ">
+						<input name="multiple[]" class="form-control ">
+						<span class="input-group-btn"><button type="button" class="btn btn-primary btn-add">+</button></span>
+					</div>
+					<small>Pulse + para agregar otro unidad /  Pulse - para eliminar un unidad.</small>
+				</div>
+				<div class="modal-footer"><!--
+				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+				  <button type="submit" class="btn btn-danger">Deshacer</button>
+				  <button type="button" class="btn btn-primary">Guardar</button>
+				</div>
+
+			  </div>
+			</div>
+		  </div>
+		  <!-- /modals -->
+		
+	</div>
+
+	
 @stop
-<!--6581128-->
-<!--229392650-->
+     	<script>
+		var room = 1;
+		function education_fields2() {
+		 
+			room++;
+			var objTo = document.getElementById('education_fields2')
+			var divtest = document.createElement("tbody");
+			divtest.setAttribute("class", "form-group tr removeclass"+room);
+			var rdiv = 'removeclass'+room;
+			divtest.innerHTML = '<tr><td>' + (room) + '</td><td><div class="form-group "><select class="form-control"><option value="" selected>Seleccionar</option><option value="">Taller de Cocina</option><option value="">Papeleria</option><option value="" >Didacticos</option><option value="" >Aseo</option></select></div></td><td class="nopadding" ><select class="form-control" id="educationDate" name="educationDate[]"><option value="" selected>Seleccionar</option><option name="" value="">Aceite</option><option value="">Arepas antioqueñas precocidas </option><option value="" >Arroz  (bolsas de medio kilo)</option><option value="" >Bocadillo</option></select></td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Cantidad"></div></td><td class="nopadding" ><select class="form-control" id="educationDate" name="educationDate[]"><option value="" selected>Seleccionar</option><option name="" value="">Barra</option><option name="" value="">Bloque</option><option name="" value="">Bolsa</option><option name="" value="">Botella</option><option name="" value="">Caja</option><option name="" value="">Frasco</option><option value="">Lata</option><option value="">Paquete</option><option value="">Pote</option><option value="">Tarro</option><option value="">Tubo</option><option value="">Vaso</option><option name="" value="">Unidad</option><option value="">Kg</option><option value="">Kilo</option><option value="">Litro</option><option value="">Lonjas</option></select></td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Detalle"></div></td><td class="nopadding" ><div class="input-group-btn"><button class="btn btn-sm btn-danger glyphicon glyphicon-minus btn-xs" type="button" onclick="remove_education_fields2('+ room +');"> <span  aria-hidden="true"></span> </button></div></td></tr>';
+			
+			objTo.appendChild(divtest)
+			  
+		}
+	   function remove_education_fields2(rid) {
+		   $('.removeclass'+rid).remove()
+		   
+		   room--;
+	   }
+
+	</script>  
+@stop
+
