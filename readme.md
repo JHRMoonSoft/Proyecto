@@ -46,6 +46,50 @@ Thank you for considering contributing to the Laravel framework! The contributio
 
 If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
 
+
+## Orden Para Crear Migraciones
+
+Estos son los niveles que se deben preservar para la creación las tablas. Unicamente las dependencias tomadas en cuenta de las migraciones fueron de acuerdo al orden de estas para ser creadas. El orden dentro del nivel es indistinto pero el orden de los niveles es mandatorio:
+
+0. **Nivel Preliminar:**
+
+- Usuarios
+- Roles
+- Permisos
+- Relacion Usuarios-Roles
+- Relacion Roles-Permisos
+
+1. **Primer Nivel:**
+
+- Categoria OK 
+- Configuracion OK
+- Unidad OK
+- Proveedor OK
+- Requisicion OK
+
+2. **Segundo Nivel:**
+
+- AutorizacionRQS. Depende de Requisicion
+- Orden de Compra. Depende de Proveedor.
+- Producto. Depende de Categoria.
+
+3. **Tercer Nivel:**
+
+- Factura. Depende de Configuracion, Proveedor y de Orden de Compra.
+- Almacen. Depende de Producto y Categoria.
+- Conversion. Depende de Producto y Unidad.
+
+4. **Cuarto Nivel:**
+
+- Solicitud de Compra. Depende de Orden de Compra y de Requisicion.
+
+5. **Quinto Nivel:**
+
+- Relacion Productos-Solicitudes de Compra.
+- Relacion Productos-Unidades.
+- Relacion Productos-Requisiciones.
+- Relacion Requisiciones-Proveedores.
+
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).

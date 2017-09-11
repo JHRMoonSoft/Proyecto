@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProveedorTable extends Migration
+class CreateProveedoresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateProveedorTable extends Migration
      */
     public function up()
     {
-        Schema::create('proveedor', function (Blueprint $table) {
+        Schema::create('proveedores', function (Blueprint $table) {
 
             $table->engine = 'InnoDB';
 
@@ -22,6 +22,7 @@ class CreateProveedorTable extends Migration
             $table->string('des_prv');
 
             $table->timestamps();
+
         });
     }
 
@@ -32,6 +33,6 @@ class CreateProveedorTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('proveedor');
+        Schema::dropIfExists('proveedores');
     }
 }

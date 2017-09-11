@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUnidadTable extends Migration
+class CreateUnidadesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateUnidadTable extends Migration
      */
     public function up()
     {
-        Schema::create('unidad', function (Blueprint $table) {
+        Schema::create('unidades', function (Blueprint $table) {
 
             $table->engine = 'InnoDB';
 
@@ -22,6 +22,7 @@ class CreateUnidadTable extends Migration
             $table->string('des_und');
 
             $table->timestamps();
+
         });
     }
 
@@ -32,6 +33,6 @@ class CreateUnidadTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('unidad');
+        Schema::dropIfExists('unidades');
     }
 }

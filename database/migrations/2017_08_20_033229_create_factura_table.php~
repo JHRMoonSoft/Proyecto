@@ -24,6 +24,7 @@ class CreateFacturaTable extends Migration
             $table->integer('cnp_fct');
 
             $table->timestamps();
+
         });
     }
 

@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
 			$table->string('tipo_identidad');
 			$table->string('no_identidad');
-            $table->string('nombre');
+			$table->string('nombre');
 			$table->string('apellido');
 			$table->string('usuario')->unique();
 			$table->string('cargo');
@@ -26,10 +26,11 @@ class CreateUsersTable extends Migration
 			$table->string('coordinacion');
 			$table->string('telefono_fijo');
 			$table->string('telefono_celular');
-            $table->string('direccion_email');
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
+			$table->string('direccion_email');
+			$table->string('password');
+			$table->boolean('estado');
+			$table->rememberToken();
+			$table->timestamps();
         });
     }
 
