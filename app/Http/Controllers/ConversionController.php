@@ -14,7 +14,7 @@ class ConversionController extends Controller
      */
     public function index()
     {
-        //
+      return View('conversion.index');
     }
 
     /**

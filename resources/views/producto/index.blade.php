@@ -51,7 +51,7 @@
 						<th>Detalle producto</th>
 						<th>Fecha. Creado</th>
 						<th>Fecha. Modificado</th>
-						<th>Acciones</th>
+						<th>Opciones </th>
 						<!--<th>Eliminar</th>-->
 					</tr>
 				  </thead>
@@ -91,19 +91,20 @@
 				<div class="modal-body">
 				
 					<label for="">Cod. Producto</label>
-					<div class="form-group input-sm">
-						<input class="form-control input-sm" id="inputsm" disabled="disabled" placeholder="01" type="text">
+					<div class="form-group ">
+						<input class="form-control " id="inputsm" disabled="disabled" placeholder="01" type="text">
 					</div>
-					<label for="">Detalle producto</label>
-					<div class="form-group input-sm">
-						<input class="form-control input-sm" id="inputsm" placeholder="Nombre completo" type="text">
+					<br/>
+					<label for="">Detalle Producto</label>
+					<div class="form-group ">
+						<input class="form-control " id="inputsm" placeholder="Producto" type="text">
 					</div>
 				
 				</div>
 				<div class="modal-footer"><!--
 				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-				  <button type="submit" class="btn btn-danger">Deshacer</button>
-				  <button type="button" class="btn btn-primary">Guardar</button>
+				  <button type="submit" class="btn btn-primary">Deshacer</button>
+				  <button type="button" class="btn btn-success">Guardar</button>
 				</div>
 
 			  </div>
@@ -125,19 +126,20 @@
 				<div class="modal-body">
 				
 					<label for="">Cod. Producto</label>
-					<div class="form-group input-sm">
-						<input class="form-control input-sm" id="inputsm" disabled="disabled" placeholder="01" type="text">
+					<div class="form-group ">
+						<input class="form-control " id="inputsm" disabled="disabled" placeholder="01" type="text">
 					</div>
-					<label for="">Detalle producto</label>
-					<div class="form-group input-sm">
-						<input class="form-control input-sm" id="inputsm" placeholder="Nombre completo" type="text">
+					<br/>
+					<label for="">Detalle Producto</label>
+					<div class="form-group ">
+						<input class="form-control " id="inputsm" placeholder="Producto" type="text">
 					</div>
 				
 				</div>
 				<div class="modal-footer"><!--
 				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-				  <button type="submit" class="btn btn-danger">Deshacer</button>
-				  <button type="button" class="btn btn-primary">Guardar</button>
+				  <button type="submit" class="btn btn-primary">Deshacer</button>
+				  <button type="button" class="btn btn-success">Guardar</button>
 				</div>
 
 			  </div>
@@ -160,21 +162,22 @@
 						
 				
 					<label for="">Cod. Producto</label>
-					<div class="form-group input-sm">
-						<input class="form-control input-sm" id="inputsm" disabled="disabled" placeholder="01" type="text">
+					<div class="form-group ">
+						<input class="form-control " id="inputsm" disabled="disabled" placeholder="01" type="text">
 					</div>
-					<label for="">Detalle producto</label>
-					<div class="form-group input-sm">
-						<input class="form-control input-sm" id="inputsm"  disabled="disabled" placeholder="Nombre completo" type="text">
+					<br/>
+					<label for="">Detalle Producto</label>
+					<div class="form-group ">
+						<input class="form-control " id="inputsm"  disabled="disabled" placeholder="Producto" type="text">
 					</div>
 					<hr>
-						<h4>¿Deseas eliminar este Producto?</h4>	
+						<h4>¿Deseas eliminar el Producto?</h4>	
 				</div>
 
 				<div class="modal-footer"><!--
 				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-				  <button type="submit" class="btn btn-danger">Deshacer</button>
-				  <button type="button" class="btn btn-primary">Guardar</button>
+				  <button type="button" class="btn btn-primary">Deshacer</button>
+				  <button type="submit" class="btn btn-danger"> Eliminar</button>
 				</div>
 
 			  </div>

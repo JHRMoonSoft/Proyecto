@@ -20,9 +20,9 @@
 
     <div class="x_panel">
 	    <div class="x_title">
-			<h2>Historial de Categorías </h2> &nbsp&nbsp&nbsp
-						
-			<button type="button" class="btn btn-warning " data-toggle="modal" data-target=".create_categoria">Nueva Categoria </button>
+			<h2>Esatado Producto Almacén </h2> &nbsp&nbsp&nbsp
+		<!--				
+			<button type="button" class="btn btn-warning " data-toggle="modal" data-target=".create_unidad">Nueva unidad </button>
 		
 			<ul class="nav navbar-right panel_toolbox">
 			
@@ -39,7 +39,7 @@
 			  </li>
 			  <li><a class="close-link"><i class="fa fa-close"></i></a>
 			  </li>
-			</ul>
+			</ul>-->
 			<div class="clearfix"></div>
 	    </div>
 		<div class="x_content">
@@ -47,11 +47,12 @@
 				<table id="datatable-buttons" class="table table-striped table-bordered ">
 				  <thead>
 				   <tr>
-						<th>Cod. Categoría</th>
-						<th>Detalle Categoría</th>
-						<th>Fecha. Creado</th>
-						<th>Fecha. Modificado</th>
-						<th>Opciones </th>
+						<th>Cod. Producto</th>
+						<th>Producto</th>
+						<th>Categoría</th>
+						<th>Esatado </th>
+						<th>Cant.Disponible </th>
+						<th>Unidad</th>
 						<!--<th>Eliminar</th>-->
 					</tr>
 				  </thead>
@@ -59,15 +60,11 @@
 					
 					<tr>
 					  <td>01</td>
-						<td>Compra peoductos</td>
-						<td>22-10-2017</td>	
-						<td>12-11-2017</td>	
-						<td>
-								
-							<button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-edit btn-xs" data-toggle="modal" data-target=".edit_categoria"></button>
-							<button type="button" class="btn btn-sm btn-danger glyphicon glyphicon-remove btn-xs" data-toggle="modal" data-target=".delete_categoria"></button>
-								
-						</td>
+						<td>Producto</td>
+						<td>Categoría</td>	
+						<td>disponibe / agotado</td>
+						<td>15</td>	
+						<td> Unidad	</td>
 						
 				
 					</tr>                       
@@ -77,34 +74,33 @@
 			</div>
         </div>
 		
-		 <!-- create Categoria modal -->		  
+		 <!-- create Unidad modal -->		  
 
-		  <div class="modal fade create_categoria">" tabindex="-1" role="dialog" aria-hidden="true">
+		  <div class="modal fade create_unidad">" tabindex="-1" role="dialog" aria-hidden="true">
 			<div class="modal-dialog modal-sm">
 			  <div class="modal-content">
 
 				<div class="modal-header">
 				  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
 				  </button>
-				  <h4 class="modal-title" id="myModalLabel2">Nueva Categoria </h4>
+				  <h4 class="modal-title" id="myModalLabel2">Nueva Unidad </h4>
 				</div>
 				<div class="modal-body">
 				
-					<label for="">Cod. Categoria</label>
-					<div class="form-group ">
-						<input class="form-control " id="inputsm" disabled="disabled" placeholder="01" type="text">
+					<label for="">Cod. Unidad</label>
+					<div class="form-group input-sm">
+						<input class="form-control input-sm" id="inputsm" disabled="disabled" placeholder="01" type="text">
 					</div>
-					<br>
-					<label for="">Detalle Categoria</label>
-					<div class="form-group ">
-						<input class="form-control " id="inputsm" placeholder="Categoria" type="text">
+					<label for="">Detalle Unidad</label>
+					<div class="form-group input-sm">
+						<input class="form-control input-sm" id="inputsm" placeholder="Nombre completo" type="text">
 					</div>
 				
 				</div>
 				<div class="modal-footer"><!--
 				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-				  <button type="submit" class="btn btn-primary">Deshacer</button>
-				  <button type="button" class="btn btn-success">Guardar</button>
+				  <button type="submit" class="btn btn-danger">Deshacer</button>
+				  <button type="button" class="btn btn-primary">Guardar</button>
 				</div>
 
 			  </div>
@@ -112,34 +108,33 @@
 		  </div>
 		 <!-- /modals -->
 		 
-		   <!-- edit Categoria modal -->		  
+		   <!-- edit Unidad modal -->		  
 
-		  <div class="modal fade edit_categoria">" tabindex="-1" role="dialog" aria-hidden="true">
+		  <div class="modal fade edit_unidad">" tabindex="-1" role="dialog" aria-hidden="true">
 			<div class="modal-dialog modal-sm">
 			  <div class="modal-content">
 
 				<div class="modal-header">
 				  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
 				  </button>
-				  <h4 class="modal-title" id="myModalLabel2">Editar Categoria </h4>
+				  <h4 class="modal-title" id="myModalLabel2">Editar Unidad </h4>
 				</div>
 				<div class="modal-body">
 				
-					<label for="">Cod. Categoria</label>
-					<div class="form-group ">
-						<input class="form-control " id="inputsm" disabled="disabled" placeholder="01" type="text">
+					<label for="">Cod. Unidad</label>
+					<div class="form-group input-sm">
+						<input class="form-control input-sm" id="inputsm" disabled="disabled" placeholder="01" type="text">
 					</div>
-					<br>
-					<label for="">Detalle Categoria</label>
-					<div class="form-group ">
-						<input class="form-control " id="inputsm" placeholder="Categoria" type="text">
+					<label for="">Detalle Unidad</label>
+					<div class="form-group input-sm">
+						<input class="form-control input-sm" id="inputsm" placeholder="Nombre completo" type="text">
 					</div>
 				
 				</div>
 				<div class="modal-footer"><!--
 				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-				  <button type="submit" class="btn btn-primary">Deshacer</button>
-				  <button type="button" class="btn btn-success">Guardar</button>
+				  <button type="submit" class="btn btn-danger">Deshacer</button>
+				  <button type="button" class="btn btn-primary">Guardar</button>
 				</div>
 
 			  </div>
@@ -147,31 +142,30 @@
 		  </div>
 		  <!-- /modals -->
 		  
-		    <!-- delete Categoria modal -->		  
+		    <!-- delete Unidad modal -->		  
 
-		  <div class="modal fade delete_categoria">" tabindex="-1" role="dialog" aria-hidden="true">
+		  <div class="modal fade delete_unidad">" tabindex="-1" role="dialog" aria-hidden="true">
 			<div class="modal-dialog modal-sm">
 			  <div class="modal-content">
 
 				<div class="modal-header">
 				  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
 				  </button>
-				  <h4 class="modal-title" id="myModalLabel2">Eliminar Categoria </h4>
+				  <h4 class="modal-title" id="myModalLabel2">Eliminar Unidad </h4>
 				</div>
 				<div class="modal-body">
 						
 				
-					<label for="">Cod. Categoria</label>
-					<div class="form-group ">
-						<input class="form-control " id="inputsm" disabled="disabled" placeholder="01" type="text">
+					<label for="">Cod. Unidad</label>
+					<div class="form-group input-sm">
+						<input class="form-control input-sm" id="inputsm" disabled="disabled" placeholder="01" type="text">
 					</div>
-					<br/>
-					<label for="">Detalle Categoria</label>
-					<div class="form-group ">
-						<input class="form-control " id="inputsm"  disabled="disabled" placeholder="Categoria" type="text">
+					<label for="">Detalle Unidad</label>
+					<div class="form-group input-sm">
+						<input class="form-control input-sm" id="inputsm"  disabled="disabled" placeholder="Nombre completo" type="text">
 					</div>
 					<hr>
-						<h4>¿Deseas eliminar la Categoria?</h4>	
+						<h4>¿Deseas eliminar esta Unidad?</h4>	
 				</div>
 
 				<div class="modal-footer"><!--

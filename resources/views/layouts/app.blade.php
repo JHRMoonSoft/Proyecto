@@ -72,11 +72,11 @@
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
-                <h3>General</h3>
+                <h3>Home</h3>
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-home"></i> Requisicion <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="index.html">Nueva RQS</a></li>
+                      <li><a href="/requisicion">Nueva RQS</a></li>
                       <li><a href="index2.html">Historial RQS</a></li>
                     </ul>
                   </li>
@@ -114,43 +114,59 @@
                   </li>
                </ul>
               </div>
-              <div class="menu_section">
+			     <div class="menu_section">
                 <h3>Panel de Opciones</h3>
                 <ul class="nav side-menu">
-                  <li><a><i class="fa fa-pencil-square-o"></i> Requisiciones<span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="index2.html">Historial RQS</a></li>
-                      <li><a href="project_detail.html">Autorizar RQS</a></li>
-                      <li><a href="contacts.html">Entregar RQS</a></li>
+				
+                  <li><a><i class="fa fa-pencil-square-o"></i> Gestionar RQS<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">                     
+                      <li><a href="/autorizarRQS">Autorizar RQS</a></li>
+                      <li><a href="/reciboRQS">Entregar RQS</a></li>
+					   <li><a href="index2.html">Historial RQS</a></li>
                     </ul>
                   </li>
-				   <li><a><i class="fa fa-check-square-o"></i>Solicitud de compras <span class="fa fa-chevron-down"></span></a>
+				   <li><a><i class="fa fa-check-square-o"></i>Solicitud de compra <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-					<li><a href="project_detail.html">Nueva SC</a></li>
-                      <li><a href="index2.html">Historial SC</a></li>
+					<li><a href="project_detail.html">Nueva SCP</a></li>
+                      <li><a href="index2.html">Historial SCP</a></li>
                       <!--<li><a href="profile.html">Solicitud de compras </a></li>-->
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-shopping-cart"></i> Compras  <span class="fa fa-chevron-down"></span></a>
+				  <li><a><i class="fa fa-shopping-cart"></i> Proveedores<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="page_404.html">Orden de compras</a></li>
-                      <li><a href="page_500.html">Factura </a></li>
-					   <li><a href="page_500.html">Proveedores </a></li>
+                      <li><a href="page_404.html"> Nuevo Proveedores</a></li>
+                      <li><a href="page_500.html">Historial Proveedores</a></li>
                       <!--<li><a href="login.html">Login Page</a></li>-->
                     </ul>
                   </li>
-				   <li><a><i class="fa fa-dropbox"></i>Almacén  <span class="fa fa-chevron-down"></span></a>
+				  <li><a><i class="fa fa-shopping-cart"></i> Orden de compra <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="page_403.html">Unidad</a></li>
-                      <li><a href="page_404.html">Categorías</a></li>
-                      <li><a href="page_500.html">Productos</a></li>
-                      <li><a href="plain_page.html">Factor Empaque</a></li>
-                      <li><a href="login.html">Ingreso Almacén</a></li>
-                     <!-- <li><a href="pricing_tables.html">Pricing Tables</a></li>-->
+                      <li><a href="page_404.html"> Nueva OCP</a></li>
+                      <li><a href="page_500.html">Historial OCP</a></li>
+                      <!--<li><a href="login.html">Login Page</a></li>-->
                     </ul>
                   </li>
+                  <li><a><i class="fa fa-shopping-cart"></i> Factura  <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="page_500.html">Nueva Factura </a></li>
+					   <li><a href="page_500.html">Historial Factura  </a></li>
+                      <!--<li><a href="login.html">Login Page</a></li>-->
+                    </ul>
+                  </li>
+				  <li><a><i class="fa fa-dropbox"></i>Almacén<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="/categoria">Categoría</a></li>
+                      <li><a href="/producto">Productos</a></li>
+					   <li><a href="/unidad">Unidad</a></li>
+					   <li><a href="/conversion"> Unidad empaque</a></li>
+					   <li><a href="/almacen">Esatado almacén</a></li>
+                    </ul>
+                  </li>
+				  
+			
 				</ul>
               </div>
+
 
             </div>
           </div>
@@ -175,7 +191,7 @@
 						<ul class="dropdown-menu dropdown-usermenu pull-left">
 							<li><a href="javascript:;">Empresa</a></li>
 							<li><a href="javascript:;"> Usuarios  </a></li>
-							<li><a href="javascript:;"> Roles  </a></li>
+							<li><a href="/role"> Roles  </a></li>
 							<li><a href="javascript:;">Permisos  </a></li>							
 						</ul>
 					</li>
@@ -187,12 +203,32 @@
 						<span class=" fa fa-angle-down"></span>
 					  </a>
 						<ul class="dropdown-menu dropdown-usermenu pull-left">
-							<li><a href="javascript:;"> Requisiciones </a></li>
-							<li><a href="javascript:;"> Compras </a></li>
-							<li><a href="javascript:;">Almacén </a></li>
+							<li><a href="javascript:;"> Gestionar RQS </a></li>
+							<li><a href="javascript:;"> Solicitud de compra</a></li>
+							<li><a href="javascript:;">Proveedores </a></li>
+							<li><a href="javascript:;"> Orden de compra</a></li>
+							<li><a href="javascript:;"> Factura</a></li>
+							<li><a href="/almacen"> Almacén</a></li>
+							
+							
 						</ul>
 					</li>
-				</ul>
+				</ul><!--
+				<ul class="nav navbar-nav navbar-left">
+					<li class="">
+					  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+					  ALMACEN
+						<span class=" fa fa-angle-down"></span>
+					  </a>
+						<ul class="dropdown-menu dropdown-usermenu pull-left">
+							<li><a href="javascript:;"> Categorías</a></li>
+							<li><a href="javascript:;"> Productos </a></li>
+							<li><a href="javascript:;">Unidad </a></li>
+							<li><a href="javascript:;">Unidad Empaque </a></li>
+							<li><a href="javascript:;">Esatado Almacén </a></li>
+						</ul>
+					</li>
+				</ul>-->
 			  
 
 				<ul class="nav navbar-nav navbar-right">

@@ -20,7 +20,7 @@ Auth::routes();
 Route::resource('almacen', 'AlmacenController');
 Route::resource('proveedor', 'ProveedorController');
 Route::resource('requisicion', 'RequisicionController');
-Route::resource('autorizacionRQS', 'AutorizacionRQSController');
+Route::resource('autorizarRQS', 'AutorizarRQSController');
 Route::resource('producto', 'ProductoController');
 Route::resource('categoria', 'CategoriaController');
 Route::resource('conversion', 'ConversionController');
@@ -36,5 +36,4 @@ Route::resource('permission', 'PermissionController');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/almacen/unidad', 'UnidadController@index');
-Route::resource('unidad', 'UnidadController');
+

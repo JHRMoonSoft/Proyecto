@@ -20,10 +20,10 @@
 
     <div class="x_panel">
 	    <div class="x_title">
-			<h2>Historial de Unidades </h2> &nbsp&nbsp&nbsp
+			<h2>Historial Unidad  Empaque </h2> &nbsp&nbsp&nbsp
 						
-			<button type="button" class="btn btn-warning " data-toggle="modal" data-target=".create_unidad">Nueva unidad </button>
-		
+			<button type="button" class="btn btn-warning " data-toggle="modal" data-target=".create_unidad">Nueva Und. Empaque  </button>
+		<!--
 			<ul class="nav navbar-right panel_toolbox">
 			
 			  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -39,7 +39,7 @@
 			  </li>
 			  <li><a class="close-link"><i class="fa fa-close"></i></a>
 			  </li>
-			</ul>
+			</ul>-->
 			<div class="clearfix"></div>
 	    </div>
 		<div class="x_content">
@@ -47,8 +47,10 @@
 				<table id="datatable-buttons" class="table table-striped table-bordered ">
 				  <thead>
 				   <tr>
-						<th>Cod. Unidad</th>
-						<th>Detalle Unidad</th>
+						<th>Cod. Conversion</th>
+						<th>Unidad Empaque </th>
+						<th>Cantidad</th>
+						<th> Unidad Almacén</th>
 						<th>Fecha. Creado</th>
 						<th>Fecha. Modificado</th>
 						<th>Opciones </th>
@@ -59,7 +61,9 @@
 					
 					<tr>
 					  <td>01</td>
-						<td>Compra peoductos</td>
+						<td>paquete</td>
+						<td>30</td>	
+						<td>paños</td>
 						<td>22-10-2017</td>	
 						<td>12-11-2017</td>	
 						<td>
@@ -86,25 +90,39 @@
 				<div class="modal-header">
 				  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
 				  </button>
-				  <h4 class="modal-title" id="myModalLabel2">Nueva Unidad </h4>
+				  <h4 class="modal-title" id="myModalLabel2">Nueva  Unidad Empaque</h4>
 				</div>
-				<div class="modal-body">
-				
-					<label for="">Cod. Unidad</label>
-					<div class="form-group ">
-						<input class="form-control " id="inputsm" disabled="disabled" placeholder="01" type="text">
-					</div>
-					<br/>
-					<label for="">Detalle Unidad</label>
-					<div class="form-group ">
-						<input class="form-control " id="inputsm" placeholder="Unidad" type="text">
-					</div>
+				<div class="modal-body">					
+					
+						<label for="">Cod. Conversion</label>
+						<div class="form-group ">
+							<input class="form-control " id="inputsm" disabled="disabled" placeholder="codigo" type="text">
+						</div>
+							<br/>
+						<label for=""> Unidad Empaque</label>
+						<div class="form-group ">
+							<input class="form-control " id="inputsm" placeholder=" Unidad Empaque" type="text">
+						</div>
+							<br/>
+						<label for="">Cantidad</label>
+						<div class="form-group ">
+							<input class="form-control " id="inputsm" placeholder="Cantidad" type="text">
+						</div>
+						<br/>
+						<label for=""> Unidad de Almacén</label>
+						<div class="form-group ">
+							<select class="form-control" id="exampleSelect1">
+							  <option value="" selected>Seleccionar</option>
+							  <option> caja</option>
+							  <option>lata</option>
+							</select>
+						</div>
 				
 				</div>
 				<div class="modal-footer"><!--
 				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-				  <button type="submit" class="btn btn-primary">Deshacer</button>
-				  <button type="button" class="btn btn-success">Guardar</button>
+				  <button type="submit" class="btn btn-success">Deshacer</button>
+				  <button type="button" class="btn btn-primary">Guardar</button>
 				</div>
 
 			  </div>
@@ -121,25 +139,39 @@
 				<div class="modal-header">
 				  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
 				  </button>
-				  <h4 class="modal-title" id="myModalLabel2">Editar Unidad </h4>
+				  <h4 class="modal-title" id="myModalLabel2">Editar  Unidad Empaque</h4>
 				</div>
-				<div class="modal-body">
-				
-					<label for="">Cod. Unidad</label>
-					<div class="form-group ">
-						<input class="form-control " id="inputsm" disabled="disabled" placeholder="01" type="text">
-					</div>
-					<br/>
-					<label for="">Detalle Unidad</label>
-					<div class="form-group ">
-						<input class="form-control " id="inputsm" placeholder="Unidad" type="text">
-					</div>
+				<div class="modal-body">					
+					
+						<label for="">Cod. Conversion</label>
+						<div class="form-group ">
+							<input class="form-control " id="inputsm" disabled="disabled" placeholder="codigo" type="text">
+						</div>
+							<br/>
+						<label for=""> Unidad Empaque</label>
+						<div class="form-group ">
+							<input class="form-control " id="inputsm" placeholder=" Unidad Empaque" type="text">
+						</div>
+							<br/>
+						<label for="">Cantidad</label>
+						<div class="form-group ">
+							<input class="form-control " id="inputsm" placeholder="Cantidad" type="text">
+						</div>
+						<br/>
+						<label for=""> Unidad de Almacén</label>
+						<div class="form-group ">
+							<select class="form-control" id="exampleSelect1">
+							  <option value="" selected>Seleccionar</option>
+							  <option> caja</option>
+							  <option>lata</option>
+							</select>
+						</div>
 				
 				</div>
 				<div class="modal-footer"><!--
 				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-				  <button type="submit" class="btn btn-primary">Deshacer</button>
-				  <button type="button" class="btn btn-success">Guardar</button>
+				  <button type="submit" class="btn btn-success">Deshacer</button>
+				  <button type="button" class="btn btn-primary">Guardar</button>
 				</div>
 
 			  </div>
@@ -156,22 +188,36 @@
 				<div class="modal-header">
 				  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
 				  </button>
-				  <h4 class="modal-title" id="myModalLabel2">Eliminar Unidad </h4>
+				  <h4 class="modal-title" id="myModalLabel2">Eliminar  Unidad Empaque</h4>
 				</div>
-				<div class="modal-body">
-						
+				<div class="modal-body">					
+					
+						<label for="">Cod. Conversion</label>
+						<div class="form-group ">
+							<input class="form-control " id="inputsm" disabled="disabled" placeholder="codigo" type="text">
+						</div>
+							<br/>
+						<label for=""> Unidad Empaque</label>
+						<div class="form-group ">
+							<input class="form-control " id="inputsm" disabled="disabled" placeholder="Unidad Empaque" type="text">
+						</div>
+							<br/>
+						<label for="">Cantidad</label>
+						<div class="form-group ">
+							<input class="form-control " id="inputsm" disabled="disabled" placeholder="Cantidad" type="text">
+						</div>
+						<br/>
+						<label for=""> Unidad de Almacén</label>
+						<div class="form-group ">
+							<select class="form-control" id="exampleSelect1" disabled="disabled">
+							  <option value="" selected>Seleccionar</option>
+							  <option> caja</option>
+							  <option>lata</option>
+							</select>
+						</div>
+						<hr>
+						<h4>¿Deseas eliminar la Unidad de Empaque?</h4>	
 				
-					<label for="">Cod. Unidad</label>
-					<div class="form-group ">
-						<input class="form-control " id="inputsm" disabled="disabled" placeholder="01" type="text">
-					</div>
-					<br/>
-					<label for="">Detalle Unidad</label>
-					<div class="form-group ">
-						<input class="form-control " id="inputsm"  disabled="disabled" placeholder=" Unidad" type="text">
-					</div>
-					<hr>
-						<h4>¿Deseas eliminar la Unidad?</h4>	
 				</div>
 
 				<div class="modal-footer"><!--

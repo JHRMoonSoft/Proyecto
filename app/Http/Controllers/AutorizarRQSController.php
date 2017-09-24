@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\ReciboRQS;
 use Illuminate\Http\Request;
 
-class ReciboRQSController extends Controller
+class AutorizarRQSController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,7 +23,7 @@ class ReciboRQSController extends Controller
      */
     public function create()
     {
-      return View('autorizarRQS.create');
+        //
     }
 
     /**
@@ -41,10 +40,10 @@ class ReciboRQSController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\ReciboRQS  $reciboRQS
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(ReciboRQS $reciboRQS)
+    public function show($id)
     {
         //
     }
@@ -52,10 +51,10 @@ class ReciboRQSController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\ReciboRQS  $reciboRQS
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(ReciboRQS $reciboRQS)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +63,10 @@ class ReciboRQSController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ReciboRQS  $reciboRQS
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ReciboRQS $reciboRQS)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +74,10 @@ class ReciboRQSController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ReciboRQS  $reciboRQS
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ReciboRQS $reciboRQS)
+    public function destroy($id)
     {
         //
     }
