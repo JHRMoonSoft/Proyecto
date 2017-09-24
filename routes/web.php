@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->intended('/login');
 });
 
 Auth::routes();
@@ -34,5 +34,7 @@ Route::resource('reciboRQS', 'ReciboRQSController');
 Route::resource('role', 'RoleController');
 Route::resource('permission', 'PermissionController');
 
-
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/almacen/unidad', 'UnidadController@index');
+Route::resource('unidad', 'UnidadController');
