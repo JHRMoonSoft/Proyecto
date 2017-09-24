@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Unidad;
 use Illuminate\Http\Request;
 
-class UnidadController extends Controller
+class EmpresaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +13,7 @@ class UnidadController extends Controller
      */
     public function index()
     {
-       if(!Session::has('username')){
-			return redirect()->intended('/login');
-		}
-		return View::make('unidad.index_unidad');
+        //
     }
 
     /**
@@ -44,10 +40,10 @@ class UnidadController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Unidad  $unidad
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Unidad $unidad)
+    public function show($id)
     {
         //
     }
@@ -55,10 +51,10 @@ class UnidadController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Unidad  $unidad
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Unidad $unidad)
+    public function edit($id)
     {
         //
     }
@@ -67,10 +63,10 @@ class UnidadController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Unidad  $unidad
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Unidad $unidad)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -78,10 +74,10 @@ class UnidadController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Unidad  $unidad
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Unidad $unidad)
+    public function destroy($id)
     {
         //
     }

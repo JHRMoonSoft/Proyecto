@@ -51,7 +51,7 @@
 						<th>Detalle Categoría</th>
 						<th>Fecha. Creado</th>
 						<th>Fecha. Modificado</th>
-						<th>Ansiones</th>
+						<th>Acciones</th>
 						<!--<th>Eliminar</th>-->
 					</tr>
 				  </thead>
