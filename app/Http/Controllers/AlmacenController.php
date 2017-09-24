@@ -25,6 +25,7 @@ class AlmacenController extends Controller
     public function create()
     {
         //
+	return View('almacen.create');
     }
 
     /**

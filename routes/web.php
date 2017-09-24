@@ -17,6 +17,20 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::resource('almacen', 'AlmacenController');
+Route::resource('proveedor', 'ProveedorController');
+Route::resource('requisicion', 'RequisicionController');
+Route::resource('autorizacionRQS', 'AutorizacionRQSController');
+Route::resource('producto', 'ProductoController');
+Route::resource('categoria', 'CategoriaController');
+Route::resource('conversion', 'ConversionController');
+Route::resource('configuracion', 'ConfiguracionController');
+Route::resource('solicitudcompra', 'SolicitudCompraController');
+Route::resource('ordencompra', 'OrdenCompraController');
+Route::resource('unidad', 'UnidadController');
+Route::resource('factura', 'FacturaController');
+Route::resource('reciboRQS', 'ReciboRQSController');
+
 Route::resource('role', 'RoleController');
 Route::resource('permission', 'PermissionController');
 

@@ -25,6 +25,7 @@ class ConversionController extends Controller
     public function create()
     {
         //
+	return View('conversion.create');
     }
 
     /**

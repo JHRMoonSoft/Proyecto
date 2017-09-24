@@ -25,6 +25,7 @@ class FacturaController extends Controller
     public function create()
     {
         //
+	return View('factura.create');
     }
 
     /**

@@ -15,6 +15,7 @@ class UnidadController extends Controller
     public function index()
     {
         //
+	return View('unidad.index');
     }
 
     /**
@@ -25,6 +26,7 @@ class UnidadController extends Controller
     public function create()
     {
         //
+	return View('unidad.create');
     }
 
     /**

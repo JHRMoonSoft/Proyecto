@@ -15,6 +15,7 @@ class CategoriaController extends Controller
     public function index()
     {
         //
+	return View('categoria.index');
     }
 
     /**
@@ -25,6 +26,7 @@ class CategoriaController extends Controller
     public function create()
     {
         //
+	return View('categoria.create');
     }
 
     /**

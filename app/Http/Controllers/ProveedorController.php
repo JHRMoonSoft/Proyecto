@@ -15,6 +15,7 @@ class ProveedorController extends Controller
     public function index()
     {
         //
+	//return View('proveedor.index');
     }
 
     /**
@@ -25,6 +26,7 @@ class ProveedorController extends Controller
     public function create()
     {
         //
+	return View('proveedor.create');
     }
 
     /**
@@ -47,6 +49,7 @@ class ProveedorController extends Controller
     public function show(Proveedor $proveedor)
     {
         //
+	return View('proveedor.show');
     }
 
     /**

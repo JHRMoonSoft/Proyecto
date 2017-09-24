@@ -24,6 +24,7 @@ class RequisicionController extends Controller
     public function create()
     {
         //
+	return View('requisicion.create');
     }
 
     /**
