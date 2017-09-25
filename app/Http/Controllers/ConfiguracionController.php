@@ -6,6 +6,12 @@ use Illuminate\Http\Request;
 
 class ConfiguracionController extends Controller
 {
+	public function __construct()
+    {
+        $this->middleware('auth');
+    }
+	
+	
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +20,7 @@ class ConfiguracionController extends Controller
     public function index()
     {
         //
-	return View::make('configuracion.index');
+	return View('configuracion.index');
     }
 
     /**
@@ -25,7 +31,7 @@ class ConfiguracionController extends Controller
     public function create()
     {
         //
-	return View::make('configuracion.create');
+	return View('configuracion.create');
     }
 
     /**

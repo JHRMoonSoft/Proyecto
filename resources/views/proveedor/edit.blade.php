@@ -10,10 +10,10 @@
 		<input type="text" class="form-control" placeholder="Search for...">
 		<span class="input-group-btn">
 				  <button class="btn btn-default" type="button">Go!</button> 
-			  </span> 
+			  </span>
 		</div>
-	</div> 
-	
+	</div>
+	 
 @stop
 
 @section('x_content')
@@ -21,8 +21,10 @@
 
     <div class="x_panel">
 	    <div class="x_title">
-			<h2>Nuevo Proveedor </h2> &nbsp&nbsp&nbsp
+			<h2>Editar Proveedor </h2> &nbsp&nbsp&nbsp
 						
+			
+			<button type="button" class="btn btn-success " data-toggle="modal" data-target=".responsable"> Asignar Categoria</button>
 		<!--
 			<ul class="nav navbar-right panel_toolbox">
 			
@@ -63,7 +65,7 @@
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
 					
-						<select id="tipo_identidad" class="form-control col-md-7 col-xs-12" data-validate-length-range="7" data-validate-words="2" name="name" required="required">
+						<select id="tipo_identidad" class="form-control col-md-7 col-xs-12" data-validate-length-range="7" data-validate-words="2" name="name"  required="required">
 							<option value="volvo " selected>Seleccionar</option>
 							<option>NIT</option>
 							<option>RUT</option>
@@ -76,7 +78,7 @@
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">No. Documento <span class="required">*</span>
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name"  required="required" type="text">
+					  <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name" required="required" type="text">
 					</div>
 				</div>
 				<div class="item form-group">
@@ -128,18 +130,72 @@
 					  <input id="occupation" type="text" name="occupation" data-validate-length-range="10,40" class="optional form-control col-md-7 col-xs-12">
 					</div>
 				</div>
-				
+					<div class="control-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">Categorias</label>
+						<div class="col-md-6 col-sm-6 col-xs-12">
+						  <input id="tags_1" type="text" class="tags form-control" readonly="readonly"  value="social, adverts, sales" />
+						  <div id="suggestions-container"disabled="disabled"  style="position: relative; float: left;  margin: 5px;"></div>
+						</div>
+					</div>
 				<div class="ln_solid"></div>
 				<div class="form-group">
 					<div class="col-md-6 col-md-offset-3">
-					  <button type="submit" class="btn btn-primary">Cancelar</button>
-					  <button id="send" type="submit" class="btn btn-success">Guardar</button>
+						<button type="submit" class="btn btn-danger">Deshacer</button>
+						<button type="button" class="btn btn-primary">Guardar</button>
 					</div>
 				</div>
 			</form>
 			
         </div>
 		
+		  <!-- Productos modal -->		  
+
+		  <div class="modal fade responsable" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog modal-sm">
+			  <div class="modal-content">
+
+				<div class="modal-header">
+				  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+				  </button>
+				  <h4 class="modal-title" id="myModalLabel2">Asignar Categoría</h4>
+				</div>
+				<div class="modal-body">
+				
+				<div class="panel-body ">
+					
+						<form>
+							<div class="form-group">					
+								<label>Seleccionar categorias</label>
+								<div class="form-group input-group">
+									<select name="" class="form-control">
+										<option value=" " selected>Seleccionar</option>
+										<option value="">TALLER DE COCINA</option>
+										<option value="">PAPELERIA </option>
+										<option value="">DIDACTICOS</option>
+										<option value="">ASEO</option>
+										<option value="">OTRO</option>
+									</select>
+									<span class="input-group-btn"><button type="button" class="btn btn-default btn-add">+</button></span>
+								</div>
+								<small>Pulse + para agregar una categoria.</small><br>
+								<small>Pulse - para eliminar una categoria.</small>
+							</div>
+						</form>
+
+		
+				
+				</div>
+				<div class="modal-footer"><!--
+				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+				  <button type="submit" class="btn btn-danger">Deshacer</button>
+				  <button type="button" class="btn btn-primary">Guardar</button>
+				</div>
+
+			  </div>
+			</div>
+		  </div>
+		  <!-- /modals -->
+	</div>		
 @stop
         <!-- /page content -->
 		<!--

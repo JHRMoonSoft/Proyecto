@@ -1,28 +1,28 @@
 @extends('layouts.app')
 @section('content')  
 @section('pagetitle')
-  <h3>Formato de Compras</h3> 
+  <h3>Formato de configuración</h3>  
 @stop
-@section('x_search') 
+@section('x_search')
 	<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
 						
 		<div class="input-group">
 		<input type="text" class="form-control" placeholder="Search for...">
 		<span class="input-group-btn">
 				  <button class="btn btn-default" type="button">Go!</button> 
-			  </span> 
-		</div>
-	</div> 
+			  </span>
+		</div> 
+	</div>
 	
 @stop
 
 @section('x_content')
-	
 
     <div class="x_panel">
 	    <div class="x_title">
-			<h2>Nuevo Proveedor </h2> &nbsp&nbsp&nbsp
+			<h2> Detalle Empresa</h2> &nbsp&nbsp&nbsp
 						
+			<a  href="/empresa/edit" class="btn btn-warning" role="button">Editar</a>
 		<!--
 			<ul class="nav navbar-right panel_toolbox">
 			
@@ -45,17 +45,36 @@
 		<div class="x_content">
 			<form class="form-horizontal form-label-left" novalidate>
 
-				<!-- <p>For alternative validation library <code>parsleyJS</code> check out in the <a href="form.html">form page</a></p>-->
+				<!--<p>For alternative validation library <code>parsleyJS</code> check out in the <a href="form.html">form page</a></p>-->
 			  
-				<span class="section">Información del  Proveedor</span>
+				<span class="section">Información de la Empresa</span>
 
 				
-			
+				<div class="item form-group">
+					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Tipo. Persona<span class="required">*</span>
+					</label>
+					<div class="col-md-6 col-sm-6 col-xs-12">
+					
+						<select id="tipo_identidad" disabled="disabled" class="form-control col-md-7 col-xs-12" data-validate-length-range="7" data-validate-words="2" name="name"  required="required">
+							<option value="volvo " selected>Seleccionar</option>
+							<option>E.I.R.L</option>
+							<option>S.C</option>
+							<option>S.A</option>
+							<option>S.R.L</option>
+							<option>S.A.C</option>
+							<option>Fundación</option>
+							<option>Asociación</option>
+							<option>Unipersonal</option>
+							<option>Persona natural</option>
+						</select>
+					
+					</div>
+				</div>
 				<div class="item form-group">
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Razón social<span class="required">*</span>
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name"  required="required" type="text">
+					  <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" disabled="disabled" name="name"  required="required" type="text">
 					</div>
 				</div>
 				<div class="item form-group">
@@ -63,7 +82,7 @@
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
 					
-						<select id="tipo_identidad" class="form-control col-md-7 col-xs-12" data-validate-length-range="7" data-validate-words="2" name="name" required="required">
+						<select id="tipo_identidad" class="form-control col-md-7 col-xs-12" data-validate-length-range="7" data-validate-words="2"  disabled="disabled" name="name"  required="required">
 							<option value="volvo " selected>Seleccionar</option>
 							<option>NIT</option>
 							<option>RUT</option>
@@ -76,70 +95,62 @@
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">No. Documento <span class="required">*</span>
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name"  required="required" type="text">
+					  <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name" disabled="disabled"  required="required" type="text">
 					</div>
 				</div>
 				<div class="item form-group">
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="telephone">Telefono fijo <span class="required">*</span>
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input type="tel" id="telephone" name="phone" required="required" data-validate-length-range="8,20" class="form-control col-md-7 col-xs-12">
+					  <input type="tel" id="telephone" name="phone" required="required" data-validate-length-range="8,20" disabled="disabled"  class="form-control col-md-7 col-xs-12">
 					</div>
 				</div>
 				<div class="item form-group">
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="telephone">Telefono celular </label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input type="tel" id="telephone" name="phone" required="required" data-validate-length-range="8,20" class="form-control col-md-7 col-xs-12">
+					  <input type="tel" id="telephone" name="phone" required="required" data-validate-length-range="8,20"  disabled="disabled" class="form-control col-md-7 col-xs-12">
 					</div>
 				</div>
 				<div class="item form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email </label>
+					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email <span class="required">*</span>
+					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input type="email" id="email" name="email" required="required" class="form-control col-md-7 col-xs-12">
+					  <input type="email" id="email" name="email" required="required" disabled="disabled" class="form-control col-md-7 col-xs-12">
 					</div>
 				</div>
 				<div class="item form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Dirección </label>
+					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Dirección <span class="required">*</span>
+					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input type="number" id="number" name="number" required="required" data-validate-minmax="10,100" class="form-control col-md-7 col-xs-12">
+					  <input type="email" id="email" name="email" required="required" disabled="disabled" class="form-control col-md-7 col-xs-12">
 					</div>
 				</div>
 				<div class="item form-group">
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="occupation">Barrio</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input id="occupation" type="text" name="occupation" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
+					  <input id="occupation" type="text" name="occupation" data-validate-length-range="5,20" disabled="disabled"  class="optional form-control col-md-7 col-xs-12">
 					</div>
 				</div>
 				<div class="item form-group">
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="occupation">Ciudad</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input id="occupation" type="text" name="occupation" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
+					  <input id="occupation" type="text" name="occupation" data-validate-length-range="5,20" disabled="disabled" class="optional form-control col-md-7 col-xs-12">
 					</div>
 				</div>
 				<div class="item form-group">
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="occupation">Pais </label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input id="occupation" type="text" name="occupation" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
-					</div>
-				</div>
-				<div class="item form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="occupation">Observación  </label>
-					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input id="occupation" type="text" name="occupation" data-validate-length-range="10,40" class="optional form-control col-md-7 col-xs-12">
+					  <input id="occupation" type="text" name="occupation" data-validate-length-range="5,20" disabled="disabled" class="optional form-control col-md-7 col-xs-12">
 					</div>
 				</div>
 				
+				
 				<div class="ln_solid"></div>
-				<div class="form-group">
-					<div class="col-md-6 col-md-offset-3">
-					  <button type="submit" class="btn btn-primary">Cancelar</button>
-					  <button id="send" type="submit" class="btn btn-success">Guardar</button>
-					</div>
-				</div>
 			</form>
-			
         </div>
 		
+		 
+	</div>		
 @stop
         <!-- /page content -->
 		<!--

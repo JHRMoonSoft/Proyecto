@@ -202,7 +202,7 @@
 									</select>
 								</div>
 								<div class="col-xs-2"><br/>
-									<label for="ex3">Acciones</label><br>
+									<label for="ex3">Opciones  </label><br>
 										<button type="submit" class="btn btn-primary   ">Consultar</button>
 								</div>
 							</div>

@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class ProveedorController extends Controller
 {
+	public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -60,7 +64,7 @@ class ProveedorController extends Controller
      */
     public function edit(Proveedor $proveedor)
     {
-        //
+        return View('proveedor.edit');
     }
 
     /**

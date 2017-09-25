@@ -30,9 +30,9 @@
 										{{ $permission->description }}
 									</td>
 									<td style="vertical-align:middle; text-align:center">
-										<a href="{{ url('/permission/'.$permission->id) }}">Ver</a>
+										<a href="{{ url('/permisos/'.$permission->id) }}">Ver</a>
 										<br/>
-										<a href="{{ url('/permission/'.$permission->id.'/edit') }}">Editar</a>
+										<a href="{{ url('/permisos/'.$permission->id.'/edit') }}">Editar</a>
 									</td>
 								</tr>
 							@endforeach

@@ -181,7 +181,7 @@
 						<div class="panel-heading ">
 							<div class=" row ">	
 								<div class="col-xs-3"><br/>
-										<label for="ex3">Documento OCM</label>
+										<label for="ex3">Documento OCP</label>
 										<select class="form-control " id="exampleSelect1">
 											<option value="volvo " selected>Seleccionar</option>
 											<option value="volvo" selected>Seleccionar</option>
@@ -192,7 +192,7 @@
 										</select>
 								</div>
 								<div class="col-xs-2"><br/>
-									<label for="ex3">Acciones</label><br>
+									<label for="ex3">Opciones </label><br>
 										<button type="submit" class="btn btn-primary   ">Consultar</button>
 								</div>
 							</div>

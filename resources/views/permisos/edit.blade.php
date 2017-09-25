@@ -6,7 +6,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Editar Permiso</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/permission/'.$permission->id) }}">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/permisos/'.$permission->id) }}">
                         {{ csrf_field() }}
 						<input name="_method" type="hidden" value="PUT">						
 						<input id="id" name="id" type="hidden" value="{{ $permission->id }}">

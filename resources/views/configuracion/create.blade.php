@@ -23,8 +23,7 @@
 			<h2>Nueva Empresa</h2> &nbsp&nbsp&nbsp
 						
 			
-			<button type="button" class="btn btn-warning " data-toggle="modal" data-target=".responsable">Responsable</button>
-		
+		<!--
 			<ul class="nav navbar-right panel_toolbox">
 			
 			  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -40,13 +39,13 @@
 			  </li>
 			  <li><a class="close-link"><i class="fa fa-close"></i></a>
 			  </li>
-			</ul>
+			</ul>-->
 			<div class="clearfix"></div>
 	    </div>
 		<div class="x_content">
 			<form class="form-horizontal form-label-left" novalidate>
 
-				<p>For alternative validation library <code>parsleyJS</code> check out in the <a href="form.html">form page</a></p>
+				<!--<p>For alternative validation library <code>parsleyJS</code> check out in the <a href="form.html">form page</a></p>-->
 			  
 				<span class="section">Información de la Empresa</span>
 
@@ -56,7 +55,7 @@
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
 					
-						<select id="tipo_identidad" class="form-control col-md-7 col-xs-12" data-validate-length-range="7" data-validate-words="2" name="name" placeholder=" ejemplo" required="required">
+						<select id="tipo_identidad" class="form-control col-md-7 col-xs-12" data-validate-length-range="7" data-validate-words="2" name="name"  required="required">
 							<option value="volvo " selected>Seleccionar</option>
 							<option>E.I.R.L</option>
 							<option>S.C</option>
@@ -75,7 +74,7 @@
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Razón social<span class="required">*</span>
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name" placeholder="both name(s) e.g Jon Doe" required="required" type="text">
+					  <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name"  required="required" type="text">
 					</div>
 				</div>
 				<div class="item form-group">
@@ -83,7 +82,7 @@
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
 					
-						<select id="tipo_identidad" class="form-control col-md-7 col-xs-12" data-validate-length-range="7" data-validate-words="2" name="name" placeholder=" ejemplo" required="required">
+						<select id="tipo_identidad" class="form-control col-md-7 col-xs-12" data-validate-length-range="7" data-validate-words="2" name="name"  required="required">
 							<option value="volvo " selected>Seleccionar</option>
 							<option>NIT</option>
 							<option>RUT</option>
@@ -96,7 +95,7 @@
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">No. Documento <span class="required">*</span>
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name" placeholder="both name(s) e.g Jon Doe" required="required" type="text">
+					  <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name"  required="required" type="text">
 					</div>
 				</div>
 				<div class="item form-group">
@@ -156,44 +155,7 @@
 			</form>
         </div>
 		
-		  <!-- Productos modal -->		  
-
-		  <div class="modal fade responsable" tabindex="-1" role="dialog" aria-hidden="true">
-			<div class="modal-dialog modal-sm">
-			  <div class="modal-content">
-
-				<div class="modal-header">
-				  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
-				  </button>
-				  <h4 class="modal-title" id="myModalLabel2">Nuevo Responsable </h4>
-				</div>
-				<div class="modal-body">
-				
-					<label for="">Responsable</label>
-					<div class="form-group input-sm">
-						<input class="form-control input-sm" id="inputsm" placeholder="Nombre completo" type="text">
-					</div>
-					
-					<label for="">Seleccionar Asunto</label>
-					<div class="form-group input-sm">
-						<select id="tipo_identidad" class="form-control col-md-7 col-xs-12" data-validate-length-range="7" data-validate-words="2" name="name" placeholder=" ejemplo" required="required">
-							<option value="volvo " selected>Seleccionar</option>
-							<option>COMPRA PRODUCTOS</option>
-							<option>COMPRA INTERNA </option>
-							<option>OTROS</option>
-						</select>
-					</div>
-				</div>
-				<div class="modal-footer"><!--
-				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-				  <button type="submit" class="btn btn-danger">Deshacer</button>
-				  <button type="button" class="btn btn-primary">Guardar</button>
-				</div>
-
-			  </div>
-			</div>
-		  </div>
-		  <!-- /modals -->
+		 
 	</div>		
 @stop
         <!-- /page content -->

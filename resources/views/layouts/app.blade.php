@@ -64,7 +64,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-			   <a href="/workflow/proceso" class="site_title"><img src="{{URL::asset('/css/workflow/images/logoaluna.png')}}" >&nbsp;<span>Fundacion Aluna!</span></a>
+			   <a href="/home" class="site_title"><img src="{{URL::asset('/css/workflow/images/logoaluna.png')}}" >&nbsp;<span>Fundacion Aluna!</span></a>
             </div>
             <div class="clearfix"></div>
             <br />
@@ -76,7 +76,7 @@
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-home"></i> Requisicion <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="/requisicion">Nueva RQS</a></li>
+                      <li><a href="/requisicion/create">Nueva RQS</a></li>
                       <li><a href="index2.html">Historial RQS</a></li>
                     </ul>
                   </li>
@@ -87,28 +87,28 @@
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-building"></i> Empresa <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="e_commerce.html">Nueva Empresa</a></li>
+                      <li><a href="/configuracion/create">Nueva Empresa</a></li>
                      <!-- <li><a href="projects.html">Projects</a></li>-->
                     </ul>
                   </li>
                   <li><a><i class="fa fa-user"></i> Usuarios <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="page_403.html">Nuevo Usuario</a></li>
-                      <li><a href="page_404.html">Historial de Usuarios</a></li>
+                      <li><a href="/register">Nuevo Usuario</a></li>
+                      <li><a href="page_404.html">Listado de Usuarios</a></li>
 					   <!--<li><a href="page_500.html">500 Error</a></li>-->
                     </ul>
                   </li>
 				    <li><a><i class="fa fa-cog"></i>Roles <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="page_403.html">Nuevo Rol</a></li>
-                      <li><a href="page_404.html">Historial de Roles</a></li>
+                      <li><a href="/role/create">Nuevo Rol</a></li>
+                      <li><a href="/role">Listado de Roles</a></li>
                       <!--<li><a href="page_500.html">500 Error</a></li>-->
                     </ul>
                   </li>
 				   <li><a><i class="fa fa-cogs"></i> Permisos <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="page_403.html">Activar Permisos </a></li>
-                      <li><a href="page_404.html">Historial de Permisos </a></li>
+                      <li><a href="/permisos/create">Nuevo Permisos </a></li>
+                      <li><a href="/permisos">Listado de Permisos </a></li>
                       <!--<li><a href="page_500.html">500 Error</a></li>-->
                     </ul>
                   </li>
@@ -120,35 +120,35 @@
 				
                   <li><a><i class="fa fa-pencil-square-o"></i> Gestionar RQS<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">                     
-                      <li><a href="/autorizarRQS">Autorizar RQS</a></li>
+                      <li><a href="/autorizarRQS/create">Autorizar RQS</a></li>
                       <li><a href="/reciboRQS">Entregar RQS</a></li>
 					   <li><a href="index2.html">Historial RQS</a></li>
                     </ul>
                   </li>
 				   <li><a><i class="fa fa-check-square-o"></i>Solicitud de compra <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-					<li><a href="project_detail.html">Nueva SCP</a></li>
+					<li><a href="/solicitudcompra/create">Nueva SCP</a></li>
                       <li><a href="index2.html">Historial SCP</a></li>
                       <!--<li><a href="profile.html">Solicitud de compras </a></li>-->
                     </ul>
                   </li>
 				  <li><a><i class="fa fa-shopping-cart"></i> Proveedores<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="page_404.html"> Nuevo Proveedores</a></li>
+                      <li><a href="/proveedor/create"> Nuevo Proveedor</a></li>
                       <li><a href="page_500.html">Historial Proveedores</a></li>
                       <!--<li><a href="login.html">Login Page</a></li>-->
                     </ul>
                   </li>
 				  <li><a><i class="fa fa-shopping-cart"></i> Orden de compra <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="page_404.html"> Nueva OCP</a></li>
+                      <li><a href="/ordencompra/create"> Nueva OCP</a></li>
                       <li><a href="page_500.html">Historial OCP</a></li>
                       <!--<li><a href="login.html">Login Page</a></li>-->
                     </ul>
                   </li>
                   <li><a><i class="fa fa-shopping-cart"></i> Factura  <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="page_500.html">Nueva Factura </a></li>
+                      <li><a href="/factura/create">Nueva Factura </a></li>
 					   <li><a href="page_500.html">Historial Factura  </a></li>
                       <!--<li><a href="login.html">Login Page</a></li>-->
                     </ul>
@@ -192,7 +192,7 @@
 							<li><a href="javascript:;">Empresa</a></li>
 							<li><a href="javascript:;"> Usuarios  </a></li>
 							<li><a href="/role"> Roles  </a></li>
-							<li><a href="javascript:;">Permisos  </a></li>							
+							<li><a href="/permisos">Permisos  </a></li>							
 						</ul>
 					</li>
 				</ul>

@@ -10,19 +10,20 @@
 		<input type="text" class="form-control" placeholder="Search for...">
 		<span class="input-group-btn">
 				  <button class="btn btn-default" type="button">Go!</button> 
-			  </span> 
-		</div>
-	</div> 
+			  </span>
+		</div> 
+	</div>
 	
-@stop
+@stop 
 
-@section('x_content')
+@section('x_content') 
 	
 
-    <div class="x_panel">
+    <div class="x_panel"> 
 	    <div class="x_title">
-			<h2>Nuevo Proveedor </h2> &nbsp&nbsp&nbsp
+			<h2>Detalle Proveedor </h2> &nbsp&nbsp&nbsp
 						
+			<a  href="/proveedor/edit" class="btn btn-warning" role="button">Editar</a>
 		<!--
 			<ul class="nav navbar-right panel_toolbox">
 			
@@ -55,7 +56,7 @@
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Razón social<span class="required">*</span>
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name"  required="required" type="text">
+					  <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name" disabled="disabled" required="required" type="text">
 					</div>
 				</div>
 				<div class="item form-group">
@@ -63,7 +64,7 @@
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
 					
-						<select id="tipo_identidad" class="form-control col-md-7 col-xs-12" data-validate-length-range="7" data-validate-words="2" name="name" required="required">
+						<select id="tipo_identidad" class="form-control col-md-7 col-xs-12" data-validate-length-range="7" data-validate-words="2" disabled="disabled" name="name" required="required">
 							<option value="volvo " selected>Seleccionar</option>
 							<option>NIT</option>
 							<option>RUT</option>
@@ -76,66 +77,70 @@
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">No. Documento <span class="required">*</span>
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name"  required="required" type="text">
+					  <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" disabled="disabled"name="name"  required="required" type="text">
 					</div>
 				</div>
 				<div class="item form-group">
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="telephone">Telefono fijo <span class="required">*</span>
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input type="tel" id="telephone" name="phone" required="required" data-validate-length-range="8,20" class="form-control col-md-7 col-xs-12">
+					  <input type="tel" id="telephone" name="phone" required="required" data-validate-length-range="8,20" disabled="disabled" class="form-control col-md-7 col-xs-12">
 					</div>
 				</div>
 				<div class="item form-group">
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="telephone">Telefono celular </label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input type="tel" id="telephone" name="phone" required="required" data-validate-length-range="8,20" class="form-control col-md-7 col-xs-12">
+					  <input type="tel" id="telephone" name="phone" required="required" data-validate-length-range="8,20" disabled="disabled" class="form-control col-md-7 col-xs-12">
 					</div>
 				</div>
 				<div class="item form-group">
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email </label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input type="email" id="email" name="email" required="required" class="form-control col-md-7 col-xs-12">
+					  <input type="email" id="email" name="email" required="required" disabled="disabled" class="form-control col-md-7 col-xs-12">
 					</div>
 				</div>
 				<div class="item form-group">
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Dirección </label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input type="number" id="number" name="number" required="required" data-validate-minmax="10,100" class="form-control col-md-7 col-xs-12">
+					  <input type="number" id="number" name="number" disabled="disabled" required="required" data-validate-minmax="10,100" class="form-control col-md-7 col-xs-12">
 					</div>
 				</div>
 				<div class="item form-group">
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="occupation">Barrio</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input id="occupation" type="text" name="occupation" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
+					  <input id="occupation" type="text" name="occupation" disabled="disabled"  data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
 					</div>
 				</div>
 				<div class="item form-group">
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="occupation">Ciudad</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input id="occupation" type="text" name="occupation" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
+					  <input id="occupation" type="text" name="occupation" disabled="disabled" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
 					</div>
 				</div>
 				<div class="item form-group">
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="occupation">Pais </label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input id="occupation" type="text" name="occupation" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
+					  <input id="occupation" type="text" name="occupation" data-validate-length-range="5,20" disabled="disabled" class="optional form-control col-md-7 col-xs-12">
 					</div>
 				</div>
 				<div class="item form-group">
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="occupation">Observación  </label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input id="occupation" type="text" name="occupation" data-validate-length-range="10,40" class="optional form-control col-md-7 col-xs-12">
+					  <input id="occupation" type="text" name="occupation" data-validate-length-range="10,40" disabled="disabled" class="optional form-control col-md-7 col-xs-12">
 					</div>
 				</div>
+				<fieldset disabled>
+					<div class="control-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12">Categorias</label>
+						<div class="col-md-6 col-sm-6 col-xs-12">
+						  <input id="tags_1" type="text" class="tags form-control" readonly="readonly"  value="social, adverts, sales" />
+						  <div id="suggestions-container"disabled="disabled"  style="position: relative; float: left;  margin: 5px;"></div>
+						</div>
+					</div>
+				</fieldset>		
 				
 				<div class="ln_solid"></div>
-				<div class="form-group">
-					<div class="col-md-6 col-md-offset-3">
-					  <button type="submit" class="btn btn-primary">Cancelar</button>
-					  <button id="send" type="submit" class="btn btn-success">Guardar</button>
-					</div>
-				</div>
+				
 			</form>
 			
         </div>

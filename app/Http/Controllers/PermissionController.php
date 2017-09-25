@@ -20,7 +20,7 @@ class PermissionController extends Controller
 	public function index() {
 
         $permissions = Permission::all();
-        return view('permission.index')->with('permissions', $permissions);
+        return view('permisos.index')->with('permissions', $permissions);
     }
 
     /**
@@ -29,7 +29,7 @@ class PermissionController extends Controller
      * @return Response
      */
     public function create() {
-		return view('permission.create');
+		return view('permisos.create');
     }
 
     /**
@@ -46,10 +46,10 @@ class PermissionController extends Controller
 			];
         $validate = Validator::make($post_data, $rules);
         if (!$validate->failed()){
-			$permission = Permission::create($post_data);
-			$permissions = Permission::all();
-			return view('permission.index')->with('permissions', $permissions);
+			$permission = Permission::create($post_data);			
 		}
+		$permissions = Permission::all();
+		return view('permisos.index')->with('permissions', $permissions);
     }
 
     /**
@@ -60,7 +60,7 @@ class PermissionController extends Controller
      */
     public function show($id) {
         $permission = Permission::find($id);
-        return view('permission.show')->with('permission', $permission);
+        return view('permisos.show')->with('permission', $permission);
     }
 
     /**
@@ -73,7 +73,7 @@ class PermissionController extends Controller
         // get the customer
         $permission = Permission::find($id);
         // show the edit form and pass the customer
-		return view('permission.edit')->with('permission', $permission);
+		return view('permisos.edit')->with('permission', $permission);
     }
 
     /**
@@ -95,7 +95,7 @@ class PermissionController extends Controller
             $permission->name = $post_data['name'];
             $permission->description = $post_data['description'];
 			$permission->display_name = $post_data['display_name'];
-			return view('permission.show')->with('permission', $permission);
+			return view('permisos.show')->with('permission', $permission);
         }
     }
 
