@@ -1,32 +1,32 @@
 @extends('layouts.app')
 @section('content')  
 @section('pagetitle')
-  <h3>Formato de Requisición interna</h3> 
+  <h3>Formato de Requisición interna</h3>   
 @stop
-@section('x_search') 
-	<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search"> 
+@section('x_search')
+	<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
 						
 		<div class="input-group">
 		<input type="text" class="form-control" placeholder="Search for...">
 		<span class="input-group-btn">
 				  <button class="btn btn-default" type="button">Go!</button>
 			  </span>
-		</div>
+		</div> 
 	</div>
-	 
+	
 @stop
-
+ 
 @section('x_content')
 
     <div class="x_panel">
 	    <div class="x_title">
-			<h2>Recibo de Requisicion interna</h2>
+			<h2>Entrega de Requisicion interna</h2>
 		
 			<ul class="nav navbar-right panel_toolbox">
 			
 			  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 			  </li>
-			  <li class="dropdown"> 
+			  <li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
 				<ul class="dropdown-menu" role="menu">
 				  <li><a href="#">Settings 1</a>
@@ -41,121 +41,244 @@
 			<div class="clearfix"></div>
 	    </div>
 		<div class="x_content">
-		  <ul class="list-unstyled timeline">
+			<ul class="list-unstyled timeline">
 				<li>
-				  <div class="block">
-					<div class="tags">
-					  <a href="" class="tag">
-						<span>Paso 1</span>
-					  </a>
-					</div>
-					<div class="block_content"><br/>
-						<h2 class="title">
-							 <a>Detalles de la entrega </a><br/>
-						</h2>
-					
+					<div class="block">
+						<br/>
+						<h5>Espacio exclusivo para el Asistente de Gestión Administrativa<h5><br/><br/>
+						<div class="row">
+						<div class="col-xs-6 col-md-5 col-md-offset-3 ">
+						  
+								<!--RQS Pendientes-->
+							<div class="col-xs-12 ">
+								<div class="input-group">
+									<input type="text" class="form-control">
+									<div class="input-group-btn" >
+										<button type="button" class="btn btn-search btn-danger">
+											<span class="glyphicon glyphicon-search"></span>
+											<span class="label-icon">Buscar</span>
+										</button>
+										<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+											<span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu " role="menu">
+										  <li>
+												<a href="#">
+													<span class="glyphicon glyphicon-user"></span>
+													<span class="label-icon">Search By User</span>
+												</a>
+											</li>
+											<li>
+												<a href="#">
+												<span class="glyphicon glyphicon-book"></span>
+												<span class="label-icon">Search By Organization</span>
+												</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<h5>   Buscar RQS autorizadas<h5>
+							</div>
+							<!-- Consolidar RQS-->
+						  
+						</div>
+						</div>		
 						<br />
-							
-						<div class="table-responsive">
-							<table id="datatable-buttons" class="table table-striped table-bordered ">
-								<thead>
-								   <tr>
-										<th>Cod. RQS</th>
-										<th>Fecha de RQS</th>																																																				
-										<th>Solicitud</th>
-										<th>Fecha de entrega</th>
-										<th>Observación de entrega</th>
-										<th>Estado</th>
-									</tr>
-								</thead>
-								<tbody>
-									
-									<tr>
-									  <td>0023933</td>
-										<td>26-06-2017</td>
-										<td> compa prueba</td>
-										<td>06-07-2017</td>
-										<td>Entrega parcial en espera de nueva compra</td>
-										<td>Pendiente</td>	
-										
-									</tr> 
-								</tbody>
-							</table>
-						</div>
-						
-						<div class="x_title">
-							<h2>Estado de productos</h2>
-							<div class="clearfix"></div>
-						</div>
 					
-						<div class="panel panel-default">
-							
-							<div class="table-responsive">
-								<table id="datatable-buttons" class="table table-striped table-bordered ">
-									<thead>
-									   <tr>
-											<th>No.</th>
-											<th>Producto</th>
-											<th>Cant.Autorizada</th>
-											<th>Cant.Entregada</th>
-											<th>Cant.Pendiente</th>
-											<th>Observaciones </th>
-										</tr>
-									</thead>
-									<tbody>
-										
-										<tr>
-											<td>1</td>
-											<td>Aceite </td>
-											<td>2 cajas de 12 UND</td>
-											<td>1 caja 2 UND</td>
-											<td>10 UND</td>
-											<td>esperar de nueva compra</td>
-										</tr> 
-									</tbody>
-								</table>
+						<div class="tags">
+						  <a href="" class="tag">
+							<span>Paso 1</span>
+						  </a>
+						</div>
+						<div class="block_content">
+							<div class="row ">
+								<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left"><br>
+									<div class="form-group"><br>
+										<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cod. ETG</label>
+										<div class="col-md-6 col-sm-6 col-xs-12">
+										  <input type="text" id="first-name"   required="required" class="form-control col-md-7 col-xs-12" disabled>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-md-3 col-sm-3 col-xs-12" for="exampleSelect1">Estado RQS</label>
+										<div class="col-md-6 col-sm-6 col-xs-12">
+											<select class="form-control " id="exampleSelect1">
+											  <option> ENTREGADO / REQUISICION</option>
+											  <option>PENDIETE / REQUISICION</option>
+											</select><br>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Observación</label>																			
+										<div class="col-md-6 col-sm-6 col-xs-12">
+										  <textarea type="text" id="last-name"  name="last-name"rows="5" required="required" class="form-control col-md-7 col-xs-12"></textarea>
+										</div><br>
+									</div>
+								</form>
 							</div>
 						</div>
-					</div>
 				  </div>
 				</li>
 				<li>
-				  <div class="block">
-					<div class="tags">
-					  <a href="" class="tag">
-						<span>Paso 2</span>
-					  </a>
-					</div>
-					<div class="block_content">
-						<h2 class="title">
-									  <a>Registrar Observaciones</a>
-								  </h2>
-							<br />
-							<h5>Recibí los elementos solicitados en este formato<h5>
-							<div class="row ">
-								<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left"><br>
+					<div class="block">
+						<div class="tags">
+						  <a href="" class="tag">
+							<span>Paso 2</span>
+						  </a>
+						</div>
+						<div class="block_content"><br/>
+							<h2 class="title">
+								 <a>Detalles de la entrega </a><br/>
+							</h2>
+						
+							<br /><br />
+						
+							<div class="panel panel-default">
+								<div class="table-responsive">
+									<table id="datatable-buttons" class="table table-striped table-bordered ">
+										<thead>
+										   <tr>
+												<th>Cod. RQS</th>
+												<th>Fecha RQS</th>																																																				
+												<th>Asunto</th>	
+												<th>Justificacion</th>
+												<th>Estado</th>
+												<th>Solicitante</th>
+												<th>Cargo</th>
+												<th>Detalle</th>
+												
+												
+											</tr>
+										</thead>
+										<tbody>
+											
+											<tr>
+											  <td>0023933</td>
+												<td>26-06-2017</td>
+												<td>solicitud compa prueba</td>
+												<td>Mensaje Justificacion prueba </td>
+												<td>Activo</td>
+												<td>Belkis Buelvas</td>
+												<td>Cargo</td>
+												<td>Area - Coordinacion</td>	
+												
+											</tr> 
+										</tbody>
+									</table>
+								</div>
+							</div>
+						
+						
+								<div class="x_title">
+									<h2>Registrar productos</h2> 
+								
+									<div class="clearfix"></div>
+								</div>
+								
+									<div class="panel panel-default">
+										<div class="panel-heading text-center">
+											<span><strong><span class="glyphicon glyphicon-th-list"> </span> Productos</strong></span>
+										</div>
+										<div class="table-responsive">
+											<table class="table table-bordered table-hover" id="education_fields2">
+											<thead>
+												<tr >
+													<th>#</th>
+													<th><button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-toggle="modal" data-target=".categoria"></button>Categoria</th>
+													<th><button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-toggle="modal" data-target=".producto"></button>Producto</th>
+													<th> Cant.Autorizada</th>
+													<th> Cant.Entregada</th>
+													<th><button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-toggle="modal" data-target=".unidad"></button>Unidad</th>
+													<th> Cant.Pendiente</th>									
+													<th>Observaciones</th>
+													<th><a></a></th>
+									
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>
+														1
+													</td>
+													<td>
+														<div class="form-group ">
+															<select class="form-control">
+															  <option value="" selected>Seleccionar</option>
+															  <option value="">Taller de Cocina</option>
+															  <option value="">Papeleria</option>
+															  <option value="" >Didacticos</option>
+															  <option value="" >Aseo</option>
+															</select>
+														</div>
+													</td>
+													<td class="nopadding" >
+														<select class="form-control" id="educationDate" name="educationDate[]">
+															<option value="" selected>Seleccionar</option>
+															<option name="" value="">Aceite</option>
+															<option value="">Arepas antioqueñas precocidas </option>
+															<option value="" >Arroz  (bolsas de medio kilo)</option>
+															<option value="" >Bocadillo</option>
+													  </select>
+													</td>
+													<td>
+															1 Caja de 5 UND
+													</td>
+													<td class="nopadding" >
+														<div class="form-group">
+															<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Cantidad">
+														</div>
+													</td>
+													<td class="nopadding" >
+														<select class="form-control" id="educationDate" name="educationDate[]">
+															<option value="" selected>Seleccionar</option>
+															<option name="" value="">Barra</option>
+															<option name="" value="">Bloque</option>
+															<option name="" value="">Bolsa</option>
+															<option name="" value="">Botella</option>
+															<option name="" value="">Caja</option>
+															<option name="" value="">Frasco</option>
+															<option value="">Lata</option>
+															<option value="">Paquete</option>
+															<option value="">Pote</option>
+															<option value="">Tarro</option>
+															<option value="">Tubo</option>
+															<option value="">Vaso</option>
+															<option name="" value="">Unidad</option>
+															<option value="">Kg</option>
+															<option value="">Kilo</option>
+															<option value="">Litro</option>
+															<option value="">Lonjas</option>
+													  </select>
+													</td>
+													<td>
+															1 Caja de 5 UND
+													</td>
+													<td class="nopadding" >
+														<div class="form-group">
+															<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Observaciones">
+														</div>
+													</td>
+													
+													<td class="nopadding" >
+														<div class="input-group-btn">
+															<button class="btn btn-sm btn-primary glyphicon glyphicon-plus btn-xs" type="button"  onclick="education_fields2();"> <span  aria-hidden="true"></span> </button>
+														</div>
+													</td>
+												</tr>
+											</tbody>
+									  
+										</table>
+										</div>
+										
+									</div>
+									<small>Pulse + para agregar otro producto /  Pulse - para eliminar un producto.</small>
+									<br />
 									
 								
-								<div class="form-group   col-md-6 col-sm-6 col-xs-12"><br>
-									<h5>Fecha Recibe</h5>
-									<div class="input-group registration-date-time">
-										<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
-										<input class="form-control" name="registration_date" id="registration-date" type="date">
-										<span class="input-group-btn">
-										</span>
-									</div>
-								</div>	
-								  <div class="form-group">
-									<label class="control-label col-sm-2" for="last-name">Observación de recibo	</label>																		</label>
-									<div class="col-md-6 col-sm-6 col-xs-12"></br>	
-									  <textarea type="text" id="last-name"  name="last-name"rows="5" required="required" class="form-control col-md-7 col-xs-12"></textarea>
-									</div><br>
-								  </div>
-								</form>
-							</div>
-						<br />	
+								
+							<br />	
+						</div>
 					</div>
-				  </div>
 				</li>
 			</ul>
 			<div class="form-group right ">	
@@ -167,20 +290,116 @@
 
         </div>
 		
+		<!-- Categoria modal -->		  
+
+		  <div class="modal fade categoria" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog modal-sm">
+			  <div class="modal-content">
+
+				<div class="modal-header">
+				  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+				  </button>
+				  <h4 class="modal-title" id="myModalLabel2">Nueva Categoria</h4>
+				</div>
+				<div class="modal-body">
+					<label class="control-label " for="first-name"> Categoria</label>
+					<div class="form-group input-group ">
+						<input name="multiple[]" class="form-control ">
+						<span class="input-group-btn"><button type="button" class="btn btn-primary btn-add">+</button></span>
+					</div>
+					<small>Pulse + para agregar otra categoria /  Pulse - para eliminar una categoria.</small>
+				</div>
+				<div class="modal-footer"><!--
+				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+				  <button type="submit" class="btn btn-danger">Deshacer</button>
+				  <button type="button" class="btn btn-primary">Guardar</button>
+				</div>
+
+			  </div>
+			</div>
+		  </div>
+		  <!-- /modals -->
+		    <!-- Productos modal -->		  
+
+		  <div class="modal fade producto" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog modal-sm">
+			  <div class="modal-content">
+
+				<div class="modal-header">
+				  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+				  </button>
+				  <h4 class="modal-title" id="myModalLabel2">Nuevo Producto</h4>
+				</div>
+				<div class="modal-body">
+					<label class="control-label " for="first-name"> Producto</label>
+					<div class="form-group input-group ">
+						<input name="multiple[]" class="form-control ">
+						<span class="input-group-btn"><button type="button" class="btn btn-primary btn-add">+</button></span>
+					</div>
+					<small>Pulse + para agregar otro producto /  Pulse - para eliminar un producto.</small>
+				</div>
+				<div class="modal-footer"><!--
+				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+				  <button type="submit" class="btn btn-danger">Deshacer</button>
+				  <button type="button" class="btn btn-primary">Guardar</button>
+				</div>
+
+			  </div>
+			</div>
+		  </div>
+		  <!-- /modals -->
+		  
+		   <!-- Unidad modal -->		  
+
+		  <div class="modal fade unidad" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog modal-sm">
+			  <div class="modal-content">
+
+				<div class="modal-header">
+				  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+				  </button>
+				  <h4 class="modal-title" id="myModalLabel2">Nueva Unidad</h4>
+				</div>
+				<div class="modal-body">
+					<label class="control-label " for="first-name"> Unidad</label>
+					<div class="form-group input-group ">
+						<input name="multiple[]" class="form-control ">
+						<span class="input-group-btn"><button type="button" class="btn btn-primary btn-add">+</button></span>
+					</div>
+					<small>Pulse + para agregar otro unidad /  Pulse - para eliminar un unidad.</small>
+				</div>
+				<div class="modal-footer"><!--
+				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+				  <button type="submit" class="btn btn-danger">Deshacer</button>
+				  <button type="button" class="btn btn-primary">Guardar</button>
+				</div>
+
+			  </div>
+			</div>
+		  </div>
+		  <!-- /modals -->
+		
 	</div>		
 @stop
-        <!-- /page content -->
-		<!--
-		<script type="text/javascript">
-			$(document).ready(function(){
-				function onFinishCallback(){
-				$('#wizard').smartWizard('showMessage','Finish Clicked');
-			} 
-			});
+	<script>
+		var room = 1;
+		function education_fields2() {
+		 
+			room++;
+			var objTo = document.getElementById('education_fields2')
+			var divtest = document.createElement("tbody");
+			divtest.setAttribute("class", "form-group tr removeclass"+room);
+			var rdiv = 'removeclass'+room;
+			divtest.innerHTML = '<tr><td>' + (room) + '</td><td><div class="form-group "><select class="form-control"><option value="" selected>Seleccionar</option><option value="">Taller de Cocina</option><option value="">Papeleria</option><option value="" >Didacticos</option><option value="" >Aseo</option></select></div></td><td class="nopadding" ><select class="form-control" id="educationDate" name="educationDate[]"><option value="" selected>Seleccionar</option><option name="" value="">Aceite</option><option value="">Arepas antioqueñas precocidas </option><option value="" >Arroz  (bolsas de medio kilo)</option><option value="" >Bocadillo</option></select></td><td>1 Caja </td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Cantidad"></div></td><td class="nopadding" ><select class="form-control" id="educationDate" name="educationDate[]"><option value="" selected>Seleccionar</option><option name="" value="">Barra</option><option name="" value="">Bloque</option><option name="" value="">Bolsa</option><option name="" value="">Botella</option><option name="" value="">Caja</option><option name="" value="">Frasco</option><option value="">Lata</option><option value="">Paquete</option><option value="">Pote</option><option value="">Tarro</option><option value="">Tubo</option><option value="">Vaso</option><option name="" value="">Unidad</option><option value="">Kg</option><option value="">Kilo</option><option value="">Litro</option><option value="">Lonjas</option></select></td><td>1 Caja de 5 UND</td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Observación"></div></td><td class="nopadding" ><div class="input-group-btn"><button class="btn btn-sm btn-danger glyphicon glyphicon-minus btn-xs" type="button" onclick="remove_education_fields2('+ room +');"> <span  aria-hidden="true"></span> </button></div></td></tr>';
 			
-			
-		</script>
-		-->
+			objTo.appendChild(divtest)
+			  
+		}
+	   function remove_education_fields2(rid) {
+		   $('.removeclass'+rid).remove()
+		   
+		   room--;
+	   }
+
+	</script> 
 @stop
-<!--6581128-->
-<!--229392650-->

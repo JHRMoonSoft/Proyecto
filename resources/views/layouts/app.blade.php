@@ -78,6 +78,7 @@
                     <ul class="nav child_menu">
                       <li><a href="/requisicion/create">Nueva RQS</a></li>
                       <li><a href="index2.html">Historial RQS</a></li>
+					  <li><a href="/reciboRQS/create">Recibir RQS</a></li>
                     </ul>
                   </li>
                 </ul>
@@ -132,21 +133,21 @@
                       <!--<li><a href="profile.html">Solicitud de compras </a></li>-->
                     </ul>
                   </li>
-				  <li><a><i class="fa fa-shopping-cart"></i> Proveedores<span class="fa fa-chevron-down"></span></a>
+				  <li><a><i class="fa fa-user-plus"></i> Proveedores<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="/proveedor/create"> Nuevo Proveedor</a></li>
                       <li><a href="page_500.html">Historial Proveedores</a></li>
                       <!--<li><a href="login.html">Login Page</a></li>-->
                     </ul>
                   </li>
-				  <li><a><i class="fa fa-shopping-cart"></i> Orden de compra <span class="fa fa-chevron-down"></span></a>
+				  <li><a><i class=" fa fa-file-text-o"></i> Orden de compra <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="/ordencompra/create"> Nueva OCP</a></li>
                       <li><a href="page_500.html">Historial OCP</a></li>
                       <!--<li><a href="login.html">Login Page</a></li>-->
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-shopping-cart"></i> Factura  <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-file"></i> Factura  <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="/factura/create">Nueva Factura </a></li>
 					   <li><a href="page_500.html">Historial Factura  </a></li>
@@ -203,7 +204,7 @@
 						<span class=" fa fa-angle-down"></span>
 					  </a>
 						<ul class="dropdown-menu dropdown-usermenu pull-left">
-							<li><a href="javascript:;"> Gestionar RQS </a></li>
+							<li><a href="/autorizarRQS"> Gestionar RQS </a></li>
 							<li><a href="javascript:;"> Solicitud de compra</a></li>
 							<li><a href="javascript:;">Proveedores </a></li>
 							<li><a href="javascript:;"> Orden de compra</a></li>

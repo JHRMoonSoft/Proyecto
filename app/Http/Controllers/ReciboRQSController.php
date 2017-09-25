@@ -28,7 +28,7 @@ class ReciboRQSController extends Controller
      */
     public function create()
     {
-      return View('autorizarRQS.create');
+      return View('reciboRQS.create');
     }
 
     /**

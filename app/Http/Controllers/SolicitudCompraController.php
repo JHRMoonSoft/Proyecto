@@ -4,13 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class AutorizarRQSController extends Controller
+class SolicitudCompraController extends Controller
 {
 	public function __construct()
     {
         $this->middleware('auth');
     }
-	
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +17,7 @@ class AutorizarRQSController extends Controller
      */
     public function index()
     {
-      return View('autorizarRQS.index');
+        //
     }
 
     /**
@@ -28,7 +27,7 @@ class AutorizarRQSController extends Controller
      */
     public function create()
     {
-        return View('autorizarRQS.create');
+        return View('solicitudcompra.create');
     }
 
     /**

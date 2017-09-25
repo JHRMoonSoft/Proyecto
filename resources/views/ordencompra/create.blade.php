@@ -326,7 +326,7 @@
 									</div>
 									<div class="col-xs-3">
 										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12" align="right" for="first-name">SUBTOTAL</label>
+											<label class="control-label col-md-3 col-sm-3 col-xs-12" align="right" for="first-name">SUBTOTAL </label>
 											<div class="col-md-8 col-sm-8 col-xs-12  right">
 											  <input type="text" id="first-name"   required="required" class="form-control col-md-7 col-xs-12 " disabled>
 											</div>

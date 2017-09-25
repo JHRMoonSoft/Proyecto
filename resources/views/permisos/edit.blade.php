@@ -4,7 +4,11 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Editar Permiso</div>
+                <div class="panel-heading"> Editar Permiso &nbsp&nbsp&nbsp
+				<a  href="{{ url('/permisos/'.$permission->id) }}"class="btn btn-success   " role="button"> Ver</a>
+				<a  href="{{ url('/permisos') }}" class="btn btn-default  right" role="button"><i class="fa fa-reply" aria-hidden="true"></i>&nbsp&nbsp&nbspVolver al listado </a>
+				<br/>
+				</div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/permisos/'.$permission->id) }}">
                         {{ csrf_field() }}
@@ -55,9 +59,8 @@
 						
 						<div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Editar
-                                </button>
+								<button type="reset" class="btn btn-danger">Deshacer</button>
+                                <button type="submit" class="btn btn-primary">  Guardar  </button>
                             </div>
                         </div>
                     </form>
