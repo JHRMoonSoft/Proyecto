@@ -48,9 +48,20 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            		
+			'tip_doc'=> '',
+			'num_doc'=> '', 
+			'nom_usr'=> 'required|string|max:255',
+			'ape_usr'=> 'required|string|max:255',
+			'usuario'=> 'required|string|max:255',
+			'crg_usr'=> 'required|string|max:255',
+			'tip_ dep'=> 'required|string|max:255',
+			'dep_usr'=> '',
+			'crd_usr'=> '', 
+			'tel_fij'=> '', 
+			'tel_cel'=> '',
+			'dir_mail'=> 'required|string|email|max:255|unique:users',
+			'password'=> 'required|string|min:6|confirmed',
         ]);
     }
 
@@ -62,10 +73,24 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+		
+        $user = User::create([
+			'tip_doc'=> $data['tip_doc'], 
+			'num_doc'=> $data['num_doc'], 
+			'nom_usr'=> $data['nom_usr'], 
+			'ape_usr'=> $data['ape_usr'], 
+			'usuario'=> $data['usuario'], 
+			'crg_usr'=> $data['crg_usr'], 
+			'tip_ dep'=> $data['tip_ dep'], 
+			'dep_usr'=> $data['dep_usr'], 
+			'crd_usr'=> $data['crd_usr'],  
+			'tel_fij'=> $data['tel_fij'], 
+			'tel_cel'=> $data['tel_cel'], 
+			'dir_mail'=> $data['dir_mail'], 
+			'password'=> bcrypt($data['password']),
         ]);
+		
+		
+		
     }
 }

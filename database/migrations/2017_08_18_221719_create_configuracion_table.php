@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration
+class CreateConfiguracionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,23 +13,20 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('configuracion', function (Blueprint $table) {
 			$table->engine = 'InnoDB';
             $table->increments('id');
+			$table->string('tip_per');
+			$table->string('raz_soc');
 			$table->string('tip_doc');
 			$table->string('num_doc');
-			$table->string('nom_usr');
-			$table->string('ape_usr');
-			$table->string('usuario')->unique();
-			$table->string('crg_usr');
-			$table->string('tip_ dep');
-			$table->string('dep_usr');
-			$table->string('crd_usr');
 			$table->string('tel_fij');
 			$table->string('tel_cel');
 			$table->string('dir_mail');
-			$table->string('password');
-			$table->boolean('sta_usr');
+			$table->string('dir_per');
+			$table->string('brr_per');
+			$table->string('ciu_per');
+			$table->string('pai_per');
 			$table->rememberToken();
 			$table->timestamps();
         });
@@ -42,6 +39,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('configuracion');
     }
 }

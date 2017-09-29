@@ -19,20 +19,20 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-			'tipo_identidad' => '1',
-			'no_identidad' => '1143345408',
-			'nombre' => 'Belkis del Carmen',
-			'apellido' => 'Buelvas Castillo',
+			'tip_doc' => '1',
+			'num_doc' => '1143345408',
+			'nom_usr' => 'Belkis del Carmen',
+			'ape_usr' => 'Buelvas Castillo',
 			'usuario'=> 'bbuelvas5408',
-			'cargo' => 'Gerente General de todo!!',
-			'tipo_ dependencia' => 'TODAS!!!',
-			'dependencia' => 'TODAS!!!',
-			'coordinacion' => 'TODAS!!!',
-			'telefono_fijo' => 'No tiene',
-			'telefono_celular' => 'Menos! ',
-			'direccion_email' => 'gerencia.general.aluna@gmail.com',
+			'crg_usr' => 'Gerente General de todo!!',
+			'tip_ dep' => 'TODAS!!!',
+			'dep_usr' => 'TODAS!!!',
+			'crd_usr' => 'TODAS!!!',
+			'tel_fij' => 'No tiene',
+			'tel_cel' => 'Menos! ',
+			'dir_mail' => 'gerencia.general.aluna@gmail.com',
 			'password'=> bcrypt('12345'), 
-			
+			'sta_usr' => true,
         ],[
 			'tipo_identidad' => '1',
 			'no_identidad' => '12345',
