@@ -19,7 +19,8 @@ class CategoriaController extends Controller
     public function index()
     {
         //
-	return View('categoria.index');
+	 $categorias = Categoria::all();
+     return View('categoria.index'))->with('categorias', $categorias);
     }
 
     /**
@@ -41,7 +42,16 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post_data = $request->all();
+		$rules = [
+            'des_cat' => 'required'
+			];
+        $validate = Validator::make($post_data, $rules);
+        if (!$validate->failed()){
+			$categoria = Categoria::create($post_data);			
+		}
+		$categorias = Categoria::all();
+		return view('categoria.index')->with('categorias', $categorias);
     }
 
     /**
@@ -52,7 +62,8 @@ class CategoriaController extends Controller
      */
     public function show(Categoria $categoria)
     {
-        //
+        $categoria = Categoria::find($id);
+        return view('categoria.show')->with('categoria', $categoria);
     }
 
     /**
@@ -63,7 +74,8 @@ class CategoriaController extends Controller
      */
     public function edit(Categoria $categoria)
     {
-        //
+        $categorias = Categoria::find($categoria);
+		return view('categoria.edit')->with('categorias', $categorias);
     }
 
     /**
@@ -75,7 +87,16 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, Categoria $categoria)
     {
-        //
+        $post_data = $request->all();
+		$rules = [
+             'des_cat' => 'required'
+			];
+        $validate = Validator::make($post_data, $rules);
+        if (!$validate->failed()) {
+            $categoria = Categoria::find($post_data['id']);
+            $categoria->des_cat = $post_data['des_cat'];
+			return view('categoria.show')->with('categoria', $categoria);
+        }
     }
 
     /**

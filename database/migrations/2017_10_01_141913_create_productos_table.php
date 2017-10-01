@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUnidadesTable extends Migration
+class CreateProductosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,13 @@ class CreateUnidadesTable extends Migration
      */
     public function up()
     {
-        Schema::create('unidades', function (Blueprint $table) {
-
+        Schema::create('productos', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-
             $table->increments('id');
-
-            $table->string('des_und');
-
-            $table->timestamps();
-
+            $table->string('des_prd');
+            $table->integer('categoria_id')->unsigned()->index();
+            $table->foreign('categoria_id')->references('id')->on('categoria')->onDelete('cascade');
+			$table->timestamps();
         });
     }
 
@@ -33,6 +30,6 @@ class CreateUnidadesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('unidades');
+        Schema::dropIfExists('productos');
     }
 }

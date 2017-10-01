@@ -6,8 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Unidad extends Model
 {
-    //
-	protected $table = 'Unidad';
+    protected $table = 'unidads';
 	
 	protected $fillable = array('des_und');
 
@@ -15,5 +14,4 @@ class Unidad extends Model
 	{
     		return $this->belongsToMany('Producto');
 	}
-
 }

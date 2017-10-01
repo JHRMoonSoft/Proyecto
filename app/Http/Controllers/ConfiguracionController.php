@@ -42,7 +42,26 @@ class ConfiguracionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $post_data = $request->all();
+			$rules = [
+				'tip_per' => 'required',
+				'raz_soc' => 'required',
+				'tip_doc' => 'required',
+				'num_doc' => 'required',
+				'tel_fij' => 'required',
+				'tel_cel' => '' ,
+				'dir_mail'=> '' ,
+				'dir_per' => '' ,
+				'brr_per' => '' ,
+				'ciu_per' => '' ,
+				'pai_per' => '' 
+				];
+			$validate = Validator::make($post_data, $rules);
+			if (!$validate->failed()){
+				$configuracion = Configuracion::create($post_data);			
+			}
+			$configuracions = Configuracion::all();
+			return view('configuracion.index')->with('configuracions', $configuracions);
     }
 
     /**
@@ -53,7 +72,8 @@ class ConfiguracionController extends Controller
      */
     public function show($id)
     {
-        //
+        $configuracion = Configuracion::find($id);
+        return view('configuracion.show')->with('configuracion', $configuracion);
     }
 
     /**
@@ -64,7 +84,8 @@ class ConfiguracionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $configuracion = Configuracion::find($id);
+		return view('configuracion.edit')->with('configuracion', $configuracion);
     }
 
     /**
@@ -76,7 +97,37 @@ class ConfiguracionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post_data = $request->all();
+		$rules = [
+            'tip_per' => 'required',
+			'raz_soc' => 'required',
+			'tip_doc' => 'required',
+			'num_doc' => 'required',
+			'tel_fij' => 'required',
+			'tel_cel' => '' ,
+			'dir_mail'=> '' ,
+			'dir_per' => '' ,
+			'brr_per' => '' ,
+			'ciu_per' => '' ,
+			'pai_per' => '' 
+			];
+        $validate = Validator::make($post_data, $rules);
+        if (!$validate->failed()) {
+            $configuracion = Configuracion::find($post_data['id']);
+            $configuracion->tip_per = $post_data['tip_per'];
+            $configuracion->raz_soc = $post_data['raz_soc'];
+			$configuracion->tip_doc = $post_data['tip_doc'];			
+			$configuracion->num_doc = $post_data['num_doc'];
+			$configuracion->tel_cel = $post_data['tel_fij'];
+			$configuracion->tel_cel = $post_data['tel_cel'];
+			$configuracion->dir_mail = $post_data['dir_mail'];
+			$configuracion->dir_per = $post_data['dir_per'];			
+			$configuracion->brr_per = $post_data['brr_per'];
+			$configuracion->ciu_per = $post_data['ciu_per'];
+			$configuracion->pai_per = $post_data['pai_per'];
+			
+			return view('configuracion.show')->with('configuracion', $configuracion);
+        }
     }
 
     /**

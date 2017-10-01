@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateConfiguracionTable extends Migration
+class CreateProveedorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,22 +13,21 @@ class CreateConfiguracionTable extends Migration
      */
     public function up()
     {
-        Schema::create('configuracion', function (Blueprint $table) {
-			$table->engine = 'InnoDB';
-            $table->increments('id');
-			$table->string('tip_per');
+        Schema::create('proveedors', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
+			$table->increments('id');
 			$table->string('raz_soc');
 			$table->string('tip_doc');
 			$table->string('num_doc');
 			$table->string('tel_fij');
 			$table->string('tel_cel');
 			$table->string('dir_mail');
-			$table->string('dir_per');
-			$table->string('brr_per');
-			$table->string('ciu_per');
-			$table->string('pai_per');
-			$table->rememberToken();
-			$table->timestamps();
+			$table->string('dir_prov');
+			$table->string('brr_prov');
+			$table->string('ciu_prov');
+			$table->string('pai_prov');
+			$table->string('obs_prov');
+            $table->timestamps();
         });
     }
 
@@ -39,6 +38,6 @@ class CreateConfiguracionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('configuracion');
+        Schema::dropIfExists('proveedors');
     }
 }

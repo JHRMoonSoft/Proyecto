@@ -55,53 +55,8 @@
 								  </h2>
 						<br />
 						
-						<div class="container">
-							
-							<div class="row ">
-								<div class="btn-group  col-md-12">
-									<label for="success" class="btn btn-success">Solicitud Consumo  <input type="checkbox" id="success" class="badgebox"><span class="badge">&check;</span></label>
-									<label for="warning" class="btn btn-warning">Solicitud Inversión  <input type="checkbox" id="warning" class="badgebox"><span class="badge">&check;</span></label>
-								</div>
-								<div class="btn-group   col-md-4" data-toggle="buttons"><br>
-									<h5>Proveedor Autorizado</h5>
-									
-									<label class="btn btn-primary ">
-										<input type="radio" name="options" id="option2" autocomplete="off" chacked>SI
-										<span class="glyphicon glyphicon-ok"></span>
-									</label>
-
-									<label class="btn btn-danger">
-										<input type="radio" name="options" id="option1" autocomplete="off">No
-										<span class="glyphicon glyphicon-ok"></span>
-									</label>
-								
-								</div>
-								<div class="btn-group  col-md-4 " data-toggle="buttons"><br>
-									
-									
-									<h5>Aprobado en comite</h5>
-									<label class="btn btn-primary ">
-										<input type="radio" name="options" id="option2" autocomplete="off" chacked>SI
-										<span class="glyphicon glyphicon-ok"></span>
-									</label>
-
-									<label class="btn btn-danger">
-										<input type="radio" name="options" id="option1" autocomplete="off">No
-										<span class="glyphicon glyphicon-ok"></span>
-									</label>
-								
-								</div>	
-								<div class="form-group   col-md-4"><br>
-									<h5>Fecha</h5>
-									<div class="input-group registration-date-time">
-										<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
-										<input class="form-control" name="registration_date" id="registration-date" type="date">
-										<span class="input-group-btn">
-										</span>
-									</div>
-								</div>	
-									
-							</div>
+						<div class="container">							
+						
 							<br><p class=""> Notificar Autorización</p>
 							<form class="form-horizontal" role="form">
 								<div class="form-group">
@@ -171,7 +126,7 @@
 											  <a class="btn" data-edit="justifyright" title="Align Right (Ctrl/Cmd+R)"><i class="fa fa-align-right"></i></a>
 											  <a class="btn" data-edit="justifyfull" title="Justify (Ctrl/Cmd+J)"><i class="fa fa-align-justify"></i></a>
 											</div>
-
+											<!--
 											<div class="btn-group">
 											  <a class="btn dropdown-toggle" data-toggle="dropdown" title="Hyperlink"><i class="fa fa-link"></i></a>
 											  <div class="dropdown-menu input-append">
@@ -184,7 +139,7 @@
 											<div class="btn-group">
 											  <a class="btn" title="Insert picture (or just drag & drop)" id="pictureBtn"><i class="fa fa-picture-o"></i></a>
 											  <input type="file" data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage" />
-											</div>
+											</div>-->
 
 											<div class="btn-group">
 											  <a class="btn" data-edit="undo" title="Undo (Ctrl/Cmd+Z)"><i class="fa fa-undo"></i></a>
@@ -193,9 +148,7 @@
 										  </div>
 
 										  <div id="editor-one" class="editor-wrapper"></div>
-
-										  <textarea name="descr" id="descr" style="display:none;"></textarea>
-										  
+ 
 										  <br />
 										</div>
 								<!--
@@ -220,7 +173,7 @@
 					</div>
 					<div class="block_content">
 						<h2 class="title">
-									  <a>Detalles de la autorización</a>
+									  <a>Detalle del sugerido</a>
 						 </h2>
 						<br />		
 							
@@ -254,17 +207,86 @@
 											
 										</tr> 
 									</tbody>
-								</table>
+								</table><br/>
+							</div>
+							<div class="row ">
+								<div class="btn-group  col-md-12">
+									<label for="success" class="btn btn-success">Solicitud Consumo  <input type="checkbox" id="success" class="badgebox"><span class="badge">&check;</span></label>
+									<label for="warning" class="btn btn-warning">Solicitud Inversión  <input type="checkbox" id="warning" class="badgebox"><span class="badge">&check;</span></label>
+								</div><!--
+								-->
+								
+								<div class="btn-group  col-md-2 " data-toggle="buttons"><br>
+									
+									
+									<h5>Aprobado en comite</h5>
+									<label class="btn btn-primary ">
+										<input type="radio" name="options" id="option2" autocomplete="off" chacked>SI
+										<span class="glyphicon glyphicon-ok"></span>
+									</label>
+
+									<label class="btn btn-danger">
+										<input type="radio" name="options" id="option1" autocomplete="off">No
+										<span class="glyphicon glyphicon-ok"></span>
+									</label>
+								
+								</div>	
+								<div class="btn-group   col-md-3" data-toggle="buttons"><br>
+									<h5>Proveedor Autorizado</h5>
+									
+									<label class="btn btn-primary ">
+										<input type="radio" name="options" id="option2" autocomplete="off" chacked>SI
+										<span class="glyphicon glyphicon-ok"></span>
+									</label>
+
+									<label class="btn btn-danger">
+										<input type="radio" name="options" id="option1" autocomplete="off">No
+										<span class="glyphicon glyphicon-ok"></span>
+									</label>
+								
+								</div>
+								<div class="btn-group  col-md-3 " data-toggle="buttons"><br>
+									<div class="form-group ">
+										<h5>Fecha de aprobación</h5>
+										<div class="input-group registration-date-time">
+										<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
+										<input class="form-control" name="registration_date" id="registration-date" type="date">
+										<span class="input-group-btn">
+										</span>
+									</div>
+									</div>	
+								</div>	
+								<div class="btn-group  col-md-4 " data-toggle="buttons"><br>
+									<div class="form-group">
+										<h5>Estado del sugerido<h5>
+										<select class="form-control" id="exampleSelect1">
+										  <option value="" selected>Seleccionar</option>
+										  <option> AUTORIZAR / REQUISICION</option>
+										  <option>RECHAZAR / REQUISICION</option>
+										</select>
+									</div>
+								</div>
+									
 							</div>
 						
-							<div class="form-group">
-									<label for="exampleSelect1">Estado de la autorización</label>
-									<select class="form-control" id="exampleSelect1">
-									  <option value="" selected>Seleccionar</option>
-									  <option> AUTORIZAR / SOLICITUD DE COMPRAS</option>
-									  <option>RECHAZAR / REQUISICION</option>
-									</select>
-								</div>
+						
+					</div>
+				  </div>
+				</li>
+					</li>
+				<li>
+				  <div class="block">
+					<div class="tags">
+					  <a href="" class="tag">
+						<span>Paso 3</span>
+					  </a>
+					</div>
+					<div class="block_content">
+						<h2 class="title">
+									  <a>Detalle de productos</a>
+						 </h2>
+						<br />		
+											
 							
 					<div class="panel panel-default">
 						<div class="panel-heading text-center">
@@ -356,6 +378,98 @@
 						
 					</div>
 					<small>Pulse + para agregar otro producto /  Pulse - para eliminar un producto.</small>
+					<br />	<br />	
+						
+						
+					</div>
+				  </div>
+				</li>
+				<li>
+				  <div class="block">
+					<div class="tags">
+					  <a href="" class="tag">
+						<span>Paso 4</span>
+					  </a>
+					</div>
+					<div class="block_content">
+						<h2 class="title">
+									  <a>Detalle de proveedores</a>
+						 </h2>
+						<br />		
+											
+							
+					<div class="panel panel-default">
+						<div class="panel-heading text-center">
+							<span><strong><span class="glyphicon glyphicon-th-list"> </span> Proveedores</strong></span>
+						</div>
+						<div class="table-responsive">
+							<table class="table table-bordered table-hover" id="education_fields2">
+							<thead>
+								<tr >
+									<th>#</th>
+									<th> Nombre  Proveedor </th>
+									<th>Nit.  Proveedor </th>
+									<th>Tel. fijo </th>
+								    <th>Tel. celular </th>									
+									<th>Dirección </th>	
+									<th>Autorizar </th>
+					
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										1
+									</td>
+									<td class="nopadding" >
+										<div class="form-group">
+											<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="">
+										</div>
+									</td>
+									<td class="nopadding" >
+										<div class="form-group">
+											<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="">
+										</div>
+									</td>
+									<td class="nopadding" >
+										<div class="form-group">
+											<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="">
+										</div>
+									</td>
+									<td class="nopadding" >
+										<div class="form-group">
+											<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="">
+										</div>
+									</td>
+									
+									<td class="nopadding" >
+										<div class="form-group">
+											<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="">
+										</div>
+									</td>
+									
+									<td class="nopadding" >
+										<div class="form-group row">
+											
+											<div class="col-sm-8">
+												<input type="checkbox" name="checkboxes[249]" id="frm-test-elm-120-2" data-toggle="modal" data-target=".proveedor" autocomplete="off" checked />
+												<div class="btn-group">
+													<label for="frm-test-elm-120-2" class="btn btn-primary">
+														<span class="fa fa-check-square-o fa-lg"></span>
+														<span class="fa fa-square-o fa-lg"></span>
+													</label>
+												</div>
+											</div>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+					  
+						</table>
+						</div>
+						
+					</div>
+					<small>Para autorizar el proveedor tiene que estar creado en el sistema.</small>
 					<br />	
 						
 						
@@ -365,7 +479,7 @@
 			</ul>			
 			<div class="form-group right ">	
 																	
-				<button type="submit" class="btn btn-danger">Deshacer</button>
+				<button type="submit" class="btn btn-danger">Cancelar</button>
 				<button type="submit" class="btn btn-default">Guardar</button>
 				<button type="submit" class="btn btn-success">Enviar</button>
 			</div>
@@ -394,7 +508,7 @@
 				</div>
 				<div class="modal-footer"><!--
 				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-				  <button type="submit" class="btn btn-danger">Deshacer</button>
+				  <button type="submit" class="btn btn-danger">Cancelar</button>
 				  <button type="button" class="btn btn-primary">Guardar</button>
 				</div>
 
@@ -423,7 +537,7 @@
 				</div>
 				<div class="modal-footer"><!--
 				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-				  <button type="submit" class="btn btn-danger">Deshacer</button>
+				  <button type="submit" class="btn btn-danger">Cancelar</button>
 				  <button type="button" class="btn btn-primary">Guardar</button>
 				</div>
 
@@ -453,9 +567,116 @@
 				</div>
 				<div class="modal-footer"><!--
 				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-				  <button type="submit" class="btn btn-danger">Deshacer</button>
+				  <button type="submit" class="btn btn-danger">Cancelar</button>
 				  <button type="button" class="btn btn-primary">Guardar</button>
 				</div>
+
+			  </div>
+			</div>
+		  </div>
+		  <!-- /modals -->
+		   <!-- proveedor modal -->		  
+
+		  <div class="modal fade proveedor" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog ">
+			  <div class="modal-content">
+
+				<div class="modal-header">
+				  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+				  </button>
+				  <h4 class="modal-title" id="myModalLabel2">crear proveedor</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal form-label-left" novalidate>
+
+						<div class="item form-group">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Razón social<span class="required">*</span>
+							</label>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+							  <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name"  required="required" type="text">
+							</div>
+						</div>
+						<div class="item form-group">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Tipo. Documento<span class="required">*</span>
+							</label>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+							
+								<select id="tipo_identidad" class="form-control col-md-7 col-xs-12" data-validate-length-range="7" data-validate-words="2" name="name" required="required">
+									<option value="volvo " selected>Seleccionar</option>
+									<option>NIT</option>
+									<option>RUT</option>
+								</select>
+							
+							</div>
+						</div>
+						
+						<div class="item form-group">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">No. Documento <span class="required">*</span>
+							</label>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+							  <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name"  required="required" type="text">
+							</div>
+						</div>
+						<div class="item form-group">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="telephone">Telefono fijo <span class="required">*</span>
+							</label>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+							  <input type="tel" id="telephone" name="phone" required="required" data-validate-length-range="8,20" class="form-control col-md-7 col-xs-12">
+							</div>
+						</div>
+						<div class="item form-group">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="telephone">Telefono celular </label>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+							  <input type="tel" id="telephone" name="phone" required="required" data-validate-length-range="8,20" class="form-control col-md-7 col-xs-12">
+							</div>
+						</div>
+						<div class="item form-group">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email </label>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+							  <input type="email" id="email" name="email" required="required" class="form-control col-md-7 col-xs-12">
+							</div>
+						</div>
+						<div class="item form-group">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Dirección </label>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+							  <input type="number" id="number" name="number" required="required" data-validate-minmax="10,100" class="form-control col-md-7 col-xs-12">
+							</div>
+						</div>
+						<div class="item form-group">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="occupation">Barrio</label>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+							  <input id="occupation" type="text" name="occupation" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
+							</div>
+						</div>
+						<div class="item form-group">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="occupation">Ciudad</label>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+							  <input id="occupation" type="text" name="occupation" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
+							</div>
+						</div>
+						<div class="item form-group">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="occupation">Pais </label>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+							  <input id="occupation" type="text" name="occupation" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
+							</div>
+						</div>
+						<div class="item form-group">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="occupation">Observación  </label>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+							  <input id="occupation" type="text" name="occupation" data-validate-length-range="10,40" class="optional form-control col-md-7 col-xs-12">
+							</div>
+						</div>
+						
+						<div class="ln_solid"></div>
+						<div class="form-group">
+							<div class="col-md-6 col-md-offset-3">
+								<button type="submit" class="btn btn-danger">Cancelar</button>
+								<button type="button" class="btn btn-primary">Guardar</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				
 
 			  </div>
 			</div>

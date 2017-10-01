@@ -6,8 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Almacen extends Model
 {
-    //
-	protected $table = 'Almacen';
+    protected $table = 'almacens';
 	
 	protected $fillable = array('cnt_prd', 'lot_prd');
 

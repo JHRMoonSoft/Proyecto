@@ -78,7 +78,6 @@
                     <ul class="nav child_menu">
                       <li><a href="/requisicion/create">Nueva RQS</a></li>
                       <li><a href="index2.html">Historial RQS</a></li>
-					  <li><a href="/reciboRQS/create">Recibir RQS</a></li>
                     </ul>
                   </li>
                 </ul>
@@ -122,7 +121,8 @@
                   <li><a><i class="fa fa-pencil-square-o"></i> Gestionar RQS<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">                     
                       <li><a href="/autorizarRQS/create">Autorizar RQS</a></li>
-                      <li><a href="/reciboRQS">Entregar RQS</a></li>
+                      <li><a href="/reciboRQS">Entregar RQS</a></li>					  
+					  <li><a href="/reciboRQS/create">Recibir RQS</a></li>
 					   <li><a href="index2.html">Historial RQS</a></li>
                     </ul>
                   </li>

@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ReciboRQS extends Model
+class Solicitud extends Model
 {
     //
 }
