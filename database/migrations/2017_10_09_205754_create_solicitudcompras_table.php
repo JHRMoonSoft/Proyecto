@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSolicitudsTable extends Migration
+class CreateSolicitudcomprasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class CreateSolicitudsTable extends Migration
      */
     public function up()
     {
-        Schema::create('solicituds', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('solicitudcompras', function (Blueprint $table) {
+			$table->engine = 'InnoDB';
+			$table->increments('id');
+			$table->integer('asn_scp');
+			$table->integer('obv_scp');
             $table->timestamps();
         });
     }
@@ -26,6 +29,6 @@ class CreateSolicitudsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('solicituds');
+        Schema::dropIfExists('solicitudcompras');
     }
 }

@@ -18,17 +18,17 @@ class CreateConversionsTable extends Migration
             $table->increments('id');
 
             $table->integer('producto_id')->unsigned()->index();
-            $table->foreign('producto_id')->references('id')->on('producto')->onDelete('cascade');
+            $table->foreign('producto_id')->references('id')->on('productos') ->onUpdate('cascade') ->onDelete('cascade');
 
             $table->double('cnt_ini_prd');
 
             $table->integer('unidad_inicial_id')->unsigned()->index();
-            $table->foreign('unidad_inicial_id')->references('id')->on('unidad')->onDelete('cascade');
+            $table->foreign('unidad_inicial_id')->references('id')->on('unidads') ->onUpdate('cascade') ->onDelete('cascade');
 
             $table->double('cnt_fin_prd');
 
             $table->integer('unidad_final_id')->unsigned()->index();
-            $table->foreign('unidad_final_id')->references('id')->on('unidad')->onDelete('cascade');
+            $table->foreign('unidad_final_id')->references('id')->on('unidads') ->onUpdate('cascade') ->onDelete('cascade');
 
             $table->timestamps();
         });

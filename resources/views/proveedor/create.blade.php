@@ -21,7 +21,8 @@
 
     <div class="x_panel">
 	    <div class="x_title">
-			<h2>Nuevo Proveedor </h2> &nbsp&nbsp&nbsp
+			<span class="">Información del  Proveedor</span>
+
 						
 		<!--
 			<ul class="nav navbar-right panel_toolbox">
@@ -47,8 +48,7 @@
 
 				<!-- <p>For alternative validation library <code>parsleyJS</code> check out in the <a href="form.html">form page</a></p>-->
 			  
-				<span class="section">Información del  Proveedor</span>
-
+				
 				
 			
 				<div class="item form-group">
@@ -139,6 +139,8 @@
 			</form>
 			
         </div>
+		
+    </div>
 		
 @stop
         <!-- /page content -->

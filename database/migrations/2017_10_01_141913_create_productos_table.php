@@ -17,8 +17,9 @@ class CreateProductosTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('des_prd');
+			$table->string('det_prd');
             $table->integer('categoria_id')->unsigned()->index();
-            $table->foreign('categoria_id')->references('id')->on('categoria')->onDelete('cascade');
+            $table->foreign('categoria_id')->references('id')->on('categorias') ->onUpdate('cascade') ->onDelete('cascade');
 			$table->timestamps();
         });
     }

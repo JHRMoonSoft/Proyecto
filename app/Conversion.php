@@ -6,8 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Conversion extends Model
 {
-    //
-	protected $table = 'Conversion';
+	protected $table = 'conversions';
 	
 	protected $fillable = array('cnt_ini_prd', 'cnt_fin_prd');
 

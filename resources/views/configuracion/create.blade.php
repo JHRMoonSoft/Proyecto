@@ -20,8 +20,10 @@
 
     <div class="x_panel">
 	    <div class="x_title">
-			<h2>Nueva Empresa</h2> &nbsp&nbsp&nbsp
-						
+			
+			
+				<span class="">Información de la Empresa</span>
+			
 			
 		<!--
 			<ul class="nav navbar-right panel_toolbox">
@@ -47,8 +49,6 @@
 
 				<!--<p>For alternative validation library <code>parsleyJS</code> check out in the <a href="form.html">form page</a></p>-->
 			  
-				<span class="section">Información de la Empresa</span>
-
 				
 				<div class="item form-group">
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Tipo. Persona<span class="required">*</span>
