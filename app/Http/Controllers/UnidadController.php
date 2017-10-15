@@ -19,8 +19,7 @@ class UnidadController extends Controller
     public function index()
     {
         //
-
-		$unidads = Permission::all();
+		$unidads = Unidad::all();
         return View('unidad.index')->with('unidads', $unidads);
     }
 
@@ -41,9 +40,7 @@ class UnidadController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        public function store(Request $request) {
+    public function store(Request $request) {
         $post_data = $request->all();
 		$rules = [
             'des_und' => 'required'

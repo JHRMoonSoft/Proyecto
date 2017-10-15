@@ -20,7 +20,7 @@ class CategoriaController extends Controller
     {
         //
 	 $categorias = Categoria::all();
-     return View('categoria.index'))->with('categorias', $categorias);
+     return View('categoria.index')->with('categorias', $categorias);
     }
 
     /**

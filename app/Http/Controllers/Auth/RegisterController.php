@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -61,7 +62,7 @@ class RegisterController extends Controller
 			'tel_fij'=> '', 
 			'tel_cel'=> '',
 			'dir_mail'=> 'required|string|email|max:255|unique:users',
-			'password'=> 'required|string|min:6|confirmed',
+			'password'=> 'required|string|min:6|confirmed'
         ]);
     }
 
@@ -87,10 +88,16 @@ class RegisterController extends Controller
 			'tel_fij'=> $data['tel_fij'], 
 			'tel_cel'=> $data['tel_cel'], 
 			'dir_mail'=> $data['dir_mail'], 
-			'password'=> bcrypt($data['password']),
+			'password'=> bcrypt($data['password'])
         ]);
-		
-		
-		
     }
+	
+	
+	public function showRegistrationForm()
+	{
+		$rolesGeneral = Role::all();
+		return view('auth.register')->with(compact('rolesGeneral'));
+	}
+    
+	
 }

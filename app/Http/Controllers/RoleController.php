@@ -48,7 +48,7 @@ class RoleController extends Controller
         $validate = Validator::make($post_data, $rules);
         if (!$validate->failed()){
 			$role = Role::create($post_data);
-			$roles = Roles::all();
+			$roles = Role::all();
 			return view('role.index')->with('roles', $roles);
 		}
     }

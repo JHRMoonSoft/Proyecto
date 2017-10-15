@@ -61,7 +61,7 @@ class ProductoController extends Controller
      */
     public function show(Producto $producto)
     {
-		$productos= Permission::find($producto);
+		$productos= Producto::find($producto);
 		return view('producto.show')->with('productos', $productos);
     }
 
@@ -73,7 +73,7 @@ class ProductoController extends Controller
      */
     public function edit(Producto $producto)
     {
-        $productos = Permission::find($producto);
+        $productos = Producto::find($producto);
 		return view('producto.edit')->with('productos', $productos);
     }
 
@@ -92,11 +92,11 @@ class ProductoController extends Controller
 			];
         $validate = Validator::make($post_data, $rules);
         if (!$validate->failed()) {
-            $productos = Permission::find($post_data['id']);
+            $productos = Producto::find($post_data['id']);
             $productos->des_prd = $post_data['des_prd'];
 			return view('producto.show')->with('productos', $productos);
         }
-    } $permission = Producto::find
+    }
 
     /**
      * Remove the specified resource from storage.
