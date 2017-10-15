@@ -16,17 +16,17 @@ class CreateConfiguracionsTable extends Migration
         Schema::create('configuracions', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-			$table->string('tip_per');
+			$table->string('tip_empr');
 			$table->string('raz_soc');
 			$table->string('tip_doc');
 			$table->string('num_doc');
 			$table->string('tel_fij');
 			$table->string('tel_cel');
 			$table->string('dir_mail');
-			$table->string('dir_per');
-			$table->string('brr_per');
-			$table->string('ciu_per');
-			$table->string('pai_per');
+			$table->string('dir_empr');
+			$table->string('brr_empr');
+			$table->string('ciu_empr');
+			$table->string('pai_empr');
 			$table->rememberToken();
 			$table->timestamps();
         });
