@@ -14,4 +14,8 @@ class Unidad extends Model
 	{
     		return $this->belongsToMany('Producto');
 	}
+	public function almacen()
+    	{
+	        return $this->belongsToMany('Almacen');
+	}
 }

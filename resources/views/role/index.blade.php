@@ -18,7 +18,7 @@
 									Descripcion
 								</th>
 								<th style="vertical-align:middle; text-align:center">
-									Detalles
+									Opciones 
 								</th>
 							</tr>
 							@foreach($roles as $role)
@@ -30,9 +30,9 @@
 										{{ $role->description }}
 									</td>
 									<td style="vertical-align:middle; text-align:center">
-										<a href="{{ url('/role/'.$role->id) }}">Ver</a>
-										<br/>
-										<a href="{{ url('/role/'.$role->id.'/edit') }}">Editar</a>
+									
+										<a href="{{ url('/role/'.$role->id) }}"title="ver" class="btn btn-success glyphicon glyphicon-file btn-xs" data-title="ver"></a>
+										<a href="{{ url('/role/'.$role->id.'/edit') }}"title="Editar" class="btn btn-primary glyphicon glyphicon-pencil btn-xs" data-title="Editar"></a></td>
 									</td>
 								</tr>
 							@endforeach

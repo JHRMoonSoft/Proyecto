@@ -5,7 +5,11 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Rol</div>
+                <div class="panel-heading">Rol  &nbsp&nbsp&nbsp
+				<a  href="{{ url('/role/'.$role->id.'/edit') }}" class="btn btn-success " role="button">Editar</a>
+				<a  href="{{ url('/role') }}" class="btn btn-default  right" role="button"><i class="fa fa-reply" aria-hidden="true"></i>&nbsp&nbsp&nbspVolver al listado </a>
+				
+				</div>
                 <div class="panel-body">
 					<div class="row form-group">
 						<label for="name" class="col-md-4 control-label">Nombre</label>

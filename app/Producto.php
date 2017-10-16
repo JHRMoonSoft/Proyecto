@@ -28,7 +28,7 @@ class Producto extends Model
 
 	public function almacen()
     	{
-	        return $this->belongsTo('Almacen');
+	        return $this->belongsToMany('Almacen');
 	}
 
 	public function conversiones()

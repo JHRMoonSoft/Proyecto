@@ -6,7 +6,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading"> Permiso &nbsp&nbsp&nbsp
-				<a  href="{{ url('/permisos/'.$permission->id.'/edit') }}" class="btn btn-warning" role="button">Editar</a>
+				<a  href="{{ url('/permisos/'.$permission->id.'/edit') }}" class="btn btn-success " role="button">Editar</a>
 				<a  href="{{ url('/permisos') }}" class="btn btn-default  right" role="button"><i class="fa fa-reply" aria-hidden="true"></i>&nbsp&nbsp&nbspVolver al listado </a>
 				
 				</div>

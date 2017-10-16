@@ -4,7 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class solicitudcompra extends Model
+class Solicitudcompra extends Model
 {
-    //
+    protected $table = 'solicitudcompras';	
+	protected $fillable = array('asn_scp','obv_scp');
 }

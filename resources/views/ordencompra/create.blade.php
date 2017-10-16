@@ -57,7 +57,7 @@
 									<div class="panel-heading ">
 										<form class="form-horizontal form-label-left">	
 										  <div class="col-md-2 	col-sm-6 col-xs-12">
-											<label for="ex1">Cod.OCM</label>
+											<label for="ex1">Cod.OCP</label>
 											<input class="form-control input-sm" id="ex1" type="text" disabled>
 										  </div>
 										  <div class="col-md-2 	col-sm-6 col-xs-12">
@@ -79,7 +79,7 @@
 												<input class="form-control input-sm" id="ex2" type="text" disabled>
 											</div>
 											<div class="col-md-2 col-sm-6 col-xs-12">
-												<label for="ex3">No. OCM</label>
+												<label for="ex3">No. OCP</label>
 												<input class="form-control input-sm" id="ex3" type="text">
 											</div>
 										</form>
