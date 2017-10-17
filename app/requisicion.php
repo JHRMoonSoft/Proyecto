@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Requisicion extends Model
 {
     protected $table = 'requisicions';	
-	protected $fillable = array'rol_rqs','asn_rqs','jst_rqs','men_rqs');
+	protected $fillable = array'rol_rqs','asn_rqs','jst_rqs');
 	
 	public function registrohistoricorequisicion()
 	{
@@ -17,5 +17,8 @@ class Requisicion extends Model
 	{
     		return $this->hasMany('Productosrequisicion');
 	}
-
+	public function estadorequisicion()
+	{
+    		return $this->hasOne('Estadosrequisicion');
+	}
 }

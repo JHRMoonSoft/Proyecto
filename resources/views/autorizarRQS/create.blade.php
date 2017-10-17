@@ -1,27 +1,13 @@
 @extends('layouts.app')
 @section('content')  
-@section('pagetitle')
-  <h3>Formato de Requisición interna</h3>
-@stop
-@section('x_search')
-	<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-						
-		<div class="input-group">
-		<input type="text" class="form-control" placeholder="Search for...">
-		<span class="input-group-btn">
-				  <button class="btn btn-default" type="button">Go!</button>
-			  </span>
-		</div>
-	</div>   
-	
-@stop
+
 
 @section('x_content')
 
     <div class="x_panel">
 	    <div class="x_title">
-			<h2>Autorización RQS interna</h2>
-		
+			<h2>Autorizar Requisición Interna </h2>
+		<!--
 			<ul class="nav navbar-right panel_toolbox">
 			
 			  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -37,7 +23,7 @@
 			  </li>
 			  <li><a class="close-link"><i class="fa fa-close"></i></a>
 			  </li>
-			</ul>
+			</ul>-->
 			<div class="clearfix"></div>
 	    </div>
 		<div class="x_content">
@@ -57,7 +43,7 @@
 						
 						<div class="container">							
 						
-							<br><p class=""> Notificar Autorización</p>
+							<br>
 							<form class="form-horizontal" role="form">
 								<div class="form-group">
 									<label for="to" class="col-sm-1 control-label">Para:</label>
@@ -68,7 +54,7 @@
 								<div class="form-group">
 									<label for="cc" class="col-sm-1 control-label">Asunto:</label>
 									<div class="col-sm-11">
-										  <input type="email" class="form-control select2-offscreen" id="cc" placeholder="" tabindex="-1">
+										  <input type="text" value="Autorizar Requisición"class="form-control select2-offscreen" id="cc" placeholder="" tabindex="-1">
 									</div>
 								</div>
 							  
@@ -409,8 +395,8 @@
 									<th>#</th>
 									<th> Nombre  Proveedor </th>
 									<th>Nit.  Proveedor </th>
-									<th>Tel. fijo </th>
-								    <th>Tel. celular </th>									
+									<th>Tel. Fijo </th>
+								    <th>Tel. Celular </th>									
 									<th>Dirección </th>	
 									<th>Autorizar </th>
 					

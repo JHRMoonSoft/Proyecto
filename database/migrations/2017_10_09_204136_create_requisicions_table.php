@@ -19,7 +19,9 @@ class CreateRequisicionsTable extends Migration
 			$table->double('rol_rqs');
 			$table->double('asn_rqs');
 			$table->double('jst_rqs');
-			$table->double('men_rqs');
+			$table->integer('est_rqs')->unsigned()->index();
+            $table->foreign('est_rqs')->references('id')->on('estadosrequisicions') ->onUpdate('cascade') ->onDelete('cascade');
+			
             $table->timestamps();
         });
     }

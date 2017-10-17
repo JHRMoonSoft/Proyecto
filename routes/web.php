@@ -12,7 +12,8 @@
 */
 
 Route::get('/', function () {
-    return redirect()->intended('/login');
+   // return redirect()->intended('/login');
+   return view('welcome');
 });
 
 Auth::routes();

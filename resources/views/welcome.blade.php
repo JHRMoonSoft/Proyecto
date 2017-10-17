@@ -69,9 +69,9 @@
 									@if (Auth::check())
 										<a href="{{ url('/home') }}">Home</a>
 									@else
-										<a href="#"class="btn btn-danger" > <b class="color-blue">PROYECTO</b></a>
-										<a href="{{ url('/login') }}"class="btn btn-info " ><i class="fa fa-cogs"></i> <b class="color-blue">PQRS</b></a>
-										<a href="{{ url('/register') }}"class="btn btn-default " ><i class="fa fa-cogs"></i> <b class="color-blue">registrar</b></a>
+										<a href="#"class="btn btn-danger" > <b class="color-blue">PROYECTO</b></a><!--
+										<a href="{{ url('/login') }}"class="btn btn-info " ><i class="fa fa-cogs"></i> <b class="color-blue">PQRS</b></a>-->
+										<a href="{{ url('/register') }}"class="btn btn-default " ><i class="fa fa-cogs"></i> <b class="color-blue">Requisición </b></a>
 									@endif
 								</div>
 							@endif

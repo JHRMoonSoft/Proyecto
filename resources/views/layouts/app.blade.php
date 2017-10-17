@@ -74,10 +74,10 @@
               <div class="menu_section">
                 <h3>Home</h3>
                 <ul class="nav side-menu">
-                  <li><a><i class="fa fa-home"></i> Requisicion <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-home"></i> Requisición  <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="/requisicion/create">Nueva RQS</a></li>
-                      <li><a href="index2.html">Historial RQS</a></li>
+                      <li><a href="/requisicion">Historial RQS</a></li>
                     </ul>
                   </li>
                 </ul>

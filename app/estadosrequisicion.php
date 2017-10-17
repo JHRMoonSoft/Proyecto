@@ -8,4 +8,10 @@ class Estadosrequisicion extends Model
 {
 	protected $table = 'estadosrequisicions';	
 	protected $fillable = array('desc_est_req');
+	
+	public function requisiciones()
+	{
+    		return $this->hasMany('Requisicion');
+	}
+	
 }

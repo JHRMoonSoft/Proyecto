@@ -5,7 +5,7 @@
 	    <div class="x_title">
 			<h2>Requisiciones Activas</h2> &nbsp&nbsp&nbsp
 						
-			<a  href="\workflow\create" class="btn btn-warning" role="button">Nueva Requisicion</a>
+			<a  href="\workflow\create" class="btn btn-warning" role="button">Nueva Requisición </a>
 			<!--
 			<ul class="nav navbar-right panel_toolbox">
 			

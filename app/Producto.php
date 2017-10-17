@@ -17,18 +17,23 @@ class Producto extends Model
 
 	public function requisiciones()
 	{
-    		return $this->belongsToMany('Requisicion')
-		    	->withPivot('cnt_prd','id_emp');
+    		return $this->belongsToMany('Requisicion');
+		    	//->withPivot('cnt_prd','id_emp');
 	}
 
-	public function unidades()
+	public function unidades_iniciales()
 	{
-    		return $this->belongsToMany('Unidad');
+    		return $this->belongsToMany('Unidad', 'conversions','producto_id','unidad_inicial_id');
 	}
-
+	
+	public function unidades_finales()
+	{
+    		return $this->belongsToMany('Unidad', 'conversions','producto_id','unidad_final_id');
+	}
+	
 	public function almacen()
     	{
-	        return $this->belongsToMany('Almacen');
+	        return $this->belongsTo('Almacen');
 	}
 
 	public function conversiones()

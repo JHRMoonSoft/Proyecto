@@ -17,7 +17,7 @@ class RequisicionController extends Controller
      */
     public function index()
     {
-        //
+        return View('requisicion.index');
     }
 
     /**

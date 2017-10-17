@@ -14,7 +14,7 @@
 		</div>
 	</div>
 	
-@stop
+@stop 
 
 @section('x_content')
 
