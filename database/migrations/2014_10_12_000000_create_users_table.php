@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
 			$table->string('ape_usr');
 			$table->string('usuario')->unique();
 			$table->string('crg_usr');
-			$table->string('tip_ dep');
+			$table->string('tip_dep');
 			$table->string('dep_usr');
 			$table->string('crd_usr');
 			$table->string('tel_fij');

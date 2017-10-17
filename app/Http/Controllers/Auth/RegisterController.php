@@ -50,18 +50,12 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             		
-			'tip_doc'=> '',
-			'num_doc'=> '', 
 			'nom_usr'=> 'required|string|max:255',
 			'ape_usr'=> 'required|string|max:255',
-			'usuario'=> 'required|string|max:255',
+			'usuario'=> 'required|string|max:255|unique:users',
 			'crg_usr'=> 'required|string|max:255',
 			'tip_ dep'=> 'required|string|max:255',
-			'dep_usr'=> '',
-			'crd_usr'=> '', 
-			'tel_fij'=> '', 
-			'tel_cel'=> '',
-			'dir_mail'=> 'required|string|email|max:255|unique:users',
+			'dir_mail'=> 'required|string|email|max:255',
 			'password'=> 'required|string|min:6|confirmed'
         ]);
     }
@@ -82,7 +76,7 @@ class RegisterController extends Controller
 			'ape_usr'=> $data['ape_usr'], 
 			'usuario'=> $data['usuario'], 
 			'crg_usr'=> $data['crg_usr'], 
-			'tip_ dep'=> $data['tip_ dep'], 
+			'tip_dep'=> $data['tip_dep'], 
 			'dep_usr'=> $data['dep_usr'], 
 			'crd_usr'=> $data['crd_usr'],  
 			'tel_fij'=> $data['tel_fij'], 

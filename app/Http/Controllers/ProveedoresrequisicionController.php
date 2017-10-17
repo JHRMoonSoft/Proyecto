@@ -2,15 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\OrdenCompra;
+use App\proveedoresrequisicion;
 use Illuminate\Http\Request;
 
-class OrdenCompraController extends Controller
+class ProveedoresrequisicionController extends Controller
 {
-	public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +14,7 @@ class OrdenCompraController extends Controller
      */
     public function index()
     {
-        return View('ordencompra.index');
+        //
     }
 
     /**
@@ -29,7 +25,6 @@ class OrdenCompraController extends Controller
     public function create()
     {
         //
-	return View('ordencompra.create');
     }
 
     /**
@@ -46,10 +41,10 @@ class OrdenCompraController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\OrdenCompra  $ordenCompra
+     * @param  \App\proveedoresrequisicion  $proveedoresrequisicion
      * @return \Illuminate\Http\Response
      */
-    public function show(OrdenCompra $ordenCompra)
+    public function show(proveedoresrequisicion $proveedoresrequisicion)
     {
         //
     }
@@ -57,10 +52,10 @@ class OrdenCompraController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\OrdenCompra  $ordenCompra
+     * @param  \App\proveedoresrequisicion  $proveedoresrequisicion
      * @return \Illuminate\Http\Response
      */
-    public function edit(OrdenCompra $ordenCompra)
+    public function edit(proveedoresrequisicion $proveedoresrequisicion)
     {
         //
     }
@@ -69,10 +64,10 @@ class OrdenCompraController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\OrdenCompra  $ordenCompra
+     * @param  \App\proveedoresrequisicion  $proveedoresrequisicion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, OrdenCompra $ordenCompra)
+    public function update(Request $request, proveedoresrequisicion $proveedoresrequisicion)
     {
         //
     }
@@ -80,10 +75,10 @@ class OrdenCompraController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\OrdenCompra  $ordenCompra
+     * @param  \App\proveedoresrequisicion  $proveedoresrequisicion
      * @return \Illuminate\Http\Response
      */
-    public function destroy(OrdenCompra $ordenCompra)
+    public function destroy(proveedoresrequisicion $proveedoresrequisicion)
     {
         //
     }

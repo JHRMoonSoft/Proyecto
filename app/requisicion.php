@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Requisicion extends Model
 {
     protected $table = 'requisicions';	
-	protected $fillable = array'rol_rqs','asn_rqs','jst_rqs');
+	protected $fillable = array'rol_rqs','asn_rqs','jst_rqs','men_rqs');
 	
 	public function registrohistoricorequisicion()
 	{

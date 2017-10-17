@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRequisicionsTable extends Migration
+class CreateProveedoresrequisicionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,8 @@ class CreateRequisicionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('requisicions', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-			$table->increments('id');
-			$table->double('rol_rqs');
-			$table->double('asn_rqs');
-			$table->double('jst_rqs');
-			$table->double('men_rqs');
+        Schema::create('proveedoresrequisicions', function (Blueprint $table) {
+            $table->increments('id');
             $table->timestamps();
         });
     }
@@ -31,6 +26,6 @@ class CreateRequisicionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('requisicions');
+        Schema::dropIfExists('proveedoresrequisicions');
     }
 }

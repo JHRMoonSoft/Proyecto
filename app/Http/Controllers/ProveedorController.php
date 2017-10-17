@@ -18,8 +18,8 @@ class ProveedorController extends Controller
      */
     public function index()
     {
-        //
-	//return View('proveedor.index');
+        
+	return View('proveedor.index');
     }
 
     /**

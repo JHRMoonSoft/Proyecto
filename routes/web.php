@@ -36,4 +36,4 @@ Route::resource('permisos', 'PermissionController');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
+Route::get('/users', 'HomeController@users');

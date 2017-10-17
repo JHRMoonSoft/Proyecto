@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Aluna') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -29,39 +29,40 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        {{ config('app.name', 'Aluna') }}
                     </a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
+                    <!-- Left Side Of Navbar --><!--
                     <ul class="nav navbar-nav">
-			<li class="dropdown">
-                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-					Requisiciones<span class="caret"></span>
-                           </a>
-	   		   <ul class="dropdown-menu" role="menu">
-                              <li><a href="#" >Listar Requisiciones</a></li>
-                              <li><a href="#" >Nueva Requisición</a></li>
-                           </ul>
-			</li>
-			<li class="dropdown">
-                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-					Órdenes de Compra<span class="caret"></span>
-                           </a>
-	   		   <ul class="dropdown-menu" role="menu">
-                              <li><a href="#" >Listar Órdenes de Compra</a></li>
-                              <li><a href="#" >Nueva Orden de Compra</a></li>
-                           </ul>
-			</li>
+						<li class="dropdown">
+									   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+								Requisiciones<span class="caret"></span>
+									   </a>
+						   <ul class="dropdown-menu" role="menu">
+										  <li><a href="#" >Listar Requisiciones</a></li>
+										  <li><a href="#" >Nueva Requisición</a></li>
+									   </ul>
+						</li>
+						<li class="dropdown">
+									   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+								Órdenes de Compra<span class="caret"></span>
+									   </a>
+						   <ul class="dropdown-menu" role="menu">
+										  <li><a href="#" >Listar Órdenes de Compra</a></li>
+										  <li><a href="#" >Nueva Orden de Compra</a></li>
+									   </ul>
+						</li>
                     </ul>
-
+					-->
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
-                        @if (Auth::guest())
+                        @if (Auth::guest())							
                             <li><a href="{{ route('login') }}">Iniciar Sesión</a></li>
-                            <li><a href="{{ route('register') }}">Registro</a></li>
+							<li><a href="">Regresar</a></li>
+                           
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

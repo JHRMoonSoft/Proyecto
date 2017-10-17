@@ -58,15 +58,21 @@
 						<form class="form-horizontal" role="form">
 								
 							<div class="form-group"><br><br>
-								<label for="to" class="col-sm-1 control-label">Para:</label>
-								<div class="col-sm-11">
+								<label for="to" class="col-sm-2 control-label">Para:</label>
+								<div class="col-sm-10">
 									  <input type="email" class="form-control select2-offscreen" id="to" placeholder="" tabindex="-1">
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="cc" class="col-sm-1 control-label">Solicitud:</label>
-								<div class="col-sm-11">
-									  <input type="email" class="form-control select2-offscreen" id="cc" placeholder="" tabindex="-1">
+								<label for="cc" class="col-sm-2 control-label">Solicitud:</label>
+								<div class="col-sm-10">
+									  <input type="text" value="Requisición Interna"class="form-control select2-offscreen" id="cc" placeholder="" tabindex="-1">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="cc" class="col-sm-2 control-label">Justificación:</label>
+								<div class="col-sm-10">
+									  <input type="tex" class="form-control select2-offscreen" id="cc" placeholder="" tabindex="-1">
 								</div>
 							</div>
 							<!--
@@ -80,7 +86,7 @@
 						  
 						</form>
 						
-						<div class="col-sm-11 col-sm-offset-1">
+						<div class="col-sm-10 col-sm-offset-2">
 						  <div class="x_content">
 							  <div id="alerts"></div>
 							  <div class="btn-toolbar editor" data-role="editor-toolbar" data-target="#editor-one">
@@ -131,7 +137,7 @@
 								  <a class="btn" data-edit="justifyright" title="Align Right (Ctrl/Cmd+R)"><i class="fa fa-align-right"></i></a>
 								  <a class="btn" data-edit="justifyfull" title="Justify (Ctrl/Cmd+J)"><i class="fa fa-align-justify"></i></a>
 								</div>
-
+<!--
 								<div class="btn-group">
 								  <a class="btn dropdown-toggle" data-toggle="dropdown" title="Hyperlink"><i class="fa fa-link"></i></a>
 								  <div class="dropdown-menu input-append">
@@ -140,11 +146,11 @@
 								  </div>
 								  <a class="btn" data-edit="unlink" title="Remove Hyperlink"><i class="fa fa-cut"></i></a>
 								</div>
-
+								
 								<div class="btn-group">
 								  <a class="btn" title="Insert picture (or just drag & drop)" id="pictureBtn"><i class="fa fa-picture-o"></i></a>
 								  <input type="file" data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage" />
-								</div>
+								</div>-->
 
 								<div class="btn-group">
 								  <a class="btn" data-edit="undo" title="Undo (Ctrl/Cmd+Z)"><i class="fa fa-undo"></i></a>

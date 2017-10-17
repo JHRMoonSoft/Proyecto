@@ -94,7 +94,7 @@
                   <li><a><i class="fa fa-user"></i> Usuarios <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="/register">Nuevo Usuario</a></li>
-                      <li><a href="page_404.html">Listado de Usuarios</a></li>
+                      <li><a href="/users">Listado de Usuarios</a></li>
 					   <!--<li><a href="page_500.html">500 Error</a></li>-->
                     </ul>
                   </li>
@@ -115,7 +115,7 @@
 				  <li><a><i class="fa fa-user-plus"></i> Proveedores<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="/proveedor/create"> Nuevo Proveedor</a></li>
-                      <li><a href="page_500.html">Listado de Proveedores</a></li>
+                      <li><a href="/proveedor">Listado de Proveedores</a></li>
                       <!--<li><a href="login.html">Login Page</a></li>-->
                     </ul>
                   </li>
@@ -145,21 +145,21 @@
 				   <li><a><i class="fa fa-check-square-o"></i>Solicitud de compra <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
 					<li><a href="/solicitudcompra/create">Nueva SCP</a></li>
-                      <li><a href="index2.html">Historial SCP</a></li>
+                      <li><a href="/solicitudcompra">Historial SCP</a></li>
                       <!--<li><a href="profile.html">Solicitud de compras </a></li>-->
                     </ul>
                   </li>
 				  <li><a><i class=" fa fa-file-text-o"></i> Orden de compra <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="/ordencompra/create"> Nueva OCP</a></li>
-                      <li><a href="page_500.html">Historial OCP</a></li>
+                      <li><a href="/ordencompra">Historial OCP</a></li>
                       <!--<li><a href="login.html">Login Page</a></li>-->
                     </ul>
                   </li>
                   <li><a><i class="fa fa-file"></i> Factura  <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="/factura/create">Nueva Factura </a></li>
-					   <li><a href="page_500.html">Historial Factura  </a></li>
+					   <li><a href="/factura">Historial Factura  </a></li>
                       <!--<li><a href="login.html">Login Page</a></li>-->
                     </ul>
                   </li>
@@ -189,7 +189,7 @@
 					  </a>
 						<ul class="dropdown-menu dropdown-usermenu pull-left">
 							<li><a href="javascript:;">Empresa</a></li>
-							<li><a href="javascript:;"> Usuarios  </a></li>
+							<li><a href="/users"> Usuarios  </a></li>
 							<li><a href="/role"> Roles  </a></li>
 							<li><a href="/permisos">Permisos  </a></li>								
 							<li><a href="/proveedor">Proveedores </a></li>
@@ -205,9 +205,9 @@
 					  </a>
 						<ul class="dropdown-menu dropdown-usermenu pull-left">
 							<li><a href="/autorizarRQS"> Gestionar RQS </a></li>
-							<li><a href="javascript:;"> Solicitud de compra</a></li>
-							<li><a href="javascript:;"> Orden de compra</a></li>
-							<li><a href="javascript:;"> Factura</a></li>
+							<li><a href="/solicitudcompra"> Solicitud de compra</a></li>
+							<li><a href="/ordencompra"> Orden de compra</a></li>
+							<li><a href="/factura"> Factura</a></li>
 							
 							
 							
