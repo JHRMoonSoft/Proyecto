@@ -55,8 +55,9 @@
 						<td>Belkis Buelvas</td>	
 						<td>Area</td>	
 						<td>Cargo</td>	
-						<td><a href="" title="Detalle" class="btn btn-success glyphicon glyphicon-file btn-xs" data-title="Detalle"></a>
-							<a href="" title="Editar" class="btn btn-primary glyphicon glyphicon-pencil btn-xs" data-title="Editar"></a></td><!--
+						<td><a href="" title="Detalle" class="btn btn-danger glyphicon glyphicon-file btn-xs" data-title="Detalle"></a>
+							<a href="" title="Editar" class="btn btn-success glyphicon glyphicon-pencil btn-xs" data-title="Editar"></a>
+							<a href="" title="Acción" class="btn btn-primary glyphicon glyphicon-ok btn-xs" data-title="Acción"></a></td><!--
 						<td><p data-placement="top" data-toggle="tooltip" title="Eliminar"><a href="" class="btn btn-danger btn-xs" data-title="Eliminar"><span class=" glyphicon glyphicon-trash"></span></a></p></td>-->
 				
 					</tr>                       

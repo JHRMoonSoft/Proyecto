@@ -48,18 +48,20 @@
 				  <thead>
 				   <tr>
 						<th>Cod. Producto</th>
-						<th>Detalle producto</th>
+						<th>Detalle Producto</th>
+						<th>Descripción Producto</th>
 						<th>Fecha. Creado</th>
 						<th>Fecha. Modificado</th>
 						<th>Opciones </th>
-						<!--<th>Eliminar</th>-->
+						
 					</tr>
 				  </thead>
 				  <tbody>
 					
 					<tr>
 					  <td>01</td>
-						<td>Compra peoductos</td>
+						<td>Compra productos</td>
+						<td>Descripción Producto</td>
 						<td>22-10-2017</td>	
 						<td>12-11-2017</td>	
 						<td>
@@ -99,7 +101,11 @@
 					<div class="form-group ">
 						<input class="form-control " id="inputsm" placeholder="Producto" type="text">
 					</div>
-				
+					<br/>
+					<label for="">Descripción Producto</label>
+					<div class="form-group ">
+						<input class="form-control " id="inputsm" placeholder="Descripción" type="text">
+					</div>
 				</div>
 				<div class="modal-footer"><!--
 				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
@@ -134,7 +140,11 @@
 					<div class="form-group ">
 						<input class="form-control " id="inputsm" placeholder="Producto" type="text">
 					</div>
-				
+					<br/>
+					<label for="">Descripción Producto</label>
+					<div class="form-group ">
+						<input class="form-control " id="inputsm" placeholder="Descripción" type="text">
+					</div>
 				</div>
 				<div class="modal-footer"><!--
 				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
@@ -169,6 +179,11 @@
 					<label for="">Detalle Producto</label>
 					<div class="form-group ">
 						<input class="form-control " id="inputsm"  disabled="disabled" placeholder="Producto" type="text">
+					</div>
+					<br/>
+					<label for="">Descripción Producto</label>
+					<div class="form-group ">
+						<input class="form-control " id="inputsm" disabled="disabled" placeholder="Descripción" type="text">
 					</div>
 					<hr>
 						<h4>¿Deseas eliminar el Producto?</h4>	

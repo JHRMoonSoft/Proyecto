@@ -8,7 +8,7 @@ class Producto extends Model
 {
    protected $table = 'productos';
 	
-	protected $fillable = array('des_prd');
+	protected $fillable = array('des_prd','det_prd');
 
 	public function categoria()
     	{

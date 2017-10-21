@@ -2,15 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Factura;
+use App\categoriaproveedor;
 use Illuminate\Http\Request;
 
-class FacturaController extends Controller
+class CategoriaproveedorController extends Controller
 {
-	public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +14,7 @@ class FacturaController extends Controller
      */
     public function index()
     {
-       	return View('factura.index');
+        //
     }
 
     /**
@@ -29,7 +25,6 @@ class FacturaController extends Controller
     public function create()
     {
         //
-	return View('factura.create');
     }
 
     /**
@@ -46,10 +41,10 @@ class FacturaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Factura  $factura
+     * @param  \App\categoriaproveedor  $categoriaproveedor
      * @return \Illuminate\Http\Response
      */
-    public function show(Factura $factura)
+    public function show(categoriaproveedor $categoriaproveedor)
     {
         //
     }
@@ -57,10 +52,10 @@ class FacturaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Factura  $factura
+     * @param  \App\categoriaproveedor  $categoriaproveedor
      * @return \Illuminate\Http\Response
      */
-    public function edit(Factura $factura)
+    public function edit(categoriaproveedor $categoriaproveedor)
     {
         //
     }
@@ -69,10 +64,10 @@ class FacturaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Factura  $factura
+     * @param  \App\categoriaproveedor  $categoriaproveedor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Factura $factura)
+    public function update(Request $request, categoriaproveedor $categoriaproveedor)
     {
         //
     }
@@ -80,10 +75,10 @@ class FacturaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Factura  $factura
+     * @param  \App\categoriaproveedor  $categoriaproveedor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Factura $factura)
+    public function destroy(categoriaproveedor $categoriaproveedor)
     {
         //
     }

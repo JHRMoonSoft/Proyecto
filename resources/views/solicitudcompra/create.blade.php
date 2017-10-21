@@ -1,27 +1,13 @@
 @extends('layouts.app')
 @section('content')  
-@section('pagetitle')
-  <h3>Formato de Solicitud de compras</h3>  
-@stop
-@section('x_search')  
-	<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-						
-		<div class="input-group">
-		<input type="text" class="form-control" placeholder="Search for...">
-		<span class="input-group-btn">
-				  <button class="btn btn-default" type="button">Go!</button> 
-			  </span>
-		</div>
-	</div>
-	
-@stop 
+
 
 @section('x_content')
 
     <div class="x_panel">
 	    <div class="x_title">
-			<h2>Nueva Solicitud de compras</h2>
-		
+			<h2>Nueva Solicitud de Compra</h2>
+		<!--
 			<ul class="nav navbar-right panel_toolbox">
 			
 			  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -37,7 +23,7 @@
 			  </li>
 			  <li><a class="close-link"><i class="fa fa-close"></i></a>
 			  </li>
-			</ul>
+			</ul>-->
 			<div class="clearfix"></div>
 	    </div>
 		<div class="x_content">
@@ -92,7 +78,7 @@
 					<div class="block_content"><br />
 					
 						<h2 class="title">
-							<a>Registrar los productos</a><br/>
+							<a>Registrar Productos</a><br/>
 						</h2><br />
 					
 						<br />
@@ -101,26 +87,12 @@
 							<div class="input-group col-xs-12 ">
 									<select class="form-control" id="educationDate" name="educationDate[]">
 										<option value="" selected>Seleccionar</option>
-										<option name="" value="">Barra</option>
-										<option name="" value="">Bloque</option>
-										<option name="" value="">Bolsa</option>
-										<option name="" value="">Botella</option>
-										<option name="" value="">Caja</option>
-										<option name="" value="">Frasco</option>
-										<option value="">Lata</option>
-										<option value="">Paquete</option>
-										<option value="">Pote</option>
-										<option value="">Tarro</option>
-										<option value="">Tubo</option>
-										<option value="">Vaso</option>
-										<option name="" value="">Unidad</option>
-										<option value="">Kg</option>
-										<option value="">Kilo</option>
-										<option value="">Litro</option>
-										<option value="">Lonjas</option>
+										<option name="" value="">Unidad inventario </option>
+										<option name="" value="">Unidad empaque </option>
+										
 									</select>
 								</div>
-								<h5> Factor consolidado<h5>
+								<h5> Unidad consolidar <h5>
 						  </div>
 						  <div class="col-xs-6 col-md-4">
 							<div class="input-group  col-xs-12">
@@ -128,7 +100,7 @@
 									<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
 									<span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
 								  </div>
-								  <h5> Fecha consolidado<h5>
+								  <h5> Fecha consolidar <h5>
 								</div>
 						  </div>
 						  <div class="col-xs-6 col-md-4">
@@ -136,7 +108,7 @@
 								<!--RQS Pendientes-->
 							<div class="col-xs-12 ">
 								<div class="input-group">
-									<input type="text" class="form-control">
+									<input type="text" class="form-control" placeholder="Buscar">
 									<div class="input-group-btn" >
 										<button type="button" class="btn btn-search btn-danger">
 											<span class="glyphicon glyphicon-search"></span>
@@ -161,7 +133,7 @@
 										</ul>
 									</div>
 								</div>
-								<h5>   Buscar RQS autorizadas<h5>
+								<h5>   RQS autorizadas<h5>
 							</div>
 							<!-- Consolidar RQS-->
 						  

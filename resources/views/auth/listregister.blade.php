@@ -20,7 +20,7 @@
 	    <div class="x_title">
 			<h2>Listado de Usuarios</h2> &nbsp&nbsp&nbsp
 						
-			<a  href="\workflow\create" class="btn btn-warning" role="button">Nuevo Usuario</a>
+			<a  href="/register" class="btn btn-warning" role="button">Nuevo Usuario</a>
 			<!--
 			<ul class="nav navbar-right panel_toolbox">
 			

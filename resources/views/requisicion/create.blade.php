@@ -5,7 +5,7 @@
 
     <div class="x_panel">
 	    <div class="x_title">
-			<h2>Solicitud requisición interna</h2>
+			<h2>Nueva Requisición Interna</h2>
 		<!--
 			<ul class="nav navbar-right panel_toolbox">
 			 

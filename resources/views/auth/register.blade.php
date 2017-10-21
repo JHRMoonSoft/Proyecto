@@ -4,7 +4,7 @@
     <div class="x_panel">
 	    <div class="x_title">
 		
-			<h2>Información Peronal</h2> &nbsp&nbsp&nbsp
+			<h2>Nuevo Usuario </h2> &nbsp&nbsp&nbsp
 	    </div>
 		<div class="x_content">
 			<form class="form-horizontal" method="POST" action="{{ url('/register') }}">

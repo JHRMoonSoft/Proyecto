@@ -125,7 +125,7 @@
                       <li><a href="/producto">Productos</a></li>
 					   <li><a href="/unidad">Unidad</a></li>
 					   <li><a href="/conversion"> Unidad empaque</a></li>
-					   <li><a href="/almacen">Esatado almacén</a></li>
+					   <li><a href="/almacen">Productos almacén</a></li>
                     </ul>
                   </li>
                </ul>
@@ -135,11 +135,11 @@
                 <ul class="nav side-menu">
 				
                   <li><a><i class="fa fa-pencil-square-o"></i> Gestionar RQS<span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">                     
-                      <li><a href="/autorizarRQS/create">Autorizar RQS</a></li>
-                      <li><a href="/reciboRQS">Entregar RQS</a></li>					  
-					  <li><a href="/reciboRQS/create">Recibir RQS</a></li>
-					   <li><a href="index2.html">Historial RQS</a></li>
+                    <ul class="nav child_menu">   
+                      <li><a href="/autorizarRQS">Autorizar RQS</a></li>
+                      <li><a href="/entregarRQS">Entregar RQS</a></li>					  
+					  <li><a href="/reciboRQS">Recibir RQS</a></li>
+					   <li><a href="/requisicion">Historial RQS</a></li>
                     </ul>
                   </li>
 				   <li><a><i class="fa fa-check-square-o"></i>Solicitud de compra <span class="fa fa-chevron-down"></span></a>
@@ -204,7 +204,7 @@
 						<span class=" fa fa-angle-down"></span>
 					  </a>
 						<ul class="dropdown-menu dropdown-usermenu pull-left">
-							<li><a href="/autorizarRQS"> Gestionar RQS </a></li>
+							<li><a href="/requisicion"> Gestionar RQS </a></li>
 							<li><a href="/solicitudcompra"> Solicitud de compra</a></li>
 							<li><a href="/ordencompra"> Orden de compra</a></li>
 							<li><a href="/factura"> Factura</a></li>

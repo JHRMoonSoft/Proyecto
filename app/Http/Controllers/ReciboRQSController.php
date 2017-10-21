@@ -18,7 +18,7 @@ class ReciboRQSController extends Controller
      */
     public function index()
     {
-        //
+        return View('reciboRQS.index');
     }
 
     /**

@@ -16,8 +16,7 @@ class CreateUnidadsTable extends Migration
         Schema::create('unidads', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('des_scp');
-			$table->string('obs_scp');
+            $table->string('des_und');
             $table->timestamps();
         });
     }

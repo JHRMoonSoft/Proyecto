@@ -1,11 +1,32 @@
 @extends('layouts.app')
-
-@section('content')
+@section('pagetitle')
+  <h3></h3> 
+@endsection
+@section('x_search')
+	<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search"> 
+						
+		<div class="input-group">
+		<input type="text" class="form-control" placeholder="Buscar ...">
+		<span class="input-group-btn">
+				  <button class="btn btn-default glyphicon glyphicon-search" type="button"></button> 
+			  </span> 
+		</div>
+	</div>
+	
+@endsection
+@section('x_content')
   <div class="x_panel">
 	    <div class="x_title">
 			<h2>Historial Solicitud de Compras</h2> &nbsp&nbsp&nbsp
 						
-			<a  href="\workflow\create" class="btn btn-warning" role="button">Nueva Solicitud</a>
+			<a  href="/solicitudcompra/create" class="btn btn-warning" role="button">Nueva Solicitud</a>
+			
+			<div class=" col-md-3 col-sm-3 col-xs-12 right">
+				<div id="reportrange" class="pull-center" style="background: #fff; cursor: pointer; padding: 8px 10px; border: 1px solid #ccc">
+					<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+					<span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
+				</div>
+			</div>
 			<!--
 			<ul class="nav navbar-right panel_toolbox">
 			
@@ -30,7 +51,7 @@
 				<table id="datatable-buttons" class="table table-striped table-bordered ">
 				  <thead>
 				   <tr>
-						<th class="text-center">Cod. SCP</th>
+						<th class="text-center">Código </th>
 						<th class="text-center">Asunto</th>
 						<th class="text-center">Solicitante</th>
 						<th class="text-center">Estado</th>

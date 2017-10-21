@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Configuracion extends Model
 {
 	protected $table = 'configuracions';
-	protected $fillable = array( 'tip_per' ,'raz_soc'	,'tip_doc'	,'num_doc'	,'tel_fij'	,'tel_cel'  ,'dir_mail' ,'dir_per' 	,'brr_per' 	,'ciu_per' 	,'pai_per'  );
+	protected $fillable = array( 'tip_empr','raz_soc','tip_doc','num_doc','tel_fij','tel_cel','dir_mail','dir_empr','brr_empr','ciu_empr','pai_empr' );
 
 	public function ordenCompra()
 	{

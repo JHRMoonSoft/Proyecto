@@ -1,27 +1,12 @@
 @extends('layouts.app')
 @section('content')  
-@section('pagetitle')
-  <h3>Formato de Factura de compras</h3>   
-@stop
-@section('x_search')
-	<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-						 
-		<div class="input-group"> 
-		<input type="text" class="form-control" placeholder="Search for...">
-		<span class="input-group-btn">
-				  <button class="btn btn-default" type="button">Go!</button>
-			  </span>
-		</div>
-	</div>
-	
-@stop
 
 @section('x_content')
 
     <div class="x_panel">
 	    <div class="x_title">
-			<h2>Nueva Factura de compras</h2>
-		
+			<h2>Nueva Factura de Compra</h2>
+		<!--
 			<ul class="nav navbar-right panel_toolbox">
 			
 			  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -37,7 +22,8 @@
 			  </li>
 			  <li><a class="close-link"><i class="fa fa-close"></i></a>
 			  </li>
-			</ul>
+			</ul>-->
+			
 			<div class="clearfix"></div>
 	    </div>
 		<div class="x_content">
@@ -134,7 +120,7 @@
 											</div>
 											<div class="col-sm-3 col-xs-6">
 												<label for="ex3">Concepto</label>
-												<input class="form-control input-sm" id="ex3" type="text">
+												<input class="form-control input-sm" value="FACTURA DE COMPRA" id="ex3" type="text">
 											</div>
 											<div class="col-sm-3 col-xs-6">
 												<div class="form-group">

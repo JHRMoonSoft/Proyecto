@@ -1,26 +1,11 @@
 @extends('layouts.app')
 @section('content')  
-@section('pagetitle')
-  <h3>Formato de Requisición interna</h3>   
-@stop
-@section('x_search')
-	<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-						
-		<div class="input-group">
-		<input type="text" class="form-control" placeholder="Search for...">
-		<span class="input-group-btn">
-				  <button class="btn btn-default" type="button">Go!</button>
-			  </span>
-		</div>   
-	</div>
-	
-@stop
-   
+
 @section('x_content')
 
     <div class="x_panel">
 	    <div class="x_title">
-			<h2>Entregar de Requisicion interna</h2>
+			<h2>Entregar Requisición Interna</h2>
 		<!--
 			<ul class="nav navbar-right panel_toolbox">
 			
@@ -29,7 +14,7 @@
 			  <li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
 				<ul class="dropdown-menu" role="menu">
-				  <li><a href="#">Settings 1</a>
+				  <li><a href="#">Settings 1</a> 
 				  </li>
 				  <li><a href="#">Settings 2</a>
 				  </li>
@@ -91,41 +76,15 @@
 						</div>
 						<div class="block_content">
 							<div class="row ">
-						<div class="table-responsive">
-							<table id="datatable-buttons" class="table table-striped table-bordered ">
-								<thead>
-								   <tr>
-										<th>Código</th>
-										<th>Fecha</th>																																																				
-										<th>Asunto</th>	
-										<th>Estado</th>
-										<th>Solicitante</th>
-										<th>Autorizado</th>
-									</tr>
-								</thead>
-								<tbody>
-									
-									<tr>
-									  <td>0023933</td>
-										<td>26-06-2017</td>
-										<td> compa prueba</td>
-										<td>entrega</td>
-										<td>pepito</td>
-										<td>pepito</td>
-										
-									</tr> 
-								</tbody>
-							</table>
-						</div>
 								<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left"><br>
 									<div class="form-group"><br>
-										<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cod. ETG</label>
+										<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Asunto </label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
-										  <input type="text" id="first-name"   required="required" class="form-control col-md-7 col-xs-12" disabled>
+										  <input type="text" id="first-name" value="Entregar requisición"  required="required" class="form-control col-md-7 col-xs-12">
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="control-label col-md-3 col-sm-3 col-xs-12" for="exampleSelect1">Estado RQS</label>
+										<label class="control-label col-md-3 col-sm-3 col-xs-12" for="exampleSelect1">Estado</label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
 											<select class="form-control " id="exampleSelect1">
 											  <option> ENTREGADO / REQUISICION</option>
@@ -156,107 +115,105 @@
 								 <a>Detalle de productos </a><br/>
 							</h2>
 							<br/>
+							<div class="panel panel-default">
+								<div class="panel-heading text-center">
+									<span><strong><span class="glyphicon glyphicon-th-list"> </span> Productos</strong></span>
+								</div>
+								<div class="table-responsive">
+									<table class="table table-bordered table-hover" id="education_fields2">
+									<thead>
+										<tr >
+											<th>#</th>
+											<th><button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-toggle="modal" data-target=".categoria"></button>Categoria</th>
+											<th><button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-toggle="modal" data-target=".producto"></button>Producto</th>
+											<th><button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-toggle="modal" data-target=".unidad"></button>Unidad</th>
+											<th> Cant. Autorizada</th>
+											<th> Cant. Entregada</th>
+											<th> Cant. Pendiente</th>
+											<th><a></a></th>
+							
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>
+												1
+											</td>
+											<td>
+												<div class="form-group ">
+													<select class="form-control">
+													  <option value="" selected>Seleccionar</option>
+													  <option value="">Taller de Cocina</option>
+													  <option value="">Papeleria</option>
+													  <option value="" >Didacticos</option>
+													  <option value="" >Aseo</option>
+													</select>
+												</div>
+											</td>
+											<td class="nopadding" >
+												<select class="form-control" id="educationDate" name="educationDate[]">
+													<option value="" selected>Seleccionar</option>
+													<option name="" value="">Aceite</option>
+													<option value="">Arepas antioqueñas precocidas </option>
+													<option value="" >Arroz  (bolsas de medio kilo)</option>
+													<option value="" >Bocadillo</option>
+											  </select>
+											</td>
+											
+											<td class="nopadding" >
+												<select class="form-control" id="educationDate" name="educationDate[]">
+													<option value="" selected>Seleccionar</option>
+													<option name="" value="">Barra</option>
+													<option name="" value="">Bloque</option>
+													<option name="" value="">Bolsa</option>
+													<option name="" value="">Botella</option>
+													<option name="" value="">Caja</option>
+													<option name="" value="">Frasco</option>
+													<option value="">Lata</option>
+													<option value="">Paquete</option>
+													<option value="">Pote</option>
+													<option value="">Tarro</option>
+													<option value="">Tubo</option>
+													<option value="">Vaso</option>
+													<option name="" value="">Unidad</option>
+													<option value="">Kg</option>
+													<option value="">Kilo</option>
+													<option value="">Litro</option>
+													<option value="">Lonjas</option>
+											  </select>
+											</td>
+											<td class="nopadding"  >
+												<div class="form-group">
+													<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="">
+												</div>
+											</td>
+											<td class="nopadding" >
+												<div class="form-group">
+													<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="">
+												</div>
+											</td>
+											<td class="nopadding" >
+												<div class="form-group">
+													<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="">
+												</div>
+											</td>
+											
+											<td class="nopadding" >
+												<div class="input-group-btn">
+													<button class="btn btn-sm btn-primary glyphicon glyphicon-plus btn-xs" type="button"  onclick="education_fields2();"> <span  aria-hidden="true"></span> </button>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+							  
+								</table>
+								</div>
 								
-									<div class="panel panel-default">
-										<div class="panel-heading text-center">
-											<span><strong><span class="glyphicon glyphicon-th-list"> </span> Productos</strong></span>
-										</div>
-										<div class="table-responsive">
-											<table class="table table-bordered table-hover" id="education_fields2">
-											<thead>
-												<tr >
-													<th>#</th>
-													<th><button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-toggle="modal" data-target=".categoria"></button>Categoria</th>
-													<th><button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-toggle="modal" data-target=".producto"></button>Producto</th>
-													<th> Cant.Autorizada</th>
-													<th> Cant.Entregada</th>
-													<th><button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-toggle="modal" data-target=".unidad"></button>Unidad</th>
-													<th> Cant.Pendiente</th>									
-													<th>Observaciones</th>
-													<th><a></a></th>
-									
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>
-														1
-													</td>
-													<td>
-														<div class="form-group ">
-															<select class="form-control">
-															  <option value="" selected>Seleccionar</option>
-															  <option value="">Taller de Cocina</option>
-															  <option value="">Papeleria</option>
-															  <option value="" >Didacticos</option>
-															  <option value="" >Aseo</option>
-															</select>
-														</div>
-													</td>
-													<td class="nopadding" >
-														<select class="form-control" id="educationDate" name="educationDate[]">
-															<option value="" selected>Seleccionar</option>
-															<option name="" value="">Aceite</option>
-															<option value="">Arepas antioqueñas precocidas </option>
-															<option value="" >Arroz  (bolsas de medio kilo)</option>
-															<option value="" >Bocadillo</option>
-													  </select>
-													</td>
-													<td>
-															1 Caja de 5 UND
-													</td>
-													<td class="nopadding" >
-														<div class="form-group">
-															<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Cantidad">
-														</div>
-													</td>
-													<td class="nopadding" >
-														<select class="form-control" id="educationDate" name="educationDate[]">
-															<option value="" selected>Seleccionar</option>
-															<option name="" value="">Barra</option>
-															<option name="" value="">Bloque</option>
-															<option name="" value="">Bolsa</option>
-															<option name="" value="">Botella</option>
-															<option name="" value="">Caja</option>
-															<option name="" value="">Frasco</option>
-															<option value="">Lata</option>
-															<option value="">Paquete</option>
-															<option value="">Pote</option>
-															<option value="">Tarro</option>
-															<option value="">Tubo</option>
-															<option value="">Vaso</option>
-															<option name="" value="">Unidad</option>
-															<option value="">Kg</option>
-															<option value="">Kilo</option>
-															<option value="">Litro</option>
-															<option value="">Lonjas</option>
-													  </select>
-													</td>
-													<td>
-															1 Caja de 5 UND
-													</td>
-													<td class="nopadding" >
-														<div class="form-group">
-															<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Observaciones">
-														</div>
-													</td>
-													
-													<td class="nopadding" >
-														<div class="input-group-btn">
-															<button class="btn btn-sm btn-primary glyphicon glyphicon-plus btn-xs" type="button"  onclick="education_fields2();"> <span  aria-hidden="true"></span> </button>
-														</div>
-													</td>
-												</tr>
-											</tbody>
-									  
-										</table>
-										</div>
-										
-									</div>
-									<small>Pulse + para agregar otro producto /  Pulse - para eliminar un producto.</small>
-									<br />
-									
-								
+							</div>
+							<small>Pulse + para agregar otro producto /  Pulse - para eliminar un producto.</small>
+							<br />
+							
+						
 								
 							<br />	
 						</div>
@@ -372,7 +329,7 @@
 			var divtest = document.createElement("tbody");
 			divtest.setAttribute("class", "form-group tr removeclass"+room);
 			var rdiv = 'removeclass'+room;
-			divtest.innerHTML = '<tr><td>' + (room) + '</td><td><div class="form-group "><select class="form-control"><option value="" selected>Seleccionar</option><option value="">Taller de Cocina</option><option value="">Papeleria</option><option value="" >Didacticos</option><option value="" >Aseo</option></select></div></td><td class="nopadding" ><select class="form-control" id="educationDate" name="educationDate[]"><option value="" selected>Seleccionar</option><option name="" value="">Aceite</option><option value="">Arepas antioqueñas precocidas </option><option value="" >Arroz  (bolsas de medio kilo)</option><option value="" >Bocadillo</option></select></td><td>1 Caja </td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Cantidad"></div></td><td class="nopadding" ><select class="form-control" id="educationDate" name="educationDate[]"><option value="" selected>Seleccionar</option><option name="" value="">Barra</option><option name="" value="">Bloque</option><option name="" value="">Bolsa</option><option name="" value="">Botella</option><option name="" value="">Caja</option><option name="" value="">Frasco</option><option value="">Lata</option><option value="">Paquete</option><option value="">Pote</option><option value="">Tarro</option><option value="">Tubo</option><option value="">Vaso</option><option name="" value="">Unidad</option><option value="">Kg</option><option value="">Kilo</option><option value="">Litro</option><option value="">Lonjas</option></select></td><td>1 Caja de 5 UND</td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Observación"></div></td><td class="nopadding" ><div class="input-group-btn"><button class="btn btn-sm btn-danger glyphicon glyphicon-minus btn-xs" type="button" onclick="remove_education_fields2('+ room +');"> <span  aria-hidden="true"></span> </button></div></td></tr>';
+			divtest.innerHTML = '<tr><td>' + (room) + '</td><td><div class="form-group "><select class="form-control">  <option value="" selected>Seleccionar</option>  <option value="">Taller de Cocina</option> <option value="">Papeleria</option> <option value="" >Didacticos</option> <option value="" >Aseo</option></select></div></td>	<td class="nopadding" >	<select class="form-control" id="educationDate" name="educationDate[]">	<option value="" selected>Seleccionar</option><option name="" value="">Aceite</option><option value="">Arepas antioqueñas precocidas </option><option value="" >Arroz  (bolsas de medio kilo)</option><option value="" >Bocadillo</option>  </select>	</td><td class="nopadding" >	<select class="form-control" id="educationDate" name="educationDate[]">	<option value="" selected>Seleccionar</option><option name="" value="">Barra</option><option name="" value="">Bloque</option>	<option name="" value="">Bolsa</option>	<option name="" value="">Botella</option>	<option name="" value="">Caja</option><option name="" value="">Frasco</option><option value="">Lata</option><option value="">Paquete</option><option value="">Pote</option><option value="">Tarro</option><option value="">Tubo</option>	<option value="">Vaso</option><option name="" value="">Unidad</option><option value="">Kg</option>	<option value="">Kilo</option><option value="">Litro</option><option value="">Lonjas</option> </select></td><td class="nopadding"  ><div class="form-group"><input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder=""></div></td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder=""></div></td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="">	</div></td><td class="nopadding" ><div class="input-group-btn"><button class="btn btn-sm btn-danger glyphicon glyphicon-minus btn-xs" type="button" onclick="remove_education_fields2('+ room +');"> <span  aria-hidden="true"></span> </button></div></td></tr>';
 			
 			objTo.appendChild(divtest)
 			  

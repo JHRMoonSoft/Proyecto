@@ -1,15 +1,11 @@
 @extends('layouts.app')
-@section('content')  <!--
-@section('pagetitle')
-  <h3>Formato de Compras</h3> 
-@stop-->
-
+@section('content') 
 @section('x_content')
 	
 
     <div class="x_panel">
 	    <div class="x_title">
-			<h2>Información  Proveedor</h2> &nbsp&nbsp&nbsp
+			<h2>Nuevo Proveedor</h2> &nbsp&nbsp&nbsp
 						
 		<!--
 			<ul class="nav navbar-right panel_toolbox">

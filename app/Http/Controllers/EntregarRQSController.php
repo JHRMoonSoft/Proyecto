@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Solicitud;
 use Illuminate\Http\Request;
 
-class SolicitudController extends Controller
+class EntregarRQSController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +13,7 @@ class SolicitudController extends Controller
      */
     public function index()
     {
-        //
+        return View('entregarRQS.index');
     }
 
     /**
@@ -24,7 +23,7 @@ class SolicitudController extends Controller
      */
     public function create()
     {
-        //
+         return View('entregarRQS.create');
     }
 
     /**
@@ -41,10 +40,10 @@ class SolicitudController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Solicitud  $solicitud
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Solicitud $solicitud)
+    public function show($id)
     {
         //
     }
@@ -52,10 +51,10 @@ class SolicitudController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Solicitud  $solicitud
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Solicitud $solicitud)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +63,10 @@ class SolicitudController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Solicitud  $solicitud
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Solicitud $solicitud)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +74,10 @@ class SolicitudController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Solicitud  $solicitud
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Solicitud $solicitud)
+    public function destroy($id)
     {
         //
     }

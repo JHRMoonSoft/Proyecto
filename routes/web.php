@@ -30,6 +30,7 @@ Route::resource('solicitudcompra', 'SolicitudCompraController');
 Route::resource('ordencompra', 'OrdenCompraController');
 Route::resource('unidad', 'UnidadController');
 Route::resource('factura', 'FacturaController');
+Route::resource('entregarRQS', 'EntregarRQSController');
 Route::resource('reciboRQS', 'ReciboRQSController');
 
 Route::resource('role', 'RoleController');

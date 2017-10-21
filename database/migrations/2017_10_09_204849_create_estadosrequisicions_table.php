@@ -17,6 +17,7 @@ class CreateEstadosrequisicionsTable extends Migration
 			$table->engine = 'InnoDB';
 			$table->increments('id');
 			$table->string('desc_est_req');
+			$table->string('asu_est_req');
             $table->timestamps();
         });
     }

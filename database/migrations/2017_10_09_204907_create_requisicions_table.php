@@ -16,9 +16,18 @@ class CreateRequisicionsTable extends Migration
         Schema::create('requisicions', function (Blueprint $table) {
             $table->engine = 'InnoDB';
 			$table->increments('id');
-			$table->double('rol_rqs');
-			$table->double('asn_rqs');
-			$table->double('jst_rqs');
+			$table->integer('rol_rqs')->unsigned()->index();
+			$table->foreign('rol_rqs')->references('id')->on('roles') ->onUpdate('cascade') ->onDelete('cascade');
+			$table->string('asn_rqs');
+			$table->string('jst_rqs');
+			$table->boolean('tip_sol');
+			$table->boolean('apr_com');
+			$table->date('fec_apr_com');
+			$table->boolean('prv_apr');
+			$table->string('nom_rcp_rqs');
+			$table->string('crg_rcp_rqs');
+			$table->date('fec_rcp_rqs');
+			$table->string('obs_rcp_rqs');
 			$table->integer('est_rqs')->unsigned()->index();
             $table->foreign('est_rqs')->references('id')->on('estadosrequisicions') ->onUpdate('cascade') ->onDelete('cascade');
 			

@@ -25,7 +25,7 @@ class UsersTableSeeder extends Seeder
 			'ape_usr' => 'Buelvas Castillo',
 			'usuario'=> 'bbuelvas5408',
 			'crg_usr' => 'Gerente General de todo!!',
-			'tip_ dep' => 'TODAS!!!',
+			'tip_dep' => 'TODAS!!!',
 			'dep_usr' => 'TODAS!!!',
 			'crd_usr' => 'TODAS!!!',
 			'tel_fij' => 'No tiene',
