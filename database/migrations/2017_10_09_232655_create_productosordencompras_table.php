@@ -26,6 +26,10 @@ class CreateProductosordencomprasTable extends Migration
 			$table->integer('ord_comp_id')->unsigned()->index();
             $table->foreign('ord_comp_id')->references('id')->on('ordencompras') ->onUpdate('cascade') ->onDelete('cascade');
 			
+			$table->integer('prod_sol_comp_id')->nullable()->unsigned()->index();
+            $table->foreign('prod_sol_comp_id')->references('id')->on('productosolicitudcompras') ->onUpdate('cascade') ->onDelete('cascade');
+			
+			
 			$table->integer('prod_id')->unsigned()->index();
             $table->foreign('prod_id')->references('id')->on('productos') ->onUpdate('cascade') ->onDelete('cascade');
 			

@@ -18,6 +18,7 @@ class CreateAlmacensTable extends Migration
             $table->increments('id');
             $table->double('cnt_prd');
             $table->integer('lot_prd');
+			$table->date('fec_ven')->nullable();
             $table->integer('producto_id')->unsigned()->index();
             $table->foreign('producto_id')->references('id')->on('productos')->onDelete('cascade');
             $table->integer('unidad_id')->unsigned()->index();

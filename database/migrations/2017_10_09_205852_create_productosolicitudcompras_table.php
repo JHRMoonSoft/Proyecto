@@ -17,12 +17,12 @@ class CreateProductosolicitudcomprasTable extends Migration
 			$table->engine = 'InnoDB';
 			$table->increments('id');
 			
-			$table->double('cant_prd');
+			$table->double('cant_sol_prd');
 			
 			$table->integer('sol_comp_id')->unsigned()->index();
             $table->foreign('sol_comp_id')->references('id')->on('solicitudcompras') ->onUpdate('cascade') ->onDelete('cascade');
-						  
-            $table->integer('prod_id')->unsigned()->index();
+			
+			$table->integer('prod_id')->unsigned()->index();
             $table->foreign('prod_id')->references('id')->on('productos') ->onUpdate('cascade') ->onDelete('cascade');
 			
 			$table->integer('unidad_emp_id')->unsigned()->index();
