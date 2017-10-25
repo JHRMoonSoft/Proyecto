@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Productosolicitudcompra extends Model
 {
     protected $table = 'productosolicitudcompras';	
-	protected $fillable = array('cant_prd');
+	protected $fillable = array('cant_sol_prd');
 	
 	public function productos(){
 	     return $this->hasMany('Producto');

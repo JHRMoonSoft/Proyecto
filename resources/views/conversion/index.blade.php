@@ -47,7 +47,7 @@
 				<table id="datatable-buttons" class="table table-striped table-bordered ">
 				  <thead>
 				   <tr>
-						<th>Cod. Conversion</th>
+						<th>Código</th>
 						<th>Unidad Empaque </th>
 						<th>Cantidad</th>
 						<th> Unidad Almacén</th>

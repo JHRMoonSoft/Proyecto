@@ -43,7 +43,7 @@
 										<div class="panel-heading ">
 											<form class="form-horizontal form-label-left">	
 											  <div class="col-md-2 	col-sm-6 col-xs-12">
-												<label for="ex1">Cod.Factura</label>
+												<label for="ex1">Código</label>
 												<input class="form-control input-sm" id="ex1" type="text" disabled>
 											  </div>
 											  <div class="col-md-2 	col-sm-6 col-xs-12">
@@ -177,9 +177,10 @@
 											<option value="audi" >Orden de compra 0245)</option>
 										</select>
 								</div>
-								<div class="col-xs-2"><br/>
-									<label for="ex3">Opciones </label><br>
-										<button type="submit" class="btn btn-primary   ">Consultar</button>
+								<div class="col-xs-4"><br/>
+									<h4><h4/><br>
+									<button type="submit" class="btn btn-primary   ">Consultar</button>
+									<button type="submit" class="btn btn-primary fa fa-download "></button>
 								</div>
 							</div>
 						
@@ -328,12 +329,91 @@
 																	
 				<button type="submit" class="btn btn-danger">Deshacer</button>
 				<button type="submit" class="btn btn-default">Guardar</button>
-				<button type="submit" class="btn btn-success">Enviar</button>
+				<button type="submit" class="btn btn-success"data-toggle="modal" data-target=".almacen" >Almacén</button>
 			</div>
 
         </div>
+		
+		  <!-- Almacen modal -->		  
 
-		     <!-- Productos modal -->		  
+		  <div class="modal fade almacen" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+			  <div class="modal-content">
+
+				<div class="modal-header">
+				  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+				  </button>
+				  <h4 class="modal-title" id="myModalLabel2">Ingreso Almacén</h4>
+				</div>
+				<div class="modal-body">
+					<div class="table-responsive">
+						<table class="table table-bordered table-hover" id="education_fields2">
+							<thead>
+								<tr >
+									<th>#</th>
+									<th> Fecha </th>
+									<th> Categoría </th>
+									<th> Producto </th>
+									<th> Descripcion </th>
+									<th> Unidad Almacén </th>
+									<th> Cantidad</th>	
+					
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										1
+									</td>		
+									<td class="nopadding" >
+										<div class="form-group">
+											<input type="text" class="form-control input-sm" value="11-02-2017" id="Schoolname" name="Schoolname[]" value="" placeholder="">
+											<div class="col-md-2"><div class="panel"></div></div>
+										</div>
+									</td>
+									<td class="nopadding" >
+										<div class="form-group">
+											<input type="text" class="form-control input-sm" id="Schoolname" name="Schoolname[]" value="" placeholder="">
+										</div>
+									</td>
+									<td class="nopadding" >
+										<div class="form-group">
+											<input type="text" class="form-control input-sm" id="Schoolname" name="Schoolname[]" value="" placeholder="">
+										</div>
+									</td>
+									<td class="nopadding" >
+										<div class="form-group">
+											<input type="text" class="form-control input-sm" id="Schoolname" name="Schoolname[]" value="" placeholder="">
+										</div>
+									</td>
+									
+									<td class="nopadding" >
+										<div class="form-group">
+											<input type="text" class="form-control input-sm" id="Schoolname" name="Schoolname[]" value="" placeholder="">
+										</div>
+									</td>
+									<td class="nopadding" >
+										<div class="form-group">
+											<input type="text" class="form-control input-sm" id="Schoolname" name="Schoolname[]" value="" placeholder="">
+										</div>
+									</td>
+								</tr>
+							</tbody>
+				  
+						</table>
+					</div>
+				</div>
+				<div class="modal-footer"><!--
+				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+				  <button type="close" class="btn btn-primary  "class="close" data-dismiss="modal" aria-label="Close">Finalizar </button>
+				</div>
+
+			  </div>
+			</div>
+		  </div>
+		  <!-- /modals -->
+
+		  <!-- Productos modal -->		  
 
 		  <div class="modal fade producto" tabindex="-1" role="dialog" aria-hidden="true">
 			<div class="modal-dialog modal-sm">

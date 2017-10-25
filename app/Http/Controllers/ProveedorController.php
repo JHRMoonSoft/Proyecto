@@ -98,7 +98,7 @@ class ProveedorController extends Controller
      */
     public function update(Request $request, Proveedor $proveedor)
     {
-          $post_data = $request->all();
+        $post_data = $request->all();
 		$rules = [
             'raz_soc' => 'required',
 			'tip_doc' => 'required', 

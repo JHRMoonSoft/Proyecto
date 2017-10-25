@@ -35,7 +35,17 @@ class AccionesAlmacenController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post_data = $request->all();
+		$rules = [
+            'des_acc_alm' => 'required'
+			'tip_acc_alm' => 'required'
+			];
+        $validate = Validator::make($post_data, $rules);
+        if (!$validate->failed()){
+			$accionesalmacen = AccionesAlmacen::create($post_data);	 		
+		}
+		$accionesalmacens = AccionesAlmacen::all();
+		//return view('accionesalmacen.index')->with('accionesalmacens', $accionesalmacens);
     }
 
     /**
@@ -69,7 +79,18 @@ class AccionesAlmacenController extends Controller
      */
     public function update(Request $request, AccionesAlmacen $accionesAlmacen)
     {
-        //
+        $post_data = $request->all();
+		$rules = [
+            'des_acc_alm' => 'required'
+			'tip_acc_alm' => 'required'
+			];
+        $validate = Validator::make($post_data, $rules);
+        if (!$validate->failed()) {
+            $accionesalmacens = AccionesAlmacen::find($post_data['id']);
+            $accionesalmacens->des_acc_alm = $post_data['des_acc_alm'];
+			$accionesalmacens->tip_acc_alm = $post_data['tip_acc_alm'];
+			//return view('accionesalmacen.show')->with('accionesalmacens', $accionesalmacens);
+        }
     }
 
     /**

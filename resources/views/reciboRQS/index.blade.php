@@ -53,7 +53,7 @@
 				<table id="datatable-buttons" class="table table-striped table-bordered ">
 				  <thead>
 				   <tr>
-						<th class="text-center">Cod. RQS</th>
+						<th class="text-center">Código</th>
 						<th class="text-center">Fecha</th>
 						<th class="text-center">Antiguaedad</th>
 						<th class="text-center">Asunto</th>

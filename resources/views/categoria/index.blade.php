@@ -47,7 +47,7 @@
 				<table id="datatable-buttons" class="table table-striped table-bordered ">
 				  <thead>
 				   <tr>
-						<th>Cod. Categoría</th>
+						<th>Código</th>
 						<th>Detalle Categoría</th>
 						<th>Fecha. Creado</th>
 						<th>Fecha. Modificado</th>

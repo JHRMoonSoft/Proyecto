@@ -20,6 +20,15 @@
     <div class="x_panel">
 	    <div class="x_title">
 			<h2>Productos Almacén </h2> &nbsp&nbsp&nbsp
+			<div class=" col-md-2 col-sm-2 col-xs-6 right">
+					<a  data-toggle="modal" data-target=".descargar" class="btn btn-primary  left" role="button"><i class="glyphicon glyphicon-cloud-download" aria-hidden="true"></i>&nbsp&nbsp Descargar </a>
+			</div>
+			<div class=" col-md-3 col-sm-3 col-xs-6 right">
+				<div id="reportrange" class="pull-center" style="background: #fff; cursor: pointer; padding: 8px 10px; border: 1px solid #ccc">
+					<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+					<span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
+				</div>
+			</div>
 		<!--				
 			<button type="button" class="btn btn-warning " data-toggle="modal" data-target=".create_unidad">Nueva unidad </button>
 		
@@ -46,7 +55,7 @@
 				<table id="datatable-buttons" class="table table-striped table-bordered ">
 				  <thead>
 				   <tr>
-						<th>Cod. Producto</th>
+						<th>Código</th>
 						<th>Producto</th>
 						<th>Categoría</th>
 						<th>Esatado </th>

@@ -44,15 +44,9 @@
 							<div class="row ">
 								<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
 									<div class="form-group"><br>
-										<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Cod. SCP</label>
-										<div class="col-md-6 col-sm-6 col-xs-12">
-										  <input type="text" id="first-name"   required="required" class="form-control col-md-7 col-xs-12" disabled>
-										</div>
-									</div>	
-									<div class="form-group"><br>
 										<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Asunto</label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
-										  <input type="text" id="first-name"   required="required" class="form-control col-md-7 col-xs-12">
+										  <input type="text" id="first-name" value="SOLICITUD DE COMPRA"  required="required" class="form-control col-md-7 col-xs-12">
 										</div>
 									</div>
 									<div class="form-group">
@@ -152,10 +146,10 @@
 											<th>#</th>
 											<th><button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-toggle="modal" data-target=".categoria"></button>Categoria</th>
 											<th><button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-toggle="modal" data-target=".producto"></button>Producto</th>
+											<th>Detalle del producto</th>	
+											<th><button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-toggle="modal" data-target=".unidad"></button>Unidad</th>
 											<th> Disponible</th>
 											<th>Cantidad</th>
-											<th><button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-toggle="modal" data-target=".unidad"></button>Unidad</th>
-											<th>Detalle del producto</th>	
 											<th><a></a></th>
 							
 										</tr>
@@ -185,12 +179,9 @@
 													<option value="" >Bocadillo</option>
 											  </select>
 											</td>
-											<td>
-													1 Caja de 5 UND
-											</td>
 											<td class="nopadding" >
 												<div class="form-group">
-													<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Cantidad">
+													<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Detalle">
 												</div>
 											</td>
 											<td class="nopadding" >
@@ -215,13 +206,14 @@
 													<option value="">Lonjas</option>
 											  </select>
 											</td>
-											
+											<td>
+													1 Caja de 5 UND
+											</td>
 											<td class="nopadding" >
 												<div class="form-group">
-													<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Detalle">
+													<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Cantidad">
 												</div>
 											</td>
-											
 											<td class="nopadding" >
 												<div class="input-group-btn">
 													<button class="btn btn-sm btn-primary glyphicon glyphicon-plus btn-xs" type="button"  onclick="education_fields2();"> <span  aria-hidden="true"></span> </button>
@@ -347,7 +339,7 @@
 			var divtest = document.createElement("tbody");
 			divtest.setAttribute("class", "form-group tr removeclass"+room);
 			var rdiv = 'removeclass'+room;
-			divtest.innerHTML = '<tr><td>' + (room) + '</td><td><div class="form-group "><select class="form-control"><option value="" selected>Seleccionar</option><option value="">Taller de Cocina</option><option value="">Papeleria</option><option value="" >Didacticos</option><option value="" >Aseo</option></select></div></td><td class="nopadding" ><select class="form-control" id="educationDate" name="educationDate[]"><option value="" selected>Seleccionar</option><option name="" value="">Aceite</option><option value="">Arepas antioqueñas precocidas </option><option value="" >Arroz  (bolsas de medio kilo)</option><option value="" >Bocadillo</option></select></td><td></td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Cantidad"></div></td><td class="nopadding" ><select class="form-control" id="educationDate" name="educationDate[]"><option value="" selected>Seleccionar</option><option name="" value="">Barra</option><option name="" value="">Bloque</option><option name="" value="">Bolsa</option><option name="" value="">Botella</option><option name="" value="">Caja</option><option name="" value="">Frasco</option><option value="">Lata</option><option value="">Paquete</option><option value="">Pote</option><option value="">Tarro</option><option value="">Tubo</option><option value="">Vaso</option><option name="" value="">Unidad</option><option value="">Kg</option><option value="">Kilo</option><option value="">Litro</option><option value="">Lonjas</option></select></td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Detalle"></div></td><td class="nopadding" ><div class="input-group-btn"><button class="btn btn-sm btn-danger glyphicon glyphicon-minus btn-xs" type="button" onclick="remove_education_fields2('+ room +');"> <span  aria-hidden="true"></span> </button></div></td></tr>';
+			divtest.innerHTML = '<tr><td>' + (room) + '</td><td><div class="form-group "><select class="form-control"><option value="" selected>Seleccionar</option><option value="">Taller de Cocina</option><option value="">Papeleria</option><option value="" >Didacticos</option><option value="" >Aseo</option></select></div></td><td class="nopadding" ><select class="form-control" id="educationDate" name="educationDate[]"><option value="" selected>Seleccionar</option><option name="" value="">Aceite</option><option value="">Arepas antioqueñas precocidas </option><option value="" >Arroz  (bolsas de medio kilo)</option><option value="" >Bocadillo</option></select></td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Detalle"></div></td><td class="nopadding" ><select class="form-control" id="educationDate" name="educationDate[]"><option value="" selected>Seleccionar</option><option name="" value="">Barra</option><option name="" value="">Bloque</option><option name="" value="">Bolsa</option><option name="" value="">Botella</option><option name="" value="">Caja</option><option name="" value="">Frasco</option><option value="">Lata</option><option value="">Paquete</option><option value="">Pote</option><option value="">Tarro</option><option value="">Tubo</option><option value="">Vaso</option><option name="" value="">Unidad</option><option value="">Kg</option><option value="">Kilo</option><option value="">Litro</option><option value="">Lonjas</option></select></td><td>1 Caja de 5 UND</td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Cantidad"></div></td><td class="nopadding" ><div class="input-group-btn"><button class="btn btn-sm btn-danger glyphicon glyphicon-minus btn-xs" type="button" onclick="remove_education_fields2('+ room +');"> <span  aria-hidden="true"></span> </button></div></td></tr>';
 			
 			objTo.appendChild(divtest)
 			  

@@ -35,7 +35,17 @@ class EstadosrequisicionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post_data = $request->all();
+		$rules = [
+            'desc_est_req' => 'required'
+			'asu_est_req' => 'required'
+			];
+        $validate = Validator::make($post_data, $rules);
+        if (!$validate->failed()){
+			$estadosrequisicion = Estadosrequisicion::create($post_data);	 		
+		}
+		$estadosrequisicions = Estadosrequisicion::all();
+		//return view('estadosrequisicion.index')->with('estadosrequisicions', $estadosrequisicions);
     }
 
     /**
@@ -69,7 +79,18 @@ class EstadosrequisicionController extends Controller
      */
     public function update(Request $request, estadosrequisicion $estadosrequisicion)
     {
-        //
+        $post_data = $request->all();
+		$rules = [
+            'desc_est_req' => 'required'
+			'asu_est_req' => 'required'
+			];
+        $validate = Validator::make($post_data, $rules);
+        if (!$validate->failed()) {
+            $estadosrequisicions = Estadosrequisicion::find($post_data['id']);
+            $estadosrequisicions->desc_est_req = $post_data['desc_est_req'];
+			$estadosrequisicions->asu_est_req = $post_data['asu_est_req'];
+			//return view('estadosrequisicion.show')->with('estadosrequisicions', $estadosrequisicions);
+        }
     }
 
     /**

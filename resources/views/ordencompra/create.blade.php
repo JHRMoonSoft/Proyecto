@@ -42,7 +42,7 @@
 									<div class="panel-heading ">
 										<form class="form-horizontal form-label-left">	
 										  <div class="col-md-2 	col-sm-6 col-xs-12">
-											<label for="ex1">Cod.OCP</label>
+											<label for="ex1">Código</label>
 											<input class="form-control input-sm" id="ex1" type="text" disabled>
 										  </div>
 										  <div class="col-md-2 	col-sm-6 col-xs-12">
@@ -175,8 +175,12 @@
 									  <option value="audi" >Aseo</option>
 									</select>
 								</div>
+								<div class="col-xs-2"><br/>
+									<h4><h4/><br>
+									<button type="submit" class="btn btn-danger ">Consultar</button>
+								</div>
 								<div class="col-xs-3"><br/>
-									<label for="ex3">Producto</label>
+									<label for="ex3">Productos</label>
 									<select class="form-control">
 									  <option value="volvo" selected>Seleccionar</option>
 									  <option value="saab">Todos</option>
@@ -187,11 +191,11 @@
 									</select>
 								</div>
 								<div class="col-xs-2"><br/>
-									<label for="ex3">Opciones </label><br>
-									<button type="submit" class="btn btn-primary   ">Consultar</button>
+									<h4><h4/><br>
+									<button type="submit" class="btn btn-primary fa fa-download "></button>
 								</div>
 							</div>
-							<h5>Productos solicitud de compras<h5>
+							<h5>Descargar productos con solicitud de compras<h5>
 						
 						</div>
 						
@@ -346,8 +350,7 @@
 			<div class="form-group right ">	
 																	
 				<button type="submit" class="btn btn-danger">Deshacer</button>
-				<button type="submit" class="btn btn-default">Guardar</button>
-				<button type="submit" class="btn btn-success">Enviar</button>
+				<button type="submit" class="btn btn-success">Guardar</button>
 			</div>
 
         </div>

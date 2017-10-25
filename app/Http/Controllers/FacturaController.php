@@ -40,7 +40,27 @@ class FacturaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post_data = $request->all();
+		$rules = [
+            'lot_prd')=>' ',
+			'no_fact')=>' ',
+			'cnp_fact')=>' ',
+			'comp_fact')=>' ',
+			'form_pag')=>' ',
+			'tim_entr')=>' ',
+			'otr_fact')=>' ',
+			'subt_fact')=>' ',
+			'iva_fact')=>' ',
+			'tol_fact')=>' ',
+			'obv_fact')=>' ',
+			'ord_comp_id'=>' '
+			];
+        $validate = Validator::make($post_data, $rules);
+        if (!$validate->failed()){
+			$factura = Factura::create($post_data);	 		
+		}
+		$facturas = Factura::all();
+		return view('factura.index')->with('facturas', $facturas);
     }
 
     /**
@@ -51,7 +71,8 @@ class FacturaController extends Controller
      */
     public function show(Factura $factura)
     {
-        //
+        $facturas= Factura::find($factura);
+		return view('factura.show')->with('facturas', $facturas);
     }
 
     /**
@@ -62,7 +83,8 @@ class FacturaController extends Controller
      */
     public function edit(Factura $factura)
     {
-        //
+        $facturas = Factura::find($factura);
+		return view('factura.edit')->with('facturas', $facturas);
     }
 
     /**
@@ -74,7 +96,38 @@ class FacturaController extends Controller
      */
     public function update(Request $request, Factura $factura)
     {
-        //
+         $post_data = $request->all();
+		$rules = [
+            'lot_prd')=>' ',
+			'no_fact')=>' ',
+			'cnp_fact')=>' ',
+			'comp_fact')=>' ',
+			'form_pag')=>' ',
+			'tim_entr')=>' ',
+			'otr_fact')=>' ',
+			'subt_fact')=>' ',
+			'iva_fact')=>' ',
+			'tol_fact')=>' ',
+			'obv_fact')=>' ',
+			'ord_comp_id'=>' '
+			];
+        $validate = Validator::make($post_data, $rules);
+        if (!$validate->failed()) {
+            $facturas = Factura::find($post_data['id']);
+            $facturas->lot_prd = $post_data['lot_prd'];
+			$facturas->no_fact = $post_data['no_fact'];
+			$facturas->cnp_fact = $post_data['cnp_fact'];
+			$facturas->comp_fact = $post_data['comp_fact'];
+			$facturas->form_pag = $post_data['form_pag'];
+			$facturas->tim_entr = $post_data['tim_entr'];
+			$facturas->otr_fact = $post_data['otr_fact'];
+			$facturas->subt_fact = $post_data['subt_fact'];
+			$facturas->iva_fact = $post_data['iva_fact'];
+			$facturas->tol_fact = $post_data['tol_fact'];
+			$facturas->obv_fact = $post_data['obv_fact'];
+			$facturas->ord_comp_id = $post_data['ord_comp_id'];
+			return view('factura.show')->with('facturas', $facturas);
+        }
     }
 
     /**

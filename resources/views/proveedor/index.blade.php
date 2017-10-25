@@ -45,7 +45,7 @@
 				<table id="datatable-buttons" class="table table-striped table-bordered ">
 				  <thead>
 				   <tr>
-						<th class="text-center">Cod. Prv</th>
+						<th class="text-center">Código</th>
 						<th class="text-center">Proveedor</th>
 						<th class="text-center">Tipo. Doc</th>
 						<th class="text-center">No. Doc </th>

@@ -40,7 +40,21 @@ class ConversionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post_data = $request->all();
+		$rules = [
+            'producto_id'=> 'required',
+			'cnt_ini_prd'=> 'required',
+			'unidad_inicial_id'=> 'required',
+			'cnt_fin_prd'=> 'required',
+			'unidad_final_id'=> 'required'
+			
+			];
+        $validate = Validator::make($post_data, $rules);
+        if (!$validate->failed()){
+			$conversion = Conversion::create($post_data);	 		
+		}
+		$conversions = Conversion::all();
+		return view('conversion.index')->with('conversions', $conversions);
     }
 
     /**
@@ -51,7 +65,7 @@ class ConversionController extends Controller
      */
     public function show(Conversion $conversion)
     {
-        //
+        
     }
 
     /**
@@ -62,7 +76,8 @@ class ConversionController extends Controller
      */
     public function edit(Conversion $conversion)
     {
-        //
+        $conversions = Conversion::find($conversion);
+		return view('conversion.edit')->with('conversions', $conversions);
     }
 
     /**
@@ -74,7 +89,25 @@ class ConversionController extends Controller
      */
     public function update(Request $request, Conversion $conversion)
     {
-        //
+          $post_data = $request->all();
+		$rules = [
+            'producto_id'=> 'required',
+			'cnt_ini_prd'=> 'required',
+			'unidad_inicial_id'=> 'required',
+			'cnt_fin_prd'=> 'required',
+			'unidad_final_id'=> 'required'
+			];
+        $validate = Validator::make($post_data, $rules);
+        if (!$validate->failed()) {
+            $conversions = Conversion::find($post_data['id']);
+            $conversions->producto_id = $post_data['producto_id'];
+			$conversions->cnt_ini_prd = $post_data['cnt_ini_prd'];
+			$conversions->unidad_inicial_id = $post_data['unidad_inicial_id'];
+			$conversions->cnt_fin_prd = $post_data['cnt_fin_prd'];
+			$conversions->unidad_final_id = $post_data['unidad_final_id'];
+			
+			return view('conversion.show')->with('conversions', $conversions);
+        }
     }
 
     /**

@@ -35,7 +35,17 @@ class CategoriaproveedorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post_data = $request->all();
+		$rules = [
+			'categoria_id' => 'required'
+			'proveedor_id' => 'required'
+			];
+        $validate = Validator::make($post_data, $rules);
+        if (!$validate->failed()){
+			$categoriaproveedor = Categoriaproveedor::create($post_data);	 		
+		}
+		$categoriaproveedors = Categoriaproveedor::all();
+		//return view('categoriaproveedor.index')->with('categoriaproveedors', $categoriaproveedors);
     }
 
     /**
@@ -69,7 +79,18 @@ class CategoriaproveedorController extends Controller
      */
     public function update(Request $request, categoriaproveedor $categoriaproveedor)
     {
-        //
+       $post_data = $request->all();
+		$rules = [
+            'categoria_id' => 'required'
+			'proveedor_id' => 'required'
+			];
+        $validate = Validator::make($post_data, $rules);
+        if (!$validate->failed()) {
+            $categoriaproveedors = Categoriaproveedor::find($post_data['id']);
+            $categoriaproveedors->categoria_id = $post_data['categoria_id'];
+			$categoriaproveedors->proveedor_id = $post_data['proveedor_id'];
+			//return view('categoriaproveedor.show')->with('categoriaproveedors', $categoriaproveedors);
+        }
     }
 
     /**

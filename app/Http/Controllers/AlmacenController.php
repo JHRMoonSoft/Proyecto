@@ -20,7 +20,8 @@ class AlmacenController extends Controller
     {
         return View('almacen.index');
     }
-
+	
+	
     /**
      * Show the form for creating a new resource.
      *
@@ -28,7 +29,7 @@ class AlmacenController extends Controller
      */
     public function create()
     {
-        //
+        return View('almacen.kardex');
 	
     }
 
@@ -40,7 +41,20 @@ class AlmacenController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post_data = $request->all();
+		$rules = [
+            'cnt_prd'=> 'required',
+			'lot_prd'=> 'required',
+			'fec_ven'=> 'required',
+			'producto_id'=> 'required',
+			'unidad_id'=> 'required'
+			];
+        $validate = Validator::make($post_data, $rules);
+        if (!$validate->failed()){
+			$almacen = Almacen::create($post_data);	 		
+		}
+		$almacens = Almacen::all();
+		//return view('almacen.index')->with('almacens', $almacens);
     }
 
     /**
@@ -74,7 +88,24 @@ class AlmacenController extends Controller
      */
     public function update(Request $request, Almacen $almacen)
     {
-        //
+        $post_data = $request->all();
+		$rules = [
+            'cnt_prd'=> 'required',
+			'lot_prd'=> 'required',
+			'fec_ven'=> 'required',
+			'producto_id'=> 'required',
+			'unidad_id'=> 'required'
+			];
+        $validate = Validator::make($post_data, $rules);
+        if (!$validate->failed()) {
+            $almacens = Almacen::find($post_data['id']);
+            $almacens->cnt_prd = $post_data['cnt_prd'];
+			$almacens->lot_prd = $post_data['lot_prd'];
+			$almacens->fec_ven = $post_data['fec_ven'];
+			$almacens->producto_id = $post_data['producto_id'];
+			$almacens->unidad_id = $post_data['unidad_id'];
+			//return view('almacen.show')->with('almacens', $almacens);
+        }
     }
 
     /**

@@ -38,7 +38,17 @@ class SolicitudCompraController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post_data = $request->all();
+		$rules = [
+            'asn_scp' => 'required'
+			'obv_scp' => 'required'
+			];
+        $validate = Validator::make($post_data, $rules);
+        if (!$validate->failed()){
+			$solicitudcompra = SolicitudCompra::create($post_data);	 		
+		}
+		$solicitudcompras = SolicitudCompra::all();
+		return view('solicitudcompra.index')->with('solicitudcompras', $solicitudcompras);
     }
 
     /**
@@ -49,7 +59,8 @@ class SolicitudCompraController extends Controller
      */
     public function show($id)
     {
-        //
+        $solicitudcompra= SolicitudCompra::find($solicitudcompra);
+		return view('solicitudcompra.show')->with('solicitudcompra', $solicitudcompra);
     }
 
     /**
@@ -60,7 +71,8 @@ class SolicitudCompraController extends Controller
      */
     public function edit($id)
     {
-        //
+        $solicitudcompra = SolicitudCompra::find($solicitudcompra);
+		return view('solicitudcompra.edit')->with('solicitudcompra', $solicitudcompra);
     }
 
     /**
@@ -72,7 +84,18 @@ class SolicitudCompraController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post_data = $request->all();
+		$rules = [
+            'asn_scp' => 'required'
+			'obv_scp' => 'required'
+			];
+        $validate = Validator::make($post_data, $rules);
+        if (!$validate->failed()) {
+            $solicitudcompra = SolicitudCompra::find($post_data['id']);
+            $solicitudcompra->asn_scp = $post_data['asn_scp'];
+			$solicitudcompra->obv_scp = $post_data['obv_scp'];
+			return view('solicitudcompra.show')->with('solicitudcompra', $solicitudcompra);
+        }
     }
 
     /**
