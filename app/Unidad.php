@@ -12,10 +12,12 @@ class Unidad extends Model
 
 	public function productos()
 	{
-    		return $this->belongsToMany('Producto');
+    	return $this->hasMany('Producto');
 	}
-	public function almacen()
-    	{
-	        return $this->belongsToMany('Almacen');
+	
+	public function conversions()
+    {
+		return $this->hasMany('Conversion');
 	}
+	
 }

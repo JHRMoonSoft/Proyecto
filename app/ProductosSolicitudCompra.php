@@ -15,7 +15,4 @@ class Productosolicitudcompra extends Model
 	public function solicitudcompra(){
 	     return $this->hasMany('Solicitudcompra');
 	}
-	public function conversion(){
-	     return $this->hasMany('Conversion');
-	}
 }

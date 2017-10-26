@@ -14,9 +14,10 @@ class CreateAccionesAlmacensTable extends Migration
     public function up()
     {
         Schema::create('acciones_almacens', function (Blueprint $table) {
+			
             $table->increments('id');
 			$table->string('des_acc_alm');
-			$table->integer('tip_acc_alm'); //Tipo 1: Entrada(Suma) - Tipo 2: Salida(Resta)
+			$table->integer('tip_acc_alm'); //Tipo 0: Igual - Tipo 1: Entrada(Suma) - Tipo 2: Salida(Resta)
             $table->timestamps();
         });
     }

@@ -9,8 +9,16 @@ class Configuracion extends Model
 	protected $table = 'configuracions';
 	protected $fillable = array( 'tip_empr','raz_soc','tip_doc','num_doc','tel_fij','tel_cel','dir_mail','dir_empr','brr_empr','ciu_empr','pai_empr' );
 
-	public function ordenCompra()
+	public function ordencompras()
 	{
-    		return $this->hasMany('OrdenCompra');
+		//Ok
+		return $this->hasMany('OrdenCompra');
 	}
+	
+	public function facturas()
+	{
+		//Ok
+		return $this->hasMany('Factura');
+	}
+	
 }

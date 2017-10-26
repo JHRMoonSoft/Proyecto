@@ -42,17 +42,17 @@ class FacturaController extends Controller
     {
         $post_data = $request->all();
 		$rules = [
-            'lot_prd')=>' ',
-			'no_fact')=>' ',
-			'cnp_fact')=>' ',
-			'comp_fact')=>' ',
-			'form_pag')=>' ',
-			'tim_entr')=>' ',
-			'otr_fact')=>' ',
-			'subt_fact')=>' ',
-			'iva_fact')=>' ',
-			'tol_fact')=>' ',
-			'obv_fact')=>' ',
+            'lot_prd' =>' ',
+			'no_fact' =>' ',
+			'cnp_fact' =>' ',
+			'comp_fact' =>' ',
+			'form_pag' =>' ',
+			'tim_entr' =>' ',
+			'otr_fact' =>' ',
+			'subt_fact' =>' ',
+			'iva_fact' =>' ',
+			'tol_fact' =>' ',
+			'obv_fact' =>' ',
 			'ord_comp_id'=>' '
 			];
         $validate = Validator::make($post_data, $rules);
@@ -98,17 +98,17 @@ class FacturaController extends Controller
     {
          $post_data = $request->all();
 		$rules = [
-            'lot_prd')=>' ',
-			'no_fact')=>' ',
-			'cnp_fact')=>' ',
-			'comp_fact')=>' ',
-			'form_pag')=>' ',
-			'tim_entr')=>' ',
-			'otr_fact')=>' ',
-			'subt_fact')=>' ',
-			'iva_fact')=>' ',
-			'tol_fact')=>' ',
-			'obv_fact')=>' ',
+            'lot_prd' =>' ',
+			'no_fact' =>' ',
+			'cnp_fact' =>' ',
+			'comp_fact' =>' ',
+			'form_pag' =>' ',
+			'tim_entr' =>' ',
+			'otr_fact' =>' ',
+			'subt_fact' =>' ',
+			'iva_fact' =>' ',
+			'tol_fact' =>' ',
+			'obv_fact' =>' ',
 			'ord_comp_id'=>' '
 			];
         $validate = Validator::make($post_data, $rules);

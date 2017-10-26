@@ -10,13 +10,18 @@ class Almacen extends Model
 	
 	protected $fillable = array('cnt_prd', 'lot_prd','fec_ven');
 
-	public function productos()
-    	{
-	        return $this->hasMany('Producto');
+	public function producto()
+    {
+		return $this->belongsTo('Producto');
 	}
 
-	public function unidades()
-    	{
-	        return $this->hasMany('Unidad');
+	public function unidad()
+    {
+		return $this->belongsTo('Unidad');
+	}
+	
+	public function registros()
+    {
+		return $this->hasMany('RegistroAlmacen');
 	}
 }

@@ -42,19 +42,19 @@ class OrdenCompraController extends Controller
     {
         $post_data = $request->all();
 		$rules = [
-            'no_ocp')=>' ',
-			'cnp_ocp')=>' ',
-			'aut_ocp')=>' ',
-			'form_pag')=>' ',
-			'dia_cred')=>' ',
-			'tim_entr')=>' ',
-			'otr_ocp')=>' ',
-			'subt_ocp')=>' ',
-			'iva_ocp')=>' ',
-			'tol_ocp')=>' ',
-			'obv_ocp')=>' ',
-			'empre_id'=>' ',
-			'prov_id'=>' '
+            'no_ocp' =>' ',
+			'cnp_ocp' =>' ',
+			'aut_ocp' =>' ',
+			'form_pag' =>' ',
+			'dia_cred' =>' ',
+			'tim_entr' =>' ',
+			'otr_ocp' =>' ',
+			'subt_ocp' =>' ',
+			'iva_ocp' =>' ',
+			'tol_ocp' =>' ',
+			'obv_ocp' =>' ',
+			'empre_id' =>' ',
+			'prov_id' =>' '
 			];
         $validate = Validator::make($post_data, $rules);
         if (!$validate->failed()){
@@ -99,18 +99,18 @@ class OrdenCompraController extends Controller
     {
         $post_data = $request->all();
 		$rules = [
-            'no_ocp')=>' ',
-			'cnp_ocp')=>' ',
-			'aut_ocp')=>' ',
-			'form_pag')=>' ',
-			'dia_cred')=>' ',
-			'tim_entr')=>' ',
-			'otr_ocp')=>' ',
-			'subt_ocp')=>' ',
-			'iva_ocp')=>' ',
-			'tol_ocp')=>' ',
-			'obv_ocp')=>' ',
-			'empre_id'=>' ',
+            'no_ocp' =>' ',
+			'cnp_ocp' =>' ',
+			'aut_ocp' =>' ',
+			'form_pag' =>' ',
+			'dia_cred' =>' ',
+			'tim_entr' =>' ',
+			'otr_ocp' =>' ',
+			'subt_ocp' =>' ',
+			'iva_ocp' =>' ',
+			'tol_ocp' =>' ',
+			'obv_ocp' =>' ',
+			'empre_id' =>' ',
 			'prov_id'=>' '
 			];
         $validate = Validator::make($post_data, $rules);

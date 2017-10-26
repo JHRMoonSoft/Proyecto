@@ -15,7 +15,5 @@ class Productosordencompra extends Model
 	public function ordencompra(){
 	     return $this->hasMany('Ordencompra');
 	}
-	public function conversion(){
-	     return $this->hasMany('Conversion');
-	}
+	
 }

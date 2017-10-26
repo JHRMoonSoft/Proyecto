@@ -40,7 +40,7 @@ class SolicitudCompraController extends Controller
     {
         $post_data = $request->all();
 		$rules = [
-            'asn_scp' => 'required'
+            'asn_scp' => 'required',
 			'obv_scp' => 'required'
 			];
         $validate = Validator::make($post_data, $rules);
@@ -86,7 +86,7 @@ class SolicitudCompraController extends Controller
     {
         $post_data = $request->all();
 		$rules = [
-            'asn_scp' => 'required'
+            'asn_scp' => 'required',
 			'obv_scp' => 'required'
 			];
         $validate = Validator::make($post_data, $rules);
