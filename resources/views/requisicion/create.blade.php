@@ -208,6 +208,7 @@
 											<option value="">Arepas antioqueñas precocidas </option>
 											<option value="" >Arroz  (bolsas de medio kilo)</option>
 											<option value="" >Bocadillo</option>
+											<option value="" >Otro</option>
 									  </select>
 									</td>
 									<td class="nopadding" >
@@ -280,10 +281,12 @@
 									<div class="form-group input-group ">
 										<select name="multiple[]" class="form-control col-md-7 col-xs-12">
 											<option value=" " selected>Seleccionar</option>
-											<option value="">TALLER DE COCINA</option>
-											<option value="">PAPELERIA </option>
-											<option value="">DIDACTICOS</option>
-											<option value="">ASEO</option>
+											<option value="">ALMACENES EXITO</option>
+											<option value="">MEGA TIENDAS </option>
+											<option value="">PAPELERÍA TAURO </option>
+											<option value="">EL GIGANTE DEL HOGAR</option>
+											<option value="">SAFARI COMPUTADORES</option>
+											<option value="">DISTRIBUIDORA Y PAPELERÍA VENEPLAS</option>
 											<option value="">OTRO</option>
 										</select>
 										<span class="input-group-btn"><button type="button" class="btn btn-primary btn-add">+</button></span>

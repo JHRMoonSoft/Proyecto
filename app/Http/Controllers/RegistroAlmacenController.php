@@ -18,7 +18,7 @@ class RegistroAlmacenController extends Controller
      */
     public function index()
     {
-        return View('almacen.kardex');
+        return View('entregarRQS.showrqs');
     }
 
     /**

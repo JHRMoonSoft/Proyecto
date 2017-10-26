@@ -19,6 +19,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::resource('almacen', 'AlmacenController');
+Route::resource('rqs', 'RegistroAlmacenController');
 Route::resource('proveedor', 'ProveedorController');
 Route::resource('requisicion', 'RequisicionController');
 Route::resource('autorizarRQS', 'AutorizarRQSController');

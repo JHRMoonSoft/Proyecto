@@ -79,8 +79,12 @@
 												<label for="ex1">Proveedor</label>
 												<select class="form-control input-sm " id="exampleSelect1">
 													<option value="volvo" selected>Seleccionar</option>
-													<option>ALMACENES EXITO</option>
-													<option>MEGA TIENDAS </option>
+													<option value="">ALMACENES EXITO</option>
+													<option value="">MEGA TIENDAS </option>
+													<option value="">PAPELERÍA TAURO </option>
+													<option value="">EL GIGANTE DEL HOGAR</option>
+													<option value="">SAFARI COMPUTADORES</option>
+													<option value="">DISTRIBUIDORA Y PAPELERÍA VENEPLAS</option>
 												</select>
 											</div>
 										</div>

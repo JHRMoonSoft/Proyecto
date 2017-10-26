@@ -61,7 +61,7 @@
                         <!-- Authentication Links -->
                         @if (Auth::guest())							
                             <li><a href="{{ route('login') }}">Iniciar Sesión</a></li>
-							<li><a href="/">Regresar</a></li>
+							<li><a href="/">Principal </a></li>
                            
                         @else
                             <li class="dropdown">
@@ -90,7 +90,7 @@
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav><br/>
 
         @yield('content')
     </div>
