@@ -247,8 +247,8 @@
 										<h5>Estado del sugerido<h5>
 										<select class="form-control" id="exampleSelect1">
 										  <option value="" selected>Seleccionar</option>
-										  <option> AUTORIZAR / REQUISICION</option>
-										  <option>RECHAZAR / REQUISICION</option>
+										  <option> AUTORIZADO </option>
+										  <option>RECHAZADO </option>
 										</select>
 									</div>
 								</div>
@@ -285,9 +285,10 @@
 									<th>#</th>
 									<th><button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-toggle="modal" data-target=".categoria"></button>Categoria</th>
 									<th><button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-toggle="modal" data-target=".producto"></button>Producto</th>
-									<th>Cantidad</th>
+									<th>Detalle del producto</th>
 									<th><button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-toggle="modal" data-target=".unidad"></button>Unidad</th>
-									<th>Detalle del producto</th>	
+									<th>Cantidad</th>
+									<th>Cant.Autorizada</th>	
 									<th><a></a></th>
 					
 								</tr>
@@ -319,9 +320,10 @@
 									</td>
 									<td class="nopadding" >
 										<div class="form-group">
-											<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Cantidad">
+											<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Detalle">
 										</div>
 									</td>
+									
 									<td class="nopadding" >
 										<select class="form-control" id="educationDate" name="educationDate[]">
 											<option value="" selected>Seleccionar</option>
@@ -344,10 +346,14 @@
 											<option value="">Lonjas</option>
 									  </select>
 									</td>
-									
 									<td class="nopadding" >
 										<div class="form-group">
-											<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Detalle">
+											<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Cantidad">
+										</div>
+									</td>
+									<td class="nopadding" >
+										<div class="form-group">
+											<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Cantidad">
 										</div>
 									</td>
 									
