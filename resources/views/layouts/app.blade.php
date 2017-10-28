@@ -375,7 +375,6 @@
     </div>
 	 @show 
     </body>
-</html>	
 	<!-- jQuery -->
 	<script src="{{ URL::asset('css/workflow/vendors/jquery/dist/jquery.min.js') }}"></script>
     <!-- Bootstrap -->
@@ -482,3 +481,4 @@
 	@yield('postscripts')
 	
 	
+</html>	
