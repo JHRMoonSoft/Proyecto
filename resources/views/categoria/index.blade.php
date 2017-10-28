@@ -49,29 +49,29 @@
 				   <tr>
 						<th>Código</th>
 						<th>Detalle Categoría</th>
-						<th>Fecha. Creado</th>
-						<th>Fecha. Modificado</th>
-						<th>Opciones </th>
+						<th>Fecha de Creación</th>
+						<th>Fecha de Modificación</th>
+						<th>Opciones</th>
 						<!--<th>Eliminar</th>-->
 					</tr>
 				  </thead>
 				  <tbody>
-					
+					@foreach($categorias as $categoria)
 					<tr>
-					  <td>01</td>
-						<td>Compra peoductos</td>
-						<td>22-10-2017</td>	
-						<td>12-11-2017</td>	
+					  <td>{{ $categoria->id }}</td>
+						<td>{{ $categoria->des_cat }}</td>
+						<td>{{ $categoria->created_at->format('Y-m-d') }}</td>	
+						<td>{{ $categoria->updated_at->format('Y-m-d') }}</td>	
 						<td>
 								
-							<button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-edit btn-xs" data-toggle="modal" data-target=".edit_categoria"></button>
+							<button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-edit btn-xs" data-desc-cat="{{$categoria->des_cat}}" data-id-cat="{{$categoria->id}}" data-toggle="modal" data-target=".edit_categoria"></button>
 							<button type="button" class="btn btn-sm btn-danger glyphicon glyphicon-remove btn-xs" data-toggle="modal" data-target=".delete_categoria"></button>
 								
 						</td>
 						
 				
 					</tr>                       
-					
+					@endforeach
 				  </tbody>
 				</table>
 			</div>
@@ -79,7 +79,7 @@
 		
 		 <!-- create Categoria modal -->		  
 
-		  <div class="modal fade create_categoria">" tabindex="-1" role="dialog" aria-hidden="true">
+		  <div class="modal fade create_categoria" tabindex="-1" role="dialog" aria-hidden="true">
 			<div class="modal-dialog modal-sm">
 			  <div class="modal-content">
 
@@ -88,25 +88,20 @@
 				  </button>
 				  <h4 class="modal-title" id="myModalLabel2">Nueva Categoria </h4>
 				</div>
-				<div class="modal-body">
-				
-					<label for="">Cod. Categoria</label>
-					<div class="form-group ">
-						<input class="form-control " id="inputsm" disabled="disabled" placeholder="01" type="text">
+				<form class="form-horizontal" role="form" method="POST" action="{{ url('/categoria') }}">
+					{{ csrf_field() }}
+					<div class="modal-body">
+						<label for="des_cat">Detalle Categoria</label>
+						<div class="form-group ">
+							<input class="form-control " id="des_cat" name="des_cat" placeholder="Categoria" type="text">
+						</div>
 					</div>
-					<br>
-					<label for="">Detalle Categoria</label>
-					<div class="form-group ">
-						<input class="form-control " id="inputsm" placeholder="Categoria" type="text">
+					<div class="modal-footer"><!--
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+					<button type="button" class="btn btn-primary" data-dismiss="modal">Deshacer</button>
+					<button type="submit" class="btn btn-success">Guardar</button>
 					</div>
-				
-				</div>
-				<div class="modal-footer"><!--
-				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-				  <button type="submit" class="btn btn-primary">Deshacer</button>
-				  <button type="button" class="btn btn-success">Guardar</button>
-				</div>
-
+				</form>
 			  </div>
 			</div>
 		  </div>
@@ -114,7 +109,7 @@
 		 
 		   <!-- edit Categoria modal -->		  
 
-		  <div class="modal fade edit_categoria">" tabindex="-1" role="dialog" aria-hidden="true">
+		  <div id="edit_categoria_modal" class="modal fade edit_categoria" tabindex="-1" role="dialog" aria-hidden="true">
 			<div class="modal-dialog modal-sm">
 			  <div class="modal-content">
 
@@ -123,25 +118,21 @@
 				  </button>
 				  <h4 class="modal-title" id="myModalLabel2">Editar Categoria </h4>
 				</div>
-				<div class="modal-body">
-				
-					<label for="">Cod. Categoria</label>
-					<div class="form-group ">
-						<input class="form-control " id="inputsm" disabled="disabled" placeholder="01" type="text">
+				<form id ="edit_categoria_form" class="form-horizontal" role="form" method="POST">
+					<input name="_method" type="hidden" value="PUT">
+					{{ csrf_field() }}
+					<div class="modal-body">
+						<label for="">Detalle Categoria</label>
+						<div class="form-group ">
+							<input class="form-control " name="edit_des_cat" id="edit_des_cat" type="text">
+						</div>
 					</div>
-					<br>
-					<label for="">Detalle Categoria</label>
-					<div class="form-group ">
-						<input class="form-control " id="inputsm" placeholder="Categoria" type="text">
+					<div class="modal-footer"><!--
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+					<button type="button" class="btn btn-primary" data-dismiss="modal">Deshacer</button>
+					<button type="submit" class="btn btn-success">Guardar</button>
 					</div>
-				
-				</div>
-				<div class="modal-footer"><!--
-				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-				  <button type="submit" class="btn btn-primary">Deshacer</button>
-				  <button type="button" class="btn btn-success">Guardar</button>
-				</div>
-
+				</form>
 			  </div>
 			</div>
 		  </div>
@@ -185,20 +176,15 @@
 		  </div>
 		  <!-- /modals -->
 		
-	</div>		
+	</div>
 @stop
-        <!-- /page content -->
-		<!--
-		<script type="text/javascript">
-			$(document).ready(function(){
-				function onFinishCallback(){
-				$('#wizard').smartWizard('showMessage','Finish Clicked');
-			} 
-			});
-			
-			
-		</script>
-		-->
+@section('postscripts')
+<script>
+$('#edit_categoria_modal').on('shown.bs.modal', function(e) {
+	var des_cat = $(e.relatedTarget).data('desc-cat');
+	var edit_id = $(e.relatedTarget).data('id-cat');
+	$("#edit_categoria_form").attr("action", $(location).attr('protocol') + "//" + $(location).attr('host') +"/categoria/" + edit_id);
+	$(e.currentTarget).find('input[name="edit_des_cat"]').val(des_cat);
+});
+</script>
 @stop
-<!--6581128-->
-<!--229392650-->

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Categoria;
 use Illuminate\Http\Request;
+use Validator;
 
 class CategoriaController extends Controller
 {
@@ -82,10 +83,10 @@ class CategoriaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Categoria  $categoria
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Categoria $categoria)
+    public function update(Request $request, $id)
     {
         $post_data = $request->all();
 		$rules = [
@@ -93,9 +94,10 @@ class CategoriaController extends Controller
 			];
         $validate = Validator::make($post_data, $rules);
         if (!$validate->failed()) {
-            $categoria = Categoria::find($post_data['id']);
-            $categoria->des_cat = $post_data['des_cat'];
-			return view('categoria.show')->with('categoria', $categoria);
+            $categoria = Categoria::find($id);
+            $categoria->des_cat = $post_data['edit_des_cat'];
+			$categoria->save();
+			return redirect()->intended('/categoria');
         }
     }
 

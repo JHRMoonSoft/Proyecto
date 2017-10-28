@@ -320,7 +320,9 @@
 									</td>
 									<td class="nopadding" >
 										<div class="form-group">
+
 											<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Detalle" disabled>
+
 										</div>
 									</td>
 									
@@ -348,7 +350,9 @@
 									</td>
 									<td class="nopadding" >
 										<div class="form-group">
+
 											<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Cantidad"disabled>
+
 										</div>
 									</td>
 									<td class="nopadding" >
