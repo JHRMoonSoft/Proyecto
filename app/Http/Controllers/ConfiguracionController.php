@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Validator;
+use App\Configuracion;
 
 class ConfiguracionController extends Controller
 {
@@ -20,7 +22,17 @@ class ConfiguracionController extends Controller
     public function index()
     {
         //
-	return View('configuracion.index');
+		$count = Configuracion::all()->count();
+		if($count < 1){
+			return redirect()->intended('configuracion/create');
+		}
+		else{
+			$configuracion = Configuracion::find($count);	
+			return view('configuracion.show')->with('configuracion', $configuracion);
+			
+			
+		}
+		
     }
 
     /**
@@ -58,10 +70,18 @@ class ConfiguracionController extends Controller
 				];
 			$validate = Validator::make($post_data, $rules);
 			if (!$validate->failed()){
-				$configuracion = Configuracion::create($post_data);			
+				if(Configuracion::all()->count() < 1){
+					$configuracion = Configuracion::create($post_data);			
+				}
+				else{
+					$mensajeerror = "Existe una empresa regitrada en sistema";
+					return redirect()->back()->with(compact('mensajeerror'));
+				}
+					
+					
 			}
-			$configuracions = Configuracion::all();
-			return view('configuracion.index')->with('configuracions', $configuracions);
+			
+			return view('configuracion.show')->with('configuracion', $configuracion);
     }
 
     /**

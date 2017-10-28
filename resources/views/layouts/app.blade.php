@@ -189,7 +189,7 @@
 						<span class=" fa fa-angle-down"></span>
 					  </a>
 						<ul class="dropdown-menu dropdown-usermenu pull-left">
-							<li><a href="javascript:;">Empresa</a></li>
+							<li><a href="/configuracion">Empresa</a></li>
 							<li><a href="/users"> Usuarios  </a></li>
 							<li><a href="/role"> Roles  </a></li>
 							<li><a href="/permisos">Permisos  </a></li>								

@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Role;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -49,7 +51,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            		
+            'num_doc'=> 'required|string|max:255|unique:users',
 			'nom_usr'=> 'required|string|max:255',
 			'ape_usr'=> 'required|string|max:255',
 			'usuario'=> 'required|string|max:255|unique:users',
@@ -86,6 +88,19 @@ class RegisterController extends Controller
         ]);
     }
 	
+	public function register(Request $request)
+    {
+        $validator = $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        //$this->guard()->login($user);
+
+        return $this->registered($request, $user)
+                        ?: redirect($this->redirectPath())->withInput()->withErrors($validator);
+						
+		
+    }
 	
 	public function showRegistrationForm()
 	{

@@ -39,16 +39,16 @@
 					<div class="col-md-6 col-sm-6 col-xs-12">
 					
 						<select id="tip_empr" class="form-control col-md-7 col-xs-12" data-validate-length-range="7" data-validate-words="2" name="tip_empr"  required="required">
-							<option value="volvo " selected>Seleccionar</option>
-							<option>E.I.R.L</option>
-							<option>S.C</option>
-							<option>S.A</option>
-							<option>S.R.L</option>
-							<option>S.A.C</option>
-							<option>Fundación</option>
-							<option>Asociación</option>
-							<option>Unipersonal</option>
-							<option>Persona natural</option>
+							<option value="" selected>Seleccionar</option>
+							<option value="E.I.R.L">E.I.R.L</option>
+							<option value="S.C">S.C</option>
+							<option value="S.A">S.A</option>
+							<option value="S.R.L">S.R.L</option>
+							<option value="S.A.C">S.A.C</option>
+							<option value="Fundación">Fundación</option>
+							<option value="Asociación">Asociación</option>
+							<option value="Unipersonal">Unipersonal</option>
+							<option value="Persona natural">Persona natural</option>
 						</select>
 					
 					</div>
@@ -71,9 +71,9 @@
 					<div class="col-md-6 col-sm-6 col-xs-12">
 					
 						<select id="tip_doc" class="form-control col-md-7 col-xs-12" data-validate-length-range="7" data-validate-words="2" name="tip_doc"  required="required">
-							<option value="volvo " selected>Seleccionar</option>
-							<option>NIT</option>
-							<option>RUT</option>
+							<option value=" " selected>Seleccionar</option>
+							<option value="NIT">NIT</option>
+							<option value="RUT">RUT</option>
 						</select>
 					
 					</div>
