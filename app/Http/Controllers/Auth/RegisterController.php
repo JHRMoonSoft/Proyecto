@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class RegisterController extends Controller
 {
@@ -56,7 +58,7 @@ class RegisterController extends Controller
 			'ape_usr'=> 'required|string|max:255',
 			'usuario'=> 'required|string|max:255|unique:users',
 			'crg_usr'=> 'required|string|max:255',
-			'tip_ dep'=> 'required|string|max:255',
+			'tip_dep'=> 'required|string|max:255',
 			'dir_mail'=> 'required|string|email|max:255',
 			'password'=> 'required|string|min:6|confirmed'
         ]);
@@ -70,8 +72,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-		
-        $user = User::create([
+		$user = User::create([
 			'tip_doc'=> $data['tip_doc'], 
 			'num_doc'=> $data['num_doc'], 
 			'nom_usr'=> $data['nom_usr'], 
@@ -84,20 +85,18 @@ class RegisterController extends Controller
 			'tel_fij'=> $data['tel_fij'], 
 			'tel_cel'=> $data['tel_cel'], 
 			'dir_mail'=> $data['dir_mail'], 
+			'sta_usr'=> array_key_exists('sta_usr', $data),
 			'password'=> bcrypt($data['password'])
         ]);
     }
 	
 	public function register(Request $request)
     {
-        $validator = $this->validator($request->all())->validate();
-
-        event(new Registered($user = $this->create($request->all())));
-
-        //$this->guard()->login($user);
-
+		
+        $this->validator($request->all())->validate();
+		event(new Registered($user = $this->create($request->all())));
         return $this->registered($request, $user)
-                        ?: redirect($this->redirectPath())->withInput()->withErrors($validator);
+            ?: redirect($this->redirectPath());
 						
 		
     }

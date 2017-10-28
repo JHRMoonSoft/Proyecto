@@ -56,22 +56,22 @@
 					</tr>
 				  </thead>
 				  <tbody>
-					
+					@foreach($unidads as $unidad)
 					<tr>
-					  <td>01</td>
-						<td>Compra peoductos</td>
-						<td>22-10-2017</td>	
-						<td>12-11-2017</td>	
+						<td>{{ $unidad->id }}</td>
+						<td>{{ $unidad->des_und }}</td>
+						<td>{{ $unidad->created_at->format('Y-m-d') }}</td>	
+						<td>{{ $unidad->updated_at->format('Y-m-d') }}</td>		
 						<td>
 								
-							<button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-edit btn-xs" data-toggle="modal" data-target=".edit_unidad"></button>
+							<button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-edit btn-xs" data-desc-und="{{$unidad->des_und}}" data-id-und="{{$unidad->id}}" data-toggle="modal" data-target=".edit_unidad"></button>
 							<button type="button" class="btn btn-sm btn-danger glyphicon glyphicon-remove btn-xs" data-toggle="modal" data-target=".delete_unidad"></button>
 								
 						</td>
 						
 				
 					</tr>                       
-					
+					@endforeach
 				  </tbody>
 				</table>
 			</div>
@@ -79,7 +79,7 @@
 		
 		 <!-- create Unidad modal -->		  
 
-		  <div class="modal fade create_unidad">" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal fade create_unidad" tabindex="-1" role="dialog" aria-hidden="true">
 			<div class="modal-dialog modal-sm">
 			  <div class="modal-content">
 
@@ -88,33 +88,28 @@
 				  </button>
 				  <h4 class="modal-title" id="myModalLabel2">Nueva Unidad </h4>
 				</div>
-				<div class="modal-body">
-				
-					<label for="">Cod. Unidad</label>
-					<div class="form-group ">
-						<input class="form-control " id="inputsm" disabled="disabled" placeholder="01" type="text">
+				<form class="form-horizontal" role="form" method="POST" action="{{ url('/unidad') }}">
+					{{ csrf_field() }}
+					<div class="modal-body">
+						<label for="des_und">Detalle Unidad</label>
+						<div class="form-group ">
+							<input class="form-control " id="des_und" name="des_und" placeholder="Unidad" type="text">
+						</div>
 					</div>
-					<br/>
-					<label for="">Detalle Unidad</label>
-					<div class="form-group ">
-						<input class="form-control " id="inputsm" placeholder="Unidad" type="text">
+					<div class="modal-footer"><!--
+					  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+						<button type="button" class="btn btn-primary" data-dismiss="modal">Deshacer</button>
+						<button type="submit" class="btn btn-success">Guardar</button>
 					</div>
-				
-				</div>
-				<div class="modal-footer"><!--
-				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-				  <button type="submit" class="btn btn-primary">Deshacer</button>
-				  <button type="button" class="btn btn-success">Guardar</button>
-				</div>
-
+				</form>
 			  </div>
 			</div>
-		  </div>
+		</div>
 		 <!-- /modals -->
 		 
 		   <!-- edit Unidad modal -->		  
 
-		  <div class="modal fade edit_unidad">" tabindex="-1" role="dialog" aria-hidden="true">
+		  <div id="edit_unidad_modal" class="modal fade edit_unidad" tabindex="-1" role="dialog" aria-hidden="true">
 			<div class="modal-dialog modal-sm">
 			  <div class="modal-content">
 
@@ -123,25 +118,21 @@
 				  </button>
 				  <h4 class="modal-title" id="myModalLabel2">Editar Unidad </h4>
 				</div>
-				<div class="modal-body">
-				
-					<label for="">Cod. Unidad</label>
-					<div class="form-group ">
-						<input class="form-control " id="inputsm" disabled="disabled" placeholder="01" type="text">
+				<form id ="edit_unidad_form" class="form-horizontal" role="form" method="POST">
+					<input name="_method" type="hidden" value="PUT">
+					{{ csrf_field() }}
+					<div class="modal-body">
+						<label for="edit_des_und">Detalle Unidad</label>
+						<div class="form-group ">
+							<input class="form-control " id="edit_des_und"  name="edit_des_und" placeholder="Unidad" type="text">
+						</div>
 					</div>
-					<br/>
-					<label for="">Detalle Unidad</label>
-					<div class="form-group ">
-						<input class="form-control " id="inputsm" placeholder="Unidad" type="text">
+					<div class="modal-footer"><!--
+					  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+					 <button type="button" class="btn btn-primary" data-dismiss="modal">Deshacer</button>
+					 <button type="submit" class="btn btn-success">Guardar</button>
 					</div>
-				
-				</div>
-				<div class="modal-footer"><!--
-				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-				  <button type="submit" class="btn btn-primary">Deshacer</button>
-				  <button type="button" class="btn btn-success">Guardar</button>
-				</div>
-
+				</form>
 			  </div>
 			</div>
 		  </div>
@@ -149,7 +140,7 @@
 		  
 		    <!-- delete Unidad modal -->		  
 
-		  <div class="modal fade delete_unidad">" tabindex="-1" role="dialog" aria-hidden="true">
+		  <div class="modal fade delete_unidad"tabindex="-1" role="dialog" aria-hidden="true">
 			<div class="modal-dialog modal-sm">
 			  <div class="modal-content">
 
@@ -187,18 +178,13 @@
 		
 	</div>		
 @stop
-        <!-- /page content -->
-		<!--
-		<script type="text/javascript">
-			$(document).ready(function(){
-				function onFinishCallback(){
-				$('#wizard').smartWizard('showMessage','Finish Clicked');
-			} 
-			});
-			
-			
-		</script>
-		-->
+@section('postscripts')
+<script>
+$('#edit_unidad_modal').on('shown.bs.modal', function(e) {
+	var des_cat = $(e.relatedTarget).data('desc-und');
+	var edit_id = $(e.relatedTarget).data('id-und');
+	$("#edit_unidad_form").attr("action", $(location).attr('protocol') + "//" + $(location).attr('host') +"/unidad/" + edit_id);
+	$(e.currentTarget).find('input[name="edit_des_und"]').val(des_cat);
+});
+</script>
 @stop
-<!--6581128-->
-<!--229392650-->

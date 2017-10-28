@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Producto;
 use Illuminate\Http\Request;
+use Validator;
 
 class ProductoController extends Controller
 {
@@ -18,8 +19,8 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        //
-	return View('producto.index');
+     $productos = Producto::all();
+     return View('producto.index')->with('productos', $productos);
     }
 
     /**
@@ -29,8 +30,8 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        //
-	return View('producto.create');
+       
+		return View('producto.create');
     }
 
     /**
@@ -61,8 +62,8 @@ class ProductoController extends Controller
      */
     public function show(Producto $producto)
     {
-		$productos= Producto::find($producto);
-		return view('producto.show')->with('productos', $productos);
+		$producto= Producto::find($id);
+		return view('producto.show')->with('producto', $producto);
     }
 
     /**

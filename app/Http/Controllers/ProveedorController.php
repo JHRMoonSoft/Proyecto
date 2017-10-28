@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Proveedor;
+use Validator;
 use Illuminate\Http\Request;
 
 class ProveedorController extends Controller
@@ -18,8 +19,8 @@ class ProveedorController extends Controller
      */
     public function index()
     {
-        
-	return View('proveedor.index');
+     $proveedors = Proveedor::all();
+     return View('proveedor.index')->with('proveedors', $proveedors);
     }
 
     /**

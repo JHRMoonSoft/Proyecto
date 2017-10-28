@@ -8,7 +8,7 @@ class Unidad extends Model
 {
     protected $table = 'unidads';
 	
-	protected $fillable = array('des_und');
+	protected $fillable = ['des_und'];
 
 	public function productos()
 	{

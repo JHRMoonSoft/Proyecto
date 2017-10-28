@@ -56,27 +56,18 @@
 					</tr>
 				  </thead>
 				  <tbody>
-					
+					@foreach($productos as $producto)
 					<tr>
-					  <td>01</td>
-						<td>Aceite</td>
-						<td>22-10-2017</td>	
-						<td>12-11-2017</td>	
+					  <td>$producto->id</td>
+						<td>$producto->des_prd</td>
+						<td>{{ $producto->created_at->format('Y-m-d') }}</td>	
+						<td>{{ $producto->updated_at->format('Y-m-d') }}</td>	
 						<td>	
 							<button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-edit btn-xs" data-toggle="modal" data-target=".edit_producto"></button>
 							<button type="button" class="btn btn-sm btn-danger glyphicon glyphicon-remove btn-xs" data-toggle="modal" data-target=".delete_producto"></button>
 						</td>
-					</tr>                       
-					<tr>
-					  <td>02</td>
-						<td>Arepas antioqueñas precocidas</td>
-						<td>22-10-2017</td>	
-						<td>12-11-2017</td>	
-						<td>	
-							<button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-edit btn-xs" data-toggle="modal" data-target=".edit_producto"></button>
-							<button type="button" class="btn btn-sm btn-danger glyphicon glyphicon-remove btn-xs" data-toggle="modal" data-target=".delete_producto"></button>
-						</td>
-					</tr>  
+					</tr>
+					@endforeach 
 				  </tbody>
 				</table>
 			</div>
@@ -96,12 +87,6 @@
 				<form class="form-horizontal" method="POST" action="{{ url('/producto') }}">
 						{{ csrf_field() }}
 					<div class="modal-body">
-					
-						<label for="">Cod. Producto</label>
-						<div class="form-group ">
-							<input class="form-control " id="inputsm" disabled="disabled" placeholder="01" type="text">
-						</div>
-						<br/>
 						<label for="des_prd">Detalle Producto</label>
 						<div class="form-group ">
 							<input class="form-control " id="des_prd" name="des_prd" placeholder="Producto" type="text">
@@ -129,24 +114,21 @@
 				  </button>
 				  <h4 class="modal-title" id="myModalLabel2">Editar Producto </h4>
 				</div>
-				<div class="modal-body">
-				
-					<label for="">Cod. Producto</label>
-					<div class="form-group ">
-						<input class="form-control " id="inputsm" disabled="disabled" placeholder="01" type="text">
+				<form id ="edit_producto_form" class="form-horizontal" role="form" method="POST">
+					<input name="_method" type="hidden" value="PUT">
+					{{ csrf_field() }}
+					<div class="modal-body">
+						<label for="">Detalle Producto</label>
+						<div class="form-group ">
+							<input class="form-control " id="inputsm" placeholder="Producto" type="text">
+						</div>
 					</div>
-					<br/>
-					<label for="">Detalle Producto</label>
-					<div class="form-group ">
-						<input class="form-control " id="inputsm" placeholder="Producto" type="text">
+					<div class="modal-footer"><!--
+					  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+					  <button type="reset" class="btn btn-primary">Deshacer</button>
+					  <button type="submit" class="btn btn-success">Guardar</button>
 					</div>
-				</div>
-				<div class="modal-footer"><!--
-				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-				  <button type="reset" class="btn btn-primary">Deshacer</button>
-				  <button type="submit" class="btn btn-success">Guardar</button>
-				</div>
-
+				</form>
 			  </div>
 			</div>
 		  </div>

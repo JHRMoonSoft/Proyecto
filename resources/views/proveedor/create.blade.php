@@ -84,7 +84,7 @@
 				<div class="item form-group">
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="tel_cel">Telefono celular </label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input type="text" id="tel_cel" name="tel_cel" required="required" data-validate-length-range="8,20" class="form-control col-md-7 col-xs-12">
+					  <input type="text" id="tel_cel" name="tel_cel" class="form-control col-md-7 col-xs-12">
 						@if ($errors->has('tel_cel'))
 							<span class="help-block">
 								<strong>{{ $errors->first('tel_cel') }}</strong>
@@ -95,7 +95,7 @@
 				<div class="item form-group">
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="dir_mail">Email </label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input type="email" id="dir_mail" name="dir_mail" required="required" class="form-control col-md-7 col-xs-12">
+					  <input type="email" id="dir_mail" name="dir_mail"  class="form-control col-md-7 col-xs-12">
 						@if ($errors->has('dir_mail'))
 							<span class="help-block">
 								<strong>{{ $errors->first('dir_mail') }}</strong>
@@ -106,7 +106,7 @@
 				<div class="item form-group">
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="dir_prov">Dirección </label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input type="text" id="dir_prov" name="dir_prov" required="required" data-validate-minmax="10,100" class="form-control col-md-7 col-xs-12">
+					  <input type="text" id="dir_prov" name="dir_prov" data-validate-minmax="10,100" class="form-control col-md-7 col-xs-12">
 						@if ($errors->has('dir_prov'))
 							<span class="help-block">
 								<strong>{{ $errors->first('dir_prov') }}</strong>
@@ -117,7 +117,7 @@
 				<div class="item form-group">
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="brr_prov">Barrio</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input id="brr_prov" type="text" name="brr_prov" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
+					  <input id="brr_prov" type="text" name="brr_prov" class="optional form-control col-md-7 col-xs-12">
 						@if ($errors->has('brr_prov'))
 							<span class="help-block">
 								<strong>{{ $errors->first('brr_prov') }}</strong>
@@ -128,7 +128,7 @@
 				<div class="item form-group">
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="ciu_prov">Ciudad</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input id="ciu_prov" type="text" name="ciu_prov" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
+					  <input id="ciu_prov" type="text" name="ciu_prov" class="optional form-control col-md-7 col-xs-12">
 						@if ($errors->has('ciu_prov'))
 							<span class="help-block">
 								<strong>{{ $errors->first('ciu_prov') }}</strong>
@@ -139,7 +139,7 @@
 				<div class="item form-group">
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="pai_prov">Pais </label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input id="pai_prov" type="text" name="pai_prov" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
+					  <input id="pai_prov" type="text" name="pai_prov"  class="optional form-control col-md-7 col-xs-12">
 						@if ($errors->has('pai_prov'))
 							<span class="help-block">
 								<strong>{{ $errors->first('pai_prov') }}</strong>
@@ -150,7 +150,7 @@
 				<div class="item form-group">
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="obs_prov">Observación  </label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input id="obs_prov" type="text" name="obs_prov" data-validate-length-range="10,40" class="optional form-control col-md-7 col-xs-12">
+					  <input id="obs_prov" type="text" name="obs_prov"  class="optional form-control col-md-7 col-xs-12">
 						@if ($errors->has('obs_prov'))
 							<span class="help-block">
 								<strong>{{ $errors->first('obs_prov') }}</strong>
@@ -173,18 +173,3 @@
     </div>
 		
 @stop
-        <!-- /page content -->
-		<!--
-		<script type="text/javascript">
-			$(document).ready(function(){
-				function onFinishCallback(){
-				$('#wizard').smartWizard('showMessage','Finish Clicked');
-			} 
-			});
-			
-			
-		</script>
-		-->
-@stop
-<!--6581128-->
-<!--229392650-->

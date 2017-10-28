@@ -17,10 +17,10 @@
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						<select id="tip_doc"  name="tip_doc" class="form-control col-md-7 col-xs-12" required="required">
-							<option value="volvo " selected>Seleccionar</option>
-							<option value="CEDULA DE CIUDADANIA">CEDULA DE CIUDADANIA</option>
-							<option value="CEDULA DE EXTRANJERIA">CEDULA DE EXTRANJERÍA</option>
-							<option value="PASAPORTE">PASAPORTE</option>
+							<option value=" " selected>Seleccionar</option>
+							<option value="1">CEDULA DE CIUDADANIA</option>
+							<option value="2">CEDULA DE EXTRANJERÍA</option>
+							<option value="3">PASAPORTE</option>
 						</select>
 					</div>
 				</div>
@@ -54,15 +54,15 @@
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
 					  <input id="ape_usr"  name="ape_usr" type="text" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" value="{{ old('ape_usr') }}"  required="required" >
-						@if ($errors->has('mrc_electr'))
+						@if ($errors->has('ape_usr'))
 							<span class="help-block">
-								<strong>{{ $errors->first('mrc_electr') }}</strong>
+								<strong>{{ $errors->first('ape_usr') }}</strong>
 							</span>
 						@endif
 					</div>
 				</div>
 				<div class="item form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Usuario <span class="required">*</span>
+					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="usuario">Usuario <span class="required">*</span>
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
 					  <input id="usuario" name="usuario" class="form-control col-md-7 col-xs-12"   required="required" type="text">
@@ -121,7 +121,7 @@
 					</div>
 				</div>
 				<div class="item form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="occupation">Coordinacion <span class="required">*</span>
+					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="crd_usr">Coordinacion <span class="required">*</span>
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
 					  <input id="crd_usr"  name="crd_usr" data-validate-length-range="5,20" value="{{ old('crd_usr') }}" class="optional form-control col-md-7 col-xs-12">
@@ -146,9 +146,9 @@
 					</div>
 				</div>
 				<div class="item form-group">
-					<label for="password-confirm" class="control-label col-md-3 col-sm-3 col-xs-12">Confirmar contraseña <span class="required">*</span></label>
+					<label for="password_confirmation" class="control-label col-md-3 col-sm-3 col-xs-12">Confirmar contraseña <span class="required">*</span></label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input id="password-confirm" type="password" name="password_confirmation" data-validate-linked="password" class="form-control col-md-7 col-xs-12" required="required">
+					  <input id="password_confirmation" type="password" name="password_confirmation" data-validate-linked="password" class="form-control col-md-7 col-xs-12" required="required">
 					</div>
 				</div>
 				<div class="item form-group">
@@ -187,9 +187,9 @@
 					</div>
 				</div>
 				<div class="item form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="telephone">Activo</label>
+					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="sta_usr">Activo</label>
 					<div class="col-md-3 col-sm-3 col-xs-12">
-						<input type="checkbox" id="sta_usr" class="js-switch" class="form-control col-md-7 col-xs-12" checked>  
+						<input type="checkbox" id="sta_usr" name="sta_usr" class="js-switch" class="form-control col-md-7 col-xs-12" checked>  
 						@if ($errors->has('sta_usr'))
 							<span class="help-block">
 								<strong>{{ $errors->first('sta_usr') }}</strong>

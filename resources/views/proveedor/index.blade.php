@@ -58,24 +58,24 @@
 					</tr>
 				  </thead>
 				  <tbody>
-					
+					@foreach($proveedors as $proveedor)
 					<tr>
-					  <td>0023933</td>
+					  <td>{{$proveedor->id}}</td>
 						<td>
-							ALMACENES EXITO
+							{{$proveedor->raz_soc}}
 						</td>
-						<td>NIT</td>
-						<td>890.900.608-9</td>
-						<td>3396011</td>
-						<td></td>		
-						<td>26-06-2017</td>
-						<td>26-06-2017</td>							
+						<td>{{$proveedor->tip_doc}}</td>
+						<td>{{$proveedor->num_doc}}</td>
+						<td>{{$proveedor->tel_fij}}</td>
+						<td></td>						
+						<td>{{ $proveedor->created_at->format('Y-m-d') }}</td>	
+						<td>{{ $proveedor->updated_at->format('Y-m-d') }}</td>									
 						<td><a href="" title="Detalle" class="btn btn-success glyphicon glyphicon-file btn-xs" data-title="Detalle"></a>
 							<a href="" title="Editar" class="btn btn-primary glyphicon glyphicon-pencil btn-xs" data-title="Editar"></a></td><!--
 						<td><p data-placement="top" data-toggle="tooltip" title="Eliminar"><a href="" class="btn btn-danger btn-xs" data-title="Eliminar"><span class=" glyphicon glyphicon-trash"></span></a></p></td>-->
 				
 					</tr>                       
-					
+					@endforeach
 				  </tbody>
 				</table>
 			</div>

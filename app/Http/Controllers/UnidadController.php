@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Unidad;
 use Illuminate\Http\Request;
+use Validator;
 
 class UnidadController extends Controller
 {
@@ -49,8 +50,8 @@ class UnidadController extends Controller
         if (!$validate->failed()){
 			$unidad = Unidad::create($post_data);			
 		}
-		$unidads = Unidad::all();
-		return view('unidad.index')->with('unidads', $unidads);
+		return redirect()->intended('/unidad');
+		
     }
 
     /**
@@ -61,8 +62,8 @@ class UnidadController extends Controller
      */
     public function show(Unidad $unidad)
     {
-       $unidads = Unidad::find($unidad);
-        return view('unidad.show')->with('unidads', $unidads);
+       $unidad = Unidad::find($id);
+        return view('unidad.show')->with('unidad', $unidad);
     }
 
     /**
@@ -73,7 +74,7 @@ class UnidadController extends Controller
      */
     public function edit(Unidad $unidad)
     {
-        $unidads = Unidad::find($unidad);
+        $unidads = Unidad::find($id);
 		return view('unidad.edit')->with(' unidads',  $unidads);
     }
 
@@ -84,7 +85,7 @@ class UnidadController extends Controller
      * @param  \App\Unidad  $unidad
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Unidad $unidad)
+    public function update(Request $request,  $id)
     {
         $post_data = $request->all();
 		$rules = [
@@ -92,9 +93,10 @@ class UnidadController extends Controller
 			];
         $validate = Validator::make($post_data, $rules);
         if (!$validate->failed()) {
-            $unidad = Unidad::find($post_data['id']);
-            $unidad->des_und = $post_data['des_und'];
-			return view('unidad.show')->with('unidad', $unidad);
+            $unidad = Unidad::find($id);
+            $unidad->des_und = $post_data['edit_des_und'];
+			$unidad->save();
+			return redirect()->intended('/unidad');
         }
     }
 

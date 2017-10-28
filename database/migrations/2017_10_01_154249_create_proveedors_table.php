@@ -20,13 +20,13 @@ class CreateProveedorsTable extends Migration
 			$table->string('tip_doc');
 			$table->string('num_doc');
 			$table->string('tel_fij');
-			$table->string('tel_cel');
-			$table->string('dir_mail');
-			$table->string('dir_prov');
-			$table->string('brr_prov');
-			$table->string('ciu_prov');
-			$table->string('pai_prov');
-			$table->string('obs_prov');
+			$table->string('tel_cel')->nullable();
+			$table->string('dir_mail')->nullable();
+			$table->string('dir_prov')->nullable();
+			$table->string('brr_prov')->nullable();
+			$table->string('ciu_prov')->nullable();
+			$table->string('pai_prov')->nullable();
+			$table->string('obs_prov')->nullable();
             $table->timestamps();
         });
     }
