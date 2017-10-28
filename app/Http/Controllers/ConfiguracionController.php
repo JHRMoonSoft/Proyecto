@@ -44,17 +44,17 @@ class ConfiguracionController extends Controller
     {
          $post_data = $request->all();
 			$rules = [
-				'tip_per' => 'required',
-				'raz_soc' => 'required',
-				'tip_doc' => 'required',
-				'num_doc' => 'required',
-				'tel_fij' => 'required',
-				'tel_cel' => '' ,
+				'tip_empr'=> 'required',
+				'raz_soc'=> 'required',
+				'tip_doc'=> 'required',
+				'num_doc'=> 'required',
+				'tel_fij'=> 'required',
+				'tel_cel'=> '' ,
 				'dir_mail'=> '' ,
-				'dir_per' => '' ,
-				'brr_per' => '' ,
-				'ciu_per' => '' ,
-				'pai_per' => '' 
+				'dir_empr'=> '' ,
+				'brr_empr'=> '' ,
+				'ciu_empr'=> '' ,
+				'pai_empr'=> '' 
 				];
 			$validate = Validator::make($post_data, $rules);
 			if (!$validate->failed()){
@@ -99,32 +99,32 @@ class ConfiguracionController extends Controller
     {
         $post_data = $request->all();
 		$rules = [
-            'tip_per' => 'required',
-			'raz_soc' => 'required',
-			'tip_doc' => 'required',
-			'num_doc' => 'required',
-			'tel_fij' => 'required',
-			'tel_cel' => '' ,
+           'tip_empr'=> 'required',
+			'raz_soc'=> 'required',
+			'tip_doc'=> 'required',
+			'num_doc'=> 'required',
+			'tel_fij'=> 'required',
+			'tel_cel'=> '' ,
 			'dir_mail'=> '' ,
-			'dir_per' => '' ,
-			'brr_per' => '' ,
-			'ciu_per' => '' ,
-			'pai_per' => '' 
+			'dir_empr'=> '' ,
+			'brr_empr'=> '' ,
+			'ciu_empr'=> '' ,
+			'pai_empr'=> '' 
 			];
         $validate = Validator::make($post_data, $rules);
         if (!$validate->failed()) {
             $configuracion = Configuracion::find($post_data['id']);
-            $configuracion->tip_per = $post_data['tip_per'];
+            $configuracion->tip_empr = $post_data['tip_empr'];
             $configuracion->raz_soc = $post_data['raz_soc'];
 			$configuracion->tip_doc = $post_data['tip_doc'];			
 			$configuracion->num_doc = $post_data['num_doc'];
-			$configuracion->tel_cel = $post_data['tel_fij'];
+			$configuracion->tel_fij = $post_data['tel_fij'];
 			$configuracion->tel_cel = $post_data['tel_cel'];
 			$configuracion->dir_mail = $post_data['dir_mail'];
-			$configuracion->dir_per = $post_data['dir_per'];			
-			$configuracion->brr_per = $post_data['brr_per'];
-			$configuracion->ciu_per = $post_data['ciu_per'];
-			$configuracion->pai_per = $post_data['pai_per'];
+			$configuracion->dir_empr = $post_data['dir_empr'];			
+			$configuracion->brr_empr = $post_data['brr_empr'];
+			$configuracion->ciu_empr = $post_data['ciu_empr'];
+			$configuracion->pai_empr = $post_data['pai_empr'];
 			
 			return view('configuracion.show')->with('configuracion', $configuracion);
         }

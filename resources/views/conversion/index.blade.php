@@ -94,29 +94,48 @@
 				</div>
 				<div class="modal-body">					
 					
-						<label for="">Cod. Conversion</label>
-						<div class="form-group ">
-							<input class="form-control " id="inputsm" disabled="disabled" placeholder="codigo" type="text">
-						</div>
-							<br/>
-						<label for=""> Unidad Empaque</label>
-						<div class="form-group ">
-							<input class="form-control " id="inputsm" placeholder=" Unidad Empaque" type="text">
-						</div>
-							<br/>
-						<label for="">Cantidad</label>
-						<div class="form-group ">
-							<input class="form-control " id="inputsm" placeholder="Cantidad" type="text">
-						</div>
+					<label for="">Cod. Conversion</label>
+					<div class="form-group ">
+						<input class="form-control " id="inputsm" disabled="disabled" placeholder="codigo" type="text">
+					</div>
 						<br/>
-						<label for=""> Unidad de Almacén</label>
-						<div class="form-group ">
-							<select class="form-control" id="exampleSelect1">
-							  <option value="" selected>Seleccionar</option>
-							  <option> caja</option>
-							  <option>lata</option>
-							</select>
-						</div>
+					<label for=""> Unidad Empaque</label>
+					<div class="form-group ">
+						<select class="form-control" id="educationDate" name="educationDate[]">
+							<option value="" selected>Seleccionar</option>
+							<option name="" value="">Barra</option>
+							<option name="" value="">Bloque</option>
+							<option name="" value="">Bolsa</option>
+							<option name="" value="">Botella</option>
+							<option name="" value="">Caja</option>
+							<option name="" value="">Frasco</option>
+							<option value="">Lata</option>
+							<option value="">Paquete</option>
+							<option value="">Pote</option>
+							<option value="">Tarro</option>
+							<option value="">Tubo</option>
+							<option value="">Vaso</option>
+							<option name="" value="">Unidad</option>
+							<option value="">Kg</option>
+							<option value="">Kilo</option>
+							<option value="">Litro</option>
+							<option value="">Lonjas</option>
+						</select>
+					</div>
+					<br/>
+					<label for="">Cantidad</label>
+					<div class="form-group ">
+						<input class="form-control " id="inputsm" placeholder="Cantidad" type="text">
+					</div>
+					<br/>
+					<label for=""> Unidad de Almacén</label>
+					<div class="form-group ">
+						<select class="form-control" id="exampleSelect1">
+						  <option value="" selected>Seleccionar</option>
+						  <option> caja</option>
+						  <option>lata</option>
+						</select>
+					</div>
 				
 				</div>
 				<div class="modal-footer"><!--
@@ -143,29 +162,48 @@
 				</div>
 				<div class="modal-body">					
 					
-						<label for="">Cod. Conversion</label>
-						<div class="form-group ">
-							<input class="form-control " id="inputsm" disabled="disabled" placeholder="codigo" type="text">
-						</div>
-							<br/>
-						<label for=""> Unidad Empaque</label>
-						<div class="form-group ">
-							<input class="form-control " id="inputsm" placeholder=" Unidad Empaque" type="text">
-						</div>
-							<br/>
-						<label for="">Cantidad</label>
-						<div class="form-group ">
-							<input class="form-control " id="inputsm" placeholder="Cantidad" type="text">
-						</div>
+					<label for="">Cod. Conversion</label>
+					<div class="form-group ">
+						<input class="form-control " id="inputsm" disabled="disabled" placeholder="codigo" type="text">
+					</div>
 						<br/>
-						<label for=""> Unidad de Almacén</label>
-						<div class="form-group ">
-							<select class="form-control" id="exampleSelect1">
-							  <option value="" selected>Seleccionar</option>
-							  <option> caja</option>
-							  <option>lata</option>
-							</select>
-						</div>
+					<label for=""> Unidad Empaque</label>
+					<div class="form-group ">
+						<select class="form-control" id="educationDate" name="educationDate[]">
+							<option value="" selected>Seleccionar</option>
+							<option name="" value="">Barra</option>
+							<option name="" value="">Bloque</option>
+							<option name="" value="">Bolsa</option>
+							<option name="" value="">Botella</option>
+							<option name="" value="">Caja</option>
+							<option name="" value="">Frasco</option>
+							<option value="">Lata</option>
+							<option value="">Paquete</option>
+							<option value="">Pote</option>
+							<option value="">Tarro</option>
+							<option value="">Tubo</option>
+							<option value="">Vaso</option>
+							<option name="" value="">Unidad</option>
+							<option value="">Kg</option>
+							<option value="">Kilo</option>
+							<option value="">Litro</option>
+							<option value="">Lonjas</option>
+						</select>
+					</div>
+					<br/>
+					<label for="">Cantidad</label>
+					<div class="form-group ">
+						<input class="form-control " id="inputsm" placeholder="Cantidad" type="text">
+					</div>
+					<br/>
+					<label for=""> Unidad de Almacén</label>
+					<div class="form-group ">
+						<select class="form-control" id="exampleSelect1">
+						  <option value="" selected>Seleccionar</option>
+						  <option> caja</option>
+						  <option>lata</option>
+						</select>
+					</div>
 				
 				</div>
 				<div class="modal-footer"><!--
@@ -192,31 +230,48 @@
 				</div>
 				<div class="modal-body">					
 					
-						<label for="">Cod. Conversion</label>
-						<div class="form-group ">
-							<input class="form-control " id="inputsm" disabled="disabled" placeholder="codigo" type="text">
-						</div>
-							<br/>
-						<label for=""> Unidad Empaque</label>
-						<div class="form-group ">
-							<input class="form-control " id="inputsm" disabled="disabled" placeholder="Unidad Empaque" type="text">
-						</div>
-							<br/>
-						<label for="">Cantidad</label>
-						<div class="form-group ">
-							<input class="form-control " id="inputsm" disabled="disabled" placeholder="Cantidad" type="text">
-						</div>
+					<label for="">Cod. Conversion</label>
+					<div class="form-group ">
+						<input class="form-control " id="inputsm" disabled="disabled" disabled placeholder="codigo" type="text">
+					</div>
 						<br/>
-						<label for=""> Unidad de Almacén</label>
-						<div class="form-group ">
-							<select class="form-control" id="exampleSelect1" disabled="disabled">
-							  <option value="" selected>Seleccionar</option>
-							  <option> caja</option>
-							  <option>lata</option>
-							</select>
-						</div>
-						<hr>
-						<h4>¿Deseas eliminar la Unidad de Empaque?</h4>	
+					<label for=""> Unidad Empaque</label>
+					<div class="form-group ">
+						<select class="form-control" id="educationDate" name="educationDate[]" disabled>
+							<option value="" selected>Seleccionar</option>
+							<option name="" value="">Barra</option>
+							<option name="" value="">Bloque</option>
+							<option name="" value="">Bolsa</option>
+							<option name="" value="">Botella</option>
+							<option name="" value="">Caja</option>
+							<option name="" value="">Frasco</option>
+							<option value="">Lata</option>
+							<option value="">Paquete</option>
+							<option value="">Pote</option>
+							<option value="">Tarro</option>
+							<option value="">Tubo</option>
+							<option value="">Vaso</option>
+							<option name="" value="">Unidad</option>
+							<option value="">Kg</option>
+							<option value="">Kilo</option>
+							<option value="">Litro</option>
+							<option value="">Lonjas</option>
+						</select>
+					</div>
+					<br/>
+					<label for="">Cantidad</label>
+					<div class="form-group ">
+						<input class="form-control " id="inputsm" placeholder="Cantidad" type="text" disabled>
+					</div>
+					<br/>
+					<label for=""> Unidad de Almacén</label>
+					<div class="form-group ">
+						<select class="form-control" id="exampleSelect1" disabled>
+						  <option value="" selected>Seleccionar</option>
+						  <option> caja</option>
+						  <option>lata</option>
+						</select>
+					</div>
 				
 				</div>
 

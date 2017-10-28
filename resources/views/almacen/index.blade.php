@@ -59,8 +59,8 @@
 						<th>Producto</th>
 						<th>Categoría</th>
 						<th>Esatado </th>
-						<th>Cant.Disponible </th>
 						<th>Unidad</th>
+						<th>Cant.Disponible </th>
 						<!--<th>Eliminar</th>-->
 					</tr>
 				  </thead>
@@ -71,12 +71,9 @@
 						<td>Producto</td>
 						<td>Categoría</td>	
 						<td>disponibe / agotado</td>
-						<td>15</td>	
 						<td> Unidad	</td>
-						
-				
-					</tr>                       
-					
+						<td>15</td>	
+					</tr> 
 				  </tbody>
 				</table>
 			</div>

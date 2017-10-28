@@ -58,6 +58,7 @@
 						<th class="text-center">Fecha</th>
 						<th class="text-center">Detalle</th>
 						<th class="text-center">Producto</th>
+						<th class="text-center">Unidad</th>
 						<th class="text-center">Cant. Entrada</th>
 						<th class="text-center">Cant. Salida</th>
 						<th class="text-center">Saldo</th>
@@ -70,17 +71,43 @@
 						<td>
 							26-06-2017
 						</td>
-						<td>3 d</td>
-						<td>solicitud compa prueba</td>
-						<td>Activo</td>
-						<td>Belkis Buelvas</td>	
-						<td>Area</td>
+						<td>Inicio almacén </td>
+						<td> Arepas antioqueñas precocidas	</td>
+						<td>Unidad</td>
+						<td></td>
+						<td></td>
+						<td>10</td>
+					</tr> 
+					<tr>
+					  <td>0023945</td>
+						<td>
+							28-06-2017
+						</td>
+						<td>Compra  </td>
+						<td> Arepas antioqueñas precocidas	</td>
+						<td>Unidad</td>
+						<td>5</td>
+						<td></td>
+						<td>15</td>
+					</tr> 
+					<tr>
+					  <td>0023947</td>
+						<td>
+							28-06-2017
+						</td>
+						<td>Requisición  </td>
+						<td> Arepas antioqueñas precocidas	</td>
+						<td>Unidad</td>
+						<td></td>
+						<td>11</td>
+						<td>4</td>
 					</tr> 
 				</tbody>
 				<tfoot>
 					<tr>
 						<th></th>
 						<th>Saldo</th>
+						<th></th>
 						<th></th>
 						<th></th>
 						<th></th>

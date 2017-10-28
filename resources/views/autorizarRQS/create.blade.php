@@ -197,8 +197,8 @@
 							</div>
 							<div class="row ">
 								<div class="btn-group  col-md-12">
-									<label for="success" class="btn btn-success">Solicitud Consumo  <input type="checkbox" id="success" class="badgebox"><span class="badge">&check;</span></label>
-									<label for="warning" class="btn btn-warning">Solicitud Inversión  <input type="checkbox" id="warning" class="badgebox"><span class="badge">&check;</span></label>
+									<label for="success" class="btn btn-success">Solicitud Consumo  <input type="radio" id="success" class="badgebox"><span class="badge">&check;</span></label>
+									<label for="warning" class="btn btn-warning">Solicitud Inversión  <input type="radio" id="warning" class="badgebox"><span class="badge">&check;</span></label>
 								</div><!--
 								-->
 								
@@ -232,23 +232,23 @@
 								
 								</div>
 								<div class="btn-group  col-md-3 " data-toggle="buttons"><br>
-									<div class="form-group ">
-										<h5>Fecha de aprobación</h5>
-										<div class="input-group registration-date-time">
+									
+									<h5>Fecha de aprobación</h5>
+									<div class="input-group registration-date-time">
 										<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
 										<input class="form-control" name="registration_date" id="registration-date" type="date">
 										<span class="input-group-btn">
 										</span>
 									</div>
-									</div>	
+								
 								</div>	
 								<div class="btn-group  col-md-4 " data-toggle="buttons"><br>
 									<div class="form-group">
 										<h5>Estado del sugerido<h5>
 										<select class="form-control" id="exampleSelect1">
 										  <option value="" selected>Seleccionar</option>
-										  <option> AUTORIZAR / REQUISICION</option>
-										  <option>RECHAZAR / REQUISICION</option>
+										  <option> AUTORIZADO </option>
+										  <option>RECHAZADO </option>
 										</select>
 									</div>
 								</div>
@@ -285,9 +285,10 @@
 									<th>#</th>
 									<th><button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-toggle="modal" data-target=".categoria"></button>Categoria</th>
 									<th><button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-toggle="modal" data-target=".producto"></button>Producto</th>
-									<th>Cantidad</th>
+									<th>Detalle del producto</th>
 									<th><button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-toggle="modal" data-target=".unidad"></button>Unidad</th>
-									<th>Detalle del producto</th>	
+									<th>Cantidad</th>
+									<th>Cant.Autorizada</th>	
 									<th><a></a></th>
 					
 								</tr>
@@ -299,7 +300,7 @@
 									</td>
 									<td>
 										<div class="form-group ">
-											<select class="form-control">
+											<select class="form-control" disabled>
 											  <option value="" selected>Seleccionar</option>
 											  <option value="">Taller de Cocina</option>
 											  <option value="">Papeleria</option>
@@ -309,7 +310,7 @@
 										</div>
 									</td>
 									<td class="nopadding" >
-										<select class="form-control" id="educationDate" name="educationDate[]">
+										<select class="form-control" id="educationDate" name="educationDate[]" disabled>
 											<option value="" selected>Seleccionar</option>
 											<option name="" value="">Aceite</option>
 											<option value="">Arepas antioqueñas precocidas </option>
@@ -319,11 +320,12 @@
 									</td>
 									<td class="nopadding" >
 										<div class="form-group">
-											<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Cantidad">
+											<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Detalle" disabled>
 										</div>
 									</td>
+									
 									<td class="nopadding" >
-										<select class="form-control" id="educationDate" name="educationDate[]">
+										<select class="form-control" id="educationDate" name="educationDate[]"disabled>
 											<option value="" selected>Seleccionar</option>
 											<option name="" value="">Barra</option>
 											<option name="" value="">Bloque</option>
@@ -344,16 +346,20 @@
 											<option value="">Lonjas</option>
 									  </select>
 									</td>
-									
 									<td class="nopadding" >
 										<div class="form-group">
-											<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Detalle">
+											<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Cantidad"disabled>
+										</div>
+									</td>
+									<td class="nopadding" >
+										<div class="form-group">
+											<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Cantidad">
 										</div>
 									</td>
 									
 									<td class="nopadding" >
 										<div class="input-group-btn">
-											<button class="btn btn-sm btn-primary glyphicon glyphicon-plus btn-xs" type="button"  onclick="education_fields2();"> <span  aria-hidden="true"></span> </button>
+											<button class="btn btn-sm btn-primary glyphicon glyphicon-plus btn-xs " type="button" onclick="education_fields2();"> <span  aria-hidden="true"></span> </button>
 										</div>
 									</td>
 								</tr>
@@ -409,28 +415,28 @@
 									</td>
 									<td class="nopadding" >
 										<div class="form-group">
-											<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="">
+											<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" disabled style="background:#fff;">
 										</div>
 									</td>
 									<td class="nopadding" >
 										<div class="form-group">
-											<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="">
+											<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" disabled style="background:#fff;">
 										</div>
 									</td>
 									<td class="nopadding" >
 										<div class="form-group">
-											<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="">
+											<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" disabled style="background:#fff;">
 										</div>
 									</td>
 									<td class="nopadding" >
 										<div class="form-group">
-											<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="">
+											<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" disabled style="background:#fff;">
 										</div>
 									</td>
 									
 									<td class="nopadding" >
 										<div class="form-group">
-											<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="">
+											<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" disabled style="background:#fff;">
 										</div>
 									</td>
 									
@@ -570,7 +576,7 @@
 				<div class="modal-header">
 				  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
 				  </button>
-				  <h4 class="modal-title" id="myModalLabel2">crear proveedor</h4>
+				  <h4 class="modal-title" id="myModalLabel2">Crear proveedor</h4>
 				</div>
 				<div class="modal-body">
 					<form class="form-horizontal form-label-left" novalidate>
@@ -682,7 +688,7 @@
 			var divtest = document.createElement("tbody");
 			divtest.setAttribute("class", "form-group tr removeclass"+room);
 			var rdiv = 'removeclass'+room;
-			divtest.innerHTML = '<tr><td>' + (room) + '</td><td><div class="form-group "><select class="form-control"><option value="" selected>Seleccionar</option><option value="">Taller de Cocina</option><option value="">Papeleria</option><option value="" >Didacticos</option><option value="" >Aseo</option></select></div></td><td class="nopadding" ><select class="form-control" id="educationDate" name="educationDate[]"><option value="" selected>Seleccionar</option><option name="" value="">Aceite</option><option value="">Arepas antioqueñas precocidas </option><option value="" >Arroz  (bolsas de medio kilo)</option><option value="" >Bocadillo</option></select></td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Cantidad"></div></td><td class="nopadding" ><select class="form-control" id="educationDate" name="educationDate[]"><option value="" selected>Seleccionar</option><option name="" value="">Barra</option><option name="" value="">Bloque</option><option name="" value="">Bolsa</option><option name="" value="">Botella</option><option name="" value="">Caja</option><option name="" value="">Frasco</option><option value="">Lata</option><option value="">Paquete</option><option value="">Pote</option><option value="">Tarro</option><option value="">Tubo</option><option value="">Vaso</option><option name="" value="">Unidad</option><option value="">Kg</option><option value="">Kilo</option><option value="">Litro</option><option value="">Lonjas</option></select></td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Detalle"></div></td><td class="nopadding" ><div class="input-group-btn"><button class="btn btn-sm btn-danger glyphicon glyphicon-minus btn-xs" type="button" onclick="remove_education_fields2('+ room +');"> <span  aria-hidden="true"></span> </button></div></td></tr>';
+			divtest.innerHTML = '<tr><td>' + (room) + '</td><td><div class="form-group "><select class="form-control" disabled style="background:#fff;"><option value="" selected>Seleccionar</option><option value="">Taller de Cocina</option><option value="">Papeleria</option><option value="" >Didacticos</option><option value="" >Aseo</option></select></div></td><td class="nopadding" ><select class="form-control" id="educationDate" name="educationDate[]" disabled style="background:#fff;"><option value="" selected>Seleccionar</option><option name="" value="">Aceite</option><option value="">Arepas antioqueñas precocidas </option><option value="" >Arroz  (bolsas de medio kilo)</option><option value="" >Bocadillo</option></select></td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Detalle" disabled style="background:#fff;"></div></td><td class="nopadding" ><select class="form-control" id="educationDate" name="educationDate[]"disabled style="background:#fff;"><option value="" selected>Seleccionar</option><option name="" value="">Barra</option><option name="" value="">Bloque</option><option name="" value="">Bolsa</option><option name="" value="">Botella</option><option name="" value="">Caja</option><option name="" value="">Frasco</option><option value="">Lata</option><option value="">Paquete</option><option value="">Pote</option><option value="">Tarro</option><option value="">Tubo</option><option value="">Vaso</option><option name="" value="">Unidad</option><option value="">Kg</option><option value="">Kilo</option><option value="">Litro</option><option value="">Lonjas</option></select></td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Cantidad"disabled="disabled" style="background:#fff;"></div></td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Cantidad"></div></td><td class="nopadding" ><div class="input-group-btn"><button class="btn btn-sm btn-danger glyphicon glyphicon-minus btn-xs" type="button" onclick="remove_education_fields2('+ room +');"> <span  aria-hidden="true"></span> </button></div></td></tr>';
 			
 			objTo.appendChild(divtest)
 			  

@@ -21,7 +21,7 @@
 	    <div class="x_title"> 
 			
 			<div class=" col-md-12 col-sm-12 col-xs-12 ">
-				<h2>Historial Requisiciones Entregadas  </h2> &nbsp&nbsp&nbsp
+				<h2>Historial Requisiciones / Entregar  </h2> &nbsp&nbsp&nbsp
 				<div class=" col-md-2 col-sm-2 col-xs-6 right">
 					<a  data-toggle="modal" data-target=".descargar" class="btn btn-primary  left" role="button"><i class="glyphicon glyphicon-cloud-download" aria-hidden="true"></i>&nbsp&nbsp Descargar </a>
 				</div>

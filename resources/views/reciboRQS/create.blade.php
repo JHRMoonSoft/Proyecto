@@ -79,9 +79,9 @@
 									   <tr>
 												<th>No.</th>
 											<th>Producto</th>
-											<th>Cantidad</th>
+											<th>Descripción Detallada</th>
 											<th>Uidad</th>
-											<th>Descripción detallada</th>
+											<th>Cant. Autorizada</th>
 											<th>Cant.Recibida </th>
 											<th>Cant.Pendiente</th>
 										</tr>

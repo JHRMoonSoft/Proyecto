@@ -35,7 +35,7 @@
 						<span>Paso 1</span>
 					  </a>
 					</div>
-					<div class="block_content">
+					<div class="block_content"> 
 						<h2 class="title">
 							 <a>Detalle Requisición  </a><br/>
 						</h2>				
@@ -116,24 +116,24 @@
 							
 									<div class="btn-group  col-md-2">
 										<h5>Nombre:</h5>
-										<input type="text"class="form-control select2-offscreen" id="cc" placeholder="" tabindex="-1">
+										<input type="text"class="form-control select2-offscreen" id="cc" placeholder="" tabindex="-1" disabled style="background:#fff;">
 											
 									</div>
 									<div class="btn-group  col-md-2 " data-toggle="buttons">	
 										<h5>Cargo:</h5>
-										<input type="text"class="form-control select2-offscreen" id="cc" placeholder="" tabindex="-1">
+										<input type="text"class="form-control select2-offscreen" id="cc" placeholder="" tabindex="-1" disabled style="background:#fff;">
 									</div>	
 									<div class=" col-md-2 " >
 										<h5>Área/ Sección/ Programa:</h5>
-										<input type="text"class="form-control select2-offscreen" id="cc" placeholder="" tabindex="-1">
+										<input type="text"class="form-control select2-offscreen" id="cc" placeholder="" tabindex="-1" disabled style="background:#fff;">
 									</div>
 									<div class=" col-md-2 " >
 										<h5>Coordinación: </h5>
-										<input type="text"class="form-control select2-offscreen" id="cc" placeholder="" tabindex="-1">
+										<input type="text"class="form-control select2-offscreen" id="cc" placeholder="" tabindex="-1" disabled style="background:#fff;">
 									</div>
 									<div class="btn-group   col-md-4" data-toggle="buttons">
 										<h5>Justificación:</h5>
-										<input type="text"class="form-control select2-offscreen" id="cc" placeholder="" tabindex="-1">
+										<input type="text"class="form-control select2-offscreen" id="cc" placeholder="" tabindex="-1" disabled style="background:#fff;">
 											<br/>					
 									</div>	
 								</div>
@@ -262,7 +262,7 @@
 							<div class=" col-md-3 " ><h5>Fecha de aprobación</h5>
 									<div class="input-group registration-date-time">
 										<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
-										<input class="form-control" name="registration_date" disabled id="registration-date" type="date">
+										<input class="form-control" name="registration_date" disabled style="background:#fff;" id="registration-date" type="date">
 										<span class="input-group-btn">
 										</span>
 									</div>
@@ -317,19 +317,19 @@
 								<div class="form-group">
 									<h5 >Observaciones	</h5>																		
 									<div class="col-md-8 col-sm-8 col-xs-12"></br>	
-										<textarea type="text" id="last-name" disabled name="last-name"rows="6" required="required" class="form-control col-md-7 col-xs-12"></textarea>
+										<textarea type="text" id="last-name" disabled style="background:#fff;" name="last-name"rows="6" required="required" class="form-control col-md-7 col-xs-12"></textarea>
 									</div><br>
 								</div>
 								<div class="form-group   col-md-4 col-sm-4 col-xs-12"><br>									
 									<div class="form-group col-md-12 col-xs-12">
 										<h5>Nombre </h5>
-											<input type="text" class="form-control" disabled id="Schoolname" name="Schoolname[]" value="" placeholder="¿quien recibe?">
+											<input type="text" class="form-control" disabled style="background:#fff;" id="Schoolname" name="Schoolname[]" value="" placeholder="¿quien recibe?">
 									</div>										
 								</div>	
 								<div class="form-group   col-md-4 col-sm-4 col-xs-12"><br>						
 									<div class="form-group col-md-12 col-xs-12">
 										<h5>Cargo </h5>
-											<input type="text" class="form-control"  disabled id="Schoolname" name="Schoolname[]" value="" placeholder="cargo">
+											<input type="text" class="form-control"  disabled style="background:#fff;" id="Schoolname" name="Schoolname[]" value="" placeholder="cargo">
 									</div>
 								</div>	
 								<div class="form-group   col-md-4 col-sm-4 col-xs-12"><br>
@@ -337,7 +337,7 @@
 									<h5>Fecha </h5>
 									<div class="input-group registration-date-time">
 										<span class="input-group-addon" id="basic-addon1"><span  class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
-										<input class="form-control" disabled name="registration_date" id="registration-date" type="date">
+										<input class="form-control" disabled style="background:#fff;" name="registration_date" id="registration-date" type="date">
 										<span class="input-group-btn">
 										</span>
 									</div>

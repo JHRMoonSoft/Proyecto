@@ -236,7 +236,7 @@
 											<option value="">Kilo</option>
 											<option value="">Litro</option>
 											<option value="">Lonjas</option>
-									  </select>
+									    </select>
 									</td>
 									
 									<td class="nopadding" >

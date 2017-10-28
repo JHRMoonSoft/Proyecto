@@ -49,7 +49,6 @@
 				   <tr>
 						<th>Código</th>
 						<th>Detalle Producto</th>
-						<th>Descripción Producto</th>
 						<th>Fecha. Creado</th>
 						<th>Fecha. Modificado</th>
 						<th>Opciones </th>
@@ -60,20 +59,24 @@
 					
 					<tr>
 					  <td>01</td>
-						<td>Compra productos</td>
-						<td>Descripción Producto</td>
+						<td>Aceite</td>
 						<td>22-10-2017</td>	
 						<td>12-11-2017</td>	
-						<td>
-								
+						<td>	
 							<button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-edit btn-xs" data-toggle="modal" data-target=".edit_producto"></button>
 							<button type="button" class="btn btn-sm btn-danger glyphicon glyphicon-remove btn-xs" data-toggle="modal" data-target=".delete_producto"></button>
-								
 						</td>
-						
-				
 					</tr>                       
-					
+					<tr>
+					  <td>02</td>
+						<td>Arepas antioqueñas precocidas</td>
+						<td>22-10-2017</td>	
+						<td>12-11-2017</td>	
+						<td>	
+							<button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-edit btn-xs" data-toggle="modal" data-target=".edit_producto"></button>
+							<button type="button" class="btn btn-sm btn-danger glyphicon glyphicon-remove btn-xs" data-toggle="modal" data-target=".delete_producto"></button>
+						</td>
+					</tr>  
 				  </tbody>
 				</table>
 			</div>
@@ -81,7 +84,7 @@
 		
 		 <!-- create producto modal -->		  
 
-		  <div class="modal fade create_producto">" tabindex="-1" role="dialog" aria-hidden="true">
+		  <div class="modal fade create_producto" tabindex="-1" role="dialog" aria-hidden="true">
 			<div class="modal-dialog modal-sm">
 			  <div class="modal-content">
 
@@ -90,29 +93,26 @@
 				  </button>
 				  <h4 class="modal-title" id="myModalLabel2">Nuevo Producto </h4>
 				</div>
-				<div class="modal-body">
-				
-					<label for="">Cod. Producto</label>
-					<div class="form-group ">
-						<input class="form-control " id="inputsm" disabled="disabled" placeholder="01" type="text">
+				<form class="form-horizontal" method="POST" action="{{ url('/producto') }}">
+						{{ csrf_field() }}
+					<div class="modal-body">
+					
+						<label for="">Cod. Producto</label>
+						<div class="form-group ">
+							<input class="form-control " id="inputsm" disabled="disabled" placeholder="01" type="text">
+						</div>
+						<br/>
+						<label for="des_prd">Detalle Producto</label>
+						<div class="form-group ">
+							<input class="form-control " id="des_prd" name="des_prd" placeholder="Producto" type="text">
+						</div>
 					</div>
-					<br/>
-					<label for="">Detalle Producto</label>
-					<div class="form-group ">
-						<input class="form-control " id="inputsm" placeholder="Producto" type="text">
+					<div class="modal-footer"><!--
+					  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+					  <button type="reset" class="btn btn-primary">Deshacer</button>
+					  <button type="submit" class="btn btn-success">Guardar</button>
 					</div>
-					<br/>
-					<label for="">Descripción Producto</label>
-					<div class="form-group ">
-						<input class="form-control " id="inputsm" placeholder="Descripción" type="text">
-					</div>
-				</div>
-				<div class="modal-footer"><!--
-				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-				  <button type="submit" class="btn btn-primary">Deshacer</button>
-				  <button type="button" class="btn btn-success">Guardar</button>
-				</div>
-
+				</form>
 			  </div>
 			</div>
 		  </div>
@@ -120,7 +120,7 @@
 		 
 		   <!-- edit producto modal -->		  
 
-		  <div class="modal fade edit_producto">" tabindex="-1" role="dialog" aria-hidden="true">
+		  <div class="modal fade edit_producto" tabindex="-1" role="dialog" aria-hidden="true">
 			<div class="modal-dialog modal-sm">
 			  <div class="modal-content">
 
@@ -140,16 +140,11 @@
 					<div class="form-group ">
 						<input class="form-control " id="inputsm" placeholder="Producto" type="text">
 					</div>
-					<br/>
-					<label for="">Descripción Producto</label>
-					<div class="form-group ">
-						<input class="form-control " id="inputsm" placeholder="Descripción" type="text">
-					</div>
 				</div>
 				<div class="modal-footer"><!--
 				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-				  <button type="submit" class="btn btn-primary">Deshacer</button>
-				  <button type="button" class="btn btn-success">Guardar</button>
+				  <button type="reset" class="btn btn-primary">Deshacer</button>
+				  <button type="submit" class="btn btn-success">Guardar</button>
 				</div>
 
 			  </div>
@@ -159,7 +154,7 @@
 		  
 		    <!-- delete producto modal -->		  
 
-		  <div class="modal fade delete_producto">" tabindex="-1" role="dialog" aria-hidden="true">
+		  <div class="modal fade delete_producto" tabindex="-1" role="dialog" aria-hidden="true">
 			<div class="modal-dialog modal-sm">
 			  <div class="modal-content">
 
@@ -180,19 +175,14 @@
 					<div class="form-group ">
 						<input class="form-control " id="inputsm"  disabled="disabled" placeholder="Producto" type="text">
 					</div>
-					<br/>
-					<label for="">Descripción Producto</label>
-					<div class="form-group ">
-						<input class="form-control " id="inputsm" disabled="disabled" placeholder="Descripción" type="text">
-					</div>
 					<hr>
 						<h4>¿Deseas eliminar el Producto?</h4>	
 				</div>
 
 				<div class="modal-footer"><!--
 				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-				  <button type="button" class="btn btn-primary">Deshacer</button>
-				  <button type="submit" class="btn btn-danger"> Eliminar</button>
+				  <button type="reset" class="btn btn-primary">Deshacer</button>
+				  <button type="submit" class="btn btn-success">Guardar</button>
 				</div>
 
 			  </div>

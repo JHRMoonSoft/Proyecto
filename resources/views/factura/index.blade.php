@@ -70,10 +70,10 @@
 					  <td>0023933</td>
 					   <td>002</td>
 						<td>FACTURA DE COMPRA</td>
-						<td>Guardado /Enviado / Cancelado </td>
-						<td>Guardado /Enviado / Cancelado </td>
-						<td>Guardado /Enviado / Cancelado </td>
-						<td>Guardado /Enviado / Cancelado </td>
+						<td>ALMACENES EXITO S.A </td>
+						<td>NIT </td>
+						<td>890.900.608-9</td>
+						<td>CONTADO</td>
 						<td>Belkis Buelvas</td>	
 						<td>22/4/2017</td>	
 						<td>28/4/2017</td>
@@ -81,7 +81,7 @@
 							<a href="" title="Editar" class="btn btn-primary glyphicon glyphicon-pencil btn-xs" data-title="Editar"></a></td><!--
 						<td><p data-placement="top" data-toggle="tooltip" title="Eliminar"><a href="" class="btn btn-danger btn-xs" data-title="Eliminar"><span class=" glyphicon glyphicon-trash"></span></a></p></td>-->
 				
-					</tr>                       
+					</tr>                      
 					
 				  </tbody>
 				</table>

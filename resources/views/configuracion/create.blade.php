@@ -27,17 +27,18 @@
 			<div class="clearfix"></div>
 	    </div>
 		<div class="x_content">
-			<form class="form-horizontal form-label-left" novalidate>
+			<form class="form-horizontal" method="POST" action="{{ url('/configuracion') }}">
+			  {{ csrf_field() }}
 
 				<!--<p>For alternative validation library <code>parsleyJS</code> check out in the <a href="form.html">form page</a></p>-->
 			  
 				
 				<div class="item form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Tipo. Empresa<span class="required">*</span>
+					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="tip_empr">Tipo. Empresa<span class="required">*</span>
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
 					
-						<select id="tipo_identidad" class="form-control col-md-7 col-xs-12" data-validate-length-range="7" data-validate-words="2" name="name"  required="required">
+						<select id="tip_empr" class="form-control col-md-7 col-xs-12" data-validate-length-range="7" data-validate-words="2" name="tip_empr"  required="required">
 							<option value="volvo " selected>Seleccionar</option>
 							<option>E.I.R.L</option>
 							<option>S.C</option>
@@ -53,18 +54,23 @@
 					</div>
 				</div>
 				<div class="item form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Razón social<span class="required">*</span>
+					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="raz_soc">Razón social<span class="required">*</span>
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name"  required="required" type="text">
+					  <input id="raz_soc" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="raz_soc"  required="required" type="text">
+						@if ($errors->has('raz_soc'))
+							<span class="help-block">
+								<strong>{{ $errors->first('raz_soc') }}</strong>
+							</span>
+						@endif
 					</div>
 				</div>
 				<div class="item form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Tipo. Documento<span class="required">*</span>
+					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="tip_doc">Tipo. Documento<span class="required">*</span>
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
 					
-						<select id="tipo_identidad" class="form-control col-md-7 col-xs-12" data-validate-length-range="7" data-validate-words="2" name="name"  required="required">
+						<select id="tip_doc" class="form-control col-md-7 col-xs-12" data-validate-length-range="7" data-validate-words="2" name="tip_doc"  required="required">
 							<option value="volvo " selected>Seleccionar</option>
 							<option>NIT</option>
 							<option>RUT</option>
@@ -74,55 +80,95 @@
 				</div>
 				
 				<div class="item form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">No. Documento <span class="required">*</span>
+					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="num_doc">No. Documento <span class="required">*</span>
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name"  required="required" type="text">
+					  <input id="num_doc" class="form-control col-md-7 col-xs-12" data-validate-length-range="11"  name="num_doc"  required="required" type="text">
+						@if ($errors->has('num_doc'))
+							<span class="help-block">
+								<strong>{{ $errors->first('num_doc') }}</strong>
+							</span>
+						@endif
 					</div>
 				</div>
 				<div class="item form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="telephone">Telefono fijo <span class="required">*</span>
+					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="tel_fij">Telefono fijo <span class="required">*</span>
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input type="tel" id="telephone" name="phone" required="required" data-validate-length-range="8,20" class="form-control col-md-7 col-xs-12">
+					  <input type="text" id="tel_fij" name="tel_fij" required="required" data-validate-length-range="8,20" class="form-control col-md-7 col-xs-12">
+						@if ($errors->has('tel_fij'))
+							<span class="help-block">
+								<strong>{{ $errors->first('tel_fij') }}</strong>
+							</span>
+						@endif
 					</div>
 				</div>
 				<div class="item form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="telephone">Telefono celular </label>
+					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="tel_cel">Telefono celular </label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input type="tel" id="telephone" name="phone" required="required" data-validate-length-range="8,20" class="form-control col-md-7 col-xs-12">
+					  <input type="text" id="tel_cel" name="tel_cel" required="required" data-validate-length-range="8,20" class="form-control col-md-7 col-xs-12">
+						@if ($errors->has('tel_cel'))
+							<span class="help-block">
+								<strong>{{ $errors->first('tel_cel') }}</strong>
+							</span>
+						@endif
 					</div>
 				</div>
 				<div class="item form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email 
+					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="dir_mail">Email 
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input type="email" id="email" name="email" required="required" class="form-control col-md-7 col-xs-12">
+					  <input type="email" id="dir_mail" name="dir_mail" required="required" class="form-control col-md-7 col-xs-12">
+						@if ($errors->has('dir_mail'))
+							<span class="help-block">
+								<strong>{{ $errors->first('dir_mail') }}</strong>
+							</span>
+						@endif
 					</div>
 				</div>
 				<div class="item form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Dirección 
+					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="dir_empr">Dirección 
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input type="email" id="email" name="email" required="required" class="form-control col-md-7 col-xs-12">
+					  <input type="text" id="dir_empr" name="dir_empr" required="required" class="form-control col-md-7 col-xs-12">
+						@if ($errors->has('dir_empr'))
+							<span class="help-block">
+								<strong>{{ $errors->first('dir_empr') }}</strong>
+							</span>
+						@endif
 					</div>
 				</div>
 				<div class="item form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="occupation">Barrio</label>
+					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="brr_empr">Barrio</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input id="occupation" type="text" name="occupation" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
+					  <input  type="text" id="brr_empr" name="brr_empr" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
+						@if ($errors->has('brr_empr'))
+							<span class="help-block">
+								<strong>{{ $errors->first('brr_empr') }}</strong>
+							</span>
+						@endif
 					</div>
 				</div>
 				<div class="item form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="occupation">Ciudad</label>
+					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="ciu_empr">Ciudad</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input id="occupation" type="text" name="occupation" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
+					  <input id="ciu_empr" type="text" name="ciu_empr" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
+						@if ($errors->has('ciu_empr'))
+							<span class="help-block">
+								<strong>{{ $errors->first('ciu_empr') }}</strong>
+							</span>
+						@endif
 					</div>
 				</div>
 				<div class="item form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="occupation">Pais </label>
+					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="pai_empr">Pais </label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input id="occupation" type="text" name="occupation" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
+					  <input id="pai_empr" type="text" name="pai_empr" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
+						@if ($errors->has('pai_empr'))
+							<span class="help-block">
+								<strong>{{ $errors->first('pai_empr') }}</strong>
+							</span>
+						@endif
 					</div>
 				</div>
 				
@@ -130,8 +176,8 @@
 				<div class="ln_solid"></div>
 				<div class="form-group">
 					<div class="col-md-6 col-md-offset-3">
-					  <button type="submit" class="btn btn-primary">Cancelar</button>
-					  <button id="send" type="submit" class="btn btn-success">Guardar</button>
+					   <button type="reset" class="btn btn-primary">Cancelar</button>
+					  <button type="submit" class="btn btn-success">Guardar</button>
 					</div>
 				</div>
 			</form>

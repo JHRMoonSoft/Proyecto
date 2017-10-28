@@ -43,7 +43,7 @@
 										<form class="form-horizontal form-label-left">	
 										  <div class="col-md-2 	col-sm-6 col-xs-12">
 											<label for="ex1">Código</label>
-											<input class="form-control input-sm" id="ex1" type="text" disabled>
+											<input class="form-control input-sm" id="ex1" type="text"  disabled style="background:#fff;">
 										  </div>
 										  <div class="col-md-2 	col-sm-6 col-xs-12">
 												 <label for="single_cal2">Fecha</label>
@@ -52,16 +52,16 @@
 										  </div>
 											<div class="col-md-2 col-sm-6 col-xs-12">
 												<label for="ex3">Empresa</label>
-												<input class="form-control input-sm" id="ex3" type="text" disabled>
+												<input class="form-control input-sm" id="ex3" type="text"  disabled style="background:#fff;">
 											</div>
 											<div class="col-md-2 col-sm-6 col-xs-12">
 												<label for="ex1">Nit. Empresa</label>
-												<input class="form-control input-sm" id="ex1" type="text" disabled>
+												<input class="form-control input-sm" id="ex1" type="text"  disabled style="background:#fff;">
 											</div>
 									
 											<div class="col-md-2 col-sm-6 col-xs-12">
 												<label for="ex2">Realizado</label>
-												<input class="form-control input-sm" id="ex2" type="text" disabled>
+												<input class="form-control input-sm" id="ex2" type="text"  disabled style="background:#fff;">
 											</div>
 											<div class="col-md-2 col-sm-6 col-xs-12">
 												<label for="ex3">No. OCP</label>
@@ -92,33 +92,33 @@
 										<div class=" col-sm-3 col-xs-6">
 											<div class="form-group">
 												<label for="ex1">Nit.Proveedor</label>
-												<input class="form-control input-sm" id="ex1" type="text" disabled>
+												<input class="form-control input-sm" id="ex1" type="text"  disabled style="background:#fff;">
 											</div>
 										</div>
 										
 										<div class="col-sm-3 col-xs-6">
 											<div class="form-group">
 												<label for="ex2">Dirección</label>
-												<input class="form-control input-sm" id="ex2" type="text" disabled>
+												<input class="form-control input-sm" id="ex2" type="text"  disabled style="background:#fff;">
 											</div>	
 										</div>
 										<div class="col-sm-3 col-xs-6">
 											<div class="form-group">
 												<label for="ex3">Ciudad</label>
-												<input class="form-control input-sm" id="ex3" type="text" disabled>
+												<input class="form-control input-sm" id="ex3" type="text"  disabled style="background:#fff;">
 											</div>
 										</div>
 										<div class="col-sm-3 col-xs-6">
 											<div class="form-group">
 												<label for="ex1">Teléfono</label>
-												<input class="form-control input-sm" id="ex1" type="text" disabled>
+												<input class="form-control input-sm" id="ex1" type="text"  disabled style="background:#fff;">
 											</div>
 										</div>
 								
 										<div class="col-sm-3 col-xs-6">
 											<div class="form-group">
 												<label for="ex2">E-mail</label>
-												<input class="form-control input-sm" id="ex2" type="text" disabled>
+												<input class="form-control input-sm" id="ex2" type="text"  disabled style="background:#fff;">
 											</div>
 										</div>
 										<div class="col-sm-3 col-xs-6">
@@ -319,23 +319,23 @@
 									</div>
 									<div class="col-xs-3">
 										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12" align="right" for="first-name">SUBTOTAL </label>
+											<label class="control-label col-md-4 col-sm-4 col-xs-12" align="right" for="first-name">SUBTOTAL </label>
 											<div class="col-md-8 col-sm-8 col-xs-12  right">
-											  <input type="text" id="first-name"   required="required" class="form-control col-md-7 col-xs-12 " disabled>
+											  <input type="text" id="first-name"   required="required" class="form-control col-md-7 col-xs-12 "  disabled style="background:#fff;">
 											</div>
 										</div>
 									
 										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12 " align="right" for="first-name">IVA</label>
+											<label class="control-label col-md-4 col-sm-4 col-xs-12 " align="right" for="first-name"><br/>IVA</label>
 											<div class="col-md-8 col-sm-8 col-xs-12  right">
-											  <input type="text" id="first-name"   required="required" class="form-control col-md-7 col-xs-12" disabled>
+											  <input type="text" id="first-name"   required="required" class="form-control col-md-7 col-xs-12"  disabled style="background:#fff;">
 											</div>
 										</div>
 								
 										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12" align="right" for="first-name">TOTAL</label>
+											<label class="control-label col-md-4 col-sm-4 col-xs-12" align="right" for="first-name"><br/>TOTAL</label>
 											<div class="col-md-8 col-sm-8 col-xs-12  right">
-											  <input type="text" id="first-name"   required="required" class="form-control col-md-7 col-xs-12" disabled>
+											  <input type="text" id="first-name"   required="required" class="form-control col-md-7 col-xs-12"  disabled style="background:#fff;">
 											</div>
 										</div>
 									</div>

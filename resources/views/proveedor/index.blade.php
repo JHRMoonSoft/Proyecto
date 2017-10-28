@@ -62,12 +62,12 @@
 					<tr>
 					  <td>0023933</td>
 						<td>
-							26-06-2017
+							ALMACENES EXITO
 						</td>
-						<td>3 d</td>
-						<td>solicitud compa prueba</td>
-						<td>Activo</td>
-						<td>Belkis Buelvas</td>		
+						<td>NIT</td>
+						<td>890.900.608-9</td>
+						<td>3396011</td>
+						<td></td>		
 						<td>26-06-2017</td>
 						<td>26-06-2017</td>							
 						<td><a href="" title="Detalle" class="btn btn-success glyphicon glyphicon-file btn-xs" data-title="Detalle"></a>

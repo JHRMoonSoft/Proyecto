@@ -87,8 +87,9 @@
 										<label class="control-label col-md-3 col-sm-3 col-xs-12" for="exampleSelect1">Estado</label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
 											<select class="form-control " id="exampleSelect1">
-											  <option> ENTREGADO / REQUISICION</option>
-											  <option>PENDIETE / REQUISICION</option>
+											  <option value="" selected>Seleccionar</option>
+											  <option> ENTREGADO </option>
+											  <option>PENDIETE</option>
 											</select><br>
 										</div>
 									</div>
@@ -141,7 +142,7 @@
 											</td>
 											<td>
 												<div class="form-group ">
-													<select class="form-control">
+													<select class="form-control"disabled >
 													  <option value="" selected>Seleccionar</option>
 													  <option value="">Taller de Cocina</option>
 													  <option value="">Papeleria</option>
@@ -151,7 +152,7 @@
 												</div>
 											</td>
 											<td class="nopadding" >
-												<select class="form-control" id="educationDate" name="educationDate[]">
+												<select class="form-control" id="educationDate" name="educationDate[]"disabled>
 													<option value="" selected>Seleccionar</option>
 													<option name="" value="">Aceite</option>
 													<option value="">Arepas antioqueñas precocidas </option>
@@ -161,7 +162,7 @@
 											</td>
 											
 											<td class="nopadding" >
-												<select class="form-control" id="educationDate" name="educationDate[]">
+												<select class="form-control" id="educationDate" name="educationDate[]"disabled >
 													<option value="" selected>Seleccionar</option>
 													<option name="" value="">Barra</option>
 													<option name="" value="">Bloque</option>
@@ -184,7 +185,7 @@
 											</td>
 											<td class="nopadding"  >
 												<div class="form-group">
-													<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="">
+													<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder=""disabled >
 												</div>
 											</td>
 											<td class="nopadding" >
@@ -194,7 +195,7 @@
 											</td>
 											<td class="nopadding" >
 												<div class="form-group">
-													<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="">
+													<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder=""disabled >
 												</div>
 											</td>
 											
