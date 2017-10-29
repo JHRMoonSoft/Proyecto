@@ -58,7 +58,7 @@ class RegisterController extends Controller
 			'ape_usr'=> 'required|string|max:255',
 			'usuario'=> 'required|string|max:255|unique:users',
 			'crg_usr'=> 'required|string|max:255',
-			'tip_dep'=> 'required|string|max:255',
+			'dep_usr'=> 'required|string|max:255',
 			'dir_mail'=> 'required|string|email|max:255',
 			'password'=> 'required|string|min:6|confirmed'
         ]);
@@ -88,6 +88,8 @@ class RegisterController extends Controller
 			'sta_usr'=> array_key_exists('sta_usr', $data),
 			'password'=> bcrypt($data['password'])
         ]);
+		$user->roles()->sync($data['roles']);
+		$user->save();
     }
 	
 	public function register(Request $request)
@@ -96,7 +98,7 @@ class RegisterController extends Controller
         $this->validator($request->all())->validate();
 		event(new Registered($user = $this->create($request->all())));
         return $this->registered($request, $user)
-            ?: redirect($this->redirectPath());
+            ?: redirect('/users');
 						
 		
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Proveedor;
+use App\Categoria;
 use Validator;
 use Illuminate\Http\Request;
 
@@ -31,7 +32,8 @@ class ProveedorController extends Controller
     public function create()
     {
         //
-	return View('proveedor.create');
+		$categorias = Categoria::all();
+		return View('proveedor.create')->with(compact('categorias'));
     }
 
     /**
@@ -71,9 +73,9 @@ class ProveedorController extends Controller
      * @param  \App\Proveedor  $proveedor
      * @return \Illuminate\Http\Response
      */
-    public function show(Proveedor $proveedor)
+    public function show($id)
     {
-        $proveedors = Permission::find($proveedor);
+        $proveedors = Proveedor::find($id);
         return View('proveedor.show')->with('proveedors', $proveedors);
 	
     }

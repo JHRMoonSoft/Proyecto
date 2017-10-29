@@ -36,7 +36,8 @@ Route::resource('reciboRQS', 'ReciboRQSController');
 
 Route::resource('role', 'RoleController');
 Route::resource('permisos', 'PermissionController');
+Route::resource('users', 'UsuarioController');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/users', 'HomeController@users');
+

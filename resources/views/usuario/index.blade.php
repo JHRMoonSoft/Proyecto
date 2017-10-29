@@ -13,7 +13,7 @@
 		</div>
 	</div>
 	
-@endsection
+@endsection 
 
 @section('x_content')
   <div class="x_panel">
@@ -59,25 +59,26 @@
 					</tr>
 				  </thead>
 				  <tbody>
-					
+					@foreach($users as $user)
 					<tr>
-					  <td>0023933</td>
+						<td>{{$user->id}}</td>
+						<td> {{$user->usuario}}	</td>
+						<td>{{$user->nom_usr}} &nbsp&nbsp&nbsp {{$user->ape_usr}} </td>
+						<td>{{$user->dep_usr}}</td>
+						<td> {{$user->crg_usr}}</td>
 						<td>
-							26-06-2017
-						</td>
-						<td>3 d</td>
-						<td>solicitud compa prueba</td>
-						<td>Activo</td>
-						<td>Belkis Buelvas</td>	
-						<td>Area</td>	
-						<td>26-06-2017</td>
-						<td>26-06-2017</td>							
-						<td><a href="" title="Detalle" class="btn btn-success glyphicon glyphicon-file btn-xs" data-title="Detalle"></a>
+							@foreach($user->roles as $role)
+								{{$role->name}} 
+							@endforeach
+						</td>	
+						<td>{{$user->sta_usr}}</td>	
+						<td>{{ $user->created_at->format('Y-m-d') }}</td>	
+						<td>{{ $user->updated_at->format('Y-m-d') }}</td>								
+						<td><a href="{{ url('/users/'.$user->id) }}" title="Detalle" class="btn btn-success glyphicon glyphicon-file btn-xs" data-title="Detalle"></a>
 							<a href="" title="Editar" class="btn btn-primary glyphicon glyphicon-pencil btn-xs" data-title="Editar"></a></td><!--
 						<td><p data-placement="top" data-toggle="tooltip" title="Eliminar"><a href="" class="btn btn-danger btn-xs" data-title="Eliminar"><span class=" glyphicon glyphicon-trash"></span></a></p></td>-->
-				
 					</tr>                       
-					
+					@endforeach
 				  </tbody>
 				</table>
 			</div>

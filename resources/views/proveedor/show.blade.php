@@ -1,29 +1,12 @@
 @extends('layouts.app')
-@section('content')  
-@section('pagetitle')
-  <h3>Formato de Compras</h3> 
-@stop
-@section('x_search') 
-	<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-						
-		<div class="input-group">
-		<input type="text" class="form-control" placeholder="Search for...">
-		<span class="input-group-btn">
-				  <button class="btn btn-default" type="button">Go!</button> 
-			  </span>
-		</div> 
-	</div>
-	
-@stop 
-
-@section('x_content') 
+@section('content') 
+@section('x_content')
 	
 
-    <div class="x_panel"> 
+    <div class="x_panel">
 	    <div class="x_title">
-			<h2>Detalle Proveedor </h2> &nbsp&nbsp&nbsp
+			<h2>Nuevo Proveedor</h2> &nbsp&nbsp&nbsp
 						
-			<a  href="/proveedor/edit" class="btn btn-warning" role="button">Editar</a>
 		<!--
 			<ul class="nav navbar-right panel_toolbox">
 			
@@ -44,120 +27,114 @@
 			<div class="clearfix"></div>
 	    </div>
 		<div class="x_content">
-			<form class="form-horizontal form-label-left" novalidate>
-
+			<form class="form-horizontal" role="form">
+                {{ csrf_field() }}
 				<!-- <p>For alternative validation library <code>parsleyJS</code> check out in the <a href="form.html">form page</a></p>-->
-			  
-				<span class="section">Información del  Proveedor</span>
-
-				
-			
+		
 				<div class="item form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Razón social<span class="required">*</span>
+					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="raz_soc">Razón social<span class="required">*</span>
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name" disabled="disabled" required="required" type="text">
+					  <input id="raz_soc" class="form-control col-md-7 col-xs-12" data-validate-length-range="11"  name="raz_soc" value="{{$proveedors->raz_soc }}"  required="required" type="text" disabled style="background:#fff;">
+					
 					</div>
 				</div>
 				<div class="item form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Tipo. Documento<span class="required">*</span>
+					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="tip_doc">Tipo. Documento<span class="required">*</span>
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
 					
-						<select id="tipo_identidad" class="form-control col-md-7 col-xs-12" data-validate-length-range="7" data-validate-words="2" disabled="disabled" name="name" required="required">
-							<option value="volvo " selected>Seleccionar</option>
-							<option>NIT</option>
-							<option>RUT</option>
+						<select id="tip_doc" class="form-control col-md-7 col-xs-12" data-validate-length-range="7"  name="tip_doc" required="required" disabled style="background:#fff;">
+							<option value=" " selected>Seleccionar</option>
+							<option value="NIT" {{ $proveedors->tip_doc == 'NIT' ? ' selected':'' }}>NIT</option>
+							<option value="RUT" {{ $proveedors->tip_doc == 'RUT' ? ' selected':'' }}>RUT</option>
 						</select>
 					
 					</div>
 				</div>
 				
 				<div class="item form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">No. Documento <span class="required">*</span>
+					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="num_doc">No. Documento <span class="required">*</span>
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" disabled="disabled"name="name"  required="required" type="text">
+					  <input id="num_doc" class="form-control col-md-7 col-xs-12" data-validate-length-range="10"  name="num_doc" value="{{$proveedors->num_doc }}" disabled style="background:#fff;"  required="required" type="text">
+					
 					</div>
 				</div>
 				<div class="item form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="telephone">Telefono fijo <span class="required">*</span>
+					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="tel_fij">Telefono fijo <span class="required">*</span>
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input type="tel" id="telephone" name="phone" required="required" data-validate-length-range="8,20" disabled="disabled" class="form-control col-md-7 col-xs-12">
+					  <input type="text" id="tel_fij" name="tel_fij"value="{{$proveedors->tel_fij }}" required="required" data-validate-length-range="8,20" disabled style="background:#fff;" class="form-control col-md-7 col-xs-12">
 					</div>
 				</div>
 				<div class="item form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="telephone">Telefono celular </label>
+					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="tel_cel">Telefono celular </label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input type="tel" id="telephone" name="phone" required="required" data-validate-length-range="8,20" disabled="disabled" class="form-control col-md-7 col-xs-12">
+					  <input type="text" id="tel_cel" name="tel_cel" value="{{$proveedors->tel_cel }}" disabled style="background:#fff;" class="form-control col-md-7 col-xs-12">
+						
 					</div>
 				</div>
 				<div class="item form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email </label>
+					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Categorias 	</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input type="email" id="email" name="email" required="required" disabled="disabled" class="form-control col-md-7 col-xs-12">
+						
+							<select multiple="multiple" id="categorias"  name="categorias[]" value="" disabled style="background:#fff;" class="form-control col-md-7 col-xs-12" >
+								
+									<option value=""></option>
+								
+							</select>
+						
 					</div>
 				</div>
 				<div class="item form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Dirección </label>
+					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="dir_mail">E-mail </label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input type="number" id="number" name="number" disabled="disabled" required="required" data-validate-minmax="10,100" class="form-control col-md-7 col-xs-12">
+					  <input type="email" id="dir_mail" name="dir_mail" value="{{$proveedors->dir_mail }}" disabled style="background:#fff;"  class="form-control col-md-7 col-xs-12">
+						
 					</div>
 				</div>
 				<div class="item form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="occupation">Barrio</label>
+					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="dir_prov">Dirección </label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input id="occupation" type="text" name="occupation" disabled="disabled"  data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
+					  <input type="text" id="dir_prov" name="dir_prov"value="{{$proveedors->dir_prov }}" data-validate-minmax="10,100" disabled style="background:#fff;" class="form-control col-md-7 col-xs-12">
+						
 					</div>
 				</div>
 				<div class="item form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="occupation">Ciudad</label>
+					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="brr_prov">Barrio</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input id="occupation" type="text" name="occupation" disabled="disabled" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
+					  <input id="brr_prov" type="text" name="brr_prov" value="{{$proveedors->brr_prov }}" disabled style="background:#fff;" class="optional form-control col-md-7 col-xs-12">
+						
 					</div>
 				</div>
 				<div class="item form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="occupation">Pais </label>
+					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="ciu_prov">Ciudad</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input id="occupation" type="text" name="occupation" data-validate-length-range="5,20" disabled="disabled" class="optional form-control col-md-7 col-xs-12">
+					  <input id="ciu_prov" type="text" name="ciu_prov" value="{{$proveedors->ciu_prov }}" disabled style="background:#fff;" class="optional form-control col-md-7 col-xs-12">
+						
 					</div>
 				</div>
 				<div class="item form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="occupation">Observación  </label>
+					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="pai_prov">Pais </label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input id="occupation" type="text" name="occupation" data-validate-length-range="10,40" disabled="disabled" class="optional form-control col-md-7 col-xs-12">
+					  <input id="pai_prov" type="text" name="pai_prov" value="{{$proveedors->pai_prov }}" disabled style="background:#fff;"  class="optional form-control col-md-7 col-xs-12">
+						
 					</div>
 				</div>
-				<fieldset disabled>
-					<div class="control-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12">Categorias</label>
-						<div class="col-md-6 col-sm-6 col-xs-12">
-						  <input id="tags_1" type="text" class="tags form-control" readonly="readonly"  value="social, adverts, sales" />
-						  <div id="suggestions-container"disabled="disabled"  style="position: relative; float: left;  margin: 5px;"></div>
-						</div>
+				<div class="item form-group">
+					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="obs_prov">Observación  </label>
+					<div class="col-md-6 col-sm-6 col-xs-12">
+					  <input id="obs_prov" type="text" name="obs_prov" value="{{$proveedors->obs_prov }}" disabled style="background:#fff;" class="optional form-control col-md-7 col-xs-12">
+						
 					</div>
-				</fieldset>		
-				
+				</div>
 				<div class="ln_solid"></div>
 				
 			</form>
 			
         </div>
 		
+    </div>
+		
 @stop
-        <!-- /page content -->
-		<!--
-		<script type="text/javascript">
-			$(document).ready(function(){
-				function onFinishCallback(){
-				$('#wizard').smartWizard('showMessage','Finish Clicked');
-			} 
-			});
-			
-			
-		</script>
-		-->
-@stop
-<!--6581128-->
-<!--229392650-->

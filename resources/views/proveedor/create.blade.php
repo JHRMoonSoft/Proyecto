@@ -49,7 +49,7 @@
 					<div class="col-md-6 col-sm-6 col-xs-12">
 					
 						<select id="tip_doc" class="form-control col-md-7 col-xs-12" data-validate-length-range="7"  name="tip_doc" required="required">
-							<option value="volvo " selected>Seleccionar</option>
+							<option value="" selected>Seleccionar</option>
 							<option>NIT</option>
 							<option>RUT</option>
 						</select>
@@ -93,7 +93,19 @@
 					</div>
 				</div>
 				<div class="item form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="dir_mail">Email </label>
+					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Categorias 	</label>
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						@if(!$categorias->isEmpty())
+							<select multiple="multiple" id="categorias"  name="categorias[]" class="form-control col-md-7 col-xs-12" >
+								@foreach($categorias as $categoria)
+									<option value="{{$categoria->id}}">{{$categoria->des_cat}} </option>
+								@endforeach
+							</select>
+						@endif
+					</div>
+				</div>
+				<div class="item form-group">
+					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="dir_mail">E-mail </label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
 					  <input type="email" id="dir_mail" name="dir_mail"  class="form-control col-md-7 col-xs-12">
 						@if ($errors->has('dir_mail'))
@@ -158,7 +170,6 @@
 						@endif
 					</div>
 				</div>
-				
 				<div class="ln_solid"></div>
 				<div class="form-group">
 					<div class="col-md-6 col-md-offset-3">

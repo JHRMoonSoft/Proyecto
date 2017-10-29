@@ -40,7 +40,7 @@
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nombre <span class="required">*</span>
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input id="nom_usr"  name="nom_usr" type="text"  class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" required="required"  value="{{ old('nom_usr') }}" required autofocus>
+					  <input id="nom_usr"  name="nom_usr" type="text"  class="form-control col-md-7 col-xs-12" data-validate-length-range="4"  required="required"  value="{{ old('nom_usr') }}" required autofocus>
 						@if ($errors->has('nom_usr'))
 							<span class="help-block">
 								<strong>{{ $errors->first('nom_usr') }}</strong>
