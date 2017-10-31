@@ -20,8 +20,10 @@ class ProveedorController extends Controller
      */
     public function index()
     {
-     $proveedors = Proveedor::all();
-     return View('proveedor.index')->with('proveedors', $proveedors);
+		$proveedors = Proveedor::all();     
+		
+		$categorias = Categoria::find($proveedors);
+		return view('proveedor.index')->with(compact('categorias','proveedors'));
     }
 
     /**

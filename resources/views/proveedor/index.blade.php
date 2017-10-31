@@ -67,7 +67,11 @@
 						<td>{{$proveedor->tip_doc}}</td>
 						<td>{{$proveedor->num_doc}}</td>
 						<td>{{$proveedor->tel_fij}}</td>
-						<td></td>						
+						<td>
+							@foreach($categorias as $categoria)
+							{{$categoria->des_cat}}
+							@endforeach
+						</td>						
 						<td>{{ $proveedor->created_at->format('Y-m-d') }}</td>	
 						<td>{{ $proveedor->updated_at->format('Y-m-d') }}</td>									
 						<td><a href="{{ url('/proveedor/'.$proveedor->id) }}" title="Detalle" class="btn btn-success glyphicon glyphicon-file btn-xs" data-title="Detalle"></a>
