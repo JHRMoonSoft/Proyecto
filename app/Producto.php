@@ -8,11 +8,11 @@ class Producto extends Model
 {
    protected $table = 'productos';
 	
-	protected $fillable = array('des_prd');
+	protected $fillable = ['des_prd', 'categoria_id'];
 
 	public function categoria()
     {
-		return $this->belongsTo('Categoria');
+		return $this->belongsTo('App\Categoria');
 	}
 
 	public function requisiciones()

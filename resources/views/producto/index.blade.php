@@ -49,6 +49,7 @@
 				   <tr>
 						<th>Código</th>
 						<th>Detalle Producto</th>
+						<th>Categoria Producto</th>
 						<th>Fecha. Creado</th>
 						<th>Fecha. Modificado</th>
 						<th>Opciones </th>
@@ -58,12 +59,13 @@
 				  <tbody>
 					@foreach($productos as $producto)
 					<tr>
-					  <td>$producto->id</td>
-						<td>$producto->des_prd</td>
+					  <td>{{ $producto->id}} </td>
+						<td>{{ $producto->des_prd}} </td>
+						<td>{{ $producto->categoria->des_cat }} </td>
 						<td>{{ $producto->created_at->format('Y-m-d') }}</td>	
 						<td>{{ $producto->updated_at->format('Y-m-d') }}</td>	
-						<td>	
-							<button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-edit btn-xs" data-toggle="modal" data-target=".edit_producto"></button>
+						<td>
+							<button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-edit btn-xs" data-desc-prd="{{$producto->des_prd}}" data-id-prd="{{$producto->id}}" data-id-cat="{{$producto->categoria->id}}" data-toggle="modal" data-target=".edit_producto"></button>
 							<button type="button" class="btn btn-sm btn-danger glyphicon glyphicon-remove btn-xs" data-toggle="modal" data-target=".delete_producto"></button>
 						</td>
 					</tr>
@@ -91,11 +93,21 @@
 						<div class="form-group ">
 							<input class="form-control " id="des_prd" name="des_prd" placeholder="Producto" type="text">
 						</div>
+						<label for="categorias">Categorias</label>
+						<div class="form-group">
+							@if(!$categorias->isEmpty())
+								<select id="categoria_id"  name="categoria_id" class="form-control col-md-7 col-xs-12" >
+									@foreach($categorias as $categoria)
+										<option value="{{$categoria->id}}">{{$categoria->des_cat}} </option>
+									@endforeach
+								</select>
+							@endif
+						</div>
 					</div>
 					<div class="modal-footer"><!--
-					  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-					  <button type="reset" class="btn btn-primary">Deshacer</button>
-					  <button type="submit" class="btn btn-success">Guardar</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+						<button type="reset" class="btn btn-primary">Deshacer</button>
+						<button type="submit" class="btn btn-success">Guardar</button>
 					</div>
 				</form>
 			  </div>
@@ -105,7 +117,7 @@
 		 
 		   <!-- edit producto modal -->		  
 
-		  <div class="modal fade edit_producto" tabindex="-1" role="dialog" aria-hidden="true">
+		  <div id="edit_producto_modal" class="modal fade edit_producto" tabindex="-1" role="dialog" aria-hidden="true">
 			<div class="modal-dialog modal-sm">
 			  <div class="modal-content">
 
@@ -118,9 +130,19 @@
 					<input name="_method" type="hidden" value="PUT">
 					{{ csrf_field() }}
 					<div class="modal-body">
-						<label for="">Detalle Producto</label>
+						<label for="edit_des_prd">Detalle Producto</label>
 						<div class="form-group ">
-							<input class="form-control " id="inputsm" placeholder="Producto" type="text">
+							<input class="form-control " id="edit_des_prd" name="edit_des_prd" placeholder="Producto" type="text">
+						</div>
+						<label for="categorias">Categorias</label>
+						<div class="form-group">
+							@if(!$categorias->isEmpty())
+								<select id="edit_cat_prd"  name="edit_cat_prd" class="form-control col-md-7 col-xs-12" >
+									@foreach($categorias as $categoria)
+										<option value="{{$categoria->id}}">{{$categoria->des_cat}} </option>
+									@endforeach
+								</select>
+							@endif
 						</div>
 					</div>
 					<div class="modal-footer"><!--
@@ -174,18 +196,15 @@
 		
 	</div>		
 @stop
-        <!-- /page content -->
-		<!--
-		<script type="text/javascript">
-			$(document).ready(function(){
-				function onFinishCallback(){
-				$('#wizard').smartWizard('showMessage','Finish Clicked');
-			} 
-			});
-			
-			
-		</script>
-		-->
+@section('postscripts')
+<script>
+$('#edit_producto_modal').on('shown.bs.modal', function(e) {
+	var des_prd = $(e.relatedTarget).data('desc-prd');
+	var edit_id = $(e.relatedTarget).data('id-prd');
+	var cat_id = $(e.relatedTarget).data('id-cat');
+	$("#edit_producto_form").attr("action", $(location).attr('protocol') + "//" + $(location).attr('host') +"/producto/" + edit_id);
+	$(e.currentTarget).find('input[name="edit_des_prd"]').val(des_prd);
+	$(e.currentTarget).find('input[name="edit_cat_prd"]').val(cat_id);
+});
+</script>
 @stop
-<!--6581128-->
-<!--229392650-->

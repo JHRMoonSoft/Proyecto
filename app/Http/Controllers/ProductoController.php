@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Producto;
+use App\Categoria;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -19,8 +20,9 @@ class ProductoController extends Controller
      */
     public function index()
     {
-     $productos = Producto::all();
-     return View('producto.index')->with('productos', $productos);
+		$productos = Producto::all();
+		$categorias = Categoria::all();
+		return View('producto.index')->with(compact('productos', 'categorias'));
     }
 
     /**
@@ -48,10 +50,9 @@ class ProductoController extends Controller
 			];
         $validate = Validator::make($post_data, $rules);
         if (!$validate->failed()){
-			$producto = Producto::create($post_data);	 		
+			$producto = Producto::create($post_data);
 		}
-		$productos = Producto::all();
-		return view('producto.index')->with('productos', $productos);
+		return redirect()->intended('/producto');
     }
 
     /**
@@ -82,10 +83,10 @@ class ProductoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Producto  $producto
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Producto $producto)
+    public function update(Request $request, int $id)
     {
         $post_data = $request->all();
 		$rules = [
@@ -93,9 +94,12 @@ class ProductoController extends Controller
 			];
         $validate = Validator::make($post_data, $rules);
         if (!$validate->failed()) {
-            $productos = Producto::find($post_data['id']);
-            $productos->des_prd = $post_data['des_prd'];
-			return view('producto.show')->with('productos', $productos);
+            $producto = Producto::find($id);
+            $producto->des_prd = $post_data['edit_des_prd'];
+			$producto->categoria_id = $post_data['edit_cat_prd'];
+			$producto->save();
+			return redirect()->intended('/producto');
+			//return view('producto.show')->with('productos', $productos);
         }
     }
 
