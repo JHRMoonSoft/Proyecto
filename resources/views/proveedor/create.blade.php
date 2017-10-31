@@ -6,7 +6,7 @@
     <div class="x_panel">
 	    <div class="x_title">
 			<h2>Nuevo Proveedor</h2> &nbsp&nbsp&nbsp
-						
+			<a  href="{{ url('/proveedor') }}" class="btn btn-default  right" role="button"><i class="fa fa-reply" aria-hidden="true"></i>&nbsp&nbsp&nbspVolver al listado </a>
 		<!--
 			<ul class="nav navbar-right panel_toolbox">
 			

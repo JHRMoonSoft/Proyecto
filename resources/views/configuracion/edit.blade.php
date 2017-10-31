@@ -6,8 +6,8 @@
     <div class="x_panel">
 	    <div class="x_title">
 			
-		<h2>Información  Empresa</h2> &nbsp&nbsp&nbsp
-		<a  href="{{ url('/configuracion') }}" class="btn btn-default  right" role="button"><i class="fa fa-reply" aria-hidden="true"></i>&nbsp&nbsp&nbspVolver </a>
+				<h2>Editar Empresa</h2> &nbsp&nbsp&nbsp
+				<a  href="{{ url('/configuracion/'.$configuracion->id) }}" class="btn btn-danger  right" role="button">Ver </a>
 				
 		<!--
 			<ul class="nav navbar-right panel_toolbox">
@@ -29,18 +29,18 @@
 			<div class="clearfix"></div>
 	    </div>
 		<div class="x_content">
-			<form class="form-horizontal" method="POST" action="{{ url('/configuracion') }}">
+			
+			<form class="form-horizontal" role="form" method="POST" action="{{ url('/configuracion/'.$configuracion->id) }}">
 			  {{ csrf_field() }}
-
-				<!--<p>For alternative validation library <code>parsleyJS</code> check out in the <a href="form.html">form page</a></p>-->
-			  
+				<input name="_method" type="hidden" value="PUT">						
+				<input id="id" name="id" type="hidden" value="{{ $configuracion->id }}">
 				
 				<div class="item form-group">
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="tip_empr">Tipo. Empresa<span class="required">*</span>
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
 					
-						<select id="tip_empr" class="form-control col-md-7 col-xs-12" data-validate-length-range="7" data-validate-words="2" name="tip_empr"  required="required">
+						<select id="tip_empr" class="form-control col-md-7 col-xs-12" data-validate-length-range="7" data-validate-words="2" name="tip_empr" value="{{$configuracion->tip_empr}}" required="required">
 							<option value="" selected>Seleccionar</option>
 							<option value="E.I.R.L">E.I.R.L</option>
 							<option value="S.C">S.C</option>
@@ -59,7 +59,7 @@
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="raz_soc">Razón social<span class="required">*</span>
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input id="raz_soc" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="raz_soc"  required="required" type="text">
+					  <input id="raz_soc" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="raz_soc" value="{{$configuracion->raz_soc}}"  required="required" type="text">
 						@if ($errors->has('raz_soc'))
 							<span class="help-block">
 								<strong>{{ $errors->first('raz_soc') }}</strong>
@@ -72,7 +72,7 @@
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
 					
-						<select id="tip_doc" class="form-control col-md-7 col-xs-12" data-validate-length-range="7" data-validate-words="2" name="tip_doc"  required="required">
+						<select id="tip_doc" class="form-control col-md-7 col-xs-12" data-validate-length-range="7" data-validate-words="2" name="tip_doc" value="{{$configuracion->tip_doc}}" required="required">
 							<option value=" " selected>Seleccionar</option>
 							<option value="NIT">NIT</option>
 							<option value="RUT">RUT</option>
@@ -85,7 +85,7 @@
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="num_doc">No. Documento <span class="required">*</span>
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input id="num_doc" class="form-control col-md-7 col-xs-12" data-validate-length-range="11"  name="num_doc"  required="required" type="text">
+					  <input id="num_doc" class="form-control col-md-7 col-xs-12" data-validate-length-range="11"  name="num_doc" value="{{$configuracion->num_doc}}" required="required" type="text">
 						@if ($errors->has('num_doc'))
 							<span class="help-block">
 								<strong>{{ $errors->first('num_doc') }}</strong>
@@ -97,7 +97,7 @@
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="tel_fij">Telefono fijo <span class="required">*</span>
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input type="text" id="tel_fij" name="tel_fij" required="required" data-validate-length-range="8,20" class="form-control col-md-7 col-xs-12">
+					  <input type="text" id="tel_fij" name="tel_fij" value="{{$configuracion->tel_fij}}" required="required" data-validate-length-range="8,20" class="form-control col-md-7 col-xs-12">
 						@if ($errors->has('tel_fij'))
 							<span class="help-block">
 								<strong>{{ $errors->first('tel_fij') }}</strong>
@@ -108,7 +108,7 @@
 				<div class="item form-group">
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="tel_cel">Telefono celular </label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input type="text" id="tel_cel" name="tel_cel" required="required" data-validate-length-range="8,20" class="form-control col-md-7 col-xs-12">
+					  <input type="text" id="tel_cel" name="tel_cel" value="{{$configuracion->tel_cel}}" required="required" data-validate-length-range="8,20" class="form-control col-md-7 col-xs-12">
 						@if ($errors->has('tel_cel'))
 							<span class="help-block">
 								<strong>{{ $errors->first('tel_cel') }}</strong>
@@ -120,7 +120,7 @@
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="dir_mail">Email 
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input type="email" id="dir_mail" name="dir_mail" required="required" class="form-control col-md-7 col-xs-12">
+					  <input type="email" id="dir_mail" name="dir_mail" value="{{$configuracion->dir_mail}}" required="required" class="form-control col-md-7 col-xs-12">
 						@if ($errors->has('dir_mail'))
 							<span class="help-block">
 								<strong>{{ $errors->first('dir_mail') }}</strong>
@@ -132,7 +132,7 @@
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="dir_empr">Dirección 
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input type="text" id="dir_empr" name="dir_empr" required="required" class="form-control col-md-7 col-xs-12">
+					  <input type="text" id="dir_empr" name="dir_empr" value="{{$configuracion->dir_empr}}" required="required" class="form-control col-md-7 col-xs-12">
 						@if ($errors->has('dir_empr'))
 							<span class="help-block">
 								<strong>{{ $errors->first('dir_empr') }}</strong>
@@ -143,7 +143,7 @@
 				<div class="item form-group">
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="brr_empr">Barrio</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input  type="text" id="brr_empr" name="brr_empr" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
+					  <input  type="text" id="brr_empr" name="brr_empr" value="{{$configuracion->brr_empr}}" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
 						@if ($errors->has('brr_empr'))
 							<span class="help-block">
 								<strong>{{ $errors->first('brr_empr') }}</strong>
@@ -154,7 +154,7 @@
 				<div class="item form-group">
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="ciu_empr">Ciudad</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input id="ciu_empr" type="text" name="ciu_empr" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
+					  <input id="ciu_empr" type="text" name="ciu_empr" value="{{$configuracion->ciu_empr}}" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
 						@if ($errors->has('ciu_empr'))
 							<span class="help-block">
 								<strong>{{ $errors->first('ciu_empr') }}</strong>
@@ -165,7 +165,7 @@
 				<div class="item form-group">
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="pai_empr">Pais </label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input id="pai_empr" type="text" name="pai_empr" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
+					  <input id="pai_empr" type="text" name="pai_empr" value="{{$configuracion->pai_empr}}" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
 						@if ($errors->has('pai_empr'))
 							<span class="help-block">
 								<strong>{{ $errors->first('pai_empr') }}</strong>

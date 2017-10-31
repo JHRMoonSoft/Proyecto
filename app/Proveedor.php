@@ -12,17 +12,17 @@ class Proveedor extends Model
 
 	public function ordencompras()
 	{//OK
-    		return $this->hasMany('OrdenCompra');
+    		return $this->hasMany('App\OrdenCompra');
 	}
 	
 	public function facturas()
 	{//Ok
-    		return $this->hasMany('Factura');
+    		return $this->hasMany('App\Factura');
 	}
 	
 	public function categorias(){
 		//Ok
-		return $this->belongsToMany('Categoria','categoriaproveedors');
+		return $this->belongsToMany('App\Categoria','categoriaproveedors')->withPivot('id');
 	
 	}
 }

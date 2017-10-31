@@ -62,6 +62,8 @@ class ProveedorController extends Controller
         $validate = Validator::make($post_data, $rules);
         if (!$validate->failed()){
 			$proveedor = Proveedor::create($post_data);			
+			$proveedor->categorias()->sync($post_data['categorias']);
+			$proveedor->save();
 		}
 		$proveedors = Proveedor::all();
 		return view('proveedor.index')->with('proveedors', $proveedors);
@@ -75,8 +77,11 @@ class ProveedorController extends Controller
      */
     public function show($id)
     {
-        $proveedors = Proveedor::find($id);
-        return View('proveedor.show')->with('proveedors', $proveedors);
+        
+		
+		$proveedors = Proveedor::find($id);
+		$categorias = $proveedors->categorias;
+        return view('proveedor.show', compact('proveedors', 'categorias'));
 	
     }
 
@@ -86,10 +91,13 @@ class ProveedorController extends Controller
      * @param  \App\Proveedor  $proveedor
      * @return \Illuminate\Http\Response
      */
-    public function edit(Proveedor $proveedor)
+    public function edit($id)
     {
-        $proveedors = Proveedor::find($proveedor);
-		return view('proveedor.edit')->with('proveedors', $proveedors);
+        $proveedors = Proveedor::find($id);
+		$categorias = $proveedors->categorias->toArray();
+		$categoriasGeneral = Categoria::all();
+		return view('proveedor.edit')->with(compact('categoriasGeneral','categorias','proveedors'));
+	
     }
 
     /**
@@ -117,19 +125,25 @@ class ProveedorController extends Controller
 			];
         $validate = Validator::make($post_data, $rules);
         if (!$validate->failed()) {
-            $proveedor = Proveedor::find($post_data['id']);
-            $proveedor->raz_soc = $post_data['raz_soc'];
-            $proveedor->tip_doc = $post_data['tip_doc'];
-			$proveedor->num_doc = $post_data['num_doc'];
-			$proveedor->tel_fij = $post_data['tel_fij'];
-            $proveedor->tel_cel = $post_data['tel_cel'];
-			$proveedor->dir_mail = $post_data['dir_mail'];
-			$proveedor->dir_prov = $post_data['dir_prov'];
-            $proveedor->brr_prov = $post_data['brr_prov'];
-			$proveedor->ciu_prov = $post_data['ciu_prov'];
-			$proveedor->pai_prov = $post_data['pai_prov'];
-            $proveedor->obs_prov = $post_data['obs_prov'];
-			return view('proveedor.show')->with('proveedor', $proveedor);
+            $proveedors = Proveedor::find($post_data['id']);
+            $proveedors->raz_soc = $post_data['raz_soc'];
+            $proveedors->tip_doc = $post_data['tip_doc'];
+			$proveedors->num_doc = $post_data['num_doc'];
+			$proveedors->tel_fij = $post_data['tel_fij'];
+            $proveedors->tel_cel = $post_data['tel_cel'];
+			$proveedors->dir_mail = $post_data['dir_mail'];
+			$proveedors->dir_prov = $post_data['dir_prov'];
+            $proveedors->brr_prov = $post_data['brr_prov'];
+			$proveedors->ciu_prov = $post_data['ciu_prov'];
+			$proveedors->pai_prov = $post_data['pai_prov'];
+            $proveedors->obs_prov = $post_data['obs_prov'];
+			$proveedors->categorias()->sync($post_data['categorias']);
+			$proveedors->save();
+			$categorias = $proveedors->categorias;
+			return view('proveedor.show', compact('proveedors', 'categorias'));
+			
+			
+			
         }
     }
 

@@ -19,8 +19,8 @@
   <div class="x_panel">
 	    <div class="x_title">
 			<h2>Listado de Proveedores</h2> &nbsp&nbsp&nbsp
-						
-			<a  href="/proveedor/create" class="btn btn-warning" role="button">Nuevo Proveedor</a>
+			<a  href="{{ url('/proveedor/create') }}" class="btn btn-info  right" role="button"><i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp&nbspNuevo Proveedor </a>
+			
 			<!--
 			<ul class="nav navbar-right panel_toolbox">
 			
@@ -71,7 +71,7 @@
 						<td>{{ $proveedor->created_at->format('Y-m-d') }}</td>	
 						<td>{{ $proveedor->updated_at->format('Y-m-d') }}</td>									
 						<td><a href="{{ url('/proveedor/'.$proveedor->id) }}" title="Detalle" class="btn btn-success glyphicon glyphicon-file btn-xs" data-title="Detalle"></a>
-							<a href="" title="Editar" class="btn btn-primary glyphicon glyphicon-pencil btn-xs" data-title="Editar"></a></td><!--
+							<a href="{{ url('/proveedor/'.$proveedor->id.'/edit') }}" title="Editar" class="btn btn-primary glyphicon glyphicon-pencil btn-xs" data-title="Editar"></a></td><!--
 						<td><p data-placement="top" data-toggle="tooltip" title="Eliminar"><a href="" class="btn btn-danger btn-xs" data-title="Eliminar"><span class=" glyphicon glyphicon-trash"></span></a></p></td>-->
 				
 					</tr>                       

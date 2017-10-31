@@ -5,7 +5,11 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Nuevo Rol</div>
+                <div class="panel-heading">Nuevo Rol
+					<a  href="{{ url('/role') }}" class="btn btn-default  right" role="button"><i class="fa fa-reply" aria-hidden="true"></i>&nbsp&nbsp&nbspVolver al listado </a>
+					<div class="clearfix"></div>
+				</div>
+				
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/role') }}">
                         {{ csrf_field() }}

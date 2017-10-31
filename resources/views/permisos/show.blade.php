@@ -6,27 +6,27 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading"> Permiso &nbsp&nbsp&nbsp
-				<a  href="{{ url('/permisos/'.$permission->id.'/edit') }}" class="btn btn-success " role="button">Editar</a>
+				<a  href="{{ url('/permisos/'.$permission->id.'/edit') }}" class="btn btn-info right " role="button">Editar</a>
 				<a  href="{{ url('/permisos') }}" class="btn btn-default  right" role="button"><i class="fa fa-reply" aria-hidden="true"></i>&nbsp&nbsp&nbspVolver al listado </a>
-				
+				<div class="clearfix"></div>
 				</div>
                 <div class="panel-body">
 					<div class="row form-group">
 						<label for="name" class="col-md-4 control-label">Nombre</label>
 						<div class="col-md-6">
-							<input id="name" type="text" class="form-control" name="name" value="{{ $permission->name }}" disabled="disabled" required>
+							<input id="name" type="text" class="form-control" name="name" value="{{ $permission->name }}" disabled="disabled"  style="background:rgba(247, 247, 247, 0.57);"  required>
 						</div>
 					</div>
 					<div class="row form-group">
 						<label for="display_name" class="col-md-4 control-label">Nombre Para Mostrar</label>
 						<div class="col-md-6">
-							<input id="display_name" type="text" class="form-control" name="display_name" value="{{ $permission->display_name }}" disabled="disabled" required>
+							<input id="display_name" type="text" class="form-control" name="display_name" value="{{ $permission->display_name }}" disabled="disabled"  style="background:rgba(247, 247, 247, 0.57);"  required>
 						</div>
 					</div>
 					<div class="row form-group">
                         <label for="description" class="col-md-4 control-label">Descripción</label>
                         <div class="col-md-6">
-                            <input id="description" type="text" class="form-control" name="description" value="{{ $permission->description }}" disabled="disabled" required>
+                            <input id="description" type="text" class="form-control" name="description" value="{{ $permission->description }}" disabled="disabled"  style="background:rgba(247, 247, 247, 0.57);"  required>
                         </div>
                     </div>
 				</div>

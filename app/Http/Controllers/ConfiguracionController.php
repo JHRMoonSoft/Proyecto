@@ -106,6 +106,7 @@ class ConfiguracionController extends Controller
     {
         $configuracion = Configuracion::find($id);
 		return view('configuracion.edit')->with('configuracion', $configuracion);
+		
     }
 
     /**

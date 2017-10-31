@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 use App\User;
+use App\Role;
 use Illuminate\Http\Request;
 use Validator;
 
 class UsuarioController extends Controller
 {
+	public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -48,7 +53,8 @@ class UsuarioController extends Controller
     public function show($id)
     {
 		$users = User::find($id);
-        return view('usuario.show')->with('users', $users);
+		$roles= $users->roles;
+        return view('usuario.show')->with(compact('users','roles'));
     }
 
     /**
@@ -58,8 +64,10 @@ class UsuarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
+    {	$users= User::find($id);
+        $roles= $users->roles->toArray();
+		$rolesGeneral = Role::all();
+        return view('usuario.edit')->with(compact('users','roles','rolesGeneral'));
     }
 
     /**

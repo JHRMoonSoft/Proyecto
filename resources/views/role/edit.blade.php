@@ -5,9 +5,9 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">Editar Rol &nbsp&nbsp&nbsp
-				<a  href="{{ url('/role/'.$role->id) }}"class="btn btn-success   " role="button"> Ver</a>
+				<a  href="{{ url('/role/'.$role->id) }}"class="btn btn-success  right " role="button"> Ver</a>
 				<a  href="{{ url('/role') }}" class="btn btn-default  right" role="button"><i class="fa fa-reply" aria-hidden="true"></i>&nbsp&nbsp&nbspVolver al listado </a>
-				<br/>
+				<div class="clearfix"></div>
 				</div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/role/'.$role->id) }}">

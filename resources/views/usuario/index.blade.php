@@ -19,8 +19,7 @@
   <div class="x_panel">
 	    <div class="x_title">
 			<h2>Listado de Usuarios</h2> &nbsp&nbsp&nbsp
-						
-			<a  href="/register" class="btn btn-warning" role="button">Nuevo Usuario</a>
+			<a  href="{{ url('/register') }}" class="btn btn-info  right" role="button"><i class="fa fa-user" aria-hidden="true"></i>&nbsp&nbspNuevo Usuario </a>			
 			<!--
 			<ul class="nav navbar-right panel_toolbox">
 			
@@ -75,7 +74,7 @@
 						<td>{{ $user->created_at->format('Y-m-d') }}</td>	
 						<td>{{ $user->updated_at->format('Y-m-d') }}</td>								
 						<td><a href="{{ url('/users/'.$user->id) }}" title="Detalle" class="btn btn-success glyphicon glyphicon-file btn-xs" data-title="Detalle"></a>
-							<a href="" title="Editar" class="btn btn-primary glyphicon glyphicon-pencil btn-xs" data-title="Editar"></a></td><!--
+							<a href="{{ url('/users/'.$user->id.'/edit') }}" title="Editar" class="btn btn-primary glyphicon glyphicon-pencil btn-xs" data-title="Editar"></a></td><!--
 						<td><p data-placement="top" data-toggle="tooltip" title="Eliminar"><a href="" class="btn btn-danger btn-xs" data-title="Eliminar"><span class=" glyphicon glyphicon-trash"></span></a></p></td>-->
 					</tr>                       
 					@endforeach
