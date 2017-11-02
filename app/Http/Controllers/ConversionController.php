@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Conversion;
+use App\Producto;
+use App\Unidad;
 use Illuminate\Http\Request;
-
+use Validator;
+use Illuminate\Support\Facades\DB;
 class ConversionController extends Controller
 {
 	public function __construct()
@@ -18,7 +21,11 @@ class ConversionController extends Controller
      */
     public function index()
     {
-      return View('conversion.index');
+		$unidadesAlmacen = DB::select(DB::raw("SELECT DISTINCT a.* FROM unidads a, productos b WHERE a.id = b.unidad_id"));
+		$unidades = Unidad::all();
+		$conversiones = Conversion::all();
+		return View('conversion.index')->with(compact('conversiones','unidadesAlmacen', 'unidades'));
+ 
     }
 
     /**
@@ -51,10 +58,9 @@ class ConversionController extends Controller
 			];
         $validate = Validator::make($post_data, $rules);
         if (!$validate->failed()){
-			$conversion = Conversion::create($post_data);	 		
+			$conversion = Conversion::create($post_data);
 		}
-		$conversions = Conversion::all();
-		return view('conversion.index')->with('conversions', $conversions);
+		return redirect()->intended('/conversion');
     }
 
     /**
@@ -84,10 +90,10 @@ class ConversionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Conversion  $conversion
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Conversion $conversion)
+    public function update(Request $request, int $id)
     {
           $post_data = $request->all();
 		$rules = [
@@ -99,15 +105,13 @@ class ConversionController extends Controller
 			];
         $validate = Validator::make($post_data, $rules);
         if (!$validate->failed()) {
-            $conversions = Conversion::find($post_data['id']);
-            $conversions->producto_id = $post_data['producto_id'];
-			$conversions->cnt_ini_prd = $post_data['cnt_ini_prd'];
-			$conversions->unidad_inicial_id = $post_data['unidad_inicial_id'];
-			$conversions->cnt_fin_prd = $post_data['cnt_fin_prd'];
-			$conversions->unidad_final_id = $post_data['unidad_final_id'];
-			
-			return view('conversion.show')->with('conversions', $conversions);
+            $conversions = Conversion::find($id);
+            $conversions->unidad_inicial_id = $post_data['edit_und_ini_id'];
+			$conversions->cnt_fin_prd = $post_data['edit_cnt_fin_prd'];
+			$conversions->unidad_final_id = $post_data['edit_unidad_final_id'];
+			$conversions->save();
         }
+		return redirect()->intended('/conversion');
     }
 
     /**

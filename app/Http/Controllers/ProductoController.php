@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Producto;
 use App\Categoria;
+use App\Unidad;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -22,7 +23,8 @@ class ProductoController extends Controller
     {
 		$productos = Producto::all();
 		$categorias = Categoria::all();
-		return View('producto.index')->with(compact('productos', 'categorias'));
+		$unidades = Unidad::all();
+		return View('producto.index')->with(compact('productos', 'categorias','unidades'));
     }
 
     /**
@@ -51,6 +53,11 @@ class ProductoController extends Controller
         $validate = Validator::make($post_data, $rules);
         if (!$validate->failed()){
 			$producto = Producto::create($post_data);
+			if($request->has('unidades')){
+				$producto->unidades()->sync($post_data['unidades']);
+				$producto->save();
+			}
+			
 		}
 		return redirect()->intended('/producto');
     }
@@ -97,6 +104,16 @@ class ProductoController extends Controller
             $producto = Producto::find($id);
             $producto->des_prd = $post_data['edit_des_prd'];
 			$producto->categoria_id = $post_data['edit_cat_prd'];
+			// validar que no haya nada en el almcen
+			// si existe algo en el almacen covertir la cantidad del almcen a la nueva unidad base
+			// si no existe conversion disponible no asignar el cambio
+			$producto->unidad_id = $post_data['edit_und_prd'];
+			if($request->has('edit_unds_prd')){
+				$producto->unidades()->sync($post_data['edit_unds_prd']);
+			}
+			else{
+				$producto->unidades()->detach();
+			}
 			$producto->save();
 			return redirect()->intended('/producto');
 			//return view('producto.show')->with('productos', $productos);

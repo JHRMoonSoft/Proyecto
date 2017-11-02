@@ -376,9 +376,11 @@
 	 @show 
     </body>
 	<!-- jQuery -->
-	<script src="{{ URL::asset('css/workflow/vendors/jquery/dist/jquery.min.js') }}"></script>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+	<!-- <script src=" URL::asset('css/workflow/vendors/jquery/dist/jquery.min.js') }}"></script> -->
     <!-- Bootstrap -->
-	<script src="{{ URL::asset('css/workflow/vendors/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+	<script src="{{ URL::asset('css/workflow/vendors/bootstrap/dist/js/bootstrap.min.js') }}"></script> -->
+	
     <!-- FastClick -->
 	<script src="{{ URL::asset('css/workflow/vendors/fastclick/lib/fastclick.js') }}"></script>
     <!-- NProgress -->

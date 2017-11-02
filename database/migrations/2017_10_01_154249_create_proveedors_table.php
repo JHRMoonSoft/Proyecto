@@ -18,7 +18,7 @@ class CreateProveedorsTable extends Migration
 			$table->increments('id');
 			$table->string('raz_soc');
 			$table->string('tip_doc');
-			$table->string('num_doc');
+			$table->string('num_doc')->unique();
 			$table->string('tel_fij');
 			$table->string('tel_cel')->nullable();
 			$table->string('dir_mail')->nullable();

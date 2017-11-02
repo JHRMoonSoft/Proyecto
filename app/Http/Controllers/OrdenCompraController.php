@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Producto;
+use App\Proveedor;
+use App\Categoria;
+use App\Configuracion;
 use App\OrdenCompra;
 use Illuminate\Http\Request;
 
@@ -28,8 +31,11 @@ class OrdenCompraController extends Controller
      */
     public function create()
     {
-        //
-	return View('ordencompra.create');
+       	$productos = Producto::all();
+		$proveedors = Proveedor::all();
+		$categorias = Categoria::all();
+		$configuracion = Configuracion::all();
+		return View('ordencompra.create')->with(compact('productos','proveedors','categorias','configuracion'));
     }
 
     /**

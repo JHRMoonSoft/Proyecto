@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
 			$table->string('tip_dep');
 			$table->string('dep_usr');
 			$table->string('crd_usr');
-			$table->string('tel_fij');
+			$table->string('tel_fij')->nullable();
 			$table->string('tel_cel');
 			$table->string('dir_mail');
 			$table->string('password');

@@ -96,10 +96,10 @@
 							<input class="form-control " id="des_und" name="des_und" placeholder="Unidad" type="text">
 						</div>
 					</div>
-					<div class="modal-footer"><!--
-					  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-						<button type="button" class="btn btn-primary" data-dismiss="modal">Deshacer</button>
+					<div class="modal-footer">
+						<button type="reset" class="btn btn-primary" >Deshacer</button>
 						<button type="submit" class="btn btn-success">Guardar</button>
+					<!--	<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>-->
 					</div>
 				</form>
 			  </div>
@@ -129,7 +129,7 @@
 					</div>
 					<div class="modal-footer"><!--
 					  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-					 <button type="button" class="btn btn-primary" data-dismiss="modal">Deshacer</button>
+					 <button type="reset" class="btn btn-primary" data-dismiss="modal">Deshacer</button>
 					 <button type="submit" class="btn btn-success">Guardar</button>
 					</div>
 				</form>
@@ -167,7 +167,7 @@
 
 				<div class="modal-footer"><!--
 				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-				  <button type="button" class="btn btn-primary">Deshacer</button>
+				  <button type="reset" class="btn btn-primary">Deshacer</button>
 				  <button type="submit" class="btn btn-danger"> Eliminar</button>
 				</div>
 

@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Producto;
+use App\Unidad;
+use App\Conversion;
+use App\Solicitudcompra;
 use Illuminate\Http\Request;
 
 class SolicitudCompraController extends Controller
@@ -26,8 +29,8 @@ class SolicitudCompraController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return View('solicitudcompra.create');
+    {	$productos = Producto::all();
+		return View('solicitudcompra.create')->with(compact('productos'));
     }
 
     /**

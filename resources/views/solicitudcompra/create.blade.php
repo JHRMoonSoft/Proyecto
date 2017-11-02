@@ -44,15 +44,25 @@
 							<div class="row ">
 								<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
 									<div class="form-group"><br>
-										<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Asunto</label>
+										<label class="control-label col-md-3 col-sm-3 col-xs-12" for="asn_scp">Asunto</label>
 										<div class="col-md-6 col-sm-6 col-xs-12">
-										  <input type="text" id="first-name" value="SOLICITUD DE COMPRA"  required="required" class="form-control col-md-7 col-xs-12">
+										  <input type="text" id="asn_scp" value="SOLICITUD DE COMPRA"  required="required" class="form-control col-md-7 col-xs-12">
+											@if ($errors->has('asn_scp'))
+												<span class="help-block">
+													<strong>{{ $errors->first('asn_scp') }}</strong>
+												</span>
+											@endif
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Observacion	</label>																			
+										<label class="control-label col-md-3 col-sm-3 col-xs-12" for="obv_scp">Observacion	</label>																			
 										<div class="col-md-6 col-sm-6 col-xs-12">
-										  <textarea type="text" id="last-name"  name="last-name"rows="5" required="required" class="form-control col-md-7 col-xs-12"></textarea>
+										  <textarea type="text" id="obv_scp"  name="obv_scp"rows="5" required="required" class="form-control col-md-7 col-xs-12"></textarea>
+											@if ($errors->has('obv_scp'))
+												<span class="help-block">
+													<strong>{{ $errors->first('obv_scp') }}</strong>
+												</span>
+											@endif
 										</div><br>
 									</div>
 								</form>
@@ -144,12 +154,10 @@
 									<thead>
 										<tr >
 											<th>#</th>
-											<th><button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-toggle="modal" data-target=".categoria"></button>Categoria</th>
 											<th><button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-toggle="modal" data-target=".producto"></button>Producto</th>
-											<th>Detalle del producto</th>	
 											<th><button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-toggle="modal" data-target=".unidad"></button>Unidad</th>
-											<th> Disponible</th>
 											<th>Cantidad</th>
+											<th> Disponible</th>
 											<th><a></a></th>
 							
 										</tr>
@@ -159,32 +167,24 @@
 											<td>
 												1
 											</td>
-											<td>
-												<div class="form-group ">
-													<select class="form-control">
-													  <option value="" selected>Seleccionar</option>
-													  <option value="">Taller de Cocina</option>
-													  <option value="">Papeleria</option>
-													  <option value="" >Didacticos</option>
-													  <option value="" >Aseo</option>
-													</select>
-												</div>
-											</td>
-											<td class="nopadding" >
-												<select class="form-control" id="educationDate" name="educationDate[]">
-													<option value="" selected>Seleccionar</option>
-													<option name="" value="">Aceite</option>
-													<option value="">Arepas antioqueñas precocidas </option>
-													<option value="" >Arroz  (bolsas de medio kilo)</option>
-													<option value="" >Bocadillo</option>
-											  </select>
+											
 											</td>
 											<td class="nopadding" >
 												<div class="form-group">
-													<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Detalle">
+													@if(!$productos->isEmpty())
+														<select id="productos" class="form-control" name="productos" >
+															<option value="" selected>Seleccionar</option>
+															@foreach($productos as $producto)
+																<option value="{{ $producto->id}}">{{ $producto->des_prd}} </option>
+															@endforeach
+														</select>
+													@endif
 												</div>
 											</td>
 											<td class="nopadding" >
+												<div class="form-group">
+													
+												</div>
 												<select class="form-control" id="educationDate" name="educationDate[]">
 													<option value="" selected>Seleccionar</option>
 													<option name="" value="">Barra</option>
@@ -205,14 +205,14 @@
 													<option value="">Litro</option>
 													<option value="">Lonjas</option>
 											  </select>
-											</td>
-											<td>
-													1 Caja de 5 UND
-											</td>
+											</td>											
 											<td class="nopadding" >
 												<div class="form-group">
 													<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Cantidad">
 												</div>
+											</td>
+											<td>
+													1 Caja de 5 UND
 											</td>
 											<td class="nopadding" >
 												<div class="input-group-btn">

@@ -41,27 +41,26 @@
 								<div class="panel panel-default">
 									<div class="panel-heading ">
 										<form class="form-horizontal form-label-left">	
-										  <div class="col-md-2 	col-sm-6 col-xs-12">
-											<label for="ex1">Código</label>
-											<input class="form-control input-sm" id="ex1" type="text"  disabled style="background:#fff;">
-										  </div>
-										  <div class="col-md-2 	col-sm-6 col-xs-12">
-												 <label for="single_cal2">Fecha</label>
+										    <div class="col-md-2 	col-sm-6 col-xs-12">
+												<label for="no_ocp">Código</label>
+												<input class="form-control input-sm" id="no_ocp" name="no_ocp" type="text"  disabled style="background:rgba(247, 247, 247, 0.57);">
+										    </div>
+											<div class="col-md-2 	col-sm-6 col-xs-12">
+												<label for="single_cal2">Fecha</label>
 												<input type="text" class="form-control input-sm has-feedback-left " id="single_cal2" placeholder="First Name" aria-describedby="inputSuccess2Status2">
-												
-										  </div>
+											</div>
 											<div class="col-md-2 col-sm-6 col-xs-12">
 												<label for="ex3">Empresa</label>
-												<input class="form-control input-sm" id="ex3" type="text"  disabled style="background:#fff;">
+												<input class="form-control input-sm" id="ex3" type="text" value=""  disabled style="background:rgba(247, 247, 247, 0.57);">
 											</div>
 											<div class="col-md-2 col-sm-6 col-xs-12">
 												<label for="ex1">Nit. Empresa</label>
-												<input class="form-control input-sm" id="ex1" type="text"  disabled style="background:#fff;">
+												<input class="form-control input-sm" id="ex1" type="text"  disabled style="background:rgba(249, 249, 249, 0.57);">
 											</div>
 									
 											<div class="col-md-2 col-sm-6 col-xs-12">
 												<label for="ex2">Realizado</label>
-												<input class="form-control input-sm" id="ex2" type="text"  disabled style="background:#fff;">
+												<input class="form-control input-sm" id="ex2" type="text"  disabled style="background:rgba(247, 247, 247, 0.57);">
 											</div>
 											<div class="col-md-2 col-sm-6 col-xs-12">
 												<label for="ex3">No. OCP</label>
@@ -76,7 +75,15 @@
 									<div class=" row ">	
 										<div class=" col-sm-3 col-xs-6">
 											<div class="form-group">
-												<label for="ex1">Proveedor</label>
+												<label for="proveedors">Proveedor</label>
+												@if(!$proveedors->isEmpty())
+													<select id="proveedors" class="form-control input-sm" name="proveedors" >
+														<option value="" selected>Seleccionar</option>
+														@foreach($proveedors as $proveedor)
+															<option value="{{ $proveedor->id}}">{{ $proveedor->raz_soc}} </option>
+														@endforeach
+													</select>
+												@endif<!--
 												<select class="form-control input-sm " id="exampleSelect1">
 													<option value="volvo" selected>Seleccionar</option>
 													<option value="">ALMACENES EXITO</option>
@@ -85,40 +92,40 @@
 													<option value="">EL GIGANTE DEL HOGAR</option>
 													<option value="">SAFARI COMPUTADORES</option>
 													<option value="">DISTRIBUIDORA Y PAPELERÍA VENEPLAS</option>
-												</select>
+												</select>-->
 											</div>
 										</div>
 										
 										<div class=" col-sm-3 col-xs-6">
 											<div class="form-group">
 												<label for="ex1">Nit.Proveedor</label>
-												<input class="form-control input-sm" id="ex1" type="text"  disabled style="background:#fff;">
+												<input class="form-control input-sm" id="ex1" type="text"  disabled style="background:rgba(247, 247, 247, 0.57);">
 											</div>
 										</div>
 										
 										<div class="col-sm-3 col-xs-6">
 											<div class="form-group">
 												<label for="ex2">Dirección</label>
-												<input class="form-control input-sm" id="ex2" type="text"  disabled style="background:#fff;">
+												<input class="form-control input-sm" id="ex2" type="text"  disabled style="background:rgba(247, 247, 247, 0.57);">
 											</div>	
 										</div>
 										<div class="col-sm-3 col-xs-6">
 											<div class="form-group">
 												<label for="ex3">Ciudad</label>
-												<input class="form-control input-sm" id="ex3" type="text"  disabled style="background:#fff;">
+												<input class="form-control input-sm" id="ex3" type="text"  disabled style="background:rgba(247, 247, 247, 0.57);">
 											</div>
 										</div>
 										<div class="col-sm-3 col-xs-6">
 											<div class="form-group">
 												<label for="ex1">Teléfono</label>
-												<input class="form-control input-sm" id="ex1" type="text"  disabled style="background:#fff;">
+												<input class="form-control input-sm" id="ex1" type="text"  disabled style="background:rgba(247, 247, 247, 0.57);">
 											</div>
 										</div>
 								
 										<div class="col-sm-3 col-xs-6">
 											<div class="form-group">
 												<label for="ex2">E-mail</label>
-												<input class="form-control input-sm" id="ex2" type="text"  disabled style="background:#fff;">
+												<input class="form-control input-sm" id="ex2" type="text"  disabled style="background:rgba(247, 247, 247, 0.57);">
 											</div>
 										</div>
 										<div class="col-sm-3 col-xs-6">
@@ -171,13 +178,14 @@
 							<div class=" row ">		
 								<div class="col-xs-3"><br/>
 									<label for="ex3">Categoria</label>
-									<select class="form-control">
-									  <option value="volvo" selected>Seleccionar</option>
-									  <option value="saab">Taller de Cocina</option>
-									  <option value="vw">Papeleria</option>
-									  <option value="audi" >Didacticos</option>
-									  <option value="audi" >Aseo</option>
-									</select>
+									@if(!$categorias->isEmpty())
+										<select id="categorias" class="form-control input-sm" name="categorias" >
+											<option value="" selected>Seleccionar</option>
+											@foreach($categorias as $categoria)
+												<option value="{{ $categoria->id}}">{{ $categoria->des_cat}} </option>
+											@endforeach
+										</select>
+									@endif
 								</div>
 								<div class="col-xs-2"><br/>
 									<h4><h4/><br>
@@ -232,13 +240,16 @@
 													1
 												</td>								
 												<td class="nopadding" >
-													<select class="form-control input-sm" id="educationDate" name="educationDate[]">
-														<option value="" selected>Seleccionar</option>
-														<option name="" value="">Aceite</option>
-														<option value="">Arepas antioqueñas precocidas </option>
-														<option value="" >Arroz  (bolsas de medio kilo)</option>
-														<option value="" >Bocadillo</option>
-												  </select>
+												<div class="form-group input-sm">
+													@if(!$productos->isEmpty())
+														<select id="productos" class="form-control" name="productos" >
+															<option value="" selected>Seleccionar</option>
+															@foreach($productos as $producto)
+																<option value="{{ $producto->id}}">{{ $producto->des_prd}} </option>
+															@endforeach
+														</select>
+													@endif
+												</div>
 												</td>
 												<td class="nopadding" >
 													<select class="form-control input-sm" id="educationDate" name="educationDate[]">
@@ -321,21 +332,21 @@
 										<div class="form-group">
 											<label class="control-label col-md-4 col-sm-4 col-xs-12" align="right" for="first-name">SUBTOTAL </label>
 											<div class="col-md-8 col-sm-8 col-xs-12  right">
-											  <input type="text" id="first-name"   required="required" class="form-control col-md-7 col-xs-12 "  disabled style="background:#fff;">
+											  <input type="text" id="first-name"   required="required" class="form-control col-md-7 col-xs-12 "  disabled style="background:rgba(247, 247, 247, 0.57);">
 											</div>
 										</div>
 									
 										<div class="form-group">
 											<label class="control-label col-md-4 col-sm-4 col-xs-12 " align="right" for="first-name"><br/>IVA</label>
 											<div class="col-md-8 col-sm-8 col-xs-12  right">
-											  <input type="text" id="first-name"   required="required" class="form-control col-md-7 col-xs-12"  disabled style="background:#fff;">
+											  <input type="text" id="first-name"   required="required" class="form-control col-md-7 col-xs-12"  disabled style="background:rgba(247, 247, 247, 0.57);">
 											</div>
 										</div>
 								
 										<div class="form-group">
 											<label class="control-label col-md-4 col-sm-4 col-xs-12" align="right" for="first-name"><br/>TOTAL</label>
 											<div class="col-md-8 col-sm-8 col-xs-12  right">
-											  <input type="text" id="first-name"   required="required" class="form-control col-md-7 col-xs-12"  disabled style="background:#fff;">
+											  <input type="text" id="first-name"   required="required" class="form-control col-md-7 col-xs-12"  disabled style="background:rgba(247, 247, 247, 0.57);">
 											</div>
 										</div>
 									</div>

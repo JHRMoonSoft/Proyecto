@@ -67,8 +67,8 @@
 						<td>{{$proveedor->tip_doc}}</td>
 						<td>{{$proveedor->num_doc}}</td>
 						<td>{{$proveedor->tel_fij}}</td>
-						<td>
-							@foreach($categorias as $categoria)
+						<td> 
+							@foreach($proveedor->categorias as $categoria)
 							{{$categoria->des_cat}}
 							@endforeach
 						</td>						

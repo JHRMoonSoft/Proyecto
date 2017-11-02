@@ -19,6 +19,8 @@ class CreateProductosTable extends Migration
             $table->string('des_prd');
             $table->integer('categoria_id')->unsigned()->index();
             $table->foreign('categoria_id')->references('id')->on('categorias') ->onUpdate('cascade') ->onDelete('cascade');
+			$table->integer('unidad_id')->unsigned()->index();
+            $table->foreign('unidad_id')->references('id')->on('unidads') ->onUpdate('cascade') ->onDelete('cascade');
 			$table->timestamps();
         });
     }

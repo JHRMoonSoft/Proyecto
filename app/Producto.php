@@ -8,7 +8,7 @@ class Producto extends Model
 {
    protected $table = 'productos';
 	
-	protected $fillable = ['des_prd', 'categoria_id'];
+	protected $fillable = ['des_prd', 'categoria_id', 'unidad_id'];
 
 	public function categoria()
     {
@@ -26,25 +26,18 @@ class Producto extends Model
 						   ,'cant_dif_prd')->withTimestamps();
 	}
 
-	public function unidades_iniciales()
+	public function unidades()
 	{
-    		return $this->belongsToMany('Unidad', 'conversions','producto_id','unidad_inicial_id')->withTimestamps();
-	}
-	
-	public function unidades_finales()
-	{
-		return $this->belongsToMany('Unidad', 'conversions','producto_id','unidad_final_id')->withTimestamps();
-	}
-	
-	/*
-	public function almacen()
-    {
-		return $this->belongsTo('Almacen');
+    		return $this->belongsToMany('App\Unidad', 'producto_unidad');
 	}
 	
 	public function unidad()
-    {
-	        return $this->belongsTo('Unidad');
+	{
+    		return $this->belongsTo('App\Unidad');
 	}
-	*/
+	
+	public function almacen()
+    {
+		return $this->hasOne('Almacen');
+	}
 }

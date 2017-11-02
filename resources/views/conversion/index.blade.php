@@ -48,9 +48,9 @@
 				  <thead>
 				   <tr>
 						<th>Código</th>
-						<th>Unidad Empaque </th>
+						<th>Unidad Almacén</th>
 						<th>Cantidad</th>
-						<th> Unidad Almacén</th>
+						<th>Unidad Empaque</th>
 						<th>Fecha. Creado</th>
 						<th>Fecha. Modificado</th>
 						<th>Opciones </th>
@@ -58,24 +58,20 @@
 					</tr>
 				  </thead>
 				  <tbody>
-					
-					<tr>
-					  <td>01</td>
-						<td>paquete</td>
-						<td>30</td>	
-						<td>paños</td>
-						<td>22-10-2017</td>	
-						<td>12-11-2017</td>	
-						<td>
-								
-							<button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-edit btn-xs" data-toggle="modal" data-target=".edit_unidad"></button>
-							<button type="button" class="btn btn-sm btn-danger glyphicon glyphicon-remove btn-xs" data-toggle="modal" data-target=".delete_unidad"></button>
-								
-						</td>
-						
-				
-					</tr>                       
-					
+					@foreach($conversiones as $conversion)
+						<tr>
+							<td>{{$conversion->id}}</td>
+							<td>{{$conversion->unidadinicial->des_und}}</td>
+							<td>{{$conversion->cnt_fin_prd}}</td>	
+							<td>{{$conversion->unidadfinal->des_und}}</td>
+							<td>{{$conversion->created_at->format('Y-m-d') }}</td>	
+							<td>{{$conversion->updated_at->format('Y-m-d') }}</td>	
+							<td>
+								<button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-edit btn-xs" data-conv="{{$conversion}}" data-toggle="modal" data-target=".edit_conversion"></button>
+								<button type="button" class="btn btn-sm btn-danger glyphicon glyphicon-remove btn-xs" data-toggle="modal" data-target=".delete_unidad"></button>
+							</td>
+						</tr>                       
+					@endforeach
 				  </tbody>
 				</table>
 			</div>
@@ -92,58 +88,42 @@
 				  </button>
 				  <h4 class="modal-title" id="myModalLabel2">Nueva  Unidad Empaque</h4>
 				</div>
-				<div class="modal-body">					
-					
-					<label for="">Cod. Conversion</label>
-					<div class="form-group ">
-						<input class="form-control " id="inputsm" disabled="disabled" placeholder="codigo" type="text">
-					</div>
+				<form class="form-horizontal" method="POST" action="{{ url('/conversion') }}">
+					{{ csrf_field() }}
+					<div class="modal-body">					
+						<label for=""> Unidad de Almacén</label>
+						<div class="form-group ">
+								@if(!empty($unidadesAlmacen))
+								<select id="unidad_inicial_id"  name="unidad_inicial_id" class="form-control col-md-7 col-xs-12" >
+									@foreach($unidadesAlmacen  as $unidadAlmacen)
+										<option value="{{$unidadAlmacen->id}}">{{$unidadAlmacen->des_und}} </option>
+									@endforeach
+								</select>
+							@endif
+						</div>
 						<br/>
-					<label for=""> Unidad Empaque</label>
-					<div class="form-group ">
-						<select class="form-control" id="educationDate" name="educationDate[]">
-							<option value="" selected>Seleccionar</option>
-							<option name="" value="">Barra</option>
-							<option name="" value="">Bloque</option>
-							<option name="" value="">Bolsa</option>
-							<option name="" value="">Botella</option>
-							<option name="" value="">Caja</option>
-							<option name="" value="">Frasco</option>
-							<option value="">Lata</option>
-							<option value="">Paquete</option>
-							<option value="">Pote</option>
-							<option value="">Tarro</option>
-							<option value="">Tubo</option>
-							<option value="">Vaso</option>
-							<option name="" value="">Unidad</option>
-							<option value="">Kg</option>
-							<option value="">Kilo</option>
-							<option value="">Litro</option>
-							<option value="">Lonjas</option>
-						</select>
+						<label for="">Cantidad</label>
+						<div class="form-group">
+							<input class="form-control " id="cnt_fin_prd" name="cnt_fin_prd" placeholder="Cantidad" type="text">
+						</div>
+						<br/>
+						<label for=""> Unidad Empaque</label>
+						<div class="form-group ">
+							@if(!$unidades->isEmpty())
+								<select id="unidad_final_id"  name="unidad_final_id" class="form-control col-md-7 col-xs-12" >
+									@foreach($unidades as $unidad)
+										<option value="{{$unidad->id}}">{{$unidad->des_und}} </option>
+									@endforeach
+								</select>
+							@endif
+						</div>
 					</div>
-					<br/>
-					<label for="">Cantidad</label>
-					<div class="form-group ">
-						<input class="form-control " id="inputsm" placeholder="Cantidad" type="text">
+					<div class="modal-footer"><!--
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+					<button type="button" class="btn btn-success">Deshacer</button>
+					<button type="submit" class="btn btn-primary">Guardar</button>
 					</div>
-					<br/>
-					<label for=""> Unidad de Almacén</label>
-					<div class="form-group ">
-						<select class="form-control" id="exampleSelect1">
-						  <option value="" selected>Seleccionar</option>
-						  <option> caja</option>
-						  <option>lata</option>
-						</select>
-					</div>
-				
-				</div>
-				<div class="modal-footer"><!--
-				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-				  <button type="submit" class="btn btn-success">Deshacer</button>
-				  <button type="button" class="btn btn-primary">Guardar</button>
-				</div>
-
+				</form>
 			  </div>
 			</div>
 		  </div>
@@ -151,67 +131,52 @@
 		 
 		   <!-- edit Unidad modal -->		  
 
-		  <div class="modal fade edit_unidad">" tabindex="-1" role="dialog" aria-hidden="true">
+		  <div id="edit_conversion_modal" class="modal fade edit_conversion" tabindex="-1" role="dialog" aria-hidden="true">
 			<div class="modal-dialog modal-sm">
 			  <div class="modal-content">
 
 				<div class="modal-header">
 				  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
 				  </button>
-				  <h4 class="modal-title" id="myModalLabel2">Editar  Unidad Empaque</h4>
+				  <h4 class="modal-title" id="myModalLabel2">Editar Unidad Empaque</h4>
 				</div>
-				<div class="modal-body">					
-					
-					<label for="">Cod. Conversion</label>
-					<div class="form-group ">
-						<input class="form-control " id="inputsm" disabled="disabled" placeholder="codigo" type="text">
-					</div>
+				<form id="edit_conversion_form" class="form-horizontal" role="form" method="POST">
+					<input name="_method" type="hidden" value="PUT">
+					{{ csrf_field() }}
+					<div class="modal-body">					
+						<label for="edit_und_ini_id"> Unidad de Almacén</label>
+						<div class="form-group ">
+								@if(!empty($unidadesAlmacen))
+								<select id="edit_und_ini_id"  name="edit_und_ini_id" class="form-control col-md-7 col-xs-12" >
+									@foreach($unidadesAlmacen as $unidadAlmacen)
+										<option value="{{$unidadAlmacen->id}}">{{$unidadAlmacen->des_und}} </option>
+									@endforeach
+								</select>
+							@endif
+						</div>
 						<br/>
-					<label for=""> Unidad Empaque</label>
-					<div class="form-group ">
-						<select class="form-control" id="educationDate" name="educationDate[]">
-							<option value="" selected>Seleccionar</option>
-							<option name="" value="">Barra</option>
-							<option name="" value="">Bloque</option>
-							<option name="" value="">Bolsa</option>
-							<option name="" value="">Botella</option>
-							<option name="" value="">Caja</option>
-							<option name="" value="">Frasco</option>
-							<option value="">Lata</option>
-							<option value="">Paquete</option>
-							<option value="">Pote</option>
-							<option value="">Tarro</option>
-							<option value="">Tubo</option>
-							<option value="">Vaso</option>
-							<option name="" value="">Unidad</option>
-							<option value="">Kg</option>
-							<option value="">Kilo</option>
-							<option value="">Litro</option>
-							<option value="">Lonjas</option>
-						</select>
+						<label for="">Cantidad</label>
+						<div class="form-group">
+							<input class="form-control " id="edit_cnt_fin_prd" name="edit_cnt_fin_prd" placeholder="Cantidad" type="text">
+						</div>
+						<br/>
+						<label for="edit_und_fin_id"> Unidad Empaque</label>
+						<div class="form-group ">
+							@if(!$unidades->isEmpty())
+								<select id="edit_und_fin_id"  name="edit_und_fin_id" class="form-control col-md-7 col-xs-12" >
+									@foreach($unidades as $unidad)
+										<option value="{{$unidad->id}}">{{$unidad->des_und}} </option>
+									@endforeach
+								</select>
+							@endif
+						</div>
 					</div>
-					<br/>
-					<label for="">Cantidad</label>
-					<div class="form-group ">
-						<input class="form-control " id="inputsm" placeholder="Cantidad" type="text">
+					<div class="modal-footer"><!--
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+					<button type="submit" class="btn btn-success">Deshacer</button>
+					<button type="button" class="btn btn-primary">Guardar</button>
 					</div>
-					<br/>
-					<label for=""> Unidad de Almacén</label>
-					<div class="form-group ">
-						<select class="form-control" id="exampleSelect1">
-						  <option value="" selected>Seleccionar</option>
-						  <option> caja</option>
-						  <option>lata</option>
-						</select>
-					</div>
-				
-				</div>
-				<div class="modal-footer"><!--
-				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-				  <button type="submit" class="btn btn-success">Deshacer</button>
-				  <button type="button" class="btn btn-primary">Guardar</button>
-				</div>
-
+				</form>
 			  </div>
 			</div>
 		  </div>
@@ -219,7 +184,7 @@
 		  
 		    <!-- delete Unidad modal -->		  
 
-		  <div class="modal fade delete_unidad">" tabindex="-1" role="dialog" aria-hidden="true">
+		  <div class="modal fade delete_unidad" tabindex="-1" role="dialog" aria-hidden="true">
 			<div class="modal-dialog modal-sm">
 			  <div class="modal-content">
 
@@ -288,18 +253,17 @@
 		
 	</div>		
 @stop
-        <!-- /page content -->
-		<!--
-		<script type="text/javascript">
-			$(document).ready(function(){
-				function onFinishCallback(){
-				$('#wizard').smartWizard('showMessage','Finish Clicked');
-			} 
-			});
-			
-			
-		</script>
-		-->
+@section('postscripts')
+<script>
+$('#edit_conversion_modal').on('shown.bs.modal', function(e) {
+	var conv = $(e.relatedTarget).data('conv');
+	var und_ini_id = conv['unidadinicial']['id'];
+	var und_fin_id = conv['unidadfinal']['id'];
+	alert(conv['unidadfinal']['id']);
+	$(e.currentTarget).find('input[name="edit_und_ini_id"]').val(und_ini_id);
+	$(e.currentTarget).find('input[name="edit_und_fin_id"]').val(und_fin_id);
+	$(e.currentTarget).find('input[name="edit_cnt_fin_prd"]').val(conv['cnt_fin_prd']);
+	$("#edit_conversion_form").attr("action", $(location).attr('protocol') + "//" + $(location).attr('host') +"/conversion/" + conv['id']);
+});
+</script>
 @stop
-<!--6581128-->
-<!--229392650-->

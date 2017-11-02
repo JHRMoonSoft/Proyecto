@@ -21,12 +21,12 @@ class CreateConfiguracionsTable extends Migration
 			$table->string('tip_doc');
 			$table->string('num_doc');
 			$table->string('tel_fij');
-			$table->string('tel_cel');
-			$table->string('dir_mail');
-			$table->string('dir_empr');
-			$table->string('brr_empr');
-			$table->string('ciu_empr');
-			$table->string('pai_empr');
+			$table->string('tel_cel')->nullable();
+			$table->string('dir_mail')->nullable();
+			$table->string('dir_empr')->nullable();
+			$table->string('brr_empr')->nullable();
+			$table->string('ciu_empr')->nullable();
+			$table->string('pai_empr')->nullable();
 			$table->rememberToken();
 			$table->timestamps();
         });

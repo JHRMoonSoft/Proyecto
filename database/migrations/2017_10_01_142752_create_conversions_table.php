@@ -16,11 +16,8 @@ class CreateConversionsTable extends Migration
         Schema::create('conversions', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-
-            $table->integer('producto_id')->unsigned()->index();
-            $table->foreign('producto_id')->references('id')->on('productos') ->onUpdate('cascade') ->onDelete('cascade');
-
-            $table->double('cnt_ini_prd');
+            
+            $table->double('cnt_ini_prd')->default(1.0);
 
             $table->integer('unidad_inicial_id')->unsigned()->index();
             $table->foreign('unidad_inicial_id')->references('id')->on('unidads') ->onUpdate('cascade') ->onDelete('cascade');

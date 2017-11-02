@@ -12,12 +12,7 @@ class Unidad extends Model
 
 	public function productos()
 	{
-    	return $this->hasMany('Producto');
-	}
-	
-	public function conversions()
-    {
-		return $this->hasMany('Conversion');
+    	return $this->belongsToMany('App\Producto', 'producto_unidad')->withTimestamps();
 	}
 	
 }

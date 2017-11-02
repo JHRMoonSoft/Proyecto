@@ -50,6 +50,8 @@
 						<th>Código</th>
 						<th>Detalle Producto</th>
 						<th>Categoria Producto</th>
+						<th>Unidad de Almacen</th>
+						<th>Unidades de Empaque</th>
 						<th>Fecha. Creado</th>
 						<th>Fecha. Modificado</th>
 						<th>Opciones </th>
@@ -62,10 +64,19 @@
 					  <td>{{ $producto->id}} </td>
 						<td>{{ $producto->des_prd}} </td>
 						<td>{{ $producto->categoria->des_cat }} </td>
+						<td>
+							{{ $producto->unidad->des_und }}
+						</td>
+						<td>
+							@foreach($producto->unidades as $unidad)
+							{{ $unidad->des_und }}
+								</br>
+							@endforeach 
+						</td>
 						<td>{{ $producto->created_at->format('Y-m-d') }}</td>	
 						<td>{{ $producto->updated_at->format('Y-m-d') }}</td>	
 						<td>
-							<button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-edit btn-xs" data-desc-prd="{{$producto->des_prd}}" data-id-prd="{{$producto->id}}" data-id-cat="{{$producto->categoria->id}}" data-toggle="modal" data-target=".edit_producto"></button>
+							<button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-edit btn-xs" data-desc-prd="{{$producto->des_prd}}" data-id-prd="{{$producto->id}}" data-id-cat="{{$producto->categoria->id}}" data-id-und="{{$producto->unidad->id}}" data-id-unds="{{$producto->unidades}}" data-toggle="modal" data-target=".edit_producto"></button>
 							<button type="button" class="btn btn-sm btn-danger glyphicon glyphicon-remove btn-xs" data-toggle="modal" data-target=".delete_producto"></button>
 						</td>
 					</tr>
@@ -93,12 +104,33 @@
 						<div class="form-group ">
 							<input class="form-control " id="des_prd" name="des_prd" placeholder="Producto" type="text">
 						</div>
-						<label for="categorias">Categorias</label>
+						<label for="categoria_id">Categorias</label>
 						<div class="form-group">
 							@if(!$categorias->isEmpty())
 								<select id="categoria_id"  name="categoria_id" class="form-control col-md-7 col-xs-12" >
+									<option value="" selected>Seleccionar</option>
 									@foreach($categorias as $categoria)
 										<option value="{{$categoria->id}}">{{$categoria->des_cat}} </option>
+									@endforeach
+								</select>
+							@endif
+						</div>
+						<label for="unidades">Unidad Almacen</label>
+						<div class="form-group">
+							@if(!$unidades->isEmpty())
+								<select id="unidad_id"  name="unidad_id" class="form-control col-md-7 col-xs-12" >
+									@foreach($unidades as $unidad)
+										<option value="{{$unidad->id}}">{{$unidad->des_und}} </option>
+									@endforeach
+								</select>
+							@endif
+						</div>
+						<label for="unidades">Unidades de Empaque</label>
+						<div class="form-group">
+							@if(!$unidades->isEmpty())
+								<select multiple="multiple" id="unidades"  name="unidades[]" class="form-control col-md-7 col-xs-12" >
+									@foreach($unidades as $unidad)
+										<option value="{{$unidad->id}}">{{$unidad->des_und}} </option>
 									@endforeach
 								</select>
 							@endif
@@ -140,6 +172,26 @@
 								<select id="edit_cat_prd"  name="edit_cat_prd" class="form-control col-md-7 col-xs-12" >
 									@foreach($categorias as $categoria)
 										<option value="{{$categoria->id}}">{{$categoria->des_cat}} </option>
+									@endforeach
+								</select>
+							@endif
+						</div>
+						<label for="edit_und_prd">Unidad de Almacen</label>
+						<div class="form-group">
+							@if(!$unidades->isEmpty())
+								<select id="edit_und_prd"  name="edit_und_prd" class="form-control col-md-7 col-xs-12" >
+									@foreach($unidades as $unidad)
+										<option value="{{$unidad->id}}" >{{$unidad->des_und}} </option>
+									@endforeach
+								</select>
+							@endif
+						</div>
+						<label for="edit_unds_prd">Unidades de Empaque</label>
+						<div class="form-group">
+							@if(!$unidades->isEmpty())
+								<select multiple="multiple" id="edit_unds_prd"  name="edit_unds_prd[]" class="form-control col-md-7 col-xs-12" >
+									@foreach($unidades as $unidad)
+										<option value="{{$unidad->id}}">{{$unidad->des_und}} </option>
 									@endforeach
 								</select>
 							@endif
@@ -202,9 +254,25 @@ $('#edit_producto_modal').on('shown.bs.modal', function(e) {
 	var des_prd = $(e.relatedTarget).data('desc-prd');
 	var edit_id = $(e.relatedTarget).data('id-prd');
 	var cat_id = $(e.relatedTarget).data('id-cat');
+	var und_id = $(e.relatedTarget).data('id-und');
+	var unds = $(e.relatedTarget).data('id-unds');
+	var unds_id_str = "";
+	var unds_id = new Array();
+	$.each(unds, function(key,val) {
+            //unds_id_str = unds_id_str + val['id'] + ",";
+			unds_id.push(val['id']);
+        });
+		//unds_id_str= unds_id_str.substring(0, unds_id_str.length - 1);
+		//unds_id = unds_id_str.split(",");
+		
 	$("#edit_producto_form").attr("action", $(location).attr('protocol') + "//" + $(location).attr('host') +"/producto/" + edit_id);
 	$(e.currentTarget).find('input[name="edit_des_prd"]').val(des_prd);
 	$(e.currentTarget).find('input[name="edit_cat_prd"]').val(cat_id);
+	$(e.currentTarget).find('input[name="edit_und_prd"]').val(und_id);
+	$(e.currentTarget).find('input[name="edit_unds_prd"]').select2();
+	alert($(e.currentTarget).find('input[name="edit_unds_prd"]').find('option:[value="1"]').prop('selected', true));
+	//$(e.currentTarget).find('input[name="edit_unds_prd"]').select2('val',unds_id);
+	
 });
 </script>
 @stop

@@ -52,12 +52,11 @@
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
 					
-						<select id="tip_doc" class="form-control col-md-7 col-xs-12" data-validate-length-range="7"  name="tip_doc"value="{{$proveedors->tip_doc}}" required="required">
+						<select id="tip_doc" class="form-control col-md-7 col-xs-12" data-validate-length-range="7"  name="tip_doc" value="{{$proveedors->tip_doc}}" required="required">
 							<option value="" selected>Seleccionar</option>
-							<option>NIT</option>
-							<option>RUT</option>
+							<option value="NIT">NIT</option>
+							<option value="RUT">RUT</option>
 						</select>
-					
 					</div>
 				</div>
 				

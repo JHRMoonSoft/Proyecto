@@ -20,9 +20,8 @@ class ProveedorController extends Controller
      */
     public function index()
     {
-		$proveedors = Proveedor::all();     
-		
-		$categorias = Categoria::find($proveedors);
+		$proveedors = Proveedor::all();  
+		$categorias = Categoria::all();
 		return view('proveedor.index')->with(compact('categorias','proveedors'));
     }
 
@@ -50,7 +49,7 @@ class ProveedorController extends Controller
 		$rules = [           
 			'raz_soc' => 'required',
 			'tip_doc' => 'required', 
-			'num_doc' => 'required',
+			'num_doc' => 'required |unique:proveedors',
 			'tel_fij' => 'required', 
 			'tel_cel' => '',  
 			'dir_mail'=> '', 
