@@ -185,25 +185,8 @@
 												<div class="form-group">
 													
 												</div>
-												<select class="form-control" id="educationDate" name="educationDate[]">
+												<select class="form-control" id="unidades" name="unidades">
 													<option value="" selected>Seleccionar</option>
-													<option name="" value="">Barra</option>
-													<option name="" value="">Bloque</option>
-													<option name="" value="">Bolsa</option>
-													<option name="" value="">Botella</option>
-													<option name="" value="">Caja</option>
-													<option name="" value="">Frasco</option>
-													<option value="">Lata</option>
-													<option value="">Paquete</option>
-													<option value="">Pote</option>
-													<option value="">Tarro</option>
-													<option value="">Tubo</option>
-													<option value="">Vaso</option>
-													<option name="" value="">Unidad</option>
-													<option value="">Kg</option>
-													<option value="">Kilo</option>
-													<option value="">Litro</option>
-													<option value="">Lonjas</option>
 											  </select>
 											</td>											
 											<td class="nopadding" >

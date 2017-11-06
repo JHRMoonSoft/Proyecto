@@ -63,8 +63,10 @@ class ProveedorController extends Controller
         $validate = Validator::make($post_data, $rules);
         if (!$validate->failed()){
 			$proveedor = Proveedor::create($post_data);			
-			$proveedor->categorias()->sync($post_data['categorias']);
-			$proveedor->save();
+			if($request->has('categorias')){
+				$proveedor->categorias()->sync($post_data['categorias']);
+				$proveedor->save();
+			}
 		}
 		$proveedors = Proveedor::all();
 		return view('proveedor.index')->with('proveedors', $proveedors);
@@ -138,12 +140,12 @@ class ProveedorController extends Controller
 			$proveedors->ciu_prov = $post_data['ciu_prov'];
 			$proveedors->pai_prov = $post_data['pai_prov'];
             $proveedors->obs_prov = $post_data['obs_prov'];
-			$proveedors->categorias()->sync($post_data['categorias']);
-			$proveedors->save();
+			if($request->has('categorias')){
+				$proveedor->categorias()->sync($post_data['categorias']);
+				$proveedor->save();
+			}
 			$categorias = $proveedors->categorias;
 			return view('proveedor.show', compact('proveedors', 'categorias'));
-			
-			
 			
         }
     }

@@ -29,7 +29,8 @@ class SolicitudCompraController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {	$productos = Producto::all();
+    {	
+		$productos = Producto::all();
 		return View('solicitudcompra.create')->with(compact('productos'));
     }
 

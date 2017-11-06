@@ -54,6 +54,7 @@ class ProductoController extends Controller
         if (!$validate->failed()){
 			$producto = Producto::create($post_data);
 			if($request->has('unidades')){
+				array_unshift($post_data['unidades'],$post_data['unidad_id']);
 				$producto->unidades()->sync($post_data['unidades']);
 				$producto->save();
 			}
@@ -109,6 +110,7 @@ class ProductoController extends Controller
 			// si no existe conversion disponible no asignar el cambio
 			$producto->unidad_id = $post_data['edit_und_prd'];
 			if($request->has('edit_unds_prd')){
+				array_unshift($post_data['edit_unds_prd'],$post_data['edit_und_prd']);
 				$producto->unidades()->sync($post_data['edit_unds_prd']);
 			}
 			else{

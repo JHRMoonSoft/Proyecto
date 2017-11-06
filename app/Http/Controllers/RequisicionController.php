@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Producto;
+use App\Proveedor;
+use App\Unidad;
+use App\Conversion;
+use App\Requisicion;
 
 class RequisicionController extends Controller
 {
@@ -28,7 +33,9 @@ class RequisicionController extends Controller
     public function create()
     {
         //
-	return View('requisicion.create');
+		$productos = Producto::all();
+		$proveedores = Proveedor::all();
+		return View('requisicion.create')->with(compact('productos','proveedores'));
     }
 
     /**
@@ -70,7 +77,7 @@ class RequisicionController extends Controller
      */
     public function show($id)
     {
-        $requisicions= Requisicion::find($requisicion);
+        $requisicions= Requisicion::find($id);
 		return view('requisicion.show')->with('requisicions', $requisicions);
     }
 
@@ -139,4 +146,13 @@ class RequisicionController extends Controller
     {
         //
     }
+	
+	public function cargarunidadesproducto(Request $request)
+    {
+		$producto = Producto::find($request['option']);
+		//$unidades = Unidad::whereIn('id', '=', $producto)->get();
+		$unidades = $producto->unidades()->get();
+		return response()->json($unidades);
+	}
+	
 }

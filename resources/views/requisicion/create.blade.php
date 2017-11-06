@@ -172,13 +172,13 @@
 					<span>Paso 2</span>
 				  </a>
 				</div>
+				<input type="hidden" class="form-control" id="cantproductos" name="cantproductos" value="1"/>
 				<div class="block_content">
-					<h2 class="title"><br />
-					
-					
-								  <a>Registrar los productos</a>
-							  </h2>
-						<br />
+					<h2 class="title">
+						<br/>
+						<a>Registrar los productos</a>
+					</h2>
+					<br/>
 					<div class="panel panel-default">
 						<div class="panel-heading text-center">
 							<span><strong><span class="glyphicon glyphicon-th-list"> </span> Productos</strong></span>
@@ -202,52 +202,35 @@
 										1
 									</td>
 									<td class="nopadding" >
-										<select class="form-control" id="educationDate" name="educationDate[]">
-											<option value="" selected>Seleccionar</option>
-											<option name="" value="">Aceite</option>
-											<option value="">Arepas antioqueñas precocidas </option>
-											<option value="" >Arroz  (bolsas de medio kilo)</option>
-											<option value="" >Bocadillo</option>
-											<option value="" >Otro</option>
-									  </select>
+										@if(!$productos->isEmpty())
+											<select id="producto1" class="form-control" name="producto1" onchange="cambio_productos(1);">
+												<option value="" selected>Seleccionar</option>
+												@foreach($productos as $producto)
+													<option value="{{ $producto->id}}">{{ $producto->des_prd}} </option>
+												@endforeach
+											</select>
+										@endif
 									</td>
 									<td class="nopadding" >
 										<div class="form-group">
-											<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Cantidad">
+											<input type="text" class="form-control" id="cantidad1" name="cantidad1" value="" placeholder="Cantidad">
 										</div>
 									</td>
 									<td class="nopadding" >
-										<select class="form-control" id="educationDate" name="educationDate[]">
+										<select class="form-control" id="unidad1" name="unidad1">
 											<option value="" selected>Seleccionar</option>
-											<option name="" value="">Barra</option>
-											<option name="" value="">Bloque</option>
-											<option name="" value="">Bolsa</option>
-											<option name="" value="">Botella</option>
-											<option name="" value="">Caja</option>
-											<option name="" value="">Frasco</option>
-											<option value="">Lata</option>
-											<option value="">Paquete</option>
-											<option value="">Pote</option>
-											<option value="">Tarro</option>
-											<option value="">Tubo</option>
-											<option value="">Vaso</option>
-											<option name="" value="">Unidad</option>
-											<option value="">Kg</option>
-											<option value="">Kilo</option>
-											<option value="">Litro</option>
-											<option value="">Lonjas</option>
 									    </select>
 									</td>
 									
 									<td class="nopadding" >
 										<div class="form-group">
-											<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Detalle">
+											<input type="text" class="form-control" id="detalle1" name="detalle1" value="" placeholder="Detalle">
 										</div>
 									</td>
 									
 									<td class="nopadding" >
 										<div class="input-group-btn">
-											<button class="btn btn-sm btn-primary glyphicon glyphicon-plus btn-xs" type="button"  onclick="education_fields();"> <span  aria-hidden="true"></span> </button>
+											<button class="btn btn-sm btn-primary glyphicon glyphicon-plus btn-xs" type="button"  onclick="education_fields({{$productos}});"> <span  aria-hidden="true"></span> </button>
 										</div>
 									</td>
 								</tr>
@@ -279,16 +262,14 @@
 								<div class="form-group  col-md-6 col-md-offset-3 ">
 									<label class="control-label" for="first-name">Seleccionar proveedor </label>
 									<div class="form-group input-group ">
-										<select name="multiple[]" class="form-control col-md-7 col-xs-12">
-											<option value=" " selected>Seleccionar</option>
-											<option value="">ALMACENES EXITO</option>
-											<option value="">MEGA TIENDAS </option>
-											<option value="">PAPELERÍA TAURO </option>
-											<option value="">EL GIGANTE DEL HOGAR</option>
-											<option value="">SAFARI COMPUTADORES</option>
-											<option value="">DISTRIBUIDORA Y PAPELERÍA VENEPLAS</option>
-											<option value="">OTRO</option>
-										</select>
+										@if(!$proveedores->isEmpty())
+											<select id="proveedor" class="form-control" name="productos" >
+												<option value="" selected>Seleccionar</option>
+												@foreach($proveedores as $proveedor)
+													<option value="{{ $proveedor->id}}">{{ $proveedor->raz_soc}} </option>
+												@endforeach
+											</select>
+										@endif
 										<span class="input-group-btn"><button type="button" class="btn btn-primary btn-add">+</button></span>
 									</div>
 									<label class="control-label " for="first-name"> Nuevo proveedor </label>
@@ -318,25 +299,85 @@
 @stop
 
 @stop
-
+@section('postscripts')
 	<script>
 		var room = 1;
-		function education_fields() {
-		 
+		function education_fields(productos) {
 			room++;
 			var objTo = document.getElementById('education_fields')
 			var divtest = document.createElement("tbody");
 			divtest.setAttribute("class", "form-group tr removeclass"+room);
 			var rdiv = 'removeclass'+room;
-			divtest.innerHTML = '<tr><td>' + (room) + '</td><td class="nopadding" ><select class="form-control" id="educationDate" name="educationDate[]"><option value="" selected>Seleccionar</option><option name="" value="">Aceite</option><option value="">Arepas antioqueñas precocidas </option><option value="" >Arroz  (bolsas de medio kilo)</option><option value="" >Bocadillo</option></select></td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Cantidad"></div></td><td class="nopadding" ><select class="form-control" id="educationDate" name="educationDate[]"><option value="" selected>Seleccionar</option><option name="" value="">Barra</option><option name="" value="">Bloque</option><option name="" value="">Bolsa</option><option name="" value="">Botella</option><option name="" value="">Caja</option><option name="" value="">Frasco</option><option value="">Lata</option><option value="">Paquete</option><option value="">Pote</option><option value="">Tarro</option><option value="">Tubo</option><option value="">Vaso</option><option name="" value="">Unidad</option><option value="">Kg</option><option value="">Kilo</option><option value="">Litro</option><option value="">Lonjas</option></select></td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Detalle"></div></td><td class="nopadding" ><div class="input-group-btn"><button class="btn btn-sm btn-danger glyphicon glyphicon-minus btn-xs" type="button" onclick="remove_education_fields('+ room +');"> <span  aria-hidden="true"></span> </button></div></td></tr>';
-			
+			var text = '<tr><td>' + (room) +'</td>'+
+				//Productos
+				'<td class="nopadding" >'+
+				'<select class="form-control" id="producto'+(room)+'" name="producto'+(room)+'" onchange="cambio_productos('+(room)+');">'+
+				'<option value="" selected>Seleccionar</option>';
+				$.each(productos, function(index, element) {
+						text = text + '<option value="'+ element.id +'">' + element.des_prd + '</option>';
+					});
+				text = text +
+				'</select></td>'+
+				//Cantidad
+				'<td class="nopadding" >'+
+					'<div class="form-group"><input type="text" class="form-control" id="cantidad'+(room)+'" name="cantidad'+(room)+'" value="" placeholder="Cantidad"></div>'+
+				'</td>'+
+				//Unidades
+				'<td class="nopadding" >'+
+					'<select class="form-control" id="unidad'+(room)+'" name="unidad'+(room)+'"><option value="">Seleccionar</option></select>'+
+				'</td>'+
+				//Detalle
+				'<td class="nopadding" >'+
+					'<div class="form-group"><input type="text" class="form-control" id="detalle'+(room)+'" name="detalle'+(room)+'" value="" placeholder="Detalle"></div>'+
+				'</td>'+
+				//Botones
+				 '<td class="nopadding" >'+
+					'<div class="input-group-btn"><button class="btn btn-sm btn-danger glyphicon glyphicon-minus btn-xs" type="button" onclick="remove_education_fields('+ room +');">'+
+						'<span aria-hidden="true"></span>'+
+					'</button></div>'+
+				'</td></tr>';
+			divtest.innerHTML = text;
 			objTo.appendChild(divtest)
-			  
+			$("#cantproductos").val(room);  
 		}
 	   function remove_education_fields(rid) {
 		   $('.removeclass'+rid).remove()
-		   
 		   room--;
+		   $("#cantproductos").val(room);  
 	   }
+	   
+	   function cambio_productos(rid) {
+		   $.get("{{ url('requisicion/cargarunidadesproducto')}}", 
+				{
+					option: $('#producto'+rid).val(),
+					
+				}, 
+				function(data) {
+					var model = $('#unidad'+rid);
+					model.empty();
+					model.append("<option value='' selected>Seleccionar</option>");
+						$.each(data, function(index, element) {
+							model.append("<option value='"+ element.id +"'>" + element.des_und + "</option>");
+					});
+			});
+	   }
+	   
+	   $('#productos').change(function(){
+			$.get("{{ url('requisicion/cargarunidadesproducto')}}", 
+				{
+					option: $(this).val(),
+					
+				}, 
+				function(data) {
+					var model = $('#unidades');
+					model.empty();
+					model.append("<option value='' selected>Seleccionar</option>");
+						$.each(data, function(index, element) {
+							model.append("<option value='"+ element.id +"'>" + element.des_und + "</option>");
+					});
+			});
+		});
 
 	</script>
+	
+@stop
