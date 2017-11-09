@@ -202,14 +202,16 @@
 										1
 									</td>
 									<td class="nopadding" >
-										@if(!$productos->isEmpty())
-											<select id="producto1" class="form-control" name="producto1" onchange="cambio_productos(1);">
-												<option value="" selected>Seleccionar</option>
+										
+										<select id="producto1" class="form-control" name="producto1" onchange="cambio_productos(1);">
+											<option value="" selected>Seleccionar</option>
+											@if(!$productos->isEmpty())
 												@foreach($productos as $producto)
 													<option value="{{ $producto->id}}">{{ $producto->des_prd}} </option>
 												@endforeach
-											</select>
-										@endif
+											@endif
+										</select>
+									
 									</td>
 									<td class="nopadding" >
 										<div class="form-group">
@@ -256,7 +258,7 @@
 						<h2 class="title"><br />
 									  <a>Proveedores sugeridos</a>
 								  </h2>
-							<br />
+							<br /><!--
 						<div class="form-group">
 							<form class=" form-label-center">
 								<div class="form-group  col-md-6 col-md-offset-3 ">
@@ -280,7 +282,62 @@
 									<small>Pulse + para agregar otro proveedor /  Pulse - para eliminar un proveedor.</small>
 								</div>
 							</form>
+						</div>-->
+						<div class="panel panel-default">
+						<div class="panel-heading text-center">
+							<span><strong><span class="glyphicon glyphicon-th-list"> </span> Proveedores</strong></span>
 						</div>
+						<div class="table-responsive">
+							<table class="table table-bordered table-hover" id="education_fields2">
+							<thead>
+								<tr >
+									<th>#</th>
+									<th>Proveedor </th>
+									<th> Nombre  Proveedor </th>
+									<th>Telefono </th>	
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+									
+									</td>
+									<td>
+										
+										<select id="proveedor1" class="form-control" name="proveedor1" >
+											<option value="" selected>Seleccionar</option>
+											@if(!$proveedores->isEmpty())
+												@foreach($proveedores as $proveedor)
+													<option value="{{ $proveedor->id}}">{{ $proveedor->raz_soc}} </option>
+												@endforeach
+												<option value="0" selected>Otro</option>
+											@endif
+										</select>
+										
+									</td>
+									<td class="nopadding" >
+										<div class="form-group">
+											<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="">
+										</div>
+									</td>
+									<td class="nopadding" >
+										<div class="form-group">
+											<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="">
+										</div>
+									</td>
+									
+									<td class="nopadding" >
+										<div class="input-group-btn">
+											<button class="btn btn-sm btn-primary glyphicon glyphicon-plus btn-xs" type="button"  onclick="education_fieds({{$productos}});"> <span  aria-hidden="true"></span> </button>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+					  
+						</table>
+						</div>
+						
+					</div>
 						<br />
 					</div>
 				</div>

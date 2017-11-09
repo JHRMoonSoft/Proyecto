@@ -197,8 +197,8 @@
 							</div>
 							<div class="row ">
 								<div class="btn-group  col-md-12">
-									<label for="success" class="btn btn-success">Solicitud Consumo  <input type="radio" id="success" class="badgebox"><span class="badge">&check;</span></label>
-									<label for="warning" class="btn btn-warning">Solicitud Inversión  <input type="radio" id="warning" class="badgebox"><span class="badge">&check;</span></label>
+									<label for="success" class="btn btn-success">Solicitud Consumo  <input type="checkbox" id="success" class="badgebox"><span class="badge">&check;</span></label>
+									<label for="warning" class="btn btn-warning">Solicitud Inversión  <input type="checkbox" id="warning" class="badgebox"><span class="badge">&check;</span></label>
 								</div><!--
 								-->
 								
@@ -232,15 +232,15 @@
 								
 								</div>
 								<div class="btn-group  col-md-3 " data-toggle="buttons"><br>
-									
-									<h5>Fecha de aprobación</h5>
-									<div class="input-group registration-date-time">
+									<div class="form-group ">
+										<h5>Fecha de aprobación</h5>
+										<div class="input-group registration-date-time">
 										<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
 										<input class="form-control" name="registration_date" id="registration-date" type="date">
 										<span class="input-group-btn">
 										</span>
 									</div>
-								
+									</div>	
 								</div>	
 								<div class="btn-group  col-md-4 " data-toggle="buttons"><br>
 									<div class="form-group">
@@ -281,16 +281,18 @@
 						<div class="table-responsive">
 							<table class="table table-bordered table-hover" id="education_fields2">
 							<thead>
+								
+							
 								<tr >
 									<th>#</th>
-									<th><button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-toggle="modal" data-target=".categoria"></button>Categoria</th>
-									<th><button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-toggle="modal" data-target=".producto"></button>Producto</th>
+									<th><a href="/categoria" title="Editar" target="_blank" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-title="Categoria"></a>Categoria</th>
+									<th><a href="/producto" title="Producto" target="_blank" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-title="Producto"></a>Producto</th>
+									<th><a href="/unidad" title="Unidad" target="_blank" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-title="Unidad"></a>Unidad</th>
 									<th>Detalle del producto</th>
-									<th><button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-toggle="modal" data-target=".unidad"></button>Unidad</th>
 									<th>Cantidad</th>
 									<th>Cant.Autorizada</th>	
 									<th><a></a></th>
-					
+
 								</tr>
 							</thead>
 							<tbody>
@@ -300,7 +302,7 @@
 									</td>
 									<td>
 										<div class="form-group ">
-											<select class="form-control" disabled>
+											<select class="form-control disabled">
 											  <option value="" selected>Seleccionar</option>
 											  <option value="">Taller de Cocina</option>
 											  <option value="">Papeleria</option>
@@ -310,7 +312,7 @@
 										</div>
 									</td>
 									<td class="nopadding" >
-										<select class="form-control" id="educationDate" name="educationDate[]" disabled>
+										<select class="form-control disabled" id="educationDate" name="educationDate[]">
 											<option value="" selected>Seleccionar</option>
 											<option name="" value="">Aceite</option>
 											<option value="">Arepas antioqueñas precocidas </option>
@@ -320,14 +322,12 @@
 									</td>
 									<td class="nopadding" >
 										<div class="form-group">
-
-											<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Detalle" disabled>
-
+											<input type="text" class="form-control disabled" id="Schoolname" name="Schoolname[]" value="" placeholder="Detalle">
 										</div>
 									</td>
 									
 									<td class="nopadding" >
-										<select class="form-control" id="educationDate" name="educationDate[]"disabled>
+										<select class="form-control" id="educationDate" name="educationDate[]">
 											<option value="" selected>Seleccionar</option>
 											<option name="" value="">Barra</option>
 											<option name="" value="">Bloque</option>
@@ -350,9 +350,7 @@
 									</td>
 									<td class="nopadding" >
 										<div class="form-group">
-
-											<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Cantidad"disabled>
-
+											<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Cantidad">
 										</div>
 									</td>
 									<td class="nopadding" >
@@ -363,7 +361,7 @@
 									
 									<td class="nopadding" >
 										<div class="input-group-btn">
-											<button class="btn btn-sm btn-primary glyphicon glyphicon-plus btn-xs " type="button" onclick="education_fields2();"> <span  aria-hidden="true"></span> </button>
+											<button class="btn btn-sm btn-primary glyphicon glyphicon-plus btn-xs" type="button"  onclick="education_fields2();"> <span  aria-hidden="true"></span> </button>
 										</div>
 									</td>
 								</tr>
@@ -419,28 +417,28 @@
 									</td>
 									<td class="nopadding" >
 										<div class="form-group">
-											<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" disabled style="background:#fff;">
+											<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="">
 										</div>
 									</td>
 									<td class="nopadding" >
 										<div class="form-group">
-											<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" disabled style="background:#fff;">
+											<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="">
 										</div>
 									</td>
 									<td class="nopadding" >
 										<div class="form-group">
-											<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" disabled style="background:#fff;">
+											<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="">
 										</div>
 									</td>
 									<td class="nopadding" >
 										<div class="form-group">
-											<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" disabled style="background:#fff;">
+											<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="">
 										</div>
 									</td>
 									
 									<td class="nopadding" >
 										<div class="form-group">
-											<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" disabled style="background:#fff;">
+											<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="">
 										</div>
 									</td>
 									
@@ -448,7 +446,7 @@
 										<div class="form-group row">
 											
 											<div class="col-sm-8">
-												<input type="checkbox" name="checkboxes[249]" id="frm-test-elm-120-2" data-toggle="modal" data-target=".proveedor" autocomplete="off" checked />
+												<input type="checkbox" name="checkboxes[249]" id="frm-test-elm-120-2" autocomplete="off" checked />
 												<div class="btn-group">
 													<label for="frm-test-elm-120-2" class="btn btn-primary">
 														<span class="fa fa-check-square-o fa-lg"></span>
@@ -481,9 +479,9 @@
 			</div>
 
         </div>
-	
+	<!--
 
-		  <!-- Categoria modal -->		  
+		  <!-- Categoria modal -->	<!--	  
 
 		  <div class="modal fade categoria" tabindex="-1" role="dialog" aria-hidden="true">
 			<div class="modal-dialog modal-sm">
@@ -503,7 +501,7 @@
 					<small>Pulse + para agregar otra categoria /  Pulse - para eliminar una categoria.</small>
 				</div>
 				<div class="modal-footer"><!--
-				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--><!--
 				  <button type="submit" class="btn btn-danger">Cancelar</button>
 				  <button type="button" class="btn btn-primary">Guardar</button>
 				</div>
@@ -512,7 +510,7 @@
 			</div>
 		  </div>
 		  <!-- /modals -->
-		    <!-- Productos modal -->		  
+		    <!-- Productos modal -->		<!--  
 
 		  <div class="modal fade producto" tabindex="-1" role="dialog" aria-hidden="true">
 			<div class="modal-dialog modal-sm">
@@ -532,7 +530,7 @@
 					<small>Pulse + para agregar otro producto /  Pulse - para eliminar un producto.</small>
 				</div>
 				<div class="modal-footer"><!--
-				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--><!--
 				  <button type="submit" class="btn btn-danger">Cancelar</button>
 				  <button type="button" class="btn btn-primary">Guardar</button>
 				</div>
@@ -542,7 +540,7 @@
 		  </div>
 		  <!-- /modals -->
 		  
-		   <!-- Unidad modal -->		  
+		   <!-- Unidad modal -->	<!--	  
 
 		  <div class="modal fade unidad" tabindex="-1" role="dialog" aria-hidden="true">
 			<div class="modal-dialog modal-sm">
@@ -562,7 +560,7 @@
 					<small>Pulse + para agregar otro unidad /  Pulse - para eliminar un unidad.</small>
 				</div>
 				<div class="modal-footer"><!--
-				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--><!--
 				  <button type="submit" class="btn btn-danger">Cancelar</button>
 				  <button type="button" class="btn btn-primary">Guardar</button>
 				</div>
@@ -570,120 +568,13 @@
 			  </div>
 			</div>
 		  </div>
-		  <!-- /modals -->
-		   <!-- proveedor modal -->		  
-
-		  <div class="modal fade proveedor" tabindex="-1" role="dialog" aria-hidden="true">
-			<div class="modal-dialog ">
-			  <div class="modal-content">
-
-				<div class="modal-header">
-				  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
-				  </button>
-				  <h4 class="modal-title" id="myModalLabel2">Crear proveedor</h4>
-				</div>
-				<div class="modal-body">
-					<form class="form-horizontal form-label-left" novalidate>
-
-						<div class="item form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Razón social<span class="required">*</span>
-							</label>
-							<div class="col-md-6 col-sm-6 col-xs-12">
-							  <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name"  required="required" type="text">
-							</div>
-						</div>
-						<div class="item form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Tipo. Documento<span class="required">*</span>
-							</label>
-							<div class="col-md-6 col-sm-6 col-xs-12">
-							
-								<select id="tipo_identidad" class="form-control col-md-7 col-xs-12" data-validate-length-range="7" data-validate-words="2" name="name" required="required">
-									<option value="volvo " selected>Seleccionar</option>
-									<option>NIT</option>
-									<option>RUT</option>
-								</select>
-							
-							</div>
-						</div>
-						
-						<div class="item form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">No. Documento <span class="required">*</span>
-							</label>
-							<div class="col-md-6 col-sm-6 col-xs-12">
-							  <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name"  required="required" type="text">
-							</div>
-						</div>
-						<div class="item form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="telephone">Telefono fijo <span class="required">*</span>
-							</label>
-							<div class="col-md-6 col-sm-6 col-xs-12">
-							  <input type="tel" id="telephone" name="phone" required="required" data-validate-length-range="8,20" class="form-control col-md-7 col-xs-12">
-							</div>
-						</div>
-						<div class="item form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="telephone">Telefono celular </label>
-							<div class="col-md-6 col-sm-6 col-xs-12">
-							  <input type="tel" id="telephone" name="phone" required="required" data-validate-length-range="8,20" class="form-control col-md-7 col-xs-12">
-							</div>
-						</div>
-						<div class="item form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email </label>
-							<div class="col-md-6 col-sm-6 col-xs-12">
-							  <input type="email" id="email" name="email" required="required" class="form-control col-md-7 col-xs-12">
-							</div>
-						</div>
-						<div class="item form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Dirección </label>
-							<div class="col-md-6 col-sm-6 col-xs-12">
-							  <input type="number" id="number" name="number" required="required" data-validate-minmax="10,100" class="form-control col-md-7 col-xs-12">
-							</div>
-						</div>
-						<div class="item form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="occupation">Barrio</label>
-							<div class="col-md-6 col-sm-6 col-xs-12">
-							  <input id="occupation" type="text" name="occupation" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
-							</div>
-						</div>
-						<div class="item form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="occupation">Ciudad</label>
-							<div class="col-md-6 col-sm-6 col-xs-12">
-							  <input id="occupation" type="text" name="occupation" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
-							</div>
-						</div>
-						<div class="item form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="occupation">Pais </label>
-							<div class="col-md-6 col-sm-6 col-xs-12">
-							  <input id="occupation" type="text" name="occupation" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12">
-							</div>
-						</div>
-						<div class="item form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="occupation">Observación  </label>
-							<div class="col-md-6 col-sm-6 col-xs-12">
-							  <input id="occupation" type="text" name="occupation" data-validate-length-range="10,40" class="optional form-control col-md-7 col-xs-12">
-							</div>
-						</div>
-						
-						<div class="ln_solid"></div>
-						<div class="form-group">
-							<div class="col-md-6 col-md-offset-3">
-								<button type="submit" class="btn btn-danger">Cancelar</button>
-								<button type="button" class="btn btn-primary">Guardar</button>
-							</div>
-						</div>
-					</form>
-				</div>
-				
-
-			  </div>
-			</div>
-		  </div>
-		  <!-- /modals -->
+		 -->
 		
 	</div>
 
 	
 @stop
-     	<script>
+     <script>
 		var room = 1;
 		function education_fields2() {
 		 
@@ -692,7 +583,7 @@
 			var divtest = document.createElement("tbody");
 			divtest.setAttribute("class", "form-group tr removeclass"+room);
 			var rdiv = 'removeclass'+room;
-			divtest.innerHTML = '<tr><td>' + (room) + '</td><td><div class="form-group "><select class="form-control" disabled style="background:#fff;"><option value="" selected>Seleccionar</option><option value="">Taller de Cocina</option><option value="">Papeleria</option><option value="" >Didacticos</option><option value="" >Aseo</option></select></div></td><td class="nopadding" ><select class="form-control" id="educationDate" name="educationDate[]" disabled style="background:#fff;"><option value="" selected>Seleccionar</option><option name="" value="">Aceite</option><option value="">Arepas antioqueñas precocidas </option><option value="" >Arroz  (bolsas de medio kilo)</option><option value="" >Bocadillo</option></select></td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Detalle" disabled style="background:#fff;"></div></td><td class="nopadding" ><select class="form-control" id="educationDate" name="educationDate[]"disabled style="background:#fff;"><option value="" selected>Seleccionar</option><option name="" value="">Barra</option><option name="" value="">Bloque</option><option name="" value="">Bolsa</option><option name="" value="">Botella</option><option name="" value="">Caja</option><option name="" value="">Frasco</option><option value="">Lata</option><option value="">Paquete</option><option value="">Pote</option><option value="">Tarro</option><option value="">Tubo</option><option value="">Vaso</option><option name="" value="">Unidad</option><option value="">Kg</option><option value="">Kilo</option><option value="">Litro</option><option value="">Lonjas</option></select></td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Cantidad"disabled="disabled" style="background:#fff;"></div></td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Cantidad"></div></td><td class="nopadding" ><div class="input-group-btn"><button class="btn btn-sm btn-danger glyphicon glyphicon-minus btn-xs" type="button" onclick="remove_education_fields2('+ room +');"> <span  aria-hidden="true"></span> </button></div></td></tr>';
+			divtest.innerHTML = '<tr><td>' + (room) + '</td><td><div class="form-group "><select class="form-control"><option value="" selected>Seleccionar</option><option value="">Taller de Cocina</option><option value="">Papeleria</option><option value="" >Didacticos</option><option value="" >Aseo</option></select></div></td><td class="nopadding" ><select class="form-control" id="educationDate" name="educationDate[]"><option value="" selected>Seleccionar</option><option name="" value="">Aceite</option><option value="">Arepas antioqueñas precocidas </option><option value="" >Arroz  (bolsas de medio kilo)</option><option value="" >Bocadillo</option></select></td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Cantidad"></div></td><td class="nopadding" ><select class="form-control" id="educationDate" name="educationDate[]"><option value="" selected>Seleccionar</option><option name="" value="">Barra</option><option name="" value="">Bloque</option><option name="" value="">Bolsa</option><option name="" value="">Botella</option><option name="" value="">Caja</option><option name="" value="">Frasco</option><option value="">Lata</option><option value="">Paquete</option><option value="">Pote</option><option value="">Tarro</option><option value="">Tubo</option><option value="">Vaso</option><option name="" value="">Unidad</option><option value="">Kg</option><option value="">Kilo</option><option value="">Litro</option><option value="">Lonjas</option></select></td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Detalle"></div></td><td class="nopadding" ><div class="input-group-btn"><button class="btn btn-sm btn-danger glyphicon glyphicon-minus btn-xs" type="button" onclick="remove_education_fields2('+ room +');"> <span  aria-hidden="true"></span> </button></div></td></tr>';
 			
 			objTo.appendChild(divtest)
 			  
