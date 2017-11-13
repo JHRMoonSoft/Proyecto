@@ -19,6 +19,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('requisicion/cargarunidadesproducto', 'RequisicionController@cargarunidadesproducto');
+Route::get('requisicion/cargarproveedor', 'RequisicionController@cargarproveedor');
 
 
 

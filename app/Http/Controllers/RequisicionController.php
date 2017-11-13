@@ -6,9 +6,10 @@ use Illuminate\Http\Request;
 use App\Producto;
 use App\Proveedor;
 use App\Unidad;
+use App\Role;
 use App\Conversion;
 use App\Requisicion;
-
+use Validator;
 class RequisicionController extends Controller
 {
 	public function __construct()
@@ -35,7 +36,8 @@ class RequisicionController extends Controller
         //
 		$productos = Producto::all();
 		$proveedores = Proveedor::all();
-		return View('requisicion.create')->with(compact('productos','proveedores'));
+		$roles = Role::all();
+		return View('requisicion.create')->with(compact('productos','proveedores','roles'));
     }
 
     /**
@@ -51,22 +53,22 @@ class RequisicionController extends Controller
             'rol_rqs'=> 'required',
 			'asn_rqs'=> 'required',
 			'jst_rqs'=> 'required',
-			'tip_sol'=> 'required',
-			'apr_com'=> 'required',
-			'fec_apr_com'=> 'required',
-			'prv_apr'=> 'required',
-			'nom_rcp_rqs'=> 'required',
-			'crg_rcp_rqs'=> 'required',
-			'fec_rcp_rqs'=> 'required',
-			'obs_rcp_rqs'=> 'required',
-			'est_rqs'=> 'required'
+			//'tip_sol'=> 'required',
+			//'apr_com'=> 'required',
+			//'fec_apr_com'=> 'required',
+			//'prv_apr'=> 'required',
+			//'nom_rcp_rqs'=> 'required',
+			//'crg_rcp_rqs'=> 'required',
+			//'fec_rcp_rqs'=> 'required',
+			//'obs_rcp_rqs'=> 'required',
+			//'est_rqs'=> 'required'
 			];
         $validate = Validator::make($post_data, $rules);
         if (!$validate->failed()){
 			$requisicion = Requisicion::create($post_data);	 		
+			return redirect()->intended('/requisicion');
 		}
-		$requisicions = Requisicion::all();
-		return view('requisicion.index')->with('requisicions', $requisicions);
+		return redirect()->back()->withInput()->withErrors($validate);
     }
 
     /**
@@ -153,6 +155,12 @@ class RequisicionController extends Controller
 		//$unidades = Unidad::whereIn('id', '=', $producto)->get();
 		$unidades = $producto->unidades()->get();
 		return response()->json($unidades);
+	}
+	
+	public function cargarproveedor(Request $request)
+    {
+		$proveedor = Proveedor::find($request['option']);
+		return response()->json($proveedor);
 	}
 	
 }

@@ -20,14 +20,14 @@ class CreateRequisicionsTable extends Migration
 			$table->foreign('rol_rqs')->references('id')->on('roles') ->onUpdate('cascade') ->onDelete('cascade');
 			$table->string('asn_rqs');
 			$table->string('jst_rqs');
-			$table->boolean('tip_sol');
-			$table->boolean('apr_com');
-			$table->date('fec_apr_com');
-			$table->boolean('prv_apr');
-			$table->string('nom_rcp_rqs');
-			$table->string('crg_rcp_rqs');
-			$table->date('fec_rcp_rqs');
-			$table->string('obs_rcp_rqs');
+			$table->boolean('tip_sol')->default(false);
+			$table->boolean('apr_com')->default(false);
+			$table->date('fec_apr_com')->nullable();
+			$table->boolean('prv_apr')->default(false);
+			$table->string('nom_rcp_rqs')->nullable();
+			$table->string('crg_rcp_rqs')->nullable();
+			$table->date('fec_rcp_rqs')->nullable();
+			$table->string('obs_rcp_rqs')->nullable();
 			$table->integer('est_rqs')->unsigned()->index();
             $table->foreign('est_rqs')->references('id')->on('estadosrequisicions') ->onUpdate('cascade') ->onDelete('cascade');
 			
