@@ -18,6 +18,7 @@ class CreateEstadosrequisicionsTable extends Migration
 			$table->increments('id');
 			$table->string('desc_est_req');
 			$table->string('asu_est_req');
+			$table->integer('tip_est_req'); //1. Creacion //2. Proceso //3. Final //4. Cancelado
             $table->timestamps();
         });
     }

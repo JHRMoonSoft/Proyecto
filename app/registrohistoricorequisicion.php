@@ -4,21 +4,21 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Registrohistoricorequisicion extends Model
+class RegistroHistoricoRequisicion extends Model
 {
 	protected $table = 'registrohistoricorequisicions';	
 
-	protected $fillable = array('obs_reg_rqs');
+	protected $fillable = ['obs_reg_rqs', 'rqs_id', 'acc_rqs_id', 'user_id'];
 	
 	public function requisicion(){
-	     return $this->belongsTo('Requisicion');
+	     return $this->belongsTo('App\Requisicion', 'rqs_id');
 	}
 	
 	public function accionesrequisicion(){
-	     return $this->belongsTo('Accionesrequisicion');
+	     return $this->belongsTo('App\AccionesRequisicion', 'acc_rqs_id');
 	}
 	
 	public function user(){
-	     return $this->belongsTo('User');
+	     return $this->belongsTo('App\User');
 	}
 }

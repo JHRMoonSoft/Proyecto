@@ -1,15 +1,22 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Auth;
 use Illuminate\Http\Request;
 use App\Producto;
+use App\ProductosRequisicion;
+use App\ProveedoresRequisicion;
+use App\AccionesRequisicion;
+use App\EstadosRequisicion;
+use App\RegistroHistoricoRequisicion;
 use App\Proveedor;
 use App\Unidad;
 use App\Role;
 use App\Conversion;
 use App\Requisicion;
 use Validator;
+use \Carbon\Carbon;
+
 class RequisicionController extends Controller
 {
 	public function __construct()
@@ -23,7 +30,9 @@ class RequisicionController extends Controller
      */
     public function index()
     {
-        return View('requisicion.index');
+		$requisiciones = Requisicion::all();
+		$now = Carbon::now();
+        return View('requisicion.index')->with(compact('requisiciones','now'));
     }
 
     /**
@@ -36,8 +45,10 @@ class RequisicionController extends Controller
         //
 		$productos = Producto::all();
 		$proveedores = Proveedor::all();
-		$roles = Role::all();
-		return View('requisicion.create')->with(compact('productos','proveedores','roles'));
+		$acciones = AccionesRequisicion::whereNull('est_ant_rqs_id')->first();
+		$estado = EstadosRequisicion::find($acciones->est_rqs_id);
+		$rol = $acciones->role;
+		return View('requisicion.create')->with(compact('productos','proveedores','acciones','rol','estado'));
     }
 
     /**
@@ -61,11 +72,45 @@ class RequisicionController extends Controller
 			//'crg_rcp_rqs'=> 'required',
 			//'fec_rcp_rqs'=> 'required',
 			//'obs_rcp_rqs'=> 'required',
-			//'est_rqs'=> 'required'
+			'est_rqs'=> 'required'
 			];
         $validate = Validator::make($post_data, $rules);
         if (!$validate->failed()){
-			$requisicion = Requisicion::create($post_data);	 		
+			$requisicion = Requisicion::create($post_data);
+			$numprods = (int)$post_data['cantproductos'];
+			$numprovs = (int)$post_data['cantproveedores'];
+			$i = 1;
+			$productos = array();
+			while($i <= $numprods){
+				$producto_i = array();
+				$producto_i['prod_id'] = $post_data['producto'.$i];
+				$producto_i['cant_sol_prd'] = $post_data['cantidad'.$i];
+				$producto_i['unidad_sol_id'] = $post_data['unidad'.$i];
+				$producto_i['nom_prd'] = $post_data['detalle'.$i];
+				$producto_i['rqs_id'] = $requisicion->id;
+				array_push($productos,$producto_i);
+				ProductosRequisicion::create($producto_i);
+				$i = $i + 1;
+				//return $producto_i;
+			}
+			
+			$i = 1;
+			while($i <= $numprovs){
+				$proveedor_i = array();
+				$proveedor_i['raz_soc'] = $post_data['nombre'.$i];
+				$proveedor_i['tel_fij'] = $post_data['telefono'.$i];
+				$proveedor_i['rqs_id'] = $requisicion->id;
+				ProveedoresRequisicion::create($proveedor_i);
+				$i = $i + 1;
+				//return $proveedor_i;
+			}
+			
+			$accion_crear = array();
+			$accion_crear['obs_reg_rqs'] = $post_data['obs_rqs'];
+			$accion_crear['rqs_id'] = $requisicion->id;
+			$accion_crear['acc_rqs_id'] = $post_data['acc_rqs'];
+			$accion_crear['user_id'] = Auth::user()->id;
+			RegistroHistoricoRequisicion::create($accion_crear);
 			return redirect()->intended('/requisicion');
 		}
 		return redirect()->back()->withInput()->withErrors($validate);
@@ -152,8 +197,14 @@ class RequisicionController extends Controller
 	public function cargarunidadesproducto(Request $request)
     {
 		$producto = Producto::find($request['option']);
+		if($producto){
+			$unidades = $producto->unidades()->get();
+		}
+		else{
+			$unidades = Unidad::all();
+		}
 		//$unidades = Unidad::whereIn('id', '=', $producto)->get();
-		$unidades = $producto->unidades()->get();
+		
 		return response()->json($unidades);
 	}
 	

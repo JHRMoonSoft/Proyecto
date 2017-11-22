@@ -28,7 +28,7 @@ class Producto extends Model
 
 	public function unidades()
 	{
-    		return $this->belongsToMany('App\Unidad', 'producto_unidad');
+    	return $this->belongsToMany('App\Unidad', 'producto_unidad');
 	}
 	
 	public function unidad()

@@ -28,19 +28,17 @@
 											<label for="to" class="col-sm-2 control-label">Para:</label>
 											<div class="col-sm-10">
 												<select id="rol_rqs" class="form-control" name="rol_rqs">
-													<option value="" selected>Seleccionar</option>
-													@if(!$roles->isEmpty())
-														@foreach($roles as $rol)
-															<option value="{{ $rol->id}}">{{ $rol->display_name }} </option>
-														@endforeach
-													@endif
+													<option value="">Seleccionar</option>
+													<option value="{{ $rol->id}}" selected>{{ $rol->display_name }} </option>
 												</select>
 											</div>
 										</div>
+										<input type="hidden" value="{{ $estado->id }}" class="form-control select2-offscreen" id="est_rqs" name="est_rqs"/>
+										<input type="hidden" value="{{ $acciones->id }}" class="form-control select2-offscreen" id="acc_rqs" name="acc_rqs"/>
 										<div class="form-group">
-											<label for="sol_rqs" class="col-sm-2 control-label">Solicitud:</label>
+											<label for="asn_rqs" class="col-sm-2 control-label">Asunto:</label>
 											<div class="col-sm-10">
-												<input type="text" value="Requisición Interna" class="form-control select2-offscreen" id="sol_rqs" name="sol_rqs" tabindex="-1">
+												<input type="text" value="{{ $estado->asu_est_req }}" class="form-control select2-offscreen" id="asn_rqs" name="asn_rqs" tabindex="-1" readonly/>
 											</div>
 										</div>
 										<div class="form-group">
@@ -107,7 +105,7 @@
 												</div>
 												-->
 												<!-- <div id="asn_rqs" name="asn_rqs" class="editor-wrapper"></div> -->
-												<textarea id="asn_rqs" name="asn_rqs" class="editor-wrapper" style="width:100%" ></textarea>
+												<textarea id="obs_rqs" name="obs_rqs" class="editor-wrapper" style="width:100%" ></textarea>
 												<br/>
 											</div>
 										</div>
@@ -161,6 +159,7 @@
 																<option value="{{ $producto->id}}">{{ $producto->des_prd}} </option>
 															@endforeach
 														@endif
+														<option value="">Otro (Llenar Detalle)</option>
 													</select>
 												
 												</td>
@@ -221,7 +220,7 @@
 											<th>#</th>
 											<th>Proveedor </th>
 											<th> Nombre  Proveedor </th>
-											<th>Telefono </th>	
+											<th>Teléfono </th>	
 										</tr>
 									</thead>
 									<tbody>
@@ -237,8 +236,8 @@
 														@foreach($proveedores as $proveedor)
 															<option value="{{ $proveedor->id}}">{{ $proveedor->raz_soc}} </option>
 														@endforeach
-														<option value="0">Otro</option>
 													@endif
+													<option value="0">Otro</option>
 												</select>
 												
 											</td>

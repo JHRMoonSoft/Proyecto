@@ -11,23 +11,23 @@ class Requisicion extends Model
 	
 	public function proveedoresrequisicion()
 	{
-    		return $this->hasMany('ProveedoresRequisicion'); //Ok
+    		return $this->hasMany('App\ProveedoresRequisicion'); //Ok
 	}
 	
 	public function registrohistoricorequisicion()
 	{
-    		return $this->hasMany('Registrohistoricorequisicion'); //Ok
+    		return $this->hasMany('App\RegistrohistoricoRequisicion'); //Ok
 	}
 	
 	public function estadorequisicion()
 	{
-    		return $this->belongsTo('Estadosrequisicion'); //Ok
+    		return $this->belongsTo('App\EstadosRequisicion', 'est_rqs'); //Ok
 	}
 	
 	public function productos()
 	{
 		//Ok
-    		return $this->belongsToMany('Producto','productosrequisicions','rqs_id','prod_id')
+    		return $this->belongsToMany('App\Producto','productosrequisicions','rqs_id','prod_id')
 		    	->withPivot('apr_prod'
 						   ,'cant_sol_prd'
 						   ,'cant_apr_prd'

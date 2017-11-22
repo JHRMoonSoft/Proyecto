@@ -270,7 +270,7 @@ $('#edit_producto_modal').on('shown.bs.modal', function(e) {
 	$(e.currentTarget).find('input[name="edit_cat_prd"]').val(cat_id);
 	$(e.currentTarget).find('input[name="edit_und_prd"]').val(und_id);
 	$(e.currentTarget).find('input[name="edit_unds_prd"]').select2();
-	alert($(e.currentTarget).find('input[name="edit_unds_prd"]').find('option:[value="1"]').prop('selected', true));
+	//alert($(e.currentTarget).find('input[name="edit_unds_prd"]').find('option:[value="1"]').prop('selected', true));
 	//$(e.currentTarget).find('input[name="edit_unds_prd"]').select2('val',unds_id);
 	
 });
