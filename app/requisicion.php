@@ -16,7 +16,7 @@ class Requisicion extends Model
 	
 	public function registrohistoricorequisicion()
 	{
-    		return $this->hasMany('App\RegistrohistoricoRequisicion'); //Ok
+    		return $this->hasMany('App\RegistroHistoricoRequisicion', 'rqs_id'); //Ok
 	}
 	
 	public function estadorequisicion()

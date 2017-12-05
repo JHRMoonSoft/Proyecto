@@ -2,17 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Area;
 use Illuminate\Http\Request;
-use App\Requisicion;
-use \Carbon\Carbon;
 
-class AutorizarRQSController extends Controller
+class AreaController extends Controller
 {
-	public function __construct()
-    {
-        $this->middleware('auth');
-    }
-	
     /**
      * Display a listing of the resource.
      *
@@ -20,25 +14,17 @@ class AutorizarRQSController extends Controller
      */
     public function index()
     {
-      $requisiciones = Requisicion::whereIn('rol_rqs',array(2))->get();
-      $now = Carbon::now();
-      return View('autorizarRQS.index')->with(compact('requisiciones','now'));
+        //
     }
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
-	 * int id
      */
-    public function create(int $id)
+    public function create()
     {
-		$productos = Producto::all();
-		$proveedores = Proveedor::all();
-		$requisicion = Requisicion::find($id);
-        $acciones = AccionesRequisicion::where('est_ant_rqs_id','=',$requisicion->estadorequisicion->id)->get();
-		return $acciones;
-		return View('autorizarRQS.create')->with(compact('requisicion'));
+        //
     }
 
     /**
@@ -55,10 +41,10 @@ class AutorizarRQSController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Area  $area
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Area $area)
     {
         //
     }
@@ -66,10 +52,10 @@ class AutorizarRQSController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Area  $area
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Area $area)
     {
         //
     }
@@ -78,10 +64,10 @@ class AutorizarRQSController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Area  $area
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Area $area)
     {
         //
     }
@@ -89,10 +75,10 @@ class AutorizarRQSController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Area  $area
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Area $area)
     {
         //
     }

@@ -192,6 +192,11 @@
 									</div>
 									
 								</div>
+								@if ($errors->has('cantproductos'))
+									<span class="help-block">
+										<strong>{{ $errors->first('cantproductos') }}</strong>
+									</span>
+								@endif
 								<small>Pulse + para agregar otro producto /  Pulse - para eliminar un producto.</small>
 								<br />
 							</div>

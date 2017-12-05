@@ -20,6 +20,7 @@ Auth::routes();
 
 Route::get('requisicion/cargarunidadesproducto', 'RequisicionController@cargarunidadesproducto');
 Route::get('requisicion/cargarproveedor', 'RequisicionController@cargarproveedor');
+Route::get('autorizarRQS/create/{id}', 'AutorizarRQSController@create');
 
 
 

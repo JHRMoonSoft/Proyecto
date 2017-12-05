@@ -21,9 +21,15 @@ class CreateUsersTable extends Migration
 			$table->string('nom_usr');
 			$table->string('ape_usr');
 			$table->string('usuario')->unique();
-			$table->string('crg_usr');
-			$table->string('tip_dep');
-			$table->string('dep_usr');
+			//$table->string('crg_usr');
+			$table->integer('crg_usr')->unsigned()->index();
+            $table->foreign('crg_usr')->references('id')->on('cargos') ->onUpdate('cascade') ->onDelete('cascade');
+			//$table->string('tip_dep');
+			$table->integer('tip_dep')->unsigned()->index();
+            $table->foreign('tip_dep')->references('id')->on('tipos_areas') ->onUpdate('cascade') ->onDelete('cascade');
+			//$table->string('dep_usr');
+			$table->integer('dep_usr')->unsigned()->index();
+            $table->foreign('dep_usr')->references('id')->on('areas') ->onUpdate('cascade') ->onDelete('cascade');
 			$table->string('crd_usr');
 			$table->string('tel_fij')->nullable();
 			$table->string('tel_cel');

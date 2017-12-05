@@ -75,12 +75,12 @@ class RequisicionController extends Controller
 			'est_rqs'=> 'required'
 			];
         $validate = Validator::make($post_data, $rules);
-        if (!$validate->failed()){
+        if ($validate->passes()){
 			$requisicion = Requisicion::create($post_data);
 			$numprods = (int)$post_data['cantproductos'];
 			$numprovs = (int)$post_data['cantproveedores'];
 			$i = 1;
-			$productos = array();
+			$productos_vacios = true;
 			while($i <= $numprods){
 				$producto_i = array();
 				$producto_i['prod_id'] = $post_data['producto'.$i];
@@ -88,10 +88,17 @@ class RequisicionController extends Controller
 				$producto_i['unidad_sol_id'] = $post_data['unidad'.$i];
 				$producto_i['nom_prd'] = $post_data['detalle'.$i];
 				$producto_i['rqs_id'] = $requisicion->id;
-				array_push($productos,$producto_i);
-				ProductosRequisicion::create($producto_i);
+				if(!$this->IsNullOrEmptyString($producto_i['prod_id']) and !$this->IsNullOrEmptyString($producto_i['cant_sol_prd']) and !$this->IsNullOrEmptyString($producto_i['unidad_sol_id'])){
+					ProductosRequisicion::create($producto_i);
+					$productos_vacios = false;
+				}
 				$i = $i + 1;
 				//return $producto_i;
+			}
+			if($productos_vacios === true){
+				$requisicion->delete();
+				$validate->errors()->add('cantproductos', 'Debe existir al menos un producto válido asociado a esta requisición.');
+				return redirect()->back()->withInput()->withErrors($validate);
 			}
 			
 			$i = 1;
@@ -100,7 +107,9 @@ class RequisicionController extends Controller
 				$proveedor_i['raz_soc'] = $post_data['nombre'.$i];
 				$proveedor_i['tel_fij'] = $post_data['telefono'.$i];
 				$proveedor_i['rqs_id'] = $requisicion->id;
-				ProveedoresRequisicion::create($proveedor_i);
+				if(!$this->IsNullOrEmptyString($proveedor_i['raz_soc'])){
+					ProveedoresRequisicion::create($proveedor_i);
+				}
 				$i = $i + 1;
 				//return $proveedor_i;
 			}
@@ -213,5 +222,12 @@ class RequisicionController extends Controller
 		$proveedor = Proveedor::find($request['option']);
 		return response()->json($proveedor);
 	}
+	
+	// Function for basic field validation (present and neither empty nor only white space
+	function IsNullOrEmptyString($question){
+		return (!isset($question) || trim($question)==='');
+	}
+
+
 	
 }

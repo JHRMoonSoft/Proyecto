@@ -1,20 +1,20 @@
 @extends('layouts.app')
 @section('content')
-@section('pagetitle')
-  <h3></h3> 
-@endsection
-@section('x_search')
-	<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search"> 
-						
-		<div class="input-group">
-		<input type="text" class="form-control" placeholder="Buscar ...">
-		<span class="input-group-btn">
-				  <button class="btn btn-default glyphicon glyphicon-search" type="button"></button> 
-			  </span> 
+	@section('pagetitle')
+	<h3></h3> 
+	@endsection
+	@section('x_search')
+		<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search"> 
+							
+			<div class="input-group">
+			<input type="text" class="form-control" placeholder="Buscar ...">
+			<span class="input-group-btn">
+					<button class="btn btn-default glyphicon glyphicon-search" type="button"></button> 
+				</span> 
+			</div>
 		</div>
-	</div>
-	
-@endsection
+		
+	@endsection
 
 @section('x_content')
   <div class="x_panel">
@@ -62,21 +62,32 @@
 						<th class="text-center">Solicitante</th>
 						<th class="text-center">Area</th>
 						<th class="text-center">Cargo</th>
-						<th>Opciones  </th>
+						<th>Opciones</th>
 						<!--<th>Eliminar</th>-->
 					</tr>
 				  </thead>
 				  <tbody>
-					
+					@foreach($requisiciones as $requisicion)
 					<tr>
-					  <td>0023933</td>
-						<td>
-							26-06-2017
-						</td>
-						<td>6 d</td>
-						<td>Requisición Interna</td>
-						<td>Activo</td>
-						<td>Belkis Buelvas</td>	
+						<td>{{$requisicion->id}}</td>
+						<td>{{$requisicion->created_at->format('d-m-Y')}}</td>
+						<td>{{$now->diff($requisicion->created_at)->days}} día(s)</td>
+						<td>{{$requisicion->asn_rqs}}</td>
+						<td>{{$requisicion->estadorequisicion->desc_est_req}}</td>
+						@if($requisicion->registrohistoricorequisicion->count() == 0)
+							<td>Sin Creación</td>
+						@else
+							@foreach($requisicion->registrohistoricorequisicion as $registrorqs)
+								@if ($loop->first)
+									@if($registrorqs->user === null)
+										<td>Sin Creación</td>
+									@else
+										<td>{{$registrorqs->user->nom_usr .' '. $registrorqs->user->ape_usr}}</td>
+										
+									@endif
+								@endif
+							@endforeach
+						@endif
 						<td>Area</td>	
 						<td>Cargo</td>	
 						<td><a href="/rqs" title="Detalle" class="btn btn-success glyphicon glyphicon-file btn-xs" data-title="Detalle"></a>
@@ -85,6 +96,7 @@
 						<td><p data-placement="top" data-toggle="tooltip" title="Eliminar"><a href="" class="btn btn-danger btn-xs" data-title="Eliminar"><span class=" glyphicon glyphicon-trash"></span></a></p></td>-->
 				
 					</tr>
+					@endforeach
 					<tr>
 					  <td>0023933</td>
 						<td>
