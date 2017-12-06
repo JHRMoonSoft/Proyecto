@@ -53,9 +53,9 @@
 					<div class="col-md-6 col-sm-6 col-xs-12">
 					
 						<select id="tip_doc" class="form-control col-md-7 col-xs-12" data-validate-length-range="7"  name="tip_doc" value="{{$proveedors->tip_doc}}" required="required">
-							<option value="" selected>Seleccionar</option>
-							<option value="NIT">NIT</option>
-							<option value="RUT">RUT</option>
+							<option value=" " selected>Seleccionar</option>
+							<option value="NIT" {{ $proveedors->tip_doc == 'NIT' ? ' selected':'' }}>NIT</option>
+							<option value="RUT" {{ $proveedors->tip_doc == 'RUT' ? ' selected':'' }}>RUT</option>
 						</select>
 					</div>
 				</div>

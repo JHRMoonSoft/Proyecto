@@ -11,7 +11,7 @@ class Requisicion extends Model
 	
 	public function proveedoresrequisicion()
 	{
-    		return $this->hasMany('App\ProveedoresRequisicion'); //Ok
+    		return $this->hasMany('App\ProveedoresRequisicion', 'rqs_id'); //Ok
 	}
 	
 	public function registrohistoricorequisicion()
@@ -27,12 +27,7 @@ class Requisicion extends Model
 	public function productos()
 	{
 		//Ok
-    		return $this->belongsToMany('App\Producto','productosrequisicions','rqs_id','prod_id')
-		    	->withPivot('apr_prod'
-						   ,'cant_sol_prd'
-						   ,'cant_apr_prd'
-						   ,'cant_entr_prd'
-						   ,'cant_dif_prd')->withTimestamps();
+    		return $this->hasMany('App\ProductosRequisicion','rqs_id');
 	}
 	
 }

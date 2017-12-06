@@ -47,10 +47,11 @@
 												<input type="text" class="form-control select2-offscreen" id="jst_rqs" name="jst_rqs" tabindex="-1">
 											</div>
 										</div>
-										<div class="col-sm-10 col-sm-offset-2">
-											<div class="x_content">
-												<div id="alerts"></div>
+										<div class="form-group">
+											<label for="obs_rqs" class="col-sm-2 control-label">Observación:</label>
+											<div class="col-sm-10">
 												<!--
+												<div id="alerts"></div>
 												<div class="btn-toolbar editor" data-role="editor-toolbar" data-target="#asn_rqs">
 													<div class="btn-group">
 														<a class="btn dropdown-toggle" data-toggle="dropdown" title="Font"><i class="fa fa-font"></i><b class="caret"></b></a>
@@ -137,9 +138,9 @@
 										<thead>
 											<tr >
 												<th class="text-center">#</th>
-												<th class="text-center">Producto</th>
-												<th class="text-center">Cantidad</th>
-												<th class="text-center">Unidad</th>									
+												<th class="text-center">Producto</th>												
+												<th class="text-center">Unidad</th>	
+												<th class="text-center">Cantidad</th>								
 												<th class="text-center">Detalle del producto</th>	
 												<th class="text-center"><a></a></th>
 								
@@ -164,14 +165,15 @@
 												
 												</td>
 												<td class="nopadding" >
-													<div class="form-group">
-														<input type="text" class="form-control" id="cantidad1" name="cantidad1" value="" placeholder="Cantidad">
-													</div>
-												</td>
-												<td class="nopadding" >
 													<select class="form-control" id="unidad1" name="unidad1">
 														<option value="" selected>Seleccionar</option>
 													</select>
+												</td>
+												
+												<td class="nopadding" >
+													<div class="form-group">
+														<input type="text" class="form-control" id="cantidad1" name="cantidad1" value="" placeholder="Cantidad">
+													</div>
 												</td>
 												
 												<td class="nopadding" >
@@ -305,18 +307,19 @@
 					});
 				text = text +
 				'</select></td>'+
-				//Cantidad
-				'<td class="nopadding" >'+
-					'<div class="form-group"><input type="text" class="form-control" id="cantidad'+(producto)+'" name="cantidad'+(producto)+'" value="" placeholder="Cantidad"></div>'+
-				'</td>'+
 				//Unidades
 				'<td class="nopadding" >'+
 					'<select class="form-control" id="unidad'+(producto)+'" name="unidad'+(producto)+'"><option value="">Seleccionar</option></select>'+
 				'</td>'+
+				//Cantidad
+				'<td class="nopadding" >'+
+					'<div class="form-group"><input type="text" class="form-control" id="cantidad'+(producto)+'" name="cantidad'+(producto)+'" value="" placeholder="Cantidad"></div>'+
+				'</td>'+				
 				//Detalle
 				'<td class="nopadding" >'+
 					'<div class="form-group"><input type="text" class="form-control" id="detalle'+(producto)+'" name="detalle'+(producto)+'" value="" placeholder="Detalle"></div>'+
 				'</td>'+
+				
 				//Botones
 				 '<td class="nopadding" >'+
 					'<div class="input-group-btn"><button class="btn btn-sm btn-danger glyphicon glyphicon-minus btn-xs" type="button" onclick="remove_education_fields('+ producto +');">'+

@@ -38,19 +38,20 @@
 				<div class="item form-group">
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="tip_empr">Tipo. Empresa<span class="required">*</span>
 					</label>
+					
 					<div class="col-md-6 col-sm-6 col-xs-12">
 					
-						<select id="tip_empr" class="form-control col-md-7 col-xs-12" data-validate-length-range="7" data-validate-words="2" name="tip_empr" value="{{$configuracion->tip_empr}}" required="required">
+						<select id="tip_empr"    class="form-control col-md-7 col-xs-12" data-validate-length-range="7" data-validate-words="2" name="name"  required="required">
 							<option value="" selected>Seleccionar</option>
-							<option value="E.I.R.L">E.I.R.L</option>
-							<option value="S.C">S.C</option>
-							<option value="S.A">S.A</option>
-							<option value="S.R.L">S.R.L</option>
-							<option value="S.A.C">S.A.C</option>
-							<option value="Fundación">Fundación</option>
-							<option value="Asociación">Asociación</option>
-							<option value="Unipersonal">Unipersonal</option>
-							<option value="Persona natural">Persona natural</option>
+							<option value="E.I.R.L" {{ $configuracion->tip_empr == 'E.I.R.L' ? ' selected':'' }}>E.I.R.L</option>
+							<option value="S.C"{{ $configuracion->tip_empr == 'S.C' ? ' selected':'' }}>S.C</option>
+							<option value="S.A"{{ $configuracion->tip_empr == 'S.A' ? ' selected':'' }}>S.A</option>
+							<option value="S.R.L"{{ $configuracion->tip_empr == 'S.R.L' ? ' selected':'' }}>S.R.L</option>
+							<option value="S.A.C"{{ $configuracion->tip_empr == 'S.A.C' ? ' selected':'' }}>S.A.C</option>
+							<option value="Fundación" {{ $configuracion->tip_empr == 'Fundación' ? ' selected':'' }}>Fundación</option>
+							<option value="Asociación"{{ $configuracion->tip_empr == 'Asociación' ? ' selected':'' }}>Asociación</option>
+							<option value="Unipersonal"{{ $configuracion->tip_empr == 'Unipersonal' ? ' selected':'' }}>Unipersonal</option>
+							<option value="Persona natural"{{ $configuracion->tip_empr == 'Persona natural' ? ' selected':'' }}>Persona natural</option>
 						</select>
 					
 					</div>
@@ -73,9 +74,9 @@
 					<div class="col-md-6 col-sm-6 col-xs-12">
 					
 						<select id="tip_doc" class="form-control col-md-7 col-xs-12" data-validate-length-range="7" data-validate-words="2" name="tip_doc" value="{{$configuracion->tip_doc}}" required="required">
-							<option value=" " selected>Seleccionar</option>
-							<option value="NIT">NIT</option>
-							<option value="RUT">RUT</option>
+							<option value="" selected>Seleccionar</option>
+							<option value="NIT"{{ $configuracion->tip_doc == 'NIT' ? ' selected':'' }}>NIT</option>
+							<option value="RUT"{{ $configuracion->tip_doc == 'RUT' ? ' selected':'' }}>RUT</option>
 						</select>
 					
 					</div>

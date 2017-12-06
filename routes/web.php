@@ -18,9 +18,14 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('solicitudcompra/cargardisponibleproducto', 'SolicitudCompraController@cargardisponibleproducto');
+Route::get('solicitudcompra/cargarunidadesproducto', 'SolicitudCompraController@cargarunidadesproducto');
+
 Route::get('requisicion/cargarunidadesproducto', 'RequisicionController@cargarunidadesproducto');
 Route::get('requisicion/cargarproveedor', 'RequisicionController@cargarproveedor');
+
 Route::get('autorizarRQS/create/{id}', 'AutorizarRQSController@create');
+Route::get('autorizarRQS/cambioaccion', 'AutorizarRQSController@cambioaccion');
 
 
 

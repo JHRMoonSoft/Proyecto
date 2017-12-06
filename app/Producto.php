@@ -25,6 +25,14 @@ class Producto extends Model
 						   ,'cant_entr_prd'
 						   ,'cant_dif_prd')->withTimestamps();
 	}
+	
+	public function solicitudcompra()
+	{
+		//
+    		return $this->belongsToMany('Solicitudcompra','productosolicitudcompras','prod_id','sol_comp_id')
+		    	->withPivot('cant_sol_prd')->withTimestamps();
+	}
+	
 
 	public function unidades()
 	{
@@ -38,6 +46,6 @@ class Producto extends Model
 	
 	public function almacen()
     {
-		return $this->hasOne('Almacen');
+		return $this->hasOne('App\Almacen');
 	}
 }

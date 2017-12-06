@@ -110,11 +110,11 @@
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
 					
-						<select id="tipo_identidad" class="form-control col-md-7 col-xs-12" data-validate-length-range="7" data-validate-words="2" name="name" required="required">
-							<option value="volvo " selected>Seleccionar</option>
-							<option>CEDULA DE CIUDADANIA</option>
-							<option>CEDULA EXTRANGERA</option>
-							<option>PASAPORTE</option>
+						<select id="tip_doc"  name="tip_doc" class="form-control col-md-7 col-xs-12" data-validate-length-range="7" data-validate-words="2" required="required">
+							<option value=" " selected>Seleccionar</option>
+							<option value="1" {{ $users->tip_doc == '1' ? ' selected':'' }}>CEDULA DE CIUDADANIA</option>
+							<option value="CEDULA DE EXTRANJERÍA" {{ $users->tip_doc == 'CEDULA DE EXTRANJERÍA' ? ' selected':'' }}>CEDULA DE EXTRANJERÍA</option>
+							<option value="PASAPORTE" {{ $users->tip_doc == 'PASAPORTE' ? ' selected':'' }}>PASAPORTE</option>
 						</select>
 					
 					</div>

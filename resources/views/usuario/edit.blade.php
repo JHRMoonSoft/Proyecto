@@ -19,11 +19,11 @@
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Tipo.Documento <span class="required">*</span>
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-						<select id="tip_doc"  name="tip_doc" value="{{ $users->tip_doc }}" class="form-control col-md-7 col-xs-12" required="required">
+						<select id="tip_doc"  name="tip_doc" class="form-control col-md-7 col-xs-12" data-validate-length-range="7" data-validate-words="2" required="required">
 							<option value=" " selected>Seleccionar</option>
-							<option value="1">CEDULA DE CIUDADANIA</option>
-							<option value="2">CEDULA DE EXTRANJERÍA</option>
-							<option value="3">PASAPORTE</option>
+							<option value="1" {{ $users->tip_doc == '1' ? ' selected':'' }}>CEDULA DE CIUDADANIA</option>
+							<option value="2" {{ $users->tip_doc == '2' ? ' selected':'' }}>CEDULA DE EXTRANJERÍA</option>
+							<option value="3" {{ $users->tip_doc == '3' ? ' selected':'' }}>PASAPORTE</option>
 						</select>
 					</div>
 				</div>
@@ -77,7 +77,7 @@
 					</div>
 				</div>
 				<div class="item form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Rol <span class="required">*</span>
+					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Rol <span class="">*</span>
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						@if(!$rolesGeneral->isEmpty())
@@ -89,6 +89,7 @@
 						@endif
 					</div>
 				</div>
+				
 			
 				<div class="item form-group">
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Cargo <span class="required">*</span>
@@ -104,9 +105,9 @@
 					
 						<select id="tip_dep" name="tip_dep" value="{{ $users->tip_dep }}" class="form-control col-md-7 col-xs-12" data-validate-length-range="7" data-validate-words="2"  required="required">
 							<option value="" selected>Seleccionar</option>
-							<option value="Area">Área</option>
-							<option value="Seccion">Sección</option>
-							<option value="Programa">Programa</option>
+							<option value="1" {{ $users->tip_dep == '1' ? ' selected':'' }}>Area</option>
+							<option value="2" {{ $users->tip_dep == '2' ? ' selected':'' }}>Seccion</option>
+							<option value="3" {{ $users->tip_dep == '3' ? ' selected':'' }}>Programa</option>
 						</select>
 					
 					</div>

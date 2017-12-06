@@ -30,4 +30,22 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+	
+	
+	public function cargo(){
+		
+	     return $this->belongsTo('App\Cargo', 'crg_usr');
+	}
+	
+	public function area(){
+		
+	     return $this->belongsTo('App\Area', 'dep_usr');
+	}
+	
+	public function tipoarea(){
+		
+	     return $this->belongsTo('App\TiposArea', 'tip_dep');
+	}
+	
+	
 }

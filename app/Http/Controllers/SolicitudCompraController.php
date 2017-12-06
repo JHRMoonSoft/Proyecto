@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 use App\Producto;
+use App\Requisicion;
 use App\Unidad;
+use App\Almacen;
 use App\Conversion;
 use App\Solicitudcompra;
+use App\ProductosSolicitudCompra;
 use Illuminate\Http\Request;
 
 class SolicitudCompraController extends Controller
@@ -46,13 +49,40 @@ class SolicitudCompraController extends Controller
 		$rules = [
             'asn_scp' => 'required',
 			'obv_scp' => 'required'
-			];
-        $validate = Validator::make($post_data, $rules);
-        if (!$validate->failed()){
-			$solicitudcompra = SolicitudCompra::create($post_data);	 		
+		
+		];
+    	//
+		$validate = Validator::make($post_data, $rules);
+        if ($validate->passes()){
+			$solicitudcompra = SolicitudCompra::create($post_data);
+			$numprods = (int)$post_data['cantproductos'];
+			$i = 1;
+			$productos_vacios = true;
+			while($i <= $numprods){
+				$producto_i = array();
+				$producto_i['prod_id'] = $post_data['producto'.$i];
+				$producto_i['cant_sol_prd'] = $post_data['cantidad'.$i];
+				$producto_i['unidad_emp_id'] = $post_data['unidad'.$i];
+				$producto_i['sol_comp_id'] = $solicitudcompra->id;
+				if(!$this->IsNullOrEmptyString($producto_i['prod_id']) and !$this->IsNullOrEmptyString($producto_i['cant_sol_prd']) and !$this->IsNullOrEmptyString($producto_i['unidad_emp_id'])){
+					ProductosRequisicion::create($producto_i);
+					$productos_vacios = false;
+				}
+				$i = $i + 1;
+				//return $producto_i;
+			}
+			if($productos_vacios === true){
+				$solicitudcompra->delete();
+				$validate->errors()->add('cantproductos', 'Debe existir al menos un producto válido asociado a esta requisición.');
+				return redirect()->back()->withInput()->withErrors($validate);
+			}
+		
+		
 		}
-		$solicitudcompras = SolicitudCompra::all();
-		return view('solicitudcompra.index')->with('solicitudcompras', $solicitudcompras);
+		return redirect()->back()->withInput()->withErrors($validate);	
+		
+		// 		return view('solicitudcompra.index')->with('solicitudcompras', $solicitudcompras);
+	
     }
 
     /**
@@ -112,4 +142,44 @@ class SolicitudCompraController extends Controller
     {
         //
     }
+	
+	public function cargarunidadesproducto(Request $request)
+    {
+		$producto = Producto::find($request['option']);
+		if($producto){
+			$unidades = $producto->unidades()->get();
+		}
+		else{
+			$unidades = Unidad::all();
+		}
+		//$unidades = Unidad::whereIn('id', '=', $producto)->get();
+		
+		return response()->json($unidades);
+	}
+	
+	public function cargardisponibleproducto(Request $request)
+    {
+		$producto = Producto::find($request['option']);
+		if($producto){
+			$almacen = $producto->almacen()->first();
+			$almacen['und'] = $producto->unidad->des_und;
+		}
+		else{
+			$almacen = null;
+		}
+		//$unidades = Unidad::whereIn('id', '=', $producto)->get();
+		
+		return response()->json($almacen);
+	}
+	
+	public function buscarRQSAutorizada(Request $request)
+    {
+		$rqs = Requisicion::find($request['option']);
+		if(!$rqs){
+			$rqs = null;
+		}
+		
+		return response()->json($unidades);
+	}
+
 }

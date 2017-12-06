@@ -204,7 +204,6 @@
 												<th><button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-toggle="modal" data-target=".producto"></button> Producto </th>											
 												<th><button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-toggle="modal" data-target=".unidad"></button> Unidad </th>
 												<th> Cantidad</th>
-												<th> Descripcion </th>
 												<th> IVA. Unt</th>
 												<th> Val. Unitario</th>
 												<th> Val. Total</th>
@@ -218,39 +217,27 @@
 													1
 												</td>								
 												<td class="nopadding" >
-													<select class="form-control input-sm" id="educationDate" name="educationDate[]">
-														<option value="" selected>Seleccionar</option>
-														<option name="" value="">Aceite</option>
-														<option value="">Arepas antioqueñas precocidas </option>
-														<option value="" >Arroz  (bolsas de medio kilo)</option>
-														<option value="" >Bocadillo</option>
-												  </select>
+													<div class="form-group input-sm">
+														@if(!$productos->isEmpty())
+															<select id="productos" class="form-control" name="productos" >
+																<option value="" selected>Seleccionar</option>
+																@foreach($productos as $producto)
+																	<option value="{{ $producto->id}}">{{ $producto->des_prd}} </option>
+																@endforeach
+															</select>
+														@endif
+													</div>
 												</td>
 												<td class="nopadding" >
-													<select class="form-control input-sm" id="educationDate" name="educationDate[]">
-														<option value="" selected>Seleccionar</option>
-														<option name="" value="">Barra</option>
-														<option name="" value="">Bloque</option>
-														<option name="" value="">Bolsa</option>
-														<option name="" value="">Botella</option>
-														<option name="" value="">Caja</option>
-														<option name="" value="">Frasco</option>
-														<option value="">Lata</option>
-														<option value="">Paquete</option>
-														<option value="">Pote</option>
-														<option value="">Tarro</option>
-														<option value="">Tubo</option>
-														<option value="">Vaso</option>
-														<option name="" value="">Unidad</option>
-														<option value="">Kg</option>
-														<option value="">Kilo</option>
-														<option value="">Litro</option>
-														<option value="">Lonjas</option>
-												  </select>
-												</td>
-												<td class="nopadding" >
-													<div class="form-group">
-														<input type="text" class="form-control input-sm" id="Schoolname" name="Schoolname[]" value="" placeholder="">
+													<div class="form-group input-sm">
+														@if(!$unidads->isEmpty())
+															<select id="unidads" class="form-control" name="unidads" >
+																<option value="" selected>Seleccionar</option>
+																@foreach($unidads as $unidad)
+																	<option value="{{ $unidad->id}}">{{ $unidad->des_und}} </option>
+																@endforeach
+															</select>
+														@endif
 													</div>
 												</td>
 												<td class="nopadding" >

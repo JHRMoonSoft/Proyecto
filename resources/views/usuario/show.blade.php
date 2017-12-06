@@ -17,9 +17,9 @@
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						<select id="tip_doc"  name="tip_doc" disabled style="background:rgba(247, 247, 247, 0.57);" class="form-control col-md-7 col-xs-12" required="required">
 							<option value=" " selected>Seleccionar</option>
-							<option value="CEDULA DE CIUDADANIA" {{ $users->tip_doc == 'CEDULA DE CIUDADANIA' ? ' selected':'' }}>CEDULA DE CIUDADANIA</option>
-							<option value="CEDULA DE EXTRANJERÍA" {{ $users->tip_doc == 'CEDULA DE EXTRANJERÍA' ? ' selected':'' }}>CEDULA DE EXTRANJERÍA</option>
-							<option value="PASAPORTE" {{ $users->tip_doc == 'PASAPORTE' ? ' selected':'' }}>PASAPORTE</option>
+							<option value="1" {{ $users->tip_doc == '1' ? ' selected':'' }}>CEDULA DE CIUDADANIA</option>
+							<option value="2" {{ $users->tip_doc == '2' ? ' selected':'' }}>CEDULA DE EXTRANJERÍA</option>
+							<option value="3" {{ $users->tip_doc == '3' ? ' selected':'' }}>PASAPORTE</option>
 						</select>
 					</div>
 				</div>
@@ -66,9 +66,9 @@
 					
 						<select id="tip_dep" name="tip_dep" class="form-control col-md-7 col-xs-12" disabled style="background:rgba(247, 247, 247, 0.57);" data-validate-length-range="7" data-validate-words="2"  required="required">
 							<option value="" selected>Seleccionar</option>
-							<option value="Area" {{ $users->tip_dep == 'Area' ? ' selected':'' }}>Area</option>
-							<option value="Seccion" {{ $users->tip_dep == 'Seccion' ? ' selected':'' }}>Seccion</option>
-							<option value="Programa" {{ $users->tip_dep == 'Programa' ? ' selected':'' }}>Programa</option>
+							<option value="1" {{ $users->tip_dep == '1' ? ' selected':'' }}>Area</option>
+							<option value="2" {{ $users->tip_dep == '2' ? ' selected':'' }}>Seccion</option>
+							<option value="3" {{ $users->tip_dep == '3' ? ' selected':'' }}>Programa</option>
 						</select>
 					
 					</div>

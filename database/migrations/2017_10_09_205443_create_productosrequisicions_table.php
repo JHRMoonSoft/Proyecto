@@ -24,7 +24,7 @@ class CreateProductosrequisicionsTable extends Migration
             $table->foreign('prod_id')->references('id')->on('productos') ->onUpdate('cascade') ->onDelete('cascade');
 			
 			$table->string('nom_prd')->nullable();
-			$table->boolean('apr_prod')->default(true);
+			$table->boolean('apr_prod')->default(false);
 			
 			$table->double('cant_sol_prd');
 			$table->integer('unidad_sol_id')->unsigned()->index();

@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Factura;
+use App\Producto;
+use App\Proveedor;
+use App\Unidad;
+use App\Configuracion;
 use Illuminate\Http\Request;
 
 class FacturaController extends Controller
@@ -28,8 +32,12 @@ class FacturaController extends Controller
      */
     public function create()
     {
-        //
-	return View('factura.create');
+        $productos = Producto::all();
+		$proveedors = Proveedor::all();
+		$configuracion = Configuracion::all();
+		$unidads = Unidad::all();
+		return View('factura.create')->with(compact('productos','proveedors','configuracion','unidads'));
+	
     }
 
     /**

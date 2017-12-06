@@ -154,8 +154,9 @@
 									<thead>
 										<tr >
 											<th>#</th>
-											<th><button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-toggle="modal" data-target=".producto"></button>Producto</th>
-											<th><button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-toggle="modal" data-target=".unidad"></button>Unidad</th>
+											<th><a href="/producto" title="Producto" target="_blank" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-title="Producto"></a>Producto</th>
+											<th>Detalle del producto</th>											
+											<th><a href="/unidad" title="Producto" target="_blank" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-title="Producto"></a>Unidad</th>
 											<th>Cantidad</th>
 											<th> Disponible</th>
 											<th><a></a></th>
@@ -167,39 +168,40 @@
 											<td>
 												1
 											</td>
-											
-											</td>
+						
 											<td class="nopadding" >
 												<div class="form-group">
-													@if(!$productos->isEmpty())
-														<select id="productos" class="form-control" name="productos" >
+													<select id="producto1" class="form-control" name="producto1" onchange="cambio_productos(1);">
+														@if(!$productos->isEmpty())
 															<option value="" selected>Seleccionar</option>
 															@foreach($productos as $producto)
 																<option value="{{ $producto->id}}">{{ $producto->des_prd}} </option>
 															@endforeach
-														</select>
-													@endif
-												</div>
-											</td>
-											<td class="nopadding" >
-												<div class="form-group">
+														@endif
+													</select>
 													
-												</div>
-												<select class="form-control" id="unidades" name="unidades">
-													<option value="" selected>Seleccionar</option>
-											  </select>
-											</td>											
-											<td class="nopadding" >
-												<div class="form-group">
-													<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Cantidad">
 												</div>
 											</td>
 											<td>
-													1 Caja de 5 UND
+											</td>
+											<td class="nopadding" >
+												<div class="form-group">
+													<select class="form-control" id="unidad1" name="unidad1">
+														<option value="" selected>Seleccionar</option>
+													</select>
+												</div>
+											</td>
+											<td class="nopadding" >
+												<div class="form-group">
+													<input type="text" class="form-control" id="cantidad1" name="cantidad1" value="" placeholder="Cantidad">
+												</div>
+											</td>
+											<td>
+												<input type="text" class="form-control" id="disponible1" name="disponible1" disabled/>
 											</td>
 											<td class="nopadding" >
 												<div class="input-group-btn">
-													<button class="btn btn-sm btn-primary glyphicon glyphicon-plus btn-xs" type="button"  onclick="education_fields2();"> <span  aria-hidden="true"></span> </button>
+													<button class="btn btn-sm btn-primary glyphicon glyphicon-plus btn-xs" type="button"  onclick="education_fields2({{$productos}});"> <span  aria-hidden="true"></span> </button>
 												</div>
 											</td>
 										</tr>
@@ -250,87 +252,90 @@
 			  </div>
 			</div>
 		  </div>
-		  <!-- /modals -->
-		    <!-- Productos modal -->		  
-
-		  <div class="modal fade producto" tabindex="-1" role="dialog" aria-hidden="true">
-			<div class="modal-dialog modal-sm">
-			  <div class="modal-content">
-
-				<div class="modal-header">
-				  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
-				  </button>
-				  <h4 class="modal-title" id="myModalLabel2">Nuevo Producto</h4>
-				</div>
-				<div class="modal-body">
-					<label class="control-label " for="first-name"> Producto</label>
-					<div class="form-group input-group ">
-						<input name="multiple[]" class="form-control ">
-						<span class="input-group-btn"><button type="button" class="btn btn-primary btn-add">+</button></span>
-					</div>
-					<small>Pulse + para agregar otro producto /  Pulse - para eliminar un producto.</small>
-				</div>
-				<div class="modal-footer"><!--
-				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-				  <button type="submit" class="btn btn-danger">Deshacer</button>
-				  <button type="button" class="btn btn-primary">Guardar</button>
-				</div>
-
-			  </div>
-			</div>
-		  </div>
-		  <!-- /modals -->
-		  
-		   <!-- Unidad modal -->		  
-
-		  <div class="modal fade unidad" tabindex="-1" role="dialog" aria-hidden="true">
-			<div class="modal-dialog modal-sm">
-			  <div class="modal-content">
-
-				<div class="modal-header">
-				  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
-				  </button>
-				  <h4 class="modal-title" id="myModalLabel2">Nueva Unidad</h4>
-				</div>
-				<div class="modal-body">
-					<label class="control-label " for="first-name"> Unidad</label>
-					<div class="form-group input-group ">
-						<input name="multiple[]" class="form-control ">
-						<span class="input-group-btn"><button type="button" class="btn btn-primary btn-add">+</button></span>
-					</div>
-					<small>Pulse + para agregar otro unidad /  Pulse - para eliminar un unidad.</small>
-				</div>
-				<div class="modal-footer"><!--
-				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-				  <button type="submit" class="btn btn-danger">Deshacer</button>
-				  <button type="button" class="btn btn-primary">Guardar</button>
-				</div>
-
-			  </div>
-			</div>
-		  </div>
-		  <!-- /modals -->
-		
+		 
 	</div>		
 @stop
 	<script>
-		var room = 1;
-		function education_fields2() {
-		 
-			room++;
+		var producto = 1;
+		function education_fields2(productos) {
+			producto++;
 			var objTo = document.getElementById('education_fields2')
 			var divtest = document.createElement("tbody");
-			divtest.setAttribute("class", "form-group tr removeclass"+room);
-			var rdiv = 'removeclass'+room;
-			divtest.innerHTML = '<tr><td>' + (room) + '</td><td><div class="form-group "><select class="form-control"><option value="" selected>Seleccionar</option><option value="">Taller de Cocina</option><option value="">Papeleria</option><option value="" >Didacticos</option><option value="" >Aseo</option></select></div></td><td class="nopadding" ><select class="form-control" id="educationDate" name="educationDate[]"><option value="" selected>Seleccionar</option><option name="" value="">Aceite</option><option value="">Arepas antioqueñas precocidas </option><option value="" >Arroz  (bolsas de medio kilo)</option><option value="" >Bocadillo</option></select></td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Detalle"></div></td><td class="nopadding" ><select class="form-control" id="educationDate" name="educationDate[]"><option value="" selected>Seleccionar</option><option name="" value="">Barra</option><option name="" value="">Bloque</option><option name="" value="">Bolsa</option><option name="" value="">Botella</option><option name="" value="">Caja</option><option name="" value="">Frasco</option><option value="">Lata</option><option value="">Paquete</option><option value="">Pote</option><option value="">Tarro</option><option value="">Tubo</option><option value="">Vaso</option><option name="" value="">Unidad</option><option value="">Kg</option><option value="">Kilo</option><option value="">Litro</option><option value="">Lonjas</option></select></td><td>1 Caja de 5 UND</td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Cantidad"></div></td><td class="nopadding" ><div class="input-group-btn"><button class="btn btn-sm btn-danger glyphicon glyphicon-minus btn-xs" type="button" onclick="remove_education_fields2('+ room +');"> <span  aria-hidden="true"></span> </button></div></td></tr>';
+			divtest.setAttribute("class", "form-group tr removeclass"+producto);
+			var rdiv = 'removeclass'+producto;
+			var text = '<tr><td>' + (producto) +'</td>'+
+				//Productos
+				'<td class="nopadding" >'+
+				'<select class="form-control" id="producto'+(producto)+'" name="producto'+(producto)+'" onchange="cambio_productos('+(producto)+');">'+
+				'<option value="" selected>Seleccionar</option>';
+				$.each(productos, function(index, element) {
+						text = text + '<option value="'+ element.id +'">' + element.des_prd + '</option>';
+					});
+				text = text +
+				'</select></td>'+
+				//Unidades
+				'<td class="nopadding" >'+
+					'<select class="form-control" id="unidad'+(producto)+'" name="unidad'+(producto)+'"><option value="">Seleccionar</option></select>'+
+				'</td>'+
+				//Cantidad
+				'<td class="nopadding" >'+
+					'<div class="form-group"><input type="text" class="form-control" id="cantidad'+(producto)+'" name="cantidad'+(producto)+'" value="" placeholder="Cantidad"/></div>'+
+				'</td>'+				
+				//Disponible
+				'<td class="nopadding" >'+
+					'<div class="form-group"><input type="text" class="form-control" id="disponible'+(producto)+'" name="disponible'+(producto)+'" disabled/></div>'+
+				'</td>'+
+				
+				//Botones
+				 '<td class="nopadding" >'+
+					'<div class="input-group-btn"><button class="btn btn-sm btn-danger glyphicon glyphicon-minus btn-xs" type="button" onclick="remove_education_fields('+ producto +');">'+
+						'<span aria-hidden="true"></span>'+
+					'</button></div>'+
+				'</td></tr>';
+				divtest.innerHTML = text;
+				//'<tr><td>' + (producto) + '</td><td><div class="form-group "><select class="form-control"><option value="" selected>Seleccionar</option><option value="">Taller de Cocina</option><option value="">Papeleria</option><option value="" >Didacticos</option><option value="" >Aseo</option></select></div></td><td class="nopadding" ><select class="form-control" id="educationDate" name="educationDate[]"><option value="" selected>Seleccionar</option><option name="" value="">Aceite</option><option value="">Arepas antioqueñas precocidas </option><option value="" >Arroz  (bolsas de medio kilo)</option><option value="" >Bocadillo</option></select></td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Detalle"></div></td><td class="nopadding" ><select class="form-control" id="educationDate" name="educationDate[]"><option value="" selected>Seleccionar</option><option name="" value="">Barra</option><option name="" value="">Bloque</option><option name="" value="">Bolsa</option><option name="" value="">Botella</option><option name="" value="">Caja</option><option name="" value="">Frasco</option><option value="">Lata</option><option value="">Paquete</option><option value="">Pote</option><option value="">Tarro</option><option value="">Tubo</option><option value="">Vaso</option><option name="" value="">Unidad</option><option value="">Kg</option><option value="">Kilo</option><option value="">Litro</option><option value="">Lonjas</option></select></td><td>1 Caja de 5 UND</td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Cantidad"></div></td><td class="nopadding" ><div class="input-group-btn"><button class="btn btn-sm btn-danger glyphicon glyphicon-minus btn-xs" type="button" onclick="remove_education_fields2('+ producto +');"> <span  aria-hidden="true"></span> </button></div></td></tr>';
+				objTo.appendChild(divtest)
 			
-			objTo.appendChild(divtest)
-			  
 		}
 	   function remove_education_fields2(rid) {
 		   $('.removeclass'+rid).remove()
 		   
-		   room--;
+		   producto--;
+	   }
+	   
+	   function cambio_productos(rid) {
+		   $.get("{{ url('solicitudcompra/cargarunidadesproducto')}}", 
+				{
+					option: $('#producto'+rid).val(),
+					
+				}, 
+				function(data) {
+					var model = $('#unidad'+rid);
+					model.empty();
+					model.append("<option value='' selected>Seleccionar</option>");
+						$.each(data, function(index, element) {
+							model.append("<option value='"+ element.id +"'>" + element.des_und + "</option>");
+					});
+			});
+			
+			$.get("{{ url('solicitudcompra/cargardisponibleproducto')}}", 
+				{
+					option: $('#producto'+rid).val(),
+					
+				}, 
+				function(data) {
+					if(data){
+						if(data.cnt_prd == null){
+							document.getElementById("disponible"+rid).value = '0 ' + data.und;
+						}
+						else{
+							document.getElementById("disponible"+rid).value = data.cnt_prd + ' ' + data.und;
+						}
+						
+					}
+					
+					//model.setAttribute('value', );
+			});
 	   }
 
 	</script> 
