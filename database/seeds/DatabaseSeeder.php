@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
 		
 		$this->call(EstadosRQSSeeder::class);
 		$this->call(AccionesRQSSeeder::class);
-		
+		$this->call(ConfiguracionTableSeeder::class);
 		
     }
 }

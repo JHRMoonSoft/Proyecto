@@ -138,10 +138,10 @@
 										<thead>
 											<tr >
 												<th class="text-center">#</th>
-												<th class="text-center">Producto</th>												
+												<th class="text-center">Producto</th>
+												<th class="text-center">Nuevo Producto</th>													
 												<th class="text-center">Unidad</th>	
-												<th class="text-center">Cantidad</th>								
-												<th class="text-center">Detalle del producto</th>	
+												<th class="text-center">Cantidad</th>
 												<th class="text-center"><a></a></th>
 								
 											</tr>
@@ -160,9 +160,14 @@
 																<option value="{{ $producto->id}}">{{ $producto->des_prd}} </option>
 															@endforeach
 														@endif
-														<option value="">Otro (Llenar Detalle)</option>
+														<option value="">Otro (Nuevo Producto)</option>
 													</select>
 												
+												</td>
+												<td class="nopadding" >
+													<div class="form-group">
+														<input type="text" class="form-control" id="detalle1" name="detalle1" value="" placeholder="Detalle">
+													</div>
 												</td>
 												<td class="nopadding" >
 													<select class="form-control" id="unidad1" name="unidad1">
@@ -175,13 +180,6 @@
 														<input type="text" class="form-control" id="cantidad1" name="cantidad1" value="" placeholder="Cantidad">
 													</div>
 												</td>
-												
-												<td class="nopadding" >
-													<div class="form-group">
-														<input type="text" class="form-control" id="detalle1" name="detalle1" value="" placeholder="Detalle">
-													</div>
-												</td>
-												
 												<td class="nopadding" >
 													<div class="input-group-btn">
 														<button class="btn btn-sm btn-primary glyphicon glyphicon-plus btn-xs" type="button"  onclick="education_fields({{$productos}});"> <span  aria-hidden="true"></span> </button>
@@ -306,7 +304,12 @@
 						text = text + '<option value="'+ element.id +'">' + element.des_prd + '</option>';
 					});
 				text = text +
+				'<option value="">Otro (Nuevo Producto)</option>'+
 				'</select></td>'+
+				//Detalle
+				'<td class="nopadding" >'+
+					'<div class="form-group"><input type="text" class="form-control" id="detalle'+(producto)+'" name="detalle'+(producto)+'" value="" placeholder="Detalle"></div>'+
+				'</td>'+
 				//Unidades
 				'<td class="nopadding" >'+
 					'<select class="form-control" id="unidad'+(producto)+'" name="unidad'+(producto)+'"><option value="">Seleccionar</option></select>'+
@@ -314,12 +317,7 @@
 				//Cantidad
 				'<td class="nopadding" >'+
 					'<div class="form-group"><input type="text" class="form-control" id="cantidad'+(producto)+'" name="cantidad'+(producto)+'" value="" placeholder="Cantidad"></div>'+
-				'</td>'+				
-				//Detalle
-				'<td class="nopadding" >'+
-					'<div class="form-group"><input type="text" class="form-control" id="detalle'+(producto)+'" name="detalle'+(producto)+'" value="" placeholder="Detalle"></div>'+
-				'</td>'+
-				
+				'</td>'+	
 				//Botones
 				 '<td class="nopadding" >'+
 					'<div class="input-group-btn"><button class="btn btn-sm btn-danger glyphicon glyphicon-minus btn-xs" type="button" onclick="remove_education_fields('+ producto +');">'+

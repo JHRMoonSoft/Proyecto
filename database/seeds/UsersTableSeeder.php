@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use \Carbon\Carbon;
 
 class UsersTableSeeder extends Seeder
 {
@@ -33,6 +34,8 @@ class UsersTableSeeder extends Seeder
 			'dir_mail' => 'gerenciageneraldealuna@elmaildelgerentedealuna.co',
 			'password'=> bcrypt('12345'), 
 			'sta_usr' => true,
+			'created_at' => Carbon::now()->subDays(1),
+			'updated_at' => Carbon::now()
         ],[
 			'tipo_identidad' => '1',
 			'no_identidad' => '12345',
@@ -47,6 +50,8 @@ class UsersTableSeeder extends Seeder
 			'telefono_celular' => '12345',
 			'direccion_email' => '12345@gmail.com',
 			'password'=> bcrypt('12345'), 
+			'created_at' => Carbon::now()->subDays(1),
+			'updated_at' => Carbon::now()
 
         ]);
     }

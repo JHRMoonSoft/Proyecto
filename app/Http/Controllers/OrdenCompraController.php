@@ -33,11 +33,11 @@ class OrdenCompraController extends Controller
     public function create()
     {
        	$productos = Producto::all();
-		$proveedors = Proveedor::all();
+		$proveedores = Proveedor::all();
 		$categorias = Categoria::all();
 		$configuracion = Configuracion::all();
 		$unidads = Unidad::all();
-		return View('ordencompra.create')->with(compact('productos','proveedors','categorias','configuracion','unidads'));
+		return View('ordencompra.create')->with(compact('productos','proveedores','categorias','configuracion','unidads'));
     }
 
     /**
@@ -151,4 +151,10 @@ class OrdenCompraController extends Controller
     {
         //
     }
+	
+	public function cargarproveedor(Request $request)
+    {
+		$proveedor = Proveedor::find($request['option']);
+		return response()->json($proveedor);
+	}
 }

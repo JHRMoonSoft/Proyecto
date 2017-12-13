@@ -75,15 +75,16 @@
 									<div class=" row ">	
 										<div class=" col-sm-3 col-xs-6">
 											<div class="form-group">
-												<label for="proveedors">Proveedor</label>
-												@if(!$proveedors->isEmpty())
-													<select id="proveedors" class="form-control input-sm" name="proveedors" >
+												<label for="proveedor1">Proveedor</label>
+												@if(!$proveedores->isEmpty())
+													<select id="proveedor1" class="form-control input-sm" name="proveedor1" onchange="cambio_proveedores(1);" >
 														<option value="" selected>Seleccionar</option>
-														@foreach($proveedors as $proveedor)
+														@foreach($proveedores as $proveedor)
 															<option value="{{ $proveedor->id}}">{{ $proveedor->raz_soc}} </option>
 														@endforeach
 													</select>
-												@endif<!--
+												@endif
+												<!--
 												<select class="form-control input-sm " id="exampleSelect1">
 													<option value="volvo" selected>Seleccionar</option>
 													<option value="">ALMACENES EXITO</option>
@@ -117,8 +118,8 @@
 										</div>
 										<div class="col-sm-3 col-xs-6">
 											<div class="form-group">
-												<label for="ex1">Teléfono</label>
-												<input class="form-control input-sm" id="ex1" type="text"  disabled style="background:rgba(247, 247, 247, 0.57);">
+												<label for="telefono1">Teléfono</label>
+												<input class="form-control input-sm" id="telefono1" name="telefono1" type="text"  disabled style="background:rgba(247, 247, 247, 0.57);">
 											</div>
 										</div>
 								
@@ -417,6 +418,9 @@
 @stop
 	<script>
 		var room = 1;
+		var proveedor = 1;
+		
+		
 		function education_fields2() {
 		 
 			room++;
@@ -434,6 +438,10 @@
 		   
 		   room--;
 	   }
+	   
+	// proveedor
+	
+	
 
 	</script> 
 @stop
