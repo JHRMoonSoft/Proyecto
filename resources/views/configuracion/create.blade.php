@@ -52,7 +52,11 @@
 							<option value="Unipersonal">Unipersonal</option>
 							<option value="Persona natural">Persona natural</option>
 						</select>
-					
+						@if ($errors->has('tip_empr'))
+							<span class="help-block">
+								<strong>{{ $errors->first('tip_empr') }}</strong>
+							</span>
+						@endif
 					</div>
 				</div>
 				<div class="item form-group">
@@ -77,7 +81,11 @@
 							<option value="NIT">NIT</option>
 							<option value="RUT">RUT</option>
 						</select>
-					
+						@if ($errors->has('ip_doc'))
+							<span class="help-block">
+								<strong>{{ $errors->first('ip_doc') }}</strong>
+							</span>
+						@endif
 					</div>
 				</div>
 				

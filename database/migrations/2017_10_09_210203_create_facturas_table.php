@@ -22,6 +22,7 @@ class CreateFacturasTable extends Migration
 			$table->string('comp_fact');
 			$table->string('form_pag');
 			$table->string('tim_entr');
+			$table->string('dia_cred');
 			$table->string('otr_fact');
 			$table->double('subt_fact');
 			$table->double('iva_fact');

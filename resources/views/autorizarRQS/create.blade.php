@@ -35,6 +35,11 @@
 											<option value="{{ $acc->id}}">{{ $acc->des_acc_rqs }} </option>
 											@endforeach
 										</select>
+										@if ($errors->has('acc_rqs'))
+											<span class="help-block">
+												<strong>{{ $errors->first('acc_rqs') }}</strong>
+											</span>
+										@endif
 									</div>
 								</div>
 								<div class="form-group">
@@ -43,6 +48,11 @@
 										<select id="rol_rqs" class="form-control" name="rol_rqs">
 											<option value="" selected>Seleccionar</option>
 										</select>
+										@if ($errors->has('rol_rqs'))
+											<span class="help-block">
+												<strong>{{ $errors->first('rol_rqs') }}</strong>
+											</span>
+										@endif
 									</div>
 								</div>
 								
@@ -50,16 +60,31 @@
 									<label for="asn_rqs" class="col-sm-2 control-label">Asunto:</label>
 									<div class="col-sm-10">
 										<input type="text" class="form-control select2-offscreen" id="asn_rqs" name="asn_rqs" tabindex="-1" readonly/>
+										@if ($errors->has('asn_rqs'))
+											<span class="help-block">
+												<strong>{{ $errors->first('asn_rqs') }}</strong>
+											</span>
+										@endif
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="obs_rqs" class="col-sm-2 control-label">Observación:</label>
 									<div class="col-sm-10">
 										<textarea id="obs_rqs" name="obs_rqs" class="editor-wrapper" style="width:100%" ></textarea>
+										@if ($errors->has('obs_rqs'))
+											<span class="help-block">
+												<strong>{{ $errors->first('obs_rqs') }}</strong>
+											</span>
+										@endif
 										<br/>
 									</div>
 								</div>
 								<input type="hidden" class="form-control select2-offscreen" id="est_rqs" name="est_rqs"/>
+								@if ($errors->has('est_rqs'))
+									<span class="help-block">
+										<strong>{{ $errors->first('est_rqs') }}</strong>
+									</span>
+								@endif
 							</div>
 								
 						
@@ -121,11 +146,21 @@
 												<input type="radio" name="tip_sol1" id="success" value="1"s class="badgebox"/>
 												<span class="badge">&check;</span>
 											</label>
+												@if ($errors->has('tip_sol1'))
+													<span class="help-block">
+														<strong>{{ $errors->first('tip_sol1') }}</strong>
+													</span>
+												@endif
 											<label for="warning" class="btn btn-warning">
 												Solicitud Inversión
 												<input type="checkbox" name="tip_sol2" id="warning" value="2" class="badgebox">
 												<span class="badge">&check;</span>
-												</label>
+											</label>
+												@if ($errors->has('tip_sol2'))
+													<span class="help-block">
+														<strong>{{ $errors->first('tip_sol2') }}</strong>
+													</span>
+												@endif
 										</div>
 										<div class="btn-group col-md-2" data-toggle="buttons">
 											

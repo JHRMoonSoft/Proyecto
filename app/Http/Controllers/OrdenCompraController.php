@@ -37,6 +37,8 @@ class OrdenCompraController extends Controller
 		$categorias = Categoria::all();
 		$configuracion = Configuracion::all();
 		$unidads = Unidad::all();
+		
+		
 		return View('ordencompra.create')->with(compact('productos','proveedores','categorias','configuracion','unidads'));
     }
 

@@ -42,31 +42,34 @@
 									<div class="panel panel-default">
 										<div class="panel-heading ">
 											<form class="form-horizontal form-label-left">	
-											  <div class="col-md-2 	col-sm-6 col-xs-12">
-												<label for="ex1">Código</label>
-												<input class="form-control input-sm" id="ex1" type="text"  disabled style="background:#fff;">
-											  </div>
+											 
 											  <div class="col-md-2 	col-sm-6 col-xs-12">
 													 <label for="single_cal2">Fecha</label>
 													<input type="text" class="form-control input-sm has-feedback-left " id="single_cal2" placeholder="First Name" aria-describedby="inputSuccess2Status2">
 													
 											  </div>
-												<div class="col-md-2 col-sm-6 col-xs-12">
+												<div class="col-md-3 col-sm-6 col-xs-12">
 													<label for="ex3">Empresa</label>
-													<input class="form-control input-sm" id="ex3" type="text"  disabled style="background:#fff;">
+													<input class="form-control input-sm" id="ex3" type="text" readonly  style="background:#fff;">
 												</div>
 												<div class="col-md-2 col-sm-6 col-xs-12">
 													<label for="ex1">Nit. Empresa</label>
-													<input class="form-control input-sm" id="ex1" type="text"  disabled style="background:#fff;">
+													<input class="form-control input-sm" id="ex1" type="text" readonly  style="background:#fff;">
 												</div>
 										
-												<div class="col-md-2 col-sm-6 col-xs-12">
+												<div class="col-md-3 col-sm-6 col-xs-12">
 													<label for="ex2">Realizado</label>
-													<input class="form-control input-sm" id="ex2" type="text"  disabled style="background:#fff;">
+													<input class="form-control input-sm" id="ex2" type="text" readonly  style="background:#fff;">
+												
 												</div>
 												<div class="col-md-2 col-sm-6 col-xs-12">
-													<label for="ex3">No. Factura</label>
-													<input class="form-control input-sm" id="ex3" type="text">
+													<label for="no_fact">No. Factura</label>
+													<input class="form-control input-sm" id="no_fact" name="no_fact" type="text">
+													@if ($errors->has('no_fact'))
+														<span class="help-block">
+															<strong>{{ $errors->first('no_fact') }}</strong>
+														</span>
+													@endif
 												</div>
 											</form>
 										</div>
@@ -77,88 +80,117 @@
 										<div class=" row ">	
 											<div class=" col-sm-3 col-xs-6">
 												<div class="form-group">
-													<label for="ex1">Proveedor</label>
-													<select class="form-control input-sm " id="exampleSelect1">
-														<option value="volvo" selected>Seleccionar</option>
-														<option value="">ALMACENES EXITO</option>
-														<option value="">MEGA TIENDAS </option>
-														<option value="">PAPELERÍA TAURO </option>
-														<option value="">EL GIGANTE DEL HOGAR</option>
-														<option value="">SAFARI COMPUTADORES</option>
-														<option value="">DISTRIBUIDORA Y PAPELERÍA VENEPLAS</option>
-													</select>
+													<label for="proveedor1">Proveedor</label>
+													@if(!$proveedores->isEmpty())
+														<select id="proveedor" class="form-control input-sm" name="proveedor" onchange="cambio_proveedores();" >
+															<option value="" selected>Seleccionar</option>
+															@foreach($proveedores as $proveedor)
+																<option value="{{ $proveedor->id}}">{{ $proveedor->raz_soc}} </option>
+															@endforeach
+														</select>
+													@endif
 												</div>
 											</div>
 										
 											<div class=" col-sm-3 col-xs-6">
 												<div class="form-group">
-													<label for="ex1">Nit/Rut</label>
-													<input class="form-control input-sm" id="ex1" type="text"  disabled style="background:#fff;">
+													<label for="nit_prov">Nit. Proveedor</label>
+													<input class="form-control input-sm" id="nit_prov" type="text" name="nit_prov" readonly style="background:rgba(247, 247, 247, 0.57);">
 												</div>
 											</div>
 											
 											<div class="col-sm-3 col-xs-6">
 												<div class="form-group">
-													<label for="ex2">Dirección</label>
-													<input class="form-control input-sm" id="ex2" type="text"  disabled style="background:#fff;">
+													<label for="direccion_prov">Dirección</label>
+													<input class="form-control input-sm" id="direccion_prov" name="direccion_prov" type="text" readonly style="background:rgba(247, 247, 247, 0.57);">
 												</div>	
 											</div>
 											<div class="col-sm-3 col-xs-6">
 												<div class="form-group">
-													<label for="ex3">Ciudad</label>
-													<input class="form-control input-sm" id="ex3" type="text"  disabled style="background:#fff;">
+													<label for="ciudad_prov">Ciudad</label>
+													<input class="form-control input-sm" id="ciudad_prov" name="ciudad_prov" type="text" readonly style="background:rgba(247, 247, 247, 0.57);">
 												</div>
 											</div>
 											<div class="col-sm-3 col-xs-6">
 												<div class="form-group">
-													<label for="ex1">Teléfono</label>
-													<input class="form-control input-sm" id="ex1" type="text"  disabled style="background:#fff;">
+													<label for="telefono_prov">Teléfono</label>
+													<input class="form-control input-sm" id="telefono_prov" name="telefono_prov" type="text" readonly style="background:rgba(247, 247, 247, 0.57);">
 												</div>
 											</div>
 									
 											<div class="col-sm-3 col-xs-6">
 												<div class="form-group">
-													<label for="ex2">E-mail</label>
-													<input class="form-control input-sm" id="ex2" type="text"  disabled style="background:#fff;">
+													<label for="mail_prov">E-mail</label>
+													<input class="form-control input-sm" id="mail_prov" name="mail_prov" type="text" readonly style="background:rgba(247, 247, 247, 0.57);">
 												</div>
 											</div>
 											<div class="col-sm-3 col-xs-6">
-												<label for="ex3">Concepto</label>
-												<input class="form-control input-sm" value="FACTURA DE COMPRA" id="ex3" type="text">
+												<label for="cnp_fact">Concepto</label>
+												<input class="form-control input-sm" value="FACTURA DE COMPRA" id="cnp_fact" name="cnp_fact"  type="text">
+												@if ($errors->has('cnp_fact'))
+														<span class="help-block">
+															<strong>{{ $errors->first('cnp_fact') }}</strong>
+														</span>
+												@endif
 											</div>
 											<div class="col-sm-3 col-xs-6">
 												<div class="form-group">
-													<label for="ex1">Comprado por</label>
-													<input class="form-control input-sm" id="ex1" type="text">
+													<label for="comp_fact">Comprado por</label>
+													<input class="form-control input-sm" id="comp_fact" name="comp_fact" type="text">
+													@if ($errors->has('comp_fact'))
+														<span class="help-block">
+															<strong>{{ $errors->first('comp_fact') }}</strong>
+														</span>
+													@endif
 												</div>
 											</div>
 											<div class="col-sm-3 col-xs-6">
 												<div class="form-group">
-													<label for="ex1">Forma de pago</label>
-													<select class="form-control input-sm" id="exampleSelect1">
-														<option value="volvo " selected>Seleccionar</option>
-														<option>CONTADO</option>
-														<option>CREDITO</option>
+													<label for="form_pag">Forma de pago</label>
+													<select class="form-control input-sm" id="form_pag" name="form_pag">
+														<option value=" " selected>Seleccionar</option>
+														<option value=" CONTADO">CONTADO</option>
+														<option value="CREDITO">CREDITO</option>
 													</select>
+													@if ($errors->has('form_pag'))
+														<span class="help-block">
+															<strong>{{ $errors->first('form_pag') }}</strong>
+														</span>
+													@endif
 												</div>
 											</div>
 									
 											<div class="col-sm-3 col-xs-6">
 												<div class="form-group">
-													<label for="ex2">Dias de credito</label>
-													<input class="form-control input-sm" id="ex2" type="text">
+													<label for="dia_cred">Dias de credito</label>
+													<input class="form-control input-sm" id="dia_cred" name="dia_cred" type="text">
+													@if ($errors->has('dia_cred'))
+														<span class="help-block">
+															<strong>{{ $errors->first('dia_cred') }}</strong>
+														</span>
+													@endif
 												</div>
 											</div>
 											<div class="col-sm-3 col-xs-6"> 
 												<div class="form-group">
-													<label for="ex3">Tiempo de entrega</label>
-													<input class="form-control input-sm" id="ex3" type="text">
+													<label for="tim_entr">Tiempo de entrega</label>
+													<input class="form-control input-sm" id="tim_entr" name="tim_entr" type="text">
+													@if ($errors->has('no_fact'))
+														<span class="help-block">
+															<strong>{{ $errors->first('no_fact') }}</strong>
+														</span>
+													@endif
 												</div>
 											</div>
 											<div class="col-sm-3 col-xs-6">
 												<div class="form-group">
-													<label for="ex3">Otro</label>
-													<input class="form-control input-sm" id="ex3" type="text">
+													<label for="otr_fact">Otro</label>
+													<input class="form-control input-sm" id="otr_fact" name="otr_fact" type="text">
+													@if ($errors->has('otr_fact'))
+														<span class="help-block">
+															<strong>{{ $errors->first('otr_fact') }}</strong>
+														</span>
+													@endif
 												</div>
 											</div>
 											
@@ -201,8 +233,8 @@
 										<thead>
 											<tr >
 												<th>#</th>
-												<th><button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-toggle="modal" data-target=".producto"></button> Producto </th>											
-												<th><button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-toggle="modal" data-target=".unidad"></button> Unidad </th>
+												<th><a href="/producto" title="Producto" target="_blank" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-title="Producto"></a>Producto</th>
+												<th><a href="/unidad" title="Unidad" target="_blank" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-title="Unidad"></a>Unidad</th>
 												<th> Cantidad</th>
 												<th> IVA. Unt</th>
 												<th> Val. Unitario</th>
@@ -277,30 +309,50 @@
 							<div class="panel-default ">
 								<div class="row ">
 									<div class="col-xs-9 "><br />
-										<label for="ex3">Obeservaciones</label><br/>
+										<label for="obv_fact">Obeservaciones</label><br/>
 										<div class="col-md-9 col-sm-9 col-xs-12">
-										  <textarea id="textarea" required="required" name="textarea" class="form-control col-md-7 col-xs-12"></textarea>
+											<textarea id="obv_fact" required="required" name="obv_fact" class="form-control col-md-7 col-xs-12"></textarea>
+											@if ($errors->has('obv_fact'))
+												<span class="help-block">
+													<strong>{{ $errors->first('obv_fact') }}</strong>
+												</span>
+											@endif
 										</div>
 									</div>
 									<div class="col-xs-3">
 										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12" align="right" for="first-name">SUBTOTAL</label>
+											<label class="control-label col-md-3 col-sm-3 col-xs-12" align="right" for="subt_fact">SUBTOTAL</label>
 											<div class="col-md-8 col-sm-8 col-xs-12  right">
-											  <input type="text" id="first-name"   required="required" class="form-control col-md-7 col-xs-12 "  disabled style="background:#fff;">
+											  <input type="text" id="subt_fact" name="subt_fact"  required="required" class="form-control col-md-7 col-xs-12 " readonly  style="background:#fff;">
+												@if ($errors->has('subt_fact'))
+													<span class="help-block">
+														<strong>{{ $errors->first('subt_fact') }}</strong>
+													</span>
+												@endif
 											</div>
 										</div>
 									
 										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12 " align="right" for="first-name"><br/>IVA</label>
+											<label class="control-label col-md-3 col-sm-3 col-xs-12 " align="right" for="iva_fact"><br/>IVA</label>
 											<div class="col-md-8 col-sm-8 col-xs-12  right">
-											  <input type="text" id="first-name"   required="required" class="form-control col-md-7 col-xs-12"  disabled style="background:#fff;">
+											  <input type="text" id="iva_fact" name="iva_fact"   required="required" class="form-control col-md-7 col-xs-12" readonly  style="background:#fff;">
+												@if ($errors->has('iva_fact'))
+													<span class="help-block">
+														<strong>{{ $errors->first('iva_fact') }}</strong>
+													</span>
+												@endif
 											</div>
 										</div>
 								
 										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12" align="right" for="first-name"><br/>TOTAL</label>
+											<label class="control-label col-md-3 col-sm-3 col-xs-12" align="right" for="tol_fact"><br/>TOTAL</label>
 											<div class="col-md-8 col-sm-8 col-xs-12  right">
-											  <input type="text" id="first-name"   required="required" class="form-control col-md-7 col-xs-12"  disabled style="background:#fff;">
+											  <input type="text" id="tol_fact" name="tol_fact"  required="required" class="form-control col-md-7 col-xs-12" readonly  style="background:#fff;">
+												@if ($errors->has('tol_fact'))
+													<span class="help-block">
+														<strong>{{ $errors->first('tol_fact') }}</strong>
+													</span>
+												@endif
 											</div>
 										</div>
 									</div>
@@ -403,67 +455,6 @@
 			</div>
 		  </div>
 		  <!-- /modals -->
-
-		  <!-- Productos modal -->		  
-
-		  <div class="modal fade producto" tabindex="-1" role="dialog" aria-hidden="true">
-			<div class="modal-dialog modal-sm">
-			  <div class="modal-content">
-
-				<div class="modal-header">
-				  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
-				  </button>
-				  <h4 class="modal-title" id="myModalLabel2">Nuevo Producto</h4>
-				</div>
-				<div class="modal-body">
-					<label class="control-label " for="first-name"> Producto</label>
-					<div class="form-group input-group ">
-						<input name="multiple[]" class="form-control ">
-						<span class="input-group-btn"><button type="button" class="btn btn-primary btn-add">+</button></span>
-					</div>
-					<small>Pulse + para agregar otro producto /  Pulse - para eliminar un producto.</small>
-				</div>
-				<div class="modal-footer"><!--
-				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-				  <button type="submit" class="btn btn-danger">Deshacer</button>
-				  <button type="button" class="btn btn-primary">Guardar</button>
-				</div>
-
-			  </div>
-			</div>
-		  </div>
-		  <!-- /modals -->
-		  
-		   <!-- Unidad modal -->		  
-
-		  <div class="modal fade unidad" tabindex="-1" role="dialog" aria-hidden="true">
-			<div class="modal-dialog modal-sm">
-			  <div class="modal-content">
-
-				<div class="modal-header">
-				  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
-				  </button>
-				  <h4 class="modal-title" id="myModalLabel2">Nueva Unidad</h4>
-				</div>
-				<div class="modal-body">
-					<label class="control-label " for="first-name"> Unidad</label>
-					<div class="form-group input-group ">
-						<input name="multiple[]" class="form-control ">
-						<span class="input-group-btn"><button type="button" class="btn btn-primary btn-add">+</button></span>
-					</div>
-					<small>Pulse + para agregar otro unidad /  Pulse - para eliminar un unidad.</small>
-				</div>
-				<div class="modal-footer"><!--
-				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-				  <button type="submit" class="btn btn-danger">Deshacer</button>
-				  <button type="button" class="btn btn-primary">Guardar</button>
-				</div>
-
-			  </div>
-			</div>
-		  </div>
-		  <!-- /modals -->
-		
 		
 	</div>		
 	
@@ -488,5 +479,22 @@
 		   room--;
 	   }
 
+	   
+	   
+		// proveedor
+		function cambio_proveedores() {
+		   $.get("{{ url('ordencompra/cargarproveedor')}}", 
+				{
+					option: $('#proveedor').val(),
+				}, 
+				function(data) {
+					$('#nit_prov').val(data.num_doc);
+					$('#direccion_prov').val(data.dir_prov);
+					$('#ciudad_prov').val(data.ciu_prov);
+					$('#telefono_prov').val(data.tel_fij);
+					$('#mail_prov').val(data.dir_mail);
+			});
+	   }
+	   
 	</script> 
 @stop

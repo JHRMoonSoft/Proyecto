@@ -31,6 +31,11 @@
 													<option value="">Seleccionar</option>
 													<option value="{{ $rol->id}}" selected>{{ $rol->display_name }} </option>
 												</select>
+												@if ($errors->has('display_name'))
+													<span class="help-block">
+														<strong>{{ $errors->first('display_name') }}</strong>
+													</span>
+												@endif
 											</div>
 										</div>
 										<input type="hidden" value="{{ $estado->id }}" class="form-control select2-offscreen" id="est_rqs" name="est_rqs"/>
@@ -39,12 +44,22 @@
 											<label for="asn_rqs" class="col-sm-2 control-label">Asunto:</label>
 											<div class="col-sm-10">
 												<input type="text" value="{{ $estado->asu_est_req }}" class="form-control select2-offscreen" id="asn_rqs" name="asn_rqs" tabindex="-1" readonly/>
+												@if ($errors->has('asu_est_req'))
+													<span class="help-block">
+														<strong>{{ $errors->first('asu_est_req') }}</strong>
+													</span>
+												@endif
 											</div>
 										</div>
 										<div class="form-group">
 											<label for="jst_rqs" class="col-sm-2 control-label">Justificación:</label>
 											<div class="col-sm-10">
 												<input type="text" class="form-control select2-offscreen" id="jst_rqs" name="jst_rqs" tabindex="-1">
+												@if ($errors->has('jst_rqs'))
+													<span class="help-block">
+														<strong>{{ $errors->first('jst_rqs') }}</strong>
+													</span>
+												@endif
 											</div>
 										</div>
 										<div class="form-group">
@@ -107,6 +122,11 @@
 												-->
 												<!-- <div id="asn_rqs" name="asn_rqs" class="editor-wrapper"></div> -->
 												<textarea id="obs_rqs" name="obs_rqs" class="editor-wrapper" style="width:100%" ></textarea>
+												@if ($errors->has('obs_rqs'))
+													<span class="help-block">
+														<strong>{{ $errors->first('obs_rqs') }}</strong>
+													</span>
+												@endif
 												<br/>
 											</div>
 										</div>
@@ -162,23 +182,42 @@
 														@endif
 														<option value="">Otro (Nuevo Producto)</option>
 													</select>
-												
+													@if ($errors->has('producto1'))
+														<span class="help-block">
+															<strong>{{ $errors->first('producto1') }}</strong>
+														</span>
+													@endif
 												</td>
 												<td class="nopadding" >
 													<div class="form-group">
 														<input type="text" class="form-control" id="detalle1" name="detalle1" value="" placeholder="Detalle">
+														@if ($errors->has('detalle1'))
+															<span class="help-block">
+																<strong>{{ $errors->first('detalle1') }}</strong>
+															</span>
+														@endif
 													</div>
 												</td>
 												<td class="nopadding" >
 													<select class="form-control" id="unidad1" name="unidad1">
 														<option value="" selected>Seleccionar</option>
 													</select>
+													@if ($errors->has('unidad1'))
+														<span class="help-block">
+															<strong>{{ $errors->first('unidad1') }}</strong>
+														</span>
+													@endif
 												</td>
 												
 												<td class="nopadding" >
 													<div class="form-group">
 														<input type="text" class="form-control" id="cantidad1" name="cantidad1" value="" placeholder="Cantidad">
 													</div>
+													@if ($errors->has('cantidad1'))
+														<span class="help-block">
+															<strong>{{ $errors->first('cantidad1') }}</strong>
+														</span>
+													@endif
 												</td>
 												<td class="nopadding" >
 													<div class="input-group-btn">
@@ -224,7 +263,7 @@
 										<tr >
 											<th>#</th>
 											<th>Proveedor </th>
-											<th> Nombre  Proveedor </th>
+											<th> Nuevo  Proveedor </th>
 											<th>Teléfono </th>	
 										</tr>
 									</thead>
@@ -244,16 +283,31 @@
 													@endif
 													<option value="0">Otro</option>
 												</select>
+												@if ($errors->has('proveedor1'))
+													<span class="help-block">
+														<strong>{{ $errors->first('proveedor1') }}</strong>
+													</span>
+												@endif
 												
 											</td>
 											<td class="nopadding" >
 												<div class="form-group">
 													<input type="text" class="form-control" id="nombre1" name="nombre1" value="">
+													@if ($errors->has('nombre1'))
+														<span class="help-block">
+															<strong>{{ $errors->first('nombre1') }}</strong>
+														</span>
+													@endif
 												</div>
 											</td>
 											<td class="nopadding" >
 												<div class="form-group">
 													<input type="text" class="form-control" id="telefono1" name="telefono1" value="">
+													@if ($errors->has('telefono1'))
+														<span class="help-block">
+															<strong>{{ $errors->first('telefono1') }}</strong>
+														</span>
+													@endif
 												</div>
 											</td>
 											

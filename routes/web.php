@@ -28,6 +28,7 @@ Route::get('autorizarRQS/create/{id}', 'AutorizarRQSController@create');
 Route::get('autorizarRQS/cambioaccion', 'AutorizarRQSController@cambioaccion');
 
 
+Route::get('ordencompra/cargarproveedor', 'RequisicionController@cargarproveedor');
 
 Route::resource('almacen', 'AlmacenController');
 Route::resource('rqs', 'RegistroAlmacenController');

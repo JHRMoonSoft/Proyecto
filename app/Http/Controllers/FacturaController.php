@@ -33,10 +33,10 @@ class FacturaController extends Controller
     public function create()
     {
         $productos = Producto::all();
-		$proveedors = Proveedor::all();
+		$proveedores = Proveedor::all();
 		$configuracion = Configuracion::all();
 		$unidads = Unidad::all();
-		return View('factura.create')->with(compact('productos','proveedors','configuracion','unidads'));
+		return View('factura.create')->with(compact('productos','proveedores','configuracion','unidads'));
 	
     }
 
@@ -55,6 +55,7 @@ class FacturaController extends Controller
 			'cnp_fact' =>' ',
 			'comp_fact' =>' ',
 			'form_pag' =>' ',
+			'dia_cred' =>' ',
 			'tim_entr' =>' ',
 			'otr_fact' =>' ',
 			'subt_fact' =>' ',
@@ -111,6 +112,7 @@ class FacturaController extends Controller
 			'cnp_fact' =>' ',
 			'comp_fact' =>' ',
 			'form_pag' =>' ',
+			'dia_cred' =>' ',
 			'tim_entr' =>' ',
 			'otr_fact' =>' ',
 			'subt_fact' =>' ',
@@ -127,6 +129,7 @@ class FacturaController extends Controller
 			$facturas->cnp_fact = $post_data['cnp_fact'];
 			$facturas->comp_fact = $post_data['comp_fact'];
 			$facturas->form_pag = $post_data['form_pag'];
+			$facturas->dia_cred = $post_data['dia_cred'];
 			$facturas->tim_entr = $post_data['tim_entr'];
 			$facturas->otr_fact = $post_data['otr_fact'];
 			$facturas->subt_fact = $post_data['subt_fact'];
