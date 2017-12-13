@@ -200,7 +200,7 @@
 											<th>Categoria</th>
 											<th>Producto</th>
 											<!--<th><a href="/producto" title="Producto" target="_blank" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-title="Producto"></a>Producto</th>-->
-											<th>Detalle del producto</th>
+											<th>Nuevo 	producto</th>
 											<th>Unidad</th>
 											<th>Cant. Solicitada</th>									
 											<th>Cant. Autorizada</th>	

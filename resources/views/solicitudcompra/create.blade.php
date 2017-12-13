@@ -155,7 +155,6 @@
 										<tr >
 											<th>#</th>
 											<th><a href="/producto" title="Producto" target="_blank" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-title="Producto"></a>Producto</th>
-											<th>Detalle del producto</th>											
 											<th><a href="/unidad" title="Producto" target="_blank" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-title="Producto"></a>Unidad</th>
 											<th>Cantidad</th>
 											<th> Disponible</th>
@@ -181,8 +180,6 @@
 													</select>
 													
 												</div>
-											</td>
-											<td>
 											</td>
 											<td class="nopadding" >
 												<div class="form-group">
