@@ -180,7 +180,7 @@
 																<option value="{{ $producto->id}}">{{ $producto->des_prd}} </option>
 															@endforeach
 														@endif
-														<option value="">Otro (Nuevo Producto)</option>
+														<option value="0">Otro (Nuevo Producto)</option>
 													</select>
 													@if ($errors->has('producto1'))
 														<span class="help-block">
@@ -190,7 +190,7 @@
 												</td>
 												<td class="nopadding" >
 													<div class="form-group">
-														<input type="text" class="form-control" id="detalle1" name="detalle1" value="" placeholder="Detalle">
+														<input type="text" class="form-control" id="detalle1" name="detalle1" placeholder="Detalle" readonly />
 														@if ($errors->has('detalle1'))
 															<span class="help-block">
 																<strong>{{ $errors->first('detalle1') }}</strong>
@@ -358,11 +358,11 @@
 						text = text + '<option value="'+ element.id +'">' + element.des_prd + '</option>';
 					});
 				text = text +
-				'<option value="">Otro (Nuevo Producto)</option>'+
+				'<option value="0">Otro (Nuevo Producto)</option>'+
 				'</select></td>'+
 				//Detalle
 				'<td class="nopadding" >'+
-					'<div class="form-group"><input type="text" class="form-control" id="detalle'+(producto)+'" name="detalle'+(producto)+'" value="" placeholder="Detalle"></div>'+
+					'<div class="form-group"><input type="text" class="form-control" id="detalle'+(producto)+'" name="detalle'+(producto)+'" value="" placeholder="Detalle" readonly /></div>'+
 				'</td>'+
 				//Unidades
 				'<td class="nopadding" >'+
@@ -430,13 +430,20 @@
 		}
 	   
 	   function cambio_productos(rid) {
+		   var opt = $('#producto'+rid).val();
 		   $.get("{{ url('requisicion/cargarunidadesproducto')}}", 
 				{
-					option: $('#producto'+rid).val(),
+					option: opt,
 					
 				}, 
 				function(data) {
 					var model = $('#unidad'+rid);
+					if (opt == 0){
+						$('#detalle'+rid).attr('readonly', false);
+					}
+					else{
+						$('#detalle'+rid).attr('readonly', true);
+					}
 					model.empty();
 					model.append("<option value='' selected>Seleccionar</option>");
 						$.each(data, function(index, element) {

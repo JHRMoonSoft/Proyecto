@@ -46,10 +46,11 @@ class AutorizarRQSController extends Controller
     public function create(int $id)
     {
 		$proveedores = Proveedor::all();
+		$unidades = Unidad::all();
 		$requisicion = Requisicion::find($id);
         $productos = $requisicion->productos()->get();
 		$acciones = AccionesRequisicion::where('est_ant_rqs_id','=',$requisicion->estadorequisicion->id)->get();
-		return View('autorizarRQS.create')->with(compact('requisicion','acciones','productos','proveedores'));
+		return View('autorizarRQS.create')->with(compact('requisicion','acciones','productos','proveedores','unidades'));
     }
 
     /**

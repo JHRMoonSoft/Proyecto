@@ -35,7 +35,7 @@ class OrdenCompraController extends Controller
        	$productos = Producto::all();
 		$proveedores = Proveedor::all();
 		$categorias = Categoria::all();
-		$configuracion = Configuracion::all();
+		$configuracion = Configuracion::first();
 		$unidads = Unidad::all();
 		
 		

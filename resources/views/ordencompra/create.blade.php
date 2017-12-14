@@ -31,11 +31,11 @@
 											</div>
 											<div class="col-md-3 col-sm-6 col-xs-12">
 												<label for="ex3">Empresa</label>
-												<input class="form-control input-sm" id="ex3" type="text" value=""  readonly  style="background:rgba(247, 247, 247, 0.57);">
+												<input class="form-control input-sm" id="ex3" type="text" value="{{ $configuracion->raz_soc }}"  readonly  style="background:rgba(247, 247, 247, 0.57);">
 											</div>
 											<div class="col-md-2 col-sm-6 col-xs-12">
 												<label for="ex1">Nit. Empresa</label>
-												<input class="form-control input-sm" id="ex1" type="text" value=""  readonly  style="background:rgba(249, 249, 249, 0.57);">
+												<input class="form-control input-sm" id="ex1" type="text" value="{{ $configuracion->nit_emp }}"  readonly  style="background:rgba(249, 249, 249, 0.57);">
 											</div>
 									
 											<div class="col-md-3 col-sm-6 col-xs-12">
@@ -61,14 +61,15 @@
 										<div class=" col-sm-3 col-xs-6">
 											<div class="form-group">
 												<label for="proveedor1">Proveedor</label>
-												@if(!$proveedores->isEmpty())
-													<select id="proveedor" class="form-control input-sm" name="proveedor" onchange="cambio_proveedores();" >
+												<select id="proveedor" class="form-control input-sm" name="proveedor" onchange="cambio_proveedores();" >
 														<option value="" selected>Seleccionar</option>
-														@foreach($proveedores as $proveedor)
-															<option value="{{ $proveedor->id}}">{{ $proveedor->raz_soc}} </option>
-														@endforeach
-													</select>
-												@endif
+														@if(!$proveedores->isEmpty())
+															@foreach($proveedores as $proveedor)
+																<option value="{{ $proveedor->id}}">{{ $proveedor->raz_soc}} </option>
+															@endforeach
+														@endif
+												</select>
+												
 												<!--
 												<select class="form-control input-sm " id="exampleSelect1">
 													<option value="volvo" selected>Seleccionar</option>
@@ -241,7 +242,7 @@
 												<th><a href="/producto" title="Producto" target="_blank" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-title="Producto"></a>Producto</th>
 												<th><a href="/unidad" title="Unidad" target="_blank" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-title="Unidad"></a>Unidad</th>
 												<th> Cantidad</th>
-												<th> IVA. Unt</th>
+												<th> IVA. Unt (%)</th>
 												<th> Val. Unitario</th>
 												<th> Val. Total</th>
 												<th> Vence</th>
@@ -280,30 +281,30 @@
 												</td>
 												<td class="nopadding" >
 													<div class="form-group">
-														<input type="text" class="form-control input-sm" id="detalle1" name="detalle1" value="" placeholder="">
+														<input type="text" class="form-control input-sm" id="cantidad1" name="cantidad1" placeholder="">
 													</div>
 												</td>
 												<td class="nopadding" >
 													<div class="form-group">
-														<input type="text" class="form-control input-sm" id="Schoolname" name="Schoolname[]" value="0%" placeholder="">
+														<input type="text" class="form-control input-sm" id="ivaunitario1" name="ivaunitario1" value="0" placeholder="">
 													</div>
 												</td>
 												<td class="nopadding" >
 													<div class="form-group">
-														<input type="text" class="form-control input-sm" id="Schoolname" name="Schoolname[]" value="" placeholder="">
+														<input type="text" class="form-control input-sm" id="valorunitario1" name="valorunitario1"  placeholder="">
 													</div>
 												</td>
 												<td class="nopadding" >
 													<div class="form-group">
-														<input type="text" class="form-control input-sm" id="Schoolname" name="Schoolname[]" value="" placeholder="">
+														<input type="text" class="form-control input-sm" id="valortotal1" name="valortotal1" placeholder="">
 													</div>
 												</td>
 												
 												<td class="nopadding" >
-													<input class="form-control" name="registration_date" id="registration-date" type="date">
-													<span class="input-group-btn">
-													</span>
-
+													<div class="form-group">
+														<input class="form-control" name="vence1" id="vence1" type="date">
+														<span class="input-group-btn"></span>
+													</div>
 												</td>
 												
 												<td class="nopadding" >
@@ -412,18 +413,30 @@
 				text = text +
 				'<option value="">Otro (Nuevo Producto)</option>'+
 				'</select></td>'+
-				//Detalle
-				'<td class="nopadding" >'+
-					'<div class="form-group"><input type="text" class="form-control" id="detalle'+(producto)+'" name="detalle'+(producto)+'" value="" placeholder="Detalle"></div>'+
-				'</td>'+
 				//Unidades
 				'<td class="nopadding" >'+
 					'<select class="form-control" id="unidad'+(producto)+'" name="unidad'+(producto)+'"><option value="">Seleccionar</option></select>'+
 				'</td>'+
 				//Cantidad
 				'<td class="nopadding" >'+
-					'<div class="form-group"><input type="text" class="form-control" id="cantidad'+(producto)+'" name="cantidad'+(producto)+'" value="" placeholder="Cantidad"></div>'+
+					'<div class="form-group"><input type="text" class="form-control" id="cantidad'+(producto)+'" name="cantidad'+(producto)+'"  /></div>'+
 				'</td>'+	
+				//IVA
+				'<td class="nopadding" >'+
+					'<div class="form-group"><input type="text" class="form-control" id="ivaunitario'+(producto)+'" name="ivaunitario'+(producto)+'" /></div>'+
+				'</td>'+
+				//Valor Unitario
+				'<td class="nopadding" >'+
+					'<div class="form-group"><input type="text" class="form-control" id="valorunitario'+(producto)+'" name="ivaunitario'+(producto)+'" /></div>'+
+				'</td>'+
+				//Valor Total
+				'<td class="nopadding" >'+
+					'<div class="form-group"><input type="text" class="form-control" id="valorunitario'+(producto)+'" name="ivaunitario'+(producto)+'" /></div>'+
+				'</td>'+
+				//Vence
+				'<td class="nopadding" >'+
+					'<div class="form-group"><input type="date" class="form-control" id="vence'+(producto)+'" name="vence'+(producto)+'" /></div>'+
+				'</td>'+
 				//Botones
 				 '<td class="nopadding" >'+
 					'<div class="input-group-btn"><button class="btn btn-sm btn-danger glyphicon glyphicon-minus btn-xs" type="button" onclick="remove_education_fields('+ producto +');">'+

@@ -256,26 +256,36 @@
 												
 												<td>
 													<div class="form-group">
-														{{$prod->producto->categoria->des_cat}}
+														@if($prod->producto)
+															{{$prod->producto->categoria->des_cat}}
+														@endif
 													</div>
 												</td>
 												
-												<td class="nopadding" >
-													{{$prod->producto->des_prd}}
+												<td class="nopadding">
+													@if($prod->producto)
+														{{$prod->producto->des_prd}}
+													@endif
 												</td>
 												
 												<td class="nopadding" >
 													<div class="form-group">
-														<input type="text" class="form-control" id="detalle{{$loop->index + 1}}" name="detalle{{$loop->index + 1}}" value="" placeholder="Detalle">
+														<input type="text" class="form-control" id="detalle{{$loop->index + 1}}" name="detalle{{$loop->index + 1}}" value="{{ $prod->nom_prd }}" placeholder="Detalle">
 													</div>
 												</td>
 												
 												<td class="nopadding" >
 													<select class="form-control" id="unidad{{$loop->index + 1}}" name="unidad{{$loop->index + 1}}">
 														<option value="" selected>Seleccionar</option>
-														@foreach($prod->producto->unidades as $und)
-															<option name="" value="{{$und->id}}" @if($und->id == $prod->unidad_solicitada->id)selected="selected"@endif>{{$und->des_und}}</option>
-														@endforeach
+														@if($prod->producto)
+															@foreach($prod->producto->unidades as $und)
+																<option name="" value="{{$und->id}}" @if($und->id == $prod->unidad_solicitada->id)selected="selected"@endif>{{$und->des_und}}</option>
+															@endforeach
+														@else
+															@foreach($unidades as $und)
+																<option name="" value="{{$und->id}}" @if($und->id == $prod->unidad_solicitada->id)selected="selected"@endif>{{$und->des_und}}</option>
+															@endforeach
+														@endif
 													</select>
 												</td>
 												

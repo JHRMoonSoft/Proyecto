@@ -83,12 +83,13 @@ class RequisicionController extends Controller
 			$productos_vacios = true;
 			while($i <= $numprods){
 				$producto_i = array();
-				$producto_i['prod_id'] = $post_data['producto'.$i];
+				$producto_i['prod_id'] = $post_data['producto'.$i] == 0 ? null : $post_data['producto'.$i];
 				$producto_i['cant_sol_prd'] = $post_data['cantidad'.$i];
 				$producto_i['unidad_sol_id'] = $post_data['unidad'.$i];
 				$producto_i['nom_prd'] = $post_data['detalle'.$i];
 				$producto_i['rqs_id'] = $requisicion->id;
-				if(!$this->IsNullOrEmptyString($producto_i['prod_id']) and !$this->IsNullOrEmptyString($producto_i['cant_sol_prd']) and !$this->IsNullOrEmptyString($producto_i['unidad_sol_id'])){
+				if((!$this->IsNullOrEmptyString($producto_i['prod_id']) and !$this->IsNullOrEmptyString($producto_i['cant_sol_prd']) and !$this->IsNullOrEmptyString($producto_i['unidad_sol_id']))
+					or (!$this->IsNullOrEmptyString($producto_i['nom_prd']) and !$this->IsNullOrEmptyString($producto_i['cant_sol_prd']) and !$this->IsNullOrEmptyString($producto_i['unidad_sol_id']))){
 					ProductosRequisicion::create($producto_i);
 					$productos_vacios = false;
 				}
