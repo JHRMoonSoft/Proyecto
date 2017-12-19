@@ -1,14 +1,26 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use Auth;
+use Illuminate\Http\Request;
 use App\Producto;
-use App\Requisicion;
+use App\ProductosRequisicion;
+use App\ProveedoresRequisicion;
+use App\AccionesRequisicion;
+use App\EstadosRequisicion;
+use App\RegistroHistoricoRequisicion;
 use App\Unidad;
 use App\Almacen;
-use App\Conversion;
 use App\Solicitudcompra;
 use App\ProductosSolicitudCompra;
-use Illuminate\Http\Request;
+use App\Proveedor;
+use App\Role;
+use App\Conversion;
+use App\Requisicion;
+use Validator;
+use \Carbon\Carbon;
+
 
 class SolicitudCompraController extends Controller
 {
@@ -65,7 +77,7 @@ class SolicitudCompraController extends Controller
 				$producto_i['unidad_emp_id'] = $post_data['unidad'.$i];
 				$producto_i['sol_comp_id'] = $solicitudcompra->id;
 				if(!$this->IsNullOrEmptyString($producto_i['prod_id']) and !$this->IsNullOrEmptyString($producto_i['cant_sol_prd']) and !$this->IsNullOrEmptyString($producto_i['unidad_emp_id'])){
-					ProductosRequisicion::create($producto_i);
+					ProductosSolicitudCompra::create($producto_i);
 					$productos_vacios = false;
 				}
 				$i = $i + 1;
@@ -73,10 +85,10 @@ class SolicitudCompraController extends Controller
 			}
 			if($productos_vacios === true){
 				$solicitudcompra->delete();
-				$validate->errors()->add('cantproductos', 'Debe existir al menos un producto válido asociado a esta requisición.');
+				$validate->errors()->add('cantproductos', 'Debe existir al menos un producto válido asociado a esta solicitud de compras.');
 				return redirect()->back()->withInput()->withErrors($validate);
 			}
-		
+			return redirect()->intended('/solicitudcompra');
 		
 		}
 		return redirect()->back()->withInput()->withErrors($validate);	
