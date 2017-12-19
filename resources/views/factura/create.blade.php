@@ -41,25 +41,24 @@
 								<div class="x_content">
 									<div class="panel panel-default">
 										<div class="panel-heading ">
-											<form class="form-horizontal form-label-left">	
-											 
-											  <div class="col-md-2 	col-sm-6 col-xs-12">
+											<form class="form-horizontal form-label-left">
+												<div class="col-md-2 	col-sm-6 col-xs-12">
 													 <label for="single_cal2">Fecha</label>
 													<input type="text" class="form-control input-sm has-feedback-left " id="single_cal2" placeholder="First Name" aria-describedby="inputSuccess2Status2">
 													
-											  </div>
+												</div>
 												<div class="col-md-3 col-sm-6 col-xs-12">
-													<label for="ex3">Empresa</label>
-													<input class="form-control input-sm" id="ex3" type="text" readonly  style="background:#fff;">
+													<label for="raz_soc">Empresa</label>
+													<input class="form-control input-sm" id="raz_soc" name="raz_soc" type="text" readonly value="{{ $configuracion->raz_soc }}"/>
 												</div>
 												<div class="col-md-2 col-sm-6 col-xs-12">
 													<label for="ex1">Nit. Empresa</label>
-													<input class="form-control input-sm" id="ex1" type="text" readonly  style="background:#fff;">
+													<input class="form-control input-sm" id="num_doc" name="num_doc" type="text" readonly value="{{ $configuracion->num_doc }}" />
 												</div>
 										
 												<div class="col-md-3 col-sm-6 col-xs-12">
-													<label for="ex2">Realizado</label>
-													<input class="form-control input-sm" id="ex2" type="text" readonly  style="background:#fff;">
+													<label for="nom_rea">Realizado</label>
+													<input class="form-control input-sm" id="nom_rea" name="nom_rea" type="text" value="{{ Auth::user()->nom_usr . ' ' . Auth::user()->ape_usr }}" readonly />
 												
 												</div>
 												<div class="col-md-2 col-sm-6 col-xs-12">
@@ -73,9 +72,7 @@
 												</div>
 											</form>
 										</div>
-										
 									</div>
-									
 									<div class="x_panel">
 										<div class=" row ">	
 											<div class=" col-sm-3 col-xs-6">
@@ -203,14 +200,9 @@
 						<div class="panel-heading ">
 							<div class=" row ">	
 								<div class="col-xs-3"><br/>
-										<label for="ex3">Documento OCP</label>
-										<select class="form-control " id="exampleSelect1">
-											<option value="volvo " selected>Seleccionar</option>
-											<option value="volvo" selected>Seleccionar</option>
-											<option value="saab">Orden de compra 0283</option>
-											<option value="saab">Orden de compra 0284</option>
-											<option value="vw">Orden de compra 0282</option>
-											<option value="audi" >Orden de compra 0245)</option>
+										<label for="doc_ocp">Documento OCP</label>
+										<select class="form-control " id="doc_ocp" name="doc_ocp">
+											<option value="" selected>Seleccionar</option>											
 										</select>
 								</div>
 								<div class="col-xs-4"><br/>
@@ -229,16 +221,16 @@
 									<span><strong><span class="glyphicon glyphicon-th-list"> </span> Productos</strong></span>
 								</div>
 								<div class="table-responsive">
-									<table class="table table-bordered table-hover" id="education_fields2">
+									<table class="table table-bordered table-hover" id="education_fields">
 										<thead>
 											<tr >
 												<th>#</th>
-												<th><a href="/producto" title="Producto" target="_blank" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-title="Producto"></a>Producto</th>
-												<th><a href="/unidad" title="Unidad" target="_blank" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-title="Unidad"></a>Unidad</th>
-												<th> Cantidad</th>
-												<th> IVA. Unt</th>
-												<th> Val. Unitario</th>
-												<th> Val. Total</th>
+												<th>Producto</th>
+												<th>Unidad</th>
+												<th>Cantidad</th>
+												<th>IVA. Unt</th>
+												<th>Val. Unitario</th>
+												<th>Val. Total</th>
 												<th><a></a></th>	
 								
 											</tr>
@@ -250,51 +242,56 @@
 												</td>								
 												<td class="nopadding" >
 													<div class="form-group input-sm">
-														@if(!$productos->isEmpty())
-															<select id="productos" class="form-control" name="productos" >
-																<option value="" selected>Seleccionar</option>
+														<select id="producto1" class="form-control" name="producto1" onchange="cambio_productos(1);" required>
+															<option value="" selected>Seleccionar</option>
+															@if(!$productos->isEmpty())
 																@foreach($productos as $producto)
 																	<option value="{{ $producto->id}}">{{ $producto->des_prd}} </option>
 																@endforeach
-															</select>
+															@endif
+														</select>
+														@if ($errors->has('producto1'))
+															<span class="help-block">
+																<strong>{{ $errors->first('producto1') }}</strong>
+															</span>
 														@endif
 													</div>
 												</td>
 												<td class="nopadding" >
 													<div class="form-group input-sm">
-														@if(!$unidads->isEmpty())
-															<select id="unidads" class="form-control" name="unidads" >
-																<option value="" selected>Seleccionar</option>
-																@foreach($unidads as $unidad)
-																	<option value="{{ $unidad->id}}">{{ $unidad->des_und}} </option>
-																@endforeach
-															</select>
+															<select class="form-control" id="unidad1" name="unidad1" required>
+															<option value="" selected>Seleccionar</option>
+														</select>
+														@if ($errors->has('unidad1'))
+															<span class="help-block">
+																<strong>{{ $errors->first('unidad1') }}</strong>
+															</span>
 														@endif
 													</div>
 												</td>
 												<td class="nopadding" >
 													<div class="form-group">
-														<input type="text" class="form-control input-sm" id="Schoolname" name="Schoolname[]" value="" placeholder="">
+														<input type="text" class="form-control input-sm" id="cantidad1" name="cantidad1" placeholder="" onchange="calculo_iva_valor(1);" required />
 													</div>
 												</td>
 												<td class="nopadding" >
 													<div class="form-group">
-														<input type="text" class="form-control input-sm" id="Schoolname" name="Schoolname[]" value="0%" placeholder="">
+														<input type="text" class="form-control input-sm" id="ivaunitario1" name="ivaunitario1" value="0" placeholder="" onchange="calculo_iva_valor(1);" />
 													</div>
 												</td>
 												<td class="nopadding" >
 													<div class="form-group">
-														<input type="text" class="form-control input-sm" id="Schoolname" name="Schoolname[]" value="" placeholder="">
+														<input type="text" class="form-control input-sm" id="valorunitario1" name="valorunitario1"  placeholder="" onchange="calculo_iva_valor(1);" required />
 													</div>
 												</td>
 												<td class="nopadding" >
 													<div class="form-group">
-														<input type="text" class="form-control input-sm" id="Schoolname" name="Schoolname[]" value="" placeholder="">
+														<input type="text" class="form-control input-sm" id="valortotal1" name="valortotal1" placeholder="" readonly required />
 													</div>
 												</td>
 												<td class="nopadding" >
 													<div class="input-group-btn">
-														<button class="btn btn-sm btn-primary glyphicon glyphicon-plus btn-xs" type="button"  onclick="education_fields2();"> <span  aria-hidden="true"></span> </button>
+														<button class="btn btn-sm btn-primary glyphicon glyphicon-plus btn-xs" type="button"  onclick="education_fields({{$productos}});"> <span  aria-hidden="true"></span> </button>
 													</div>
 												</td>
 											</tr>
@@ -307,8 +304,8 @@
 							<small>Pulse + para agregar otro producto /  Pulse - para eliminar un producto.</small>
 							
 							<div class="panel-default ">
-								<div class="row ">
-									<div class="col-xs-9 "><br />
+								<div class="row">
+									<div class="col-xs-9 col-md-9"><br />
 										<label for="obv_fact">Obeservaciones</label><br/>
 										<div class="col-md-9 col-sm-9 col-xs-12">
 											<textarea id="obv_fact" required="required" name="obv_fact" class="form-control col-md-7 col-xs-12"></textarea>
@@ -319,11 +316,11 @@
 											@endif
 										</div>
 									</div>
-									<div class="col-xs-3">
+									<div class="col-xs-3 col-md-3">
 										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12" align="right" for="subt_fact">SUBTOTAL</label>
+											<label class="control-label col-xs-12 col-sm-3 col-md-3" align="right" for="subt_fact">SUBTOTAL</label>
 											<div class="col-md-8 col-sm-8 col-xs-12  right">
-											  <input type="text" id="subt_fact" name="subt_fact"  required="required" class="form-control col-md-7 col-xs-12 " readonly  style="background:#fff;">
+											  <input type="text" id="subt_fact" name="subt_fact"  required="required" class="form-control col-md-7 col-xs-12 " readonly />
 												@if ($errors->has('subt_fact'))
 													<span class="help-block">
 														<strong>{{ $errors->first('subt_fact') }}</strong>
@@ -335,7 +332,7 @@
 										<div class="form-group">
 											<label class="control-label col-md-3 col-sm-3 col-xs-12 " align="right" for="iva_fact"><br/>IVA</label>
 											<div class="col-md-8 col-sm-8 col-xs-12  right">
-											  <input type="text" id="iva_fact" name="iva_fact"   required="required" class="form-control col-md-7 col-xs-12" readonly  style="background:#fff;">
+											  <input type="text" id="iva_fact" name="iva_fact"   required="required" class="form-control col-md-7 col-xs-12" readonly />
 												@if ($errors->has('iva_fact'))
 													<span class="help-block">
 														<strong>{{ $errors->first('iva_fact') }}</strong>
@@ -347,10 +344,10 @@
 										<div class="form-group">
 											<label class="control-label col-md-3 col-sm-3 col-xs-12" align="right" for="tol_fact"><br/>TOTAL</label>
 											<div class="col-md-8 col-sm-8 col-xs-12  right">
-											  <input type="text" id="tol_fact" name="tol_fact"  required="required" class="form-control col-md-7 col-xs-12" readonly  style="background:#fff;">
-												@if ($errors->has('tol_fact'))
+											  <input type="text" id="tot_fact" name="tot_fact"  required="required" class="form-control col-md-7 col-xs-12" readonly />
+												@if ($errors->has('tot_fact'))
 													<span class="help-block">
-														<strong>{{ $errors->first('tol_fact') }}</strong>
+														<strong>{{ $errors->first('tot_fact') }}</strong>
 													</span>
 												@endif
 											</div>
@@ -461,25 +458,58 @@
 @stop
     <script>
 		var room = 1;
-		function education_fields2() {
-		 
-			room++;
-			var objTo = document.getElementById('education_fields2')
+		var producto = 1;
+		function education_fields(productos) {
+			producto++;
+			var objTo = document.getElementById('education_fields')
 			var divtest = document.createElement("tbody");
-			divtest.setAttribute("class", "form-group tr removeclass"+room);
-			var rdiv = 'removeclass'+room;
-			divtest.innerHTML = '<tr><td>' + (room) + '</td><td class="nopadding" ><select class="form-control input-sm" id="educationDate" name="educationDate[]"><option value="" selected>Seleccionar</option><option name="" value="">Aceite</option><option value="">Arepas antioqueñas precocidas </option><option value="" >Arroz  (bolsas de medio kilo)</option><option value="" >Bocadillo</option></select></td><td class="nopadding" ><select class="form-control input-sm" id="educationDate" name="educationDate[]"><option value="" selected>Seleccionar</option><option name="" value="">Barra</option><option name="" value="">Bloque</option><option name="" value="">Bolsa</option><option name="" value="">Botella</option><option name="" value="">Caja</option><option name="" value="">Frasco</option><option value="">Lata</option><option value="">Paquete</option><option value="">Pote</option><option value="">Tarro</option><option value="">Tubo</option><option value="">Vaso</option><option name="" value="">Unidad</option><option value="">Kg</option><option value="">Kilo</option><option value="">Litro</option><option value="">Lonjas</option></select></td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control input-sm" id="Schoolname" name="Schoolname[]" value="" placeholder=""></div></td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control input-sm" id="Schoolname" name="Schoolname[]" value="" placeholder=""></div></td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control input-sm" id="Schoolname" name="Schoolname[]" value="0%" placeholder=""></div></td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control input-sm" id="Schoolname" name="Schoolname[]" value="" placeholder=""></div></td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control input-sm" id="Schoolname" name="Schoolname[]" value="" placeholder=""></div></td><td class="nopadding" ><div class="input-group-btn"><button class="btn btn-sm btn-danger glyphicon glyphicon-minus btn-xs" type="button" onclick="remove_education_fields2('+ room +');"> <span  aria-hidden="true"></span> </button></div></td></tr>';
-			
+			divtest.setAttribute("class", "form-group tr removeproducto"+producto);
+			var rdiv = 'removeproducto'+producto;
+			var text = '<tr><td>' + (producto) +'</td>'+
+				//Productos
+				'<td class="nopadding" >'+
+				'<select class="form-control" id="producto'+(producto)+'" name="producto'+(producto)+'" onchange="cambio_productos('+(producto)+');">'+
+				'<option value="" selected>Seleccionar</option>';
+				$.each(productos, function(index, element) {
+						text = text + '<option value="'+ element.id +'">' + element.des_prd + '</option>';
+					});
+				text = text +
+				'</select></td>'+
+				//Unidades
+				'<td class="nopadding" >'+
+					'<select class="form-control" id="unidad'+(producto)+'" name="unidad'+(producto)+'"><option value="">Seleccionar</option></select>'+
+				'</td>'+
+				//Cantidad
+				'<td class="nopadding" >'+
+					'<div class="form-group"><input type="text" class="form-control" id="cantidad'+(producto)+'" name="cantidad'+(producto)+'" onchange="calculo_iva_valor('+(producto)+');" /></div>'+
+				'</td>'+	
+				//IVA
+				'<td class="nopadding" >'+
+					'<div class="form-group"><input type="text" class="form-control" id="ivaunitario'+(producto)+'" name="ivaunitario'+(producto)+'" onchange="calculo_iva_valor('+(producto)+');" /></div>'+
+				'</td>'+
+				//Valor Unitario
+				'<td class="nopadding" >'+
+					'<div class="form-group"><input type="text" class="form-control" id="valorunitario'+(producto)+'" name="valorunitario'+(producto)+'" onchange="calculo_iva_valor('+(producto)+');" /></div>'+
+				'</td>'+
+				//Valor Total
+				'<td class="nopadding" >'+
+					'<div class="form-group"><input type="text" class="form-control" id="valortotal'+(producto)+'" name="valortotal'+(producto)+'" readonly /></div>'+
+				'</td>'+
+				//Botones
+				 '<td class="nopadding" >'+
+					'<div class="input-group-btn"><button class="btn btn-sm btn-danger glyphicon glyphicon-minus btn-xs" type="button" onclick="remove_education_fields('+ producto +');">'+
+						'<span aria-hidden="true"></span>'+
+					'</button></div>'+
+				'</td></tr>';
+			divtest.innerHTML = text;
 			objTo.appendChild(divtest)
-			  
+			$("#cantproductos").val(producto);  
 		}
-	   function remove_education_fields2(rid) {
-		   $('.removeclass'+rid).remove()
-		   
-		   room--;
-	   }
-
-	   
+		function remove_education_fields(rid) {
+			$('.removeproducto'+rid).remove()
+			producto--;
+			$("#cantproductos").val(producto);  
+		}
 	   
 		// proveedor
 		function cambio_proveedores() {
@@ -495,6 +525,53 @@
 					$('#mail_prov').val(data.dir_mail);
 			});
 	   }
+	   
+	   // Producto
+		function cambio_productos(rid) {
+			$.get("{{ url('requisicion/cargarunidadesproducto')}}", 
+					{
+						option: $('#producto'+rid).val(),
+						
+					}, 
+					function(data) {
+						var model = $('#unidad'+rid);
+						model.empty();
+						model.append("<option value='' selected>Seleccionar</option>");
+							$.each(data, function(index, element) {
+								model.append("<option value='"+ element.id +"'>" + element.des_und + "</option>");
+						});
+				});
+		}
+	   
+	   function calculo_iva_valor(rid) {
+			var iva_und = $('#ivaunitario'+rid).val();
+			if (!iva_und){
+				iva_und = 0;
+			}
+			var val_und = $('#valorunitario'+rid).val();
+			if (!val_und){
+				val_und = 0;
+			}
+			var cnt = $('#cantidad'+rid).val();
+			if (!cnt){
+				cnt = 1;
+				$('#cantidad'+rid).val(cnt);
+			}
+			var val_tot = parseFloat(cnt) * (parseFloat(val_und) + parseFloat(val_und * (iva_und/100)));
+			$('#valortotal'+rid).val(val_tot);
+			var subt_fact = 0;
+			var iva_fact = 0;
+			var tot_fact = 0;
+			for(i = 1; i <= producto; i++){
+				subt_fact = parseFloat(subt_fact) + parseFloat($('#cantidad'+i).val() * $('#valorunitario'+i).val());
+				iva_fact = parseFloat(iva_fact) + parseFloat($('#cantidad'+i).val() * ($('#valorunitario'+i).val() * ($('#ivaunitario'+i).val()/100)));
+				tot_fact = parseFloat(tot_fact) + parseFloat($('#valortotal'+i).val());
+			}
+			$('#subt_fact').val(subt_fact);
+			$('#iva_fact').val(iva_fact);
+			$('#tot_fact').val(tot_fact);
+			
+		}
 	   
 	</script> 
 @stop

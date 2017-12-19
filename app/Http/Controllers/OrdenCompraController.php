@@ -8,6 +8,7 @@ use App\Unidad;
 use App\Configuracion;
 use App\OrdenCompra;
 use Illuminate\Http\Request;
+use \Carbon\Carbon;
 
 class OrdenCompraController extends Controller
 {
@@ -37,9 +38,9 @@ class OrdenCompraController extends Controller
 		$categorias = Categoria::all();
 		$configuracion = Configuracion::first();
 		$unidads = Unidad::all();
+		$now = Carbon::now();
 		
-		
-		return View('ordencompra.create')->with(compact('productos','proveedores','categorias','configuracion','unidads'));
+		return View('ordencompra.create')->with(compact('productos','proveedores','categorias','configuracion','unidads','now'));
     }
 
     /**

@@ -34,7 +34,7 @@ class FacturaController extends Controller
     {
         $productos = Producto::all();
 		$proveedores = Proveedor::all();
-		$configuracion = Configuracion::all();
+		$configuracion = Configuracion::first();
 		$unidads = Unidad::all();
 		return View('factura.create')->with(compact('productos','proveedores','configuracion','unidads'));
 	
