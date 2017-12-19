@@ -160,4 +160,11 @@ class OrdenCompraController extends Controller
 		$proveedor = Proveedor::find($request['option']);
 		return response()->json($proveedor);
 	}
+	
+	public function cargarproductosdecategoria(Request $request)
+    {
+		$productos = Producto::where('categoria_id','=',$request['option'])->get();
+		return response()->json($productos);
+	}
+	
 }

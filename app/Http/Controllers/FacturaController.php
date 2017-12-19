@@ -151,4 +151,12 @@ class FacturaController extends Controller
     {
         //
     }
+	
+	public function cargarproveedorocp(Request $request)
+    {
+		$ocp = OrdenCommpra::where('prov_id', '=', $request['option']);
+		return response()->json($ocp);
+	}
+	
+	
 }

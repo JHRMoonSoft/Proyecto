@@ -18,6 +18,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('factura/cargarproveedorocp', 'FacturaController@cargarproveedorocp');
+
+Route::get('ordencompra/cargarproductosdecategoria', 'OrdenCompraController@cargarproductosdecategoria');
+
 Route::get('solicitudcompra/cargardisponibleproducto', 'SolicitudCompraController@cargardisponibleproducto');
 Route::get('solicitudcompra/cargarunidadesproducto', 'SolicitudCompraController@cargarunidadesproducto');
 
@@ -26,7 +30,6 @@ Route::get('requisicion/cargarproveedor', 'RequisicionController@cargarproveedor
 
 Route::get('autorizarRQS/create/{id}', 'AutorizarRQSController@create');
 Route::get('autorizarRQS/cambioaccion', 'AutorizarRQSController@cambioaccion');
-
 
 Route::get('ordencompra/cargarproveedor', 'RequisicionController@cargarproveedor');
 

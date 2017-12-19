@@ -196,7 +196,7 @@
 								<div class="col-xs-3"><br/>
 									<label for="ex3">Categoria</label>
 									@if(!$categorias->isEmpty())
-										<select id="categorias" class="form-control input-sm" name="categorias" >
+										<select id="categorias" class="form-control input-sm" name="categorias" onchange="cargarproductosdecategoria();">
 											<option value="" selected>Seleccionar</option>
 											@foreach($categorias as $categoria)
 												<option value="{{ $categoria->id}}">{{ $categoria->des_cat}} </option>
@@ -210,13 +210,9 @@
 								</div>
 								<div class="col-xs-3"><br/>
 									<label for="ex3">Productos</label>
-									<select class="form-control">
-									  <option value="volvo" selected>Seleccionar</option>
-									  <option value="saab">Todos</option>
-									  <option value="saab">Aceite</option>
-									  <option value="vw">Arepas antioqueñas precocidas </option>
-									  <option value="audi" >Arroz  (bolsas de medio kilo)</option>
-									  <option value="audi" >Bocadillo</option>
+									<select class="form-control" id="productos" name="productos">
+									  <option value="" selected>Seleccionar</option>
+									  <option value="0">Todos</option>
 									</select>
 								</div>
 								<div class="col-xs-2"><br/>
@@ -239,13 +235,13 @@
 										<thead>
 											<tr >
 												<th>#</th>
-												<th><a href="/producto" title="Producto" target="_blank" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-title="Producto"></a>Producto</th>
-												<th><a href="/unidad" title="Unidad" target="_blank" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-title="Unidad"></a>Unidad</th>
-												<th> Cantidad</th>
-												<th> IVA. Unt (%)</th>
-												<th> Val. Unitario</th>
-												<th> Val. Total</th>
-												<th> Vence</th>
+												<th>Producto</th>
+												<th>Unidad</th>
+												<th>Cantidad</th>
+												<th>IVA. Unt (%)</th>
+												<th>Val. Unitario</th>
+												<th>Val. Total</th>
+												<th>Vence</th>
 												<th><a></a></th>	
 								
 											</tr>
@@ -487,7 +483,25 @@
 							model.append("<option value='"+ element.id +"'>" + element.des_und + "</option>");
 					});
 			});
+	}
+	
+	function cargarproductosdecategoria() {
+		   $.get("{{ url('ordencompra/cargarproductosdecategoria')}}", 
+				{
+					option: $('#categorias').val(),
+					
+				}, 
+				function(data) {
+					var model = $('#productos');
+					model.empty();
+					model.append("<option value='' selected>Seleccionar</option>");
+					model.append("<option value='0'>Todos</option>");
+						$.each(data, function(index, element) {
+							model.append("<option value='"+ element.id +"'>" + element.des_prd + "</option>");
+					});
+			});
 	   }
+	
 
 	function calculo_iva_valor(rid) {
 		var iva_und = $('#ivaunitario'+rid).val();

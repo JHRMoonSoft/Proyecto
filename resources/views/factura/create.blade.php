@@ -77,15 +77,15 @@
 										<div class=" row ">	
 											<div class=" col-sm-3 col-xs-6">
 												<div class="form-group">
-													<label for="proveedor1">Proveedor</label>
-													@if(!$proveedores->isEmpty())
+													<label for="proveedor">Proveedor</label>
 														<select id="proveedor" class="form-control input-sm" name="proveedor" onchange="cambio_proveedores();" >
 															<option value="" selected>Seleccionar</option>
-															@foreach($proveedores as $proveedor)
-																<option value="{{ $proveedor->id}}">{{ $proveedor->raz_soc}} </option>
-															@endforeach
+															@if(!$proveedores->isEmpty())
+																@foreach($proveedores as $proveedor)
+																	<option value="{{ $proveedor->id}}">{{ $proveedor->raz_soc}} </option>
+																@endforeach
+															@endif
 														</select>
-													@endif
 												</div>
 											</div>
 										
@@ -524,6 +524,20 @@
 					$('#telefono_prov').val(data.tel_fij);
 					$('#mail_prov').val(data.dir_mail);
 			});
+			
+			$.get("{{ url('factura/cargarproveedorocp')}}", 
+					{
+						option: $('#proveedor').val(),
+						
+					}, 
+					function(data) {
+						var model = $('#doc_ocp');
+						model.empty();
+						model.append("<option value='' selected>Seleccionar</option>");
+							$.each(data, function(index, element) {
+								model.append("<option value='"+ element.id +"'> No. OCP " + element.no_ocp + "</option>");
+						});
+				});
 	   }
 	   
 	   // Producto

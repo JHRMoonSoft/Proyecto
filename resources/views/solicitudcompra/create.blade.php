@@ -242,8 +242,8 @@
 				</div>
 				<div class="modal-footer"><!--
 				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-				  <button type="submit" class="btn btn-danger">Deshacer</button>
-				  <button type="button" class="btn btn-primary">Guardar</button>
+				  <button type="reset" class="btn btn-danger">Deshacer</button>
+				  <input type="submit" class="btn btn-primary">Guardar</input>
 				</div>
 
 			  </div>
