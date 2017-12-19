@@ -205,6 +205,7 @@
 							<small>Pulse + para agregar otro producto /  Pulse - para eliminar un producto.</small>
 							<br />	
 						</div>
+
 					  </div>
 					</li>
 				</ul>
@@ -213,6 +214,46 @@
 					<button type="submit" class="btn btn-danger">Deshacer</button>
 					<button type="submit" class="btn btn-default">Guardar</button>
 					<button type="submit" class="btn btn-success">Enviar</button>
+
+						<small>Pulse + para agregar otro producto /  Pulse - para eliminar un producto.</small>
+						<br />	
+					</div>
+				  </div>
+				</li>
+			</ul>
+			<div class="form-group right ">	
+																	
+				<button type="submit" class="btn btn-danger">Deshacer</button>
+				<button type="submit" class="btn btn-default">Guardar</button>
+				<button type="submit" class="btn btn-success">Enviar</button>
+			</div>
+
+        </div>
+		
+		<!-- Categoria modal -->		  
+
+		  <div class="modal fade categoria" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog modal-sm">
+			  <div class="modal-content">
+
+				<div class="modal-header">
+				  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+				  </button>
+				  <h4 class="modal-title" id="myModalLabel2">Nueva Categoria</h4>
+				</div>
+				<div class="modal-body">
+					<label class="control-label " for="first-name"> Categoria</label>
+					<div class="form-group input-group ">
+						<input name="multiple[]" class="form-control ">
+						<span class="input-group-btn"><button type="button" class="btn btn-primary btn-add">+</button></span>
+					</div>
+					<small>Pulse + para agregar otra categoria /  Pulse - para eliminar una categoria.</small>
+				</div>
+				<div class="modal-footer"><!--
+				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+				  <button type="reset" class="btn btn-danger">Deshacer</button>
+				  <input type="submit" class="btn btn-primary">Guardar</input>
+
 				</div>
 			</form>
         </div>

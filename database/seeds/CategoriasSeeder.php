@@ -16,6 +16,7 @@ class CategoriasSeeder extends Seeder
 		DB::table('categorias')->insert(['des_cat' => 'Papeleria','created_at' => Carbon::now()->subDays(1),'updated_at' => Carbon::now()]);
 		DB::table('categorias')->insert(['des_cat' => 'Didacticos','created_at' => Carbon::now()->subDays(1),'updated_at' => Carbon::now()]);
 		DB::table('categorias')->insert(['des_cat' => 'Aseo','created_at' => Carbon::now()->subDays(1),'updated_at' => Carbon::now()]);
+		DB::table('categorias')->insert(['des_cat' => 'Por Definir','created_at' => Carbon::now()->subDays(1),'updated_at' => Carbon::now()]);
 
     }
 }

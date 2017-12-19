@@ -27,20 +27,20 @@
 										    
 											<div class="col-md-2 	col-sm-6 col-xs-12">
 												<label for="single_cal2">Fecha</label>
-												<input type="text" class="form-control input-sm has-feedback-left " id="single_cal2" placeholder="First Name" aria-describedby="inputSuccess2Status2">
+												<input type="date" class="form-control input-sm has-feedback-left " id="single_cal2" value="{{$now}}" />
 											</div>
 											<div class="col-md-3 col-sm-6 col-xs-12">
-												<label for="ex3">Empresa</label>
-												<input class="form-control input-sm" id="ex3" type="text" value="{{ $configuracion->raz_soc }}"  readonly  style="background:rgba(247, 247, 247, 0.57);">
+												<label for="raz_soc">Empresa</label>
+												<input class="form-control input-sm" id="raz_soc" name="raz_soc" type="text" value="{{ $configuracion->raz_soc }}"  readonly  style="background:rgba(247, 247, 247, 0.57);">
 											</div>
 											<div class="col-md-2 col-sm-6 col-xs-12">
 												<label for="ex1">Nit. Empresa</label>
-												<input class="form-control input-sm" id="ex1" type="text" value="{{ $configuracion->nit_emp }}"  readonly  style="background:rgba(249, 249, 249, 0.57);">
+												<input class="form-control input-sm" id="num_doc" name="num_doc" type="text" value="{{ $configuracion->num_doc }}"  readonly  style="background:rgba(249, 249, 249, 0.57);">
 											</div>
 									
 											<div class="col-md-3 col-sm-6 col-xs-12">
 												<label for="ex2">Realizado</label>
-												<input class="form-control input-sm" id="ex2" type="text"  readonly  style="background:rgba(247, 247, 247, 0.57);">
+												<input class="form-control input-sm" id="ex2" type="text" value="{{ Auth::user()->nom_usr . ' ' . Auth::user()->ape_usr }}   " readonly  style="background:rgba(247, 247, 247, 0.57);">
 											</div>
 											<div class="col-md-2 col-sm-6 col-xs-12">
 												<label for="no_ocp">No. OCP</label>
@@ -196,7 +196,7 @@
 								<div class="col-xs-3"><br/>
 									<label for="ex3">Categoria</label>
 									@if(!$categorias->isEmpty())
-										<select id="categorias" class="form-control input-sm" name="categorias" >
+										<select id="categorias" class="form-control input-sm" name="categorias" onchange="cargarproductosdecategoria();">
 											<option value="" selected>Seleccionar</option>
 											@foreach($categorias as $categoria)
 												<option value="{{ $categoria->id}}">{{ $categoria->des_cat}} </option>
@@ -210,13 +210,9 @@
 								</div>
 								<div class="col-xs-3"><br/>
 									<label for="ex3">Productos</label>
-									<select class="form-control">
-									  <option value="volvo" selected>Seleccionar</option>
-									  <option value="saab">Todos</option>
-									  <option value="saab">Aceite</option>
-									  <option value="vw">Arepas antioqueñas precocidas </option>
-									  <option value="audi" >Arroz  (bolsas de medio kilo)</option>
-									  <option value="audi" >Bocadillo</option>
+									<select class="form-control" id="productos" name="productos">
+									  <option value="" selected>Seleccionar</option>
+									  <option value="0">Todos</option>
 									</select>
 								</div>
 								<div class="col-xs-2"><br/>
@@ -239,13 +235,13 @@
 										<thead>
 											<tr >
 												<th>#</th>
-												<th><a href="/producto" title="Producto" target="_blank" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-title="Producto"></a>Producto</th>
-												<th><a href="/unidad" title="Unidad" target="_blank" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-title="Unidad"></a>Unidad</th>
-												<th> Cantidad</th>
-												<th> IVA. Unt (%)</th>
-												<th> Val. Unitario</th>
-												<th> Val. Total</th>
-												<th> Vence</th>
+												<th>Producto</th>
+												<th>Unidad</th>
+												<th>Cantidad</th>
+												<th>IVA. Unt (%)</th>
+												<th>Val. Unitario</th>
+												<th>Val. Total</th>
+												<th>Vence</th>
 												<th><a></a></th>	
 								
 											</tr>
@@ -257,46 +253,51 @@
 												</td>								
 												<td class="nopadding" >
 													<div class="form-group input-sm">
-														@if(!$productos->isEmpty())
-															<select id="productos" class="form-control" name="productos" >
-																<option value="" selected>Seleccionar</option>
+														<select id="producto1" class="form-control" name="producto1" onchange="cambio_productos(1);" required>
+															<option value="" selected>Seleccionar</option>
+															@if(!$productos->isEmpty())
 																@foreach($productos as $producto)
 																	<option value="{{ $producto->id}}">{{ $producto->des_prd}} </option>
 																@endforeach
-															</select>
+															@endif
+														</select>
+														@if ($errors->has('producto1'))
+															<span class="help-block">
+																<strong>{{ $errors->first('producto1') }}</strong>
+															</span>
 														@endif
 													</div>
 												</td>
 												<td class="nopadding" >
 													<div class="form-group input-sm">
-														@if(!$unidads->isEmpty())
-															<select id="unidads" class="form-control" name="unidads" >
-																<option value="" selected>Seleccionar</option>
-																@foreach($unidads as $unidad)
-																	<option value="{{ $unidad->id}}">{{ $unidad->des_und}} </option>
-																@endforeach
-															</select>
+															<select class="form-control" id="unidad1" name="unidad1" required>
+															<option value="" selected>Seleccionar</option>
+														</select>
+														@if ($errors->has('unidad1'))
+															<span class="help-block">
+																<strong>{{ $errors->first('unidad1') }}</strong>
+															</span>
 														@endif
 													</div>
 												</td>
 												<td class="nopadding" >
 													<div class="form-group">
-														<input type="text" class="form-control input-sm" id="cantidad1" name="cantidad1" placeholder="">
+														<input type="text" class="form-control input-sm" id="cantidad1" name="cantidad1" placeholder="" onchange="calculo_iva_valor(1);" required />
 													</div>
 												</td>
 												<td class="nopadding" >
 													<div class="form-group">
-														<input type="text" class="form-control input-sm" id="ivaunitario1" name="ivaunitario1" value="0" placeholder="">
+														<input type="text" class="form-control input-sm" id="ivaunitario1" name="ivaunitario1" value="0" placeholder="" onchange="calculo_iva_valor(1);" />
 													</div>
 												</td>
 												<td class="nopadding" >
 													<div class="form-group">
-														<input type="text" class="form-control input-sm" id="valorunitario1" name="valorunitario1"  placeholder="">
+														<input type="text" class="form-control input-sm" id="valorunitario1" name="valorunitario1"  placeholder="" onchange="calculo_iva_valor(1);" required />
 													</div>
 												</td>
 												<td class="nopadding" >
 													<div class="form-group">
-														<input type="text" class="form-control input-sm" id="valortotal1" name="valortotal1" placeholder="">
+														<input type="text" class="form-control input-sm" id="valortotal1" name="valortotal1" placeholder="" readonly required />
 													</div>
 												</td>
 												
@@ -307,7 +308,7 @@
 													</div>
 												</td>
 												
-												<td class="nopadding" >
+												<td class="nopadding">
 													<div class="input-group-btn">
 														<button class="btn btn-sm btn-primary glyphicon glyphicon-plus btn-xs" type="button"  onclick="education_fields({{$productos}});"> <span  aria-hidden="true"></span> </button>
 													</div>
@@ -362,10 +363,10 @@
 										<div class="form-group">
 											<label class="control-label col-md-4 col-sm-4 col-xs-12" align="right" for="tol_ocp"><br/>TOTAL</label>
 											<div class="col-md-8 col-sm-8 col-xs-12  right">
-											  <input type="text" id="tol_ocp" name="tol_ocp"   required="required" class="form-control col-md-7 col-xs-12"  readonly  style="background:rgba(247, 247, 247, 0.57);">
-											  @if ($errors->has('tol_ocp'))
+											  <input type="text" id="tot_ocp" name="tot_ocp"   required="required" class="form-control col-md-7 col-xs-12"  readonly  style="background:rgba(247, 247, 247, 0.57);">
+											  @if ($errors->has('tot_ocp'))
 													<span class="help-block">
-														<strong>{{ $errors->first('tol_ocp') }}</strong>
+														<strong>{{ $errors->first('tot_ocp') }}</strong>
 													</span>
 												@endif
 											
@@ -411,7 +412,6 @@
 						text = text + '<option value="'+ element.id +'">' + element.des_prd + '</option>';
 					});
 				text = text +
-				'<option value="">Otro (Nuevo Producto)</option>'+
 				'</select></td>'+
 				//Unidades
 				'<td class="nopadding" >'+
@@ -419,19 +419,19 @@
 				'</td>'+
 				//Cantidad
 				'<td class="nopadding" >'+
-					'<div class="form-group"><input type="text" class="form-control" id="cantidad'+(producto)+'" name="cantidad'+(producto)+'"  /></div>'+
+					'<div class="form-group"><input type="text" class="form-control" id="cantidad'+(producto)+'" name="cantidad'+(producto)+'" onchange="calculo_iva_valor('+(producto)+');" /></div>'+
 				'</td>'+	
 				//IVA
 				'<td class="nopadding" >'+
-					'<div class="form-group"><input type="text" class="form-control" id="ivaunitario'+(producto)+'" name="ivaunitario'+(producto)+'" /></div>'+
+					'<div class="form-group"><input type="text" class="form-control" id="ivaunitario'+(producto)+'" name="ivaunitario'+(producto)+'" onchange="calculo_iva_valor('+(producto)+');" /></div>'+
 				'</td>'+
 				//Valor Unitario
 				'<td class="nopadding" >'+
-					'<div class="form-group"><input type="text" class="form-control" id="valorunitario'+(producto)+'" name="ivaunitario'+(producto)+'" /></div>'+
+					'<div class="form-group"><input type="text" class="form-control" id="valorunitario'+(producto)+'" name="valorunitario'+(producto)+'" onchange="calculo_iva_valor('+(producto)+');" /></div>'+
 				'</td>'+
 				//Valor Total
 				'<td class="nopadding" >'+
-					'<div class="form-group"><input type="text" class="form-control" id="valorunitario'+(producto)+'" name="ivaunitario'+(producto)+'" /></div>'+
+					'<div class="form-group"><input type="text" class="form-control" id="valortotal'+(producto)+'" name="valortotal'+(producto)+'" readonly /></div>'+
 				'</td>'+
 				//Vence
 				'<td class="nopadding" >'+
@@ -483,7 +483,55 @@
 							model.append("<option value='"+ element.id +"'>" + element.des_und + "</option>");
 					});
 			});
+	}
+	
+	function cargarproductosdecategoria() {
+		   $.get("{{ url('ordencompra/cargarproductosdecategoria')}}", 
+				{
+					option: $('#categorias').val(),
+					
+				}, 
+				function(data) {
+					var model = $('#productos');
+					model.empty();
+					model.append("<option value='' selected>Seleccionar</option>");
+					model.append("<option value='0'>Todos</option>");
+						$.each(data, function(index, element) {
+							model.append("<option value='"+ element.id +"'>" + element.des_prd + "</option>");
+					});
+			});
 	   }
+	
 
+	function calculo_iva_valor(rid) {
+		var iva_und = $('#ivaunitario'+rid).val();
+		if (!iva_und){
+			iva_und = 0;
+		}
+		var val_und = $('#valorunitario'+rid).val();
+		if (!val_und){
+			val_und = 0;
+		}
+		var cnt = $('#cantidad'+rid).val();
+		if (!cnt){
+			cnt = 1;
+			$('#cantidad'+rid).val(cnt);
+		}
+		var val_tot = parseFloat(cnt) * (parseFloat(val_und) + parseFloat(val_und * (iva_und/100)));
+		$('#valortotal'+rid).val(val_tot);
+		var subt_ocp = 0;
+		var iva_ocp = 0;
+		var tot_ocp = 0;
+		for(i = 1; i <= producto; i++){
+			subt_ocp = parseFloat(subt_ocp) + parseFloat($('#cantidad'+i).val() * $('#valorunitario'+i).val());
+			iva_ocp = parseFloat(iva_ocp) + parseFloat($('#cantidad'+i).val() * ($('#valorunitario'+i).val() * ($('#ivaunitario'+i).val()/100)));
+			tot_ocp = parseFloat(tot_ocp) + parseFloat($('#valortotal'+i).val());
+		}
+		$('#subt_ocp').val(subt_ocp);
+		$('#iva_ocp').val(iva_ocp);
+		$('#tot_ocp').val(tot_ocp);
+		
+	}		
+	   
 	</script> 
 @stop

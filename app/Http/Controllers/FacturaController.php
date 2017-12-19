@@ -34,7 +34,7 @@ class FacturaController extends Controller
     {
         $productos = Producto::all();
 		$proveedores = Proveedor::all();
-		$configuracion = Configuracion::all();
+		$configuracion = Configuracion::first();
 		$unidads = Unidad::all();
 		return View('factura.create')->with(compact('productos','proveedores','configuracion','unidads'));
 	
@@ -151,4 +151,12 @@ class FacturaController extends Controller
     {
         //
     }
+	
+	public function cargarproveedorocp(Request $request)
+    {
+		$ocp = OrdenCommpra::where('prov_id', '=', $request['option']);
+		return response()->json($ocp);
+	}
+	
+	
 }

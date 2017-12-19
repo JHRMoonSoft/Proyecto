@@ -173,7 +173,7 @@
 												</td>
 												<td class="nopadding" >
 													
-													<select id="producto1" class="form-control" name="producto1" onchange="cambio_productos(1);">
+													<select id="producto1" class="form-control" name="producto1" onchange="cambio_productos(1);" required>
 														<option value="" selected>Seleccionar</option>
 														@if(!$productos->isEmpty())
 															@foreach($productos as $producto)
@@ -190,7 +190,7 @@
 												</td>
 												<td class="nopadding" >
 													<div class="form-group">
-														<input type="text" class="form-control" id="detalle1" name="detalle1" placeholder="Detalle" readonly />
+														<input type="text" class="form-control" id="detalle1" name="detalle1" placeholder="Detalle" />
 														@if ($errors->has('detalle1'))
 															<span class="help-block">
 																<strong>{{ $errors->first('detalle1') }}</strong>
@@ -199,7 +199,7 @@
 													</div>
 												</td>
 												<td class="nopadding" >
-													<select class="form-control" id="unidad1" name="unidad1">
+													<select class="form-control" id="unidad1" name="unidad1" required>
 														<option value="" selected>Seleccionar</option>
 													</select>
 													@if ($errors->has('unidad1'))
@@ -211,7 +211,7 @@
 												
 												<td class="nopadding" >
 													<div class="form-group">
-														<input type="text" class="form-control" id="cantidad1" name="cantidad1" value="" placeholder="Cantidad">
+														<input type="text" class="form-control" id="cantidad1" name="cantidad1" value="" placeholder="Cantidad" required />
 													</div>
 													@if ($errors->has('cantidad1'))
 														<span class="help-block">
@@ -352,7 +352,7 @@
 			var text = '<tr><td>' + (producto) +'</td>'+
 				//Productos
 				'<td class="nopadding" >'+
-				'<select class="form-control" id="producto'+(producto)+'" name="producto'+(producto)+'" onchange="cambio_productos('+(producto)+');">'+
+				'<select class="form-control" id="producto'+(producto)+'" name="producto'+(producto)+'" onchange="cambio_productos('+(producto)+');" required>'+
 				'<option value="" selected>Seleccionar</option>';
 				$.each(productos, function(index, element) {
 						text = text + '<option value="'+ element.id +'">' + element.des_prd + '</option>';
@@ -362,15 +362,15 @@
 				'</select></td>'+
 				//Detalle
 				'<td class="nopadding" >'+
-					'<div class="form-group"><input type="text" class="form-control" id="detalle'+(producto)+'" name="detalle'+(producto)+'" value="" placeholder="Detalle" readonly /></div>'+
+					'<div class="form-group"><input type="text" class="form-control" id="detalle'+(producto)+'" name="detalle'+(producto)+'" placeholder="Detalle" readonly /></div>'+
 				'</td>'+
 				//Unidades
 				'<td class="nopadding" >'+
-					'<select class="form-control" id="unidad'+(producto)+'" name="unidad'+(producto)+'"><option value="">Seleccionar</option></select>'+
+					'<select class="form-control" id="unidad'+(producto)+'" name="unidad'+(producto)+'" required><option value="">Seleccionar</option></select>'+
 				'</td>'+
 				//Cantidad
 				'<td class="nopadding" >'+
-					'<div class="form-group"><input type="text" class="form-control" id="cantidad'+(producto)+'" name="cantidad'+(producto)+'" value="" placeholder="Cantidad"></div>'+
+					'<div class="form-group"><input type="text" class="form-control" id="cantidad'+(producto)+'" name="cantidad'+(producto)+'" value="" placeholder="Cantidad" required /></div>'+
 				'</td>'+	
 				//Botones
 				 '<td class="nopadding" >'+
@@ -397,15 +397,15 @@
 						text = text + '<option value="'+ element.id +'">' + element.raz_soc + '</option>';
 					});
 				text = text +
-				-'<option value="0">Otro</option>' +
+				'<option value="0">Otro</option>' +
 				'</select></td>'+
-				//Cantidad
+				//Nombre
 				'<td class="nopadding" >'+
-					'<div class="form-group"><input type="text" class="form-control" id="nombre'+(proveedor)+'" name="cantidad'+(proveedor)+'" value=""></div>'+
+					'<div class="form-group"><input type="text" class="form-control" id="nombre'+(proveedor)+'" name="nombre'+(proveedor)+'" value=""></div>'+
 				'</td>'+
-				//Unidades
+				//Teléfono
 				'<td class="nopadding" >'+
-					'<div class="form-group"><input type="text" class="form-control" id="telefono'+(proveedor)+'" name="cantidad'+(proveedor)+'" value=""></div>'+
+					'<div class="form-group"><input type="text" class="form-control" id="telefono'+(proveedor)+'" name="telefono'+(proveedor)+'" value=""></div>'+
 				'</td>'+
 				//Botones
 				 '<td class="nopadding" >'+

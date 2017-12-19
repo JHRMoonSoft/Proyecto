@@ -298,7 +298,7 @@
 												
 												<td class="nopadding" >
 													<div class="form-group">
-														<input type="text" class="form-control" id="cant_apr_prd{{$loop->index + 1}}" name="cant_apr_prd{{$loop->index + 1}}" value="{{$prod->cant_apr_prd}}"  placeholder="Cantidad"/>
+														<input type="text" class="form-control" id="cant_apr_prd{{$loop->index + 1}}" name="cant_apr_prd{{$loop->index + 1}}" value="{{$prod->cant_sol_prd}}"  placeholder="Cantidad"/>
 													</div>
 												</td>
 												
