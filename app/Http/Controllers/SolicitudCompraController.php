@@ -191,7 +191,11 @@ class SolicitudCompraController extends Controller
 			$rqs = null;
 		}
 		
-		return response()->json($unidades);
+		return response()->json($rqs);
+	}
+	
+	function IsNullOrEmptyString($question){
+		return (!isset($question) || trim($question)==='');
 	}
 
 }
