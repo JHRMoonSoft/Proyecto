@@ -211,9 +211,7 @@
 				</ul>
 				<div class="form-group right ">	
 																		
-					<button type="submit" class="btn btn-danger">Deshacer</button>
-					<button type="submit" class="btn btn-default">Guardar</button>
-					<button type="submit" class="btn btn-success">Enviar</button>
+					
 
 						<small>Pulse + para agregar otro producto /  Pulse - para eliminar un producto.</small>
 						<br />	

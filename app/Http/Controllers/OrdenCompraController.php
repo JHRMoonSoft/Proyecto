@@ -7,7 +7,11 @@ use App\Categoria;
 use App\Unidad;
 use App\Configuracion;
 use App\OrdenCompra;
+use App\Productosordencompra;
+use App\ProductosSolicitudCompra;
 use Illuminate\Http\Request;
+use App\Role;
+use Validator;
 use \Carbon\Carbon;
 
 class OrdenCompraController extends Controller
