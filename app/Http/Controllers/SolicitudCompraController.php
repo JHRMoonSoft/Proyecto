@@ -35,7 +35,9 @@ class SolicitudCompraController extends Controller
      */
     public function index()
     {
-         return View('solicitudcompra.index');
+        $solicitudcompras = SolicitudCompra::all();
+		 
+		return View('solicitudcompra.index')->with(compact('solicitudcompras'));
     }
 
     /**

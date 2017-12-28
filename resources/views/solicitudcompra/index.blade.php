@@ -54,7 +54,6 @@
 						<th class="text-center">Código </th>
 						<th class="text-center">Asunto</th>
 						<th class="text-center">Solicitante</th>
-						<th class="text-center">Estado</th>
 						<th class="text-center">Fecha Creación </th>
 						<th class="text-center">Fecha Edición </th>
 						<th>Opciones  </th>
@@ -74,7 +73,20 @@
 							<a href="" title="Editar" class="btn btn-primary glyphicon glyphicon-pencil btn-xs" data-title="Editar"></a></td><!--
 						<td><p data-placement="top" data-toggle="tooltip" title="Eliminar"><a href="" class="btn btn-danger btn-xs" data-title="Eliminar"><span class=" glyphicon glyphicon-trash"></span></a></p></td>-->
 				
-					</tr>                       
+					</tr>  
+					@foreach($solicitudcompras as $solicitudcompra)
+						<tr>
+							<td>{{$solicitudcompra->id}}</td>
+							<td>{{$solicitudcompra->asn_scp}}</td>
+							<td></td>
+							<td>{{ $solicitudcompra->format('Y-m-d') }}</td>	
+							<td>{{ $solicitudcompra->format('Y-m-d') }}</td>	
+							<td><a href="" title="Detalle" class="btn btn-success glyphicon glyphicon-file btn-xs" data-title="Detalle"></a>
+							<a href="" title="Editar" class="btn btn-primary glyphicon glyphicon-pencil btn-xs" data-title="Editar"></a></td><!--
+							<td><p data-placement="top" data-toggle="tooltip" title="Eliminar"><a href="" class="btn btn-danger btn-xs" data-title="Eliminar"><span class=" glyphicon glyphicon-trash"></span></a></p></td>-->
+						
+						</tr>   
+					@endforeach
 					
 				  </tbody>
 				</table>

@@ -71,12 +71,46 @@ class OrdenCompraController extends Controller
 			'empre_id' =>' ',
 			'prov_id' =>' '
 			];
+		//
         $validate = Validator::make($post_data, $rules);
-        if (!$validate->failed()){
-			$ordencompra = OrdenCompra::create($post_data);	 		
+         if ($validate->passes()){
+			$ordencompra = OrdenCompra::create($post_data);
+			$numprods = (int)$post_data['cantproductos'];
+			$i = 1;
+			$productos_vacios = true;
+			while($i <= $numprods){
+				$producto_i = array();
+				$producto_i['prod_id'] = $post_data['producto'.$i];					
+				$producto_i['unidad_emp_id'] = $post_data['unidad'.$i];	
+				$producto_i['cant_prd'] = $post_data['cantidad'.$i];
+				$producto_i['iva_unt'] = $post_data['ivaunitario'.$i];
+				$producto_i['val_unt'] = $post_data['valorunitario'.$i];
+				$producto_i['val_tol'] = $post_data['valortotal'.$i];
+				$producto_i['fec_ven'] = $post_data['vence'.$i];
+				$producto_i['prod_sol_comp_id'] = $solicitudcompra->id;
+				$producto_i['ord_comp_id'] = $ordencompra->id;
+				
+				if(!$this->IsNullOrEmptyString($producto_i['prod_id']) and !$this->IsNullOrEmptyString($producto_i['cant_prd']) and !$this->IsNullOrEmptyString($producto_i['unidad_emp_id'])){
+					ProductosSolicitudCompra::create($producto_i);
+					$productos_vacios = false;
+				}
+				$i = $i + 1;
+				//return $producto_i;
+			}
+			if($productos_vacios === true){
+				$ordencompra->delete();
+				$validate->errors()->add('cantproductos', 'Debe existir al menos un producto válido asociado a esta orden de compras.');
+				return redirect()->back()->withInput()->withErrors($validate);
+			}
+			
+			
+			return redirect()->intended('/ordencompra');
+		
 		}
-		$ordencompras = OrdenCompra::all();
-		return view('ordencompra.index')->with('ordencompras', $ordencompras);
+		
+		return redirect()->back()->withInput()->withErrors($validate);	
+		/*$ordencompras = OrdenCompra::all();
+		return view('ordencompra.index')->with('ordencompras', $ordencompras);*/
     }
 
     /**
