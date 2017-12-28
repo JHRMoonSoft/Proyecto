@@ -16,8 +16,14 @@ class CreateSolicitudcomprasTable extends Migration
         Schema::create('solicitudcompras', function (Blueprint $table) {
 			$table->engine = 'InnoDB';
 			$table->increments('id');
+			
 			$table->string('asn_scp');
+			
 			$table->string('obv_scp');
+			
+			$table->integer('user_id')->unsigned()->index();
+            $table->foreign('user_id')->references('id')->on('users') ->onUpdate('cascade')->onDelete('cascade');
+			
             $table->timestamps();
         });
     }

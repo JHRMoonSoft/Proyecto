@@ -7,8 +7,8 @@ use App\Categoria;
 use App\Unidad;
 use App\Configuracion;
 use App\OrdenCompra;
-use App\Productosordencompra;
 use App\ProductosSolicitudCompra;
+use App\ProductosOrdenCompra;
 use Illuminate\Http\Request;
 use App\Role;
 use Validator;
@@ -91,7 +91,7 @@ class OrdenCompraController extends Controller
 				$producto_i['ord_comp_id'] = $ordencompra->id;
 				
 				if(!$this->IsNullOrEmptyString($producto_i['prod_id']) and !$this->IsNullOrEmptyString($producto_i['cant_prd']) and !$this->IsNullOrEmptyString($producto_i['unidad_emp_id'])){
-					ProductosSolicitudCompra::create($producto_i);
+					ProductosOrdenCompra::create($producto_i);
 					$productos_vacios = false;
 				}
 				$i = $i + 1;
@@ -202,6 +202,14 @@ class OrdenCompraController extends Controller
 	public function cargarproductosdecategoria(Request $request)
     {
 		$productos = Producto::where('categoria_id','=',$request['option'])->get();
+		return response()->json($productos);
+	}
+	
+	public function cargarproductosseleccionados(Request $request)
+    {
+		$productos = ProductosSolicitudCompra::with('producto')
+					->with('unidad_solicitada')
+					->where('prod_id','=',$request['prds'])->get();
 		return response()->json($productos);
 	}
 	

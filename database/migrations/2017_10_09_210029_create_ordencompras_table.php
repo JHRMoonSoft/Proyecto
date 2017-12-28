@@ -33,7 +33,10 @@ class CreateOrdencomprasTable extends Migration
 			
 			$table->integer('prov_id')->unsigned()->index();
             $table->foreign('prov_id')->references('id')->on('proveedors') ->onUpdate('cascade') ->onDelete('cascade');
-		
+			
+			$table->integer('user_id')->unsigned()->index();
+            $table->foreign('user_id')->references('id')->on('users') ->onUpdate('cascade')->onDelete('cascade');
+			
             $table->timestamps();
         });
     }

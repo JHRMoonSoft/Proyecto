@@ -66,7 +66,6 @@
 					  <td>0023933</td>
 						<td>solicitud compa prueba</td>
 						<td>Belkis Buelvas</td>	
-						<td>Guardado /Enviado / Cancelado </td>
 						<td>22/4/2017</td>	
 						<td>28/4/2017</td>
 						<td><a href="" title="Detalle" class="btn btn-success glyphicon glyphicon-file btn-xs" data-title="Detalle"></a>
@@ -79,8 +78,16 @@
 							<td>{{$solicitudcompra->id}}</td>
 							<td>{{$solicitudcompra->asn_scp}}</td>
 							<td></td>
-							<td>{{ $solicitudcompra->format('Y-m-d') }}</td>	
-							<td>{{ $solicitudcompra->format('Y-m-d') }}</td>	
+							<td>
+								@if($solicitudcompra->created_at)
+									{{ $solicitudcompra->created_at->format('Y-m-d') }}
+								@endif
+							</td>	
+							<td>
+								@if($solicitudcompra->modified_at)
+									{{ $solicitudcompra->modified_at->format('Y-m-d') }}
+								@endif
+							</td>	
 							<td><a href="" title="Detalle" class="btn btn-success glyphicon glyphicon-file btn-xs" data-title="Detalle"></a>
 							<a href="" title="Editar" class="btn btn-primary glyphicon glyphicon-pencil btn-xs" data-title="Editar"></a></td><!--
 							<td><p data-placement="top" data-toggle="tooltip" title="Eliminar"><a href="" class="btn btn-danger btn-xs" data-title="Eliminar"><span class=" glyphicon glyphicon-trash"></span></a></p></td>-->
