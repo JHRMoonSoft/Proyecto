@@ -39,7 +39,7 @@
 						</div>
 						<div class="block_content">
 						
-							<h5>Espacio exclusivo para el Asistente de Gestión Administrativa<h5><br/><br/>
+							<h5>Espacio exclusivo para el Asistente de Gestión Administrativa</h5><br/><br/>
 								
 							<div class="row ">
 								<div class="form-group"><br>
@@ -68,6 +68,7 @@
 						</div>
 					  </div>
 					</li>
+					
 					<li>
 						<div class="block">
 							<div class="tags">
@@ -85,14 +86,14 @@
 							<div class="row">
 							  <div class="col-xs-6 col-md-4">
 								<div class="input-group col-xs-12 ">
-										<select class="form-control" id="educationDate" name="educationDate[]">
-											<option value="" selected>Seleccionar</option>
-											<option name="" value="">Unidad inventario </option>
-											<option name="" value="">Unidad empaque </option>
-											
-										</select>
-									</div>
-									<h5> Unidad consolidar <h5>
+									<select class="form-control" id="educationDate" name="educationDate[]">
+										<option value="" selected>Seleccionar</option>
+										<option name="" value="">Unidad inventario </option>
+										<option name="" value="">Unidad empaque </option>
+										
+									</select>
+								</div>
+								<h5> Unidad consolidar </h5>
 							  </div>
 							  <div class="col-xs-6 col-md-4">
 								<div class="input-group  col-xs-12">
@@ -100,8 +101,8 @@
 										<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
 										<span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
 									  </div>
-									  <h5> Fecha consolidar <h5>
-									</div>
+									  <h5> Fecha consolidar </h5>
+								</div>
 							  </div>
 							  <div class="col-xs-6 col-md-4">
 							  
@@ -133,7 +134,7 @@
 											</ul>
 										</div>
 									</div>
-									<h5>   RQS autorizadas<h5>
+									<h5>   RQS autorizadas</h5>
 								</div>
 								<!-- Consolidar RQS-->
 							  
@@ -210,13 +211,10 @@
 					</li>
 				</ul>
 				<div class="form-group right ">	
-																		
-					
-
-						<small>Pulse + para agregar otro producto /  Pulse - para eliminar un producto.</small>
-						<br />	
-					</div>
-				  </div>
+					<small>Pulse + para agregar otro producto /  Pulse - para eliminar un producto.</small>
+					<br />	
+				</div>
+		</div>
 				</li>
 			</ul>
 			<div class="form-group right ">	

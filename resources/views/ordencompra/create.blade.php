@@ -9,6 +9,8 @@
 			<div class="clearfix"></div>
 	    </div>
 		<div class="x_content">
+			<form class="form-horizontal" role="form" method="POST" action="{{ url('/ordencompra/') }}">
+			{{ csrf_field() }}
 			<ul class="list-unstyled timeline">
 				<li>
 					<div class="block ">
@@ -18,12 +20,12 @@
 							</a>
 						</div>	
 						<div class="block_content">
-								<h4>Espacio exclusivo para el Asistente de Gestión Administrativa<h4><br>
+								<h4>Espacio exclusivo para el Asistente de Gestión Administrativa</h4><br>
 						
 							<div class="x_content">
 								<div class="panel panel-default">
 									<div class="panel-heading ">
-										<form class="form-horizontal form-label-left">	
+										<div class="form-horizontal form-label-left">	
 										    
 											<div class="col-md-2 	col-sm-6 col-xs-12">
 												<label for="single_cal2">Fecha</label>
@@ -51,7 +53,7 @@
 													</span>
 												@endif
 											</div>
-										</form>
+										</div>
 									</div>
 									
 								</div>
@@ -220,8 +222,8 @@
 										</select>
 									</div>
 									<div class="col-xs-2"><br/>
-										<h4><h4/><br>
-										<button type="button" class="btn btn-primary fa fa-download" onclick="cargarproductosseleccionados();" />
+										<h4></h4><br>
+										<button type="button" class="btn btn-primary fa fa-download" onclick="cargarproductosseleccionados({{$productos}});" />
 									</div>
 								</div>
 							</div>
@@ -255,32 +257,27 @@
 													1
 												</td>								
 												<td class="nopadding" >
-													<div class="form-group">
-														<input type="text" class="form-control input-sm" id="producto1" name="producto1" placeholder="" required />
-													<!--
-													
-													</div>
 													<div class="form-group input-sm">
 														<select id="producto1" class="form-control" name="producto1" onchange="cambio_productos(1);" required>
 															<option value="" selected>Seleccionar</option>
-															if(!$productos->isEmpty())
-																foreach($productos as $producto)
-																	<option value=" $producto->id "> $producto->des_prd  </option>
-																endforeach
-															endif
+															@if(!$productos->isEmpty())
+																@foreach($productos as $producto)
+																	<option value="{{ $producto->id}}">{{ $producto->des_prd}} </option>
+																@endforeach
+															@endif
 														</select>
-													-->
 														@if ($errors->has('producto1'))
 															<span class="help-block">
 																<strong>{{ $errors->first('producto1') }}</strong>
 															</span>
 														@endif
 													</div>
-													
 												</td>
 												<td class="nopadding" >
-													<div class="form-group">
-														<input type="text" class="form-control input-sm" id="unidad1" name="unidad1" placeholder="" required />
+													<div class="form-group input-sm">
+														<select class="form-control" id="unidad1" name="unidad1" required>
+															<option value="" selected>Seleccionar</option>
+														</select>
 														@if ($errors->has('unidad1'))
 															<span class="help-block">
 																<strong>{{ $errors->first('unidad1') }}</strong>
@@ -290,22 +287,22 @@
 												</td>
 												<td class="nopadding" >
 													<div class="form-group">
-														<input type="text" class="form-control input-sm" id="cantidad1" name="cantidad1" placeholder="" onchange="calculo_iva_valor(1);" required />
+														<input type="text" class="form-control" id="cantidad1" name="cantidad1" placeholder="" onchange="calculo_iva_valor(1);" required />
 													</div>
 												</td>
 												<td class="nopadding" >
 													<div class="form-group">
-														<input type="text" class="form-control input-sm" id="ivaunitario1" name="ivaunitario1" value="0" placeholder="" onchange="calculo_iva_valor(1);" />
+														<input type="text" class="form-control" id="ivaunitario1" name="ivaunitario1" placeholder="" onchange="calculo_iva_valor(1);" />
 													</div>
 												</td>
 												<td class="nopadding" >
 													<div class="form-group">
-														<input type="text" class="form-control input-sm" id="valorunitario1" name="valorunitario1"  placeholder="" onchange="calculo_iva_valor(1);" required />
+														<input type="text" class="form-control" id="valorunitario1" name="valorunitario1"  placeholder="" onchange="calculo_iva_valor(1);" required />
 													</div>
 												</td>
 												<td class="nopadding" >
 													<div class="form-group">
-														<input type="text" class="form-control input-sm" id="valortotal1" name="valortotal1" placeholder="" readonly required />
+														<input type="text" class="form-control" id="valortotal1" name="valortotal1" placeholder="" readonly required />
 													</div>
 												</td>
 												
@@ -371,10 +368,10 @@
 										<div class="form-group">
 											<label class="control-label col-md-4 col-sm-4 col-xs-12" align="right" for="tol_ocp"><br/>TOTAL</label>
 											<div class="col-md-8 col-sm-8 col-xs-12  right">
-											  <input type="text" id="tot_ocp" name="tot_ocp"   required="required" class="form-control col-md-7 col-xs-12"  readonly  style="background:rgba(247, 247, 247, 0.57);">
-											  @if ($errors->has('tot_ocp'))
+											  <input type="text" id="tol_ocp" name="tol_ocp"   required="required" class="form-control col-md-7 col-xs-12"  readonly  style="background:rgba(247, 247, 247, 0.57);">
+											  @if ($errors->has('tol_ocp'))
 													<span class="help-block">
-														<strong>{{ $errors->first('tot_ocp') }}</strong>
+														<strong>{{ $errors->first('tol_ocp') }}</strong>
 													</span>
 												@endif
 											
@@ -395,16 +392,17 @@
 			</ul>
 			<div class="form-group right ">	
 																	
-				<button type="submit" class="btn btn-danger">Deshacer</button>
-				<button type="submit" class="btn btn-success">Guardar</button>
+				<button type="reset" class="btn btn-danger">Deshacer</button>
+				<input type="submit" class="btn btn-success" value="Guardar"></input>
 			</div>
-
+		</form>
         </div>
 
 	</div>		
 @stop
 	<script>
 		var producto = 1;
+		var primer_producto_cargado = false;
 		function education_fields(productos) {
 			producto++;
 			var objTo = document.getElementById('education_fields')
@@ -414,7 +412,7 @@
 			var text = '<tr><td>' + (producto) +'</td>'+
 				//Productos
 				'<td class="nopadding" >'+
-				'<select class="form-control" id="producto'+(producto)+'" name="producto'+(producto)+'" onchange="cambio_productos('+(producto)+');">'+
+				'<select class="form-control input-sm" id="producto'+(producto)+'" name="producto'+(producto)+'" onchange="cambio_productos('+(producto)+');">'+
 				'<option value="" selected>Seleccionar</option>';
 				$.each(productos, function(index, element) {
 						text = text + '<option value="'+ element.id +'">' + element.des_prd + '</option>';
@@ -423,27 +421,27 @@
 				'</select></td>'+
 				//Unidades
 				'<td class="nopadding" >'+
-					'<select class="form-control" id="unidad'+(producto)+'" name="unidad'+(producto)+'"><option value="">Seleccionar</option></select>'+
+					'<select class="form-control input-sm" id="unidad'+(producto)+'" name="unidad'+(producto)+'"><option value="">Seleccionar</option></select>'+
 				'</td>'+
 				//Cantidad
 				'<td class="nopadding" >'+
-					'<div class="form-group"><input type="text" class="form-control" id="cantidad'+(producto)+'" name="cantidad'+(producto)+'" onchange="calculo_iva_valor('+(producto)+');" /></div>'+
+					'<div class="form-group"><input type="text" class="form-control input-sm" id="cantidad'+(producto)+'" name="cantidad'+(producto)+'" onchange="calculo_iva_valor('+(producto)+');" required /></div>'+
 				'</td>'+	
 				//IVA
 				'<td class="nopadding" >'+
-					'<div class="form-group"><input type="text" class="form-control" id="ivaunitario'+(producto)+'" name="ivaunitario'+(producto)+'" onchange="calculo_iva_valor('+(producto)+');" /></div>'+
+					'<div class="form-group"><input type="text" class="form-control input-sm" id="ivaunitario'+(producto)+'" name="ivaunitario'+(producto)+'" onchange="calculo_iva_valor('+(producto)+');" required /></div>'+
 				'</td>'+
 				//Valor Unitario
 				'<td class="nopadding" >'+
-					'<div class="form-group"><input type="text" class="form-control" id="valorunitario'+(producto)+'" name="valorunitario'+(producto)+'" onchange="calculo_iva_valor('+(producto)+');" /></div>'+
+					'<div class="form-group"><input type="text" class="form-control input-sm" id="valorunitario'+(producto)+'" name="valorunitario'+(producto)+'" onchange="calculo_iva_valor('+(producto)+');" required /></div>'+
 				'</td>'+
 				//Valor Total
 				'<td class="nopadding" >'+
-					'<div class="form-group"><input type="text" class="form-control" id="valortotal'+(producto)+'" name="valortotal'+(producto)+'" readonly /></div>'+
+					'<div class="form-group"><input type="text" class="form-control input-sm" id="valortotal'+(producto)+'" name="valortotal'+(producto)+'" readonly required /></div>'+
 				'</td>'+
 				//Vence
 				'<td class="nopadding" >'+
-					'<div class="form-group"><input type="date" class="form-control" id="vence'+(producto)+'" name="vence'+(producto)+'" /></div>'+
+					'<div class="form-group"><input type="date" class="form-control input-sm" id="vence'+(producto)+'" name="vence'+(producto)+'" /></div>'+
 				'</td>'+
 				//Botones
 				 '<td class="nopadding" >'+
@@ -510,7 +508,7 @@
 			});
 	   }
 	
-	function cargarproductosseleccionados() {
+	function cargarproductosseleccionados(productos) {
 		   $.get("{{ url('ordencompra/cargarproductosseleccionados')}}", 
 				{
 					cats: $('#categorias').val(),
@@ -519,36 +517,65 @@
 				}, 
 				function(data) {
 					$.each(data, function(index, element) {
-						if(producto == 1){
-							$('#producto1').val(element.producto.des_prd);
-							$('#unidad1').val(element.unidad_solicitada.des_und);
+						if(producto == 1 && !primer_producto_cargado){
+							$('#producto1').val(element.producto.id);
+							$('#cantidad1').val(element.cant_sol_prd);
+							$.get("{{ url('requisicion/cargarunidadesproducto')}}", 
+								{
+									option: $('#producto1').val(),
+									
+								}, 
+								function(data) {
+									var model = $('#unidad1');
+									model.empty();
+									model.append("<option value='' selected>Seleccionar</option>");
+										$.each(data, function(index, element2) {
+											var text_append="<option value='"+ element2.id +"'";
+											if(element.unidad_solicitada.id == element2.id){
+												text_append = text_append + " selected ";
+											}
+											text_append = text_append + ">" + element2.des_und + "</option>"
+											model.append(text_append);
+										});
+								});
+							primer_producto_cargado = true;
+							calculo_iva_valor(1);
 						}
 						else{
 							producto++;
+							var objTo = document.getElementById('education_fields')
+							var divtest = document.createElement("tbody");
+							divtest.setAttribute("class", "form-group tr removeproducto"+producto);
+							var rdiv = 'removeproducto'+producto;
 							var text = '<tr><td>' + (producto) +'</td>'+
 							//Productos
 							'<td class="nopadding" >'+
-								'<div class="form-group"><input type="text" class="form-control" id="producto'+(producto)+'" name="producto'+(producto)+'" /></div>'+
-							'</td>'+
+							'<select class="form-control" id="producto'+(producto)+'" name="producto'+(producto)+'" onchange="cambio_productos('+(producto)+');" required>'+
+							'<option value="" selected>Seleccionar</option>';
+							$.each(productos, function(index, element) {
+									text = text + '<option value="'+ element.id +'">' + element.des_prd + '</option>';
+								});
+							text = text +
+							'</select></td>'+
 							//Unidades
 							'<td class="nopadding" >'+
-								'<div class="form-group"><input type="text" class="form-control" id="unidad'+(producto)+'" name="unidad'+(producto)+'" /></div>'+
+								'<select class="form-control" id="unidad'+(producto)+'" name="unidad'+(producto)+'" required><option value="">Seleccionar</option></select>'+
 							'</td>'+
 							//Cantidad
 							'<td class="nopadding" >'+
-								'<div class="form-group"><input type="text" class="form-control" id="cantidad'+(producto)+'" name="cantidad'+(producto)+'" onchange="calculo_iva_valor('+(producto)+');" /></div>'+
+								'<div class="form-group"><input type="text" class="form-control" id="cantidad'+(producto)+'" name="cantidad'+(producto)+'" onchange="calculo_iva_valor('+(producto)+');" required /></div>'+
 							'</td>'+	
 							//IVA
 							'<td class="nopadding" >'+
-								'<div class="form-group"><input type="text" class="form-control" id="ivaunitario'+(producto)+'" name="ivaunitario'+(producto)+'" onchange="calculo_iva_valor('+(producto)+');" /></div>'+
+								'<div class="form-group"><input type="text" class="form-control" id="ivaunitario'+(producto)+'" name="ivaunitario'+(producto)+'" onchange="calculo_iva_valor('+(producto)+');" required /></div>'+
 							'</td>'+
 							//Valor Unitario
 							'<td class="nopadding" >'+
-								'<div class="form-group"><input type="text" class="form-control" id="valorunitario'+(producto)+'" name="valorunitario'+(producto)+'" onchange="calculo_iva_valor('+(producto)+');" /></div>'+
+								'<div class="form-group"><input type="text" class="form-control" id="valorunitario'+(producto)+'" name="valorunitario'+(producto)+'" onchange="calculo_iva_valor('+(producto)+');" required /></div>'+
 							'</td>'+
 							//Valor Total
 							'<td class="nopadding" >'+
-								'<div class="form-group"><input type="text" class="form-control" id="valortotal'+(producto)+'" name="valortotal'+(producto)+'" readonly /></div>'+
+								'<div class="form-group"><input type="text" class="form-control" id="valortotal'+(producto)+'" name="valortotal'+(producto)+'" readonly required /></div>'+
 							'</td>'+
 							//Vence
 							'<td class="nopadding" >'+
@@ -560,10 +587,31 @@
 									'<span aria-hidden="true"></span>'+
 								'</button></div>'+
 							'</td></tr>';
+							divtest.innerHTML = text;
+							objTo.appendChild(divtest)
+							$("#cantproductos").val(producto);  
+							$('#producto'+producto).val(element.producto.id);
+							$('#cantidad'+producto).val(element.cant_sol_prd);
+							$.get("{{ url('requisicion/cargarunidadesproducto')}}", 
+								{
+									option: $('#producto'+producto).val(),
+									
+								}, 
+								function(data) {
+									var model = $('#unidad'+producto);
+									model.empty();
+									model.append("<option value='' selected>Seleccionar</option>");
+										$.each(data, function(index, element2) {
+											var text_append="<option value='"+ element2.id +"'";
+											if(element.unidad_solicitada.id == element2.id){
+												text_append = text_append + " selected ";
+											}
+											text_append = text_append + ">" + element2.des_und + "</option>"
+											model.append(text_append);
+										});
+								});
+							calculo_iva_valor(producto);
 						}
-						divtest.innerHTML = text;
-						objTo.appendChild(divtest)
-						$("#cantproductos").val(producto);  
 					});
 				});
 			}
@@ -586,15 +634,15 @@
 		$('#valortotal'+rid).val(val_tot);
 		var subt_ocp = 0;
 		var iva_ocp = 0;
-		var tot_ocp = 0;
+		var tol_ocp = 0;
 		for(i = 1; i <= producto; i++){
 			subt_ocp = parseFloat(subt_ocp) + parseFloat($('#cantidad'+i).val() * $('#valorunitario'+i).val());
 			iva_ocp = parseFloat(iva_ocp) + parseFloat($('#cantidad'+i).val() * ($('#valorunitario'+i).val() * ($('#ivaunitario'+i).val()/100)));
-			tot_ocp = parseFloat(tot_ocp) + parseFloat($('#valortotal'+i).val());
+			tol_ocp = parseFloat(tol_ocp) + parseFloat($('#valortotal'+i).val());
 		}
 		$('#subt_ocp').val(subt_ocp);
 		$('#iva_ocp').val(iva_ocp);
-		$('#tot_ocp').val(tot_ocp);
+		$('#tol_ocp').val(tol_ocp);
 		
 	}		
 	   

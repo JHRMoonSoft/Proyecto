@@ -66,7 +66,7 @@ class OrdenCompraController extends Controller
 			'otr_ocp' =>' ',
 			'subt_ocp' =>' ',
 			'iva_ocp' =>' ',
-			'tol_ocp' =>' ',
+			'tot_ocp' =>' ',
 			'obv_ocp' =>' ',
 			'empre_id' =>' ',
 			'prov_id' =>' '
@@ -174,7 +174,7 @@ class OrdenCompraController extends Controller
 			$ordencompras->otr_ocp = $post_data['otr_ocp'];
 			$ordencompras->subt_ocp = $post_data['subt_ocp'];
 			$ordencompras->iva_ocp = $post_data['iva_ocp'];
-			$ordencompras->tol_ocp = $post_data['tol_ocp'];
+			$ordencompras->tol_ocp = $post_data['tot_ocp'];
 			$ordencompras->obv_ocp = $post_data['obv_ocp'];
 			$ordencompras->empre_id = $post_data['empre_id'];
 			$ordencompras->prov_id = $post_data['prov_id'];
