@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Auth;
 use App\Producto;
 use App\Proveedor;
 use App\Categoria;
@@ -56,6 +57,7 @@ class OrdenCompraController extends Controller
     public function store(Request $request)
     {
         $post_data = $request->all();
+		$post_data['user_id'] = Auth::user()->id;
 		$rules = [
             'no_ocp' =>' ',
 			'cnp_ocp' =>' ',
@@ -86,8 +88,8 @@ class OrdenCompraController extends Controller
 				$producto_i['iva_unt'] = $post_data['ivaunitario'.$i];
 				$producto_i['val_unt'] = $post_data['valorunitario'.$i];
 				$producto_i['val_tol'] = $post_data['valortotal'.$i];
-				$producto_i['fec_ven'] = $post_data['vence'.$i];
-				$producto_i['prod_sol_comp_id'] = $solicitudcompra->id;
+				$producto_i['fec_ven'] = Carbon::parse($post_data['vence'.$i]);
+				$producto_i['prod_sol_comp_id'] = $post_data['prodsolcompra'.$i];
 				$producto_i['ord_comp_id'] = $ordencompra->id;
 				
 				if(!$this->IsNullOrEmptyString($producto_i['prod_id']) and !$this->IsNullOrEmptyString($producto_i['cant_prd']) and !$this->IsNullOrEmptyString($producto_i['unidad_emp_id'])){
@@ -192,6 +194,11 @@ class OrdenCompraController extends Controller
     {
         //
     }
+	
+	// Function for basic field validation (present and neither empty nor only white space
+	function IsNullOrEmptyString($question){
+		return (!isset($question) || trim($question)==='');
+	}
 	
 	public function cargarproveedor(Request $request)
     {

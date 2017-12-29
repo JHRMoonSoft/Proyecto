@@ -21,10 +21,11 @@
 						</div>	
 						<div class="block_content">
 								<h4>Espacio exclusivo para el Asistente de Gestión Administrativa</h4><br>
-						
+								<input type="hidden" id="empre_id" name="empre_id" value="{{ $configuracion->id }}" />
+								<input type="hidden" id="cantproductos" name="cantproductos" value="1"/>
 							<div class="x_content">
-								<div class="panel panel-default">
-									<div class="panel-heading ">
+								<div class="panel-default">
+									<div class="x_panel panel-heading ">
 										<div class="form-horizontal form-label-left">	
 										    
 											<div class="col-md-2 	col-sm-6 col-xs-12">
@@ -46,7 +47,7 @@
 											</div>
 											<div class="col-md-2 col-sm-6 col-xs-12">
 												<label for="no_ocp">No. OCP</label>
-												<input class="form-control input-sm" id="no_ocp" name="no_ocp" type="text">
+												<input class="form-control input-sm" id="no_ocp" name="no_ocp" type="text" required>
 												@if ($errors->has('no_ocp'))
 													<span class="help-block">
 														<strong>{{ $errors->first('no_ocp') }}</strong>
@@ -57,13 +58,15 @@
 									</div>
 									
 								</div>
-								
+							
+							</div>
+							<div class="x_content">
 								<div class="x_panel">
 									<div class=" row ">	
 										<div class=" col-sm-3 col-xs-6">
 											<div class="form-group">
-												<label for="proveedor1">Proveedor</label>
-												<select id="proveedor" class="form-control input-sm" name="proveedor" onchange="cambio_proveedores();" >
+												<label for="prov_id">Proveedor</label>
+												<select id="prov_id" class="form-control input-sm" name="prov_id" onchange="cambio_proveedores();" required>
 														<option value="" selected>Seleccionar</option>
 														@if(!$proveedores->isEmpty())
 															@foreach($proveedores as $proveedor)
@@ -119,7 +122,7 @@
 										</div>
 										<div class="col-sm-3 col-xs-6">
 											<label for="cnp_ocp">Concepto</label>
-											<input class="form-control input-sm" value="ORDEN DE COMPRA " id="cnp_ocp" name="cnp_ocp" type="text">
+											<input class="form-control input-sm" value="ORDEN DE COMPRA " id="cnp_ocp" name="cnp_ocp" type="text" required>
 											@if ($errors->has('no_ocp'))
 												<span class="help-block">
 													<strong>{{ $errors->first('no_ocp') }}</strong>
@@ -129,7 +132,7 @@
 										<div class="col-sm-3 col-xs-6">
 											<div class="form-group">
 												<label for="aut_ocp">Autorizado por</label>
-												<input class="form-control input-sm" id="aut_ocp" name="aut_ocp" type="text">
+												<input class="form-control input-sm" id="aut_ocp" name="aut_ocp" type="text" required>
 												@if ($errors->has('aut_ocp'))
 													<span class="help-block">
 														<strong>{{ $errors->first('aut_ocp') }}</strong>
@@ -140,9 +143,9 @@
 										<div class="col-sm-3 col-xs-6">
 											<div class="form-group">
 												<label for="form_pag">Forma de pago</label>
-												<select class="form-control input-sm" id="form_pag" name="form_pag">
+												<select class="form-control input-sm" id="form_pag" name="form_pag" required>
 													<option value="" selected>Seleccionar</option>
-													<option value=" CONTADO">CONTADO</option>
+													<option value="CONTADO">CONTADO</option>
 													<option value="CREDITO">CREDITO</option>
 												</select>
 												@if ($errors->has('form_pag'))
@@ -156,7 +159,7 @@
 										<div class="col-sm-3 col-xs-6">
 											<div class="form-group">
 												<label for="dia_cred">Dias de credito</label>
-												<input class="form-control input-sm" id="dia_cred" name="dia_cred" type="text">
+												<input class="form-control input-sm" id="dia_cred" name="dia_cred" type="text" required>
 												@if ($errors->has('dia_cred'))
 													<span class="help-block">
 														<strong>{{ $errors->first('dia_cred') }}</strong>
@@ -167,7 +170,7 @@
 										<div class="col-sm-3 col-xs-6">
 											<div class="form-group">
 												<label for="tim_entr">Tiempo de entrega</label>
-												<input class="form-control input-sm" id="tim_entr" name="tim_entr" type="text">
+												<input class="form-control input-sm" id="tim_entr" name="tim_entr" type="text" required>
 												@if ($errors->has('tim_entr'))
 													<span class="help-block">
 														<strong>{{ $errors->first('tim_entr') }}</strong>
@@ -178,7 +181,7 @@
 										<div class="col-sm-3 col-xs-6">
 											<div class="form-group">
 												<label for="otr_ocp">Otro</label>
-												<input class="form-control input-sm" id="otr_ocp" name="otr_ocp" type="text">
+												<input class="form-control input-sm" id="otr_ocp" name="otr_ocp" type="text" required>
 												@if ($errors->has('otr_ocp'))
 													<span class="help-block">
 														<strong>{{ $errors->first('otr_ocp') }}</strong>
@@ -255,6 +258,7 @@
 											<tr>
 												<td>
 													1
+													<input type="hidden" id="prodsolcompra1" name="prodsolcompra1" value="0"/>
 												</td>								
 												<td class="nopadding" >
 													<div class="form-group input-sm">
@@ -308,7 +312,7 @@
 												
 												<td class="nopadding" >
 													<div class="form-group">
-														<input class="form-control input-sm" name="vence1" id="vence1" type="date">
+														<input class="form-control input-sm" name="vence1" id="vence1" type="date" required />
 														<span class="input-group-btn"></span>
 													</div>
 												</td>
@@ -409,7 +413,10 @@
 			var divtest = document.createElement("tbody");
 			divtest.setAttribute("class", "form-group tr removeproducto"+producto);
 			var rdiv = 'removeproducto'+producto;
-			var text = '<tr><td>' + (producto) +'</td>'+
+			var text = '<tr><td>'+
+				(producto)+
+				'<input type="hidden" id="prodsolcompra'+(producto)+'" name="prodsolcompra'+(producto)+'" value="0"/>'+
+				'</td>'+
 				//Productos
 				'<td class="nopadding" >'+
 				'<select class="form-control input-sm" id="producto'+(producto)+'" name="producto'+(producto)+'" onchange="cambio_productos('+(producto)+');">'+
@@ -463,7 +470,7 @@
 		function cambio_proveedores() {
 		   $.get("{{ url('ordencompra/cargarproveedor')}}", 
 				{
-					option: $('#proveedor').val(),
+					option: $('#prov_id').val(),
 				}, 
 				function(data) {
 					$('#nit_prov').val(data.num_doc);
@@ -520,6 +527,8 @@
 						if(producto == 1 && !primer_producto_cargado){
 							$('#producto1').val(element.producto.id);
 							$('#cantidad1').val(element.cant_sol_prd);
+							$('#prodsolcompra1').val(element.id);
+							
 							$.get("{{ url('requisicion/cargarunidadesproducto')}}", 
 								{
 									option: $('#producto1').val(),
@@ -547,7 +556,10 @@
 							var divtest = document.createElement("tbody");
 							divtest.setAttribute("class", "form-group tr removeproducto"+producto);
 							var rdiv = 'removeproducto'+producto;
-							var text = '<tr><td>' + (producto) +'</td>'+
+							var text = '<tr><td>' +
+							(producto) +
+							'<input type="hidden" id="prodsolcompra'+(producto)+'" name="prodsolcompra'+(producto)+'" value="0"/>'+
+							'</td>'+
 							//Productos
 							'<td class="nopadding" >'+
 							'<select class="form-control" id="producto'+(producto)+'" name="producto'+(producto)+'" onchange="cambio_productos('+(producto)+');" required>'+
@@ -579,7 +591,7 @@
 							'</td>'+
 							//Vence
 							'<td class="nopadding" >'+
-								'<div class="form-group"><input type="date" class="form-control" id="vence'+(producto)+'" name="vence'+(producto)+'" /></div>'+
+								'<div class="form-group"><input type="date" class="form-control" id="vence'+(producto)+'" name="vence'+(producto)+'" required /></div>'+
 							'</td>'+
 							//Botones
 							'<td class="nopadding" >'+
@@ -592,6 +604,7 @@
 							$("#cantproductos").val(producto);  
 							$('#producto'+producto).val(element.producto.id);
 							$('#cantidad'+producto).val(element.cant_sol_prd);
+							$('#prodsolcompra'+producto).val(element.id);
 							$.get("{{ url('requisicion/cargarunidadesproducto')}}", 
 								{
 									option: $('#producto'+producto).val(),

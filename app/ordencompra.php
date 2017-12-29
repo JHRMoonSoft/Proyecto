@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Ordencompra extends Model
 {
     protected $table = 'ordencompras';
-	protected $fillable = ['no_ocp','cnp_ocp','aut_ocp','form_pag','dia_cred','tim_entr','otr_ocp','subt_ocp','iva_ocp','tol_ocp','obv_ocp', 'empre_id'];
+	protected $fillable = ['no_ocp','cnp_ocp','aut_ocp','form_pag','dia_cred','tim_entr','otr_ocp','subt_ocp','iva_ocp','tol_ocp','obv_ocp', 'empre_id', 'prov_id', 'user_id'];
 		
 	public function empresa()
 	{//Ok
@@ -15,7 +15,7 @@ class Ordencompra extends Model
 	}
 	public function proveedor()
 	{//Ok
-	    return $this->belongsTo('App\Proveedor');
+	    return $this->belongsTo('App\Proveedor', 'prov_id');
 	}
 	public function factura()
 	{//Ok

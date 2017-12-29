@@ -60,6 +60,7 @@ class SolicitudCompraController extends Controller
     public function store(Request $request)
     {
         $post_data = $request->all();
+		$post_data['user_id'] = Auth::user()->id;
 		$rules = [
             'asn_scp' => 'required',
 			'obv_scp' => 'required'
