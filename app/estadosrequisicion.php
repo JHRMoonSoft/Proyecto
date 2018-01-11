@@ -12,7 +12,7 @@ class Estadosrequisicion extends Model
 	
 	public function requisiciones()
 	{
-    	return $this->hasMany('Requisicion');
+    	return $this->hasMany('App\Requisicion','est_rqs');
 	}
 	
 }

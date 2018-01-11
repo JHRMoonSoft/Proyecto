@@ -84,27 +84,16 @@
 						
 							<br />
 							<div class="row">
-							  <div class="col-xs-6 col-md-4">
-								<div class="input-group col-xs-12 ">
-									<select class="form-control" id="educationDate" name="educationDate[]">
-										<option value="" selected>Seleccionar</option>
-										<option name="" value="">Unidad inventario </option>
-										<option name="" value="">Unidad empaque </option>
-										
-									</select>
-								</div>
-								<h5> Unidad consolidar </h5>
-							  </div>
-							  <div class="col-xs-6 col-md-4">
-								<div class="input-group  col-xs-12">
-									  <div id="reportrange" class="pull-center" style="background: #fff; cursor: pointer; padding: 8px 10px; border: 1px solid #ccc">
+							  <div class="col-xs-6 col-md-5">
+								<div class="input-group col-xs-12 col-md-12">
+									  <div id="fechaRQS" class="pull-center" style="background: #fff; cursor: pointer; padding: 8px 10px; border: 1px solid #ccc">
 										<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-										<span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
+										<span></span> <b class="caret"></b>
 									  </div>
 									  <h5> Fecha consolidar </h5>
 								</div>
 							  </div>
-							  <div class="col-xs-6 col-md-4">
+							  <div class="col-xs-6 col-md-7">
 							  
 									<!--RQS Pendientes-->
 								<div class="col-xs-12 ">
@@ -119,18 +108,16 @@
 												<span class="caret"></span>
 											</button>
 											<ul class="dropdown-menu " role="menu">
-											  <li>
-													<a href="#">
-														<span class="glyphicon glyphicon-user"></span>
-														<span class="label-icon">Search By User</span>
-													</a>
-												</li>
-												<li>
-													<a href="#">
-													<span class="glyphicon glyphicon-book"></span>
-													<span class="label-icon">Search By Organization</span>
-													</a>
-												</li>
+												@if(!$rqsAutorizadas->isEmpty())
+													@foreach($rqsAutorizadas as $rqsAutorizada)
+														<li>
+															<a href="#">
+																<span class="glyphicon glyphicon-book"></span>
+																<span class="label-icon">{{ $rqsAutorizada->id }} - {{ $rqsAutorizada->jst_rqs }}</span>
+															</a>
+														</li>
+													@endforeach
+												@endif
 											</ul>
 										</div>
 									</div>
@@ -141,7 +128,7 @@
 							  </div>
 							</div>		
 							<br />
-						
+							<input type="hidden" id="todoslosproductos" name="todoslosproductos" value="{{$productos}}">
 							<div class="panel panel-default">
 								<div class="panel-heading text-center">
 									<span><strong><span class="glyphicon glyphicon-th-list"> </span> Productos</strong></span>
@@ -257,8 +244,10 @@
 		 
 	</div>		
 @stop
+@section('postscripts')  
 	<script>
 		var producto = 1;
+		var primer_producto_cargado = false;
 		function education_fields2(productos) {
 			producto++;
 			var objTo = document.getElementById('education_fields2')
@@ -339,6 +328,168 @@
 					//model.setAttribute('value', );
 			});
 	   }
+		var start = moment().subtract(29, 'days');
+		var end = moment();
+		function cb(start, end) {
+			$('#fechaRQS span').html(start.format('MM/DD/YYYY') + ' - ' + end.format('MM/DD/YYYY'));
+		}
+		$('#fechaRQS').daterangepicker({
+			"locale": {
+				"format": "MM/DD/YYYY",
+				"separator": " - ",
+				"applyLabel": "Aplicar",
+				"cancelLabel": "Cancelar",
+				"fromLabel": "Desde",
+				"toLabel": "Hasta",
+				"customRangeLabel": "Rango Personalizado",
+				"weekLabel": "S",
+				"daysOfWeek": [
+					"Dom",
+					"Lun",
+					"Mar",
+					"Mie",
+					"Jue",
+					"Vie",
+					"Sab"
+				],
+				"monthNames": [
+					"Enero",
+					"Febrero",
+					"Marzo",
+					"Abril",
+					"Mayo",
+					"Junio",
+					"Julio",
+					"Augosto",
+					"Septiembre",
+					"Octubre",
+					"Noviembre",
+					"Diciembre"
+				],
+				"firstDay": 1
+			},
 
+			"alwaysShowCalendars": true,
+			startDate: start,
+			endDate: end,
+			ranges: {
+			'Hoy': [moment(), moment()],
+			'Ayer': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+			'Últimos 7 Días': [moment().subtract(6, 'days'), moment()],
+			'Últimos 30 días': [moment().subtract(29, 'days'), moment()],
+			'Este mes': [moment().startOf('month'), moment().endOf('month')],
+			'Mes anterior': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+			}
+		}, cb);
+		cb(start, end);
+		$('#fechaRQS').on('apply.daterangepicker', function(ev, picker) {
+			$.get("{{ url('solicitudcompra/buscarrqsautorizadaporfecha')}}", 
+				{
+					start: picker.startDate.format('YYYY-MM-DD'),
+					end: picker.endDate.format('YYYY-MM-DD'),
+					
+				}, 
+				function(data) {
+					if(data){
+						$.each(data, function(index, element) {
+							if(producto == 1 && !primer_producto_cargado){
+								$('#producto1').val(element.producto.id);
+								$('#cantidad1').val(element.cant_sol_prd);
+								
+								
+								$.get("{{ url('requisicion/cargarunidadesproducto')}}", 
+									{
+										option: $('#producto1').val(),
+										
+									}, 
+									function(data) {
+										var model = $('#unidad1');
+										model.empty();
+										model.append("<option value='' selected>Seleccionar</option>");
+											$.each(data, function(index, element2) {
+												var text_append="<option value='"+ element2.id +"'";
+												if(element.unidad_solicitada.id == element2.id){
+													text_append = text_append + " selected ";
+												}
+												text_append = text_append + ">" + element2.des_und + "</option>"
+												model.append(text_append);
+											});
+									});
+								primer_producto_cargado = true;
+							}
+							else{
+								producto++;
+								var productos = $('#todoslosproductos').val(); // Ver como puedo traer todos los productos!!!!!
+								var objTo = document.getElementById('education_fields2');
+								var divtest = document.createElement("tbody");
+								divtest.setAttribute("class", "form-group tr removeproducto"+producto);
+								var rdiv = 'removeproducto'+producto;
+								var text = '<tr><td>' +
+								(producto) +
+								'</td>'+
+								//Productos
+								'<td class="nopadding" >'+
+								'<select class="form-control" id="producto'+(producto)+'" name="producto'+(producto)+'" onchange="cambio_productos('+(producto)+');">'+
+								'<option value="" selected>Seleccionar</option>';
+								$.each(productos, function(index, element) {
+										text = text + '<option value="'+ element.id +'">' + element.des_prd + '</option>';
+									});
+								text = text +
+								'</select></td>'+
+								//Unidades
+								'<td class="nopadding" >'+
+									'<select class="form-control" id="unidad'+(producto)+'" name="unidad'+(producto)+'"><option value="">Seleccionar</option></select>'+
+								'</td>'+
+								//Cantidad
+								'<td class="nopadding" >'+
+									'<div class="form-group"><input type="text" class="form-control" id="cantidad'+(producto)+'" name="cantidad'+(producto)+'" value="" placeholder="Cantidad"/></div>'+
+								'</td>'+				
+								//Disponible
+								'<td class="nopadding" >'+
+									'<div class="form-group"><input type="text" class="form-control" id="disponible'+(producto)+'" name="disponible'+(producto)+'" disabled/></div>'+
+								'</td>'+
+								
+								//Botones
+								'<td class="nopadding" >'+
+									'<div class="input-group-btn"><button class="btn btn-sm btn-danger glyphicon glyphicon-minus btn-xs" type="button" onclick="remove_education_fields('+ producto +');">'+
+										'<span aria-hidden="true"></span>'+
+									'</button></div>'+
+								'</td></tr>';
+								divtest.innerHTML = text;
+								objTo.appendChild(divtest);
+								$("#cantproductos").val(producto);  
+								$('#producto'+producto).val(element.producto.id);
+								$('#cantidad'+producto).val(element.cant_sol_prd);
+								$.get("{{ url('requisicion/cargarunidadesproducto')}}", 
+								{
+									option: $('#producto'+producto).val(),
+									
+								}, 
+								function(data) {
+									var model = $('#unidad'+producto);
+									model.empty();
+									model.append("<option value='' selected>Seleccionar</option>");
+										$.each(data, function(index, element2) {
+											var text_append="<option value='"+ element2.id +"'";
+											if(element.unidad_solicitada.id == element2.id){
+												text_append = text_append + " selected ";
+											}
+											text_append = text_append + ">" + element2.des_und + "</option>"
+											model.append(text_append);
+										});
+								});
+								calculo_iva_valor(producto);
+							}
+						});
+					
+					}
+					else{
+						alert('Nada');
+					}
+					
+					//model.setAttribute('value', );
+			});
+			
+		});
 	</script> 
 @stop

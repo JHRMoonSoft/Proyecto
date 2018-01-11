@@ -23,8 +23,11 @@ Route::get('factura/cargarproveedorocp', 'FacturaController@cargarproveedorocp')
 Route::get('ordencompra/cargarproductosdecategoria', 'OrdenCompraController@cargarproductosdecategoria');
 Route::get('ordencompra/cargarproductosseleccionados', 'OrdenCompraController@cargarproductosseleccionados');
 
+
 Route::get('solicitudcompra/cargardisponibleproducto', 'SolicitudCompraController@cargardisponibleproducto');
 Route::get('solicitudcompra/cargarunidadesproducto', 'SolicitudCompraController@cargarunidadesproducto');
+Route::get('solicitudcompra/buscarrqsutorizada','SolicitudCompraController@buscarRQSAutorizada');
+Route::get('solicitudcompra/buscarrqsautorizadaporfecha','SolicitudCompraController@buscarRQSAutorizadaPorFecha');
 
 Route::get('requisicion/cargarunidadesproducto', 'RequisicionController@cargarunidadesproducto');
 Route::get('requisicion/cargarproveedor', 'RequisicionController@cargarproveedor');

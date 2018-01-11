@@ -48,7 +48,8 @@ class SolicitudCompraController extends Controller
     public function create()
     {	
 		$productos = Producto::all();
-		return View('solicitudcompra.create')->with(compact('productos'));
+		$rqsAutorizadas = EstadosRequisicion::find(2)->requisiciones;
+		return View('solicitudcompra.create')->with(compact('productos','rqsAutorizadas'));
     }
 
     /**
@@ -190,11 +191,45 @@ class SolicitudCompraController extends Controller
 	public function buscarRQSAutorizada(Request $request)
     {
 		$rqs = Requisicion::find($request['option']);
-		if(!$rqs){
-			$rqs = null;
+		if(!$rqs or $rqs->estadorequisicion->id != 2){
+			$productosRQS = null;
 		}
-		
-		return response()->json($rqs);
+		else{
+			$productosRQS = array();
+			foreach($rqs->productos as $productoRQS){
+				if($productoRQS->apr_prod){
+					array_push($productosRQS, $productoRQS->id);
+				}
+			}
+			$productosRQS = ProductosRequisicion::with('producto')
+			->with('unidad_solicitada')
+			->find($productosRQS);
+		}
+		return response()->json($productosRQS);
+	}
+	
+	public function buscarRQSAutorizadaPorFecha(Request $request)
+    {
+		$est_req = EstadosRequisicion::find(2);
+		$from = Carbon::parse($request['start']);
+		$to = Carbon::parse($request['end']);
+		$rqs = $est_req->requisiciones
+		->where('updated_at' , '>=', $from)
+		->where('updated_at' , '<=', $to);
+		$productosRQS = array();
+		foreach($rqs as $rq){
+			foreach($rq->productos as $productoRQS){
+				if($productoRQS->apr_prod){
+					array_push($productosRQS, $productoRQS->id);
+				}
+			}
+		}
+		$productosRQS = ProductosRequisicion::with('producto')
+		->with('unidad_solicitada')
+		->find($productosRQS);
+		return response()->json(
+		$productosRQS
+		);
 	}
 	
 	function IsNullOrEmptyString($question){

@@ -21,7 +21,7 @@
 	    <div class="x_title"> 
 			
 			<div class=" col-md-12 col-sm-12 col-xs-12 ">
-				<h2>Historial Requisiciones / Entregar  </h2> &nbsp&nbsp&nbsp
+				<h2>Historial Requisiciones | Pendientes por Entregar  </h2> &nbsp&nbsp&nbsp
 				<div class=" col-md-2 col-sm-2 col-xs-6 right">
 					<a  data-toggle="modal" data-target=".descargar" class="btn btn-primary  left" role="button"><i class="glyphicon glyphicon-cloud-download" aria-hidden="true"></i>&nbsp&nbsp Descargar </a>
 				</div>
@@ -81,8 +81,10 @@
 						<td>Jairo Coronel</td>	
 						<td>Area</td>	
 						<td>Cargo</td>	
-						<td><a  href="/rqs" title="Detalle" class="btn btn-success glyphicon glyphicon-file btn-xs" data-title="Detalle"></a>
-							<a href="/entregarRQS/create" title="Editar" class="btn btn-info glyphicon glyphicon-pencil btn-xs" data-title="Editar"></a><!--
+						<td>
+							<a href="/entregarRQS/create" title="Editar" class="btn btn-info glyphicon glyphicon-pencil btn-xs" data-title="Editar"></a>
+							<a  href="/rqs" title="Detalle" class="btn btn-success glyphicon glyphicon-file btn-xs" data-title="Detalle"></a>							
+							<a href="" title="Descargar" class="btn btn-primary glyphicon glyphicon-cloud-download btn-xs" data-title="Descargar"></a><!--
 							<a href="" title="Acción" class="btn btn-primary glyphicon glyphicon-ok btn-xs" data-title="Acción"></a>--></td><!--
 						<td><p data-placement="top" data-toggle="tooltip" title="Eliminar"><a href="" class="btn btn-danger btn-xs" data-title="Eliminar"><span class=" glyphicon glyphicon-trash"></span></a></p></td>-->
 				
