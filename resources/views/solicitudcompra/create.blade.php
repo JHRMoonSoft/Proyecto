@@ -45,7 +45,7 @@
 								<div class="form-group"><br>
 									<label class="control-label col-md-3 col-sm-3 col-xs-12" for="asn_scp">Asunto</label>
 									<div class="col-md-6 col-sm-6 col-xs-12">
-									  <input type="text" id="asn_scp"name="asn_scp"  value="SOLICITUD DE COMPRA"  required="required" class="form-control col-md-7 col-xs-12">
+									  <input type="text" id="asn_scp"name="asn_scp"  value="SOLICITUD DE COMPRAS"  required="required" class="form-control col-md-7 col-xs-12">
 										@if ($errors->has('asn_scp'))
 											<span class="help-block">
 												<strong>{{ $errors->first('asn_scp') }}</strong>
@@ -54,7 +54,7 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="control-label col-md-3 col-sm-3 col-xs-12" for="obv_scp">Observacion	</label>																			
+									<label class="control-label col-md-3 col-sm-3 col-xs-12" for="obv_scp">Observación	</label>																			
 									<div class="col-md-6 col-sm-6 col-xs-12">
 									  <textarea type="text" id="obv_scp"  name="obv_scp"rows="5" required="required" class="form-control col-md-7 col-xs-12"></textarea>
 										@if ($errors->has('obv_scp'))

@@ -6,10 +6,11 @@
     "type": "project",
     "require": {
         "php": ">=5.6.4",
+        "laracasts/generators": "dev-master as 1.1.4",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
-        "zizaco/entrust": "5.2.x-dev",
-		"laracasts/generators": "dev-master as 1.1.4"
+        "maatwebsite/excel": "^2.1",
+        "zizaco/entrust": "5.2.x-dev"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

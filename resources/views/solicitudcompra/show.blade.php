@@ -56,7 +56,7 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="control-label col-md-3 col-sm-3 col-xs-12" for="obv_scp">Observacion	</label>																			
+									<label class="control-label col-md-3 col-sm-3 col-xs-12" for="obv_scp">Observación	</label>																			
 									<div class="col-md-6 col-sm-6 col-xs-12">
 									  <textarea type="text" id="obv_scp"  name="obv_scp"rows="5" required="required" disabled style="background:rgba(247, 247, 247, 0.57);" class="form-control col-md-7 col-xs-12"></textarea>
 										@if ($errors->has('obv_scp'))

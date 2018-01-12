@@ -16,6 +16,7 @@ use App\Conversion;
 use App\Requisicion;
 use Validator;
 use \Carbon\Carbon;
+use Excel;
 
 class RequisicionController extends Controller
 {
@@ -233,6 +234,70 @@ class RequisicionController extends Controller
 		return (!isset($question) || trim($question)==='');
 	}
 
-
+	/*
+	public function exportRequisicion () {
+		\Excel::create('Requisiciones', function($excel) {
+		 
+			$requisicions = Requisicion::all();
+		 
+			$excel->sheet('Requisiciones', function($sheet) use($requisicions) {
+		 
+			$sheet->fromArray($requisicions);
+		 
+			});
+			
+			
+			
+		})->export('xlsx');
+		
+	}*/
 	
+	
+	public function exportRequisiciones () {
+		\Excel::create('Requisiciones', function($excel) {
+		 
+			$requisicions = Requisicion::all();
+		 
+			$excel->sheet('Requisiciones', function($sheet) use($requisicions) {
+		 
+			$sheet->row(1, [
+				'Código', 'Asunto','Justificación','Fecha de aprobación','Fecha de Creación', 'Fecha de Actualización'
+			]);
+		
+			foreach($requisicions as $index => $requisicion) {
+				$sheet->row($index+2, [
+					$requisicion->id, $requisicion->asn_rqs, $requisicion->jst_rqs,  $requisicion->fec_apr_com,$requisicion->created_at, $requisicion->updated_at
+				]); 
+			}
+					 
+			});
+			
+		})->export('xlsx');
+		
+	}
+	
+		public function exportRequisicion($id) {
+			
+						
+			\Excel::create('Requisiciones-'.$id, function ($excel) use($id) {
+				$requisicions =Requisicion::find($id)/*	
+					->with('proveedoresrequisicion')
+					->with('estadorequisicion')
+					->with('productos')*/;
+				
+				$excel->sheet('Requisiciones-'.$id, function($sheet) use($requisicions) {
+			 
+				$sheet->row(1, [
+					'Código', 'Asunto','Justificación','Fecha de aprobación','Fecha de Creación', 'Fecha de Actualización'
+				]);
+			
+				$sheet->row(2, [
+						$requisicions->id, $requisicions->asn_rqs, $requisicions->jst_rqs,  $requisicions->fec_apr_com,$requisicions->created_at, $requisicions->updated_at
+					]); 
+					 
+				});
+				
+			})->download('xlsx');
+		
+		}
 }

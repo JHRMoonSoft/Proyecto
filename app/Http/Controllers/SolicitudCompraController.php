@@ -20,6 +20,7 @@ use App\Conversion;
 use App\Requisicion;
 use Validator;
 use \Carbon\Carbon;
+use Excel;
 
 
 class SolicitudCompraController extends Controller
@@ -237,5 +238,29 @@ class SolicitudCompraController extends Controller
 	function IsNullOrEmptyString($question){
 		return (!isset($question) || trim($question)==='');
 	}
+	
+	
+	public function exportSolicitudCompra($id) {
+			\Excel::create('Solicitudcompras-'.$id, function ($excel) use($id) {
+				$solicitudcompras =SolicitudCompra::find($id);
+				
+				$excel->sheet('Solicitudcompras-'.$id, function($sheet) use($solicitudcompras) {
+			 
+				$sheet->row(1, [
+					'Código', 'Asunto','Observación','Fecha de Creación', 'Fecha de Actualización'
+				]);
+			
+				$sheet->row(2, [
+						$solicitudcompras->id, $solicitudcompras->asn_scp, $solicitudcompras->obv_scp,$solicitudcompras->created_at, $solicitudcompras->updated_at
+					]); 
+					 
+				});
+				
+			})->download('xlsx');
+		
+	}
+		
+
+	
 
 }
