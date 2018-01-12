@@ -104,8 +104,7 @@
 						<select id="tip_dep" name="tip_dep" class="form-control col-md-7 col-xs-12" data-validate-length-range="7" data-validate-words="2"  required="required">
 							<option value="" selected>Seleccionar</option>
 							<option value="1">Área</option>
-							<option value="2">Sección</option>
-							<option value="3">Programa</option>
+							<option value="2">Sección / Sección</option>
 						</select>
 					
 					</div>

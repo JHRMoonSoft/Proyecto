@@ -61,23 +61,15 @@
 					</tr>
 				  </thead>
 				  <tbody>
-					
-					<tr>
-					  <td>0023933</td>
-						<td>solicitud compa prueba</td>
-						<td>Belkis Buelvas</td>	
-						<td>22/4/2017</td>	
-						<td>28/4/2017</td>
-						<td><a href="" title="Detalle" class="btn btn-success glyphicon glyphicon-file btn-xs" data-title="Detalle"></a>
-							<a href="" title="Editar" class="btn btn-primary glyphicon glyphicon-pencil btn-xs" data-title="Editar"></a></td><!--
-						<td><p data-placement="top" data-toggle="tooltip" title="Eliminar"><a href="" class="btn btn-danger btn-xs" data-title="Eliminar"><span class=" glyphicon glyphicon-trash"></span></a></p></td>-->
-				
-					</tr>  
+				 
 					@foreach($solicitudcompras as $solicitudcompra)
 						<tr>
 							<td>{{$solicitudcompra->id}}</td>
 							<td>{{$solicitudcompra->asn_scp}}</td>
-							<td></td>
+							<td>
+								
+							
+							</td>
 							<td>
 								@if($solicitudcompra->created_at)
 									{{ $solicitudcompra->created_at->format('Y-m-d') }}
@@ -88,8 +80,10 @@
 									{{ $solicitudcompra->modified_at->format('Y-m-d') }}
 								@endif
 							</td>	
-							<td><a href="" title="Detalle" class="btn btn-success glyphicon glyphicon-file btn-xs" data-title="Detalle"></a>
-							<a href="" title="Editar" class="btn btn-primary glyphicon glyphicon-pencil btn-xs" data-title="Editar"></a></td><!--
+							<td>
+							<a href="{{ url('/solicitudcompra/'.$solicitudcompra->id.'/edit') }}" title="Editar" class="btn btn-info glyphicon glyphicon-pencil btn-xs" data-title="Editar"></a>
+							<a href="{{ url('/solicitudcompra/'.$solicitudcompra->id) }}" title="Detalle" class="btn btn-success glyphicon glyphicon-file btn-xs" data-title="Detalle"></a>
+							<a href="" title="Descargar" class="btn btn-primary glyphicon glyphicon-cloud-download btn-xs" data-title="Descargar"></a></td><!--
 							<td><p data-placement="top" data-toggle="tooltip" title="Eliminar"><a href="" class="btn btn-danger btn-xs" data-title="Eliminar"><span class=" glyphicon glyphicon-trash"></span></a></p></td>-->
 						
 						</tr>   

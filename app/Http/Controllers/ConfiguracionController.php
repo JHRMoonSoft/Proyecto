@@ -43,7 +43,16 @@ class ConfiguracionController extends Controller
     public function create()
     {
         //
-	return View('configuracion.create');
+		$count = Configuracion::all()->count();
+		if($count < 1){
+			return redirect()->intended('configuracion/create');
+		}
+		else{
+			$configuracion = Configuracion::find($count);	
+			//return view('configuracion.show')->with('configuracion', $configuracion);
+				return redirect()->intended('configuracion/'.$configuracion->id);
+			
+		}
     }
 
     /**

@@ -35,10 +35,13 @@ Route::get('requisicion/cargarproveedor', 'RequisicionController@cargarproveedor
 Route::get('autorizarRQS/create/{id}', 'AutorizarRQSController@create');
 Route::get('autorizarRQS/cambioaccion', 'AutorizarRQSController@cambioaccion');
 
+Route::get('entregarRQS/create/{id}', 'EntregarRQSController@create');
+
+Route::get('recibirRQS/create/{id}', 'ReciboRQSController@create');
+
 Route::get('ordencompra/cargarproveedor', 'RequisicionController@cargarproveedor');
 
 Route::resource('almacen', 'AlmacenController');
-Route::resource('rqs', 'RegistroAlmacenController');
 Route::resource('proveedor', 'ProveedorController');
 Route::resource('requisicion', 'RequisicionController');
 Route::resource('autorizarRQS', 'AutorizarRQSController');
@@ -51,7 +54,7 @@ Route::resource('ordencompra', 'OrdenCompraController');
 Route::resource('unidad', 'UnidadController');
 Route::resource('factura', 'FacturaController');
 Route::resource('entregarRQS', 'EntregarRQSController');
-Route::resource('reciboRQS', 'ReciboRQSController');
+Route::resource('recibirRQS', 'ReciboRQSController');
 
 Route::resource('role', 'RoleController');
 Route::resource('permisos', 'PermissionController');

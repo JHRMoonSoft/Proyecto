@@ -6,7 +6,9 @@
 
     <div class="x_panel">
 	    <div class="x_title">
-			<h2>Nueva Solicitud de Compras</h2>
+			<h2>EditarSolicitud de Compras</h2>
+			<a  href="{{ url('/solicitudcompra/'.$solicitudcompra->id) }}"class="btn btn-danger  right" role="button">Ver </a>
+			<a  href="{{ url('/solicitudcompra') }}" class="btn btn-default  right" role="button"><i class="fa fa-reply" aria-hidden="true"></i>&nbsp&nbsp&nbspVolver al listado </a>
 		<!--
 			<ul class="nav navbar-right panel_toolbox">
 			
@@ -128,6 +130,7 @@
 							  </div>
 							</div>		
 							<br />
+							<input type="hidden" id="todoslosproductos" name="todoslosproductos" value="{{$productos}}">
 							<div class="panel panel-default">
 								<div class="panel-heading text-center">
 									<span><strong><span class="glyphicon glyphicon-th-list"> </span> Productos</strong></span>

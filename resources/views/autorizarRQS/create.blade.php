@@ -7,6 +7,7 @@
     <div class="x_panel">
 	    <div class="x_title">
 			<h2>Autorizar Requisición Interna </h2>
+			<a  href="{{ url('/autorizarRQS') }}" class="btn btn-default  right" role="button"><i class="fa fa-reply" aria-hidden="true"></i>&nbsp&nbsp&nbspVolver al listado </a>
 			<div class="clearfix"></div>
 	    </div>
 		<div class="x_content">
@@ -100,7 +101,7 @@
 						</div>
 						<div class="block_content">
 							<h2 class="title">
-								<a>Detalle del sugerido</a>
+								<a>Detalle de la Requisición</a>
 							</h2>
 							<br />
 								<div class="table-responsive">
@@ -114,7 +115,7 @@
 												<th>Estado</th>
 												<th>Solicitante</th>
 												<th>Cargo</th>
-												<th>Detalle</th>
+												<th>Área</th>
 												
 												
 											</tr>
@@ -137,6 +138,7 @@
 										</tbody>
 									</table>
 								</div>
+								 <a>Espacio exclusivo para el Asistente de Gestión Administrativa</a><br/>
 								<div class="row">
 									<div class="col-md-12">
 										<div class="btn-group col-md-5">
@@ -216,7 +218,7 @@
 						</div>
 						<div class="block_content">
 							<h2 class="title">
-										<a>Detalle de productos</a>
+										<a>Lista de Productos</a>
 							</h2>
 							<br />		
 												
@@ -335,7 +337,7 @@
 						</div>
 						<div class="block_content">
 						<h2 class="title">
-									<a>Detalle de proveedores</a>
+									<a>Proveedores sugeridos</a>
 						</h2>
 						<br />
 						<div class="panel panel-default">

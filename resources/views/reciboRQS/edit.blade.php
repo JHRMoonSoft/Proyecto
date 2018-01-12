@@ -1,12 +1,13 @@
 @extends('layouts.app')
 @section('content')  
-
+ 
  
 @section('x_content')
   
-    <div class="x_panel">
+    <div class="x_panel"> 
 	    <div class="x_title">
 			<h2>Recibir Requisición Interna</h2>
+			<a  href="{{ url('/recibirRQS ') }}" class="btn btn-default  right" role="button"><i class="fa fa-reply" aria-hidden="true"></i>&nbsp&nbsp&nbspVolver al listado </a>
 		<!--
 			<ul class="nav navbar-right panel_toolbox">
 			

@@ -48,7 +48,7 @@
 						<th class="text-center">Usuario</th>
 						<th class="text-center">Nombre Empleado</th>
 						<th class="text-center">Cargo</th>
-						<th class="text-center">Depen</th>
+						<th class="text-center">Area</th>
 						<th class="text-center">Rol</th>
 						<th class="text-center">Estado</th>
 						<th class="text-center">Fecha Creación </th>
@@ -63,8 +63,8 @@
 						<td>{{$user->id}}</td>
 						<td> {{$user->usuario}}	</td>
 						<td>{{$user->nom_usr}} &nbsp&nbsp&nbsp {{$user->ape_usr}} </td>
-						<td>{{$user->dep_usr}}</td>
 						<td> {{$user->crg_usr}}</td>
+						<td>{{$user->area->des_are }}</td>
 						<td>
 							@foreach($user->roles as $role)
 								{{$role->name}} 

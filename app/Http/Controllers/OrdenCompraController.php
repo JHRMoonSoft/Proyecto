@@ -121,10 +121,16 @@ class OrdenCompraController extends Controller
      * @param  \App\OrdenCompra  $ordencompra
      * @return \Illuminate\Http\Response
      */
-    public function show(OrdenCompra $ordencompra)
+    public function show($id)
     {
-        $ordencompras= OrdenCompra::find($ordencompra);
-		return view('ordencompra.show')->with('ordencompras', $ordencompras);
+        $productos = Producto::all();
+		$proveedores = Proveedor::all();
+		$categorias = Categoria::all();
+		$configuracion = Configuracion::first();
+		$unidads = Unidad::all();
+		$now = Carbon::now();
+		$ordencompras= OrdenCompra::find($id);
+		return view('ordencompra.show')->with(compact('ordencompras','productos','proveedores','categorias','configuracion','unidads','now'));
     }
 
     /**
@@ -133,10 +139,16 @@ class OrdenCompraController extends Controller
      * @param  \App\OrdenCompra  $ordencompra
      * @return \Illuminate\Http\Response
      */
-    public function edit(OrdenCompra $ordencompra)
+    public function edit( $id)
     {
-        $ordencompras = OrdenCompra::find($ordencompra);
-		return view('ordencompra.edit')->with('ordencompras', $ordencompras);
+        $productos = Producto::all();
+		$proveedores = Proveedor::all();
+		$categorias = Categoria::all();
+		$configuracion = Configuracion::first();
+		$unidads = Unidad::all();
+		$now = Carbon::now();
+		$ordencompras = OrdenCompra::find($id);
+		return view('ordencompra.edit')->with(compact('ordencompras','productos','proveedores','categorias','configuracion','unidads','now'));
     }
 
     /**

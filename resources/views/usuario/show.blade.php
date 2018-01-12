@@ -66,9 +66,8 @@
 					
 						<select id="tip_dep" name="tip_dep" class="form-control col-md-7 col-xs-12" disabled style="background:rgba(247, 247, 247, 0.57);" data-validate-length-range="7" data-validate-words="2"  required="required">
 							<option value="" selected>Seleccionar</option>
-							<option value="1" {{ $users->tip_dep == '1' ? ' selected':'' }}>Area</option>
+							<option value="1" {{ $users->tip_dep == '1' ? ' selected':'' }}>Area/Seccion</option>
 							<option value="2" {{ $users->tip_dep == '2' ? ' selected':'' }}>Seccion</option>
-							<option value="3" {{ $users->tip_dep == '3' ? ' selected':'' }}>Programa</option>
 						</select>
 					
 					</div>

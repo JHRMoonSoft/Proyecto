@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\User;
 use App\Role;
+use App\Area;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -20,7 +21,7 @@ class UsuarioController extends Controller
     public function index()
     {
        $users = User::all();
-        return view('usuario.index')->with(compact('users'));
+        return view('usuario.index')->with(compact('users','areas'));
     }
 
     /**

@@ -3,9 +3,11 @@
 
 @section('x_content')
 
-    <div class="x_panel">
+    <div class="x_panel"> 
 	    <div class="x_title">
-			<h2>Requisición  Interna</h2>  
+			<h2>Información de la Requisición Interna</h2>
+			<a  href="{{ url('/requisicion/'.$requisicion->id.'/edit') }}" class="btn btn-info right" role="button">Editar</a>
+			<a  href="{{ url('/requisicion') }}" class="btn btn-default  right" role="button"><i class="fa fa-reply" aria-hidden="true"></i>&nbsp&nbsp&nbspVolver al listado </a>
 		<!--
 			<ul class="nav navbar-right panel_toolbox">
 			
@@ -37,9 +39,10 @@
 					</div>
 					<div class="block_content"> 
 						<h2 class="title">
-							 <a>Detalle Requisición  </a><br/>
+							 <a>Historial de Registro   </a><br/>
 						</h2>				
 						<br />
+						
 						<div class="table-responsive">
 							<table id="datatable-buttons" class="table table-striped table-bordered ">
 								<thead>
@@ -107,65 +110,177 @@
 					</div>
 					<div class="block_content"><br/>
 						<h2 class="title">
-							<a>Requisición  </a><br/>
+							<a>Detalle de la Requisición  </a><br/>
 						</h2>
 						<br/>
+						
 						<div class="panel panel-default">
-							<div class="panel-body">
-								<div class="row ">
 							
-									<div class="btn-group  col-md-2">
-										<h5>Nombre:</h5>
-										<input type="text"class="form-control select2-offscreen" id="cc" placeholder="" tabindex="-1" disabled style="background:#fff;">
-											
-									</div>
-									<div class="btn-group  col-md-2 " data-toggle="buttons">	
-										<h5>Cargo:</h5>
-										<input type="text"class="form-control select2-offscreen" id="cc" placeholder="" tabindex="-1" disabled style="background:#fff;">
-									</div>	
-									<div class=" col-md-2 " >
-										<h5>Área/ Sección/ Programa:</h5>
-										<input type="text"class="form-control select2-offscreen" id="cc" placeholder="" tabindex="-1" disabled style="background:#fff;">
-									</div>
-									<div class=" col-md-2 " >
-										<h5>Coordinación: </h5>
-										<input type="text"class="form-control select2-offscreen" id="cc" placeholder="" tabindex="-1" disabled style="background:#fff;">
-									</div>
-									<div class="btn-group   col-md-4" data-toggle="buttons">
-										<h5>Justificación:</h5>
-										<input type="text"class="form-control select2-offscreen" id="cc" placeholder="" tabindex="-1" disabled style="background:#fff;">
-											<br/>					
-									</div>	
-								</div>
+							<div class="table-responsive">
+								<table id="datatable-buttons" class="table table-striped table-bordered ">
+									<thead>
+										<tr>
+										<th>Cod. RQS</th>
+										<th>Fecha RQS</th>
+									    <th>Solicitante	</th>										
+									    <th>Cargo:</th>
+										<th>Área</th>
+										<th>Coordinación:</th>
+										<th>Justificación:</th>
+										</tr>
+									</thead>
+									<tbody>
+										
+										<tr>
+											<td>{{ $requisicion->id }}</td>
+											<td>{{ $requisicion->created_at->format('d-m-Y')}}	</td>
+												@if($requisicion->registrohistoricorequisicion->count() == 0)
+												<td>Sin Creación</td>
+											@else
+												@foreach($requisicion->registrohistoricorequisicion as $requisicion)
+													@if ($loop->first)
+														@if($requisicion->user === null)
+															<td>Sin Creación</td>
+														@else
+															<td>{{$requisicion->user->nom_usr .' '. $requisicion->user->ape_usr}}</td>
+															
+														@endif
+													@endif
+												@endforeach
+											@endif
+											<td>{{$requisicion->user->crg_usr }}</td>
+											<td>{{$requisicion->user->area->des_are}}</td>
+											<td>{{$requisicion->user->crd_usr }}	</td>
+											<td>{{$requisicion->jst_rqs}}</td>
+										</tr> 
+									</tbody>
+								</table>
 							</div>
+						</div>					
+						
+					 <a>Espacio exclusivo para el Asistente de Gestión Administrativa</a><br/>
+					<div class="row ">
+						<div class="btn-group col-md-5">
+							<h5>Tipo de Solicitud</h5>
+							<label for="success" class="btn btn-success">
+								Solicitud Consumo
+								<input type="radio" name="tip_sol1" id="success" value="{{$requisicion->tip_sol1 }}"s class="badgebox"/ disabled>
+								<span class="badge">&check;</span>
+							</label>
+								@if ($errors->has('tip_sol1'))
+									<span class="help-block">
+										<strong>{{ $errors->first('tip_sol1') }}</strong>
+									</span>
+								@endif
+							<label for="warning" class="btn btn-warning">
+								Solicitud Inversión
+								<input type="checkbox" name="tip_sol2" id="warning" value="{{$requisicion->tip_sol2 }}" class="badgebox" disabled>
+								<span class="badge">&check;</span>
+							</label>
+								@if ($errors->has('tip_sol2'))
+									<span class="help-block">
+										<strong>{{ $errors->first('tip_sol2') }}</strong>
+									</span>
+								@endif
 						</div>
-					
+		
+						<div class="dlk-radio btn-group  col-md-2" >
+							<h5>Aprobado en comite</h5>
+							<label class="btn  btn-primary">
+								<input name="choices[1]"  type="radio" value="1"disabled>
+								<i class="fa fa-check glyphicon glyphicon-ok"></i>SI
+						   </label>
+						   <label class="btn btn-danger">
+							   <input name="choices[1]"  type="radio" value="2"   defaultchecked="checked" disabled >
+							   <i class="fa fa-times glyphicon glyphicon-remove"></i>NO
+						   </label>
+						
+						</div>	
+						
+						<div class="dlk-radio btn-group  col-md-2" >
+							<h5>Proveedor Autorizado</h5>
+							<label class="btn  btn-primary">
+								<input name="choices[1]"  type="radio" value="1"disabled>
+								<i class="fa fa-check glyphicon glyphicon-ok"></i>SI
+						   </label>
+						   <label class="btn btn-danger">
+							   <input name="choices[1]"  type="radio" value="2"   defaultchecked="checked" disabled >
+							   <i class="fa fa-times glyphicon glyphicon-remove"></i>NO
+						   </label>
+						
+						</div>
+						
+						 <!--<div class="dlk-radio btn-group  col-md-2" >
+						
+							<label class="btn  btn-primary">
+								<input name="choices[1]"  type="radio" value="1"disabled>
+								<i class="fa fa-check glyphicon glyphicon-ok"></i>SI
+						   </label>
+						   <label class="btn btn-danger">
+							   <input name="choices[1]"  type="radio" value="2"   defaultchecked="checked" disabled >
+							   <i class="fa fa-times glyphicon glyphicon-remove"></i>NO
+						   </label>
+						  
+							<label class="btn btn-success">
+								<input name="choices[1]"  type="radio" value="1">
+								<i class="fa fa-check glyphicon glyphicon-ok"></i>SI
+						   </label>
+						   <label class="btn btn-default">
+							   <input name="choices[1]"  type="radio" value="2" defaultchecked="checked">
+							   <i class="fa fa-times glyphicon glyphicon-remove"></i>NO
+						   </label>
+						   
+						</div>-->
+										
+						<div class=" col-md-3 " ><h5>Fecha de aprobación</h5>
+								<div class="input-group registration-date-time">
+									<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
+									<input class="form-control" name="registration_date" disabled style="background:#fff;" id="registration-date" type="date">
+									<span class="input-group-btn">
+									</span>
+								</div>
+						</div>	
+					</div>
+						
+					</div>
+				  </div>
+				</li>
+				<li>
+				  <div class="block">
+					<div class="tags">
+					  <a href="" class="tag">
+						<span>Paso 3</span>
+					  </a> 
+					</div>
+					<div class="block_content"><br/>
 						<h2 class="title">
-							<a>Productos  </a><br/>
-						</h2><br/>
-						<div class="panel panel-default">
-							
+								 <a>Lista de Productos </a><br/>
+							</h2>
+							<br/>
+							<div class="panel panel-default">
+							<div class="panel-heading text-center">
+								<span><strong><span class="glyphicon glyphicon-th-list"> </span> Productos</strong></span>
+							</div>
 							<div class="table-responsive">
 								<table id="datatable-buttons" class="table table-striped table-bordered ">
 									<thead>
 									   <tr>
 											<th>No.</th>
 											<th>Producto</th>
-											<th>Cantidad</th>
+											<th>Cant. Solicitada</th>
 											<th>Unidad</th>
-											<th>Descripción detallada</th>
 											<th>Estado</th>
-											<th>Cant. Aprobada</th>
+											<th>Cant. Autorizada</th>
 										</tr>
 									</thead>
 									<tbody>
+											
 										
 										<tr>
 											<td>1</td>
 											<td>Aceite </td>
 											<td>2 cajas de 12 UND</td>
 											<td>1 caja 2 UND</td>
-											<td>10 UND</td>
 											<td>Aprobado / Anulado  </td>
 											<td>10 UND</td>
 										</tr> 
@@ -173,12 +288,26 @@
 								</table>
 							</div>
 						</div>
-						<br/>
+						<br/>												
+					</div>
+				  </div>
+				</li>
+				<li>
+				  <div class="block">
+					<div class="tags">
+					  <a href="" class="tag">
+						<span>Paso 4</span>
+					  </a> 
+					</div>
+					<div class="block_content"><br/>
+												
 						<h2 class="title">
 							<a> Proveedores sugeridos </a><br/>
 						</h2><br/>
 						<div class="panel panel-default">
-							
+							<div class="panel-heading text-center">
+								<span><strong><span class="glyphicon glyphicon-th-list"> </span> Proveedores</strong></span>
+							</div>
 							<div class="table-responsive">
 								<table id="datatable-buttons" class="table table-striped table-bordered ">
 									<thead>
@@ -195,7 +324,7 @@
 									<tbody>
 										
 										<tr>
-											<td>1</td>
+											<td><td>{{$requisicion->id}}</td></td>
 											<td>ggdgdf </td>
 											<td>2dfgfdg</td>
 											<td>gdgf</td>
@@ -208,66 +337,7 @@
 							</div>
 						</div>
 						<br/>
-					</div>
-				  </div>
-				</li>
-				<li>
-				  <div class="block">
-					<div class="tags">
-					  <a href="" class="tag">
-						<span>Paso 3</span>
-					  </a> 
-					</div>
-					<div class="block_content"><br/>
-						<h2 class="title">
-								 <a>Espacio exclusivo para el Asistente de Gestión Administrativa</a><br/>
-							</h2>
-							<br/>
-						<div class="row ">
-							<div class="btn-group  col-md-5">
-								<h5>Tipo solicitud </h5>
-								<label for="success" class="btn btn-success">Solicitud Consumo  <input type="checkbox" id="success" disabled class="badgebox"><span class="badge">&check;</span></label>
-								<label for="warning" class="btn btn-warning">Solicitud Inversión  <input type="checkbox" id="warning" disabled class="badgebox"><span class="badge">&check;</span></label>
-								
-							</div>
-							
-							<div class="btn-group  col-md-2 " data-toggle="buttons">	
-								<h5>Aprobado en comite</h5>
-								<label class="btn btn-primary ">
-									<input type="radio" name="options" disabled  readonly="readonly" id="option2" autocomplete="off" >SI
-									<span class="glyphicon glyphicon-ok"  readonly="readonly" disabled></span>
-								</label>
-
-								<label class="btn btn-danger">
-									<input type="radio" name="options" disabled  readonly="readonly" id="option1" autocomplete="off">No
-									<span class="glyphicon glyphicon-ok"  readonly="readonly" disabled></span>
-								</label>
-							
-							</div>	
-							
-							<div class="btn-group   col-md-2" data-toggle="buttons">
-								<h5>Proveedor Autorizado</h5>
-								<label class="btn btn-primary ">
-									<input type="radio" name="options"disabled readonly="readonly" id="option2" autocomplete="off">SI
-									<span class="glyphicon glyphicon-ok"   readonly="readonly"></span>
-								</label>
-
-								<label class="btn btn-danger">
-									<input type="radio" name="options" disabled readonly="readonly" id="option1" autocomplete="off">No
-									<span class="glyphicon glyphicon-ok"  readonly="readonly"></span>
-								</label>
-							
-							</div>
-							
-							<div class=" col-md-3 " ><h5>Fecha de aprobación</h5>
-									<div class="input-group registration-date-time">
-										<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
-										<input class="form-control" name="registration_date" disabled style="background:#fff;" id="registration-date" type="date">
-										<span class="input-group-btn">
-										</span>
-									</div>
-							</div>	
-						</div>
+						
 						<br/>												
 					</div>
 				  </div>
@@ -276,7 +346,7 @@
 				  <div class="block">
 					<div class="tags">
 					  <a href="" class="tag">
-						<span>Paso 4</span>
+						<span>Paso 5</span>
 					  </a> 
 					</div>
 					<div class="block_content"><br/>

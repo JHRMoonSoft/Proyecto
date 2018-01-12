@@ -308,7 +308,7 @@
 									<div class="col-xs-9 col-md-9"><br />
 										<label for="obv_fact">Obeservaciones</label><br/>
 										<div class="col-md-9 col-sm-9 col-xs-12">
-											<textarea id="obv_fact" required="required" name="obv_fact" class="form-control col-md-7 col-xs-12"></textarea>
+											<textarea id="obv_fact"  name="obv_fact" class="form-control col-md-7 col-xs-12"></textarea>
 											@if ($errors->has('obv_fact'))
 												<span class="help-block">
 													<strong>{{ $errors->first('obv_fact') }}</strong>

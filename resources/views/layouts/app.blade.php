@@ -9,6 +9,7 @@
 	<!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 	<!-- Scripts -->
+
     <script>
         window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),
@@ -76,7 +77,8 @@
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-home"></i> Requisición  <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="/requisicion/create">Nueva RQS</a></li>
+                      <li><a href="/requisicion/create">Nueva RQS</a></li>				  
+					  <li><a href="/recibirRQS">Recibir RQS</a></li>
                       <li><a href="/requisicion">Historial RQS</a></li>
                     </ul>
                   </li>
@@ -138,8 +140,7 @@
                   <li><a><i class="fa fa-pencil-square-o"></i> Gestionar RQS<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">   
                       <li><a href="/autorizarRQS">Autorizar RQS</a></li>
-                      <li><a href="/entregarRQS">Entregar RQS</a></li>					  
-					  <li><a href="/reciboRQS">Recibir RQS</a></li>
+                      <li><a href="/entregarRQS">Entregar RQS</a></li>
 					   <li><a href="/requisicion">Historial RQS</a></li>
                     </ul>
                   </li>

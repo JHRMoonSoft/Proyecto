@@ -1,26 +1,29 @@
 @extends('layouts.app')
 @section('content')
-@section('pagetitle')
-  <h3></h3> 
-@endsection
-@section('x_search')
-	<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search"> 
-						
-		<div class="input-group">
-		<input type="text" class="form-control" placeholder="Buscar ...">
-		<span class="input-group-btn">
-				  <button class="btn btn-default glyphicon glyphicon-search" type="button"></button> 
-			  </span> 
+	@section('pagetitle')
+	<h3></h3> 
+	@endsection
+	@section('x_search')
+		<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search"> 
+							
+			<div class="input-group">
+			<input type="text" class="form-control" placeholder="Buscar ...">
+			<span class="input-group-btn">
+					<button class="btn btn-default glyphicon glyphicon-search" type="button"></button> 
+				</span> 
+			</div>
 		</div>
-	</div>
-	 
-@endsection
+		
+	@endsection
 
 @section('x_content')
   <div class="x_panel">
 	    <div class="x_title"> 
-			<h2>Historial Requisiciones | Pendientes por Confirmar Recibo  </h2> &nbsp&nbsp&nbsp
+			<h2>Historial Requisiciones | Pendientes por Recibir   </h2> &nbsp&nbsp&nbsp
 			
+			<div class=" col-md-2 col-sm-2 col-xs-6 right">
+					<a  data-toggle="modal" data-target=".descargar" class="btn btn-primary  left" role="button"><i class="glyphicon glyphicon-cloud-download" aria-hidden="true"></i>&nbsp&nbsp Descargar </a>
+				</div>
 				<div class=" col-md-3 col-sm-3 col-xs-6 right">
 					<div id="reportrange" class="pull-center" style="background: #fff; cursor: pointer; padding: 8px 10px; border: 1px solid #ccc">
 						<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
@@ -57,33 +60,50 @@
 						<th class="text-center">Asunto</th>
 						<th class="text-center">Estado</th>
 						<th class="text-center">Solicitante</th>
-						<th class="text-center">Area</th>
 						<th class="text-center">Cargo</th>
-						<th>Opciones  </th>
+						<th class="text-center">Area</th>
+						
+						<th>Opciones</th>
 						<!--<th>Eliminar</th>-->
 					</tr>
 				  </thead>
 				  <tbody>
-					
+					@foreach($requisiciones as $requisicion)
 					<tr>
-					  <td>0023933</td>
+						<td>{{$requisicion->id}}</td>
+						<td>{{$requisicion->created_at->format('d-m-Y')}}</td>
+						<td>{{$now->diff($requisicion->created_at)->days}} día(s)</td>
+						<td>{{$requisicion->asn_rqs}}</td>
+						<td>{{$requisicion->estadorequisicion->desc_est_req}}</td>
+						@if($requisicion->registrohistoricorequisicion->count() == 0)
+							<td>Sin Creación</td>
+						@else
+							@foreach($requisicion->registrohistoricorequisicion as $registrorqs)
+								@if ($loop->first)
+									@if($registrorqs->user === null)
+										<td>Sin Creación</td>
+									@else
+										<td>{{$registrorqs->user->nom_usr .' '. $registrorqs->user->ape_usr}}</td>
+										
+									@endif
+								@endif
+							@endforeach
+						@endif
+		
+						<td>{{$registrorqs->user->crg_usr }}</td>
+						<td>{{$registrorqs->user->area->des_are}}</td>							
 						<td>
-							26-06-2017
-						</td>
-						<td>4 d</td>
-						<td>Requisición interna</td>
-						<td>Entregado </td>
-						<td>Belkis Buelvas</td>	
-						<td>Area</td>	
-						<td>Cargo</td>	
-						<td>
-							<a href="/reciboRQS/create" title="Editar" class="btn btn-info glyphicon glyphicon-pencil btn-xs" data-title="Editar"></a>
-							<a href="/rqs" title="Detalle" class="btn btn-success glyphicon glyphicon-file btn-xs" data-title="Detalle"></a>
-							<a href="" title="Descargar" class="btn btn-primary glyphicon glyphicon-cloud-download btn-xs" data-title="Descargar"></a><!--
+							<a href="{{ url('/recibirRQS/'.$requisicion->id.'/edit') }}" title="Editar" class="btn btn-info glyphicon glyphicon-pencil btn-xs" data-title="Editar"></a>
+							<a href="{{ url('/requisicion/'.$requisicion->id) }}" title="Detalle" class="btn btn-success glyphicon glyphicon-file btn-xs" data-title="Detalle"></a>
+							<a href="" title="Descargar" class="btn btn-primary glyphicon glyphicon-cloud-download btn-xs" data-title="Descargar"></a>
+							
+							<!--
 							<a href="" title="Acción" class="btn btn-primary glyphicon glyphicon-ok btn-xs" data-title="Acción"></a>--></td><!--
 						<td><p data-placement="top" data-toggle="tooltip" title="Eliminar"><a href="" class="btn btn-danger btn-xs" data-title="Eliminar"><span class=" glyphicon glyphicon-trash"></span></a></p></td>-->
 				
-					</tr>                       
+					</tr>
+					@endforeach
+					
 					
 				  </tbody>
 				</table>
@@ -91,6 +111,7 @@
         </div>
 		
 	</div>
+	
 <!-- create Descargar modal -->		  
 
 	<div class="modal fade descargar">

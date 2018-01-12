@@ -60,8 +60,9 @@
 						<th class="text-center">Asunto</th>
 						<th class="text-center">Estado</th>
 						<th class="text-center">Solicitante</th>
-						<th class="text-center">Area</th>
 						<th class="text-center">Cargo</th>
+						<th class="text-center">Area</th>
+						
 						<th>Opciones</th>
 						<!--<th>Eliminar</th>-->
 					</tr>
@@ -88,11 +89,12 @@
 								@endif
 							@endforeach
 						@endif
-						<td>Area</td>	
-						<td>Cargo</td>	
+		
+						<td>{{$registrorqs->user->crg_usr }}</td>
+						<td>{{$registrorqs->user->area->des_are}}</td>							
 						<td>
 							<a href="/autorizarRQS/create/{{$requisicion->id}}" title="Editar" class="btn btn-info glyphicon glyphicon-pencil btn-xs" data-title="Editar"></a>
-							<a href="/rqs" title="Detalle" class="btn btn-success glyphicon glyphicon-file btn-xs" data-title="Detalle"></a>
+							<a href="{{ url('/requisicion/'.$requisicion->id) }}" title="Detalle" class="btn btn-success glyphicon glyphicon-file btn-xs" data-title="Detalle"></a>
 							<a href="" title="Descargar" class="btn btn-primary glyphicon glyphicon-cloud-download btn-xs" data-title="Descargar"></a>
 							
 							<!--

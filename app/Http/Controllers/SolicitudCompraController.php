@@ -108,9 +108,9 @@ class SolicitudCompraController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        $solicitudcompra= SolicitudCompra::find($solicitudcompra);
-		return view('solicitudcompra.show')->with('solicitudcompra', $solicitudcompra);
+    {	$productos = Producto::all();
+        $solicitudcompra= SolicitudCompra::find($id);
+		return view('solicitudcompra.show')->with(compact('solicitudcompra','productos'));
     }
 
     /**
@@ -121,8 +121,10 @@ class SolicitudCompraController extends Controller
      */
     public function edit($id)
     {
-        $solicitudcompra = SolicitudCompra::find($solicitudcompra);
-		return view('solicitudcompra.edit')->with('solicitudcompra', $solicitudcompra);
+        $solicitudcompra = SolicitudCompra::find($id);
+		$productos = Producto::all();
+		$rqsAutorizadas = EstadosRequisicion::find(2)->requisiciones;
+		return View('solicitudcompra.edit')->with(compact('productos','rqsAutorizadas','solicitudcompra'));
     }
 
     /**

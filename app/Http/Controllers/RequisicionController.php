@@ -134,8 +134,12 @@ class RequisicionController extends Controller
      */
     public function show($id)
     {
-        $requisicions= Requisicion::find($id);
-		return view('requisicion.show')->with('requisicions', $requisicions);
+        $proveedores = Proveedor::all();
+		$requisicion = Requisicion::find($id);
+        $productos = $requisicion->productos()->get();
+		$acciones = AccionesRequisicion::where('est_ant_rqs_id','=',$requisicion->estadorequisicion->id)->get();
+		$unidades = Unidad::all();
+		return view('requisicion.show', compact('requisicion'));
     }
 
     /**
@@ -146,8 +150,8 @@ class RequisicionController extends Controller
      */
     public function edit($id)
     {
-        $requisicions = Requisicion::find($requisicion);
-		return view('requisicion.edit')->with('requisicions', $requisicions);
+        $requisicion = Requisicion::find($id);
+		return view('requisicion.edit', compact('requisicion'));
     }
 
     /**
