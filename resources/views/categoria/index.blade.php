@@ -65,7 +65,7 @@
 						<td>
 								
 							<button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-edit btn-xs" data-desc-cat="{{$categoria->des_cat}}" data-id-cat="{{$categoria->id}}" data-toggle="modal" data-target=".edit_categoria"></button>
-							<button type="button" class="btn btn-sm btn-danger glyphicon glyphicon-remove btn-xs" data-toggle="modal" data-target=".delete_categoria"></button>
+							<!--<button type="button" class="btn btn-sm btn-danger glyphicon glyphicon-remove btn-xs" data-toggle="modal" data-target=".delete_categoria"></button>-->
 								
 						</td>
 						
@@ -96,10 +96,10 @@
 							<input class="form-control " id="des_cat" name="des_cat" placeholder="Categoria" type="text">
 						</div>
 					</div>
-					<div class="modal-footer"><!--
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-					<button type="button" class="btn btn-primary" data-dismiss="modal">Deshacer</button>
-					<button type="submit" class="btn btn-success">Guardar</button>
+					<div class="modal-footer">
+						<button type="reset" class="btn btn-primary" >Deshacer</button>
+						<button type="submit" class="btn btn-success">Guardar</button>
+					<!--	<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>-->
 					</div>
 				</form>
 			  </div>
@@ -129,7 +129,7 @@
 					</div>
 					<div class="modal-footer"><!--
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-					<button type="button" class="btn btn-primary" data-dismiss="modal">Deshacer</button>
+					<button type="reset" class="btn btn-primary" data-dismiss="modal">Deshacer</button>
 					<button type="submit" class="btn btn-success">Guardar</button>
 					</div>
 				</form>
@@ -140,7 +140,7 @@
 		  
 		    <!-- delete Categoria modal -->		  
 
-		  <div class="modal fade delete_categoria">" tabindex="-1" role="dialog" aria-hidden="true">
+		  <div class="modal fade delete_categoria" tabindex="-1" role="dialog" aria-hidden="true">
 			<div class="modal-dialog modal-sm">
 			  <div class="modal-content">
 
@@ -167,7 +167,7 @@
 
 				<div class="modal-footer"><!--
 				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-				  <button type="button" class="btn btn-primary">Deshacer</button>
+				  <button type="reset" class="btn btn-primary">Deshacer</button>
 				  <button type="submit" class="btn btn-danger"> Eliminar</button>
 				</div>
 

@@ -107,23 +107,18 @@
 					</div>
 				</div>
 				<div class="item form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Tipo. Dependencia <span class="required">*</span>
-					</label>
-					<div class="col-md-6 col-sm-6 col-xs-12">
-					
-						<select id="tip_dep" name="tip_dep" class="form-control col-md-7 col-xs-12" data-validate-length-range="7" data-validate-words="2"  required="required">
-							<option value="" selected>Seleccionar</option>
-							<option value="1">Área</option>
-							<option value="2">Sección / Sección</option>
-						</select>
-					
-					</div>
-				</div>
-				<div class="item form-group">
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="occupation">Dpendencia <span class="required">*</span>
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input id="dep_usr" type="dep_usr" name="dep_usr" data-validate-length-range="5,20" value="{{ old('dep_usr') }}" class="optional form-control col-md-7 col-xs-12">
+						@if(!$areas->isEmpty())	
+							<select id="dep_usr"  name="dep_usr" class="form-control col-md-7 col-xs-12" required="required" value="{{ old('dep_usr') }}" >
+								<option value="" selected>Seleccionar</option>
+								@foreach($areas as $area)
+									<option value="{{$area->id}}">{{$area->des_are}} </option>
+								@endforeach
+							</select>
+							
+						@endif
 						@if ($errors->has('dep_usr'))
 							<span class="help-block">
 								<strong>{{ $errors->first('dep_usr') }}</strong>

@@ -65,7 +65,7 @@
 						<td>
 								
 							<button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-edit btn-xs" data-desc-und="{{$unidad->des_und}}" data-id-und="{{$unidad->id}}" data-toggle="modal" data-target=".edit_unidad"></button>
-							<button type="button" class="btn btn-sm btn-danger glyphicon glyphicon-remove btn-xs" data-toggle="modal" data-target=".delete_unidad"></button>
+							<!--<button type="button" class="btn btn-sm btn-danger glyphicon glyphicon-remove btn-xs" data-toggle="modal" data-target=".delete_unidad"></button>-->
 								
 						</td>
 						

@@ -32,35 +32,51 @@
 				   <tr>
 						<th class="text-center">Código</th>
 						<th class="text-center">Fecha</th>
-						<th class="text-center">Antiguaedad</th>
+						<th class="text-center">Antiguedad</th>
 						<th class="text-center">Asunto</th>
 						<th class="text-center">Estado</th>
 						<th class="text-center">Solicitante</th>
-						<th class="text-center">Area</th>
 						<th class="text-center">Cargo</th>
+						<th class="text-center"> Área</th>
+						
 						<th>Opciones  </th>
 						<!--<th>Eliminar</th>-->
 					</tr>
 				  </thead>
 				  <tbody>
+					@foreach($requisiciones as $requisicion)
+						<tr>
+							<td>{{$requisicion->id}}</td>
+							<td>{{$requisicion->created_at->format('d-m-Y')}}</td>
+							<td>{{$now->diff($requisicion->created_at)->days}} día(s)</td>
+							<td>{{$requisicion->asn_rqs}}</td>
+							<td>{{$requisicion->estadorequisicion->desc_est_req}}</td>
+							@if($requisicion->registrohistoricorequisicion->count() == 0)
+								<td>Sin Creación</td>
+							@else
+								@foreach($requisicion->registrohistoricorequisicion as $registrorqs)
+									@if ($loop->first)
+										@if($registrorqs->user === null)
+											<td>Sin Creación</td>
+										@else
+											<td>{{$registrorqs->user->nom_usr .' '. $registrorqs->user->ape_usr}}</td>
+											
+										@endif
+									@endif
+								@endforeach
+							@endif
+							<td>{{$registrorqs->user->crg_usr }}</td>
+							<td>{{$registrorqs->user->area->des_are}}</td>							
+							
+							
+							<td>
+								<a href="{{ url('/requisicion/'.$requisicion->id) }}" title="Detalle" class="btn btn-success glyphicon glyphicon-file btn-xs" data-title="Detalle"></a>							
+								<a href="{{ url('requisicion/export/'.$requisicion->id) }}" title="Descargar" class="btn btn-primary glyphicon glyphicon-cloud-download btn-xs" data-title="Descargar"></a><!--
+								<a href="" title="Acción" class="btn btn-primary glyphicon glyphicon-ok btn-xs" data-title="Acción"></a>--></td><!--
+							<td><p data-placement="top" data-toggle="tooltip" title="Eliminar"><a href="" class="btn btn-danger btn-xs" data-title="Eliminar"><span class=" glyphicon glyphicon-trash"></span></a></p></td>-->
 					
-					<tr>
-					  <td>0023933</td>
-						<td>
-							26-06-2017
-						</td>
-						<td>3 d</td>
-						<td>solicitud compa prueba</td>
-						<td>Activo</td>
-						<td>Belkis Buelvas</td>	
-						<td>Area</td>	
-						<td>Cargo</td>	
-						<td><a href="/rqs" title="Detalle" class="btn btn-success glyphicon glyphicon-file btn-xs" data-title="Detalle"></a>
-							<a href="" title="Editar" class="btn btn-info glyphicon glyphicon-pencil btn-xs" data-title="Editar"></a><!--
-							<a href="" title="Acción" class="btn btn-primary glyphicon glyphicon-ok btn-xs" data-title="Acción"></a>--></td><!--
-						<td><p data-placement="top" data-toggle="tooltip" title="Eliminar"><a href="" class="btn btn-danger btn-xs" data-title="Eliminar"><span class=" glyphicon glyphicon-trash"></span></a></p></td>-->
-				
-					</tr>                       
+						</tr>   
+					@endforeach
 					
 				  </tbody>
 				</table>

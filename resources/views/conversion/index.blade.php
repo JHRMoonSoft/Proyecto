@@ -68,7 +68,7 @@
 							<td>{{$conversion->updated_at->format('Y-m-d') }}</td>	
 							<td>
 								<button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-edit btn-xs" data-conv="{{$conversion}}" data-toggle="modal" data-target=".edit_conversion"></button>
-								<button type="button" class="btn btn-sm btn-danger glyphicon glyphicon-remove btn-xs" data-toggle="modal" data-target=".delete_unidad"></button>
+								<!--<button type="button" class="btn btn-sm btn-danger glyphicon glyphicon-remove btn-xs" data-toggle="modal" data-target=".delete_unidad"></button>-->
 							</td>
 						</tr>                       
 					@endforeach
@@ -120,7 +120,7 @@
 					</div>
 					<div class="modal-footer"><!--
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-					<button type="button" class="btn btn-success">Deshacer</button>
+					<button type="submit" class="btn btn-success">Deshacer</button>
 					<button type="submit" class="btn btn-primary">Guardar</button>
 					</div>
 				</form>
@@ -173,8 +173,8 @@
 					</div>
 					<div class="modal-footer"><!--
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-					<button type="submit" class="btn btn-success">Deshacer</button>
-					<button type="button" class="btn btn-primary">Guardar</button>
+					<button type="reset" class="btn btn-success">Deshacer</button>
+					<button type="submit" class="btn btn-primary">Guardar</button>
 					</div>
 				</form>
 			  </div>
@@ -242,7 +242,7 @@
 
 				<div class="modal-footer"><!--
 				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-				  <button type="button" class="btn btn-primary">Deshacer</button>
+				  <button type="reset" class="btn btn-primary">Deshacer</button>
 				  <button type="submit" class="btn btn-danger"> Eliminar</button>
 				</div>
 

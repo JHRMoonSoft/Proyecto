@@ -77,7 +77,7 @@
 						<td>{{ $producto->updated_at->format('Y-m-d') }}</td>	
 						<td>
 							<button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-edit btn-xs" data-desc-prd="{{$producto->des_prd}}" data-id-prd="{{$producto->id}}" data-id-cat="{{$producto->categoria->id}}" data-id-und="{{$producto->unidad->id}}" data-id-unds="{{$producto->unidades}}" data-toggle="modal" data-target=".edit_producto"></button>
-							<button type="button" class="btn btn-sm btn-danger glyphicon glyphicon-remove btn-xs" data-toggle="modal" data-target=".delete_producto"></button>
+							<!--<button type="button" class="btn btn-sm btn-danger glyphicon glyphicon-remove btn-xs" data-toggle="modal" data-target=".delete_producto"></button>-->
 						</td>
 					</tr>
 					@endforeach 
@@ -238,7 +238,7 @@
 				<div class="modal-footer"><!--
 				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
 				  <button type="reset" class="btn btn-primary">Deshacer</button>
-				  <button type="submit" class="btn btn-success">Guardar</button>
+				  <button type="submit" class="btn btn-danger">Eliminar</button>
 				</div>
 
 			  </div>

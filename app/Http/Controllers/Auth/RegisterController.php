@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Role;
+use App\Area;
 use App\Cargo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -80,7 +81,6 @@ class RegisterController extends Controller
 			'ape_usr'=> $data['ape_usr'], 
 			'usuario'=> $data['usuario'], 
 			'crg_usr'=> $data['crg_usr'], 
-			'tip_dep'=> $data['tip_dep'], 
 			'dep_usr'=> $data['dep_usr'], 
 			'crd_usr'=> $data['crd_usr'],  
 			'tel_fij'=> $data['tel_fij'], 
@@ -107,8 +107,9 @@ class RegisterController extends Controller
 	public function showRegistrationForm()
 	{
 		$rolesGeneral = Role::all();
+		$areas = Area::all();
 		$cargos = Cargo::all ();
-		return view('auth.register')->with(compact('rolesGeneral','cargos'));
+		return view('auth.register')->with(compact('rolesGeneral','areas','cargos'));
 	}
     
 	

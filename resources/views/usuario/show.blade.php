@@ -56,28 +56,37 @@
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Cargo <span class="required">*</span>
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input id="crg_usr" name="crg_usr" type="text" class="form-control col-md-7 col-xs-12"  disabled style="background:rgba(247, 247, 247, 0.57);" required="required" value="{{$users->crg_usr }}" >
+						@if(!$cargos->isEmpty())
+							<select id="crg_usr" name="crg_usr" class="form-control col-md-7 col-xs-12" required="required" value="{{ old('crg_usr') }}"  disabled style="background:rgba(247, 247, 247, 0.57);" >
+								<option value="" selected>Seleccionar</option>
+								@foreach($cargos as $cargo)
+									<option value="{{$cargo->id}}"@if($cargo->id == $users->crg_usr) selected @endif> {{$cargo->des_crg}} </option>
+								@endforeach
+							</select>
+						@endif
 					</div>
 				</div>
 				<div class="item form-group">
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Tipo. Dependencia <span class="required">*</span>
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					
-						<select id="tip_dep" name="tip_dep" class="form-control col-md-7 col-xs-12" disabled style="background:rgba(247, 247, 247, 0.57);" data-validate-length-range="7" data-validate-words="2"  required="required">
-							<option value="" selected>Seleccionar</option>
-							<option value="1" {{ $users->tip_dep == '1' ? ' selected':'' }}>Area/Seccion</option>
-							<option value="2" {{ $users->tip_dep == '2' ? ' selected':'' }}>Seccion</option>
-						</select>
-					
+					  <input id=""  name="" data-validate-length-range="5,20" value="{{$users->area->des_tip_are }}" disabled style="background:rgba(247, 247, 247, 0.57);" class="optional form-control col-md-7 col-xs-12">
 					</div>
 				</div>
 				<div class="item form-group">
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="occupation">Dpendencia <span class="required">*</span>
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input id="dep_usr" type="dep_usr" name="dep_usr" data-validate-length-range="5,20" value="{{$users->dep_usr}}" disabled style="background:rgba(247, 247, 247, 0.57);" class="optional form-control col-md-7 col-xs-12">
-				</div>
+						@if(!$areas->isEmpty())	
+							<select id="dep_usr"  name="dep_usr" class="form-control col-md-7 col-xs-12" required="required" value="{{ old('dep_usr') }}" disabled style="background:rgba(247, 247, 247, 0.57);" >
+								<option value="" selected>Seleccionar</option>
+								@foreach($areas as $area)
+									<option value="{{$area->id}}"@if($area->id == $users->dep_usr) selected @endif> {{$area->des_are}} </option>
+								@endforeach
+							</select>
+							
+						@endif
+					</div>	
 				</div>
 				<div class="item form-group">
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="crd_usr">Coordinacion <span class="required">*</span>

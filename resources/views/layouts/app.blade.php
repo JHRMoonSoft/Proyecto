@@ -83,13 +83,16 @@
                     </ul>
                   </li>
                 </ul>
-              </div>
+              </div> 
 			   <div class="menu_section">
                 <h3>Panel de Configuración </h3>
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-building"></i> Empresa <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="/configuracion/create">Nueva Empresa</a></li>
+                      <li><a href="/configuracion/create">Empresa</a></li>
+					  <li><a href="/area/create">Área / Programa  </a></li>
+					  <li><a href="/cargo/create">Cargos</a></li>
+					  
                      <!-- <li><a href="projects.html">Projects</a></li>-->
                     </ul>
                   </li>

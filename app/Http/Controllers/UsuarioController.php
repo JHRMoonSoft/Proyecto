@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 use App\User;
 use App\Role;
+use App\TiposArea;
 use App\Area;
+use App\Cargo;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -55,7 +57,10 @@ class UsuarioController extends Controller
     {
 		$users = User::find($id);
 		$roles= $users->roles;
-        return view('usuario.show')->with(compact('users','roles'));
+		$tipoareas= TiposArea::all();
+		$areas = Area::all();
+		$cargos = Cargo::all ();
+        return view('usuario.show')->with(compact('users','tipoareas','areas','cargos','roles'));
     }
 
     /**
@@ -68,7 +73,9 @@ class UsuarioController extends Controller
     {	$users= User::find($id);
         $roles= $users->roles->toArray();
 		$rolesGeneral = Role::all();
-        return view('usuario.edit')->with(compact('users','roles','rolesGeneral'));
+		$areas = Area::all();
+		$cargos = Cargo::all ();
+        return view('usuario.edit')->with(compact('users','roles','areas','cargos','rolesGeneral'));
     }
 
     /**
