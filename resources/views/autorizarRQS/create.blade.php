@@ -28,7 +28,7 @@
 							</h2>
 							<div class="panel-body message">
 								<div class="form-group"><br>
-									<label for="to" class="col-sm-2 control-label">Accion:</label>
+									<label for="to" class="col-sm-2 control-label">Acción:</label>
 									<div class="col-sm-10">
 										<select id="acc_rqs" class="form-control" name="acc_rqs" onchange="cambioaccion();">
 											<option value="" selected>Seleccionar</option>
@@ -108,7 +108,7 @@
 									<table id="datatable-buttons" class="table table-striped table-bordered ">
 										<thead>
 										<tr>
-												<th>Cod. RQS</th>
+												<th>Código</th>
 												<th>Fecha RQS</th>																																																				
 												<th>Asunto</th>	
 												<th>Justificacion</th>

@@ -38,11 +38,11 @@ Route::get('autorizarRQS/cambioaccion', 'AutorizarRQSController@cambioaccion');
 
 Route::get('ordencompra/cargarproveedor', 'RequisicionController@cargarproveedor');
 
-Route::get('/export-requisiciones', 'RequisicionController@exportRequisiciones');
+Route::get('export-requisiciones', 'RequisicionController@exportRequisiciones');
 
 Route::get('requisicion/export/{id}', 'RequisicionController@exportRequisicion');
 Route::get('solicitudcompra/export/{id}', 'SolicitudCompraController@exportSolicitudCompra');
-Route::get('/export-ordencompra/{id}', 'OrdenCompraController@exportOrdenCompra');
+Route::get('export-ordencompra/{id}', 'OrdenCompraController@exportOrdenCompra');
 
 Route::resource('almacen', 'AlmacenController');
 Route::resource('proveedor', 'ProveedorController');

@@ -32,7 +32,7 @@ class AutorizarRQSController extends Controller
      */
     public function index()
     {
-      $requisiciones = Requisicion::whereIn('rol_rqs',array(2))->get();
+	  $requisiciones = Requisicion::where('est_rqs',1)->whereIn('rol_rqs',array(2))->get();
       $now = Carbon::now();
       return View('autorizarRQS.index')->with(compact('requisiciones','now'));
     }

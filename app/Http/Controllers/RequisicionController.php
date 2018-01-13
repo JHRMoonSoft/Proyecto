@@ -256,7 +256,10 @@ class RequisicionController extends Controller
 	public function exportRequisiciones () {
 		\Excel::create('Requisiciones', function($excel) {
 		 
-			$requisicions = Requisicion::all();
+			$requisicions = Requisicion::with('proveedoresrequisicion')
+					->with('estadorequisicion')
+					->with('productos')
+					->all();
 		 
 			$excel->sheet('Requisiciones', function($sheet) use($requisicions) {
 		 
@@ -279,20 +282,20 @@ class RequisicionController extends Controller
 		public function exportRequisicion($id) {
 			
 						
-			\Excel::create('Requisiciones-'.$id, function ($excel) use($id) {
-				$requisicions =Requisicion::find($id)/*	
-					->with('proveedoresrequisicion')
+			\Excel::create('Requisición'.$id, function ($excel) use($id) {
+				$requisicions = Requisicion::with('proveedoresrequisicion')
 					->with('estadorequisicion')
-					->with('productos')*/;
+					->with('productos')
+					->find($id);
 				
-				$excel->sheet('Requisiciones-'.$id, function($sheet) use($requisicions) {
+				$excel->sheet('Requisición'.$id, function($sheet) use($requisicions) {
 			 
 				$sheet->row(1, [
-					'Código', 'Asunto','Justificación','Fecha de aprobación','Fecha de Creación', 'Fecha de Actualización'
+					'Código', 'Asunto','Justificación','Estado','Fecha de aprobación','Fecha de Creación', 'Fecha de Actualización'
 				]);
 			
 				$sheet->row(2, [
-						$requisicions->id, $requisicions->asn_rqs, $requisicions->jst_rqs,  $requisicions->fec_apr_com,$requisicions->created_at, $requisicions->updated_at
+						$requisicions->id, $requisicions->asn_rqs, $requisicions->jst_rqs, $requisicions->estadorequisicion->desc_est_req, $requisicions->fec_apr_com,$requisicions->created_at, $requisicions->updated_at
 					]); 
 					 
 				});

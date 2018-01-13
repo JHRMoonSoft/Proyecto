@@ -38,9 +38,9 @@ class EntregarRQSController extends Controller
      * @return \Illuminate\Http\Response
 	 * int id
      */
-    public function create(int $id)
+    public function create()
     {
-         
+       
 		
     }
 
@@ -74,7 +74,7 @@ class EntregarRQSController extends Controller
      */
     public function edit($id)
     {
-        $proveedores = Proveedor::all();
+        
 		$unidades = Unidad::all();
 		$requisicion = Requisicion::find($id);
         $productos = $requisicion->productos()->get();

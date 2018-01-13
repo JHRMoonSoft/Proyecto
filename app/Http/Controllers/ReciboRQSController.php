@@ -43,9 +43,9 @@ class ReciboRQSController extends Controller
      * @return \Illuminate\Http\Response
 	 * int id
      */
-    public function create(int $id)
+    public function create()
     {
-	  	
+	  	return View('reciboRQS.create');
     }
 
     /**

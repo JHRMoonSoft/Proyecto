@@ -83,7 +83,7 @@
 							<td>
 							<a href="{{ url('/solicitudcompra/'.$solicitudcompra->id.'/edit') }}" title="Editar" class="btn btn-info glyphicon glyphicon-pencil btn-xs" data-title="Editar"></a>
 							<a href="{{ url('/solicitudcompra/'.$solicitudcompra->id) }}" title="Detalle" class="btn btn-success glyphicon glyphicon-file btn-xs" data-title="Detalle"></a>
-							<a href="" title="Descargar" class="btn btn-primary glyphicon glyphicon-cloud-download btn-xs" data-title="Descargar"></a></td><!--
+							<a href="{{ url('solicitudcompra/export/'.$solicitudcompra->id) }}" title="Descargar" class="btn btn-primary glyphicon glyphicon-cloud-download btn-xs" data-title="Descargar"></a></td><!--
 							<td><p data-placement="top" data-toggle="tooltip" title="Eliminar"><a href="" class="btn btn-danger btn-xs" data-title="Eliminar"><span class=" glyphicon glyphicon-trash"></span></a></p></td>-->
 						
 						</tr>   

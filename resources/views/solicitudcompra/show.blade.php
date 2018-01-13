@@ -7,6 +7,7 @@
     <div class="x_panel">
 	    <div class="x_title">
 			<h2>Información de Solicitud de Compras</h2> &nbsp&nbsp&nbsp
+			<a  href="{{ url('solicitudcompra/export/'.$solicitudcompra->id) }}" class="btn btn-primary  right" role="button"><i class="glyphicon glyphicon-cloud-download" aria-hidden="true"></i>&nbsp&nbsp Descargar </a>
 			<a  href="{{ url('/solicitudcompra/'.$solicitudcompra->id.'/edit') }}" class="btn btn-info right" role="button">Editar</a>
 			<a  href="{{ url('/solicitudcompra') }}" class="btn btn-default  right" role="button"><i class="fa fa-reply" aria-hidden="true"></i>&nbsp&nbsp&nbspVolver al listado </a>
 		<!--

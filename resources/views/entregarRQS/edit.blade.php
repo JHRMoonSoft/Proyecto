@@ -1,122 +1,110 @@
 @extends('layouts.app')
 @section('content')  
 
+  
 @section('x_content') 
-
-    <div class="x_panel">
+ 
+    <div class="x_panel"> 
 	    <div class="x_title">
 			<h2>Entregar Requisición Interna</h2>  
 			<a  href="{{ url('/entregarRQS') }}" class="btn btn-default  right" role="button"><i class="fa fa-reply" aria-hidden="true"></i>&nbsp&nbsp&nbspVolver al listado </a>
-		<!--
-			<ul class="nav navbar-right panel_toolbox">
-			
-			  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-			  </li>
-			  <li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-				<ul class="dropdown-menu" role="menu">
-				  <li><a href="#">Settings 1</a> 
-				  </li>
-				  <li><a href="#">Settings 2</a>
-				  </li>
-				</ul>
-			  </li>
-			  <li><a class="close-link"><i class="fa fa-close"></i></a>
-			  </li>
-			</ul>-->
 			<div class="clearfix"></div>
 	    </div>
 		<div class="x_content">
-			<ul class="list-unstyled timeline">
-				<li>
+			<form class="form-horizontal" role="form" method="POST" action="{{ url('/autorizarRQS/') }}">
+				{{ csrf_field() }}
+				<input type="hidden" class="form-control" id="rqs_id" name="rqs_id" value="{{$requisicion->id}}"/>
+				<ul class="list-unstyled timeline">
+					<li>
 					<div class="block">
-						<br/>
-						<h5>Espacio exclusivo para el Asistente de Gestión Administrativa<h5><br/><br/>
-						<div class="row">
-						<div class="col-xs-6 col-md-5 col-md-offset-3 ">
-						  
-								<!--RQS Pendientes--><!--
-							<div class="col-xs-12 ">
-								<div class="input-group">
-									<input type="text" class="form-control">
-									<div class="input-group-btn" >
-										<button type="button" class="btn btn-search btn-danger">
-											<span class="glyphicon glyphicon-search"></span>
-											<span class="label-icon">Buscar</span>
-										</button>
-										<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
-											<span class="caret"></span>
-										</button>
-										<ul class="dropdown-menu " role="menu">
-										  <li>
-												<a href="#">
-													<span class="glyphicon glyphicon-user"></span>
-													<span class="label-icon">Search By User</span>
-												</a>
-											</li>
-											<li>
-												<a href="#">
-												<span class="glyphicon glyphicon-book"></span>
-												<span class="label-icon">Search By Organization</span>
-												</a>
-											</li>
-										</ul>
-									</div>
-								</div>
-								<h5>   Buscar RQS autorizadas<h5>
-							</div>-->
-							<!-- Consolidar RQS-->
-						  
-						</div>
-						</div>	
-					
 						<div class="tags">
-						  <a href="" class="tag">
-							<span>Paso 1</span>
-						  </a>
+							<a href="" class="tag">
+								<span>Paso 1</span>
+							</a>
 						</div>
 						<div class="block_content">
-							<div class="row ">
-								<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left"><br>
-									<div class="form-group"><br>
-										<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Asunto </label>
-										<div class="col-md-6 col-sm-6 col-xs-12">
-										  <input type="text" id="first-name" value="Entregar requisición"  required="required" class="form-control col-md-7 col-xs-12">
-										</div>
+							<h2 class="title">
+								<a>Espacio exclusivo para el Asistente de Gestión Administrativa:</a>
+							</h2>
+							<div class="panel-body message">
+								<div class="form-group"><br>
+									<label for="to" class="col-sm-2 control-label">Acción:</label>
+									<div class="col-sm-10">
+										<select id="acc_rqs" class="form-control" name="acc_rqs" onchange="cambioaccion();">
+											<option value="" selected>Seleccionar</option>
+											@foreach($acciones as $acc)
+											<option value="{{ $acc->id}}">{{ $acc->des_acc_rqs }} </option>
+											@endforeach
+										</select>
+										@if ($errors->has('acc_rqs'))
+											<span class="help-block">
+												<strong>{{ $errors->first('acc_rqs') }}</strong>
+											</span>
+										@endif
 									</div>
-									<div class="form-group">
-										<label class="control-label col-md-3 col-sm-3 col-xs-12" for="exampleSelect1">Estado</label>
-										<div class="col-md-6 col-sm-6 col-xs-12">
-											<select class="form-control " id="exampleSelect1">
-											  <option value="" selected>Seleccionar</option>
-											  <option> ENTREGADO </option>
-											  <option>PENDIETE</option>
-											</select><br>
-										</div>
+								</div>
+								<div class="form-group">
+									<label for="to" class="col-sm-2 control-label">Para:</label>
+									<div class="col-sm-10">
+										<select id="rol_rqs" class="form-control" name="rol_rqs">
+											<option value="" selected>Seleccionar</option>
+										</select>
+										@if ($errors->has('rol_rqs'))
+											<span class="help-block">
+												<strong>{{ $errors->first('rol_rqs') }}</strong>
+											</span>
+										@endif
 									</div>
-									<div class="form-group">
-										<label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Observación</label>																			
-										<div class="col-md-6 col-sm-6 col-xs-12">
-										  <textarea type="text" id="last-name"  name="last-name"rows="5" required="required" class="form-control col-md-7 col-xs-12"></textarea>
-										</div><br>
+								</div>
+								
+								<div class="form-group">
+									<label for="asn_rqs" class="col-sm-2 control-label">Asunto:</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control select2-offscreen" id="asn_rqs" name="asn_rqs" tabindex="-1" readonly/>
+										@if ($errors->has('asn_rqs'))
+											<span class="help-block">
+												<strong>{{ $errors->first('asn_rqs') }}</strong>
+											</span>
+										@endif
 									</div>
-								</form>
+								</div>
+								<div class="form-group">
+									<label for="obs_rqs" class="col-sm-2 control-label">Observación:</label>
+									<div class="col-sm-10">
+										<textarea id="obs_rqs" name="obs_rqs" class="editor-wrapper" style="width:100%" ></textarea>
+										@if ($errors->has('obs_rqs'))
+											<span class="help-block">
+												<strong>{{ $errors->first('obs_rqs') }}</strong>
+											</span>
+										@endif
+										<br/>
+									</div>
+								</div>
+								<input type="hidden" class="form-control select2-offscreen" id="est_rqs" name="est_rqs"/>
+								@if ($errors->has('est_rqs'))
+									<span class="help-block">
+										<strong>{{ $errors->first('est_rqs') }}</strong>
+									</span>
+								@endif
 							</div>
+								
+						
 						</div>
-				  </div>
-				</li>
-				<li>
+					</div>
+					</li>
+					<li>
 					<div class="block">
 						<div class="tags">
-						  <a href="" class="tag">
+						<a href="" class="tag">
 							<span>Paso 2</span>
-						  </a>
+						</a>
 						</div>
-						<div class="block_content"><br/>
+						<div class="block_content">
 							<h2 class="title">
-								 <a>Detalle de productos </a><br/>
+										<a>Lista de Productos</a>
 							</h2>
-							<br/>
+							<br />					
+								
 							<div class="panel panel-default">
 								<div class="panel-heading text-center">
 									<span><strong><span class="glyphicon glyphicon-th-list"> </span> Productos</strong></span>
@@ -124,205 +112,105 @@
 								<div class="table-responsive">
 									<table class="table table-bordered table-hover" id="education_fields2">
 									<thead>
+										
+									
 										<tr >
 											<th>#</th>
-											<th><button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-toggle="modal" data-target=".categoria"></button>Categoria</th>
-											<th><button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-toggle="modal" data-target=".producto"></button>Producto</th>
-											<th><button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-toggle="modal" data-target=".unidad"></button>Unidad</th>
-											<th> Cant. Autorizada</th>
-											<th> Cant. Entregada</th>
-											<th> Cant. Pendiente</th>
-											<th><a></a></th>
-							
+											<th>Categoria</th>
+											<th>Producto</th>
+											<th>Unidad</th>									
+											<th>Cant. Autorizada</th>
+											<th>Cant. Entregada</th>
+											<th>Cant. Pendiente</th>											
+											
+											
+		
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>
-												1
-											</td>
-											<td>
-												<div class="form-group ">
-													<select class="form-control"disabled >
-													  <option value="" selected>Seleccionar</option>
-													  <option value="">Taller de Cocina</option>
-													  <option value="">Papeleria</option>
-													  <option value="" >Didacticos</option>
-													  <option value="" >Aseo</option>
+										@foreach($requisicion->productos as $prod)
+											<tr>
+												@if($loop->last)
+													<input type="hidden" class="form-control" id="productos" name="productos" value="{{$loop->index + 1}}"/>
+												@endif
+												<td>
+													{{$loop->index + 1}}
+													<input type="hidden" class="form-control" id="producto{{$loop->index + 1}}" name="producto{{$loop->index + 1}}" value="{{$prod->id}}"/>
+												</td>
+												
+												<td>
+													<div class="form-group">
+														@if($prod->producto)
+															{{$prod->producto->categoria->des_cat}}
+														@endif
+													</div>
+												</td>
+												
+												<td class="nopadding">
+													@if($prod->producto)
+														{{$prod->producto->des_prd}}
+														<input type="hidden" class="form-control" id="producto{{$loop->index + 1}}" name="producto{{$loop->index + 1}}" value="{{$prod->producto->des_prd}}"/>
+												
+													@endif
+												</td>
+												
+												
+												<td class="nopadding" >
+													<select class="form-control" id="unidad{{$loop->index + 1}}" name="unidad{{$loop->index + 1}}" disabled style="background:rgba(247, 247, 247, 0.57);" >
+														<option value="" selected>Seleccionar</option>
+														@if($prod->producto)
+															@foreach($prod->producto->unidades as $und)
+																<option name="" value="{{$und->id}}" @if($und->id == $prod->unidad_solicitada->id)selected="selected"@endif>{{$und->des_und}}</option>
+															@endforeach
+														@else
+															@foreach($unidades as $und)
+																<option name="" value="{{$und->id}}" @if($und->id == $prod->unidad_solicitada->id)selected="selected"@endif>{{$und->des_und}}</option>
+															@endforeach
+														@endif
 													</select>
-												</div>
-											</td>
-											<td class="nopadding" >
-												<select class="form-control" id="educationDate" name="educationDate[]"disabled>
-													<option value="" selected>Seleccionar</option>
-													<option name="" value="">Aceite</option>
-													<option value="">Arepas antioqueñas precocidas </option>
-													<option value="" >Arroz  (bolsas de medio kilo)</option>
-													<option value="" >Bocadillo</option>
-											  </select>
-											</td>
-											
-											<td class="nopadding" >
-												<select class="form-control" id="educationDate" name="educationDate[]"disabled >
-													<option value="" selected>Seleccionar</option>
-													<option name="" value="">Barra</option>
-													<option name="" value="">Bloque</option>
-													<option name="" value="">Bolsa</option>
-													<option name="" value="">Botella</option>
-													<option name="" value="">Caja</option>
-													<option name="" value="">Frasco</option>
-													<option value="">Lata</option>
-													<option value="">Paquete</option>
-													<option value="">Pote</option>
-													<option value="">Tarro</option>
-													<option value="">Tubo</option>
-													<option value="">Vaso</option>
-													<option name="" value="">Unidad</option>
-													<option value="">Kg</option>
-													<option value="">Kilo</option>
-													<option value="">Litro</option>
-													<option value="">Lonjas</option>
-											  </select>
-											</td>
-											<td class="nopadding"  >
-												<div class="form-group">
-													<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder=""disabled >
-												</div>
-											</td>
-											<td class="nopadding" >
-												<div class="form-group">
-													<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="">
-												</div>
-											</td>
-											<td class="nopadding" >
-												<div class="form-group">
-													<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder=""disabled >
-												</div>
-											</td>
-											
-											<td class="nopadding" >
-												<div class="input-group-btn">
-													<button class="btn btn-sm btn-primary glyphicon glyphicon-plus btn-xs" type="button"  onclick="education_fields2();"> <span  aria-hidden="true"></span> </button>
-												</div>
-											</td>
-										</tr>
+												</td>
+																								
+												<td class="nopadding" >
+													<div class="form-group">
+														<input type="text" class="form-control" id="cant_apr_prd{{$loop->index + 1}}" name="cant_apr_prd{{$loop->index + 1}}" value="{{$prod->cant_apr_prd}}" disabled style="background:rgba(247, 247, 247, 0.57);" />
+													</div>
+												</td>
+												<td class="nopadding" >
+													<div class="form-group">
+														<input type="text" class="form-control " id="cant_entr_prd{{$loop->index + 1}}" name="cant_entr_prd{{$loop->index + 1}}"  value=""/>
+													</div>
+												</td>
+												<td class="nopadding" >
+													<div class="form-group">
+														<input type="text" class="form-control" id="cant_dif_prd{{$loop->index + 1}}" name="cant_dif_prd{{$loop->index + 1}}" value=""  disabled   />
+													</div>
+												</td>
+												
+											</tr>
+										@endforeach
 									</tbody>
-							  
+							
 								</table>
 								</div>
 								
 							</div>
-							<small>Pulse + para agregar otro producto /  Pulse - para eliminar un producto.</small>
-							<br />
-							
-						
-								
-							<br />	
 						</div>
 					</div>
-				</li>
-			</ul>
-			<div class="form-group right ">	
-																	
-				<button type="submit" class="btn btn-danger">Deshacer</button>
-				<button type="submit" class="btn btn-default">Guardar</button>
-				<button type="submit" class="btn btn-success">Enviar</button>
-			</div>
-
+					</li>
+				</ul>			
+				<div class="form-group right ">	
+																		
+					<button type="submit" class="btn btn-danger">Cancelar</button>
+					<button type="submit" class="btn btn-default">Guardar</button>
+					<button type="submit" class="btn btn-success">Enviar</button>
+				</div>
+			</form>
         </div>
-		
-		<!-- Categoria modal -->		  
+	</div>
 
-		  <div class="modal fade categoria" tabindex="-1" role="dialog" aria-hidden="true">
-			<div class="modal-dialog modal-sm">
-			  <div class="modal-content">
-
-				<div class="modal-header">
-				  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
-				  </button>
-				  <h4 class="modal-title" id="myModalLabel2">Nueva Categoria</h4>
-				</div>
-				<div class="modal-body">
-					<label class="control-label " for="first-name"> Categoria</label>
-					<div class="form-group input-group ">
-						<input name="multiple[]" class="form-control ">
-						<span class="input-group-btn"><button type="button" class="btn btn-primary btn-add">+</button></span>
-					</div>
-					<small>Pulse + para agregar otra categoria /  Pulse - para eliminar una categoria.</small>
-				</div>
-				<div class="modal-footer"><!--
-				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-				  <button type="submit" class="btn btn-danger">Deshacer</button>
-				  <button type="button" class="btn btn-primary">Guardar</button>
-				</div>
-
-			  </div>
-			</div>
-		  </div>
-		  <!-- /modals -->
-		    <!-- Productos modal -->		  
-
-		  <div class="modal fade producto" tabindex="-1" role="dialog" aria-hidden="true">
-			<div class="modal-dialog modal-sm">
-			  <div class="modal-content">
-
-				<div class="modal-header">
-				  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
-				  </button>
-				  <h4 class="modal-title" id="myModalLabel2">Nuevo Producto</h4>
-				</div>
-				<div class="modal-body">
-					<label class="control-label " for="first-name"> Producto</label>
-					<div class="form-group input-group ">
-						<input name="multiple[]" class="form-control ">
-						<span class="input-group-btn"><button type="button" class="btn btn-primary btn-add">+</button></span>
-					</div>
-					<small>Pulse + para agregar otro producto /  Pulse - para eliminar un producto.</small>
-				</div>
-				<div class="modal-footer"><!--
-				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-				  <button type="submit" class="btn btn-danger">Deshacer</button>
-				  <button type="button" class="btn btn-primary">Guardar</button>
-				</div>
-
-			  </div>
-			</div>
-		  </div>
-		  <!-- /modals -->
-		  
-		   <!-- Unidad modal -->		  
-
-		  <div class="modal fade unidad" tabindex="-1" role="dialog" aria-hidden="true">
-			<div class="modal-dialog modal-sm">
-			  <div class="modal-content">
-
-				<div class="modal-header">
-				  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
-				  </button>
-				  <h4 class="modal-title" id="myModalLabel2">Nueva Unidad</h4>
-				</div>
-				<div class="modal-body">
-					<label class="control-label " for="first-name"> Unidad</label>
-					<div class="form-group input-group ">
-						<input name="multiple[]" class="form-control ">
-						<span class="input-group-btn"><button type="button" class="btn btn-primary btn-add">+</button></span>
-					</div>
-					<small>Pulse + para agregar otro unidad /  Pulse - para eliminar un unidad.</small>
-				</div>
-				<div class="modal-footer"><!--
-				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-				  <button type="submit" class="btn btn-danger">Deshacer</button>
-				  <button type="button" class="btn btn-primary">Guardar</button>
-				</div>
-
-			  </div>
-			</div>
-		  </div>
-		  <!-- /modals -->
-		
-	</div>		
+	
 @stop
-	<script>
+     <script>
 		var room = 1;
 		function education_fields2() {
 		 
@@ -331,7 +219,7 @@
 			var divtest = document.createElement("tbody");
 			divtest.setAttribute("class", "form-group tr removeclass"+room);
 			var rdiv = 'removeclass'+room;
-			divtest.innerHTML = '<tr><td>' + (room) + '</td><td><div class="form-group "><select class="form-control">  <option value="" selected>Seleccionar</option>  <option value="">Taller de Cocina</option> <option value="">Papeleria</option> <option value="" >Didacticos</option> <option value="" >Aseo</option></select></div></td>	<td class="nopadding" >	<select class="form-control" id="educationDate" name="educationDate[]">	<option value="" selected>Seleccionar</option><option name="" value="">Aceite</option><option value="">Arepas antioqueñas precocidas </option><option value="" >Arroz  (bolsas de medio kilo)</option><option value="" >Bocadillo</option>  </select>	</td><td class="nopadding" >	<select class="form-control" id="educationDate" name="educationDate[]">	<option value="" selected>Seleccionar</option><option name="" value="">Barra</option><option name="" value="">Bloque</option>	<option name="" value="">Bolsa</option>	<option name="" value="">Botella</option>	<option name="" value="">Caja</option><option name="" value="">Frasco</option><option value="">Lata</option><option value="">Paquete</option><option value="">Pote</option><option value="">Tarro</option><option value="">Tubo</option>	<option value="">Vaso</option><option name="" value="">Unidad</option><option value="">Kg</option>	<option value="">Kilo</option><option value="">Litro</option><option value="">Lonjas</option> </select></td><td class="nopadding"  ><div class="form-group"><input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder=""></div></td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder=""></div></td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="">	</div></td><td class="nopadding" ><div class="input-group-btn"><button class="btn btn-sm btn-danger glyphicon glyphicon-minus btn-xs" type="button" onclick="remove_education_fields2('+ room +');"> <span  aria-hidden="true"></span> </button></div></td></tr>';
+			divtest.innerHTML = '<tr><td>' + (room) + '</td><td><div class="form-group "><select class="form-control"><option value="" selected>Seleccionar</option><option value="">Taller de Cocina</option><option value="">Papeleria</option><option value="" >Didacticos</option><option value="" >Aseo</option></select></div></td><td class="nopadding" ><select class="form-control" id="educationDate" name="educationDate[]"><option value="" selected>Seleccionar</option><option name="" value="">Aceite</option><option value="">Arepas antioqueñas precocidas </option><option value="" >Arroz  (bolsas de medio kilo)</option><option value="" >Bocadillo</option></select></td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Cantidad"></div></td><td class="nopadding" ><select class="form-control" id="educationDate" name="educationDate[]"><option value="" selected>Seleccionar</option><option name="" value="">Barra</option><option name="" value="">Bloque</option><option name="" value="">Bolsa</option><option name="" value="">Botella</option><option name="" value="">Caja</option><option name="" value="">Frasco</option><option value="">Lata</option><option value="">Paquete</option><option value="">Pote</option><option value="">Tarro</option><option value="">Tubo</option><option value="">Vaso</option><option name="" value="">Unidad</option><option value="">Kg</option><option value="">Kilo</option><option value="">Litro</option><option value="">Lonjas</option></select></td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Detalle"></div></td><td class="nopadding" ><div class="input-group-btn"><button class="btn btn-sm btn-danger glyphicon glyphicon-minus btn-xs" type="button" onclick="remove_education_fields2('+ room +');"> <span  aria-hidden="true"></span> </button></div></td></tr>';
 			
 			objTo.appendChild(divtest)
 			  
@@ -341,6 +229,31 @@
 		   
 		   room--;
 	   }
-
-	</script> 
+		function cambioaccion() {
+		 
+			$.get("{{ url('autorizarRQS/cambioaccion')}}", 
+				{
+					option: $('#acc_rqs').val(),
+					
+				}, 
+				function(data) {
+					var model = $('#rol_rqs');
+					model.empty();
+					model.append("<option value='' selected>Seleccionar</option>");
+					model.append("<option value='"+ data['rol'].id +"' selected>" + data['rol'].display_name + "</option>");
+					//$.each(data, function(index, element) {
+					//		model.append("<option value='"+ element.id +"'>" + element.display_name + "</option>");
+					//});
+					document.getElementById('asn_rqs').value = data['estado'].asu_est_req;
+					document.getElementById('est_rqs').value = data['estado'].id;
+			});
+			
+		}
+		
+	
+		
+	}
+		
+	</script>  
 @stop
+

@@ -241,10 +241,10 @@ class SolicitudCompraController extends Controller
 	
 	
 	public function exportSolicitudCompra($id) {
-			\Excel::create('Solicitudcompras-'.$id, function ($excel) use($id) {
+			\Excel::create('Solicitudcompras'.$id, function ($excel) use($id) {
 				$solicitudcompras =SolicitudCompra::find($id);
 				
-				$excel->sheet('Solicitudcompras-'.$id, function($sheet) use($solicitudcompras) {
+				$excel->sheet('Solicitudcompras'.$id, function($sheet) use($solicitudcompras) {
 			 
 				$sheet->row(1, [
 					'Código', 'Asunto','Observación','Fecha de Creación', 'Fecha de Actualización'
