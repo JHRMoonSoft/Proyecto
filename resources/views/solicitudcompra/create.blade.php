@@ -84,20 +84,23 @@
 						
 							<br />
 							<div class="row">
-							  <div class="col-xs-6 col-md-5">
-								<div class="input-group col-xs-12 col-md-12">
+							  <div class="col-xs-6 col-md-4">
+								<div class=" col-xs-12 col-md-12">
 									<div id="fechaRQS" class="pull-center" style="background: #fff; cursor: pointer; padding: 8px 10px; border: 1px solid #ccc">
 										<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
 										<span></span> <b class="caret"></b>
 									</div>
-									<button type="button" class="btn btn-search btn-danger" onclick="buscarFechaRQS({{$productos}});">
-										<span class="glyphicon glyphicon-search"></span>
-										<span class="label-icon">Buscar</span>
-									</button>
+									
 									<h5> Fecha consolidar </h5>
 								</div>
 							  </div>
-							  <div class="col-xs-6 col-md-7">
+							   <div class="col-xs-6  col-md-2">
+								<button type="button" class="btn  btn-search btn-danger" onclick="buscarFechaRQS({{$productos}});">
+										<span class="glyphicon glyphicon-search"></span>
+										<span class="label-icon">Buscar</span>
+									</button>
+							   </div>
+							  <div class="col-xs-6 col-md-5">
 							  
 									<!--RQS Pendientes-->
 								<div class="col-xs-12 ">

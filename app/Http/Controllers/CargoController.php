@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Cargo;
 use Illuminate\Http\Request;
+use Validator;
 
 class CargoController extends Controller
 {
@@ -24,7 +25,8 @@ class CargoController extends Controller
      */
     public function create()
     {
-        //
+        $cargos = Cargo::all();
+		return View('cargo.create')->with(compact('cargos'));
     }
 
     /**
@@ -35,7 +37,17 @@ class CargoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post_data = $request->all();
+		$rules = [           
+			'des_crg' => 'required'
+			
+			];
+        $validate = Validator::make($post_data, $rules);
+        if (!$validate->failed()){
+			$cargo = Cargo::create($post_data);			
+			$cargo->save();
+		}
+		return redirect()->intended('/cargo/create');
     }
 
     /**

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Area;
+use App\TiposArea;
+use Validator;
 use Illuminate\Http\Request;
 
 class AreaController extends Controller
@@ -14,7 +16,7 @@ class AreaController extends Controller
      */
     public function index()
     {
-        //
+       
     }
 
     /**
@@ -24,7 +26,9 @@ class AreaController extends Controller
      */
     public function create()
     {
-        //
+        $areas = Area::all();
+		$tipoareas= TiposArea::all();
+		return View('area.create')->with(compact('areas','tipoareas'));
     }
 
     /**
@@ -35,8 +39,21 @@ class AreaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post_data = $request->all();
+		$rules = [           
+			'tipos_area_id' => 'required',
+			'des_are' => 'required'
+			
+			];
+        $validate = Validator::make($post_data, $rules);
+        if (!$validate->failed()){
+			$area = area::create($post_data);			
+			$area->save();
+		}
+		return redirect()->intended('/area/create');
     }
+	
+	
 
     /**
      * Display the specified resource.

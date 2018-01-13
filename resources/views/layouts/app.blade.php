@@ -123,7 +123,7 @@
                   </li>
 				   <li><a><i class="fa fa-dropbox"></i>Almacén<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="/categoria">Categoría</a></li>
+                      <li><a href="/categoria">Categorías</a></li>
                       <li><a href="/producto">Productos</a></li>
 					   <li><a href="/unidad">Unidad</a></li>
 					   <li><a href="/conversion"> Unidad empaque</a></li>
@@ -191,6 +191,8 @@
 					  </a>
 						<ul class="dropdown-menu dropdown-usermenu pull-left">
 							<li><a href="/configuracion">Empresa</a></li>
+							<li><a href="/area/create">Área / Programa  </a></li>
+							<li><a href="/cargo/create">Cargos</a></li>
 							<li><a href="/users"> Usuarios  </a></li>
 							<li><a href="/role"> Roles  </a></li>
 							<li><a href="/permisos">Permisos  </a></li>								

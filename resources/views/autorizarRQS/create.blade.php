@@ -115,7 +115,7 @@
 												<th>Estado</th>
 												<th>Solicitante</th>
 												<th>Cargo</th>
-												<th>Área</th>
+												<th> Área</th>
 												
 												
 											</tr>

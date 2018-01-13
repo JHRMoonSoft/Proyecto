@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Role;
+use App\Cargo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -106,7 +107,8 @@ class RegisterController extends Controller
 	public function showRegistrationForm()
 	{
 		$rolesGeneral = Role::all();
-		return view('auth.register')->with(compact('rolesGeneral'));
+		$cargos = Cargo::all ();
+		return view('auth.register')->with(compact('rolesGeneral','cargos'));
 	}
     
 	

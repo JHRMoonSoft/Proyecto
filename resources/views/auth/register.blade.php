@@ -93,7 +93,17 @@
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Cargo <span class="required">*</span>
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input id="crg_usr" name="crg_usr" type="text" class="form-control col-md-7 col-xs-12"  required="required" value="{{ old('crg_usr') }}" >
+						@if(!$cargos->isEmpty())
+							<select id="crg_usr" name="crg_usr" class="form-control col-md-7 col-xs-12" required="required" value="{{ old('crg_usr') }}" >
+								<option value="" selected>Seleccionar</option>
+								@foreach($cargos as $cargo)
+									<option value="{{$cargo->id}}">{{$cargo->des_crg}} </option>
+								@endforeach
+							</select>
+							
+						@endif
+					  
+					  
 					</div>
 				</div>
 				<div class="item form-group">

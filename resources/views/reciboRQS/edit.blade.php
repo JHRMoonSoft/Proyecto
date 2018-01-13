@@ -246,21 +246,21 @@
 									<div class="form-group   col-md-4 col-sm-4 col-xs-12"><br>									
 										<div class="form-group col-md-12 col-xs-12">
 											<h5>Nombre </h5>
-												<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="¿quien recibe?">
+												<input type="text" class="form-control" id="nom_rcp_rqs" name="nom_rcp_rqs" value="" placeholder="¿quien recibe?">
 										</div>										
 									</div>	
 									<div class="form-group   col-md-4 col-sm-4 col-xs-12"><br>						
 										<div class="form-group col-md-12 col-xs-12">
 											<h5>Cargo </h5>
-												<input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="cargo">
+												<input type="text" class="form-control" id="crg_rcp_rqs" name="crg_rcp_rqs" value="" placeholder="cargo">
 										</div>
 									</div>	
 									<div class="form-group   col-md-4 col-sm-4 col-xs-12"><br>
 								
 										<h5>Fecha </h5>
 										<div class="input-group registration-date-time">
-											<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
-											<input class="form-control" name="registration_date" id="registration-date" type="date">
+											<span class="input-group-addon" id="fec_rcp_rqs"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
+											<input class="form-control" name="fec_rcp_rqs" id="fec_rcp_rqs" type="date">
 											<span class="input-group-btn">
 											</span>
 										</div>

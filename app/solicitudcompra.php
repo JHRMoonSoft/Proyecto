@@ -9,9 +9,9 @@ class Solicitudcompra extends Model
     protected $table = 'solicitudcompras';	
 	protected $fillable = ['asn_scp','obv_scp', 'user_id'];
 	
-	public function productos(){
+	public function productossolicitudcompra(){
 		
-		return $this->belongsToMany('App\Producto','productosolicitudcompras')->withPivot('id');
+		return $this->hasMany('App\ProductosSolicitudCompra', 'sol_comp_id');
 	
 	}
 }

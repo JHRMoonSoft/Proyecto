@@ -45,6 +45,8 @@ Route::get('solicitudcompra/export/{id}', 'SolicitudCompraController@exportSolic
 Route::get('export-ordencompra/{id}', 'OrdenCompraController@exportOrdenCompra');
 
 Route::resource('almacen', 'AlmacenController');
+Route::resource('area', 'AreaController');
+Route::resource('cargo', 'CargoController');
 Route::resource('proveedor', 'ProveedorController');
 Route::resource('requisicion', 'RequisicionController');
 Route::resource('autorizarRQS', 'AutorizarRQSController');

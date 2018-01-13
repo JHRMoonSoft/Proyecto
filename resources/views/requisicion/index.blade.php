@@ -60,7 +60,7 @@
 						<th class="text-center">Estado</th>
 						<th class="text-center">Solicitante</th>
 						<th class="text-center">Cargo</th>
-						<th class="text-center">Area</th>
+						<th class="text-center"> Área</th>
 						
 						<th>Opciones  </th>
 						<!--<th>Eliminar</th>-->

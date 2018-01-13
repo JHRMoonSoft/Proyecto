@@ -58,7 +58,7 @@
 								<div class="form-group">
 									<label class="control-label col-md-3 col-sm-3 col-xs-12" for="obv_scp">Observación	</label>																			
 									<div class="col-md-6 col-sm-6 col-xs-12">
-									  <textarea type="text" id="obv_scp"  name="obv_scp"   value="{{$solicitudcompra->obv_scp}}" rows="5" required="required" class="form-control col-md-7 col-xs-12"></textarea>
+									  <textarea type="text" id="obv_scp"  name="obv_scp" rows="5" required="required" class="form-control col-md-7 col-xs-12">{{$solicitudcompra->obv_scp}}</textarea>
 										@if ($errors->has('obv_scp'))
 											<span class="help-block">
 												<strong>{{ $errors->first('obv_scp') }}</strong>
@@ -149,46 +149,50 @@
 											</tr>
 										</thead>
 										<tbody>
-										
-											<tr>
-												<td>
-													1
-												</td>
-							
-												<td class="nopadding" >
-													<div class="form-group">
-														<select id="producto1" class="form-control" name="producto1" onchange="cambio_productos(1);">
-															@if(!$productos->isEmpty())
+											@foreach($solicitudcompra->productossolicitudcompra as $prodsolcompra)
+												<tr>
+													<td>
+														{{$loop->index + 1}}
+													</td>
+									        
+													<td class="nopadding" >
+														<div class="form-group">
+															<select id="producto{{$loop->index + 1}}" class="form-control" name="producto{{$loop->index + 1}}" onchange="cambio_productos(1);">
+																@if(!$productos->isEmpty())
+																	<option value="" selected>Seleccionar</option>
+																	@foreach($productos as $producto)
+																		<option value="{{$producto->id}}" @if($producto->id == $prodsolcompra->prod_id) selected @endif>{{ $producto->des_prd}} </option>
+																	@endforeach
+																@endif
+															</select>
+															
+														</div>
+													</td>
+													<td class="nopadding" >
+														<div class="form-group">
+															<select class="form-control" id="unidad{{$loop->index + 1}}" name="unidad{{$loop->index + 1}}">
 																<option value="" selected>Seleccionar</option>
-																@foreach($productos as $producto)
-																	<option value="{{ $producto->id}}">{{ $producto->des_prd}} </option>
+																@foreach($prodsolcompra->producto->unidades as $und)
+																	<option name="" value="{{$und->id}}" @if($und->id == $prodsolcompra->unidad_solicitada->id)selected="selected"@endif>{{$und->des_und}}</option>
 																@endforeach
-															@endif
-														</select>
-														
-													</div>
-												</td>
-												<td class="nopadding" >
-													<div class="form-group">
-														<select class="form-control" id="unidad1" name="unidad1">
-															<option value="" selected>Seleccionar</option>
-														</select>
-													</div>
-												</td>
-												<td class="nopadding" >
-													<div class="form-group">
-														<input type="text" class="form-control" id="cantidad1" name="cantidad1" value="" placeholder="Cantidad">
-													</div>
-												</td>
-												<td>
-													<input type="text" class="form-control" id="disponible1" name="disponible1" disabled/>
-												</td>
-												<td class="nopadding" >
-													<div class="input-group-btn">
-														<button class="btn btn-sm btn-primary glyphicon glyphicon-plus btn-xs" type="button"  onclick="education_fields2({{$productos}});"> <span  aria-hidden="true"></span> </button>
-													</div>
-												</td>
-											</tr>
+															</select>
+														</div>
+													</td>
+													<td class="nopadding" >
+														<div class="form-group">
+															<input type="text" class="form-control" id="cantidad{{$loop->index + 1}}" name="cantidad{{$loop->index + 1}}" value="{{$prodsolcompra->cant_sol_prd}}" placeholder="Cantidad">
+														</div>
+													</td>
+													<td>
+														<input type="text" class="form-control" id="disponible{{$loop->index + 1}}" name="disponible{{$loop->index + 1}}" disabled/>
+													</td>
+													<td class="nopadding" >
+														<div class="input-group-btn">
+															<button class="btn btn-sm btn-primary glyphicon glyphicon-plus btn-xs" type="button"  onclick="education_fields2({{$productos}});"> <span  aria-hidden="true"></span> </button>
+														</div>
+													</td>
+												</tr>
+											@endforeach
 										</tbody>
 									</table>
 								</div>
