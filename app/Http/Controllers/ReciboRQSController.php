@@ -96,6 +96,33 @@ class ReciboRQSController extends Controller
     public function update(Request $request, ReciboRQS $reciboRQS)
     {
         //
+		
+		$post_data = $request->all();
+		$rules = [
+            'rol_rqs'=> 'required',
+			'asn_rqs'=> 'required',
+			'est_rqs'=> 'required'
+			];
+		$validate = Validator::make($post_data, $rules);
+		if ($validate->passes()){
+			$requisicion = Requisicion::find($post_data['rqs_id']);
+			
+			$requisicion->est_rqs = $post_data['est_rqs'];
+			$requisicion->rol_rqs = $post_data['rol_rqs'];
+			$requisicion->save();
+			
+			$accion_crear = array();
+			$accion_crear['obs_reg_rqs'] = $post_data['obs_rqs'];
+			$accion_crear['rqs_id'] = $requisicion->id;
+			$accion_crear['acc_rqs_id'] = $post_data['acc_rqs'];
+			$accion_crear['user_id'] = Auth::user()->id;
+			RegistroHistoricoRequisicion::create($accion_crear);
+			
+			return redirect()->intended('/requisicion');
+			
+		}
+		return redirect()->back()->withInput()->withErrors($validate);
+		
     }
 
     /**

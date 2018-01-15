@@ -66,10 +66,7 @@
 						<tr>
 							<td>{{$solicitudcompra->id}}</td>
 							<td>{{$solicitudcompra->asn_scp}}</td>
-							<td>
-								
-							
-							</td>
+							<td>{{$solicitudcompra->user->nom_usr}} {{$solicitudcompra->user->ape_usr}}</td>
 							<td>
 								@if($solicitudcompra->created_at)
 									{{ $solicitudcompra->created_at->format('Y-m-d') }}

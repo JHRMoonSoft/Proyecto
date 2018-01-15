@@ -60,13 +60,13 @@
 											<td>Sin Creación</td>
 										@else
 											<td>{{$registrorqs->user->nom_usr .' '. $registrorqs->user->ape_usr}}</td>
-											
+											<td>{{$registrorqs->user->cargo->des_crg  }}</td>
+											<td>{{$registrorqs->user->area->des_are}}</td>
 										@endif
 									@endif
 								@endforeach
 							@endif
-							<td>{{$registrorqs->user->crg_usr }}</td>
-							<td>{{$registrorqs->user->area->des_are}}</td>							
+													
 							
 							
 							<td>

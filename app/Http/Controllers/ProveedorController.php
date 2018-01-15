@@ -141,9 +141,9 @@ class ProveedorController extends Controller
 			$proveedors->pai_prov = $post_data['pai_prov'];
             $proveedors->obs_prov = $post_data['obs_prov'];
 			if($request->has('categorias')){
-				$proveedor->categorias()->sync($post_data['categorias']);
-				$proveedor->save();
+				$proveedors->categorias()->sync($post_data['categorias']);
 			}
+			$proveedors->save();
 			$categorias = $proveedors->categorias;
 			return view('proveedor.show', compact('proveedors', 'categorias'));
 			

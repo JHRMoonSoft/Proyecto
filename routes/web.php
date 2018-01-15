@@ -19,7 +19,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('factura/cargarproveedorocp', 'FacturaController@cargarproveedorocp');
-
 Route::get('ordencompra/cargarproductosdecategoria', 'OrdenCompraController@cargarproductosdecategoria');
 Route::get('ordencompra/cargarproductosseleccionados', 'OrdenCompraController@cargarproductosseleccionados');
 
@@ -32,14 +31,16 @@ Route::get('solicitudcompra/buscarrqsautorizadaporfecha','SolicitudCompraControl
 Route::get('requisicion/cargarunidadesproducto', 'RequisicionController@cargarunidadesproducto');
 Route::get('requisicion/cargarproveedor', 'RequisicionController@cargarproveedor');
 
+Route::get('requisicion-user/{id}', 'RequisicionController@requisicionuser');
 Route::get('autorizarRQS/create/{id}', 'AutorizarRQSController@create');
 Route::get('autorizarRQS/cambioaccion', 'AutorizarRQSController@cambioaccion');
+
+
 
 
 Route::get('ordencompra/cargarproveedor', 'RequisicionController@cargarproveedor');
 
 Route::get('export-requisiciones', 'RequisicionController@exportRequisiciones');
-
 Route::get('requisicion/export/{id}', 'RequisicionController@exportRequisicion');
 Route::get('solicitudcompra/export/{id}', 'SolicitudCompraController@exportSolicitudCompra');
 Route::get('export-ordencompra/{id}', 'OrdenCompraController@exportOrdenCompra');

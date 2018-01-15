@@ -30,7 +30,7 @@
 	    </div>
 		<div class="x_content">
             <form class="form-horizontal" role="form" method="POST" action="{{ url('/proveedor/'.$proveedors->id) }}">
-			  {{ csrf_field() }}
+				{{ csrf_field() }}
 				<input name="_method" type="hidden" value="PUT">						
 				<input id="id" name="id" type="hidden" value="{{ $proveedors->id }}">
 				<!-- <p>For alternative validation library <code>parsleyJS</code> check out in the <a href="form.html">form page</a></p>-->

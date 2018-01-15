@@ -29,7 +29,8 @@
 			<div class="clearfix"></div>
 	    </div>
 		<div class="x_content">
-			<form class="form-horizontal" role="form" method="POST" action="{{ url('/solicitudcompra/') }}">
+			<form class="form-horizontal" role="form" method="POST" action="{{ url('/solicitudcompra/'. $solicitudcompra->id) }}">
+				<input type="hidden" name="_method" value="PUT">
 				{{ csrf_field() }}
 				<ul class="list-unstyled timeline">
 					<li>
@@ -402,26 +403,6 @@
 							if(producto == 1 && !primer_producto_cargado){
 								$('#producto1').val(element.producto.id);
 								$('#cantidad1').val(element.cant_sol_prd);
-								
-								
-								$.get("{{ url('requisicion/cargarunidadesproducto')}}", 
-									{
-										option: $('#producto1').val(),
-										
-									}, 
-									function(data) {
-										var model = $('#unidad1');
-										model.empty();
-										model.append("<option value='' selected>Seleccionar</option>");
-											$.each(data, function(index, element2) {
-												var text_append="<option value='"+ element2.id +"'";
-												if(element.unidad_solicitada.id == element2.id){
-													text_append = text_append + " selected ";
-												}
-												text_append = text_append + ">" + element2.des_und + "</option>"
-												model.append(text_append);
-											});
-									});
 								primer_producto_cargado = true;
 							}
 							else{
@@ -436,16 +417,19 @@
 								'</td>'+
 								//Productos
 								'<td class="nopadding" >'+
-								'<select class="form-control" id="producto'+(producto)+'" name="producto'+(producto)+'" onchange="cambio_productos('+(producto)+');">'+
-								'<option value="" selected>Seleccionar</option>';
-								$.each(productos, function(index, element) {
-										text = text + '<option value="'+ element.id +'">' + element.des_prd + '</option>';
-									});
-								text = text +
-								'</select></td>'+
+									'<select class="form-control" id="producto'+(producto)+'" name="producto'+(producto)+'">'+
+										'<option value="" selected>Seleccionar</option>';
+											$.each(productos, function(index, element) {
+													text = text + '<option value="'+ element.id +'">' + element.des_prd + '</option>';
+												});
+									text = text +
+									'</select></td>'+
 								//Unidades
 								'<td class="nopadding" >'+
-									'<select class="form-control" id="unidad'+(producto)+'" name="unidad'+(producto)+'"><option value="">Seleccionar</option></select>'+
+									'<select class="form-control" id="unidad'+(producto)+'" name="unidad'+(producto)+'">'+
+										'<option value="">Seleccionar</option>';
+								text = text +
+									'</select></td>'+
 								'</td>'+
 								//Cantidad
 								'<td class="nopadding" >'+
@@ -467,7 +451,7 @@
 								$("#cantproductos").val(producto);  
 								$('#producto'+producto).val(element.producto.id);
 								$('#cantidad'+producto).val(element.cant_sol_prd);
-								$.get("{{ url('requisicion/cargarunidadesproducto')}}", 
+								$.get("{{ url('solicitudcompra/cargarunidadesproducto')}}", 
 								{
 									option: $('#producto'+producto).val(),
 									
@@ -476,16 +460,29 @@
 									var model = $('#unidad'+producto);
 									model.empty();
 									model.append("<option value='' selected>Seleccionar</option>");
-										$.each(data, function(index, element2) {
-											var text_append="<option value='"+ element2.id +"'";
-											if(element.unidad_solicitada.id == element2.id){
-												text_append = text_append + " selected ";
-											}
-											text_append = text_append + ">" + element2.des_und + "</option>"
-											model.append(text_append);
-										});
+										$.each(data, function(index, element) {
+											model.append("<option value='"+ element.id +"'>" + element.des_und + "</option>");
+									});
 								});
-								calculo_iva_valor(producto);
+								
+								$.get("{{ url('solicitudcompra/cargardisponibleproducto')}}", 
+								{
+									option: $('#producto'+producto).val(),
+									
+								}, 
+								function(data) {
+									if(data){
+										if(data.cnt_prd == null){
+											document.getElementById("disponible"+producto).value = '0 ' + data.und;
+										}
+										else{
+											document.getElementById("disponible"+producto).value = data.cnt_prd + ' ' + data.und;
+										}
+										
+									}
+								});
+								$('#producto'+producto)[0].setAttribute('onchange', 'onchange=cambio_productos('+(producto)+');"");
+								
 							}
 						});
 					

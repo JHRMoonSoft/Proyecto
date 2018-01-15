@@ -7,7 +7,6 @@
 	    <div class="x_title">
 			<h2>Información de la Requisición Interna</h2>
 			<a  href="{{ url('requisicion/export/'.$requisicion->id) }}" class="btn btn-primary  right" role="button"><i class="glyphicon glyphicon-cloud-download" aria-hidden="true"></i>&nbsp&nbsp Descargar </a>	
-			<a  href="{{ url('/requisicion/'.$requisicion->id.'/edit') }}" class="btn btn-info right" role="button">Editar</a>
 			<a  href="{{ url('/requisicion') }}" class="btn btn-default  right" role="button"><i class="fa fa-reply" aria-hidden="true"></i>&nbsp&nbsp&nbspVolver al listado </a>
 		<!--
 			<ul class="nav navbar-right panel_toolbox">
@@ -48,7 +47,7 @@
 							<table id="datatable-buttons" class="table table-striped table-bordered ">
 								<thead>
 								   <tr>
-										<th>Código</th>
+										
 										<th>Fecha</th>																																																				
 										<th>Asunto</th>	
 										<th>Estado</th>
@@ -57,43 +56,18 @@
 									</tr>
 								</thead>
 								<tbody>
-									
+								@foreach($registrohistoricorequisicion as $registrohistoricorqs)
 									<tr>
-									  <td>0023933</td>
-										<td>26-06-2017</td>
-										<td>Requisición interna </td>
-										<td>entrega</td>
-										<td>pepito</td>
-										<td>Entrega parcial en espera de nueva compra</td>
+									  
+										<td>{{$registrohistoricorqs->created_at->format('d-m-Y')}}</td>
+										<td>{{$registrohistoricorqs->accionesrequisicion->des_acc_rqs}} </td>
+										<td>{{$registrohistoricorqs->accionesrequisicion->estadorequisionactual->desc_est_req}}</td>
+										<td>{{$registrohistoricorqs->user->nom_usr}} {{$registrohistoricorqs->user->ape_usr}} </td>
+										<td>{{$registrohistoricorqs->obs_reg_rqs}}</td>
 										
 									</tr> 
-									<tr>
-									  <td>0023933</td>
-										<td>26-06-2017</td>
-										<td>Autorizar requisición </td>
-										<td>entrega</td>
-										<td>pepito</td>
-										<td>Entrega parcial en espera de nueva compra</td>
-										
-									</tr> 
-									<tr>
-									  <td>0023933</td>
-										<td>26-06-2017</td>
-										<td>Entregar requisición </td>
-										<td>entrega</td>
-										<td>pepito</td>
-										<td>Entrega parcial en espera de nueva compra</td>
-										
-									</tr> 
-									<tr>
-									  <td>0023933</td>
-										<td>26-06-2017</td>
-										<td>Recibir requisición </td>
-										<td>entrega</td>
-										<td>pepito</td>
-										<td>Entrega parcial en espera de nueva compra</td>
-										
-									</tr> 
+								@endforeach
+									 
 								</tbody>
 							</table>
 						</div>
@@ -135,23 +109,25 @@
 										<tr>
 											<td>{{ $requisicion->id }}</td>
 											<td>{{ $requisicion->created_at->format('d-m-Y')}}	</td>
-												@if($requisicion->registrohistoricorequisicion->count() == 0)
+											@if($requisicion->registrohistoricorequisicion->count() == 0)
 												<td>Sin Creación</td>
 											@else
-												@foreach($requisicion->registrohistoricorequisicion as $requisicion)
+												@foreach($requisicion->registrohistoricorequisicion as $reghis)
 													@if ($loop->first)
-														@if($requisicion->user === null)
+														@if($reghis->user === null)
 															<td>Sin Creación</td>
+															<td></td>
+															<td></td>
+															<td></td>
 														@else
-															<td>{{$requisicion->user->nom_usr .' '. $requisicion->user->ape_usr}}</td>
-															
+															<td>{{$reghis->user->nom_usr .' '. $reghis->user->ape_usr}}</td>
+															<td>{{$reghis->user->cargo->des_crg }}</td>
+															<td>{{$reghis->user->area->des_are}}</td>
+															<td>{{$reghis->user->crd_usr }}	</td>															
 														@endif
 													@endif
 												@endforeach
-											@endif
-											<td>{{$requisicion->user->crg_usr }}</td>
-											<td>{{$requisicion->user->area->des_are}}</td>
-											<td>{{$requisicion->user->crd_usr }}	</td>
+											@endif											
 											<td>{{$requisicion->jst_rqs}}</td>
 										</tr> 
 									</tbody>

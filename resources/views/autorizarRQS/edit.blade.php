@@ -2,7 +2,7 @@
 @section('content')  
 
 
-@section('x_content')
+@section('x_content') 
 
     <div class="x_panel">
 	    <div class="x_title">
@@ -11,8 +11,9 @@
 			<div class="clearfix"></div>
 	    </div>
 		<div class="x_content">
-			<form class="form-horizontal" role="form" method="POST" action="{{ url('/autorizarRQS/') }}">
+			<form name="formulario" id="formulario" class="form-horizontal" role="form" method="POST" action="{{ url('/autorizarRQS/' . $requisicion->id ) }}">
 				{{ csrf_field() }}
+				<input type="hidden" name="_method" value="PUT">
 				<input type="hidden" class="form-control" id="rqs_id" name="rqs_id" value="{{$requisicion->id}}"/>
 				<ul class="list-unstyled timeline">
 					<li>
@@ -300,7 +301,7 @@
 												
 												<td class="nopadding" >
 													<div class="form-group">
-														<input type="text" class="form-control" id="cant_apr_prd{{$loop->index + 1}}" name="cant_apr_prd{{$loop->index + 1}}" value="{{$prod->cant_sol_prd}}"  placeholder="Cantidad"/>
+														<input type="text" class="form-control" id="cant_apr_prd{{$loop->index + 1}}" name="cant_apr_prd{{$loop->index + 1}}" value="{{$prod->cant_apr_prd}}"  placeholder="Cantidad"/>
 													</div>
 												</td>
 												
@@ -405,11 +406,11 @@
 					</div>
 					</li>
 				</ul>			
-				<div class="form-group right ">	
-																		
-					<button type="submit" class="btn btn-danger">Cancelar</button>
-					<button type="submit" class="btn btn-default">Guardar</button>
-					<button type="submit" class="btn btn-success">Enviar</button>
+				<div class="form-group right">						
+					<button class="btn btn-danger">Cancelar</button>
+					<input type="hidden" class="form-control" id="boton" name="boton" value=""/>
+					<button type="button" onClick="validate('guardar')" class="btn btn-default">Guardar</button>
+					<button type="button" onClick="validate('enviar')" class="btn btn-success">Enviar</button>
 				</div>
 			</form>
         </div>
@@ -418,6 +419,11 @@
 	
 @stop
      <script>
+	 
+		function validate(valor){
+			$('#boton').val(valor);
+			document.getElementById("formulario").submit();
+		}
 		var room = 1;
 		function education_fields2() {
 		 

@@ -80,8 +80,9 @@
 							<input type="hidden" class="form-control" id="cantproductos" name="cantproductos" value="1"/>
 							<h2 class="title">
 								<a>Registrar Productos</a><br/>
-							</h2><br />
-						
+							</h2>
+							
+							<br />
 							<br />
 							<div class="row">
 							  <div class="col-xs-6 col-md-4">
@@ -100,7 +101,7 @@
 										<span class="label-icon">Buscar</span>
 									</button>
 							   </div>
-							  <div class="col-xs-6 col-md-5">
+							  <div class="col-xs-6 col-md-4">
 							  
 									<!--RQS Pendientes-->
 								<div class="col-xs-12 ">
@@ -131,8 +132,9 @@
 									<h5>   RQS autorizadas</h5>
 								</div>
 								<!-- Consolidar RQS-->
-							  
+								
 							  </div>
+							  <button type="button" class="btn btn-danger "data-toggle="modal" data-target=".registro" >Registro RQS</button>
 							</div>		
 							<br />
 							<div class="panel panel-default">
@@ -218,6 +220,51 @@
 			</div>
 
         </div>
+		
+		
+		<!-- registro modal -->		  
+
+		  <div class="modal fade registro" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+					  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+					  </button>
+					  <h4 class="modal-title" id="myModalLabel2">Registro Requisiciones Consolidadas </h4>
+					</div>
+					<div class="modal-body">
+						<div class="table-responsive">
+							<table class="table table-bordered table-hover" id="education_fields2">
+								<thead>
+									<tr >
+										<th> Código  </th>
+										<th> Fecha </th>
+										<th> Justificación </th>
+										<th> Solicitante</th>	
+						
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td> </td>						
+										<td> </td>	
+										<td> </td>	
+										<td> </td>	
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+		    </div>
+			</div>
+		  </div>
+		<!-- /modals -->
+
+
+		
+		
+		
 		
 		<!-- Categoria modal -->		  
 

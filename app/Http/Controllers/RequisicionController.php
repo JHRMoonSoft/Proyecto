@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Auth;
 use Illuminate\Http\Request;
+use App\User;
 use App\Producto;
 use App\ProductosRequisicion;
 use App\ProveedoresRequisicion;
@@ -91,6 +92,7 @@ class RequisicionController extends Controller
 				$producto_i['rqs_id'] = $requisicion->id;
 				if((!$this->IsNullOrEmptyString($producto_i['prod_id']) and !$this->IsNullOrEmptyString($producto_i['cant_sol_prd']) and !$this->IsNullOrEmptyString($producto_i['unidad_sol_id']))
 					or (!$this->IsNullOrEmptyString($producto_i['nom_prd']) and !$this->IsNullOrEmptyString($producto_i['cant_sol_prd']) and !$this->IsNullOrEmptyString($producto_i['unidad_sol_id']))){
+					$producto_i['cant_apr_prd'] = $producto_i['cant_sol_prd'];
 					ProductosRequisicion::create($producto_i);
 					$productos_vacios = false;
 				}
@@ -137,10 +139,11 @@ class RequisicionController extends Controller
     {
         $proveedores = Proveedor::all();
 		$requisicion = Requisicion::find($id);
+		$registrohistoricorequisicion = RegistroHistoricoRequisicion::where('rqs_id',$id)->get();
         $productos = $requisicion->productos()->get();
 		$acciones = AccionesRequisicion::where('est_ant_rqs_id','=',$requisicion->estadorequisicion->id)->get();
 		$unidades = Unidad::all();
-		return view('requisicion.show', compact('requisicion'));
+		return view('requisicion.show', compact('requisicion','registrohistoricorequisicion'));
     }
 
     /**
@@ -152,7 +155,9 @@ class RequisicionController extends Controller
     public function edit($id)
     {
         $requisicion = Requisicion::find($id);
-		return view('requisicion.edit', compact('requisicion'));
+		$productos = Producto::all();
+		$proveedores = Proveedor::all();
+		return View('requisicion.edit')->with(compact('requisicion','productos','proveedores'));
     }
 
     /**
@@ -233,6 +238,22 @@ class RequisicionController extends Controller
 	function IsNullOrEmptyString($question){
 		return (!isset($question) || trim($question)==='');
 	}
+	
+	
+	
+	
+	public function requisicionuser ($id)
+	{
+		
+		$usuario = Requisicion::find($id);
+		$requisiciones = Requisicion::all();
+		$now = Carbon::now();
+        return View('requisicion.index')->with(compact('requisiciones','usuario','now'));
+		
+		
+	}
+	
+	
 
 	/*
 	public function exportRequisicion () {

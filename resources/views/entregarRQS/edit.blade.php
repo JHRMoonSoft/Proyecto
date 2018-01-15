@@ -6,13 +6,15 @@
  
     <div class="x_panel"> 
 	    <div class="x_title">
-			<h2>Entregar Requisición Interna</h2>  
+			<h2>Entregar Requisición Interna</h2>
+			<a  href="{{ url('/requisicion/'.$requisicion->id) }}"class="btn btn-danger  right" role="button">Ver </a>
 			<a  href="{{ url('/entregarRQS') }}" class="btn btn-default  right" role="button"><i class="fa fa-reply" aria-hidden="true"></i>&nbsp&nbsp&nbspVolver al listado </a>
 			<div class="clearfix"></div>
 	    </div>
 		<div class="x_content">
-			<form class="form-horizontal" role="form" method="POST" action="{{ url('/autorizarRQS/') }}">
+			<form id="formulario" name="formulario" class="form-horizontal" role="form" method="POST" action="{{ url('/entregarRQS/' . $requisicion->id ) }}">
 				{{ csrf_field() }}
+				<input name="_method" type="hidden" value="PUT">						
 				<input type="hidden" class="form-control" id="rqs_id" name="rqs_id" value="{{$requisicion->id}}"/>
 				<ul class="list-unstyled timeline">
 					<li>
@@ -149,8 +151,6 @@
 												<td class="nopadding">
 													@if($prod->producto)
 														{{$prod->producto->des_prd}}
-														<input type="hidden" class="form-control" id="producto{{$loop->index + 1}}" name="producto{{$loop->index + 1}}" value="{{$prod->producto->des_prd}}"/>
-												
 													@endif
 												</td>
 												
@@ -177,12 +177,12 @@
 												</td>
 												<td class="nopadding" >
 													<div class="form-group">
-														<input type="text" class="form-control " id="cant_entr_prd{{$loop->index + 1}}" name="cant_entr_prd{{$loop->index + 1}}"  value=""/>
+														<input type="text" class="form-control " id="cant_entr_prd{{$loop->index + 1}}" name="cant_entr_prd{{$loop->index + 1}}"  value="{{$prod->cant_entr_prd}}" onchange="calculo_diferencia_entrega({{$loop->index + 1}});" />
 													</div>
 												</td>
 												<td class="nopadding" >
 													<div class="form-group">
-														<input type="text" class="form-control" id="cant_dif_prd{{$loop->index + 1}}" name="cant_dif_prd{{$loop->index + 1}}" value=""  disabled   />
+														<input type="text" class="form-control" id="cant_dif_prd{{$loop->index + 1}}" name="cant_dif_prd{{$loop->index + 1}}" value="{{$prod->cant_dif_prd}}" readonly />
 													</div>
 												</td>
 												
@@ -198,11 +198,11 @@
 					</div>
 					</li>
 				</ul>			
-				<div class="form-group right ">	
-																		
-					<button type="submit" class="btn btn-danger">Cancelar</button>
-					<button type="submit" class="btn btn-default">Guardar</button>
-					<button type="submit" class="btn btn-success">Enviar</button>
+				<div class="form-group right">						
+					<button class="btn btn-danger">Cancelar</button>
+					<input type="hidden" class="form-control" id="boton" name="boton" value=""/>
+					<button type="button" onClick="validate('guardar')" class="btn btn-default">Guardar</button>
+					<button type="button" onClick="validate('enviar')" class="btn btn-success">Enviar</button>
 				</div>
 			</form>
         </div>
@@ -210,25 +210,31 @@
 
 	
 @stop
+
+@section('postscripts')
      <script>
-		var room = 1;
-		function education_fields2() {
-		 
-			room++;
-			var objTo = document.getElementById('education_fields2')
-			var divtest = document.createElement("tbody");
-			divtest.setAttribute("class", "form-group tr removeclass"+room);
-			var rdiv = 'removeclass'+room;
-			divtest.innerHTML = '<tr><td>' + (room) + '</td><td><div class="form-group "><select class="form-control"><option value="" selected>Seleccionar</option><option value="">Taller de Cocina</option><option value="">Papeleria</option><option value="" >Didacticos</option><option value="" >Aseo</option></select></div></td><td class="nopadding" ><select class="form-control" id="educationDate" name="educationDate[]"><option value="" selected>Seleccionar</option><option name="" value="">Aceite</option><option value="">Arepas antioqueñas precocidas </option><option value="" >Arroz  (bolsas de medio kilo)</option><option value="" >Bocadillo</option></select></td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Cantidad"></div></td><td class="nopadding" ><select class="form-control" id="educationDate" name="educationDate[]"><option value="" selected>Seleccionar</option><option name="" value="">Barra</option><option name="" value="">Bloque</option><option name="" value="">Bolsa</option><option name="" value="">Botella</option><option name="" value="">Caja</option><option name="" value="">Frasco</option><option value="">Lata</option><option value="">Paquete</option><option value="">Pote</option><option value="">Tarro</option><option value="">Tubo</option><option value="">Vaso</option><option name="" value="">Unidad</option><option value="">Kg</option><option value="">Kilo</option><option value="">Litro</option><option value="">Lonjas</option></select></td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Detalle"></div></td><td class="nopadding" ><div class="input-group-btn"><button class="btn btn-sm btn-danger glyphicon glyphicon-minus btn-xs" type="button" onclick="remove_education_fields2('+ room +');"> <span  aria-hidden="true"></span> </button></div></td></tr>';
-			
-			objTo.appendChild(divtest)
-			  
+	 
+		function validate(valor){
+			$('#boton').val(valor);
+			document.getElementById("formulario").submit();
 		}
-	   function remove_education_fields2(rid) {
-		   $('.removeclass'+rid).remove()
-		   
-		   room--;
-	   }
+	 
+		
+		function calculo_diferencia_entrega(rid) {
+			var cant_apr = $('#cant_apr_prd'+rid).val();
+			var cant_entr = $('#cant_entr_prd'+rid).val();
+			var cant_dif = 0;
+			if ((!cant_entr || (cant_entr > cant_apr) || cant_entr < 0)){
+				alert('Algo hiciste mal!!');
+				cant_entr = 0;
+			}
+			else{
+				cant_dif = cant_apr - cant_entr;
+			}
+			$('#cant_entr_prd'+rid).val(cant_entr);
+			$('#cant_dif_prd'+rid).val(cant_dif);
+		}
+		
 		function cambioaccion() {
 		 
 			$.get("{{ url('autorizarRQS/cambioaccion')}}", 
@@ -250,10 +256,8 @@
 			
 		}
 		
-	
-		
-	}
-		
 	</script>  
+	
+@stop
 @stop
 

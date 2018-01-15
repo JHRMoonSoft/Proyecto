@@ -79,7 +79,7 @@
                     <ul class="nav child_menu">
                       <li><a href="/requisicion/create">Nueva RQS</a></li>				  
 					  <li><a href="/recibirRQS">Recibir RQS</a></li>
-                      <li><a href="/requisicion">Historial RQS</a></li>
+                      <li><a href="{{ url('/requisicion-user/'.Auth::user()->id) }}">Historial RQS</a></li>
                     </ul>
                   </li>
                 </ul>

@@ -79,21 +79,21 @@
 							@else
 								@foreach($requisicion->registrohistoricorequisicion as $registrorqs)
 									@if ($loop->first)
-										@if($registrorqs->user === null)
+											@if($registrorqs->user === null)
 											<td>Sin Creación</td>
 										@else
 											<td>{{$registrorqs->user->nom_usr .' '. $registrorqs->user->ape_usr}}</td>
-											
+											<td>{{$registrorqs->user->cargo->des_crg  }}</td>
+											<td>{{$registrorqs->user->area->des_are}}</td>
 										@endif
 									@endif
-								@endforeach
+								@endforeach 
 							@endif
-							<td>{{$registrorqs->user->crg_usr }}</td>
-							<td>{{$registrorqs->user->area->des_are}}</td>							
+														
 							
 							
 							<td>
-								<a href="" title="Editar" class="btn btn-info glyphicon glyphicon-pencil btn-xs" data-title="Editar"></a>
+								<a href="{{ url('/requisicion/'.$requisicion->id.'/edit') }}" title="Editar" class="btn btn-info glyphicon glyphicon-pencil btn-xs" data-title="Editar"></a>
 								<a href="{{ url('/requisicion/'.$requisicion->id) }}" title="Detalle" class="btn btn-success glyphicon glyphicon-file btn-xs" data-title="Detalle"></a>							
 								<a href="{{ url('requisicion/export/'.$requisicion->id) }}" title="Descargar" class="btn btn-primary glyphicon glyphicon-cloud-download btn-xs" data-title="Descargar"></a><!--
 								<a href="" title="Acción" class="btn btn-primary glyphicon glyphicon-ok btn-xs" data-title="Acción"></a>--></td><!--

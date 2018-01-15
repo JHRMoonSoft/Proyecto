@@ -9,136 +9,17 @@
 			<div class="clearfix"></div>
 	    </div>
 		<div class="x_content">
-			<form class="form-horizontal" role="form" method="POST" action="{{ url('/requisicion/') }}">
+			<form class="form-horizontal" role="form" method="POST" action="{{ url('/requisicion/'.$requisicion->id) }}">
 				{{ csrf_field() }}
+				<input name="_method" type="hidden" value="PUT">						
+				<input id="id" name="id" type="hidden" value="{{ $requisicion->id }}">
 				<ul class="list-unstyled timeline">
+					
 					<li>
 						<div class="block">
 							<div class="tags">
 							<a href="" class="tag">
 								<span>Paso 1</span>
-							</a>
-							</div>
-							<div class="block_content">
-								<h2 class="title">
-									<a>Registrar la RQS</a>
-								</h2>
-								<div class="panel-body message">
-										<div class="form-group"><br><br>
-											<label for="to" class="col-sm-2 control-label">Para:</label>
-											<div class="col-sm-10">
-												<select id="rol_rqs" class="form-control" name="rol_rqs">
-													<option value="">Seleccionar</option>
-													<option value="{{ $rol->id}}" selected>{{ $rol->display_name }} </option>
-												</select>
-												@if ($errors->has('display_name'))
-													<span class="help-block">
-														<strong>{{ $errors->first('display_name') }}</strong>
-													</span>
-												@endif
-											</div>
-										</div>
-										<input type="hidden" value="{{ $estado->id }}" class="form-control select2-offscreen" id="est_rqs" name="est_rqs"/>
-										<input type="hidden" value="{{ $acciones->id }}" class="form-control select2-offscreen" id="acc_rqs" name="acc_rqs"/>
-										<div class="form-group">
-											<label for="asn_rqs" class="col-sm-2 control-label">Asunto:</label>
-											<div class="col-sm-10">
-												<input type="text" value="{{ $estado->asu_est_req }}" class="form-control select2-offscreen" id="asn_rqs" name="asn_rqs" tabindex="-1" readonly/>
-												@if ($errors->has('asu_est_req'))
-													<span class="help-block">
-														<strong>{{ $errors->first('asu_est_req') }}</strong>
-													</span>
-												@endif
-											</div>
-										</div>
-										<div class="form-group">
-											<label for="jst_rqs" class="col-sm-2 control-label">Justificación:</label>
-											<div class="col-sm-10">
-												<input type="text" class="form-control select2-offscreen" id="jst_rqs" name="jst_rqs" tabindex="-1">
-												@if ($errors->has('jst_rqs'))
-													<span class="help-block">
-														<strong>{{ $errors->first('jst_rqs') }}</strong>
-													</span>
-												@endif
-											</div>
-										</div>
-										<div class="form-group">
-											<label for="obs_rqs" class="col-sm-2 control-label">Observación:</label>
-											<div class="col-sm-10">
-												<!--
-												<div id="alerts"></div>
-												<div class="btn-toolbar editor" data-role="editor-toolbar" data-target="#asn_rqs">
-													<div class="btn-group">
-														<a class="btn dropdown-toggle" data-toggle="dropdown" title="Font"><i class="fa fa-font"></i><b class="caret"></b></a>
-														<ul class="dropdown-menu">
-														</ul>
-													</div>
-													<div class="btn-group">
-														<a class="btn dropdown-toggle" data-toggle="dropdown" title="Font Size"><i class="fa fa-text-height"></i>&nbsp;<b class="caret"></b></a>
-														<ul class="dropdown-menu">
-															<li>
-															<a data-edit="fontSize 5">
-																<p style="font-size:17px">Huge</p>
-															</a>
-															</li>
-															<li>
-															<a data-edit="fontSize 3">
-																<p style="font-size:14px">Normal</p>
-															</a>
-															</li>
-															<li>
-															<a data-edit="fontSize 1">
-																<p style="font-size:11px">Small</p>
-															</a>
-															</li>
-														</ul>
-													</div>
-			
-													<div class="btn-group">
-														<a class="btn" data-edit="bold" title="Bold (Ctrl/Cmd+B)"><i class="fa fa-bold"></i></a>
-														<a class="btn" data-edit="italic" title="Italic (Ctrl/Cmd+I)"><i class="fa fa-italic"></i></a>
-														<a class="btn" data-edit="strikethrough" title="Strikethrough"><i class="fa fa-strikethrough"></i></a>
-														<a class="btn" data-edit="underline" title="Underline (Ctrl/Cmd+U)"><i class="fa fa-underline"></i></a>
-													</div>
-			
-													<div class="btn-group">
-														<a class="btn" data-edit="insertunorderedlist" title="Bullet list"><i class="fa fa-list-ul"></i></a>
-														<a class="btn" data-edit="insertorderedlist" title="Number list"><i class="fa fa-list-ol"></i></a>
-														<a class="btn" data-edit="outdent" title="Reduce indent (Shift+Tab)"><i class="fa fa-dedent"></i></a>
-														<a class="btn" data-edit="indent" title="Indent (Tab)"><i class="fa fa-indent"></i></a>
-													</div>
-			
-													<div class="btn-group">
-														<a class="btn" data-edit="justifyleft" title="Align Left (Ctrl/Cmd+L)"><i class="fa fa-align-left"></i></a>
-														<a class="btn" data-edit="justifycenter" title="Center (Ctrl/Cmd+E)"><i class="fa fa-align-center"></i></a>
-														<a class="btn" data-edit="justifyright" title="Align Right (Ctrl/Cmd+R)"><i class="fa fa-align-right"></i></a>
-														<a class="btn" data-edit="justifyfull" title="Justify (Ctrl/Cmd+J)"><i class="fa fa-align-justify"></i></a>
-													</div>
-													<div class="btn-group">
-														<a class="btn" data-edit="undo" title="Undo (Ctrl/Cmd+Z)"><i class="fa fa-undo"></i></a>
-														<a class="btn" data-edit="redo" title="Redo (Ctrl/Cmd+Y)"><i class="fa fa-repeat"></i></a>
-													</div>
-												</div>
-												-->
-												<!-- <div id="asn_rqs" name="asn_rqs" class="editor-wrapper"></div> -->
-												<textarea id="obs_rqs" name="obs_rqs" class="editor-wrapper" style="width:100%" ></textarea>
-												@if ($errors->has('obs_rqs'))
-													<span class="help-block">
-														<strong>{{ $errors->first('obs_rqs') }}</strong>
-													</span>
-												@endif
-												<br/>
-											</div>
-										</div>
-								</div>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="block">
-							<div class="tags">
-							<a href="" class="tag">
-								<span>Paso 2</span>
 							</a>
 							</div>
 							<input type="hidden" class="form-control" id="cantproductos" name="cantproductos" value="1"/>
@@ -166,7 +47,85 @@
 								
 											</tr>
 										</thead>
-										<tbody>
+											@if(!$requisicion->productos->isEmpty())
+												@foreach($requisicion->productos as $req_prod)
+													@if($loop->first)
+														<tbody>
+													@else
+														<tbody class="form-group tr removeproducto{{$loop->index + 1}}">
+													@endif
+													<tr>
+														<td>
+															{{$loop->index + 1}}
+														</td>
+														<td class="nopadding" >
+															<select id="producto{{$loop->index + 1}}" class="form-control" name="producto{{$loop->index + 1}}" onchange="cambio_productos({{$loop->index + 1}});" required>
+																<option value="" selected>Seleccionar</option>
+																@if(!$productos->isEmpty())
+																	@foreach($productos as $producto)
+																		<option value="{{ $producto->id}}" @if($req_prod->prod_id == $producto->id) selected @endif>{{ $producto->des_prd}} </option>
+																	@endforeach
+																@endif
+																<option value="0">Otro (Nuevo Producto)</option>
+															</select>
+															@if ($errors->has('producto' . ($loop->index + 1) ))
+																<span class="help-block">
+																	<strong>{{ $errors->first('producto1') }}</strong>
+																</span>
+															@endif
+														</td>
+														<td class="nopadding" >
+															<div class="form-group">
+																<input type="text" class="form-control" id="detalle{{$loop->index + 1}}" name="detalle{{$loop->index + 1}}" placeholder="Detalle" />
+																@if ($errors->has('detalle' . ($loop->index + 1)))
+																	<span class="help-block">
+																		<strong>{{ $errors->first('detalle' . ($loop->index + 1)) }}</strong>
+																	</span>
+																@endif
+															</div>
+														</td>
+														<td class="nopadding" >
+															<select class="form-control" id="unidad{{$loop->index + 1}}" name="unidad{{$loop->index + 1}}" required>
+																<option value="" selected>Seleccionar</option>
+																@if($req_prod->producto)
+																	@foreach($req_prod->producto->unidades as $unidad)
+																		<option value="{{ $unidad->id}}" @if($unidad->id == $req_prod->unidad_solicitada->id) selected @endif>{{ $unidad->des_und}} </option>
+																	@endforeach
+																@endif
+															</select>
+															@if ($errors->has('unidad' . ($loop->index + 1)))
+																<span class="help-block">
+																	<strong>{{ $errors->first('unidad' . ($loop->index + 1)) }}</strong>
+																</span>
+															@endif
+														</td>
+														<td class="nopadding" >
+															<div class="form-group">
+																<input type="text" class="form-control" id="cantidad{{$loop->index + 1}}" name="cantidad{{$loop->index + 1}}" value="" placeholder="Cantidad" required />
+															</div>
+															@if ($errors->has('cantidad' . ($loop->index + 1)))
+																<span class="help-block">
+																	<strong>{{ $errors->first('cantidad' . ($loop->index + 1)) }}</strong>
+																</span>
+															@endif
+														</td>
+														<td class="nopadding" >
+															@if($loop->first)
+																<div class="input-group-btn">
+																	<button class="btn btn-sm btn-primary glyphicon glyphicon-plus btn-xs" type="button"  onclick="education_fields({{$productos}});"> <span  aria-hidden="true"></span></button>
+																</div>
+															@else
+																<div class="input-group-btn">
+																	<button class="btn btn-sm btn-danger glyphicon glyphicon-minus btn-xs" type="button" onclick="remove_education_fields({{$loop->index + 1}});"><span aria-hidden="true"></span></button>
+																</div>
+															@endif
+														</td>
+														
+													</tr>
+													<tbody>
+												@endforeach
+											@else
+											<tbody>
 											<tr>
 												<td>
 													1
@@ -225,7 +184,9 @@
 													</div>
 												</td>
 											</tr>
-										</tbody>
+											</tbody>
+											@endif
+										
 								
 									</table>
 									</div>
@@ -245,7 +206,7 @@
 						<div class="block">
 							<div class="tags">
 							<a href="" class="tag">
-								<span>Paso 3</span>
+								<span>Paso 2</span>
 							</a>
 							</div>
 							<div class="block_content">

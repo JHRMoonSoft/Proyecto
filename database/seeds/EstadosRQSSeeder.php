@@ -44,7 +44,7 @@ class EstadosRQSSeeder extends Seeder
 		DB::table('estadosrequisicions')->insert([
 			//4			
 			'desc_est_req' => 'En Proceso',
-			'asu_est_req' => 'Requisición Rechazada',
+			'asu_est_req' => 'Requisición En Proceso',
 			'tip_est_req' => 2,
             'created_at' => Carbon::now()->subDays(1),
 			'updated_at' => Carbon::now()		

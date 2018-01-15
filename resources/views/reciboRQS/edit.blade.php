@@ -6,13 +6,15 @@
  
     <div class="x_panel">  
 	    <div class="x_title">
-			<h2>Entregar Requisición Interna</h2>  
+			<h2>Recibír Requisición Interna</h2>
+			<a  href="{{ url('/requisicion/'.$requisicion->id) }}"class="btn btn-danger  right" role="button">Ver </a>
 			<a  href="{{ url('/entregarRQS') }}" class="btn btn-default  right" role="button"><i class="fa fa-reply" aria-hidden="true"></i>&nbsp&nbsp&nbspVolver al listado </a>
 			<div class="clearfix"></div>
 	    </div>
 		<div class="x_content">
-			<form class="form-horizontal" role="form" method="POST" action="{{ url('/autorizarRQS/') }}">
+			<form class="form-horizontal" role="form" method="POST" action="{{ url('/reciboRQS/' . $requisicion->id) }}">
 				{{ csrf_field() }}
+				<input type="hidden" name="_method" value="PUT" />
 				<input type="hidden" class="form-control" id="rqs_id" name="rqs_id" value="{{$requisicion->id}}"/>
 				<ul class="list-unstyled timeline">
 					<li>

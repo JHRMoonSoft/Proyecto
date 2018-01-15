@@ -92,6 +92,65 @@ class EntregarRQSController extends Controller
     public function update(Request $request, $id)
     {
         //
+		$post_data = $request->all();
+		$rules = [
+            'rol_rqs'=> 'required',
+			'asn_rqs'=> 'required',
+			'est_rqs'=> 'required'
+			];
+		$validate = Validator::make($post_data, $rules);
+		if ($request->get('boton') == "guardar"){
+			$numprods = 0;
+			if (array_get($post_data, 'productos', false)) {
+				$numprods = (int)$post_data['productos'];
+			}
+			$i = 1;
+			while($i <= $numprods){
+				$producto_i = ProductosRequisicion::find($post_data['producto'.$i]);
+				$producto_i->cant_entr_prd = $post_data['cant_entr_prd'.$i];
+				$producto_i->cant_dif_prd = $post_data['cant_dif_prd'.$i];
+				$producto_i->save();
+				$i = $i + 1;
+			}
+			return redirect()->intended('/requisicion');
+			
+			
+		}
+		else if ($request->get('boton') == "enviar" and $validate->passes()){
+			$numprods = 0;
+			if (array_get($post_data, 'productos', false)) {
+				$numprods = (int)$post_data['productos'];
+			}
+			$i = 1;
+			while($i <= $numprods){
+				$producto_i = ProductosRequisicion::find($post_data['producto'.$i]);
+				$producto_i->cant_apr_prd = $post_data['cant_apr_prd'.$i];
+				$producto_i->unidad_apr_id = $producto_i->unidad_sol_id;
+				$producto_i->nom_prd = $post_data['detalle'.$i];
+				if (array_get($post_data, 'apr_prod'.$i, false)) {
+					$producto_i->apr_prod = true;
+				}
+				$producto_i->save();
+				$i = $i + 1;
+			}
+			
+			$requisicion = Requisicion::find($post_data['rqs_id']);
+			$requisicion->est_rqs = $post_data['est_rqs'];
+			$requisicion->rol_rqs = $post_data['rol_rqs'];
+			$requisicion->save();
+			
+			$accion_crear = array();
+			$accion_crear['obs_reg_rqs'] = $post_data['obs_rqs'];
+			$accion_crear['rqs_id'] = $requisicion->id;
+			$accion_crear['acc_rqs_id'] = $post_data['acc_rqs'];
+			$accion_crear['user_id'] = Auth::user()->id;
+			RegistroHistoricoRequisicion::create($accion_crear);
+			
+			return redirect()->intended('/requisicion');
+			
+		}
+		return redirect()->back()->withInput()->withErrors($validate);
+		
     }
 
     /**
@@ -105,3 +164,5 @@ class EntregarRQSController extends Controller
         //
     }
 }
+
+

@@ -4,11 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Estadosrequisicion extends Model
+class EstadosRequisicion extends Model
 {
 	protected $table = 'estadosrequisicions';	
 	
-	protected $fillable = ['desc_est_req','asu_est_req'];
+	protected $fillable = ['desc_est_req','asu_est_req','tip_est_req'];
 	
 	public function requisiciones()
 	{

@@ -12,13 +12,13 @@ class AccionesRequisicion extends Model
 	
 	public function estadorequisionactual(){
 		
-	     return $this->belongsTo('App\EstadosRequisicion', 'id', 'est_rqs_id');
+	     return $this->belongsTo('App\EstadosRequisicion', 'est_rqs_id');
 		 
 	}
 	
 	public function estadorequisionanterior(){
 		
-	    return $this->belongsTo('App\EstadosRequisicion', 'id', 'est_ant_rqs_id');
+	    return $this->belongsTo('App\EstadosRequisicion', 'est_ant_rqs_id');
 		 
 	}
 	
