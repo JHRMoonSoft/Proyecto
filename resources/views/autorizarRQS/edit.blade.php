@@ -25,7 +25,7 @@
 						</div>
 						<div class="block_content">
 							<h2 class="title">
-								<a>Espacio exclusivo para el Asistente de Gestión Administrativa:</a>
+								<a>Espacio exclusivo para autorizar o rechazar los elementos solicitados</a>
 							</h2>
 							<div class="panel-body message">
 								<div class="form-group"><br>
@@ -112,7 +112,6 @@
 												<th>Código</th>
 												<th>Fecha RQS</th>																																																				
 												<th>Asunto</th>	
-												<th>Justificacion</th>
 												<th>Estado</th>
 												<th>Solicitante</th>
 												<th>Cargo</th>
@@ -128,7 +127,6 @@
 														<td>{{$requisicion->id}}</td>
 														<td>{{$reg->created_at->format('d-m-Y')}}</td>
 														<td>{{$requisicion->asn_rqs}}</td>
-														<td>{{$requisicion->jst_rqs}}</td>
 														<td>{{$requisicion->estadorequisicion->desc_est_req}}</td>
 														<td>{{$reg->user->nom_usr}} {{$reg->user->ape_usr}}</td>
 														<td>{{$reg->user->cargo->des_crg}}</td>
@@ -146,7 +144,7 @@
 											<h5>Tipo de Solicitud</h5>
 											<label for="success" class="btn btn-success">
 												Solicitud Consumo
-												<input type="radio" name="tip_sol1" id="success" value="1"s class="badgebox"/>
+												<input type="radio" name="tip_sol1" id="success" value="1"s class="badgebox"  @if($requisicion->tip_sol1 == true) checked @endif />
 												<span class="badge">&check;</span>
 											</label>
 												@if ($errors->has('tip_sol1'))
@@ -156,7 +154,7 @@
 												@endif
 											<label for="warning" class="btn btn-warning">
 												Solicitud Inversión
-												<input type="checkbox" name="tip_sol2" id="warning" value="2" class="badgebox">
+												<input type="checkbox" name="tip_sol2" id="warning" value="2" class="badgebox" @if($requisicion->tip_sol2 == true) checked @endif >
 												<span class="badge">&check;</span>
 											</label>
 												@if ($errors->has('tip_sol2'))
@@ -171,11 +169,13 @@
 											<label class="btn btn-primary">
 												<input type="radio" name="apr_com" id="apr_com" autocomplete="off" value="1" checked>Si
 												<span class="glyphicon glyphicon-ok"></span>
+												@if($requisicion->apr_com == true) checked @endif 
 											</label>
 		
 											<label class="btn btn-danger">
 												<input type="radio" name="apr_com" id="apr_com" value="0" autocomplete="off">No
 												<span class="glyphicon glyphicon-ok"></span>
+												@if($requisicion->apr_com == true) checked @endif 
 											</label>
 										
 										</div>
@@ -350,7 +350,7 @@
 								<thead>
 									<tr >
 										<th>#</th>
-										<th>Nombre</th>
+										<th>Nombre Proveedor</th>
 										<th>Telefono</th>
 										<th>Autorizar</th>
 									</tr>
@@ -398,7 +398,6 @@
 							</div>
 							
 						</div>
-						<small>Para autorizar el proveedor tiene que estar creado en el sistema.</small>
 						<br />	
 							
 							

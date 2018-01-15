@@ -160,7 +160,7 @@ class AutorizarRQSController extends Controller
 				$requisicion->apr_com = $post_data['apr_com'] == 1;
 			}
 			
-			return redirect()->intended('/requisicion');
+			return redirect()->intended('/autorizarRQS');
 			
 			
 		}
@@ -228,7 +228,7 @@ class AutorizarRQSController extends Controller
 			
 			
 			
-			return redirect()->intended('/requisicion');
+			return redirect()->intended('/autorizarRQS');
 			
 		}
 		return redirect()->back()->withInput()->withErrors($validate);

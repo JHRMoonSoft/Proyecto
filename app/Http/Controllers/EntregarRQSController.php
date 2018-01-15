@@ -112,7 +112,7 @@ class EntregarRQSController extends Controller
 				$producto_i->save();
 				$i = $i + 1;
 			}
-			return redirect()->intended('/requisicion');
+			return redirect()->intended('/entregarRQS');
 			
 			
 		}
@@ -146,7 +146,7 @@ class EntregarRQSController extends Controller
 			$accion_crear['user_id'] = Auth::user()->id;
 			RegistroHistoricoRequisicion::create($accion_crear);
 			
-			return redirect()->intended('/requisicion');
+			return redirect()->intended('/entregarRQS');
 			
 		}
 		return redirect()->back()->withInput()->withErrors($validate);

@@ -26,7 +26,7 @@
 						</div>
 						<div class="block_content">
 							<h2 class="title">
-								<a>Espacio exclusivo para el Asistente de Gestión Administrativa:</a>
+								<a>Espacio exclusivo para entregar los elementos solicitados</a>
 							</h2>
 							<div class="panel-body message">
 								<div class="form-group"><br>

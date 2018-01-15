@@ -41,7 +41,7 @@
 					
 					<div class="col-md-6 col-sm-6 col-xs-12">
 					
-						<select id="tip_empr"    class="form-control col-md-7 col-xs-12" data-validate-length-range="7" data-validate-words="2" name="name"  required="required">
+						<select id="tip_empr"    class="form-control col-md-7 col-xs-12" data-validate-length-range="7" data-validate-words="2" name="tip_empr"  required="required">
 							<option value="" selected>Seleccionar</option>
 							<option value="E.I.R.L" {{ $configuracion->tip_empr == 'E.I.R.L' ? ' selected':'' }}>E.I.R.L</option>
 							<option value="S.C"{{ $configuracion->tip_empr == 'S.C' ? ' selected':'' }}>S.C</option>
@@ -109,7 +109,7 @@
 				<div class="item form-group">
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="tel_cel">Telefono celular </label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input type="text" id="tel_cel" name="tel_cel" value="{{$configuracion->tel_cel}}" required="required" data-validate-length-range="8,20" class="form-control col-md-7 col-xs-12">
+					  <input type="text" id="tel_cel" name="tel_cel" value="{{$configuracion->tel_cel}}"  data-validate-length-range="8,20" class="form-control col-md-7 col-xs-12">
 						@if ($errors->has('tel_cel'))
 							<span class="help-block">
 								<strong>{{ $errors->first('tel_cel') }}</strong>
@@ -121,7 +121,7 @@
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="dir_mail">Email 
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input type="email" id="dir_mail" name="dir_mail" value="{{$configuracion->dir_mail}}" required="required" class="form-control col-md-7 col-xs-12">
+					  <input type="email" id="dir_mail" name="dir_mail" value="{{$configuracion->dir_mail}}"  class="form-control col-md-7 col-xs-12">
 						@if ($errors->has('dir_mail'))
 							<span class="help-block">
 								<strong>{{ $errors->first('dir_mail') }}</strong>
@@ -133,7 +133,7 @@
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="dir_empr">Dirección 
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input type="text" id="dir_empr" name="dir_empr" value="{{$configuracion->dir_empr}}" required="required" class="form-control col-md-7 col-xs-12">
+					  <input type="text" id="dir_empr" name="dir_empr" value="{{$configuracion->dir_empr}}"  class="form-control col-md-7 col-xs-12">
 						@if ($errors->has('dir_empr'))
 							<span class="help-block">
 								<strong>{{ $errors->first('dir_empr') }}</strong>

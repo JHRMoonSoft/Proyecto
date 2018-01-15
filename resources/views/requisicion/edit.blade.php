@@ -5,7 +5,9 @@
 
     <div class="x_panel">
 	    <div class="x_title">
-			<h2>Nueva Requisición Interna</h2>
+			<h2>Editar Requisición Interna</h2>
+			<a  href="{{ url('/requisicion/'.$requisicion->id) }}"class="btn btn-danger  right" role="button">Ver </a>
+			<a  href="{{ url('/entregarRQS') }}" class="btn btn-default  right" role="button"><i class="fa fa-reply" aria-hidden="true"></i>&nbsp&nbsp&nbspVolver al listado </a>
 			<div class="clearfix"></div>
 	    </div>
 		<div class="x_content">
@@ -14,14 +16,17 @@
 				<input name="_method" type="hidden" value="PUT">						
 				<input id="id" name="id" type="hidden" value="{{ $requisicion->id }}">
 				<ul class="list-unstyled timeline">
-					
+						<h4>Solo es permitido modificar los siguientes campos de esta requisición.   </h4>
+				
 					<li>
 						<div class="block">
 							<div class="tags">
 							<a href="" class="tag">
-								<span>Paso 1</span>
+								<span>Paso 2</span>
 							</a>
 							</div>
+							<br>
+						
 							<input type="hidden" class="form-control" id="cantproductos" name="cantproductos" value="1"/>
 							<input type="hidden" class="form-control" id="cantproveedores" name="cantproveedores" value="1"/>
 							<div class="block_content">
@@ -206,7 +211,7 @@
 						<div class="block">
 							<div class="tags">
 							<a href="" class="tag">
-								<span>Paso 2</span>
+								<span>Paso 3</span>
 							</a>
 							</div>
 							<div class="block_content">

@@ -121,7 +121,7 @@
 														<li>
 															<a href="#">
 																<span class="glyphicon glyphicon-book"></span>
-																<span class="label-icon">{{ $rqsAutorizada->id }} - {{ $rqsAutorizada->jst_rqs }}</span>
+																<span class="label-icon">{{ $rqsAutorizada->id }} - {{ $rqsAutorizada->asn_rqs }}</span>
 															</a>
 														</li>
 													@endforeach
@@ -134,11 +134,12 @@
 								<!-- Consolidar RQS-->
 								
 							  </div>
-							  <button type="button" class="btn btn-danger "data-toggle="modal" data-target=".registro" >Registro RQS</button>
+							 
 							</div>		
 							<br />
 							<div class="panel panel-default">
 								<div class="panel-heading text-center">
+									 <button type="button" class="btn btn-success btn-xs left "data-toggle="modal" data-target=".registro" >Registro RQS</button>
 									<span><strong><span class="glyphicon glyphicon-th-list"> </span> Productos</strong></span>
 								</div>
 								<div class="table-responsive">
@@ -205,10 +206,6 @@
 					  </div>
 					</li>
 				</ul>
-				<div class="form-group right ">	
-					<small>Pulse + para agregar otro producto /  Pulse - para eliminar un producto.</small>
-					<br />	
-				</div>
 		</div>
 				</li>
 			</ul>
@@ -230,7 +227,7 @@
 					<div class="modal-header">
 					  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
 					  </button>
-					  <h4 class="modal-title" id="myModalLabel2">Registro Requisiciones Consolidadas </h4>
+					  <h4 class="modal-title" id="myModalLabel2">Registro Requisiciones Consolidado </h4>
 					</div>
 					<div class="modal-body">
 						<div class="table-responsive">
@@ -239,7 +236,7 @@
 									<tr >
 										<th> Código  </th>
 										<th> Fecha </th>
-										<th> Justificación </th>
+										<th> Asunto </th>
 										<th> Solicitante</th>	
 						
 									</tr>

@@ -17,7 +17,7 @@ class CreateAccionesrequisicionsTable extends Migration
             $table->engine = 'InnoDB';
 			$table->increments('id');
 			$table->string('des_acc_rqs');
-			
+			$table->string('asn_rqs');
 			$table->integer('est_rqs_id')->unsigned()->index();
             $table->foreign('est_rqs_id')->references('id')->on('estadosrequisicions') ->onUpdate('cascade')->onDelete('cascade');
 			

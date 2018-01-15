@@ -43,7 +43,7 @@
 										<div class="form-group">
 											<label for="asn_rqs" class="col-sm-2 control-label">Asunto:</label>
 											<div class="col-sm-10">
-												<input type="text" value="{{ $estado->asu_est_req }}" class="form-control select2-offscreen" id="asn_rqs" name="asn_rqs" tabindex="-1" readonly/>
+												<input type="text" value="" class="form-control select2-offscreen" id="asn_rqs" name="asn_rqs" tabindex="-1" />
 												@if ($errors->has('asu_est_req'))
 													<span class="help-block">
 														<strong>{{ $errors->first('asu_est_req') }}</strong>
