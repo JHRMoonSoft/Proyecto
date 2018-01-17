@@ -73,7 +73,7 @@ class RequisicionController extends Controller
 			//'nom_rcp_rqs'=> 'required',
 			//'crg_rcp_rqs'=> 'required',
 			//'fec_rcp_rqs'=> 'required',
-			//'obs_rcp_rqs'=> 'required',
+			'obs_rqs'=> 'required',
 			'est_rqs'=> 'required'
 			];
         $validate = Validator::make($post_data, $rules);

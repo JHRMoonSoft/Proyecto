@@ -16,7 +16,7 @@ class CreateOrdencomprasTable extends Migration
         Schema::create('ordencompras', function (Blueprint $table) {
 			$table->engine = 'InnoDB';
 			$table->increments('id');
-			$table->integer('no_ocp');
+			$table->integer('no_ocp')->nullable();
 			$table->string('cnp_ocp');
 			$table->string('aut_ocp');
 			$table->string('form_pag');

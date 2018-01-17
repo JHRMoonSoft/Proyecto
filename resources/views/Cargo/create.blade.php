@@ -3,7 +3,25 @@
 @section('content')
   <div class="x_panel">
 	    <div class="x_title">
-			<h2>Listado de  Cargos </h2> &nbsp&nbsp&nbsp
+			<form class="form-horizontal" role="form" method="POST" action="{{ url('/cargo') }}">
+				{{ csrf_field() }}
+				<h2 class="  left">Lista de Cargos   </h2> &nbsp&nbsp&nbsp
+				<div class="col-md-1 col-sm-1 col-xs-1 right">
+						<button type="submit" class="btn btn-success">Crear</button>
+				</div>
+				<div class=" col-md-3 col-sm-3 col-xs-6 right">				
+					<input type="text" class="form-control" id="des_crg" name="des_crg" placeholder=" Nuevo Cargo"/>
+					@if ($errors->has('des_crg'))
+						<span class="help-block">
+							<strong>{{ $errors->first('des_crg') }}</strong>
+						</span>
+					@endif	
+
+				</div>
+				<div class=" col-md-2 col-sm-2 col-xs-2 right">				
+					
+				</div>
+			</form>	
 			
 			<div class="clearfix"></div>
 	    </div>
@@ -20,30 +38,6 @@
 					</tr>
 				  </thead>
 				  <tbody>
-					<form class="form-horizontal" role="form" method="POST" action="{{ url('/cargo') }}">
-						{{ csrf_field() }}
-						<tr>
-						  <td class="text-center">Nuevo</td>
-							<td>
-								<div class="col-md-9 col-sm-9 col-xs-9">
-									<input type="text" class="form-control" id="des_crg" name="des_crg"/>
-									@if ($errors->has('des_crg'))
-										<span class="help-block">
-											<strong>{{ $errors->first('des_crg') }}</strong>
-										</span>
-									@endif
-								</div>
-								<div class="col-md-1 col-sm-1 col-xs-1">
-									<button type="submit" class="btn btn-success">Guardar</button>
-								</div>
-								
-								
-							</td>
-							<td> </td>
-							<td></td>
-							
-						</tr> 
-					</form>
 					@foreach($cargos as $cargo)
 						<tr>
 							<td>{{ $cargo->id}}</td>

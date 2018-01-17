@@ -55,7 +55,7 @@ class AccionesRQSSeeder extends Seeder
 		]);
 		
 		DB::table('accionesrequisicions')->insert([
-			'des_acc_rqs' => 'Entrega Parcial',
+			'des_acc_rqs' => 'Entrega Parcial Requisición',
 			'asn_rqs' => 'Requisición Entrega Parcial',
 			'est_rqs_id' => 5,
 			'est_ant_rqs_id' => 4,
@@ -65,7 +65,7 @@ class AccionesRQSSeeder extends Seeder
 		]);
 		
 		DB::table('accionesrequisicions')->insert([
-			'des_acc_rqs' => 'Entrega Total',
+			'des_acc_rqs' => 'Entrega Total Requisición',
 			'asn_rqs' => 'Requisición Entregada',
 			'est_rqs_id' => 6,
 			'est_ant_rqs_id' => 4,
@@ -75,7 +75,7 @@ class AccionesRQSSeeder extends Seeder
 		]);
 		
 		DB::table('accionesrequisicions')->insert([
-			'des_acc_rqs' => 'Recibo Parcial',
+			'des_acc_rqs' => 'Recibo Parcial Requisición',
 			'asn_rqs' => 'Requisición Recibo Parcial',
 			'est_rqs_id' => 7,
 			'est_ant_rqs_id' => 5,
@@ -95,7 +95,7 @@ class AccionesRQSSeeder extends Seeder
 		]);
 		
 		DB::table('accionesrequisicions')->insert([
-			'des_acc_rqs' => 'Entrega Parcial',
+			'des_acc_rqs' => 'Entrega Parcial Requisición',
 			'asn_rqs' => 'Requisición Entrega Parcial',
 			'est_rqs_id' => 5,
 			'est_ant_rqs_id' => 5,
@@ -105,7 +105,7 @@ class AccionesRQSSeeder extends Seeder
 		]);
 		
 		DB::table('accionesrequisicions')->insert([
-			'des_acc_rqs' => 'Entrega Total',
+			'des_acc_rqs' => 'Entrega Total Requisición',
 			'asn_rqs' => 'Requisición Entregada',
 			'est_rqs_id' => 6,
 			'est_ant_rqs_id' => 5,
@@ -115,7 +115,7 @@ class AccionesRQSSeeder extends Seeder
 		]);
 		
 		DB::table('accionesrequisicions')->insert([
-			'des_acc_rqs' => 'Recibo Total',
+			'des_acc_rqs' => 'Recibo Total Requisición',
 			'asn_rqs' => 'Requisición Recibida',
 			'est_rqs_id' => 8,
 			'est_ant_rqs_id' => 6,

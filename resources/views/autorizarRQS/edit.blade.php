@@ -111,11 +111,12 @@
 										<tr>
 												<th>Código</th>
 												<th>Fecha RQS</th>																																																				
-												<th>Asunto</th>	
+												<th>Asunto</th>
+												<th>Justificación</th>
 												<th>Estado</th>
 												<th>Solicitante</th>
 												<th>Cargo</th>
-												<th> Área</th>
+												<th>Dependencia</th>
 												
 												
 											</tr>
@@ -127,10 +128,11 @@
 														<td>{{$requisicion->id}}</td>
 														<td>{{$reg->created_at->format('d-m-Y')}}</td>
 														<td>{{$requisicion->asn_rqs}}</td>
+														<td>{{$requisicion->jst_rqs}}</td>
 														<td>{{$requisicion->estadorequisicion->desc_est_req}}</td>
 														<td>{{$reg->user->nom_usr}} {{$reg->user->ape_usr}}</td>
 														<td>{{$reg->user->cargo->des_crg}}</td>
-														<td>{{$reg->user->area->tipoarea->des_tip_are}} - {{$reg->user->area->des_are}}</td>
+														<td>{{$reg->user->area->tipoarea->des_tip_are}} / {{$reg->user->area->des_are}}</td>
 													</tr> 
 												@endif
 											@endforeach
@@ -144,7 +146,7 @@
 											<h5>Tipo de Solicitud</h5>
 											<label for="success" class="btn btn-success">
 												Solicitud Consumo
-												<input type="radio" name="tip_sol1" id="success" value="1"s class="badgebox"  @if($requisicion->tip_sol1 == true) checked @endif />
+												<input type="radio" name="tip_sol1" id="success" value="1" class="badgebox"  @if($requisicion->tip_sol >= 1 and $requisicion->tip_sol != 2) checked @endif />
 												<span class="badge">&check;</span>
 											</label>
 												@if ($errors->has('tip_sol1'))
@@ -154,7 +156,7 @@
 												@endif
 											<label for="warning" class="btn btn-warning">
 												Solicitud Inversión
-												<input type="checkbox" name="tip_sol2" id="warning" value="2" class="badgebox" @if($requisicion->tip_sol2 == true) checked @endif >
+												<input type="checkbox" name="tip_sol2" id="warning" value="2" class="badgebox" @if($requisicion->tip_sol >= 2) checked @endif />
 												<span class="badge">&check;</span>
 											</label>
 												@if ($errors->has('tip_sol2'))
@@ -166,29 +168,28 @@
 										<div class="btn-group col-md-2" data-toggle="buttons">
 											
 											<h5>Aprobado en comite</h5>
-											<label class="btn btn-primary">
-												<input type="radio" name="apr_com" id="apr_com" autocomplete="off" value="1" checked>Si
+											<label class="btn btn-primary @if($requisicion->apr_com == true) active @endif">
+												<input type="radio" name="apr_com" id="apr_com" autocomplete="off" value="1" @if($requisicion->apr_com == true) checked @endif /> Si
 												<span class="glyphicon glyphicon-ok"></span>
-												@if($requisicion->apr_com == true) checked @endif 
+												
 											</label>
 		
-											<label class="btn btn-danger">
-												<input type="radio" name="apr_com" id="apr_com" value="0" autocomplete="off">No
+											<label class="btn btn-danger @if($requisicion->apr_com == false) active @endif ">
+												<input type="radio" name="apr_com" id="apr_com" value="0" autocomplete="off" @if($requisicion->apr_com == false) checked @endif  />No
 												<span class="glyphicon glyphicon-ok"></span>
-												@if($requisicion->apr_com == true) checked @endif 
 											</label>
 										
 										</div>
 										<div class="btn-group col-md-2" data-toggle="buttons">
 											<h5>Proveedor Autorizado</h5>
 											
-											<label class="btn btn-primary ">
-												<input type="radio" name="prv_apr" id="prv_apr" value="1" autocomplete="off" checked>Si
+											<label class="btn btn-primary @if($requisicion->prv_apr == true) active @endif">
+												<input type="radio" name="prv_apr" id="prv_apr" value="1" autocomplete="off" @if($requisicion->prv_apr == true) checked @endif />Si
 												<span class="glyphicon glyphicon-ok"></span>
 											</label>
 		
-											<label class="btn btn-danger">
-												<input type="radio" name="prv_apr" id="prv_apr" value="0" autocomplete="off">No
+											<label class="btn btn-danger @if($requisicion->prv_apr == false) active @endif ">
+												<input type="radio" name="prv_apr" id="prv_apr" value="0" autocomplete="off" @if($requisicion->prv_apr == false) checked @endif />No
 												<span class="glyphicon glyphicon-ok"></span>
 											</label>
 										
@@ -196,9 +197,9 @@
 										<div class="btn-group col-md-3 " data-toggle="buttons">
 											<div class="form-group ">
 												<h5>Fecha de aprobación</h5>
-												<div class="input-group registration-date-time">
-												<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
-												<input class="form-control" name="fec_apr_com" id="fec_apr_com" type="date"/>
+											<div class="input-group registration-date-time">
+												<span class="input-group-addon" id="fec_apr_com" name="fec_apr_com"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
+												<input class="form-control" name="fec_apr_com" id="fec_apr_com" @if($requisicion->fec_apr_com) value="{{$requisicion->fec_apr_com}}" @endif type="date"/>
 												<span class="input-group-btn">
 												</span>
 											</div>
@@ -273,7 +274,7 @@
 												
 												<td class="nopadding" >
 													<div class="form-group">
-														<input type="text" class="form-control" id="detalle{{$loop->index + 1}}" name="detalle{{$loop->index + 1}}" value="{{ $prod->nom_prd }}" placeholder="Detalle">
+														<input type="text" class="form-control" id="detalle{{$loop->index + 1}}" name="detalle{{$loop->index + 1}}" @if(!$prod->producto) value="{{ $prod->nom_prd }}" @else readonly style="background:rgba(247, 247, 247, 0.57);"   @endif placeholder="Detalle"/>
 													</div>
 												</td>
 												

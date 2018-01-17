@@ -156,6 +156,7 @@ class ConfiguracionController extends Controller
 			$configuracion->ciu_empr = $post_data['ciu_empr'];
 			$configuracion->pai_empr = $post_data['pai_empr'];
 			
+			$configuracion->save();
 			return view('configuracion.show')->with('configuracion', $configuracion);
         }
     }

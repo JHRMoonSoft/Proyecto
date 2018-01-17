@@ -61,7 +61,7 @@
 						<th class="text-center">Estado</th>
 						<th class="text-center">Solicitante</th>
 						<th class="text-center">Cargo</th>
-						<th class="text-center">Área</th>
+						<th class="text-center">Dependencia</th>
 						
 						<th>Opciones</th>
 						<!--<th>Eliminar</th>-->
@@ -85,7 +85,7 @@
 									@else
 										<td>{{$registrorqs->user->nom_usr .' '. $registrorqs->user->ape_usr}}</td>
 										<td>{{$registrorqs->user->cargo->des_crg }}</td>
-										<td>{{$registrorqs->user->area->des_are}}</td>
+										<td>{{$registrorqs->user->area->tipoarea->des_tip_are}} / {{$registrorqs->user->area->des_are}}</td>
 									@endif
 								@endif
 							@endforeach

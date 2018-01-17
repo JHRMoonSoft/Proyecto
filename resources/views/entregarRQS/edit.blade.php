@@ -153,23 +153,11 @@
 														{{$prod->producto->des_prd}}
 													@endif
 												</td>
-												
-												
-												<td class="nopadding" >
-													<select class="form-control" id="unidad{{$loop->index + 1}}" name="unidad{{$loop->index + 1}}" disabled style="background:rgba(247, 247, 247, 0.57);" >
-														<option value="" selected>Seleccionar</option>
-														@if($prod->producto)
-															@foreach($prod->producto->unidades as $und)
-																<option name="" value="{{$und->id}}" @if($und->id == $prod->unidad_solicitada->id)selected="selected"@endif>{{$und->des_und}}</option>
-															@endforeach
-														@else
-															@foreach($unidades as $und)
-																<option name="" value="{{$und->id}}" @if($und->id == $prod->unidad_solicitada->id)selected="selected"@endif>{{$und->des_und}}</option>
-															@endforeach
-														@endif
-													</select>
-												</td>
-																								
+												<td class="nopadding">
+													@if($prod->producto)
+														{{$prod->unidad_solicitada->des_und}}
+													@endif
+												</td>											
 												<td class="nopadding" >
 													<div class="form-group">
 														<input type="text" class="form-control" id="cant_apr_prd{{$loop->index + 1}}" name="cant_apr_prd{{$loop->index + 1}}" value="{{$prod->cant_apr_prd}}" disabled style="background:rgba(247, 247, 247, 0.57);" />

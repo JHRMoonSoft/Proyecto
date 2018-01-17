@@ -49,7 +49,7 @@
 											<button type="submit" name="log-me-in" id="submit" tabindex="5" class="btn btn-lg btn-danger"> Iniciar Sesión</button>
 									</div>
 									<a class="btn btn-link" href="{{ route('password.request') }}">
-												¿Olvidó su contraseña?
+										¿Olvidó su contraseña?
 									</a>
 								</form>			
 							</div>

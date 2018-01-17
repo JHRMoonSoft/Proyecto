@@ -60,7 +60,7 @@
 									<tr>
 									  
 										<td>{{$registrohistoricorqs->created_at->format('d-m-Y')}}</td>
-										<td>{{$registrohistoricorqs->accionesrequisicion->des_acc_rqs}} </td>
+										<td>{{$registrohistoricorqs->accionesrequisicion->asn_rqs}} </td>
 										<td>{{$registrohistoricorqs->accionesrequisicion->estadorequisionactual->desc_est_req}}</td>
 										<td>{{$registrohistoricorqs->user->nom_usr}} {{$registrohistoricorqs->user->ape_usr}} </td>
 										<td>{{$registrohistoricorqs->obs_reg_rqs}}</td>
@@ -98,7 +98,7 @@
 										<th>Cod. RQS</th>
 										<th>Fecha RQS</th>
 										<th>Asunto</th>
-										<th>Estado</th>
+										<th>Justificación</th>
 									    <th>Solicitante	</th>										
 									    <th>Cargo</th>
 										<th>Área</th>
@@ -111,7 +111,7 @@
 											<td>{{ $requisicion->id }}</td>
 											<td>{{ $requisicion->created_at->format('d-m-Y')}}	</td>
 											<td>{{$requisicion->asn_rqs}}</td>
-											<td>{{$requisicion->estadorequisicion->desc_est_req}}</td>
+											<td>{{$requisicion->jst_rqs}}</td>
 											@if($requisicion->registrohistoricorequisicion->count() == 0)
 												<td>Sin Creación</td>
 											@else
@@ -144,7 +144,7 @@
 							<h5>Tipo de Solicitud</h5>
 							<label for="success" class="btn btn-success">
 								Solicitud Consumo
-								<input type="radio" name="tip_sol1" id="success" value="{{$requisicion->tip_sol1 }}"s class="badgebox"/ disabled>
+								<input type="radio" name="tip_sol1" id="success" value="{{$requisicion->tip_sol1 }}"s class="badgebox" disabled @if($requisicion->tip_sol >= 1 and $requisicion->tip_sol != 2) checked @endif />
 								<span class="badge">&check;</span>
 							</label>
 								@if ($errors->has('tip_sol1'))
@@ -154,7 +154,7 @@
 								@endif
 							<label for="warning" class="btn btn-warning">
 								Solicitud Inversión
-								<input type="checkbox" name="tip_sol2" id="warning" value="{{$requisicion->tip_sol2 }}" class="badgebox" disabled>
+								<input type="checkbox" name="tip_sol2" id="warning" value="{{$requisicion->tip_sol2 }}" class="badgebox" disabled  @if($requisicion->tip_sol >= 2) checked @endif />
 								<span class="badge">&check;</span>
 							</label>
 								@if ($errors->has('tip_sol2'))
@@ -166,13 +166,13 @@
 		
 						<div class="dlk-radio btn-group  col-md-2" >
 							<h5>Aprobado en comite</h5>
-							<label class="btn  btn-primary">
-								<input name="apr_com]"  type="radio" value="1"disabled @if($requisicion->apr_com == true) checked @endif >
+							<label class="btn  btn-primary ">
+								<input name="apr_com]"  type="radio" value="1"disabled @if($requisicion->apr_com == true) checked @endif / >
 								<i class="fa fa-check glyphicon glyphicon-ok"></i>SI
 								
 						   </label>
 						   <label class="btn btn-danger">
-							   <input name="apr_com"  type="radio" value="2"   defaultchecked="checked" disabled  @if($requisicion->apr_com == true) checked @endif  >
+							   <input name="apr_com"  type="radio" value="2"   defaultchecked="checked" disabled  @if($requisicion->apr_com == false) checked @endif  /  >
 							   <i class="fa fa-times glyphicon glyphicon-remove"></i>NO
 							   
 						   </label>
@@ -182,14 +182,12 @@
 						<div class="dlk-radio btn-group  col-md-2" >
 							<h5>Proveedor Autorizado</h5>
 							<label class="btn  btn-primary">
-								<input name="choices[1]"  type="radio" value="1"disabled>
+								<input name="choices[1]"  type="radio" value="1"disabled @if($requisicion->prv_apr == true) checked @endif />
 								<i class="fa fa-check glyphicon glyphicon-ok"></i>SI
-								@if($requisicion->apr_com == true) checked @endif 
 						   </label>
 						   <label class="btn btn-danger">
-							   <input name="choices[1]"  type="radio" value="2"   defaultchecked="checked" disabled >
+							   <input name="choices[1]"  type="radio" value="2"   defaultchecked="checked" disabled @if($requisicion->prv_apr == false) checked @endif />
 							   <i class="fa fa-times glyphicon glyphicon-remove"></i>NO
-							   @if($requisicion->apr_com == true) checked @endif 
 						   </label>
 						
 						</div>
@@ -217,12 +215,12 @@
 						</div>-->
 										
 						<div class=" col-md-3 " ><h5>Fecha de aprobación</h5>
-								<div class="input-group registration-date-time">
-									<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
-									<input class="form-control" name="registration_date" disabled style="background:#fff;" id="registration-date" type="date">
-									<span class="input-group-btn">
-									</span>
-								</div>
+							<div class="input-group registration-date-time">
+								<span class="input-group-addon" id="fec_apr_com"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
+								<input class="form-control" name="fec_apr_com" id="fec_apr_com" disabled @if($requisicion->fec_apr_com) value="{{$requisicion->fec_apr_com}}" @endif type="date"/>
+								<span class="input-group-btn">
+								</span>
+							</div>
 						</div>	
 					</div>
 						
@@ -282,16 +280,16 @@
 														@endif
 													</div>
 												</td>
-												
 												<td class="nopadding">
+																									
 													@if($prod->producto)
 														{{$prod->producto->des_prd}}
+													@else
+														{{$prod->nom_prd}}
 													@endif
 												</td>
 												<td class="nopadding">
-													@if($prod->producto)
-														{{$prod->unidad_solicitada->des_und}}
-													@endif
+													{{$prod->unidad_solicitada->des_und}}
 												</td>
 												<td class="nopadding" >
 													<div class="form-group">

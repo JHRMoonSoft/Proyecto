@@ -245,7 +245,7 @@
 						<span class=" fa fa-angle-down"></span>
 					  </a>
 					  <ul class="dropdown-menu dropdown-usermenu pull-right">
-						<li><a href="{{ url('/users/'.Auth::user()->id) }}" > Perfil</a></li><!--
+						<li><a href="{{ url('/users/'.Auth::user()->id) }}" >{{Auth::user()->nom_usr}} {{Auth::user()->ape_usr}}</a></li><!--
 						<li>
 						  <a href="javascript:;">
 							<span class="badge bg-red pull-right">50%</span>

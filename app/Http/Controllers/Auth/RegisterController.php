@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use App\Role;
 use App\Area;
+use App\TiposArea;
 use App\Cargo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -74,6 +75,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+		$tip_dep = Area::find($data['dep_usr'])->tipoarea->id;
 		$user = User::create([
 			'tip_doc'=> $data['tip_doc'], 
 			'num_doc'=> $data['num_doc'], 
@@ -82,6 +84,7 @@ class RegisterController extends Controller
 			'usuario'=> $data['usuario'], 
 			'crg_usr'=> $data['crg_usr'], 
 			'dep_usr'=> $data['dep_usr'], 
+			'tip_dep'=> $tip_dep, 
 			'crd_usr'=> $data['crd_usr'],  
 			'tel_fij'=> $data['tel_fij'], 
 			'tel_cel'=> $data['tel_cel'], 

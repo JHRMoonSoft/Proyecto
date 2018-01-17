@@ -90,26 +90,23 @@
 									<div id="fechaRQS" class="pull-center" style="background: #fff; cursor: pointer; padding: 8px 10px; border: 1px solid #ccc">
 										<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
 										<span></span> <b class="caret"></b>
-									</div>
-									
+									</div>									
 									<h5> Fecha consolidar </h5>
 								</div>
 							  </div>
-							   <div class="col-xs-6  col-md-2">
-								<button type="button" class="btn  btn-search btn-danger" onclick="buscarFechaRQS({{$productos}});">
-										<span class="glyphicon glyphicon-search"></span>
-										<span class="label-icon">Buscar</span>
-									</button>
+							   <div class="col-xs-6 col-md-2">
+								<button type="button" class="btn btn-search btn-danger" onclick="buscarFechaRQS({{$productos}});">
+									<span class="label-icon">Buscar</span>
+								</button>
 							   </div>
 							  <div class="col-xs-6 col-md-4">
 							  
 									<!--RQS Pendientes-->
 								<div class="col-xs-12 ">
 									<div class="input-group">
-										<input type="text" class="form-control" placeholder="Buscar">
+										<input type="text" name="buscarRQSid" id="buscarRQSid" class="form-control" placeholder="Buscar">
 										<div class="input-group-btn" >
-											<button type="button" class="btn btn-search btn-danger">
-												<span class="glyphicon glyphicon-search"></span>
+											<button type="button" class="btn btn-search btn-danger" onclick="buscarIdRQS({{$productos}});">
 												<span class="label-icon">Buscar</span>
 											</button>
 											<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
@@ -119,7 +116,7 @@
 												@if(!$rqsAutorizadas->isEmpty())
 													@foreach($rqsAutorizadas as $rqsAutorizada)
 														<li>
-															<a href="#">
+															<a onclick="cargarIdRQS({{ $rqsAutorizada->id }});">
 																<span class="glyphicon glyphicon-book"></span>
 																<span class="label-icon">{{ $rqsAutorizada->id }} - {{ $rqsAutorizada->asn_rqs }}</span>
 															</a>
@@ -229,33 +226,25 @@
 					  </button>
 					  <h4 class="modal-title" id="myModalLabel2">Registro Requisiciones Consolidado </h4>
 					</div>
+					<input type="hidden" class="form-control" id="totalrqs" name="totalrqs" value="0"/>
 					<div class="modal-body">
 						<div class="table-responsive">
-							<table class="table table-bordered table-hover" id="education_fields2">
+							<table class="table table-bordered table-hover" id="rqs" name="rqs" >
 								<thead>
-									<tr >
+									<tr>
 										<th> Código  </th>
 										<th> Fecha </th>
 										<th> Asunto </th>
-										<th> Solicitante</th>	
-						
+										<th> Solicitante</th>
 									</tr>
 								</thead>
-								<tbody>
-									<tr>
-										<td> </td>						
-										<td> </td>	
-										<td> </td>	
-										<td> </td>	
-									</tr>
-								</tbody>
 							</table>
 						</div>
 					</div>
 				</div>
 		    </div>
 			</div>
-		  </div>
+		  
 		<!-- /modals -->
 
 
@@ -297,18 +286,29 @@
 @section('postscripts')  
 	<script>
 		var producto = 1;
+		var rq = 1;
 		var primer_producto_cargado = false;
-		function buscarFechaRQS(productos) {			
+		
+		function onlyUnique(value, index, self) { 
+			return self.indexOf(value) === index;
+		}
+		
+		function cargarIdRQS(id) {
+			$('#buscarRQSid').val(id);
+		}
+		
+		function buscarIdRQS(productos) {			
 			
-			$.get("{{ url('solicitudcompra/buscarrqsautorizadaporfecha')}}", 
+			$.get("{{ url('solicitudcompra/buscarrqsutorizada')}}", 
 				{
-					start: $('#fechaRQS').data('daterangepicker').startDate.format('YYYY-MM-DD'),
-					end: $('#fechaRQS').data('daterangepicker').endDate.format('YYYY-MM-DD'),
+					option: $('#buscarRQSid').val(),
 					
 				}, 
 				function(data) {
 					if(data){
+						var rqs = [];
 						$.each(data, function(index, element) {
+							rqs[index] = element.requisicion;
 							if(window.producto == 1 && window.primer_producto_cargado == false){
 								$('#producto1').val(element.producto.id);
 								$('#cantidad1').val(element.cant_sol_prd);
@@ -381,7 +381,6 @@
 								'<td class="nopadding" >'+
 									'<div class="form-group"><input type="text" class="form-control" id="disponible'+(producto)+'" name="disponible'+(producto)+'" disabled/></div>'+
 								'</td>'+
-								
 								//Botones
 								'<td class="nopadding" >'+
 									'<div class="input-group-btn"><button class="btn btn-sm btn-danger glyphicon glyphicon-minus btn-xs" type="button" onclick="remove_education_fields2('+ producto +');">'+
@@ -393,46 +392,227 @@
 								$("#cantproductos").val(window.producto);  
 								$('#producto'+window.producto).val(element.producto.id);
 								$('#cantidad'+window.producto).val(element.cant_sol_prd);
+								if(element.almacen.cnt_prd == null){
+										$('#disponible'+window.producto).val('0 ' + element.almacen.und);
+								}
+								else{
+									$('#disponible'+window.producto).val(element.almacen.cnt_prd + ' ' + element.almacen.und);
+								}
+								
+								var model = $('#unidad'+window.producto);
+								model.empty();
+								model.append("<option value='' selected>Seleccionar</option>");
+									$.each(element.producto.unidades, function(index, element2) {
+										var text_append="<option value='"+ element2.id + "'>" + element2.des_und + "</option>"
+										model.append(text_append);
+									});
+								$('#unidad'+window.producto).val(element.unidad_sol_id);
+								
+							}
+						});
+						rqs = rqs.filter(onlyUnique);
+						$.each(rqs, function(index, element) {
+							var sw = true;
+							if(window.rq > 1){
+								ii = 1;
+								while(ii <= rq && sw == true) { 
+									var rr = $("#rqs"+ii).val(); 
+									if(element.id == rr){
+										sw = false;
+									}
+									ii++;
+								}
+							}
+							if(sw == true){
+								var objTo2 = document.getElementById('rqs');
+								var divtest2 = document.createElement("tbody");
+								var text2 = '<tr><td>' +
+								(element.id) +
+								'<input type="hidden" class="form-control" id="rqs'+(rq)+'" name="rqs'+(rq)+'" />'+
+								'</td>'+
+								//Fecha
+								'<td class="nopadding" >'+
+									'<div class="form-group"><input type="text" class="form-control" id="fecha'+(rq)+'" name="fecha'+(rq)+'" value="" placeholder="Fecha" readonly /></div>'+
+								'</td>'+
+								//Asunto
+								'<td class="nopadding" >'+
+									'<div class="form-group"><input type="text" class="form-control" id="asunto'+(rq)+'" name="cantidad'+(rq)+'" value="" placeholder="Asunto" readonly /></div>'+
+								'</td>';
+								//+
+								//Solicitante
+								//'<td class="nopadding" >'+
+								//	'<div class="form-group"><input type="text" class="form-control" id="solicitante'+(rq)+'" name="solicitante'+(rq)+'" value="" placeholder="Cantidad"  readonly/></div>'+
+								//'</td></tr>';
+								divtest2.innerHTML = text2;
+								objTo2.appendChild(divtest2);
+								$("#totalrqs").val(rq);  
+								$("#rqs"+window.rq).val(element.id);  
+								$("#fecha"+window.rq).val(element.created_at);  
+								$('#asunto'+window.rq).val(element.asn_rqs);
+								//$('#solicitante'+window.rq).val(element.user);
+								rq++;
+							}
+						});
+					}
+				});
+		}
+		
+		function buscarFechaRQS(productos) {			
+			
+			$.get("{{ url('solicitudcompra/buscarrqsautorizadaporfecha')}}", 
+				{
+					start: $('#fechaRQS').data('daterangepicker').startDate.format('YYYY-MM-DD'),
+					end: $('#fechaRQS').data('daterangepicker').endDate.format('YYYY-MM-DD'),
+					
+				}, 
+				function(data) {
+					if(data){
+						var rqs = [];
+						$.each(data, function(index, element) {
+							rqs[index] = element.requisicion;
+							if(window.producto == 1 && window.primer_producto_cargado == false){
+								$('#producto1').val(element.producto.id);
+								$('#cantidad1').val(element.cant_sol_prd);
 								$.get("{{ url('requisicion/cargarunidadesproducto')}}", 
 								{
-									option: $('#producto'+window.producto).val(),
+									option: $('#producto1').val(),
 									
 								}, 
-								function(data2) {
-									var model = $('#unidad'+window.producto);
-									var selid = null;
+								function(data) {
+									var model = $('#unidad1');
 									model.empty();
 									model.append("<option value='' selected>Seleccionar</option>");
-										$.each(data2, function(index, element2) {
-											selid = element2.id;
+										$.each(data, function(index, element2) {
 											var text_append="<option value='"+ element2.id +"'";
+											if(element.unidad_solicitada.id == element2.id){
+												text_append = text_append + " selected ";
+											}
 											text_append = text_append + ">" + element2.des_und + "</option>"
 											model.append(text_append);
 										});
-									$('#unidad'+window.producto).val(selid);
 								});
 								
 								$.get("{{ url('solicitudcompra/cargardisponibleproducto')}}", 
 								{
-									option: $('#producto'+producto).val(),
+									option: $('#producto1').val(),
 									
 								}, 
-								function(data3) {
+								function(data) {
 									if(data){
-										if(data3.cnt_prd == null){
-											document.getElementById("disponible"+producto).value = '0 ' + data3.und;
+										if(data.cnt_prd == null){
+											document.getElementById("disponible1").value = '0 ' + data.und;
 										}
 										else{
-											document.getElementById("disponible"+producto).value = data3.cnt_prd + ' ' + data3.und;
+											document.getElementById("disponible1").value = data.cnt_prd + ' ' + data.und;
 										}
 										
 									}
 									
 									//model.setAttribute('value', );
 								});
+								window.primer_producto_cargado = true;
+							}
+							else{
+								window.producto++;
+								var objTo = document.getElementById('education_fields2');
+								var divtest = document.createElement("tbody");
+								divtest.setAttribute("class", "form-group tr removeclass"+producto);
+								var rdiv = 'removeclass'+producto;
+								var text = '<tr><td>' +
+								(producto) +
+								'</td>'+
+								//Productos
+								'<td class="nopadding" >'+
+								'<select class="form-control" id="producto'+(producto)+'" name="producto'+(producto)+'" onchange="cambio_productos('+(producto)+');">'+
+								'<option value="" selected>Seleccionar</option>';
+								$.each(productos, function(index, element) {
+										text = text + '<option value="'+ element.id +'">' + element.des_prd + '</option>';
+									});
+								text = text +
+								'</select></td>'+
+								//Unidades
+								'<td class="nopadding" >'+
+									'<select class="form-control" id="unidad'+(producto)+'" name="unidad'+(producto)+'"><option value="">Seleccionar</option></select>'+
+								'</td>'+
+								//Cantidad
+								'<td class="nopadding" >'+
+									'<div class="form-group"><input type="text" class="form-control" id="cantidad'+(producto)+'" name="cantidad'+(producto)+'" value="" placeholder="Cantidad"/></div>'+
+								'</td>'+				
+								//Disponible
+								'<td class="nopadding" >'+
+									'<div class="form-group"><input type="text" class="form-control" id="disponible'+(producto)+'" name="disponible'+(producto)+'" disabled/></div>'+
+								'</td>'+
+								//Botones
+								'<td class="nopadding" >'+
+									'<div class="input-group-btn"><button class="btn btn-sm btn-danger glyphicon glyphicon-minus btn-xs" type="button" onclick="remove_education_fields2('+ producto +');">'+
+										'<span aria-hidden="true"></span>'+
+									'</button></div>'+
+								'</td></tr>';
+								divtest.innerHTML = text;
+								objTo.appendChild(divtest);
+								$("#cantproductos").val(window.producto);  
+								$('#producto'+window.producto).val(element.producto.id);
+								$('#cantidad'+window.producto).val(element.cant_sol_prd);
+								if(element.almacen.cnt_prd == null){
+										$('#disponible'+window.producto).val('0 ' + element.almacen.und);
+								}
+								else{
+									$('#disponible'+window.producto).val(element.almacen.cnt_prd + ' ' + element.almacen.und);
+								}
+								
+								var model = $('#unidad'+window.producto);
+								model.empty();
+								model.append("<option value='' selected>Seleccionar</option>");
+									$.each(element.producto.unidades, function(index, element2) {
+										var text_append="<option value='"+ element2.id + "'>" + element2.des_und + "</option>"
+										model.append(text_append);
+									});
+								$('#unidad'+window.producto).val(element.unidad_sol_id);
+								
 							}
 						});
-					
+						var r = rqs.filter(onlyUnique);
+						$.each(r, function(index, element) {
+							var sw = true;
+							if(window.rq > 1){
+								var ii = 1;
+								while(ii <= rq && sw == true) { 
+									var rr = $("#rqs"+ii).val(); 
+									if(element.id == rr){
+										sw = false;
+									}
+									ii++;
+								}
+							}
+							if(sw == true){
+								var objTo2 = document.getElementById('rqs');
+								var divtest2 = document.createElement("tbody");
+								var text2 = '<tr><td>' +
+								(element.id) +
+								'<input type="hidden" class="form-control" id="rqs'+(rq)+'" name="rqs'+(rq)+'" value="" /></div>'+
+								'</td>'+
+								//Fecha
+								'<td class="nopadding" >'+
+									'<div class="form-group"><input type="date" class="form-control" id="fecha'+(rq)+'" name="fecha'+(rq)+'" value="" placeholder="Fecha" readonly /></div>'+
+								'</td>'+
+								//Asunto
+								'<td class="nopadding" >'+
+									'<div class="form-group"><input type="text" class="form-control" id="asunto'+(rq)+'" name="cantidad'+(rq)+'" value="" placeholder="Asunto" readonly /></div>'+
+								'</td>'+
+								//Solicitante
+								'<td class="nopadding" >'+
+									'<div class="form-group"><input type="text" class="form-control" id="solicitante'+(rq)+'" name="solicitante'+(rq)+'" value="" placeholder="Cantidad"  readonly/></div>'+
+								'</td></tr>';
+								divtest2.innerHTML = text2;
+								objTo2.appendChild(divtest2);
+								$("#totalrqs").val(rq);  
+								$("#rqs"+window.rq).val(element.id);  
+								$("#fecha"+window.rq).val(element.created_at);  
+								$('#asunto'+window.rq).val(element.asn_rqs);
+								//$('#solicitante'+window.rq).val(element.user);
+								rq++;
+							}							
+						});
 					}
 					else{
 						alert('Nada');

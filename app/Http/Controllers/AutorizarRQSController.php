@@ -12,6 +12,7 @@ use App\EstadosRequisicion;
 use App\RegistroHistoricoRequisicion;
 use App\Proveedor;
 use App\Unidad;
+use App\Categoria;
 use App\Role;
 use App\Conversion;
 use App\Requisicion;
@@ -181,6 +182,16 @@ class AutorizarRQSController extends Controller
 				$producto_i->nom_prd = $post_data['detalle'.$i];
 				if (array_get($post_data, 'apr_prod'.$i, false)) {
 					$producto_i->apr_prod = true;
+					if(!$producto_i->producto){
+						$p = array();
+						$p['categoria_id'] = Categoria::find(5)->id;
+						$p['unidad_id'] = $producto_i->unidad_sol_id;
+						$p['des_prd'] = $producto_i->nom_prd;
+						$prod_nuevo_i = Producto::create($p);
+						$prod_nuevo_i->unidades()->sync(array($producto_i->unidad_sol_id));
+						$prod_nuevo_i->save();
+						$producto_i->prod_id = $prod_nuevo_i->id;
+					}
 				}
 				$producto_i->save();
 				$i = $i + 1;

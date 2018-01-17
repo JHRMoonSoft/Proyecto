@@ -113,7 +113,7 @@
 				</div>
 				
 				<div class="item form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="occupation">Dpendencia <span class="required">*</span>
+					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="occupation">Dependencia <span class="required">*</span>
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						@if(!$areas->isEmpty())	
@@ -182,7 +182,7 @@
 				<div class="item form-group">
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="sta_usr">Activo</label>
 					<div class="col-md-3 col-sm-3 col-xs-12">
-						<input type="checkbox" id="sta_usr" name="sta_usr" value="{{ $users->sta_usr }}" class="js-switch" class="form-control col-md-7 col-xs-12" checked>  
+						<input type="checkbox" id="sta_usr" name="sta_usr" value="{{ $users->sta_usr }}" class="js-switch" class="form-control col-md-7 col-xs-12">  
 						@if ($errors->has('sta_usr'))
 							<span class="help-block">
 								<strong>{{ $errors->first('sta_usr') }}</strong>

@@ -54,7 +54,7 @@ class AlmacenController extends Controller
 			$almacen = Almacen::create($post_data);	 		
 		}
 		$almacens = Almacen::all();
-		//return view('almacen.index')->with('almacens', $almacens);
+		return view('almacen.index')->with('almacens', $almacens);
     }
 
     /**

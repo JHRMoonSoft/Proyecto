@@ -117,7 +117,7 @@
 												<th>Estado</th>
 												<th>Solicitante</th>
 												<th>Cargo</th>
-												<th> Área</th>
+												<th> Dependencia</th>
 												
 												
 											</tr>
@@ -133,7 +133,7 @@
 														<td>{{$requisicion->estadorequisicion->desc_est_req}}</td>
 														<td>{{$reg->user->nom_usr}} {{$reg->user->ape_usr}}</td>
 														<td>{{$reg->user->cargo->des_crg}}</td>
-														<td>{{$reg->user->area->tipoarea->des_tip_are}} - {{$reg->user->area->des_are}}</td>
+														<td>{{$reg->user->area->tipoarea->des_tip_are}} / {{$reg->user->area->des_are}}</td>
 														
 													</tr> 
 												@endif
@@ -211,8 +211,6 @@
 														{{$prod->unidad_solicitada->des_und}}
 													@endif
 												</td>
-												
-												
 																								
 												<td class="nopadding" >
 													<div class="form-group">

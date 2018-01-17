@@ -48,7 +48,7 @@
 						<th class="text-center">Usuario</th>
 						<th class="text-center">Nombre Empleado</th>
 						<th class="text-center">Cargo</th>
-						<th class="text-center">Area</th>
+						<th class="text-center">Dependencia</th>
 						<th class="text-center">Rol</th>
 						<th class="text-center">Estado</th>
 						<th class="text-center">Fecha Creación </th>
@@ -62,15 +62,21 @@
 					<tr>
 						<td>{{$user->id}}</td>
 						<td> {{$user->usuario}}	</td>
-						<td>{{$user->nom_usr}} &nbsp&nbsp&nbsp {{$user->ape_usr}} </td>
-						<td> {{$user->crg_usr}}</td>
-						<td>{{$user->area->des_are }}</td>
+						<td>{{$user->nom_usr}} {{$user->ape_usr}} </td>
+						<td> {{$user->cargo->des_crg }}</td>
+						<td>{{$user->area->tipoarea->des_tip_are}} / {{$user->area->des_are}}</td>
 						<td>
 							@foreach($user->roles as $role)
 								{{$role->name}} 
 							@endforeach
 						</td>	
-						<td>{{$user->sta_usr}}</td>	
+						<td>
+							@if ($user->sta_usr==1)
+								Activo
+							@else
+								Bloqueado
+							@endif
+						</td>	
 						<td>{{ $user->created_at->format('Y-m-d') }}</td>	
 						<td>{{ $user->updated_at->format('Y-m-d') }}</td>								
 						<td><a href="{{ url('/users/'.$user->id) }}" title="Detalle" class="btn btn-success glyphicon glyphicon-file btn-xs" data-title="Detalle"></a>

@@ -93,8 +93,25 @@ class SolicitudCompraController extends Controller
 				$validate->errors()->add('cantproductos', 'Debe existir al menos un producto válido asociado a esta solicitud de compras.');
 				return redirect()->back()->withInput()->withErrors($validate);
 			}
+			$i = 1;
+			$num_rqs = $post_data['totalrqs'];
+			while($i <= $num_rqs){
+				return $post_data;
+				$requisicion = Requisicion::find($post_data['rqs' . $i]);
+				$requisicion->est_rqs = 4;
+				$requisicion->rol_rqs = 3;
+				$requisicion->save();
+				
+				$accion_crear = array();
+				$accion_crear['obs_reg_rqs'] = $post_data['obs_scp'];
+				$accion_crear['rqs_id'] = $requisicion->id;
+				$accion_crear['acc_rqs_id'] = 4;
+				$accion_crear['user_id'] = Auth::user()->id;
+				RegistroHistoricoRequisicion::create($accion_crear);
+			}
+			
 			return redirect()->intended('/solicitudcompra');
-		
+			
 		}
 		return redirect()->back()->withInput()->withErrors($validate);	
 		
@@ -148,6 +165,7 @@ class SolicitudCompraController extends Controller
             $solicitudcompra = SolicitudCompra::find($post_data['id']);
             $solicitudcompra->asn_scp = $post_data['asn_scp'];
 			$solicitudcompra->obv_scp = $post_data['obv_scp'];
+			
 			return view('solicitudcompra.show')->with('solicitudcompra', $solicitudcompra);
         }
     }
@@ -163,23 +181,26 @@ class SolicitudCompraController extends Controller
         //
     }
 	
-	public function cargarunidadesproducto(Request $request)
-    {
-		$producto = Producto::find($request['option']);
+	public function getUnidadesProducto(int $id){
+		
+		$producto = Producto::find($id);
 		if($producto){
 			$unidades = $producto->unidades()->get();
 		}
 		else{
 			$unidades = Unidad::all();
 		}
+		return $unidades;
+	}
+	public function cargarunidadesproducto(Request $request)
+    {
 		//$unidades = Unidad::whereIn('id', '=', $producto)->get();
-		
+		$unidades = getUnidadesProducto($request['option']);
 		return response()->json($unidades);
 	}
 	
-	public function cargardisponibleproducto(Request $request)
-    {
-		$producto = Producto::find($request['option']);
+	public function getAlmacenProducto(int $id){
+		$producto = Producto::find($id);
 		if($producto){
 			$almacen = $producto->almacen()->first();
 			$almacen['und'] = $producto->unidad->des_und;
@@ -187,8 +208,14 @@ class SolicitudCompraController extends Controller
 		else{
 			$almacen = null;
 		}
+		return $almacen;
+	}
+	
+	
+	public function cargardisponibleproducto(Request $request)
+    {
 		//$unidades = Unidad::whereIn('id', '=', $producto)->get();
-		
+		$almacen = $this->getAlmacenProducto($request['option']);
 		return response()->json($almacen);
 	}
 	
@@ -199,15 +226,15 @@ class SolicitudCompraController extends Controller
 			$productosRQS = null;
 		}
 		else{
-			$productosRQS = array();
-			foreach($rqs->productos as $productoRQS){
-				if($productoRQS->apr_prod){
-					array_push($productosRQS, $productoRQS->id);
-				}
-			}
 			$productosRQS = ProductosRequisicion::with('producto')
 			->with('unidad_solicitada')
-			->find($productosRQS);
+			->with('requisicion')
+			->where('rqs_id',$rqs->id)->get();
+			//return $productosRQS; 
+			foreach($productosRQS as $prodRQS){
+				$prodRQS->almacen = $this->getAlmacenProducto($prodRQS->producto->id);
+				$prodRQS->unidades = $prodRQS->producto->unidades;
+			}
 		}
 		return response()->json($productosRQS);
 	}
@@ -230,10 +257,14 @@ class SolicitudCompraController extends Controller
 		}
 		$productosRQS = ProductosRequisicion::with('producto')
 		->with('unidad_solicitada')
+		->with('requisicion')
 		->find($productosRQS);
-		return response()->json(
-		$productosRQS
-		);
+		//return $productosRQS; 
+		foreach($productosRQS as $prodRQS){
+			$prodRQS->almacen = $this->getAlmacenProducto($prodRQS->producto->id);
+			$prodRQS->unidades = $prodRQS->producto->unidades;
+		}
+		return response()->json($productosRQS);
 	}
 	
 	function IsNullOrEmptyString($question){
