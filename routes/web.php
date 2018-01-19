@@ -35,6 +35,7 @@ Route::get('requisicion-user/{id}', 'RequisicionController@requisicionuser');
 Route::get('autorizarRQS/create/{id}', 'AutorizarRQSController@create');
 Route::get('autorizarRQS/cambioaccion', 'AutorizarRQSController@cambioaccion');
 
+Route::get('inventarioRQS/{id}', 'RequisicionController@inventarioRequisicion');
 
 
 

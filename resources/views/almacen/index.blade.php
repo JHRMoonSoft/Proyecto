@@ -3,7 +3,7 @@
 @section('pagetitle')
   <h3></h3> 
 @endsection
-@section('x_search')
+@section('x_search')<!--
 	<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search"> 
 						
 		<div class="input-group">
@@ -12,14 +12,14 @@
 				  <button class="btn btn-default glyphicon glyphicon-search" type="button"></button> 
 			  </span> 
 		</div>
-	</div>
+	</div>-->
 	
 @endsection
 @section('x_content')
 
     <div class="x_panel">
 	    <div class="x_title">
-			<h2>Productos Almacén </h2> &nbsp&nbsp&nbsp
+			<h2>Inventario de Productos </h2> &nbsp&nbsp&nbsp
 			<div class=" col-md-2 col-sm-2 col-xs-6 right">
 					<a  data-toggle="modal" data-target=".descargar" class="btn btn-primary  left" role="button"><i class="glyphicon glyphicon-cloud-download" aria-hidden="true"></i>&nbsp&nbsp Descargar </a>
 			</div>
@@ -56,23 +56,25 @@
 				  <thead>
 				   <tr>
 						<th>Código</th>
-						<th>Producto</th>
+						<th>Dependencia </th>
 						<th>Categoría</th>
-						<th>Esatado </th>
+						<th>Productos</th>												
 						<th>Unidad</th>
 						<th>Cant.Disponible </th>
+						<th>Esatado </th>
 						<!--<th>Eliminar</th>-->
 					</tr>
 				  </thead>
 				  <tbody>
 					
 					<tr>
-					  <td>01</td>
+						<td>01</td>
+						<td></td>						
+						<td>Categoría</td>
 						<td>Producto</td>
-						<td>Categoría</td>	
-						<td>disponibe / agotado</td>
 						<td> Unidad	</td>
-						<td>15</td>	
+						<td>15</td>								
+						<td>disponibe / agotado</td>
 					</tr> 
 				  </tbody>
 				</table>

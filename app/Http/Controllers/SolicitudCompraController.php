@@ -96,18 +96,18 @@ class SolicitudCompraController extends Controller
 			$i = 1;
 			$num_rqs = $post_data['totalrqs'];
 			while($i <= $num_rqs){
-				return $post_data;
 				$requisicion = Requisicion::find($post_data['rqs' . $i]);
 				$requisicion->est_rqs = 4;
 				$requisicion->rol_rqs = 3;
 				$requisicion->save();
 				
 				$accion_crear = array();
-				$accion_crear['obs_reg_rqs'] = $post_data['obs_scp'];
+				$accion_crear['obs_reg_rqs'] = $post_data['obv_scp'];
 				$accion_crear['rqs_id'] = $requisicion->id;
 				$accion_crear['acc_rqs_id'] = 4;
 				$accion_crear['user_id'] = Auth::user()->id;
 				RegistroHistoricoRequisicion::create($accion_crear);
+				$i++;
 			}
 			
 			return redirect()->intended('/solicitudcompra');
@@ -229,7 +229,9 @@ class SolicitudCompraController extends Controller
 			$productosRQS = ProductosRequisicion::with('producto')
 			->with('unidad_solicitada')
 			->with('requisicion')
-			->where('rqs_id',$rqs->id)->get();
+			->where('rqs_id',$rqs->id)
+			->where('apr_prod',true)
+			->get();
 			//return $productosRQS; 
 			foreach($productosRQS as $prodRQS){
 				$prodRQS->almacen = $this->getAlmacenProducto($prodRQS->producto->id);

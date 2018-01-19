@@ -130,8 +130,8 @@
                       <li><a href="/producto">Productos</a></li>
 					   <li><a href="/unidad">Unidad</a></li>
 					   <li><a href="/conversion"> Unidad empaque</a></li>
-					  <!-- <li><a href="/almacen">Productos almacén</a></li>-->
-					 <!--  <li><a href="/almacen/create">Kárdex almacén</a></li>-->
+					   <li><a href="/almacen">Productos almacén</a></li>
+					   <li><a href="/almacen/create">Kárdex almacén</a></li>
                     </ul>
                   </li>
                </ul>

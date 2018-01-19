@@ -231,99 +231,99 @@
 								</div>
 								<div class="table-responsive">
 									<table class="table table-bordered table-hover" id="education_fields2">
-									<thead>
+										<thead>
+											
 										
-									
-										<tr >
-											<th>#</th>
-											<th>Categoria</th>
-											<th>Producto</th>
-											<!--<th><a href="/producto" title="Producto" target="_blank" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-title="Producto"></a>Producto</th>-->
-											<th>Nuevo 	producto</th>
-											<th>Unidad</th>
-											<th>Cant. Solicitada</th>									
-											<th>Cant. Autorizada</th>	
-											<th>Estado</th>	
-		
-										</tr>
-									</thead>
-									<tbody>
-										@foreach($requisicion->productos as $prod)
-											<tr>
-												@if($loop->last)
-													<input type="hidden" class="form-control" id="productos" name="productos" value="{{$loop->index + 1}}"/>
-												@endif
-												<td>
-													{{$loop->index + 1}}
-													<input type="hidden" class="form-control" id="producto{{$loop->index + 1}}" name="producto{{$loop->index + 1}}" value="{{$prod->id}}"/>
-												</td>
-												
-												<td>
-													<div class="form-group">
-														@if($prod->producto)
-															{{$prod->producto->categoria->des_cat}}
-														@endif
-													</div>
-												</td>
-												
-												<td class="nopadding">
-													@if($prod->producto)
-														{{$prod->producto->des_prd}}
+											<tr >
+												<th>#</th>
+												<th>Categoria</th>
+												<th>Producto</th>
+												<!--<th><a href="/producto" title="Producto" target="_blank" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-title="Producto"></a>Producto</th>-->
+												<th>Nuevo 	producto</th>
+												<th>Unidad</th>
+												<th>Cant. Solicitada</th>									
+												<th>Cant. Autorizada</th>	
+												<th>Estado</th>	
+			
+											</tr>
+										</thead>
+										<tbody>
+											@foreach($requisicion->productos as $prod)
+												<tr>
+													@if($loop->last)
+														<input type="hidden" class="form-control" id="productos" name="productos" value="{{$loop->index + 1}}"/>
 													@endif
-												</td>
-												
-												<td class="nopadding" >
-													<div class="form-group">
-														<input type="text" class="form-control" id="detalle{{$loop->index + 1}}" name="detalle{{$loop->index + 1}}" @if(!$prod->producto) value="{{ $prod->nom_prd }}" @else readonly style="background:rgba(247, 247, 247, 0.57);"   @endif placeholder="Detalle"/>
-													</div>
-												</td>
-												
-												<td class="nopadding" >
-													<select class="form-control" id="unidad{{$loop->index + 1}}" name="unidad{{$loop->index + 1}}">
-														<option value="" selected>Seleccionar</option>
-														@if($prod->producto)
-															@foreach($prod->producto->unidades as $und)
-																<option name="" value="{{$und->id}}" @if($und->id == $prod->unidad_solicitada->id)selected="selected"@endif>{{$und->des_und}}</option>
-															@endforeach
-														@else
-															@foreach($unidades as $und)
-																<option name="" value="{{$und->id}}" @if($und->id == $prod->unidad_solicitada->id)selected="selected"@endif>{{$und->des_und}}</option>
-															@endforeach
-														@endif
-													</select>
-												</td>
-												
-												<td class="nopadding" >
-													<div class="form-group">
-														<input type="text" class="form-control disabled" id="cantidad{{$loop->index + 1}}" name="cantidad{{$loop->index + 1}}" disabled style="background:rgba(247, 247, 247, 0.57);" value="{{$prod->cant_sol_prd}}"/>
-													</div>
+													<td>
+														{{$loop->index + 1}}
+														<input type="hidden" class="form-control" id="producto{{$loop->index + 1}}" name="producto{{$loop->index + 1}}" value="{{$prod->id}}"/>
+													</td>
 													
-												</td>
-												
-												<td class="nopadding" >
-													<div class="form-group">
-														<input type="text" class="form-control" id="cant_apr_prd{{$loop->index + 1}}" name="cant_apr_prd{{$loop->index + 1}}" value="{{$prod->cant_apr_prd}}"  placeholder="Cantidad"/>
-													</div>
-												</td>
-												
-												<td class="nopadding" >
-													<div class="form-group row">
-														<div class="col-sm-8">
-															<input type="checkbox" id="apr_prod{{$loop->index + 1}}" name="apr_prod{{$loop->index + 1}}" autocomplete="off" @if($prod->apr_prod == true) checked @endif />
-															<div class="btn-group">
-																<label for="apr_prod{{$loop->index + 1}}" class="btn btn-primary">
-																	<span class="fa fa-check-square-o fa-lg"></span>
-																	<span class="fa fa-square-o fa-lg"></span>
-																</label>
+													<td>
+														<div class="form-group">
+															@if($prod->producto)
+																{{$prod->producto->categoria->des_cat}}
+															@endif
+														</div>
+													</td>
+													
+													<td class="nopadding">
+														@if($prod->producto)
+															{{$prod->producto->des_prd}}
+														@endif
+													</td>
+													
+													<td class="nopadding" >
+														<div class="form-group">
+															<input type="text" class="form-control" id="detalle{{$loop->index + 1}}" name="detalle{{$loop->index + 1}}" @if(!$prod->producto) value="{{ $prod->nom_prd }}" @else readonly style="background:rgba(247, 247, 247, 0.57);"   @endif placeholder="Detalle"/>
+														</div>
+													</td>
+													
+													<td class="nopadding" >
+														<select class="form-control" id="unidad{{$loop->index + 1}}" name="unidad{{$loop->index + 1}}">
+															<option value="" selected>Seleccionar</option>
+															@if($prod->producto)
+																@foreach($prod->producto->unidades as $und)
+																	<option name="" value="{{$und->id}}" @if($und->id == $prod->unidad_solicitada->id)selected="selected"@endif>{{$und->des_und}}</option>
+																@endforeach
+															@else
+																@foreach($unidades as $und)
+																	<option name="" value="{{$und->id}}" @if($und->id == $prod->unidad_solicitada->id)selected="selected"@endif>{{$und->des_und}}</option>
+																@endforeach
+															@endif
+														</select>
+													</td>
+													
+													<td class="nopadding" >
+														<div class="form-group">
+															<input type="text" class="form-control disabled" id="cantidad{{$loop->index + 1}}" name="cantidad{{$loop->index + 1}}" disabled style="background:rgba(247, 247, 247, 0.57);" value="{{$prod->cant_sol_prd}}"/>
+														</div>
+														
+													</td>
+													
+													<td class="nopadding" >
+														<div class="form-group">
+															<input type="text" class="form-control" id="cant_apr_prd{{$loop->index + 1}}" name="cant_apr_prd{{$loop->index + 1}}" value="{{$prod->cant_apr_prd}}"  placeholder="Cantidad"/>
+														</div>
+													</td>
+													
+													<td class="nopadding" >
+														<div class="form-group row">
+															<div class="col-sm-8">
+																<input type="checkbox" id="apr_prod{{$loop->index + 1}}" name="apr_prod{{$loop->index + 1}}" autocomplete="off" @if($prod->apr_prod == true) checked @endif />
+																<div class="btn-group">
+																	<label for="apr_prod{{$loop->index + 1}}" class="btn btn-primary">
+																		<span class="fa fa-check-square-o fa-lg"></span>
+																		<span class="fa fa-square-o fa-lg"></span>
+																	</label>
+																</div>
 															</div>
 														</div>
-													</div>
-												</td>
-											</tr>
-										@endforeach
-									</tbody>
-							
-								</table>
+													</td>
+												</tr>
+											@endforeach
+										</tbody>
+								
+									</table>
 								</div>
 								
 							</div>

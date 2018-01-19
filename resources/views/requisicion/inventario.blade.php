@@ -11,7 +11,7 @@
 			<div class="clearfix"></div>
 	    </div>
 		<div class="x_content">
-			<form class="form-horizontal" role="form" method="POST" action="{{ url('/requisicion/'.$requisicion->id) }}">
+			<form class="form-horizontal" role="form" method="POST" action="{{ url('/inventarioRQS/'.$requisicion->id) }}">
 				{{ csrf_field() }}
 				<input name="_method" type="hidden" value="PUT">						
 				<input id="id" name="id" type="hidden" value="{{ $requisicion->id }}">
@@ -59,6 +59,97 @@
 								<span>Paso 2</span>
 							</a>
 							</div>
+							<div class="block_content">
+								<h2 class="title">
+											<a>Lista de Productos</a>
+								</h2>
+								<br />					
+									
+								<div class="panel panel-default">
+									<div class="panel-heading text-center">
+										<span><strong><span class="glyphicon glyphicon-th-list"> </span> Productos</strong></span>
+									</div>
+									<div class="table-responsive">
+										<table class="table table-bordered table-hover" id="education_fields2">
+										<thead>
+											
+										
+											<tr >
+												<th>#</th>
+												<th>Categoria</th>
+												<th>Producto</th>
+												<th>Unidad</th>									
+												<th>Cant. Autorizada</th>
+												<th>Cant. Entregada</th>
+												<th>Cant. Pendiente</th>
+												
+												
+			
+											</tr>
+										</thead>
+										<tbody>
+											@foreach($requisicion->productos as $prod)
+												<tr>
+													@if($loop->last)
+														<input type="hidden" class="form-control" id="productos" name="productos" value="{{$loop->index + 1}}"/>
+													@endif
+													<td>
+														{{$loop->index + 1}}
+														<input type="hidden" class="form-control" id="producto{{$loop->index + 1}}" name="producto{{$loop->index + 1}}" value="{{$prod->id}}"/>
+													</td>
+													
+													<td>
+														<div class="form-group">
+															@if($prod->producto)
+																{{$prod->producto->categoria->des_cat}}
+															@endif
+														</div>
+													</td>
+													
+													<td class="nopadding">
+														@if($prod->producto)
+															{{$prod->producto->des_prd}}
+														@endif
+													</td>
+													<td class="nopadding">
+														@if($prod->producto)
+															{{$prod->unidad_solicitada->des_und}}
+														@endif
+													</td>											
+													<td class="nopadding" >
+														<div class="form-group">
+															<input type="text" class="form-control" id="cant_apr_prd{{$loop->index + 1}}" name="cant_apr_prd{{$loop->index + 1}}" value="{{$prod->cant_apr_prd}}" disabled style="background:rgba(247, 247, 247, 0.57);" />
+														</div>
+													</td>
+													<td class="nopadding" >
+														<div class="form-group">
+															<input type="text" class="form-control " id="cant_entr_prd{{$loop->index + 1}}" name="cant_entr_prd{{$loop->index + 1}}"  value="{{$prod->cant_entr_prd}}" onchange="calculo_diferencia_entrega({{$loop->index + 1}});" />
+														</div>
+													</td>
+													<td class="nopadding" >
+														<div class="form-group">
+															<input type="text" class="form-control" id="cant_dif_prd{{$loop->index + 1}}" name="cant_dif_prd{{$loop->index + 1}}" value="{{$prod->cant_dif_prd}}" readonly />
+														</div>
+													</td>
+													
+												</tr>
+											@endforeach
+										</tbody>
+								
+									</table>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="block">
+							<div class="tags">
+							<a href="" class="tag">
+								<span>Paso 2</span>
+							</a>
+							</div>
 							<br>
 						
 							<input type="hidden" class="form-control" id="cantproductos" name="cantproductos" value="1"/>
@@ -77,10 +168,13 @@
 										<thead>
 											<tr >
 												<th class="text-center">#</th>
-												<th class="text-center">Producto</th>
-												<th class="text-center">Nuevo Producto</th>													
+												<th class="text-center">Categoria</th>
+												<th class="text-center">Producto</th>												
 												<th class="text-center">Unidad</th>	
-												<th class="text-center">Cantidad</th>
+												<th class="text-center">Cant. Entregada</th>
+												<th class="text-center">Cant. Disponible</th>
+												<th class="text-center">Unidad</th>	
+												<th class="text-center">Cant. Utilizada</th>
 												<th class="text-center"><a></a></th>
 								
 											</tr>
@@ -96,32 +190,49 @@
 														<td>
 															{{$loop->index + 1}}
 														</td>
-														<td class="nopadding" >
-															<select id="producto{{$loop->index + 1}}" class="form-control" name="producto{{$loop->index + 1}}" onchange="cambio_productos({{$loop->index + 1}});" required>
-																<option value="" selected>Seleccionar</option>
-																@if(!$productos->isEmpty())
-																	@foreach($productos as $producto)
-																		<option value="{{ $producto->id}}" @if($req_prod->prod_id == $producto->id) selected @endif>{{ $producto->des_prd}} </option>
-																	@endforeach
-																@endif
-																<option value="0">Otro (Nuevo Producto)</option>
-															</select>
-															@if ($errors->has('producto' . ($loop->index + 1) ))
-																<span class="help-block">
-																	<strong>{{ $errors->first('producto1') }}</strong>
-																</span>
-															@endif
-														</td>
-														<td class="nopadding" >
-															<div class="form-group">
-																<input type="text" class="form-control" id="detalle{{$loop->index + 1}}" name="detalle{{$loop->index + 1}}" placeholder="Detalle" />
-																@if ($errors->has('detalle' . ($loop->index + 1)))
-																	<span class="help-block">
-																		<strong>{{ $errors->first('detalle' . ($loop->index + 1)) }}</strong>
-																	</span>
+														<td>
+														<div class="form-group">
+																@if($prod->producto)
+																	{{$prod->producto->categoria->des_cat}}
 																@endif
 															</div>
 														</td>
+														<td class="nopadding">
+															@if($prod->producto)
+																{{$prod->producto->des_prd}}
+															@endif
+														</td>
+															<td class="nopadding">
+														@if($prod->producto)
+															{{$prod->unidad_solicitada->des_und}}
+														@endif
+													</td>											
+													<td class="nopadding" >
+														<div class="form-group">
+															<input type="text" class="form-control" id="cant_apr_prd{{$loop->index + 1}}" name="cant_apr_prd{{$loop->index + 1}}" value="{{$prod->cant_apr_prd}}" disabled style="background:rgba(247, 247, 247, 0.57);" />
+														</div>
+													</td>
+													<td class="nopadding" >
+														<div class="form-group">
+															<input type="text" class="form-control " id="cant_entr_prd{{$loop->index + 1}}" name="cant_entr_prd{{$loop->index + 1}}"  value="{{$prod->cant_entr_prd}}" onchange="calculo_diferencia_entrega({{$loop->index + 1}});" />
+														</div>
+													</td>
+													<td class="nopadding" >
+														<div class="form-group">
+															<input type="text" class="form-control" id="cant_dif_prd{{$loop->index + 1}}" name="cant_dif_prd{{$loop->index + 1}}" value="{{$prod->cant_dif_prd}}" readonly />
+														</div>
+													</td>
+														<td class="nopadding" >
+															<div class="form-group">
+																<input type="text" class="form-control" id="cantidad{{$loop->index + 1}}" name="cantidad{{$loop->index + 1}}" value="" placeholder="Cantidad" required />
+															</div>
+															@if ($errors->has('cantidad' . ($loop->index + 1)))
+																<span class="help-block">
+																	<strong>{{ $errors->first('cantidad' . ($loop->index + 1)) }}</strong>
+																</span>
+															@endif
+														</td>
+														
 														<td class="nopadding" >
 															<select class="form-control" id="unidad{{$loop->index + 1}}" name="unidad{{$loop->index + 1}}" required>
 																<option value="" selected>Seleccionar</option>
@@ -134,16 +245,6 @@
 															@if ($errors->has('unidad' . ($loop->index + 1)))
 																<span class="help-block">
 																	<strong>{{ $errors->first('unidad' . ($loop->index + 1)) }}</strong>
-																</span>
-															@endif
-														</td>
-														<td class="nopadding" >
-															<div class="form-group">
-																<input type="text" class="form-control" id="cantidad{{$loop->index + 1}}" name="cantidad{{$loop->index + 1}}" value="" placeholder="Cantidad" required />
-															</div>
-															@if ($errors->has('cantidad' . ($loop->index + 1)))
-																<span class="help-block">
-																	<strong>{{ $errors->first('cantidad' . ($loop->index + 1)) }}</strong>
 																</span>
 															@endif
 														</td>
@@ -240,91 +341,7 @@
 							</div>
 						</div>
 					</li>
-					<li>
-						<div class="block">
-							<div class="tags">
-							<a href="" class="tag">
-								<span>Paso 3</span>
-							</a>
-							</div>
-							<div class="block_content">
-								<h2 class="title">
-									<a>Editar Proveedores sugeridos</a>
-								</h2>
-								<br/>
-								<div class="panel panel-default">
-								<div class="panel-heading text-center">
-									<span><strong><span class="glyphicon glyphicon-th-list"> </span> Proveedores</strong></span>
-								</div>
-								<div class="table-responsive">
-									<table class="table table-bordered table-hover" id="education_fields2">
-									<thead>
-										<tr >
-											<th>#</th>
-											<th>Proveedor </th>
-											<th> Nuevo  Proveedor </th>
-											<th>Teléfono </th>	
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>
-											1
-											</td>
-											<td>
-												
-												<select id="proveedor1" class="form-control" name="proveedor1" onchange="cambio_proveedores(1);">
-													<option value="" selected>Seleccionar</option>
-													@if(!$proveedores->isEmpty())
-														@foreach($proveedores as $proveedor)
-															<option value="{{ $proveedor->id}}">{{ $proveedor->raz_soc}} </option>
-														@endforeach
-													@endif
-													<option value="0">Otro</option>
-												</select>
-												@if ($errors->has('proveedor1'))
-													<span class="help-block">
-														<strong>{{ $errors->first('proveedor1') }}</strong>
-													</span>
-												@endif
-												
-											</td>
-											<td class="nopadding" >
-												<div class="form-group">
-													<input type="text" class="form-control" id="nombre1" name="nombre1" value="">
-													@if ($errors->has('nombre1'))
-														<span class="help-block">
-															<strong>{{ $errors->first('nombre1') }}</strong>
-														</span>
-													@endif
-												</div>
-											</td>
-											<td class="nopadding" >
-												<div class="form-group">
-													<input type="text" class="form-control" id="telefono1" name="telefono1" value="">
-													@if ($errors->has('telefono1'))
-														<span class="help-block">
-															<strong>{{ $errors->first('telefono1') }}</strong>
-														</span>
-													@endif
-												</div>
-											</td>
-											
-											<td class="nopadding" >
-												<div class="input-group-btn">
-													<button class="btn btn-sm btn-primary glyphicon glyphicon-plus btn-xs" type="button"  onclick="mas_proveedor({{$proveedores}});"> <span  aria-hidden="true"></span> </button>
-												</div>
-											</td>
-										</tr>
-									</tbody>
-							
-								</table>
-								</div>
-							</div>
-							<br/>
-							</div>
-						</div>
-					</li>
+					
 				</ul>
 				<div class="form-group right ">						
 					<button type="submit" class="btn btn-danger">Deshacer</button>
@@ -381,52 +398,13 @@
 			objTo.appendChild(divtest)
 			$("#cantproductos").val(producto);  
 		}
-		function mas_proveedor(proveedores) {
-			proveedor++;
-			var objTo = document.getElementById('education_fields2')
-			var divtest = document.createElement("tbody");
-			divtest.setAttribute("class", "form-group tr removeproveedor"+proveedor);
-			var rdiv = 'removeproveedor'+proveedor;
-			var text = '<tr><td>' + (proveedor) +'</td>'+
-				//Productos
-				'<td class="nopadding" >'+
-				'<select class="form-control" id="proveedor'+(proveedor)+'" name="proveedor'+(proveedor)+'" onchange="cambio_proveedores('+(proveedor)+');">'+
-				'<option value="" selected>Seleccionar</option>';
-				$.each(proveedores, function(index, element) {
-						text = text + '<option value="'+ element.id +'">' + element.raz_soc + '</option>';
-					});
-				text = text +
-				'<option value="0">Otro</option>' +
-				'</select></td>'+
-				//Nombre
-				'<td class="nopadding" >'+
-					'<div class="form-group"><input type="text" class="form-control" id="nombre'+(proveedor)+'" name="nombre'+(proveedor)+'" value=""></div>'+
-				'</td>'+
-				//Teléfono
-				'<td class="nopadding" >'+
-					'<div class="form-group"><input type="text" class="form-control" id="telefono'+(proveedor)+'" name="telefono'+(proveedor)+'" value=""></div>'+
-				'</td>'+
-				//Botones
-				 '<td class="nopadding" >'+
-					'<div class="input-group-btn"><button class="btn btn-sm btn-danger glyphicon glyphicon-minus btn-xs" type="button" onclick="remove_proveedor('+ proveedor +');">'+
-						'<span aria-hidden="true"></span>'+
-					'</button></div>'+
-				'</td></tr>';
-			divtest.innerHTML = text;
-			objTo.appendChild(divtest)
-			$("#cantproveedores").val(proveedor);  
-		}
 		function remove_education_fields(rid) {
 			$('.removeproducto'+rid).remove()
 			producto--;
 			$("#cantproductos").val(producto);  
 		}
 		
-		function remove_proveedor(rid) {
-			$('.removeproveedor'+rid).remove()
-			proveedor--;
-			$("#cantproveedores").val(proveedor);  
-		}
+	
 	   
 	   function cambio_productos(rid) {
 		   var opt = $('#producto'+rid).val();
@@ -451,27 +429,6 @@
 			});
 	   }
 	   
-	   function cambio_proveedores(rid) {
-		   $.get("{{ url('requisicion/cargarproveedor')}}", 
-				{
-					option: $('#proveedor'+rid).val(),
-				}, 
-				function(data) {
-					alert(data);
-					if(!jQuery.isEmptyObject(data)) {
-						$('#nombre'+rid).val(data.raz_soc);
-						$('#nombre'+rid).attr('readonly', true);
-						$('#telefono'+rid).val(data.tel_fij);
-						$('#telefono'+rid).attr('readonly', true);
-					}
-					else{
-						$('#nombre'+rid).val(data.raz_soc);
-						$('#nombre'+rid).attr('readonly', false);
-						$('#telefono'+rid).val(data.tel_fij);
-						$('#telefono'+rid).attr('readonly', false);
-					}
-			});
-	   }
 
 	</script>
 	

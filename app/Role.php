@@ -15,7 +15,7 @@ class Role extends EntrustRole
         'name', 'display_name', 'description'
     ];
 	
-	public function role(){
+	public function accionesrequisicion(){
 		
 	     return $this->hasMany('App\AccionesRequisicion');
 		 

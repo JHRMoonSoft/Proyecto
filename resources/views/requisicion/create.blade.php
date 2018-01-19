@@ -146,7 +146,7 @@
 							<div class="block_content">
 								<h2 class="title">
 									<br/>
-									<a>Registrar los productos</a>
+									<a>Registrar lista de productos</a>
 								</h2>
 								<br/>
 								<div class="panel panel-default">

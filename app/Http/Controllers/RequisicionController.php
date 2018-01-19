@@ -273,6 +273,13 @@ class RequisicionController extends Controller
 		
 	}*/
 	
+	public function inventarioRequisicion ($id)
+    {
+        $requisicion = Requisicion::find($id);
+		$productos = Producto::all();
+		return View('requisicion.inventario')->with(compact('requisicion','productos'));
+		
+	}
 	
 	public function exportRequisiciones () {
 		\Excel::create('Requisiciones', function($excel) {

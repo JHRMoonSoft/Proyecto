@@ -27,7 +27,7 @@ class EntregarRQSController extends Controller
      */
     public function index()
     {
-        $requisiciones = Requisicion::where('est_rqs',4)->whereIn('rol_rqs',array(2))->get();
+        $requisiciones = Requisicion::where('est_rqs',4)->whereIn('rol_rqs',array(3))->get();
 		$now = Carbon::now();
 		return View('entregarRQS.index')->with(compact('requisiciones','now'));
     }

@@ -29,6 +29,9 @@
 		<div class="x_content">
 			<form class="form-horizontal" role="form" method="POST" action="{{ url('/solicitudcompra/') }}">
 				{{ csrf_field() }}
+				<div id="rqspanel">
+					<input type="hidden" class="form-control" id="totalrqs" name="totalrqs" value="0" />
+				</div>
 				<ul class="list-unstyled timeline">
 					<li>
 					  <div class="block">
@@ -184,7 +187,7 @@
 													</div>
 												</td>
 												<td>
-													<input type="text" class="form-control" id="disponible1" name="disponible1" disabled/>
+													<input type="text" class="form-control" id="disponible1" name="disponible1" disabled />
 												</td>
 												<td class="nopadding" >
 													<div class="input-group-btn">
@@ -212,8 +215,8 @@
 				<button type="submit" class="btn btn-default">Guardar</button>
 				<button type="submit" class="btn btn-success">Enviar</button>
 			</div>
-
-        </div>
+		</form>
+    </div>
 		
 		
 		<!-- registro modal -->		  
@@ -226,7 +229,6 @@
 					  </button>
 					  <h4 class="modal-title" id="myModalLabel2">Registro Requisiciones Consolidado </h4>
 					</div>
-					<input type="hidden" class="form-control" id="totalrqs" name="totalrqs" value="0"/>
 					<div class="modal-body">
 						<div class="table-responsive">
 							<table class="table table-bordered table-hover" id="rqs" name="rqs" >
@@ -277,7 +279,7 @@
 				  <input type="submit" class="btn btn-primary">Guardar</input>
 
 				</div>
-			</form>
+			
         </div>
 	
 		 
@@ -311,7 +313,7 @@
 							rqs[index] = element.requisicion;
 							if(window.producto == 1 && window.primer_producto_cargado == false){
 								$('#producto1').val(element.producto.id);
-								$('#cantidad1').val(element.cant_sol_prd);
+								$('#cantidad1').val(element.cant_apr_prd);
 								$.get("{{ url('requisicion/cargarunidadesproducto')}}", 
 								{
 									option: $('#producto1').val(),
@@ -391,7 +393,7 @@
 								objTo.appendChild(divtest);
 								$("#cantproductos").val(window.producto);  
 								$('#producto'+window.producto).val(element.producto.id);
-								$('#cantidad'+window.producto).val(element.cant_sol_prd);
+								$('#cantidad'+window.producto).val(element.cant_apr_prd);
 								if(element.almacen.cnt_prd == null){
 										$('#disponible'+window.producto).val('0 ' + element.almacen.und);
 								}
@@ -428,7 +430,7 @@
 								var divtest2 = document.createElement("tbody");
 								var text2 = '<tr><td>' +
 								(element.id) +
-								'<input type="hidden" class="form-control" id="rqs'+(rq)+'" name="rqs'+(rq)+'" />'+
+								//'<input type="hidden" class="form-control" id="rqs'+(rq)+'" name="rqs'+(rq)+'" />'+
 								'</td>'+
 								//Fecha
 								'<td class="nopadding" >'+
@@ -446,10 +448,18 @@
 								divtest2.innerHTML = text2;
 								objTo2.appendChild(divtest2);
 								$("#totalrqs").val(rq);  
-								$("#rqs"+window.rq).val(element.id);  
+								//$("#rqs"+window.rq).val(element.id);  
 								$("#fecha"+window.rq).val(element.created_at);  
 								$('#asunto'+window.rq).val(element.asn_rqs);
 								//$('#solicitante'+window.rq).val(element.user);
+								
+								var input = document.createElement("input");
+								input.setAttribute('type', 'hidden');
+								input.setAttribute('id', 'rqs'+window.rq);
+								input.setAttribute('name', 'rqs'+window.rq);
+								input.setAttribute('value', element.id);
+								var parent = document.getElementById("rqspanel");
+								parent.appendChild(input);
 								rq++;
 							}
 						});
@@ -472,7 +482,7 @@
 							rqs[index] = element.requisicion;
 							if(window.producto == 1 && window.primer_producto_cargado == false){
 								$('#producto1').val(element.producto.id);
-								$('#cantidad1').val(element.cant_sol_prd);
+								$('#cantidad1').val(element.cant_apr_prd);
 								$.get("{{ url('requisicion/cargarunidadesproducto')}}", 
 								{
 									option: $('#producto1').val(),
@@ -552,7 +562,7 @@
 								objTo.appendChild(divtest);
 								$("#cantproductos").val(window.producto);  
 								$('#producto'+window.producto).val(element.producto.id);
-								$('#cantidad'+window.producto).val(element.cant_sol_prd);
+								$('#cantidad'+window.producto).val(element.cant_apr_prd);
 								if(element.almacen.cnt_prd == null){
 										$('#disponible'+window.producto).val('0 ' + element.almacen.und);
 								}
@@ -589,7 +599,7 @@
 								var divtest2 = document.createElement("tbody");
 								var text2 = '<tr><td>' +
 								(element.id) +
-								'<input type="hidden" class="form-control" id="rqs'+(rq)+'" name="rqs'+(rq)+'" value="" /></div>'+
+								//'<input type="hidden" class="form-control" id="rqs'+(rq)+'" name="rqs'+(rq)+'" value="" /></div>'+
 								'</td>'+
 								//Fecha
 								'<td class="nopadding" >'+
@@ -606,10 +616,20 @@
 								divtest2.innerHTML = text2;
 								objTo2.appendChild(divtest2);
 								$("#totalrqs").val(rq);  
-								$("#rqs"+window.rq).val(element.id);  
+								//$("#rqs"+window.rq).val(element.id);  
 								$("#fecha"+window.rq).val(element.created_at);  
 								$('#asunto'+window.rq).val(element.asn_rqs);
 								//$('#solicitante'+window.rq).val(element.user);
+								var input = document.createElement('input');
+								input.setAttribute('type', 'hidden');
+								input.setAttribute('class', 'form-control');
+								input.setAttribute('id', 'rqs'+window.rq);
+								input.setAttribute('name', 'rqs'+window.rq);
+								input.setAttribute('value', element.id);
+								var parent = document.getElementById("rqspanel");
+								parent.appendChild(input);
+								
+								
 								rq++;
 							}							
 						});

@@ -165,7 +165,7 @@
 												</td>
 												<td class="nopadding" >
 													<div class="form-group">
-														<input type="text" class="form-control " id="cant_entr_prd{{$loop->index + 1}}" name="cant_entr_prd{{$loop->index + 1}}"  value="{{$prod->cant_entr_prd}}" onchange="calculo_diferencia_entrega({{$loop->index + 1}});" />
+														<input type="text" class="form-control " id="cant_entr_prd{{$loop->index + 1}}" name="cant_entr_prd{{$loop->index + 1}}"  value="{{$prod->cant_entr_prd}}" onchange="calculo_diferencia_entrega(this.value, {{$loop->index + 1}});" />
 													</div>
 												</td>
 												<td class="nopadding" >
@@ -206,14 +206,21 @@
 			$('#boton').val(valor);
 			document.getElementById("formulario").submit();
 		}
-	 
 		
-		function calculo_diferencia_entrega(rid) {
+		function calculo_diferencia_entrega(valor, rid) {
 			var cant_apr = $('#cant_apr_prd'+rid).val();
-			var cant_entr = $('#cant_entr_prd'+rid).val();
+			var cant_entr = valor;
 			var cant_dif = 0;
-			if ((!cant_entr || (cant_entr > cant_apr) || cant_entr < 0)){
-				alert('Algo hiciste mal!!');
+			if (!cant_entr){
+				alert('Digita un valor.');
+				cant_entr = 0;
+			}
+			else if(cant_entr > cant_apr){
+				alert('La cantidad entregada no puede superar la autorizada.');
+				cant_entr = 0;
+			}
+			else if(cant_entr < 0){
+				alert('La cantidad entregada debe ser un valor válido.');
 				cant_entr = 0;
 			}
 			else{
