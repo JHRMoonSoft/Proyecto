@@ -105,8 +105,8 @@ class ReciboRQSController extends Controller
 			];
 		$validate = Validator::make($post_data, $rules);
 		if ($validate->passes()){
-			$requisicion = Requisicion::find($post_data['rqs_id']);
 			
+			$requisicion = Requisicion::find($post_data['rqs_id']);			
 			$requisicion->est_rqs = $post_data['est_rqs'];
 			$requisicion->rol_rqs = $post_data['rol_rqs'];
 			$requisicion->save();

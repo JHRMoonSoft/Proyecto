@@ -329,7 +329,6 @@
 				<div class="form-group right ">						
 					<button type="submit" class="btn btn-danger">Deshacer</button>
 					<button type="submit" class="btn btn-default">Guardar</button>
-					<button type="submit" class="btn btn-success">Enviar</button>
 				</div>
 			</form>
         </div>
@@ -413,7 +412,7 @@
 					'</button></div>'+
 				'</td></tr>';
 			divtest.innerHTML = text;
-			objTo.appendChild(divtest)
+			objTo.appendChild(divtest);
 			$("#cantproveedores").val(proveedor);  
 		}
 		function remove_education_fields(rid) {

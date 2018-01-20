@@ -103,7 +103,7 @@ class AutorizarRQSController extends Controller
 			//'jst_rqs'=> 'required',
 			//'tip_sol'=> 'required',
 			//'apr_com'=> 'required',
-			'fec_apr_com'=> 'required',
+			'fec_apr_com'=> '',
 			'prv_apr'=> 'required',
 			//'nom_rcp_rqs'=> 'required',
 			//'crg_rcp_rqs'=> 'required',

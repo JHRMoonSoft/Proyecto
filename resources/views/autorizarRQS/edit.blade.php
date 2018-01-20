@@ -199,7 +199,7 @@
 												<h5>Fecha de aprobación</h5>
 											<div class="input-group registration-date-time">
 												<span class="input-group-addon" id="fec_apr_com" name="fec_apr_com"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
-												<input class="form-control" name="fec_apr_com" id="fec_apr_com" @if($requisicion->fec_apr_com) value="{{$requisicion->fec_apr_com}}" @endif type="date"/>
+												<input class="form-control" name="fec_apr_com" id="fec_apr_com" placeholder="aaa-mm-dd" @if($requisicion->fec_apr_com) value="{{$requisicion->fec_apr_com->format('Y-m-d')}}" @endif type="date"/>
 												<span class="input-group-btn">
 												</span>
 											</div>

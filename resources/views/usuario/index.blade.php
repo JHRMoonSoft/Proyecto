@@ -67,16 +67,22 @@
 						<td>{{$user->area->tipoarea->des_tip_are}} / {{$user->area->des_are}}</td>
 						<td>
 							@foreach($user->roles as $role)
+							<span class="label label-primary">
 								{{$role->name}} 
+							</span>&nbsp
 							@endforeach
 						</td>	
-						<td>
+						
 							@if ($user->sta_usr==1)
+							<td>
 								Activo
+							</td>
 							@else
+							<td  class=" btn-danger">
 								Bloqueado
+							</td>
 							@endif
-						</td>	
+							
 						<td>{{ $user->created_at->format('Y-m-d') }}</td>	
 						<td>{{ $user->updated_at->format('Y-m-d') }}</td>								
 						<td><a href="{{ url('/users/'.$user->id) }}" title="Detalle" class="btn btn-success glyphicon glyphicon-file btn-xs" data-title="Detalle"></a>

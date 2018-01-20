@@ -34,7 +34,7 @@
 				<div class="block">
 					<div class="tags">
 					  <a href="" class="tag">
-						<span>Paso 1</span>
+						<span>RQS</span>
 					  </a>
 					</div>
 					<div class="block_content"> 
@@ -74,16 +74,7 @@
 						<br/>
 						
 					</div>
-				</div>
-			</li>
-				<li>
-				  <div class="block">
-					<div class="tags">
-					  <a href="" class="tag">
-						<span>Paso 2</span>
-					  </a>
-					</div>
-					<div class="block_content"><br/>
+						<div class="block_content"><br/>
 						<h2 class="title">
 							<a>Detalle de la Requisición  </a><br/>
 						</h2>
@@ -191,28 +182,6 @@
 						   </label>
 						
 						</div>
-						
-						 <!--<div class="dlk-radio btn-group  col-md-2" >
-						
-							<label class="btn  btn-primary">
-								<input name="choices[1]"  type="radio" value="1"disabled>
-								<i class="fa fa-check glyphicon glyphicon-ok"></i>SI
-						   </label>
-						   <label class="btn btn-danger">
-							   <input name="choices[1]"  type="radio" value="2"   defaultchecked="checked" disabled >
-							   <i class="fa fa-times glyphicon glyphicon-remove"></i>NO
-						   </label>
-						  
-							<label class="btn btn-success">
-								<input name="choices[1]"  type="radio" value="1">
-								<i class="fa fa-check glyphicon glyphicon-ok"></i>SI
-						   </label>
-						   <label class="btn btn-default">
-							   <input name="choices[1]"  type="radio" value="2" defaultchecked="checked">
-							   <i class="fa fa-times glyphicon glyphicon-remove"></i>NO
-						   </label>
-						   
-						</div>-->
 										
 						<div class=" col-md-3 " ><h5>Fecha de aprobación</h5>
 							<div class="input-group registration-date-time">
@@ -223,16 +192,18 @@
 							</div>
 						</div>	
 					</div>
-						
+						<br/>
 					</div>
-				  </div>
-				</li>
+					
+				</div>
+			</li>
+		
 				<li>
-					<div class="block">
+					<div class="block"><br/>
 						<div class="tags">
-						<a href="" class="tag">
-							<span>Paso 3</span>
-						</a>
+							<a href="" class="tag">
+								<span>Productos</span>
+							</a>
 						</div>
 						<div class="block_content">
 							<h2 class="title">
@@ -336,111 +307,84 @@
 								
 							</div>
 						</div>
-					</div>
-					</li>
-					<li>
-					<div class="block">
-						<div class="tags">
-						<a href="" class="tag">
-							<span>Paso 4</span>
-						</a>
-						</div>
-						<div class="block_content">
-						<h2 class="title">
-									<a>Proveedores sugeridos</a>
-						</h2>
-						<br />
-						<div class="panel panel-default">
-							<div class="panel-heading text-center">
-								<span><strong><span class="glyphicon glyphicon-th-list"> </span> Proveedores</strong></span>
-							</div>
-							<div class="table-responsive">
-								<table class="table table-bordered table-hover" id="education_fields2">
-								<thead>
-									<tr >
-										<th>#</th>
-										<th>Nombre Proveedor</th>
-										<th>Nit. Proveedor</th>
-										<th>Telefono</th>
-										<th>Estado</th>
-									</tr>
-								</thead>
-								<tbody>
-									@foreach($requisicion->proveedoresrequisicion as $prov)
-										<tr>
-											@if($loop->last)
-												<input type="hidden" class="form-control" id="proveedores" name="proveedores" value="{{$loop->index + 1}}"/>
-												<input type="hidden" class="form-control" id="nuevo_prov" name="nuevo_prov" value="0"/>
-											@endif
-											<td>
-												{{$loop->index + 1}}
-												<input type="hidden" class="form-control" id="proveedor{{$loop->index + 1}}" name="proveedor{{$loop->index + 1}}" value="{{$prov->id}}"/>
-											</td>
-											<td class="nopadding" >
-												<div class="form-group">
-													{{$prov->raz_soc}}
-												</div>
-											</td>
-											<td class="nopadding" >
-												<div class="form-group">
-													{{$prov->tip_doc}}.{{$prov->num_doc}}
-												</div>
-											</td>
-											<td class="nopadding" >
-												<div class="form-group">
-													{{$prov->tel_fij}}
-												</div>
-											</td>
-											<td class="nopadding" >
-												<div class="form-group row">
-													
-													<div class="col-sm-8">
-														<input type="checkbox" id="est_prov{{$loop->index + 1}}" name="est_prov{{$loop->index + 1}}" disabled  autocomplete="off" @if($prov->est_prov == true)checked="checked"@endif/>
-														<div class="btn-group">
-															<label for="est_prov{{$loop->index + 1}}" class="btn btn-primary">
-																<span class="fa fa-check-square-o fa-lg"></span>
-																<span class="fa fa-square-o fa-lg"></span>
-															</label>
+						
+						<div class="block_content"><br/>
+						
+							<h2 class="title">
+										<a>Proveedores sugeridos</a>
+							</h2>
+							<br />
+							<div class="panel panel-default">
+								<div class="panel-heading text-center">
+									<span><strong><span class="glyphicon glyphicon-th-list"> </span> Proveedores</strong></span>
+								</div>
+								<div class="table-responsive">
+									<table class="table table-bordered table-hover" id="education_fields2">
+									<thead>
+										<tr >
+											<th>#</th>
+											<th>Nombre Proveedor</th>
+											<th>Nit. Proveedor</th>
+											<th>Telefono</th>
+											<th>Estado</th>
+										</tr>
+									</thead>
+									<tbody>
+										@foreach($requisicion->proveedoresrequisicion as $prov)
+											<tr>
+												@if($loop->last)
+													<input type="hidden" class="form-control" id="proveedores" name="proveedores" value="{{$loop->index + 1}}"/>
+													<input type="hidden" class="form-control" id="nuevo_prov" name="nuevo_prov" value="0"/>
+												@endif
+												<td>
+													{{$loop->index + 1}}
+													<input type="hidden" class="form-control" id="proveedor{{$loop->index + 1}}" name="proveedor{{$loop->index + 1}}" value="{{$prov->id}}"/>
+												</td>
+												<td class="nopadding" >
+													<div class="form-group">
+														{{$prov->raz_soc}}
+													</div>
+												</td>
+												<td class="nopadding" >
+													<div class="form-group">
+														{{$prov->tip_doc}}.{{$prov->num_doc}}
+													</div>
+												</td>
+												<td class="nopadding" >
+													<div class="form-group">
+														{{$prov->tel_fij}}
+													</div>
+												</td>
+												<td class="nopadding" >
+													<div class="form-group row">
+														
+														<div class="col-sm-8">
+															<input type="checkbox" id="est_prov{{$loop->index + 1}}" name="est_prov{{$loop->index + 1}}" disabled  autocomplete="off" @if($prov->est_prov == true)checked="checked"@endif/>
+															<div class="btn-group">
+																<label for="est_prov{{$loop->index + 1}}" class="btn btn-primary">
+																	<span class="fa fa-check-square-o fa-lg"></span>
+																	<span class="fa fa-square-o fa-lg"></span>
+																</label>
+															</div>
 														</div>
 													</div>
-												</div>
-											</td>
-										</tr>
-									@endforeach
-								</tbody>
-						
-							</table>
+												</td>
+											</tr>
+										@endforeach
+									</tbody>
+							
+								</table>
+								</div>
+								
 							</div>
-							
 						</div>
-						<br />	
-							
-							
-						</div>
-					</div>
-					</li>
-			
-				<li>
-				  <div class="block">
-					<div class="tags">
-					  <a href="" class="tag">
-						<span>Paso 5</span>
-					  </a> 
-					</div>
-					<div class="block_content"><br/>
+						<div class="block_content"><br/>
 						<h2 class="title">
 								 <a>Recibí los elementos solicitados en este documento</a><br/>
 							</h2>
-							<br/>
 					
 						<div class="row ">
-							<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left"><br>
-								<div class="form-group">
-									<h5 >Observaciones	</h5>																		
-									<div class="col-md-8 col-sm-8 col-xs-12"></br>	
-										<textarea type="text" id="last-name" disabled style="background:#fff;" name="last-name"rows="6" required="required" class="form-control col-md-7 col-xs-12"></textarea>
-									</div><br>
-								</div>
+							<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
 								<div class="form-group   col-md-4 col-sm-4 col-xs-12"><br>									
 									<div class="form-group col-md-12 col-xs-12">
 										<h5>Nombre </h5>
@@ -469,8 +413,12 @@
 						</div>
 												
 					</div>
-				  </div>
+						
+					</div>
 				</li>
+				
+					
+			
 			</ul>
 
         </div>

@@ -71,7 +71,11 @@ class UsuarioController extends Controller
      */
     public function edit($id)
     {	$users= User::find($id);
-        $roles= $users->roles->toArray();
+        $r= $users->roles()->get();
+		$roles = array();
+		foreach($r as $rol){
+			array_push($roles, $rol->id);
+		}
 		$rolesGeneral = Role::all();
 		$areas = Area::all();
 		$cargos = Cargo::all ();
@@ -108,7 +112,7 @@ class UsuarioController extends Controller
 		
         if (!$validate->failed()) {			
             $users = User::find($post_data['id']);
-			$post_data['tip_dep'] = Area::find($post_data['dep_usr'])->tipoarea->id;
+			$tip_dep = Area::find($post_data['dep_usr'])->tipoarea->id;
 			$users->tip_doc = $post_data['tip_doc'];	 
 			$users->num_doc = $post_data['num_doc'];	 
 			$users->nom_usr = $post_data['nom_usr'];	 
@@ -116,7 +120,7 @@ class UsuarioController extends Controller
 			$users->usuario = $post_data['usuario'];	
 			$users->crg_usr = $post_data['crg_usr'];	 
 			$users->dep_usr = $post_data['dep_usr'];	 
-			$users->tip_dep=  $post_data['tip_dep'];
+			$users->tip_dep=  $tip_dep;
 			$users->crd_usr = $post_data['crd_usr'];	  
 			$users->tel_fij = $post_data['tel_fij'];	 
 			$users->tel_cel = $post_data['tel_cel'];	 

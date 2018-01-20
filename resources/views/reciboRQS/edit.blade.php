@@ -98,7 +98,7 @@
 						<div class="block">
 							<div class="tags">
 								<a href="" class="tag">
-									<span>Paso 1</span>
+									<span>Paso 2</span>
 								</a>
 							</div>
 							<div class="block_content">
@@ -151,7 +151,7 @@
 					<div class="block">
 						<div class="tags">
 						<a href="" class="tag">
-							<span>Paso 2</span>
+							<span>Paso 3</span>
 						</a>
 						</div>
 						<div class="block_content">
@@ -244,7 +244,7 @@
 				  <div class="block">
 					<div class="tags">
 					  <a href="" class="tag">
-						<span>Paso 3</span>
+						<span>Paso 4</span>
 					  </a>
 					</div>
 					<div class="block_content">
@@ -262,12 +262,22 @@
 										<div class="form-group col-md-12 col-xs-12">
 											<h5>Nombre </h5>
 												<input type="text" class="form-control" id="nom_rcp_rqs" name="nom_rcp_rqs" value="" placeholder="¿quien recibe?">
+												@if ($errors->has('nom_rcp_rqs'))
+													<span class="help-block">
+														<strong>{{ $errors->first('nom_rcp_rqs') }}</strong>
+													</span>
+												@endif
 										</div>										
 									</div>	
 									<div class="form-group   col-md-4 col-sm-4 col-xs-12"><br>						
 										<div class="form-group col-md-12 col-xs-12">
 											<h5>Cargo </h5>
 												<input type="text" class="form-control" id="crg_rcp_rqs" name="crg_rcp_rqs" value="" placeholder="cargo">
+												@if ($errors->has('crg_rcp_rqs'))
+													<span class="help-block">
+														<strong>{{ $errors->first('crg_rcp_rqs') }}</strong>
+													</span>
+												@endif
 										</div>
 									</div>	
 									<div class="form-group   col-md-4 col-sm-4 col-xs-12"><br>
@@ -279,7 +289,11 @@
 											<span class="input-group-btn">
 											</span>
 										</div>
-									
+										@if ($errors->has('fec_rcp_rqs'))
+											<span class="help-block">
+												<strong>{{ $errors->first('fec_rcp_rqs') }}</strong>
+											</span>
+										@endif
 									</div>	
 									
 								</form>
@@ -292,7 +306,6 @@
 				<div class="form-group right ">	
 																		
 					<button type="submit" class="btn btn-danger">Cancelar</button>
-					<button type="submit" class="btn btn-default">Guardar</button>
 					<button type="submit" class="btn btn-success">Enviar</button>
 				</div>
 			</form>

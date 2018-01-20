@@ -69,7 +69,9 @@
 						<td>{{$proveedor->tel_fij}}</td>
 						<td> 
 							@foreach($proveedor->categorias as $categoria)
-							{{$categoria->des_cat}}
+								<span class="label label-danger">
+									{{$categoria->des_cat}}
+								</span>&nbsp
 							@endforeach
 						</td>						
 						<td>{{ $proveedor->created_at->format('Y-m-d') }}</td>	

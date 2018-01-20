@@ -458,7 +458,7 @@
 					option: $('#proveedor'+rid).val(),
 				}, 
 				function(data) {
-					alert(data);
+					
 					if(!jQuery.isEmptyObject(data)) {
 						$('#nombre'+rid).val(data.raz_soc);
 						$('#nombre'+rid).attr('readonly', true);

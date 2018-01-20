@@ -96,8 +96,13 @@ class ProveedorController extends Controller
      */
     public function edit($id)
     {
-        $proveedors = Proveedor::find($id);
-		$categorias = $proveedors->categorias->toArray();
+        $proveedors = Proveedor::find($id);		
+		$r= $proveedors->categorias()->get();
+		$categorias = array();
+		foreach($r as $cat){
+			array_push($categorias, $cat->id);
+		}
+		
 		$categoriasGeneral = Categoria::all();
 		return view('proveedor.edit')->with(compact('categoriasGeneral','categorias','proveedors'));
 	
