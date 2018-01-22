@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
 		
 		$this->call(UsersTableSeeder::class);
 		$this->call(RolesTableSeeder::class);
+		$this->call(PermissionsSeeder::class);
 		
 		$this->call(CategoriasSeeder::class);
 		$this->call(UnidadesSeeder::class);
@@ -25,7 +26,9 @@ class DatabaseSeeder extends Seeder
 		
 		$this->call(EstadosRQSSeeder::class);
 		$this->call(AccionesRQSSeeder::class);
-		$this->call(ConfiguracionTableSeeder::class);
+		$this->call(ConfiguracionSeeder::class);
+		
+		
 		
     }
 }

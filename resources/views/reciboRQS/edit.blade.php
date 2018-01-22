@@ -305,7 +305,7 @@
 				</ul>			
 				<div class="form-group right ">	
 																		
-					<button type="submit" class="btn btn-danger">Cancelar</button>
+					<a  href="{{ url('/entregarRQS') }}" class="btn btn-danger" role="button">Cancelar </a>
 					<button type="submit" class="btn btn-success">Enviar</button>
 				</div>
 			</form>

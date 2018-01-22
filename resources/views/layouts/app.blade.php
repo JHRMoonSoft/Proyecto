@@ -112,7 +112,7 @@
                   </li>
 				   <li><a><i class="fa fa-cogs"></i> Permisos <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="/permisos/create">Nuevo Permisos </a></li>
+                      <li><a href="/permisos/create">Nuevo Permiso </a></li>
                       <li><a href="/permisos">Listado de Permisos </a></li>
                       <!--<li><a href="page_500.html">500 Error</a></li>-->
                     </ul>
@@ -128,8 +128,8 @@
                     <ul class="nav child_menu">
                       <li><a href="/categoria">Categorías</a></li>
                       <li><a href="/producto">Productos</a></li>
-					   <li><a href="/unidad">Unidad</a></li>
-					   <li><a href="/conversion"> Unidad empaque</a></li>
+					   <li><a href="/unidad">Unidades</a></li>
+					   <li><a href="/conversion"> Unidades de empaque</a></li>
 					   <li><a href="/almacen">Productos almacén</a></li>
 					   <li><a href="/almacen/create">Kárdex almacén</a></li>
                     </ul>
@@ -147,24 +147,24 @@
 					   <li><a href="/requisicion">Historial RQS</a></li>
                     </ul>
                   </li>
-				   <li><a><i class="fa fa-check-square-o"></i>Solicitud de compra <span class="fa fa-chevron-down"></span></a>
+				   <li><a><i class="fa fa-check-square-o"></i>Solicitud de compras <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
 					<li><a href="/solicitudcompra/create">Nueva SCP</a></li>
                       <li><a href="/solicitudcompra">Historial SCP</a></li>
                       <!--<li><a href="profile.html">Solicitud de compras </a></li>-->
                     </ul>
                   </li>
-				  <li><a><i class=" fa fa-file-text-o"></i> Orden de compra <span class="fa fa-chevron-down"></span></a>
+				  <li><a><i class=" fa fa-file-text-o"></i> Orden de compras <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="/ordencompra/create"> Nueva OCP</a></li>
                       <li><a href="/ordencompra">Historial OCP</a></li>
                       <!--<li><a href="login.html">Login Page</a></li>-->
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-file"></i> Factura  <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-file"></i> Facturas  <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="/factura/create">Nueva Factura </a></li>
-					   <li><a href="/factura">Historial Factura  </a></li>
+					   <li><a href="/factura">Historial Facturas  </a></li>
                       <!--<li><a href="login.html">Login Page</a></li>-->
                     </ul>
                   </li>
@@ -185,7 +185,7 @@
 					<a id="menu_toggle"><i class="fa fa-bars"></i></a>
 				  </div>
 				</ul>
-				
+				<!--
 				<ul class="nav navbar-nav navbar-left">
 					<li class="">
 					  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -220,7 +220,7 @@
 							
 						</ul>
 					</li>
-				</ul><!--
+				</ul>
 				<ul class="nav navbar-nav navbar-left">
 					<li class="">
 					  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">

@@ -397,7 +397,7 @@
 			</ul>
 			<div class="form-group right ">	
 																	
-				<button type="reset" class="btn btn-danger">Deshacer</button>
+				<button type="reset"class="btn btn-danger">Borrar</button>
 				<input type="submit" class="btn btn-success" value="Guardar"></input>
 			</div>
 		</form>

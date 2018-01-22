@@ -149,18 +149,19 @@ class AutorizarRQSController extends Controller
 			$requisicion = Requisicion::find($post_data['rqs_id']);
 			
 			$tip_sol = 0;
-			if (array_get($post_data, 'tip_sol1'.$i, false)) {
+			if (array_get($post_data, 'tip_sol1', false)) {
 				$tip_sol = $tip_sol + $post_data['tip_sol1'];
 			}
-			if (array_get($post_data, 'tip_sol2'.$i, false)) {
+			if (array_get($post_data, 'tip_sol2', false)) {
 				$tip_sol = $tip_sol + $post_data['tip_sol2'];
 			}
 			$requisicion->tip_sol = $tip_sol;
 			
-			if (array_get($post_data, 'apr_com'.$i, false)) {
+			if (array_get($post_data, 'apr_com', false)) {
 				$requisicion->apr_com = $post_data['apr_com'] == 1;
 			}
-			
+			$requisicion->fec_apr_com = $post_data['fec_apr_com'];
+			$requisicion->save();
 			return redirect()->intended('/autorizarRQS');
 			
 			

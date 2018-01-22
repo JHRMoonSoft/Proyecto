@@ -120,8 +120,8 @@
 					</div>
 					<div class="modal-footer"><!--
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-					<button type="submit" class="btn btn-success">Deshacer</button>
-					<button type="submit" class="btn btn-primary">Guardar</button>
+					<button type="reset" class="btn btn-primary">Borrar</button>
+					<button type="submit" class="btn btn-success">Guardar</button>
 					</div>
 				</form>
 			  </div>
@@ -173,8 +173,8 @@
 					</div>
 					<div class="modal-footer"><!--
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-					<button type="reset" class="btn btn-success">Deshacer</button>
-					<button type="submit" class="btn btn-primary">Guardar</button>
+					 <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+					<button type="submit" class="btn btn-success">Guardar</button>
 					</div>
 				</form>
 			  </div>
@@ -259,7 +259,7 @@ $('#edit_conversion_modal').on('shown.bs.modal', function(e) {
 	var conv = $(e.relatedTarget).data('conv');
 	var und_ini_id = conv['unidadinicial']['id'];
 	var und_fin_id = conv['unidadfinal']['id'];
-	alert(conv['unidadfinal']['id']);
+	<!--alert(conv['unidadfinal']['id']);-->
 	$(e.currentTarget).find('input[name="edit_und_ini_id"]').val(und_ini_id);
 	$(e.currentTarget).find('input[name="edit_und_fin_id"]').val(und_fin_id);
 	$(e.currentTarget).find('input[name="edit_cnt_fin_prd"]').val(conv['cnt_fin_prd']);

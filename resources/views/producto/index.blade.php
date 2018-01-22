@@ -138,7 +138,7 @@
 					</div>
 					<div class="modal-footer"><!--
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-						<button type="reset" class="btn btn-primary">Deshacer</button>
+						<button type="reset" class="btn btn-primary">Borrar</button>
 						<button type="submit" class="btn btn-success">Guardar</button>
 					</div>
 				</form>
@@ -199,7 +199,7 @@
 					</div>
 					<div class="modal-footer"><!--
 					  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-					  <button type="reset" class="btn btn-primary">Deshacer</button>
+					   <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
 					  <button type="submit" class="btn btn-success">Guardar</button>
 					</div>
 				</form>

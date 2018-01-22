@@ -264,14 +264,14 @@
 												</td>
 												<td class="nopadding" >
 													<div class="form-group">
-														<input type="text" class="form-control disabled" id="cantidad{{$loop->index + 1}}" name="cantidad{{$loop->index + 1}}" value="{{$prod->cant_sol_prd}}" disabled style="background:rgba(247, 247, 247, 0.57);" />
+														<input type="text" class="form-control disabled" id="cantidad{{$loop->index + 1}}" name="cantidad{{$loop->index + 1}}" value="{{$prod->cant_sol_prd}}" disabled style="background:rgba(247, 247, 247, 0.57);"   />
 													</div>
 													
 												</td>
 												
 												<td class="nopadding" >
 													<div class="form-group">
-														<input type="text" class="form-control" id="cant_apr_prd{{$loop->index + 1}}" name="cant_apr_prd{{$loop->index + 1}}" value="{{$prod->cant_apr_prd}}"  disabled style="background:rgba(247, 247, 247, 0.57);" />
+														<input type="text" class="form-control" id="cant_apr_prd{{$loop->index + 1}}" name="cant_apr_prd{{$loop->index + 1}}"  disabled style="background:rgba(247, 247, 247, 0.57);" @if($requisicion->registrohistoricorequisicion->count() == 1) value="0" @else   value="{{$prod->cant_apr_prd}}" @endif  />
 													</div>
 												</td>
 													<td class="nopadding" >
@@ -288,7 +288,7 @@
 												<td class="nopadding" >
 													<div class="form-group row">
 														<div class="col-sm-8">
-															<input type="checkbox" id="apr_prod{{$loop->index + 1}}" name="apr_prod{{$loop->index + 1}}" disabled  autocomplete="off" @if($prod->apr_prod == true) checked @endif />
+															<input type="checkbox" id="apr_prod{{$loop->index + 1}}" name="apr_prod{{$loop->index + 1}}" disabled  autocomplete="off"  @if($requisicion->registrohistoricorequisicion->count() == 1)  @else  @if($prod->apr_prod == true) checked @endif  @endif  />
 															<div class="btn-group">
 																<label for="apr_prod{{$loop->index + 1}}" class="btn btn-primary">
 																	<span class="fa fa-check-square-o fa-lg"></span>

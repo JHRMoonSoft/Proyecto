@@ -73,7 +73,7 @@
 										<span><strong><span class="glyphicon glyphicon-th-list"> </span> Productos</strong></span>
 									</div>
 									<div class="table-responsive">
-										<table class="table table-bordered table-hover" id="education_fields">
+									<table class="table table-bordered table-hover" id="education_fields">
 										<thead>
 											<tr >
 												<th class="text-center">#</th>
@@ -114,7 +114,9 @@
 														</td>
 														<td class="nopadding" >
 															<div class="form-group">
-																<input type="text" class="form-control" id="detalle{{$loop->index + 1}}" name="detalle{{$loop->index + 1}}" placeholder="Detalle" />
+																<div class="form-group">
+																	<input type="text" class="form-control" id="detalle{{$loop->index + 1}}" name="detalle{{$loop->index + 1}}" @if(!$producto->producto) value="{{ $producto->nom_prd }}" @else readonly style="background:rgba(247, 247, 247, 0.57);"   @endif placeholder="Detalle"/>
+																</div>
 																@if ($errors->has('detalle' . ($loop->index + 1)))
 																	<span class="help-block">
 																		<strong>{{ $errors->first('detalle' . ($loop->index + 1)) }}</strong>
@@ -139,8 +141,8 @@
 														</td>
 														<td class="nopadding" >
 															<div class="form-group">
-																<input type="text" class="form-control" id="cantidad{{$loop->index + 1}}" name="cantidad{{$loop->index + 1}}" value="" placeholder="Cantidad" required />
-															</div>
+															<input type="text" class="form-control disabled" id="cantidad{{$loop->index + 1}}" name="cantidad{{$loop->index + 1}}"  value="{{$req_prod->cant_sol_prd}}"/>
+														</div>
 															@if ($errors->has('cantidad' . ($loop->index + 1)))
 																<span class="help-block">
 																	<strong>{{ $errors->first('cantidad' . ($loop->index + 1)) }}</strong>
@@ -164,67 +166,7 @@
 												@endforeach
 											@else
 											<tbody>
-											<tr>
-												<td>
-													1
-												</td>
-												<td class="nopadding" >
-													
-													<select id="producto1" class="form-control" name="producto1" onchange="cambio_productos(1);" required>
-														<option value="" selected>Seleccionar</option>
-														@if(!$productos->isEmpty())
-															@foreach($productos as $producto)
-																<option value="{{ $producto->id}}">{{ $producto->des_prd}} </option>
-															@endforeach
-														@endif
-														<option value="0">Otro (Nuevo Producto)</option>
-													</select>
-													@if ($errors->has('producto1'))
-														<span class="help-block">
-															<strong>{{ $errors->first('producto1') }}</strong>
-														</span>
-													@endif
-												</td>
-												<td class="nopadding" >
-													<div class="form-group">
-														<input type="text" class="form-control" id="detalle1" name="detalle1" placeholder="Detalle" />
-														@if ($errors->has('detalle1'))
-															<span class="help-block">
-																<strong>{{ $errors->first('detalle1') }}</strong>
-															</span>
-														@endif
-													</div>
-												</td>
-												<td class="nopadding" >
-													<select class="form-control" id="unidad1" name="unidad1" required>
-														<option value="" selected>Seleccionar</option>
-													</select>
-													@if ($errors->has('unidad1'))
-														<span class="help-block">
-															<strong>{{ $errors->first('unidad1') }}</strong>
-														</span>
-													@endif
-												</td>
-												
-												<td class="nopadding" >
-													<div class="form-group">
-														<input type="text" class="form-control" id="cantidad1" name="cantidad1" value="" placeholder="Cantidad" required />
-													</div>
-													@if ($errors->has('cantidad1'))
-														<span class="help-block">
-															<strong>{{ $errors->first('cantidad1') }}</strong>
-														</span>
-													@endif
-												</td>
-												<td class="nopadding" >
-													<div class="input-group-btn">
-														<button class="btn btn-sm btn-primary glyphicon glyphicon-plus btn-xs" type="button"  onclick="education_fields({{$productos}});"> <span  aria-hidden="true"></span> </button>
-													</div>
-												</td>
-											</tr>
-											</tbody>
 											@endif
-										
 								
 									</table>
 									</div>
@@ -267,55 +209,105 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>
-											1
-											</td>
-											<td>
-												
-												<select id="proveedor1" class="form-control" name="proveedor1" onchange="cambio_proveedores(1);">
-													<option value="" selected>Seleccionar</option>
-													@if(!$proveedores->isEmpty())
-														@foreach($proveedores as $proveedor)
-															<option value="{{ $proveedor->id}}">{{ $proveedor->raz_soc}} </option>
-														@endforeach
-													@endif
-													<option value="0">Otro</option>
-												</select>
-												@if ($errors->has('proveedor1'))
-													<span class="help-block">
-														<strong>{{ $errors->first('proveedor1') }}</strong>
-													</span>
-												@endif
-												
-											</td>
-											<td class="nopadding" >
-												<div class="form-group">
-													<input type="text" class="form-control" id="nombre1" name="nombre1" value="">
-													@if ($errors->has('nombre1'))
+										@if(!$requisicion->proveedoresrequisicion->isEmpty())
+											@foreach($requisicion->proveedoresrequisicion as $req_prov)
+												<tr>
+													<td>
+													{{ $loop->index + 1 }}
+													</td>
+													<td>
+														<select id="proveedor{{ $loop->index + 1 }}" class="form-control" name="proveedor{{ $loop->index + 1 }}" onchange="cambio_proveedores({{ $loop->index + 1 }});">
+															<option value="">Seleccionar</option>
+															@if(!$proveedores->isEmpty())
+																@foreach($proveedores as $proveedor)
+																	<option value="{{ $proveedor->id}}" @if($req_prov->prov_id == $proveedor->id) selected @endif >{{ $proveedor->raz_soc}} </option>
+																@endforeach
+															@endif
+															<option value="0">Otro</option>
+														</select>
+														@if ($errors->has('proveedor' . ($loop->index + 1)))
+															<span class="help-block">
+																<strong>{{ $errors->first('proveedor' . ($loop->index + 1) ) }}</strong>
+															</span>
+														@endif
+													</td>
+													<td class="nopadding" >
+														<div class="form-group">
+															<input type="text" class="form-control" id="nombre{{ $loop->index + 1 }}" name="nombre{{ $loop->index + 1 }}" value="">
+															@if ($errors->has('nombre' . ($loop->index + 1)))
+																<span class="help-block">
+																	<strong>{{ $errors->first('nombre' . ($loop->index + 1)) }}</strong>
+																</span>
+															@endif
+														</div>
+													</td>
+													<td class="nopadding" >
+														<div class="form-group">
+															<input type="text" class="form-control" id="telefono1" name="telefono1" value="">
+															@if ($errors->has('telefono' . ($loop->index + 1)))
+																<span class="help-block">
+																	<strong>{{ $errors->first('telefono' . ($loop->index + 1)) }}</strong>
+																</span>
+															@endif
+														</div>
+													</td>
+													
+													<td class="nopadding" >
+														<div class="input-group-btn">
+															<button class="btn btn-sm btn-primary glyphicon glyphicon-plus btn-xs" type="button"  onclick="mas_proveedor({{$proveedores}});"> <span  aria-hidden="true"></span> </button>
+														</div>
+													</td>
+												</tr>
+											@endforeach
+										@else
+											<tr>
+												<td>
+												1
+												</td>
+												<td>
+													<select id="proveedor1" class="form-control" name="proveedor1" onchange="cambio_proveedores(1);">
+														<option value="" selected>Seleccionar</option>
+														@if(!$proveedores->isEmpty())
+															@foreach($proveedores as $proveedor)
+																<option value="{{ $proveedor->id}}">{{ $proveedor->raz_soc}} </option>
+															@endforeach
+														@endif
+														<option value="0">Otro</option>
+													</select>
+													@if ($errors->has('proveedor1'))
 														<span class="help-block">
-															<strong>{{ $errors->first('nombre1') }}</strong>
+															<strong>{{ $errors->first('proveedor1') }}</strong>
 														</span>
 													@endif
-												</div>
-											</td>
-											<td class="nopadding" >
-												<div class="form-group">
-													<input type="text" class="form-control" id="telefono1" name="telefono1" value="">
-													@if ($errors->has('telefono1'))
-														<span class="help-block">
-															<strong>{{ $errors->first('telefono1') }}</strong>
-														</span>
-													@endif
-												</div>
-											</td>
-											
-											<td class="nopadding" >
-												<div class="input-group-btn">
-													<button class="btn btn-sm btn-primary glyphicon glyphicon-plus btn-xs" type="button"  onclick="mas_proveedor({{$proveedores}});"> <span  aria-hidden="true"></span> </button>
-												</div>
-											</td>
-										</tr>
+												</td>
+												<td class="nopadding" >
+													<div class="form-group">
+														<input type="text" class="form-control" id="nombre1" name="nombre1" value="">
+														@if ($errors->has('nombre1'))
+															<span class="help-block">
+																<strong>{{ $errors->first('nombre1') }}</strong>
+															</span>
+														@endif
+													</div>
+												</td>
+												<td class="nopadding" >
+													<div class="form-group">
+														<input type="text" class="form-control" id="telefono1" name="telefono1" value="">
+														@if ($errors->has('telefono1'))
+															<span class="help-block">
+																<strong>{{ $errors->first('telefono1') }}</strong>
+															</span>
+														@endif
+													</div>
+												</td>
+												
+												<td class="nopadding" >
+													<div class="input-group-btn">
+														<button class="btn btn-sm btn-primary glyphicon glyphicon-plus btn-xs" type="button"  onclick="mas_proveedor({{$proveedores}});"> <span  aria-hidden="true"></span> </button>
+													</div>
+												</td>
+											</tr>
+										@endif
 									</tbody>
 							
 								</table>
@@ -327,7 +319,7 @@
 					</li>
 				</ul>
 				<div class="form-group right ">						
-					<button type="submit" class="btn btn-danger">Deshacer</button>
+					<button type="reset"class="btn btn-danger">Borrar</button>
 					<button type="submit" class="btn btn-default">Guardar</button>
 				</div>
 			</form>

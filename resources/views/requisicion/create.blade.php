@@ -328,8 +328,7 @@
 					</li>
 				</ul>
 				<div class="form-group right ">						
-					<button type="submit" class="btn btn-danger">Deshacer</button>
-					<button type="submit" class="btn btn-default">Guardar</button>
+					<button type="reset"class="btn btn-danger">Borrar</button>
 					<button type="submit" class="btn btn-success">Enviar</button>
 				</div>
 			</form>

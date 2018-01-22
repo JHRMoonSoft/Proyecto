@@ -173,7 +173,7 @@
 				<div class="ln_solid"></div>
 				<div class="form-group">
 					<div class="col-md-6 col-md-offset-3">
-					  <button type="reset" class="btn btn-primary">Cancelar</button>
+					  <button type="reset"class="btn btn-danger">Borrar</button>
 					  <button type="submit" class="btn btn-success">Guardar</button>
 					</div>
 				</div>

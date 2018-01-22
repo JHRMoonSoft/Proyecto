@@ -32,7 +32,7 @@ class ReciboRQSController extends Controller
      */
     public function index()
     {
-        $requisiciones = Requisicion::where('est_rqs',3)->whereIn('rol_rqs',array(2))->get();
+        $requisiciones = Requisicion::whereIn('est_rqs',array(5,6))->whereIn('rol_rqs',array(2,3))->get();
 		$now = Carbon::now();
 		return View('reciboRQS.index')->with(compact('requisiciones','now'));
     }

@@ -187,7 +187,8 @@
 					</li>
 				</ul>			
 				<div class="form-group right">						
-					<button class="btn btn-danger">Cancelar</button>
+					
+					<a  href="{{ url('/entregarRQS') }}" class="btn btn-danger" role="button">Cancelar </a>
 					<input type="hidden" class="form-control" id="boton" name="boton" value=""/>
 					<button type="button" onClick="validate('guardar')" class="btn btn-default">Guardar</button>
 					<button type="button" onClick="validate('enviar')" class="btn btn-success">Enviar</button>

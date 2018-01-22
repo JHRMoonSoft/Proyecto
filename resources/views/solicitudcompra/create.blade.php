@@ -139,7 +139,8 @@
 							<br />
 							<div class="panel panel-default">
 								<div class="panel-heading text-center">
-									 <button type="button" class="btn btn-success btn-xs left "data-toggle="modal" data-target=".registro" >Registro RQS</button>
+									 <button type="button" class="btn btn-success btn-xs left "data-toggle="modal" data-target=".registro" >Registro RQS</button>									 
+									<button type="reset"  class="btn btn-xs default glyphicon glyphicon glyphicon-refresh right"></button>
 									<span><strong><span class="glyphicon glyphicon-th-list"> </span> Productos</strong></span>
 								</div>
 								<div class="table-responsive">
@@ -210,10 +211,8 @@
 				</li>
 			</ul>
 			<div class="form-group right ">	
-																	
-				<button type="submit" class="btn btn-danger">Deshacer</button>
+				<a  href="{{ url('/solicitudcompra') }}" class="btn btn-danger" role="button">Cancelar </a>
 				<button type="submit" class="btn btn-default">Guardar</button>
-				<button type="submit" class="btn btn-success">Enviar</button>
 			</div>
 		</form>
     </div>
@@ -275,7 +274,7 @@
 				</div>
 				<div class="modal-footer"><!--
 				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-				  <button type="reset" class="btn btn-danger">Deshacer</button>
+				  <button type="reset"class="btn btn-danger">Borrar</button>
 				  <input type="submit" class="btn btn-primary">Guardar</input>
 
 				</div>

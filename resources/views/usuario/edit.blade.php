@@ -68,7 +68,7 @@
 					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="usuario">Usuario <span class="required">*</span>
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-					  <input id="usuario" name="usuario" value="{{ $users->usuario }}" class="form-control col-md-7 col-xs-12"   required="required" type="text">
+					  <input id="usuario" name="usuario" value="{{ $users->usuario }}" class="form-control col-md-7 col-xs-12" readonly  required="required" type="text">
 						@if ($errors->has('usuario'))
 							<span class="help-block">
 								<strong>{{ $errors->first('usuario') }}</strong>
@@ -199,7 +199,7 @@
 				<div class="ln_solid"></div>
 				<div class="form-group">
 					<div class="col-md-6 col-md-offset-3">
-					  <button type="reset" class="btn btn-primary">Cancelar</button>
+					  <button type="reset"class="btn btn-danger">Borrar</button>
 					  <button type="submit" class="btn btn-success">Guardar</button>
 					</div>
 				</div>

@@ -75,8 +75,13 @@ class RoleController extends Controller
         // get the customer
         $role = Role::find($id);
         // show the edit form and pass the customer
+		$p = $role->perms()->get();
+		$permissions = array();
+		foreach($p as $perm){
+			array_push($permissions, $perm->id);
+		}
 		
-		$permissions = $role->perms->toArray(); 
+		//$permissions = $role->perms->toArray(); 
 		$permissionsGeneral = Permission::all();
         return view('role.edit', compact('role', 'permissions', 'permissionsGeneral'));
     }

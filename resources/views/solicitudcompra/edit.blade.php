@@ -127,7 +127,9 @@
 							<div class="panel panel-default">
 								<div class="panel-heading text-center">
 									 <button type="button" class="btn btn-success btn-xs left "data-toggle="modal" data-target=".registro" >Registro RQS</button>
+									 <button type="reset" title="Producto" target="_blank" class="btn btn-xs btn-default glyphicon glyphicon glyphicon-refresh right" data-title="Producto"></button>
 									<span><strong><span class="glyphicon glyphicon-th-list"> </span> Productos</strong></span>
+									
 								</div>
 								<div class="table-responsive">
 									<table class="table table-bordered table-hover" id="education_fields2">
@@ -142,11 +144,21 @@
 								
 											</tr>
 										</thead>
-										<tbody>
 										@foreach($solicitudcompra->productossolicitudcompra as $prodsolcompra)
+											@if($loop->first)
+												<tbody>
+											@else
+												<tbody class="form-group tr removeclass{{$loop->index + 1}}">
+												@if($loop->last)
+													<script>
+														var producto = {{$loop->index + 1}};
+													</script>
+												@endif
+											@endif
 											<tr>
 												<td>
 													{{$loop->index + 1}}
+													
 												</td>
 							
 												<td class="nopadding" >
@@ -178,12 +190,19 @@
 													</div>
 												</td>
 												<td>
-													<input type="text" class="form-control" id="disponible1{{$loop->index + 1}}" name="disponible{{$loop->index + 1}}" disabled />
-													
+													@if($prodsolcompra->producto->almacen)
+														<input type="text" class="form-control" id="disponible{{$loop->index + 1}}" name="disponible{{$loop->index + 1}}" value="{{$prodsolcompra->producto->almacen->cnt_prd}} {{$prodsolcompra->almacen->und}}" disabled />
+													@else
+														<input type="text" class="form-control" id="disponible{{$loop->index + 1}}" name="disponible{{$loop->index + 1}}" value="0 {{$prodsolcompra->producto->unidad->des_und}}" disabled />
+													@endif
 												</td>
 												<td class="nopadding" >
 													<div class="input-group-btn">
-														<button class="btn btn-sm btn-primary glyphicon glyphicon-plus btn-xs" type="button"  onclick="education_fields2({{$productos}});"> <span  aria-hidden="true"></span> </button>
+														@if($loop->first)													
+															<button class="btn btn-sm btn-primary glyphicon glyphicon-plus btn-xs" type="button"  onclick="education_fields2({{$productos}});"> <span  aria-hidden="true"></span> </button>
+														@else
+															<button class="btn btn-sm btn-danger glyphicon glyphicon-minus btn-xs" type="button"  onclick="remove_education_fields2({{$loop->index + 1}});"> <span  aria-hidden="true"></span> </button>
+														@endif
 													</div>
 												</td>
 											</tr>
@@ -204,9 +223,8 @@
 			</ul>
 			<div class="form-group right ">	
 																	
-				<button type="submit" class="btn btn-danger">Deshacer</button>
+				<a  href="{{ url('/solicitudcompra') }}" class="btn btn-danger" role="button">Cancelar </a>
 				<button type="submit" class="btn btn-default">Guardar</button>
-				<button type="submit" class="btn btn-success">Enviar</button>
 			</div>
 		</form>
     </div>
@@ -268,7 +286,7 @@
 				</div>
 				<div class="modal-footer"><!--
 				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-				  <button type="reset" class="btn btn-danger">Deshacer</button>
+				 <button type="reset"class="btn btn-danger">Borrar</button>
 				  <input type="submit" class="btn btn-primary">Guardar</input>
 
 				</div>
@@ -280,7 +298,7 @@
 @stop
 @section('postscripts')  
 	<script>
-		var producto = 1;
+		//var producto = 1;
 		var rq = 1;
 		var primer_producto_cargado = false;
 		
@@ -634,6 +652,7 @@
 					//model.setAttribute('value', );
 			});
 		}
+		
 		function education_fields2(productos) {
 			producto++;
 			var objTo = document.getElementById('education_fields2')
@@ -674,7 +693,8 @@
 				objTo.appendChild(divtest)
 			
 		}
-	   function remove_education_fields2(rid) {
+		
+		function remove_education_fields2(rid) {
 		   $('.removeclass'+rid).remove()
 		   
 		   producto--;

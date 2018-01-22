@@ -155,6 +155,8 @@ class RequisicionController extends Controller
     public function edit($id)
     {
         $requisicion = Requisicion::find($id);
+		$registrohistoricorequisicion = RegistroHistoricoRequisicion::where('rqs_id',$id)->get();
+        $productos = $requisicion->productos()->get();
 		$productos = Producto::all();
 		$proveedores = Proveedor::all();
 		return View('requisicion.edit')->with(compact('requisicion','productos','proveedores'));
@@ -199,8 +201,10 @@ class RequisicionController extends Controller
 			$requisicions->fec_rcp_rqs = $post_data['fec_rcp_rqs'];
 			$requisicions->obs_rcp_rqs = $post_data['obs_rcp_rqs'];
 			$requisicions->est_rqs = $post_data['est_rqs'];
+			$requisicions->save();
 			return view('requisicion.show')->with('requisicions', $requisicions);
         }
+		return redirect()->back()->withInput()->withErrors($validate);
     }
 
     /**
@@ -306,6 +310,14 @@ class RequisicionController extends Controller
 		})->export('xlsx');
 		
 	}
+	
+		public function exporpdftRequisicion ($id)
+		{
+			
+			
+			
+			
+		}
 	
 		public function exportRequisicion($id) {
 			

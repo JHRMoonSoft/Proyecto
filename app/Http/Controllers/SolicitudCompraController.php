@@ -140,10 +140,14 @@ class SolicitudCompraController extends Controller
     public function edit($id)
     {	
         $solicitudcompra = SolicitudCompra::with('productossolicitudcompra')->find($id);
+		foreach($solicitudcompra->productossolicitudcompra as $prod){
+			$prod->almacen = $this->getAlmacenProducto($prod->prod_id);
+		}
+		//return $solicitudcompra;
 		$productos = Producto::all();
 		$rqsAutorizadas = EstadosRequisicion::find(2)->requisiciones;
 		//return $solicitudcompra;
-		return View('solicitudcompra.edit')->with(compact('productos','rqsAutorizadas','solicitudcompra','productosolicitudCompras'));
+		return View('solicitudcompra.edit')->with(compact('productos','rqsAutorizadas','solicitudcompra'));
     }
 
     /**
@@ -195,7 +199,7 @@ class SolicitudCompraController extends Controller
 	public function cargarunidadesproducto(Request $request)
     {
 		//$unidades = Unidad::whereIn('id', '=', $producto)->get();
-		$unidades = getUnidadesProducto($request['option']);
+		$unidades = $this->getUnidadesProducto($request['option']);
 		return response()->json($unidades);
 	}
 	

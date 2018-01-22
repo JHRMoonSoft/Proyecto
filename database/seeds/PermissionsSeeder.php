@@ -1,0 +1,145 @@
+<?php
+
+use Illuminate\Database\Seeder;
+use \Carbon\Carbon;
+class PermissionsSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        //
+		DB::table('permissions')->insert(['name'=>'Ver-registrar-rqs','display_name'=>'1.1.1.Ver-registrar-rqs','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-registrar-lista-productos','display_name'=>'1.1.2.Ver-registrar-lista-productos','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-registrar-proveedores-sugeridos','display_name'=>'1.1.3.Ver-registrar-proveedores-sugeridos','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Enviar-nueva-rqs','display_name'=>'1.1.4.Enviar-nueva-rqs','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-menú-recibir-rqs','display_name'=>'1.2.Ver-menú-recibir-rqs','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-editar-recibir-rqs','display_name'=>'1.2.1.Ver-editar-recibir-rqs','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-detalle-recibir-rqs','display_name'=>'1.2.2. Ver-detalle-recibir-rqs','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-descargar-recibir-rqs','display_name'=>'1.2.3. Ver-descargar-recibir-rqs','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-descargar-todo-recibir-rqs','display_name'=>'1.2.4.Ver-descargar-todo-recibir-rqs','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-registrar-recibir-rqs','display_name'=>'1.2.5.Ver-registrar-recibir-rqs','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Enviar-recibir-rqs','display_name'=>'1.2.6.Enviar-recibir-rqs','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-menú-historial-rqs-usuarios','display_name'=>'1.3.Ver-menú-historial-rqs-usuarios','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-nueva-rqs-historial-rqs-usuarios','display_name'=>'1.3.1.Ver-nueva-rqs-historial-rqs-usuarios','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-buscar-historial-rqs-usuarios','display_name'=>'1.3.2.Ver-buscar-historial-rqs-usuarios','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-editar-historial-rqs-usuarios','display_name'=>'1.3.3.Ver-editar-historial-rqs-usuarios','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Editar-lista-de-productos','display_name'=>'1.3.3.1.Editar-lista-de-productos','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Editar-lista-de-proveedores-sugeridos','display_name'=>'1.3.3.2.Editar-lista-de-proveedores-sugeridos','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Guardar-botón','display_name'=>'1.3.3.3.Guardar-botón','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-detalle-historial-rqs-usuarios','display_name'=>'1.3.4.Ver-detalle-historial-rqs-usuarios','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-descargar-historial-rqs-usuarios','display_name'=>'1.3.5.Ver-descargar-historial-rqs-usuarios','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-descargar-todo-historial-rqs-usuarios','display_name'=>'1.3.6.Ver-descargar-todo-historial-rqs-usuarios','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-menú-empresa','display_name'=>'2.Ver-menú-empresa','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-menú-empresa(crearoVerempresa)','display_name'=>'2.1.Ver-menú-empresa(crearoVerempresa)','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Editar-empresa','display_name'=>'2.1.1.Editar-empresa','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-menú-área-programa','display_name'=>'2.2.Ver-menú-área-programa','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-menú-cargos','display_name'=>'2.3.Ver-menú-cargos','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-menú-usuarios','display_name'=>'3.Ver-menú-usuarios','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-menú-nuevo-usuario','display_name'=>'3.1.Ver-menú-nuevo-usuario','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-menú-listado-de-usuarios','display_name'=>'3.2.Ver-menú-listado-de-usuarios','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-detalle-usuario','display_name'=>'3.2.1.Ver-detalle-usuario','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Editar-usuario','display_name'=>'3.2.2.Editar-usuario','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-menú-roles','display_name'=>'4.Ver-menú-roles','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-menú-nuevo-rol','display_name'=>'4.1.Ver-menú-nuevo-rol','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-menú-listado-de-roles','display_name'=>'4.2.Ver-menú-listado-de-roles','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-detalle-rol','display_name'=>'4.2.1.Ver-detalle-rol','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Editar-rol','display_name'=>'4.2.2.Editar-rol','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-menú-permisos','display_name'=>'5.Ver-menú-permisos','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-menú-nuevo-permisos','display_name'=>'5.1.Ver-menú-nuevo-permisos','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-menú-listado-de-permisos','display_name'=>'5.2.Ver-menú-listado-de-permisos','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-detalle-permiso','display_name'=>'5.2.1.Ver-detalle-permiso','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Editar-rol','display_name'=>'5.2.2.Editar-rol','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-menú-proveedores','display_name'=>'6.Ver-menú-proveedores','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-menú-nuevo-proveedor','display_name'=>'6.1.Ver-menú-nuevo-proveedor','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-menú-listado-de-proveedores','display_name'=>'6.2.Ver-menú-listado-de-proveedores','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-detalle-proveedor','display_name'=>'6.2.1.Ver-detalle-proveedor','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Editar-proveedor','display_name'=>'6.2.2.Editar-proveedor','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-menú-almacén','display_name'=>'7.Ver-menú-almacén','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-menú-categorías','display_name'=>'7.1.Ver-menú-categorías','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Crear-categoría','display_name'=>'7.1.1.Crear-categoría','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Editar-categoría','display_name'=>'7.1.2.Editar-categoría','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-menú-productos','display_name'=>'7.2.Ver-menú-productos','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Crear-producto','display_name'=>'7.2.1.Crear-producto','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Editar-producto','display_name'=>'7.2.2.Editar-producto','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-menú-unidades','display_name'=>'7.3.Ver-menú-unidades','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Crear-unidad','display_name'=>'7.3.1.Crear-unidad','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Editar-unidad','display_name'=>'7.3.2.Editar-unidad','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-menú-unidades-empaque','display_name'=>'7.4.Ver-menú-unidades-empaque','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Crear-unidad-empaque','display_name'=>'7.4.1.Crear-unidad-empaque','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Editar-unidad-empaque','display_name'=>'7.4.2.Editar-unidad-empaque','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-menú-producto-almacén','display_name'=>'7.5.Ver-menú-producto-almacén','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Crear-producto-almacén','display_name'=>'7.5.1.Crear-producto-almacén','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Editar-producto-almacén','display_name'=>'7.5.2.Editar-producto-almacén','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-menú-kardex-almacén','display_name'=>'7.6.Ver-menú-kardex-almacén','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Crear-ingreso-almacén','display_name'=>'7.6.1.Crear-ingreso-almacén','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-descargar-todo-kardex-almacén','display_name'=>'7.6.2.Ver-descargar-todo-kardex-almacén','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-buscar-kardex-almacén','display_name'=>'7.6.3.Ver-buscar-kardex-almacén','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-menú-gestionar-rqs','display_name'=>'8.Ver-menú-gestionar-rqs','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-menú-autorizar-rqs','display_name'=>'8.1.Ver-menú-autorizar-rqs','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-editar-autorizar-rqs','display_name'=>'8.1.1.Ver-editar-autorizar-rqs','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-registro-autorizar-rqs','display_name'=>'8.1.1.1.Ver-registro-autorizar-rqs','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-detalle-requisición-autorizar-rqs','display_name'=>'8.1.1.2.Ver-detalle-requisición-autorizar-rqs','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-lista-de-productos-autorizar-rqs','display_name'=>'8.1.1.3.Ver-lista-de-productos-autorizar-rqs','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-lista-de-proveedores-autorizar-rqs','display_name'=>'8.1.1.4.Ver-lista-de-proveedores-autorizar-rqs','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-guardar-autorizar-rqs','display_name'=>'8.1.1.5.Ver-guardar-autorizar-rqs','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-enviar-autorizar-rqs','display_name'=>'8.1.1.6.Ver-enviar-autorizar-rqs','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-detalle-autorizar-rqs','display_name'=>'8.1.2.Ver-detalle-autorizar-rqs','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-descargar-autorizar-rqs','display_name'=>'8.1.3.Ver-descargar-autorizar-rqs','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-descargar-todo-autorizar-rqs','display_name'=>'8.1.4.Ver-descargar-todo-autorizar-rqs','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-menú-entregar-rqs','display_name'=>'8.2.Ver-menú-entregar-rqs','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-editar-autorizar-rqs','display_name'=>'8.2.1.Ver-editar-autorizar-rqs','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-registro-entregar-rqs','display_name'=>'8.2.1.1.Ver-registro-entregar-rqs','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-lista-productos-entregar-rqs','display_name'=>'8.2.1.2.Ver-lista-productos-entregar-rqs','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-guardar-entregar-rqs','display_name'=>'8.2.1.3.Ver-guardar-entregar-rqs','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-enviar-entregar-rqs','display_name'=>'8.2.1.4.Ver-enviar-entregar-rqs','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-detalle-entregar-rqs','display_name'=>'8.2.2.Ver-detalle-entregar-rqs','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-descargar-entregar-rqs','display_name'=>'8.2.3.Ver-descargar-entregar-rqs','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-descargar-todo-entregar-rqs','display_name'=>'8.2.4.Ver-descargar-todo-entregar-rqs','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-buscar-entregar-rqs','display_name'=>'8.2.5.Ver-buscar-entregar-rqs','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-menú-historial-rqs','display_name'=>'8.3.Ver-menú-historial-rqs','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-nueva-rqs-historial-rqs-usuarios','display_name'=>'8.3.1.Ver-nueva-rqs-historial-rqs-usuarios','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-buscar-historial-rqs-usuarios','display_name'=>'8.3.2.Ver-buscar-historial-rqs-usuarios','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-editar-historial-rqs-usuarios','display_name'=>'8.3.3.Ver-editar-historial-rqs-usuarios','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Editar-lista-de-productos','display_name'=>'8.3.3.1.Editar-lista-de-productos','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Editar-lista-de-proveedores-sugeridos','display_name'=>'8.3.3.2.Editar-lista-de-proveedores-sugeridos','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Guardar-botón','display_name'=>'8.3.3.3.Guardar-botón','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-detalle-historial-rqs-usuarios','display_name'=>'8.3.4.Ver-detalle-historial-rqs-usuarios','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-descargar-historial-rqs-usuarios','display_name'=>'8.3.5.Ver-descargar-historial-rqs-usuarios','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-descargar-todo-historial-rqs-usuarios','display_name'=>'8.3.6.Ver-descargar-todo-historial-rqs-usuarios','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-menú-solicitud-de-compras','display_name'=>'9.Ver-menú-solicitud-de-compras','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-menú-nueva-scp','display_name'=>'9.1.Ver-menú-nueva-scp','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-menú-historial-scp','display_name'=>'9.2.Ver-menú-historial-scp','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-nueva-scp','display_name'=>'9.2.1.Ver-nueva-scp','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-editar-scp','display_name'=>'9.2.2.Ver-editar-scp','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-detalle-scp','display_name'=>'9.2.3.Ver-detalle-scp','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-descargar-scp','display_name'=>'9.2.4.Ver-descargar-scp','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-descargar-todo-scp','display_name'=>'9.2.5.Ver-descargar-todo-scp','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-buscar-scp','display_name'=>'9.2.6.Ver-buscar-scp','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-menú-orden-de-compras','display_name'=>'10.Ver-menú-orden-de-compras','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-menú-nueva-ocp','display_name'=>'10.1.Ver-menú-nueva-ocp','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-menú-historial-ocp','display_name'=>'10.2.Ver-menú-historial-ocp','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-nueva-ocp','display_name'=>'10.2.1.Ver-nueva-ocp','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-editar-ocp','display_name'=>'10.2.2.Ver-editar-ocp','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-detalle-ocp','display_name'=>'10.2.3.Ver-detalle-ocp','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-descargar-ocp','display_name'=>'10.2.4.Ver-descargar-ocp','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-descargar-todo-ocp','display_name'=>'10.2.5.Ver-descargar-todo-ocp','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-buscar-ocp','display_name'=>'10.2.6.Ver-buscar-ocp','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-menú-facturas','display_name'=>'11.Ver-menú-facturas','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-menú-nueva-factura','display_name'=>'11.1.Ver-menú-nueva-factura','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-menú-historial-factura','display_name'=>'11.2.Ver-menú-historial-factura','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-nueva-factura','display_name'=>'11.2.1.Ver-nueva-factura','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-editar-factura','display_name'=>'11.2.2.Ver-editar-factura','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-detalle-factura','display_name'=>'11.2.3.Ver-detalle-factura','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-descargar-factura','display_name'=>'11.2.4.Ver-descargar-factura','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-descargar-todo-factura','display_name'=>'11.2.5.Ver-descargar-todo-factura','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-buscar-factura','display_name'=>'11.2.6.Ver-buscar-factura','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+		DB::table('permissions')->insert(['name'=>'Ver-ingreso-almacén','display_name'=>'11.2.7.Ver-ingreso-almacén','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
+
+
+
+    }
+}
