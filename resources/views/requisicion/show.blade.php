@@ -92,7 +92,7 @@
 										<th>Justificación</th>
 									    <th>Solicitante	</th>										
 									    <th>Cargo</th>
-										<th>Área</th>
+										<th> Dependencia</th>
 										<th>Coordinación</th>
 										</tr>
 									</thead>
@@ -116,7 +116,7 @@
 														@else
 															<td>{{$reghis->user->nom_usr .' '. $reghis->user->ape_usr}}</td>
 															<td>{{$reghis->user->cargo->des_crg }}</td>
-															<td>{{$reghis->user->area->des_are}}</td>
+															<td>{{$reghis->user->area->tipoarea->des_tip_are}} / {{$reghis->user->area->des_are}}</td>
 															<td>{{$reghis->user->crd_usr }}	</td>															
 														@endif
 													@endif

@@ -76,6 +76,7 @@ class OrdenCompraController extends Controller
 		//
         $validate = Validator::make($post_data, $rules);
          if ($validate->passes()){
+			 //return $post_data;
 			$ordencompra = OrdenCompra::create($post_data);
 			$numprods = (int)$post_data['cantproductos'];
 			$i = 1;
@@ -89,7 +90,7 @@ class OrdenCompraController extends Controller
 				$producto_i['val_unt'] = $post_data['valorunitario'.$i];
 				$producto_i['val_tol'] = $post_data['valortotal'.$i];
 				$producto_i['fec_ven'] = Carbon::parse($post_data['vence'.$i]);
-				$producto_i['prod_sol_comp_id'] = $post_data['prodsolcompra'.$i];
+				$producto_i['prod_sol_comp_id'] = $post_data['prodsolcompra'.$i] == 0 ? null : $post_data['prodsolcompra'.$i];
 				$producto_i['ord_comp_id'] = $ordencompra->id;
 				
 				if(!$this->IsNullOrEmptyString($producto_i['prod_id']) and !$this->IsNullOrEmptyString($producto_i['cant_prd']) and !$this->IsNullOrEmptyString($producto_i['unidad_emp_id'])){
@@ -220,16 +221,45 @@ class OrdenCompraController extends Controller
 	
 	public function cargarproductosdecategoria(Request $request)
     {
-		$productos = Producto::where('categoria_id','=',$request['option'])->get();
+		$prodSolCom = ProductosSolicitudCompra::all('prod_id');
+		$productos = Producto::where('categoria_id','=',$request['option'])
+							->whereIn('id',$prodSolCom)
+							->get();
+		
 		return response()->json($productos);
 	}
 	
 	public function cargarproductosseleccionados(Request $request)
     {
-		$productos = ProductosSolicitudCompra::with('producto')
+		if($request['prds'] == 0){
+			
+			$prod_cats = Producto::where('categoria_id','=',$request['cats'])
+							->get(['id']);
+			$productos = ProductosSolicitudCompra::with('producto')
+					->with('unidad_solicitada')
+					->whereIn('prod_id',$prod_cats)->get();
+		}
+		else{			
+			$productos = ProductosSolicitudCompra::with('producto')
 					->with('unidad_solicitada')
 					->where('prod_id','=',$request['prds'])->get();
+		}
+		foreach($productos as $prod){
+			$prod->unidades = $prod->producto->unidades;
+		}
 		return response()->json($productos);
+	}
+	
+	public function getUnidadesProducto(int $id){
+		
+		$producto = Producto::find($id);
+		if($producto){
+			$unidades = $producto->unidades()->get();
+		}
+		else{
+			$unidades = Unidad::all();
+		}
+		return $unidades;
 	}
 	
 }

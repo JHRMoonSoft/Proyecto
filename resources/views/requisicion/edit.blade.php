@@ -29,13 +29,10 @@
 										<th>Solicitante</th>
 										<th>Cargo</th>
 										<th>Dependencia</th>
-										
-										
 									</tr>
 								</thead>
 								<tbody>
 									@foreach($requisicion->registrohistoricorequisicion as $reg)
-										@if($loop->first)
 											<tr>
 												<td>{{$requisicion->id}}</td>
 												<td>{{$reg->created_at->format('d-m-Y')}}</td>
@@ -46,6 +43,8 @@
 												<td>{{$reg->user->cargo->des_crg}}</td>
 												<td>{{$reg->user->area->tipoarea->des_tip_are}} / {{$reg->user->area->des_are}}</td>
 											</tr> 
+										@if($loop->last)
+											<input id="acc_rqs" name="acc_rqs" type="hidden" value="{{ $reg->acc_rqs_id }}">
 										@endif
 									@endforeach
 								</tbody>
@@ -60,9 +59,7 @@
 							</a>
 							</div>
 							<br>
-						
-							<input type="hidden" class="form-control" id="cantproductos" name="cantproductos" value="1"/>
-							<input type="hidden" class="form-control" id="cantproveedores" name="cantproveedores" value="1"/>
+							
 							<div class="block_content">
 								<h2 class="title">
 									<a>Editar lista de productos</a>
@@ -87,11 +84,14 @@
 										</thead>
 											@if(!$requisicion->productos->isEmpty())
 												@foreach($requisicion->productos as $req_prod)
-													@if($loop->first)
-														<tbody>
-													@else
-														<tbody class="form-group tr removeproducto{{$loop->index + 1}}">
+													@if($loop->last)
+														<input type="hidden" class="form-control" id="cantproductos" name="cantproductos" value="{{$loop->index + 1}}"/>
+														<script>
+															var producto = {{$loop->index + 1}};
+														</script>
+														<input type="hidden" class="form-control" id="cantproductosinicial" name="cantproductosinicial" value="{{$loop->index + 1}}"/>
 													@endif
+													<tbody class="form-group tr">
 													<tr>
 														<td>
 															{{$loop->index + 1}}
@@ -154,10 +154,6 @@
 																<div class="input-group-btn">
 																	<button class="btn btn-sm btn-primary glyphicon glyphicon-plus btn-xs" type="button"  onclick="education_fields({{$productos}});"> <span  aria-hidden="true"></span></button>
 																</div>
-															@else
-																<div class="input-group-btn">
-																	<button class="btn btn-sm btn-danger glyphicon glyphicon-minus btn-xs" type="button" onclick="remove_education_fields({{$loop->index + 1}});"><span aria-hidden="true"></span></button>
-																</div>
 															@endif
 														</td>
 														
@@ -208,9 +204,16 @@
 											<th>Teléfono </th>	
 										</tr>
 									</thead>
-									<tbody>
-										@if(!$requisicion->proveedoresrequisicion->isEmpty())
-											@foreach($requisicion->proveedoresrequisicion as $req_prov)
+									@if(!$requisicion->proveedoresrequisicion->isEmpty())
+										@foreach($requisicion->proveedoresrequisicion as $req_prov)
+											<tbody>
+												@if($loop->last)
+													<input type="hidden" class="form-control" id="cantproveedores" name="cantproveedores" value="{{$loop->index + 1}}"/>
+													<script>
+														var proveedor = {{$loop->index + 1}};
+													</script>
+													<input type="hidden" class="form-control" id="cantproveedoresinicial" name="cantproveedoresinicial" value="{{$loop->index + 1}}"/>
+												@endif
 												<tr>
 													<td>
 													{{ $loop->index + 1 }}
@@ -218,12 +221,13 @@
 													<td>
 														<select id="proveedor{{ $loop->index + 1 }}" class="form-control" name="proveedor{{ $loop->index + 1 }}" onchange="cambio_proveedores({{ $loop->index + 1 }});">
 															<option value="">Seleccionar</option>
+															<option value="0" selected>Otro</option>
 															@if(!$proveedores->isEmpty())
 																@foreach($proveedores as $proveedor)
-																	<option value="{{ $proveedor->id}}" @if($req_prov->prov_id == $proveedor->id) selected @endif >{{ $proveedor->raz_soc}} </option>
+																	<option value="{{$proveedor->id}}" @if($req_prov->raz_soc == $proveedor->raz_soc) selected @endif >{{ $proveedor->raz_soc}} </option>
 																@endforeach
 															@endif
-															<option value="0">Otro</option>
+															
 														</select>
 														@if ($errors->has('proveedor' . ($loop->index + 1)))
 															<span class="help-block">
@@ -233,7 +237,7 @@
 													</td>
 													<td class="nopadding" >
 														<div class="form-group">
-															<input type="text" class="form-control" id="nombre{{ $loop->index + 1 }}" name="nombre{{ $loop->index + 1 }}" value="">
+															<input type="text" class="form-control" id="nombre{{ $loop->index + 1 }}" name="nombre{{ $loop->index + 1 }}" value="{{$req_prov->raz_soc}}">
 															@if ($errors->has('nombre' . ($loop->index + 1)))
 																<span class="help-block">
 																	<strong>{{ $errors->first('nombre' . ($loop->index + 1)) }}</strong>
@@ -243,7 +247,7 @@
 													</td>
 													<td class="nopadding" >
 														<div class="form-group">
-															<input type="text" class="form-control" id="telefono1" name="telefono1" value="">
+															<input type="text" class="form-control" id="telefono1" name="telefono1" value="{{$req_prov->tel_fij}}">
 															@if ($errors->has('telefono' . ($loop->index + 1)))
 																<span class="help-block">
 																	<strong>{{ $errors->first('telefono' . ($loop->index + 1)) }}</strong>
@@ -251,15 +255,19 @@
 															@endif
 														</div>
 													</td>
-													
 													<td class="nopadding" >
-														<div class="input-group-btn">
-															<button class="btn btn-sm btn-primary glyphicon glyphicon-plus btn-xs" type="button"  onclick="mas_proveedor({{$proveedores}});"> <span  aria-hidden="true"></span> </button>
-														</div>
+														@if($loop->first)
+															<div class="input-group-btn">
+																<button class="btn btn-sm btn-primary glyphicon glyphicon-plus btn-xs" type="button"  onclick="mas_proveedor({{$proveedores}});"> <span  aria-hidden="true"></span> </button>
+															</div>
+														@endif
 													</td>
+													
 												</tr>
-											@endforeach
-										@else
+											</tbody>
+										@endforeach
+									@else
+										<tbody>
 											<tr>
 												<td>
 												1
@@ -307,9 +315,8 @@
 													</div>
 												</td>
 											</tr>
-										@endif
-									</tbody>
-							
+										</tbody>
+									@endif
 								</table>
 								</div>
 							</div>
@@ -331,8 +338,6 @@
 @stop
 @section('postscripts')
 	<script>
-		var producto = 1;
-		var proveedor = 1;
 		function education_fields(productos) {
 			producto++;
 			var objTo = document.getElementById('education_fields')

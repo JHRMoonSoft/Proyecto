@@ -18,6 +18,7 @@ use App\Requisicion;
 use Validator;
 use \Carbon\Carbon;
 use Excel;
+use PDF;
 
 class RequisicionController extends Controller
 {
@@ -156,8 +157,7 @@ class RequisicionController extends Controller
     {
         $requisicion = Requisicion::find($id);
 		$registrohistoricorequisicion = RegistroHistoricoRequisicion::where('rqs_id',$id)->get();
-        $productos = $requisicion->productos()->get();
-		$productos = Producto::all();
+        $productos = Producto::all();
 		$proveedores = Proveedor::all();
 		return View('requisicion.edit')->with(compact('requisicion','productos','proveedores'));
     }
@@ -169,7 +169,7 @@ class RequisicionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
         $post_data = $request->all();
 		$rules = [
@@ -189,20 +189,48 @@ class RequisicionController extends Controller
         $validate = Validator::make($post_data, $rules);
         if (!$validate->failed()) {
             $requisicions = Requisicion::find($post_data['id']);
-            $requisicions->rol_rqs = $post_data['rol_rqs'];
-			$requisicions->asn_rqs = $post_data['asn_rqs'];
-			$requisicions->jst_rqs = $post_data['jst_rqs'];
-			$requisicions->tip_sol = $post_data['tip_sol'];
-			$requisicions->apr_com = $post_data['apr_com'];
-			$requisicions->fec_apr_com = $post_data['fec_apr_com'];
-			$requisicions->prv_apr = $post_data['prv_apr'];
-			$requisicions->nom_rcp_rqs = $post_data['nom_rcp_rqs'];
-			$requisicions->crg_rcp_rqs = $post_data['crg_rcp_rqs'];
-			$requisicions->fec_rcp_rqs = $post_data['fec_rcp_rqs'];
-			$requisicions->obs_rcp_rqs = $post_data['obs_rcp_rqs'];
-			$requisicions->est_rqs = $post_data['est_rqs'];
+            $numprods = (int)$post_data['cantproductos'];
+			$i = (int)$post_data['cantproductosinicial'] + 1;
+			$productos_vacios = true;
+			while($i <= $numprods){
+				$producto_i = array();
+				$producto_i['prod_id'] = $post_data['producto'.$i] == 0 ? null : $post_data['producto'.$i];
+				$producto_i['cant_sol_prd'] = $post_data['cantidad'.$i];
+				$producto_i['unidad_sol_id'] = $post_data['unidad'.$i];
+				$producto_i['nom_prd'] = $post_data['detalle'.$i];
+				$producto_i['rqs_id'] = $requisicions->id;
+				if((!$this->IsNullOrEmptyString($producto_i['prod_id']) and !$this->IsNullOrEmptyString($producto_i['cant_sol_prd']) and !$this->IsNullOrEmptyString($producto_i['unidad_sol_id']))
+					or (!$this->IsNullOrEmptyString($producto_i['nom_prd']) and !$this->IsNullOrEmptyString($producto_i['cant_sol_prd']) and !$this->IsNullOrEmptyString($producto_i['unidad_sol_id']))){
+					$producto_i['cant_apr_prd'] = $producto_i['cant_sol_prd'];
+					ProductosRequisicion::create($producto_i);
+					$productos_vacios = false;
+				}
+				$i = $i + 1;
+				//return $producto_i;
+			}
+			$numprovs = (int)$post_data['cantproveedores'];
+			$i = (int)$post_data['cantproveedoresinicial'] + 1;
+			while($i <= $numprovs){
+				$proveedor_i = array();
+				$proveedor_i['raz_soc'] = $post_data['nombre'.$i];
+				$proveedor_i['tel_fij'] = $post_data['telefono'.$i];
+				$proveedor_i['rqs_id'] = $requisicions->id;
+				if(!$this->IsNullOrEmptyString($proveedor_i['raz_soc'])){
+					ProveedoresRequisicion::create($proveedor_i);
+				}
+				$i = $i + 1;
+				//return $proveedor_i;
+			}
+			
+			$accion_crear = array();
+			$accion_crear['obs_reg_rqs'] = "Modificacion de RQS";
+			$accion_crear['rqs_id'] = $requisicions->id;
+			$accion_crear['acc_rqs_id'] = $post_data['acc_rqs'];
+			$accion_crear['user_id'] = Auth::user()->id;
+			RegistroHistoricoRequisicion::create($accion_crear);
+			
 			$requisicions->save();
-			return view('requisicion.show')->with('requisicions', $requisicions);
+			return redirect()->intended('/requisicion/' . $requisicions->id);
         }
 		return redirect()->back()->withInput()->withErrors($validate);
     }
@@ -311,12 +339,13 @@ class RequisicionController extends Controller
 		
 	}
 	
-		public function exporpdftRequisicion ($id)
-		{
+		public function exporpdftRequisicion()
+		{			
+		
+			$pdf = PDF::loadView('inventario');
+            return $pdf->download('pdfview.pdf');
 			
-			
-			
-			
+			;
 		}
 	
 		public function exportRequisicion($id) {

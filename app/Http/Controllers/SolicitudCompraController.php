@@ -102,7 +102,7 @@ class SolicitudCompraController extends Controller
 				$requisicion->save();
 				
 				$accion_crear = array();
-				$accion_crear['obs_reg_rqs'] = $post_data['obv_scp'];
+				$accion_crear['obs_reg_rqs'] = $post_data['obv_scp'] . ". Solicitud de Compra #" . $solicitudcompra->id;
 				$accion_crear['rqs_id'] = $requisicion->id;
 				$accion_crear['acc_rqs_id'] = 4;
 				$accion_crear['user_id'] = Auth::user()->id;
@@ -145,7 +145,10 @@ class SolicitudCompraController extends Controller
 		}
 		//return $solicitudcompra;
 		$productos = Producto::all();
-		$rqsAutorizadas = EstadosRequisicion::find(2)->requisiciones;
+		$rqsAutorizadas = EstadosRequisicion::find(2)->requisiciones()
+													->whereHas('productos' , function ($q){
+														$q->where('apr_prod',true);
+													})->get();
 		//return $solicitudcompra;
 		return View('solicitudcompra.edit')->with(compact('productos','rqsAutorizadas','solicitudcompra'));
     }
@@ -157,7 +160,7 @@ class SolicitudCompraController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
         $post_data = $request->all();
 		$rules = [
@@ -166,11 +169,25 @@ class SolicitudCompraController extends Controller
 			];
         $validate = Validator::make($post_data, $rules);
         if (!$validate->failed()) {
-            $solicitudcompra = SolicitudCompra::find($post_data['id']);
+            $solicitudcompra = SolicitudCompra::find($id);
             $solicitudcompra->asn_scp = $post_data['asn_scp'];
 			$solicitudcompra->obv_scp = $post_data['obv_scp'];
-			
-			return view('solicitudcompra.show')->with('solicitudcompra', $solicitudcompra);
+			$numprods = (int)$post_data['cantproductos'];
+			$i = (int)$post_data['cantproductosinicial'] + 1;
+			while($i <= $numprods){
+				$producto_i = array();
+				$producto_i['prod_id'] = $post_data['producto'.$i];
+				$producto_i['cant_sol_prd'] = $post_data['cantidad'.$i];
+				$producto_i['unidad_emp_id'] = $post_data['unidad'.$i];
+				$producto_i['sol_comp_id'] = $solicitudcompra->id;
+				if(!$this->IsNullOrEmptyString($producto_i['prod_id']) and !$this->IsNullOrEmptyString($producto_i['cant_sol_prd']) and !$this->IsNullOrEmptyString($producto_i['unidad_emp_id'])){
+					ProductosSolicitudCompra::create($producto_i);
+				}
+				$i = $i + 1;
+				//return $producto_i;
+			}
+			//return redirect()->intended('/solicitudcompra/' . $solicitudcompra->id);
+			return redirect()->intended('/solicitudcompra');
         }
     }
 

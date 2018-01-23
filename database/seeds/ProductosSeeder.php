@@ -707,7 +707,7 @@ class ProductosSeeder extends Seeder
 		DB::table('producto_unidad')->insert(['producto_id'=>'12','unidad_id'=>'8']);
 		DB::table('producto_unidad')->insert(['producto_id'=>'13','unidad_id'=>'3']);
 		DB::table('producto_unidad')->insert(['producto_id'=>'14','unidad_id'=>'9']);
-		DB::table('producto_unidad')->insert(['producto_id'=>'15','unidad_id'=>'1']);
+		DB::table('producto_unidad')->insert(['producto_id'=>'15','unidad_id'=>'10']); 
 		DB::table('producto_unidad')->insert(['producto_id'=>'16','unidad_id'=>'2']);
 		DB::table('producto_unidad')->insert(['producto_id'=>'17','unidad_id'=>'2']);
 		DB::table('producto_unidad')->insert(['producto_id'=>'18','unidad_id'=>'1']);

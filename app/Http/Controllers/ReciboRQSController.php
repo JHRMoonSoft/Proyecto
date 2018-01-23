@@ -82,7 +82,9 @@ class ReciboRQSController extends Controller
 		$unidades = Unidad::all();
 		$requisicion = Requisicion::find($id);
         $productos = $requisicion->productos()->get();
-		$acciones = AccionesRequisicion::where('est_ant_rqs_id','=',$requisicion->estadorequisicion->id)->get();
+		$acciones = AccionesRequisicion::where('est_ant_rqs_id','=',$requisicion->estadorequisicion->id)
+										->whereNotIn('est_rqs_id',array(5,6))
+										->get();
 		return View('reciboRQS.edit')->with(compact('requisicion','acciones','productos','proveedores','unidades'));
     }
 
@@ -90,10 +92,10 @@ class ReciboRQSController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ReciboRQS  $reciboRQS
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ReciboRQS $reciboRQS)
+    public function update(Request $request, int $id)
     {
         //
 		
@@ -101,7 +103,10 @@ class ReciboRQSController extends Controller
 		$rules = [
             'rol_rqs'=> 'required',
 			'asn_rqs'=> 'required',
-			'est_rqs'=> 'required'
+			'est_rqs'=> 'required',
+			'nom_rcp_rqs'=> 'required',
+			'crg_rcp_rqs'=> 'required',
+			'fec_rcp_rqs'=> 'required'
 			];
 		$validate = Validator::make($post_data, $rules);
 		if ($validate->passes()){
@@ -117,7 +122,20 @@ class ReciboRQSController extends Controller
 			$accion_crear['acc_rqs_id'] = $post_data['acc_rqs'];
 			$accion_crear['user_id'] = Auth::user()->id;
 			RegistroHistoricoRequisicion::create($accion_crear);
-			
+			if( $post_data['acc_rqs'] == 7){
+				$accion_crear = array();
+				$accion_crear['obs_reg_rqs'] = $post_data['obs_rqs'] . ". Estado en Proceso.";
+				$accion_crear['rqs_id'] = $requisicion->id;
+				$accion_crear['acc_rqs_id'] = 4;
+				$accion_crear['user_id'] = Auth::user()->id;
+				RegistroHistoricoRequisicion::create($accion_crear);
+				
+				$requisicion->est_rqs = 4;
+				$requisicion->rol_rqs = 3;
+				$requisicion->save();
+				
+			}
+			$requisicion->save();
 			return redirect()->intended('/recibirRQS');
 			
 		}

@@ -12,7 +12,7 @@
 			<div class="clearfix"></div>
 	    </div>
 		<div class="x_content">
-			<form class="form-horizontal" role="form" method="POST" action="{{ url('/reciboRQS/' . $requisicion->id) }}">
+			<form class="form-horizontal" role="form" method="POST" action="{{ url('/recibirRQS/' . $requisicion->id) }}">
 				{{ csrf_field() }}
 				<input type="hidden" name="_method" value="PUT" />
 				<input type="hidden" class="form-control" id="rqs_id" name="rqs_id" value="{{$requisicion->id}}"/>
@@ -73,7 +73,7 @@
 									<div class="form-group">
 										<label for="obs_rqs" class="col-sm-2 control-label">Observación:</label>
 										<div class="col-sm-10">
-											<textarea id="obs_rqs" name="obs_rqs" class="editor-wrapper" style="width:100%" ></textarea>
+											<textarea id="obs_rqs" name="obs_rqs" class="editor-wrapper" style="width:100%" required ></textarea>
 											@if ($errors->has('obs_rqs'))
 												<span class="help-block">
 													<strong>{{ $errors->first('obs_rqs') }}</strong>
@@ -294,17 +294,14 @@
 												<strong>{{ $errors->first('fec_rcp_rqs') }}</strong>
 											</span>
 										@endif
-									</div>	
-									
-								</form>
+									</div>
 							</div>
 						<br />	
 					</div>
 				  </div>
 				</li>
 				</ul>			
-				<div class="form-group right ">	
-																		
+				<div class="form-group right">						
 					<a  href="{{ url('/entregarRQS') }}" class="btn btn-danger" role="button">Cancelar </a>
 					<button type="submit" class="btn btn-success">Enviar</button>
 				</div>
@@ -353,10 +350,6 @@
 			});
 			
 		}
-		
-	
-		
-	}
 		
 	</script>  
 @stop
