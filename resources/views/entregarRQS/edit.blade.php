@@ -73,7 +73,7 @@
 								<div class="form-group">
 									<label for="obs_rqs" class="col-sm-2 control-label">Observación:</label>
 									<div class="col-sm-10">
-										<textarea id="obs_rqs" name="obs_rqs" class="editor-wrapper" style="width:100%" ></textarea>
+										<textarea id="obs_rqs" name="obs_rqs" required class="editor-wrapper" style="width:100%" ></textarea>
 										@if ($errors->has('obs_rqs'))
 											<span class="help-block">
 												<strong>{{ $errors->first('obs_rqs') }}</strong>
@@ -209,23 +209,25 @@
 		}
 		
 		function calculo_diferencia_entrega(valor, rid) {
-			var cant_apr = $('#cant_apr_prd'+rid).val();
-			var cant_entr = valor;
+			var cant_apr = parseInt($('#cant_apr_prd'+rid).val());
+			var cant_entr = parseInt(valor);
 			var cant_dif = 0;
 			if (!cant_entr){
 				alert('Digita un valor.');
 				cant_entr = 0;
 			}
-			else if(cant_entr > cant_apr){
-				alert('La cantidad entregada no puede superar la autorizada.');
-				cant_entr = 0;
-			}
-			else if(cant_entr < 0){
-				alert('La cantidad entregada debe ser un valor válido.');
-				cant_entr = 0;
-			}
-			else{
-				cant_dif = cant_apr - cant_entr;
+			else {
+				if( cant_apr < cant_entr ){
+					alert('La cantidad entregada no puede superar la autorizada. ' + cant_entr + ' - ' + cant_apr);
+					cant_entr = 0;
+				}
+				else if(cant_entr < 0){
+					alert('La cantidad entregada debe ser un valor válido.');
+					cant_entr = 0;
+				}
+				else{
+					cant_dif = cant_apr - cant_entr;
+				}
 			}
 			$('#cant_entr_prd'+rid).val(cant_entr);
 			$('#cant_dif_prd'+rid).val(cant_dif);

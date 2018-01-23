@@ -124,8 +124,8 @@ class RequisicionController extends Controller
 			$accion_crear['rqs_id'] = $requisicion->id;
 			$accion_crear['acc_rqs_id'] = $post_data['acc_rqs'];
 			$accion_crear['user_id'] = Auth::user()->id;
-			RegistroHistoricoRequisicion::create($accion_crear);
-			return redirect()->intended('/requisicion');
+			RegistroHistoricoRequisicion::create($accion_crear);			
+			return redirect()->intended('/requisicion/' . $requisicion->id);
 		}
 		return redirect()->back()->withInput()->withErrors($validate);
     }
@@ -277,8 +277,17 @@ class RequisicionController extends Controller
 	public function requisicionuser ($id)
 	{
 		
+		
+		
+		$requisicions = Requisicion::all();
+		$requisiciones = array();
+		foreach($requisicions as $rqs){
+			if($rqs->registrohistoricorequisicion->first()->user->id == $id){
+				array_push($requisiciones,$rqs);
+			}
+		}
 		$usuario = Requisicion::find($id);
-		$requisiciones = Requisicion::all();
+		//$requisiciones = Requisicion::all();
 		$now = Carbon::now();
         return View('requisicion.index')->with(compact('requisiciones','usuario','now'));
 		

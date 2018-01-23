@@ -44,40 +44,77 @@
 					</tr>
 				  </thead>
 				  <tbody>
+				
 					@foreach($requisiciones as $requisicion)
-						<tr>
-							<td>{{$requisicion->id}}</td>
-							<td>{{$requisicion->created_at->format('d-m-Y')}}</td>
-							<td>{{$now->diff($requisicion->created_at)->days}} día(s)</td>
-							<td>{{$requisicion->asn_rqs}}</td>
-							<td>{{$requisicion->estadorequisicion->desc_est_req}}</td>
-							@if($requisicion->registrohistoricorequisicion->count() == 0)
-								<td>Sin Creación</td>
-							@else
-								@foreach($requisicion->registrohistoricorequisicion as $registrorqs)
-									@if ($loop->first)
-										@if($registrorqs->user === null)
-											<td>Sin Creación</td>
-										@else
-											<td>{{$registrorqs->user->nom_usr .' '. $registrorqs->user->ape_usr}}</td>
-											<td>{{$registrorqs->user->cargo->des_crg  }}</td>
-											<td>{{$registrorqs->user->area->tipoarea->des_tip_are}} / {{$registrorqs->user->area->des_are}}</td>
+						@if($requisicion->registrohistoricorequisicion->first()->user->id == Auth::user()->id )
+							<tr>
+								<td>{{$requisicion->id}}</td>
+								<td>{{$requisicion->created_at->format('d-m-Y')}}</td>
+								<td>{{$now->diff($requisicion->created_at)->days}} día(s)</td>
+								<td>{{$requisicion->asn_rqs}}</td>
+								<td>{{$requisicion->estadorequisicion->desc_est_req}}</td>
+								@if($requisicion->registrohistoricorequisicion->count() == 0)
+									<td>Sin Creación</td>
+								@else
+									@foreach($requisicion->registrohistoricorequisicion as $registrorqs)
+										@if ($loop->first)
+											@if($registrorqs->user === null)
+												<td>Sin Creación</td>
+											@else
+												<td>{{$registrorqs->user->nom_usr .' '. $registrorqs->user->ape_usr}}</td>
+												<td>{{$registrorqs->user->cargo->des_crg  }}</td>
+												<td>{{$registrorqs->user->area->tipoarea->des_tip_are}} / {{$registrorqs->user->area->des_are}}</td>
+											@endif
 										@endif
-									@endif
-								@endforeach
-							@endif
-													
-							
-							
-							<td>
-								<a href="{{ url('/requisicion/'.$requisicion->id) }}" title="Detalle" class="btn btn-success glyphicon glyphicon-file btn-xs" data-title="Detalle"></a>							
-								<a href="{{ url('requisicion/export/'.$requisicion->id) }}" title="Descargar" class="btn btn-primary glyphicon glyphicon-cloud-download btn-xs" data-title="Descargar"></a><!--
-								<a href="" title="Acción" class="btn btn-primary glyphicon glyphicon-ok btn-xs" data-title="Acción"></a>--></td><!--
-							<td><p data-placement="top" data-toggle="tooltip" title="Eliminar"><a href="" class="btn btn-danger btn-xs" data-title="Eliminar"><span class=" glyphicon glyphicon-trash"></span></a></p></td>-->
-					
-						</tr>   
+									@endforeach
+								@endif
+														
+								
+								
+								<td>
+									<a href="{{ url('/requisicion/'.$requisicion->id) }}" title="Detalle" class="btn btn-success glyphicon glyphicon-file btn-xs" data-title="Detalle"></a>							
+									<a href="{{ url('requisicion/export/'.$requisicion->id) }}" title="Descargar" class="btn btn-primary glyphicon glyphicon-cloud-download btn-xs" data-title="Descargar"></a><!--
+									<a href="" title="Acción" class="btn btn-primary glyphicon glyphicon-ok btn-xs" data-title="Acción"></a>--></td><!--
+								<td><p data-placement="top" data-toggle="tooltip" title="Eliminar"><a href="" class="btn btn-danger btn-xs" data-title="Eliminar"><span class=" glyphicon glyphicon-trash"></span></a></p></td>-->
+						
+							</tr> 
+						@else
+						@permission('ver-menú-gestionar-rqs')
+							<tr>
+								<td>{{$requisicion->id}}</td>
+								<td>{{$requisicion->created_at->format('d-m-Y')}}</td>
+								<td>{{$now->diff($requisicion->created_at)->days}} día(s)</td>
+								<td>{{$requisicion->asn_rqs}}</td>
+								<td>{{$requisicion->estadorequisicion->desc_est_req}}</td>
+								@if($requisicion->registrohistoricorequisicion->count() == 0)
+									<td>Sin Creación</td>
+								@else
+									@foreach($requisicion->registrohistoricorequisicion as $registrorqs)
+										@if ($loop->first)
+											@if($registrorqs->user === null)
+												<td>Sin Creación</td>
+											@else
+												<td>{{$registrorqs->user->nom_usr .' '. $registrorqs->user->ape_usr}}</td>
+												<td>{{$registrorqs->user->cargo->des_crg  }}</td>
+												<td>{{$registrorqs->user->area->tipoarea->des_tip_are}} / {{$registrorqs->user->area->des_are}}</td>
+											@endif
+										@endif
+									@endforeach
+								@endif
+												
+								
+								
+								<td>
+									<a href="{{ url('/requisicion/'.$requisicion->id) }}" title="Detalle" class="btn btn-success glyphicon glyphicon-file btn-xs" data-title="Detalle"></a>							
+									<a href="{{ url('requisicion/export/'.$requisicion->id) }}" title="Descargar" class="btn btn-primary glyphicon glyphicon-cloud-download btn-xs" data-title="Descargar"></a><!--
+									<a href="" title="Acción" class="btn btn-primary glyphicon glyphicon-ok btn-xs" data-title="Acción"></a>--></td><!--
+								<td><p data-placement="top" data-toggle="tooltip" title="Eliminar"><a href="" class="btn btn-danger btn-xs" data-title="Eliminar"><span class=" glyphicon glyphicon-trash"></span></a></p></td>-->
+						
+							</tr> 
+						@endpermission
+						@endif
 					@endforeach
-					
+				
 				  </tbody>
 				</table>
 			</div>

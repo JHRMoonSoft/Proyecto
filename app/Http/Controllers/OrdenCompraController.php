@@ -28,7 +28,8 @@ class OrdenCompraController extends Controller
      */
     public function index()
     {
-        return View('ordencompra.index');
+		$ordencompras = OrdenCompra::all();
+		return View ('ordencompra.index')->with(compact('ordencompras'));
     }
 
     /**
@@ -124,7 +125,7 @@ class OrdenCompraController extends Controller
      */
     public function show($id)
     {
-        $productos = Producto::all();
+       $productos = Producto::all();
 		$proveedores = Proveedor::all();
 		$categorias = Categoria::all();
 		$configuracion = Configuracion::first();

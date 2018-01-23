@@ -8,7 +8,8 @@ use App\Proveedor;
 use App\Unidad;
 use App\ProductosOrdenCompra;
 use App\Configuracion;
-use App\Ordencompra;
+use App\OrdenCompra;
+use Validator;
 use Illuminate\Http\Request;
 
 class FacturaController extends Controller
@@ -37,9 +38,9 @@ class FacturaController extends Controller
         $productos = Producto::all();
 		$proveedores = Proveedor::all();
 		$configuracion = Configuracion::first();
-		$ordencompra = OrdenCommpra::all();
+		$ordencompra = OrdenCompra::all();
 		$unidads = Unidad::all();
-		return View('factura.create')->with(compact('productos','proveedores','configuracion','unidads'));
+		return View('factura.create')->with(compact('productos','proveedores','configuracion','ordencompra','unidads'));
 	
     }
 
@@ -70,7 +71,7 @@ class FacturaController extends Controller
          $validate = Validator::make($post_data, $rules);
          if ($validate->passes()){
 			 //return $post_data;
-			$ordencompra = OrdenCompra::create($post_data);
+			$ordencompra = FacturaController::create($post_data);
 			$numprods = (int)$post_data['cantproductos'];
 			$i = 1;
 			$productos_vacios = true;

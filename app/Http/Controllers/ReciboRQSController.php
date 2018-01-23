@@ -114,6 +114,9 @@ class ReciboRQSController extends Controller
 			$requisicion = Requisicion::find($post_data['rqs_id']);			
 			$requisicion->est_rqs = $post_data['est_rqs'];
 			$requisicion->rol_rqs = $post_data['rol_rqs'];
+			$requisicion->fec_rcp_rqs = $post_data['fec_rcp_rqs'];
+			$requisicion->nom_rcp_rqs = $post_data['nom_rcp_rqs'];
+			$requisicion->crg_rcp_rqs = $post_data['crg_rcp_rqs'];
 			$requisicion->save();
 			
 			$accion_crear = array();

@@ -6,8 +6,7 @@
     <div class="x_panel"> 
 	    <div class="x_title">
 			<h2>Información de la Requisición Interna</h2>
-			<a  href="{{ url('requisicion/export/'.$requisicion->id) }}" class="btn btn-primary  right" role="button"><i class="glyphicon glyphicon-cloud-download" aria-hidden="true"></i>&nbsp&nbsp Descargar </a>	
-			<a  href="{{ url('/requisicion') }}" class="btn btn-default  right" role="button"><i class="fa fa-reply" aria-hidden="true"></i>&nbsp&nbsp&nbspVolver al listado </a>
+			<a  href="{{ url('requisicion/export/'.$requisicion->id) }}" class="btn btn-primary  right" role="button"><i class="glyphicon glyphicon-cloud-download" aria-hidden="true"></i>&nbsp&nbsp Descargar </a>
 		<!--
 			<ul class="nav navbar-right panel_toolbox">
 			
@@ -323,8 +322,8 @@
 									<thead>
 										<tr >
 											<th>#</th>
-											<th>Nombre Proveedor</th>
-											<th>Nit. Proveedor</th>
+											<th>Nombre Proveedor</th><!--
+											<th>Nit. Proveedor</th>-->
 											<th>Telefono</th>
 											<th>Estado</th>
 										</tr>
@@ -344,12 +343,12 @@
 													<div class="form-group">
 														{{$prov->raz_soc}}
 													</div>
-												</td>
+												</td><!--
 												<td class="nopadding" >
 													<div class="form-group">
 														{{$prov->tip_doc}}.{{$prov->num_doc}}
 													</div>
-												</td>
+												</td>-->
 												<td class="nopadding" >
 													<div class="form-group">
 														{{$prov->tel_fij}}

@@ -124,9 +124,9 @@ class EntregarRQSController extends Controller
 			$i = 1;
 			while($i <= $numprods){
 				$producto_i = ProductosRequisicion::find($post_data['producto'.$i]);
-				if (array_get($post_data, 'apr_prod'.$i, false)) {
-					$producto_i->apr_prod = true;
-				}
+				$producto_i->cant_entr_prd = $post_data['cant_entr_prd'.$i];
+				$producto_i->cant_dif_prd = $post_data['cant_dif_prd'.$i];
+				
 				$producto_i->save();
 				$i = $i + 1;
 			}

@@ -20,9 +20,11 @@
 			<h2>Historial Requisiciones</h2> &nbsp&nbsp&nbsp
 						
 			<a  href="\requisicion\create" class="btn btn-warning" role="button">Nueva Requisicion</a>
-			<div class=" col-md-2 col-sm-2 col-xs-6 right">
-					<a  href="/export-requisiciones" class="btn btn-primary  left" role="button"><i class="glyphicon glyphicon-cloud-download" aria-hidden="true"></i>&nbsp&nbsp Descargar </a>
-			</div>
+			@permission('ver-descargar-todo-historial-rqs-usuarios')
+				<div class=" col-md-2 col-sm-2 col-xs-6 right">
+						<a  href="/export-requisiciones" class="btn btn-primary  left" role="button"><i class="glyphicon glyphicon-cloud-download" aria-hidden="true"></i>&nbsp&nbsp Descargar </a>
+				</div>
+			@endpermission
 				<div class=" col-md-3 col-sm-3 col-xs-6 right">
 					<div id="reportrange" class="pull-center" style="background: #fff; cursor: pointer; padding: 8px 10px; border: 1px solid #ccc">
 						<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
@@ -67,7 +69,9 @@
 					</tr>
 				  </thead>
 				  <tbody>
+				
 					@foreach($requisiciones as $requisicion)
+					
 						<tr>
 							<td>{{$requisicion->id}}</td>
 							<td>{{$requisicion->created_at->format('d-m-Y')}}</td>
@@ -93,7 +97,7 @@
 							
 							
 							<td>
-								@if($requisicion->registrohistoricorequisicion->count() == 1)
+								@if($requisicion->registrohistoricorequisicion->first()->user->id == Auth::user()->id && $requisicion->estadorequisicion->id == 1)
 									<a href="{{ url('/requisicion/'.$requisicion->id.'/edit') }}" title="Editar" class="btn btn-info glyphicon glyphicon-pencil btn-xs" data-title="Editar"></a>
 								@endif
 								<a href="{{ url('/requisicion/'.$requisicion->id) }}" title="Detalle" class="btn btn-success glyphicon glyphicon-file btn-xs" data-title="Detalle"></a>							

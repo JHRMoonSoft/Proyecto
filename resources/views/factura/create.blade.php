@@ -5,11 +5,11 @@
 
     <div class="x_panel">
 	    <div class="x_title"> 
-			<h2>Nueva Orden de Compra</h2>
+			<h2>Nueva Factura de Compras</h2>
 			<div class="clearfix"></div>
 	    </div>
 		<div class="x_content">
-			<form class="form-horizontal" role="form" method="POST" action="{{ url('/ordencompra/') }}">
+		<form class="form-horizontal" role="form" method="POST" action="{{ url('/factura/') }}">
 			{{ csrf_field() }}
 			<ul class="list-unstyled timeline">
 				<li>
@@ -26,32 +26,32 @@
 							<div class="x_content">
 								<div class="panel-default">
 									<div class="x_panel panel-heading ">
-										<div class="form-horizontal form-label-left">	
-										    
+										<div class="form-horizontal form-label-left">
 											<div class="col-md-2 	col-sm-6 col-xs-12">
-													 <label for="single_cal2">Fecha</label>
-													<input type="text" class="form-control input-sm has-feedback-left " id="single_cal2" placeholder="First Name" aria-describedby="inputSuccess2Status2">
-													
-												</div>
+												 <label for="single_cal2">Fecha</label>
+												<input type="text" class="form-control input-sm has-feedback-left " id="single_cal2" placeholder="First Name" aria-describedby="inputSuccess2Status2">
+												
+											</div>
 											<div class="col-md-3 col-sm-6 col-xs-12">
 												<label for="raz_soc">Empresa</label>
-												<input class="form-control input-sm" id="raz_soc" name="raz_soc" type="text" value="{{ $configuracion->raz_soc }}"  readonly  style="background:rgba(247, 247, 247, 0.57);">
+												<input class="form-control input-sm" id="raz_soc" name="raz_soc" type="text" readonly value="{{ $configuracion->raz_soc }}"/>
 											</div>
 											<div class="col-md-2 col-sm-6 col-xs-12">
 												<label for="ex1">Nit. Empresa</label>
-												<input class="form-control input-sm" id="num_doc" name="num_doc" type="text" value="{{ $configuracion->num_doc }}"  readonly  style="background:rgba(249, 249, 249, 0.57);">
+												<input class="form-control input-sm" id="num_doc" name="num_doc" type="text" readonly value="{{ $configuracion->num_doc }}" />
 											</div>
 									
 											<div class="col-md-3 col-sm-6 col-xs-12">
-												<label for="ex2">Realizado</label>
-												<input class="form-control input-sm" id="ex2" type="text" value="{{ Auth::user()->nom_usr . ' ' . Auth::user()->ape_usr }}   " readonly  style="background:rgba(247, 247, 247, 0.57);">
+												<label for="nom_rea">Realizado</label>
+												<input class="form-control input-sm" id="nom_rea" name="nom_rea" type="text" value="{{ Auth::user()->nom_usr . ' ' . Auth::user()->ape_usr }}" readonly />
+											
 											</div>
 											<div class="col-md-2 col-sm-6 col-xs-12">
-												<label for="no_ocp">No. OCP</label>
-												<input class="form-control input-sm" id="no_ocp" name="no_ocp" type="text" >
-												@if ($errors->has('no_ocp'))
+												<label for="no_fact">No. Factura</label>
+												<input class="form-control input-sm" id="no_fact" name="no_fact" type="text">
+												@if ($errors->has('no_fact'))
 													<span class="help-block">
-														<strong>{{ $errors->first('no_ocp') }}</strong>
+														<strong>{{ $errors->first('no_fact') }}</strong>
 													</span>
 												@endif
 											</div>
@@ -75,17 +75,6 @@
 															@endforeach
 														@endif
 												</select>
-												
-												<!--
-												<select class="form-control input-sm " id="exampleSelect1">
-													<option value="volvo" selected>Seleccionar</option>
-													<option value="">ALMACENES EXITO</option>
-													<option value="">MEGA TIENDAS </option>
-													<option value="">PAPELERÍA TAURO </option>
-													<option value="">EL GIGANTE DEL HOGAR</option>
-													<option value="">SAFARI COMPUTADORES</option>
-													<option value="">DISTRIBUIDORA Y PAPELERÍA VENEPLAS</option>
-												</select>-->
 											</div>
 										</div>
 										
@@ -132,11 +121,11 @@
 										</div>
 										<div class="col-sm-3 col-xs-6">
 											<div class="form-group">
-												<label for="aut_ocp">Autorizado por</label>
-												<input class="form-control input-sm" id="aut_ocp" name="aut_ocp" type="text" required>
-												@if ($errors->has('aut_ocp'))
+												<label for="comp_fact">Comprado por</label>
+												<input class="form-control input-sm" id="comp_fact" name="comp_fact" type="text">
+												@if ($errors->has('comp_fact'))
 													<span class="help-block">
-														<strong>{{ $errors->first('aut_ocp') }}</strong>
+														<strong>{{ $errors->first('comp_fact') }}</strong>
 													</span>
 												@endif
 											</div>

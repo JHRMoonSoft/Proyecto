@@ -74,79 +74,119 @@
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                 <h3>Home</h3>
-                <ul class="nav side-menu">
-                  <li><a><i class="fa fa-home"></i> Requisición  <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="/requisicion/create">Nueva RQS</a></li>				  
-					  <li><a href="/recibirRQS">Recibir RQS</a></li>
-                      <li><a href="{{ url('/requisicion-user/'.Auth::user()->id) }}">Historial RQS</a></li>
-                    </ul>
-                  </li>
-                </ul>
+				@permission('ver-menu-requisicion')
+					<ul class="nav side-menu">
+					  <li><a><i class="fa fa-home"></i> Requisición  <span class="fa fa-chevron-down"></span></a>
+						<ul class="nav child_menu">
+						  <li><a href="/requisicion/create">Nueva RQS</a></li>				  
+						  <li><a href="/recibirRQS">Recibir RQS</a></li>
+						  <li><a href="{{ url('/requisicion-user/'.Auth::user()->id) }}">Historial RQS</a></li>
+						</ul>
+					  </li>
+					</ul>
+				@endpermission
               </div> 
 			   <div class="menu_section">
-                <h3>Panel de Configuración </h3>
-                <ul class="nav side-menu">
-                  <li><a><i class="fa fa-building"></i> Empresa <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="/configuracion/create">Empresa</a></li>
-					  <li><a href="/area/create">Área / Programa  </a></li>
-					  <li><a href="/cargo/create">Cargos</a></li>
-					  
-                     <!-- <li><a href="projects.html">Projects</a></li>-->
-                    </ul>
-                  </li>
-                  <li><a><i class="fa fa-user"></i> Usuarios <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="/register">Nuevo Usuario</a></li>
-                      <li><a href="/users">Listado de Usuarios</a></li>
-					   <!--<li><a href="page_500.html">500 Error</a></li>-->
-                    </ul>
-                  </li>
-				    <li><a><i class="fa fa-cog"></i>Roles <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="/role/create">Nuevo Rol</a></li>
-                      <li><a href="/role">Listado de Roles</a></li>
-                      <!--<li><a href="page_500.html">500 Error</a></li>-->
-                    </ul>
-                  </li>
-				   <li><a><i class="fa fa-cogs"></i> Permisos <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="/permisos/create">Nuevo Permiso </a></li>
-                      <li><a href="/permisos">Listado de Permisos </a></li>
-                      <!--<li><a href="page_500.html">500 Error</a></li>-->
-                    </ul>
-                  </li>
-				  <li><a><i class="fa fa-user-plus"></i> Proveedores<span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="/proveedor/create"> Nuevo Proveedor</a></li>
-                      <li><a href="/proveedor">Listado de Proveedores</a></li>
-                      <!--<li><a href="login.html">Login Page</a></li>-->
-                    </ul>
-                  </li>
-				   <li><a><i class="fa fa-dropbox"></i>Almacén<span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="/categoria">Categorías</a></li>
-                      <li><a href="/producto">Productos</a></li>
-					   <li><a href="/unidad">Unidades</a></li>
-					   <li><a href="/conversion"> Unidades de empaque</a></li>
-					   <li><a href="/almacen">Productos almacén</a></li>
-					   <li><a href="/almacen/create">Kárdex almacén</a></li>
-                    </ul>
-                  </li>
-               </ul>
+				@permission('ver-menú-almacén')
+					<h3>Panel de Configuración </h3>
+				@endpermission
+					<ul class="nav side-menu">
+					@permission('ver-menú-empresa')
+					    <li><a><i class="fa fa-building"></i> Empresa <span class="fa fa-chevron-down"></span></a>
+							<ul class="nav child_menu">
+						    @permission('ver-menú-empresa(crearoverempresa)')
+							  <li><a href="/configuracion/create">Empresa</a></li>
+							@endpermission
+							@permission('ver-menú-área-programa')
+							  <li><a href="/area/create">Área / Programa  </a></li>
+							@endpermission
+							@permission('ver-menú-cargos')
+							  <li><a href="/cargo/create">Cargos</a></li>
+							@endpermission
+							 <!-- <li><a href="projects.html">Projects</a></li>-->
+							</ul>					
+					    </li>
+				    @endpermission
+					@permission('ver-menú-usuarios')
+						<li><a><i class="fa fa-user"></i> Usuarios <span class="fa fa-chevron-down"></span></a>
+							 <ul class="nav child_menu">
+							  <li><a href="/register">Nuevo Usuario</a></li>
+							  <li><a href="/users">Listado de Usuarios</a></li>
+							   <!--<li><a href="page_500.html">500 Error</a></li>-->
+							</ul>
+						</li>
+					   @endpermission
+					@permission('ver-menú-roles')
+						<li><a><i class="fa fa-cog"></i>Roles <span class="fa fa-chevron-down"></span></a>
+							<ul class="nav child_menu">
+							  <li><a href="/role/create">Nuevo Rol</a></li>
+							  <li><a href="/role">Listado de Roles</a></li>
+							  <!--<li><a href="page_500.html">500 Error</a></li>-->
+							</ul>
+					    </li>
+					@endpermission
+					@permission('ver-menú-permisos')
+					   <li><a><i class="fa fa-cogs"></i> Permisos <span class="fa fa-chevron-down"></span></a>
+						<ul class="nav child_menu">
+						  <li><a href="/permisos/create">Nuevo Permiso </a></li>
+						  <li><a href="/permisos">Listado de Permisos </a></li>
+						  <!--<li><a href="page_500.html">500 Error</a></li>-->
+						</ul>
+					  </li>
+					@endpermission
+					@permission('ver-menú-proveedores')
+					  <li><a><i class="fa fa-user-plus"></i> Proveedores<span class="fa fa-chevron-down"></span></a>
+						<ul class="nav child_menu">
+						  <li><a href="/proveedor/create"> Nuevo Proveedor</a></li>
+						  <li><a href="/proveedor">Listado de Proveedores</a></li>
+						  <!--<li><a href="login.html">Login Page</a></li>-->
+						</ul>
+					  </li>
+					@endpermission
+					@permission('ver-menú-almacén')
+					   <li><a><i class="fa fa-dropbox"></i>Almacén<span class="fa fa-chevron-down"></span></a>
+						<ul class="nav child_menu">
+						@permission('ver-menú-categorías')
+							<li><a href="/categoria">Categorías</a></li>
+						@endpermission	
+						@permission('ver-menú-productos')
+						  <li><a href="/producto">Productos</a></li>
+						@endpermission	
+						@permission('ver-menú-unidades')
+						   <li><a href="/unidad">Unidades</a></li>
+						@endpermission	
+						@permission('ver-menú-unidades-empaque')
+						   <li><a href="/conversion"> Unidades de empaque</a></li>
+						@endpermission	
+						   <!--
+						   <li><a href="/almacen">Productos almacén</a></li>
+						   <li><a href="/almacen/create">Kárdex almacén</a></li>-->
+						</ul>
+					  </li>
+					@endpermission
+				   </ul>
               </div>
 			     <div class="menu_section">
-                <h3>Panel de Opciones</h3>
+				@permission('ver-menú-gestionar-rqs')
+					<h3>Panel de Opciones</h3>
+				@endpermission
                 <ul class="nav side-menu">
-				
+				@permission('ver-menú-gestionar-rqs')
                   <li><a><i class="fa fa-pencil-square-o"></i> Gestionar RQS<span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">   
+                    <ul class="nav child_menu"> 
+					@permission('ver-menú-autorizar-rqs')
                       <li><a href="/autorizarRQS">Autorizar RQS</a></li>
+					@endpermission
+					@permission('ver-menú-entregar-rqs')
                       <li><a href="/entregarRQS">Entregar RQS</a></li>
+					@endpermission
+					@permission('ver-menú-historial-rqs')
 					   <li><a href="/requisicion">Historial RQS</a></li>
+					@endpermission
                     </ul>
                   </li>
+				@endpermission
+				@permission('ver-menú-solicitud-de-compras')
 				   <li><a><i class="fa fa-check-square-o"></i>Solicitud de compras <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
 					<li><a href="/solicitudcompra/create">Nueva SCP</a></li>
@@ -154,6 +194,8 @@
                       <!--<li><a href="profile.html">Solicitud de compras </a></li>-->
                     </ul>
                   </li>
+				@endpermission
+				@permission('ver-menú-orden-de-compras')
 				  <li><a><i class=" fa fa-file-text-o"></i> Orden de compras <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="/ordencompra/create"> Nueva OCP</a></li>
@@ -161,6 +203,8 @@
                       <!--<li><a href="login.html">Login Page</a></li>-->
                     </ul>
                   </li>
+				@endpermission
+				@permission('ver-menú-facturas')
                   <li><a><i class="fa fa-file"></i> Facturas  <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="/factura/create">Nueva Factura </a></li>
@@ -168,6 +212,7 @@
                       <!--<li><a href="login.html">Login Page</a></li>-->
                     </ul>
                   </li>
+				@endpermission
 				</ul>
               </div>
 

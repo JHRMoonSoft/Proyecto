@@ -54,8 +54,7 @@
 						<th class="text-center">No. Documento </th>
 						<th class="text-center">Concepto</th>
 						<th class="text-center">Proveedor</th>
-						<th class="text-center">Tipo. Doc</th>
-						<th class="text-center">No. Doc</th>
+						<th class="text-center">Doc. Proveedor</th>
 						<th class="text-center">Forma de pago </th>
 						<th class="text-center">Autorizado por</th>
 						<th class="text-center">Fecha Creación </th>
@@ -64,30 +63,37 @@
 						<!--<th>Eliminar</th>-->
 					</tr>
 				  </thead>
-				  <tbody>
+				<tbody>
+					@foreach($ordencompras as $ocp)
+						<tr>
+							<td>{{$ocp->id}}</td>
+							<td>{{$ocp->no_ocp}}</td>
+							<td>{{$ocp->cnp_ocp}}</td>
+							<td>{{$ocp->proveedor->raz_soc}}</td>
+							<td>{{$ocp->proveedor->tip_doc}}. {{$ocp->proveedor->num_doc}}</td>
+							<td>{{$ocp->form_pag}}</td>
+							<td>{{$ocp->aut_ocp}}</td>
+							<td>
+								@if($ocp->created_at)
+									{{$ocp->created_at->format('Y-m-d') }}
+								@endif
+							</td>	
+							<td>
+								@if($ocp->modified_at)
+									{{$ocp->modified_at->format('Y-m-d') }}
+								@endif
+							</td>
+														
+							<td>
+								<a href="{{ url('/ordencompra/'.$ocp->id.'/edit') }}" title="Editar" class="btn btn-info glyphicon glyphicon-pencil btn-xs" data-title="Editar"></a>
+								<a href="{{ url('/ordencompra/'.$ocp->id) }}" title="Detalle" class="btn btn-success glyphicon glyphicon-file btn-xs" data-title="Detalle"></a>
+									
+							</td>
 					
-					<tr>
-					  <td>0023933</td>
-					   <td>002</td>
-						<td>ORDEN DE COMPRA</td>
-						<td>ALMACENES EXITO S.A </td>
-						<td>NIT </td>
-						<td>890.900.608-9</td>
-						<td>CONTADO</td>
-						<td>Belkis Buelvas</td>	
-						<td>22/4/2017</td>	
-						<td>28/4/2017</td>
-						
-						<td>
-							
-							<a href="" title="Editar" class="btn btn-info glyphicon glyphicon-pencil btn-xs" data-title="Editar"></a>
-							<a href="" title="Detalle" class="btn btn-success glyphicon glyphicon-file btn-xs" data-title="Detalle"></a>
-							<a href="" title="Descargar" class="btn btn-primary glyphicon glyphicon-cloud-download btn-xs" data-title="Descargar"></a></td><!--
-						<td><p data-placement="top" data-toggle="tooltip" title="Eliminar"><a href="" class="btn btn-danger btn-xs" data-title="Eliminar"><span class=" glyphicon glyphicon-trash"></span></a></p></td>-->
-				
-					</tr>                       
+						</tr>
+					@endforeach                   
 					
-				  </tbody>
+				</tbody>
 				</table>
 			</div>
         </div>

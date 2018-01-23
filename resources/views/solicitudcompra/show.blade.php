@@ -6,243 +6,155 @@
 
     <div class="x_panel">
 	    <div class="x_title">
-			<h2>Nueva Solicitud de Compras</h2>
-			<a  href="{{ url('/solicitudcompra/'.$solicitudcompra->id) }}"class="btn btn-danger  right" role="button">Ver </a>
+			<h2>Información de la Solicitud de Compras</h2> 
+			<a  href="{{ url('/solicitudcompra/'.$solicitudcompra->id.'/edit') }}" class="btn btn-info right" role="button">Editar</a>
 			<a  href="{{ url('/solicitudcompra') }}" class="btn btn-default  right" role="button"><i class="fa fa-reply" aria-hidden="true"></i>&nbsp&nbsp&nbspVolver al listado </a>
 	
 			<div class="clearfix"></div>
 	    </div>
-		<div class="x_content">
-			<form class="form-horizontal" role="form" method="POST" action="{{ url('/solicitudcompra/'. $solicitudcompra->id) }}">
-				<input type="hidden" name="_method" value="PUT">
+		<form class="form-horizontal" role="form"">
+			<input type="hidden" name="_method" value="PUT">
+			<div class="x_content">
 				{{ csrf_field() }}
 				<div id="rqspanel">
 					<input type="hidden" class="form-control" id="totalrqs" name="totalrqs" value="0" />
 				</div>
-				<ul class="list-unstyled timeline">
-					<li>
-					  <div class="block">
-						<div class="tags">
-						  <a href="" class="tag">
-							<span>Paso 1</span>
-						  </a>
-						</div>
-						<div class="block_content">
-						
-							<h5>Espacio exclusivo para el Asistente de Gestión Administrativa</h5><br/><br/>
-								
-							<div class="row ">
-								<div class="form-group"><br>
-									<label class="control-label col-md-3 col-sm-3 col-xs-12" for="asn_scp">Asunto</label>
-									<div class="col-md-6 col-sm-6 col-xs-12">
-									  <input type="text" id="asn_scp"name="asn_scp"  value="{{$solicitudcompra->asn_scp}}"  required="required" class="form-control col-md-7 col-xs-12">
-										@if ($errors->has('asn_scp'))
-											<span class="help-block">
-												<strong>{{ $errors->first('asn_scp') }}</strong>
-											</span>
-										@endif
-									</div>
+					<ul class="list-unstyled timeline">
+						<li>
+							<div class="block">
+								<div class="tags">
+								<a href="" class="tag">
+									<span>Paso 1</span>
+								</a>
 								</div>
-								<div class="form-group">
-									<label class="control-label col-md-3 col-sm-3 col-xs-12" for="obv_scp">Observación	</label>																			
-									<div class="col-md-6 col-sm-6 col-xs-12">
-									  <textarea type="text" id="obv_scp"  name="obv_scp"rows="5" required="required" class="form-control col-md-7 col-xs-12">{{$solicitudcompra->obv_scp}}</textarea>
-										@if ($errors->has('obv_scp'))
-											<span class="help-block">
-												<strong>{{ $errors->first('obv_scp') }}</strong>
-											</span>
-										@endif
-									</div><br>
-								</div>
-							</div>
-						</div>
-					  </div>
-					</li>
-					
-					<li>
-						<div class="block">
-							<div class="tags">
-							  <a href="" class="tag">
-								<span>Paso 2</span>
-							  </a>
-							</div>
-						<div class="block_content"><br />
-							<input type="hidden" class="form-control" id="cantproductos" name="cantproductos" value="1"/>
-							<h2 class="title">
-								<a>Registrar Productos</a><br/>
-							</h2>
-							
-							<br />
-							<br />
-							<div class="row">
-							  <div class="col-xs-6 col-md-4">
-								<div class=" col-xs-12 col-md-12">
-									<div id="fechaRQS" class="pull-center" style="background: #fff; cursor: pointer; padding: 8px 10px; border: 1px solid #ccc">
-										<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-										<span></span> <b class="caret"></b>
-									</div>									
-									<h5> Fecha consolidar </h5>
-								</div>
-							  </div>
-							   <div class="col-xs-6 col-md-2">
-								<button type="button" class="btn btn-search btn-danger" onclick="buscarFechaRQS({{$productos}});">
-									<span class="label-icon">Buscar</span>
-								</button>
-							   </div>
-							  <div class="col-xs-6 col-md-4">
-							  
-									<!--RQS Pendientes-->
-								<div class="col-xs-12 ">
-									<div class="input-group">
-										<input type="text" name="buscarRQSid" id="buscarRQSid" class="form-control" placeholder="Buscar">
-										<div class="input-group-btn" >
-											<button type="button" class="btn btn-search btn-danger" onclick="buscarIdRQS({{$productos}});">
-												<span class="label-icon">Buscar</span>
-											</button>
-											<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
-												<span class="caret"></span>
-											</button>
-											<ul class="dropdown-menu " role="menu">
-												@if(!$rqsAutorizadas->isEmpty())
-													@foreach($rqsAutorizadas as $rqsAutorizada)
-														<li>
-															<a onclick="cargarIdRQS({{ $rqsAutorizada->id }});">
-																<span class="glyphicon glyphicon-book"></span>
-																<span class="label-icon">{{ $rqsAutorizada->id }} - {{ $rqsAutorizada->asn_rqs }}</span>
-															</a>
-														</li>
-													@endforeach
+								<div class="block_content">
+									<h4>Espacio exclusivo para el Asistente de Gestión Administrativa</h4><br/><br/>
+										
+									<div class="row ">
+										<div class="form-group"><br>
+											<label class="control-label col-md-3 col-sm-3 col-xs-12" for="asn_scp">Asunto</label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+											<input type="text" id="asn_scp"name="asn_scp"  value="{{$solicitudcompra->asn_scp}}"  disabled style="background:rgba(247, 247, 247, 0.57);" required="required" class="form-control col-md-7 col-xs-12">
+												@if ($errors->has('asn_scp'))
+													<span class="help-block">
+														<strong>{{ $errors->first('asn_scp') }}</strong>
+													</span>
 												@endif
-											</ul>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label col-md-3 col-sm-3 col-xs-12" for="obv_scp">Observación	</label>																			
+											<div class="col-md-6 col-sm-6 col-xs-12">
+											<textarea type="text" id="obv_scp"  name="obv_scp"rows="5" required="required" disabled style="background:rgba(247, 247, 247, 0.57);" class="form-control col-md-7 col-xs-12">{{$solicitudcompra->obv_scp}}</textarea>
+												@if ($errors->has('obv_scp'))
+													<span class="help-block">
+														<strong>{{ $errors->first('obv_scp') }}</strong>
+													</span>
+												@endif
+											</div><br>
 										</div>
 									</div>
-									<h5>   RQS autorizadas</h5>
-								</div>
-								<!-- Consolidar RQS-->
-								
-							  </div>
-							 
-							</div>		
-							<br />
-							<div class="panel panel-default">
-								<div class="panel-heading text-center">
-									 <button type="button" class="btn btn-success btn-xs left "data-toggle="modal" data-target=".registro" >Registro RQS</button>
-									<span><strong><span class="glyphicon glyphicon-th-list"> </span> Productos</strong></span>
-								</div>
-								<div class="table-responsive">
-									<table class="table table-bordered table-hover" id="education_fields2">
-										<thead>
-											<tr >
-												<th>#</th>
-												<th><a href="/producto" title="Producto" target="_blank" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-title="Producto"></a>Producto</th>
-												<th><a href="/unidad" title="Producto" target="_blank" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-title="Producto"></a>Unidad</th>
-												<th>Cantidad</th>
-												<th> Disponible</th>
-												<th><a></a></th>
-								
-											</tr>
-										</thead>
-										<tbody>
-										@foreach($solicitudcompra->productossolicitudcompra as $prodsolcompra)
-											<tr>
-												<td>
-													{{$loop->index + 1}}
-												</td>
-							
-												<td class="nopadding" >
-													<div class="form-group">
-														<select id="producto{{$loop->index + 1}}" class="form-control" name="producto{{$loop->index + 1}}" onchange="cambio_productos(1);">
-																@if(!$productos->isEmpty())
-																	<option value="" selected>Seleccionar</option>
-																	@foreach($productos as $producto)
-																		<option value="{{$producto->id}}" @if($producto->id == $prodsolcompra->prod_id) selected @endif>{{ $producto->des_prd}} </option>
-																	@endforeach
-																@endif
-															</select>
-														
-													</div>
-												</td>
-												<td class="nopadding" >
-													<div class="form-group">
-														<select class="form-control" id="unidad{{$loop->index + 1}}" name="unidad{{$loop->index + 1}}">
-															<option value="" selected>Seleccionar</option>
-															@foreach($prodsolcompra->producto->unidades as $und)
-																<option name="" value="{{$und->id}}" @if($und->id == $prodsolcompra->unidad_solicitada->id)selected="selected"@endif>{{$und->des_und}}</option>
-															@endforeach
-														</select>
-													</div>
-												</td>
-												<td class="nopadding" >
-													<div class="form-group">
-														<input type="text" class="form-control" id="cantidad{{$loop->index + 1}}" name="cantidad{{$loop->index + 1}}" value="{{$prodsolcompra->cant_sol_prd}}" placeholder="Cantidad">
-													</div>
-												</td>
-												<td>
-													<input type="text" class="form-control" id="disponible{{$loop->index + 1}}" name="disponible{{$loop->index + 1}}" disabled/>
-												</td>
-												<td class="nopadding" >
-													<div class="input-group-btn">
-														<button class="btn btn-sm btn-primary glyphicon glyphicon-plus btn-xs" type="button"  onclick="education_fields2({{$productos}});"> <span  aria-hidden="true"></span> </button>
-													</div>
-												</td>
-											</tr>
-										@endforeach
-										</tbody>
-									</table>
 								</div>
 							</div>
-							<small>Pulse + para agregar otro producto /  Pulse - para eliminar un producto.</small>
-							<br />	
+						</li>
+						
+						<li>
+							<div class="block">
+								<div class="tags">
+									<a href="" class="tag">
+										<span>Paso 2</span>
+									</a>
+								</div>
+								<div class="block_content"><br/>
+									<h2 class="title">
+										<a>Registrar Productos</a><br/>
+									</h2>
+								<br />
+								<div class="panel panel-default">
+									<div class="panel-heading text-center">
+										<button type="reset" title="Producto" target="_blank" class="btn btn-xs btn-default glyphicon glyphicon glyphicon-refresh right" data-title="Producto"></button>
+										<span><strong><span class="glyphicon glyphicon-th-list"> </span> Productos</strong></span>
+										
+									</div>
+									<div class="table-responsive">
+										<table class="table table-bordered table-hover" id="education_fields2">
+											<thead>
+												<tr >
+													<th>#</th>
+													<th><a href="/producto" title="Producto" target="_blank" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-title="Producto"></a>Producto</th>
+													<th><a href="/unidad" title="Producto" target="_blank" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-title="Producto"></a>Unidad</th>
+													<th>Cantidad</th>
+													<th> Disponible</th>
+													<th><a></a></th>
+									
+												</tr>
+											</thead>
+											@foreach($solicitudcompra->productossolicitudcompra as $prodsolcompra)
+												<tbody class="form-group tr">
+												@if($loop->last)
+													<script>
+														var producto = {{$loop->index + 1}};
+													</script>
+													<input type="hidden" class="form-control" id="cantproductos" name="cantproductos" value="{{$loop->index + 1}}"/>
+													<input type="hidden" class="form-control" id="cantproductosinicial" name="cantproductosinicial" value="{{$loop->index + 1}}"/>
+												@endif
+												<tr>
+													<td>
+														{{$loop->index + 1}}
+														
+													</td>
+								
+													<td class="nopadding" >
+														<div class="form-group">
+															<select id="producto{{$loop->index + 1}}" class="form-control" name="producto{{$loop->index + 1}}" onchange="cambio_productos(1);" disabled style="background:rgba(247, 247, 247, 0.57);">
+																	@if(!$productos->isEmpty())
+																		<option value="" selected>Seleccionar</option>
+																		@foreach($productos as $producto)
+																			<option value="{{$producto->id}}" @if($producto->id == $prodsolcompra->prod_id) selected @endif>{{ $producto->des_prd}} </option>
+																		@endforeach
+																	@endif
+																</select>
+															
+														</div>
+													</td>
+													<td class="nopadding" >
+														<div class="form-group">
+															<select class="form-control" id="unidad{{$loop->index + 1}}" name="unidad{{$loop->index + 1}}" disabled style="background:rgba(247, 247, 247, 0.57);">
+																<option value="" selected>Seleccionar</option>
+																@foreach($prodsolcompra->producto->unidades as $und)
+																	<option name="" value="{{$und->id}}" @if($und->id == $prodsolcompra->unidad_solicitada->id)selected="selected"@endif>{{$und->des_und}}</option>
+																@endforeach
+															</select>
+														</div>
+													</td>
+													<td class="nopadding" >
+														<div class="form-group">
+															<input type="text" class="form-control" id="cantidad{{$loop->index + 1}}" name="cantidad{{$loop->index + 1}}" value="{{$prodsolcompra->cant_sol_prd}}" placeholder="Cantidad" disabled style="background:rgba(247, 247, 247, 0.57);">
+														</div>
+													</td>
+													<td>
+														@if($prodsolcompra->producto->almacen)
+															<input type="text" class="form-control" id="disponible{{$loop->index + 1}}" name="disponible{{$loop->index + 1}}" value="{{$prodsolcompra->producto->almacen->cnt_prd}} {{$prodsolcompra->almacen->und}}" disabled style="background:rgba(247, 247, 247, 0.57);" />
+														@else
+															<input type="text" class="form-control" id="disponible{{$loop->index + 1}}" name="disponible{{$loop->index + 1}}" value="0 {{$prodsolcompra->producto->unidad->des_und}}" disabled style="background:rgba(247, 247, 247, 0.57);" />
+														@endif
+													</td>
+												</tr>
+											@endforeach
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<small>Pulse + para agregar otro producto /  Pulse - para eliminar un producto.</small>
+								<br />	
+							</div>
+	
 						</div>
-
-					  </div>
-					</li>
-				</ul>
-		</div>
-				</li>
-			</ul>
-			<div class="form-group right ">	
-																	
-				<button type="submit" class="btn btn-danger">Deshacer</button>
-				<button type="submit" class="btn btn-default">Guardar</button>
-				<button type="submit" class="btn btn-success">Enviar</button>
+						</li>
+					</ul>
 			</div>
 		</form>
     </div>
-		
-		
-		<!-- registro modal -->		  
-
-		  <div class="modal fade registro" tabindex="-1" role="dialog" aria-hidden="true">
-			<div class="modal-dialog modal-lg">
-				<div class="modal-content">
-					<div class="modal-header">
-					  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
-					  </button>
-					  <h4 class="modal-title" id="myModalLabel2">Registro Consolidado | Requisiciones </h4>
-					</div>
-					<div class="modal-body">
-						<div class="table-responsive">
-							<table class="table table-bordered table-hover" id="rqs" name="rqs" >
-								<thead>
-									<tr>
-										<th> Código  </th>
-										<th> Fecha </th>
-										<th> Asunto </th>
-										<th> Solicitante</th>
-									</tr>
-								</thead>
-							</table>
-						</div>
-					</div>
-				</div>
-		    </div>
-			</div>
-		  
-		<!-- /modals -->
-
-
-		
 		
 		
 		
@@ -267,7 +179,7 @@
 				</div>
 				<div class="modal-footer"><!--
 				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-				  <button type="reset" class="btn btn-danger">Deshacer</button>
+				 <button type="reset"class="btn btn-danger">Borrar</button>
 				  <input type="submit" class="btn btn-primary">Guardar</input>
 
 				</div>
@@ -279,7 +191,7 @@
 @stop
 @section('postscripts')  
 	<script>
-		var producto = 1;
+		//var producto = 1;
 		var rq = 1;
 		var primer_producto_cargado = false;
 		
@@ -373,13 +285,7 @@
 								'</td>'+				
 								//Disponible
 								'<td class="nopadding" >'+
-									'<div class="form-group"><input type="text" class="form-control" id="disponible'+(producto)+'" name="disponible'+(producto)+'" disabled/></div>'+
-								'</td>'+
-								//Botones
-								'<td class="nopadding" >'+
-									'<div class="input-group-btn"><button class="btn btn-sm btn-danger glyphicon glyphicon-minus btn-xs" type="button" onclick="remove_education_fields2('+ producto +');">'+
-										'<span aria-hidden="true"></span>'+
-									'</button></div>'+
+									'<div class="form-group"><input type="text" class="form-control" id="disponible'+(producto)+'" name="disponible'+(producto)+'" disabled style="background:rgba(247, 247, 247, 0.57);"/></div>'+
 								'</td></tr>';
 								divtest.innerHTML = text;
 								objTo.appendChild(divtest);
@@ -542,7 +448,7 @@
 								'</td>'+				
 								//Disponible
 								'<td class="nopadding" >'+
-									'<div class="form-group"><input type="text" class="form-control" id="disponible'+(producto)+'" name="disponible'+(producto)+'" disabled/></div>'+
+									'<div class="form-group"><input type="text" class="form-control" id="disponible'+(producto)+'" name="disponible'+(producto)+'" disabled style="background:rgba(247, 247, 247, 0.57);"/></div>'+
 								'</td>'+
 								//Botones
 								'<td class="nopadding" >'+
@@ -633,6 +539,7 @@
 					//model.setAttribute('value', );
 			});
 		}
+		
 		function education_fields2(productos) {
 			producto++;
 			var objTo = document.getElementById('education_fields2')
@@ -659,7 +566,7 @@
 				'</td>'+				
 				//Disponible
 				'<td class="nopadding" >'+
-					'<div class="form-group"><input type="text" class="form-control" id="disponible'+(producto)+'" name="disponible'+(producto)+'" disabled/></div>'+
+					'<div class="form-group"><input type="text" class="form-control" id="disponible'+(producto)+'" name="disponible'+(producto)+'" disabled style="background:rgba(247, 247, 247, 0.57);"/></div>'+
 				'</td>'+
 				
 				//Botones
@@ -671,9 +578,10 @@
 				divtest.innerHTML = text;
 				//'<tr><td>' + (producto) + '</td><td><div class="form-group "><select class="form-control"><option value="" selected>Seleccionar</option><option value="">Taller de Cocina</option><option value="">Papeleria</option><option value="" >Didacticos</option><option value="" >Aseo</option></select></div></td><td class="nopadding" ><select class="form-control" id="educationDate" name="educationDate[]"><option value="" selected>Seleccionar</option><option name="" value="">Aceite</option><option value="">Arepas antioqueñas precocidas </option><option value="" >Arroz  (bolsas de medio kilo)</option><option value="" >Bocadillo</option></select></td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Detalle"></div></td><td class="nopadding" ><select class="form-control" id="educationDate" name="educationDate[]"><option value="" selected>Seleccionar</option><option name="" value="">Barra</option><option name="" value="">Bloque</option><option name="" value="">Bolsa</option><option name="" value="">Botella</option><option name="" value="">Caja</option><option name="" value="">Frasco</option><option value="">Lata</option><option value="">Paquete</option><option value="">Pote</option><option value="">Tarro</option><option value="">Tubo</option><option value="">Vaso</option><option name="" value="">Unidad</option><option value="">Kg</option><option value="">Kilo</option><option value="">Litro</option><option value="">Lonjas</option></select></td><td>1 Caja de 5 UND</td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Cantidad"></div></td><td class="nopadding" ><div class="input-group-btn"><button class="btn btn-sm btn-danger glyphicon glyphicon-minus btn-xs" type="button" onclick="remove_education_fields2('+ producto +');"> <span  aria-hidden="true"></span> </button></div></td></tr>';
 				objTo.appendChild(divtest)
-			
+				$("#cantproductos").val(window.producto);
 		}
-	   function remove_education_fields2(rid) {
+		
+		function remove_education_fields2(rid) {
 		   $('.removeclass'+rid).remove()
 		   
 		   producto--;

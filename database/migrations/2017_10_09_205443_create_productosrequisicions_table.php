@@ -44,7 +44,7 @@ class CreateProductosrequisicionsTable extends Migration
             $table->foreign('unidad_dis_id')->references('id')->on('conversions') ->onUpdate('cascade') ->onDelete('cascade');
 			
 			$table->double('cant_dif_prd')->default(0);
-			$table->double('cant_utl_prd ')->default(0);
+			$table->double('cant_utl_prd')->default(0);
 			
 			
 		

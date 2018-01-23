@@ -5,7 +5,9 @@
 
     <div class="x_panel">
 	    <div class="x_title">
-			<h2>Nueva Orden de Compra</h2>
+			<h2>Editar Orden de Compra</h2>&nbsp&nbsp&nbsp<!--
+			<a  href="{{ url('/proveedor/'.$proveedors->id) }}"class="btn btn-danger  right" role="button">Ver </a>-->
+			<a  href="{{ url('/proveedor') }}" class="btn btn-default  right" role="button"><i class="fa fa-reply" aria-hidden="true"></i>&nbsp&nbsp&nbspVolver al listado </a>
 			<div class="clearfix"></div>
 	    </div>
 		<div class="x_content">
@@ -397,7 +399,7 @@
 			</ul>
 			<div class="form-group right ">	
 																	
-				<button type="reset" class="btn btn-danger">Deshacer</button>
+				<button type="reset"class="btn btn-danger">Borrar</button>
 				<input type="submit" class="btn btn-success" value="Guardar"></input>
 			</div>
 		</form>
@@ -559,7 +561,7 @@
 							var rdiv = 'removeproducto'+producto;
 							var text = '<tr><td>' +
 							(producto) +
-							'<input type="hidden" id="prodsolcompra'+(producto)+'" name="prodsolcompra'+(producto)+'" value="0"/>'+
+							'<input type="hidden" id="prodsolcompra'+(producto)+'" name="prodsolcompra'+(producto)+'" />'+
 							'</td>'+
 							//Productos
 							'<td class="nopadding" >'+
@@ -601,29 +603,19 @@
 								'</button></div>'+
 							'</td></tr>';
 							divtest.innerHTML = text;
-							objTo.appendChild(divtest)
+							objTo.appendChild(divtest);
 							$("#cantproductos").val(producto);  
 							$('#producto'+producto).val(element.producto.id);
 							$('#cantidad'+producto).val(element.cant_sol_prd);
 							$('#prodsolcompra'+producto).val(element.id);
-							$.get("{{ url('requisicion/cargarunidadesproducto')}}", 
-								{
-									option: $('#producto'+producto).val(),
-									
-								}, 
-								function(data) {
-									var model = $('#unidad'+producto);
-									model.empty();
-									model.append("<option value='' selected>Seleccionar</option>");
-										$.each(data, function(index, element2) {
-											var text_append="<option value='"+ element2.id +"'";
-											if(element.unidad_solicitada.id == element2.id){
-												text_append = text_append + " selected ";
-											}
-											text_append = text_append + ">" + element2.des_und + "</option>"
-											model.append(text_append);
-										});
+							var model = $('#unidad'+producto);
+							model.empty();
+							model.append("<option value='' selected>Seleccionar</option>");
+								$.each(element.producto.unidades, function(index, element2) {
+									var text_append="<option value='"+ element2.id + "'>" + element2.des_und + "</option>"
+									model.append(text_append);
 								});
+							$('#unidad'+producto).val(element.unidad_solicitada.id);
 							calculo_iva_valor(producto);
 						}
 					});

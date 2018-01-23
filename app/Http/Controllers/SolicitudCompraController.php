@@ -126,8 +126,12 @@ class SolicitudCompraController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {	$productos = Producto::all();
-        $solicitudcompra= SolicitudCompra::find($id);
+    {	 $solicitudcompra = SolicitudCompra::with('productossolicitudcompra')->find($id);
+		foreach($solicitudcompra->productossolicitudcompra as $prod){
+			$prod->almacen = $this->getAlmacenProducto($prod->prod_id);
+		}
+
+		$productos = Producto::all();
 		return view('solicitudcompra.show')->with(compact('solicitudcompra','productos'));
     }
 
@@ -143,7 +147,7 @@ class SolicitudCompraController extends Controller
 		foreach($solicitudcompra->productossolicitudcompra as $prod){
 			$prod->almacen = $this->getAlmacenProducto($prod->prod_id);
 		}
-		//return $solicitudcompra;
+
 		$productos = Producto::all();
 		$rqsAutorizadas = EstadosRequisicion::find(2)->requisiciones()
 													->whereHas('productos' , function ($q){

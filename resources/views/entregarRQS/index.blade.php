@@ -94,11 +94,11 @@
 								@endif
 							@endforeach
 						@endif
-		
-						
 						<td>
+						@permission('ver-editar-entregar-rqs')
 							<a href="{{ url('/entregarRQS/'.$requisicion->id.'/edit') }}" title="Editar" class="btn btn-info glyphicon glyphicon-pencil btn-xs" data-title="Editar"></a>
-							<a href="{{ url('/requisicion/'.$requisicion->id) }}" title="Detalle" class="btn btn-success glyphicon glyphicon-file btn-xs" data-title="Detalle"></a>
+						@endpermission
+						<a href="{{ url('/requisicion/'.$requisicion->id) }}" title="Detalle" class="btn btn-success glyphicon glyphicon-file btn-xs" data-title="Detalle"></a>
 							<a href="{{ url('requisicion/export/'.$requisicion->id) }}" title="Descargar" class="btn btn-primary glyphicon glyphicon-cloud-download btn-xs" data-title="Descargar"></a>
 							
 							<!--
