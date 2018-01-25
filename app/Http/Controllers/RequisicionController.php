@@ -18,7 +18,8 @@ use App\Requisicion;
 use Validator;
 use \Carbon\Carbon;
 use Excel;
-use PDF;
+use FPDI;
+
 
 class RequisicionController extends Controller
 {
@@ -322,6 +323,167 @@ class RequisicionController extends Controller
 		
 	}
 	
+	public function exporpdftrqs($id)
+	{	
+		
+		$proveedores = Proveedor::all();
+		$requisicion = Requisicion::find($id);
+		$registrohisrqs = RegistroHistoricoRequisicion::where('rqs_id',$id)->first();
+		$usuario = $registrohisrqs->user;
+		//return $requisicion->proveedoresrequisicion;
+		$productos = $requisicion->productos()->get();
+		$acciones = AccionesRequisicion::where('est_ant_rqs_id','=',$requisicion->estadorequisicion->id)->get();
+		$unidades = Unidad::all();
+	
+		//DESCRIPCION PRODUCTOS 1
+		$cant_productos = $productos->count();
+		$cant_hojas = (int) ($cant_productos / 17);
+		$hoja = 0;
+		$EDFSDF = 0;
+		
+		$pdf = new FPDI();
+		// add a page
+		$this->nuevapaginapdf($pdf,'C:/Users/JORGE/Documents/GitHub/Proyecto/resources/views/requisicion/AF-003-01-Formato-rqs.pdf');
+		// now write some text above the imported page
+		$pdf->SetFont('Helvetica');
+		$pdf->SetTextColor(0, 0, 0);
+		$justi = $requisicion->jst_rqs;
+		$this->escribirencabezado($pdf, $justi, $usuario, $hoja + 1, $cant_hojas + 1);
+		
+		while($hoja < $cant_hojas || (($hoja * 17) + $EDFSDF < $cant_productos)){
+			$pdf->SetXY(26,91 + ($EDFSDF * 6));
+			$pdf->Write(0, $this->escribirtexto(($hoja * 17) + $EDFSDF + 1));
+			$pdf->SetXY(52,91 + ($EDFSDF * 6));
+			$pdf->Write(0, $this->escribirtexto($productos[($hoja * 17) + $EDFSDF]->cant_sol_prd));
+			$pdf->SetXY(68,91 + ($EDFSDF * 6));
+			$pdf->Write(0, $this->escribirtexto($productos[($hoja * 17) + $EDFSDF]->unidad_solicitada->des_und));
+			$pdf->SetXY(90,91 + ($EDFSDF * 6));
+			if($productos[($hoja * 17) + $EDFSDF]->producto == null)
+				$pdf->Write(0, $this->escribirtexto($productos[($hoja * 17) + $EDFSDF]->nom_prd));
+			else
+				$pdf->Write(0, $this->escribirtexto($productos[($hoja * 17) + $EDFSDF]->producto->des_prd));
+			$EDFSDF++;
+			if($EDFSDF % 17 == 0){
+				$hoja++;
+				$EDFSDF = 0;
+				$this->escribirfooter($pdf, $requisicion);
+				$this->nuevapaginapdf($pdf,'C:/Users/JORGE/Documents/GitHub/Proyecto/resources/views/requisicion/AF-003-01-Formato-rqs.pdf');
+				$this->escribirencabezado($pdf, $justi, $usuario);
+			}
+		}
+		$this->escribirfooter($pdf, $requisicion);
+		$pdf->Output('AF-003-01-Formato-de-requision-cod-'.$requisicion->id.'.pdf', 'D');
+		
+	}
+	
+	public function escribirtexto(string $str = ""){
+		return iconv('UTF-8', 'windows-1252', stripslashes($str));		
+	}
+	
+	public function nuevapaginapdf(FPDI $pdf, string $path = ""){
+		
+		// add a page
+		$pdf->AddPage('P','Letter');
+		// set the source file
+		if(!($path == "")){
+			$pdf->setSourceFile($path);
+			// import page 1
+			$tplIdx = $pdf->importPage(1);
+			//$pdf->useTemplate($tplIdx);
+			$pdf->useTemplate($tplIdx, null, null, 0, 0, true);
+		}
+			
+		
+	}
+	
+	public function escribirencabezado(FPDI $pdf, string $jst, User $user, int $hoja_actual, int $cant_hojas){
+		
+		$pdf->SetXY(137,34);
+		$pdf->Write(0, $this->escribirtexto($hoja_actual . ' de ' . $cant_hojas));
+		
+		$pdf->SetXY(42,53);
+		$pdf->Write(0, $this->escribirtexto($user->nom_usr . ' ' . $user->ape_usr));
+		$pdf->SetXY(165,53);
+		$pdf->Write(0, $this->escribirtexto($user->cargo->des_crg));
+		$pdf->SetXY(68,58);
+		$pdf->Write(0, $this->escribirtexto($user->area->des_are));
+		$pdf->SetXY(169,58);
+		$pdf->Write(0, $this->escribirtexto($user->crd_usr));
+		$pdf->SetXY(68,68);
+		$pdf->Write(0, $this->escribirtexto($jst));
+	}
+	
+	public function escribirfooter(FPDI $pdf, Requisicion $requisicion){
+		
+		//Proveedores sugeridos:
+		foreach($requisicion->proveedoresrequisicion as $index => $provrqs){
+			if($index > 3)
+				break;
+			$pdf->SetXY(18,198 + (5.5 * $index));
+			$pdf->Write(0,$provrqs->raz_soc);		
+		}
+		
+		//Fechas firmas:
+		$pdf->SetXY(90,208);
+		$pdf->Write(0, $this->escribirtexto($requisicion->created_at->format('Y-m-d')));
+		$pdf->SetXY(128,208);
+		$acc_aut = RegistroHistoricoRequisicion::where('rqs_id',$requisicion->id)->where('acc_rqs_id',3)->first();
+		if(!($acc_aut == null))
+			$pdf->Write(0, $this->escribirtexto($acc_aut->created_at->format('Y-m-d')));
+		
+		//Tipo de solicitud:
+		$pdf->SetXY(84,223);
+		$str_con = ($requisicion->tip_sol >= 1 and $requisicion->tip_sol != 2) ? 'x' : '';
+		$pdf->Write(0, $str_con);
+		$pdf->SetXY(102,223);
+		$str_inv = ($requisicion->tip_sol >= 2) ? 'x' : '';
+		$pdf->Write(0, $str_inv);
+		
+		//Proveedor autorizado:
+		if($requisicion->prv_apr == true){
+			$pdf->SetXY(73,228);
+			$pdf->Write(0,'x');
+		}
+		else{
+			$pdf->SetXY(93,228);
+			$pdf->Write(0,'x');
+		}
+		
+		//Aprobado en comité: 
+		if($requisicion->apr_com == true){
+			$pdf->SetXY(73,233);
+			$pdf->Write(0,'x');
+		}
+		else{
+			$pdf->SetXY(93,233);
+			$pdf->Write(0,'x');
+		}
+		
+		//Fecha
+		$pdf->SetXY(138,233);
+		$pdf->Write(0, $requisicion->fec_apr_com);
+		
+		//Recibí los elementos solicitados
+		$pdf->SetXY(42,253);
+		$pdf->Write(0, $requisicion->nom_rcp_rqs);
+		$pdf->SetXY(125,253);
+		$pdf->Write(0, $requisicion->crg_rcp_rqs);
+		$pdf->SetXY(177,253);
+		if(!($requisicion->fec_rcp_rqs == null))
+			$pdf->Write(0, $this->escribirtexto($requisicion->fec_rcp_rqs));
+		
+		$acc_rcp = RegistroHistoricoRequisicion::where('rqs_id',$requisicion->id)->where('acc_rqs_id',11)->first();
+		if(!($acc_rcp == null)){
+			$pdf->SetXY(167,208);
+			$pdf->Write(0, $this->escribirtexto($acc_rcp->created_at->format('Y-m-d')));
+			$pdf->SetXY(42,259);
+			$pdf->Write(0, $acc_rcp->obs_reg_rqs);
+		}
+			
+		
+	}
+	
+	
 	public function exportRequisiciones () {
 		\Excel::create('Requisiciones', function($excel) {
 		 
@@ -348,14 +510,7 @@ class RequisicionController extends Controller
 		
 	}
 	
-		public function exporpdftRequisicion()
-		{			
 		
-			$pdf = PDF::loadView('inventario');
-            return $pdf->download('pdfview.pdf');
-			
-			;
-		}
 	
 		public function exportRequisicion($id) {
 			

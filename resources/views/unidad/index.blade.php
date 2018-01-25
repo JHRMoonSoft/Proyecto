@@ -3,7 +3,7 @@
 @section('pagetitle')
   <h3></h3> 
 @endsection
-@section('x_search')
+@section('x_search')<!--
 	<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search"> 
 						
 		<div class="input-group">
@@ -12,7 +12,7 @@
 				  <button class="btn btn-default glyphicon glyphicon-search" type="button"></button> 
 			  </span> 
 		</div>
-	</div>
+	</div>-->
 	
 @endsection
 
@@ -44,7 +44,7 @@
 	    </div>
 		<div class="x_content">
 			<div class="table-responsive">
-				<table id="datatable-buttons" class="table table-striped table-bordered ">
+				<table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
 				  <thead>
 				   <tr>
 						<th>Código</th>

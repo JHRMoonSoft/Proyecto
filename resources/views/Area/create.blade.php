@@ -42,9 +42,9 @@
 		
 		<div class="clearfix"></div>
 	    </div>
-		<div class="x_content">
+		<div class="x_content"><br/>
 			<div class="table-responsive">
-				<table id="datatable-buttons" class="table table-striped table-bordered ">
+				<table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
 				  <thead>
 				   <tr>
 						<th class="text-center">Código</th>

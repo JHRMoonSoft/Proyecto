@@ -67,13 +67,12 @@
 								</div>
 								<div class="block_content"><br/>
 									<h2 class="title">
-										<a>Registrar Productos</a><br/>
+										<a>Lista de Productos</a><br/>
 									</h2>
 								<br />
 								<div class="panel panel-default">
 									<div class="panel-heading text-center">
-										<button type="reset" title="Producto" target="_blank" class="btn btn-xs btn-default glyphicon glyphicon glyphicon-refresh right" data-title="Producto"></button>
-										<span><strong><span class="glyphicon glyphicon-th-list"> </span> Productos</strong></span>
+									<span><strong><span class="glyphicon glyphicon-th-list"> </span> Productos</strong></span>
 										
 									</div>
 									<div class="table-responsive">
@@ -81,8 +80,8 @@
 											<thead>
 												<tr >
 													<th>#</th>
-													<th><a href="/producto" title="Producto" target="_blank" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-title="Producto"></a>Producto</th>
-													<th><a href="/unidad" title="Producto" target="_blank" class="btn btn-sm btn-primary glyphicon glyphicon-ok btn-xs" data-title="Producto"></a>Unidad</th>
+													<th>Producto</th>
+													<th>Unidad</th>
 													<th>Cantidad</th>
 													<th> Disponible</th>
 													<th><a></a></th>

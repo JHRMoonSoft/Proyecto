@@ -4,7 +4,7 @@
 @section('pagetitle')
   <h3></h3> 
 @endsection
-@section('x_search')
+@section('x_search')<!--
 	<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search"> 
 						
 		<div class="input-group">
@@ -14,7 +14,7 @@
 			  </span> 
 		</div>
 	</div>
-	
+	-->
 @endsection
 
 @section('x_content')
@@ -52,9 +52,9 @@
 			</ul>-->
 			<div class="clearfix"></div>
 	    </div>
-		<div class="x_content">
+		<div class="x_content"><br/>
 			<div class="table-responsive">
-				<table id="datatable-buttons" class="table table-striped table-bordered ">
+				<table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
 				  <thead>
 				   <tr>
 						<th class="text-center">Código</th>
@@ -99,7 +99,7 @@
 							<a href="{{ url('/entregarRQS/'.$requisicion->id.'/edit') }}" title="Editar" class="btn btn-info glyphicon glyphicon-pencil btn-xs" data-title="Editar"></a>
 						@endpermission
 						<a href="{{ url('/requisicion/'.$requisicion->id) }}" title="Detalle" class="btn btn-success glyphicon glyphicon-file btn-xs" data-title="Detalle"></a>
-							<a href="{{ url('requisicion/export/'.$requisicion->id) }}" title="Descargar" class="btn btn-primary glyphicon glyphicon-cloud-download btn-xs" data-title="Descargar"></a>
+							<a href="{{ url('requisicion/export-pdf/'.$requisicion->id) }}" title="Descargar" class="btn btn-primary glyphicon glyphicon-cloud-download btn-xs" data-title="Descargar"></a>
 							
 							<!--
 							<a href="" title="Acción" class="btn btn-primary glyphicon glyphicon-ok btn-xs" data-title="Acción"></a>--></td><!--

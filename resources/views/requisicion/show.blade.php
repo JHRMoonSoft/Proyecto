@@ -6,7 +6,11 @@
     <div class="x_panel"> 
 	    <div class="x_title">
 			<h2>Información de la Requisición Interna</h2>
-			<a  href="{{ url('requisicion/export/'.$requisicion->id) }}" class="btn btn-primary  right" role="button"><i class="glyphicon glyphicon-cloud-download" aria-hidden="true"></i>&nbsp&nbsp Descargar </a>
+			@if( $requisicion->estadorequisicion->id == 8)
+				<a  href="{{ url('inventarioRQS/'.$requisicion->id) }}" class="btn btn-success  right" role="button"><i class="fa fa-dropbox" aria-hidden="true"></i>&nbsp&nbsp&nbspINVENTARIO </a>
+			@endif
+			<a  href="{{ url('requisicion/export-pdf/'.$requisicion->id) }}" class="btn btn-primary  right" role="button"><i class="glyphicon glyphicon-cloud-download" aria-hidden="true"></i>&nbsp&nbsp Descargar </a>
+			<a  href="/home" class="btn btn-default  right" role="button"><i class="fa fa-home " aria-hidden="true"></i>&nbsp&nbsp&nbspHOME </a>
 		<!--
 			<ul class="nav navbar-right panel_toolbox">
 			
@@ -157,7 +161,7 @@
 						<div class="dlk-radio btn-group  col-md-2" >
 							<h5>Aprobado en comite</h5>
 							<label class="btn  btn-primary ">
-								<input name="apr_com]"  type="radio" value="1"disabled @if($requisicion->apr_com == true) checked @endif / >
+								<input name="apr_com"  type="radio" value="1"disabled @if($requisicion->apr_com == true) checked @endif / >
 								<i class="fa fa-check glyphicon glyphicon-ok"></i>SI
 								
 						   </label>

@@ -41,7 +41,9 @@ Route::get('inventarioRQS/{id}', 'RequisicionController@inventarioRequisicion');
 
 Route::get('ordencompra/cargarproveedor', 'RequisicionController@cargarproveedor');
 
-Route::get('requisicion/export-pdf', 'RequisicionController@exporpdftRequisicion');
+Route::get('requisicion/export-pdf/{id}', 'RequisicionController@exporpdftrqs');
+
+
 Route::get('export-requisiciones', 'RequisicionController@exportRequisiciones');
 Route::get('requisicion/export/{id}', 'RequisicionController@exportRequisicion');
 Route::get('solicitudcompra/export/{id}', 'SolicitudCompraController@exportSolicitudCompra');

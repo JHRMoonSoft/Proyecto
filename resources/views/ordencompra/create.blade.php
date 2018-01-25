@@ -238,7 +238,10 @@
 							<div class="panel panel-default">
 								<div class="panel-heading text-center">
 									<span><strong><span class="glyphicon glyphicon-th-list"> </span> Productos</strong></span>
+									 <button type="button" class="btn btn-success btn-xs left "data-toggle="modal" data-target=".registro" >Registro SCP</button>
+									<a  href="" class="btn btn-default  btn-xs right" role="button"><i class="glyphicon glyphicon-refresh " aria-hidden="true"></i></a>
 								</div>
+								
 								<div class="table-responsive">
 									<table class="table table-bordered table-hover" id="education_fields">
 										<thead>
@@ -402,6 +405,39 @@
 			</div>
 		</form>
         </div>
+		
+		
+		<!-- registro modal -->		  
+
+		  <div class="modal fade registro" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+					  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+					  </button>
+					  <h4 class="modal-title" id="myModalLabel2">Registro Consolidado | Solicitud de Compras  </h4>
+					</div>
+					<div class="modal-body">
+						<div class="table-responsive">
+							<table class="table table-bordered table-hover" id="rqs" name="rqs" >
+								<thead>
+									<tr>
+										<th> Código  </th>
+										<th> Fecha </th>
+										<th> Asunto </th>
+										<th> Solicitante</th>
+									</tr>
+								</thead>
+							</table>
+						</div>
+					</div>
+				</div>
+		    </div>
+			</div>
+		  
+		<!-- /modals -->
+		
+		
 
 	</div>		
 @stop

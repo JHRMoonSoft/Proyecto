@@ -125,7 +125,7 @@
 								<div class="panel panel-default">
 									<div class="panel-heading text-center">
 										<button type="button" class="btn btn-success btn-xs left "data-toggle="modal" data-target=".registro" >Registro RQS</button>
-										<button type="reset" title="Producto" target="_blank" class="btn btn-xs btn-default glyphicon glyphicon glyphicon-refresh right" data-title="Producto"></button>
+										<a  href="" class="btn btn-default  btn-xs right" role="button"><i class="glyphicon glyphicon-refresh " aria-hidden="true"></i></a>
 										<span><strong><span class="glyphicon glyphicon-th-list"> </span> Productos</strong></span>
 										
 									</div>

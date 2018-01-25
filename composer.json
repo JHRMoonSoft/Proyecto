@@ -6,7 +6,9 @@
     "type": "project",
     "require": {
         "php": ">=5.6.4",
-        "barryvdh/laravel-dompdf": "^0.8.1",
+        "codedge/laravel-fpdf": "^1.2",
+		"setasign/fpdf": "^1.8",
+        "setasign/fpdi": "^1.6",
         "laracasts/generators": "dev-master as 1.1.4",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",

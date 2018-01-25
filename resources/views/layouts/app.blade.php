@@ -493,13 +493,21 @@
  
     <!-- validator -->
 	<script src="{{ URL::asset('css/workflow/vendors/validator/validator.js') }}"></script>
-   
-
-	
+   	
 	<!-- checkboxes  -->
 	<script src="{{ URL::asset('https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js') }}"></script>
 	 
-	<!-- checkboxes  --> 
+	 <!-- Datatables -->
+	<script src="{{ URL::asset('css/workflow/vendors/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+	<script src="{{ URL::asset('css/workflow/vendors/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+	<script src="{{ URL::asset('css/workflow/vendors/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>
+	<script src="{{ URL::asset('css/workflow/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js') }}"></script>
+	<script src="{{ URL::asset('css/workflow/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js') }}"></script>
+	<script src="{{ URL::asset('css/workflow/vendors/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
+	<script src="{{ URL::asset('css/workflow/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js') }}"></script>
+	<script src="{{ URL::asset('css/workflow/vendors/datatables.net-scroller/js/dataTables.scroller.min.js') }}"></script>
+	
+
 
 
 		

@@ -73,7 +73,7 @@
 								<div class="form-group">
 									<label for="obs_rqs" class="col-sm-2 control-label">Observación:</label>
 									<div class="col-sm-10">
-										<textarea id="obs_rqs" name="obs_rqs" required class="editor-wrapper" style="width:100%" ></textarea>
+										<textarea id="obs_rqs" name="obs_rqs"  class="editor-wrapper" style="width:100%"  required  ></textarea>
 										@if ($errors->has('obs_rqs'))
 											<span class="help-block">
 												<strong>{{ $errors->first('obs_rqs') }}</strong>
