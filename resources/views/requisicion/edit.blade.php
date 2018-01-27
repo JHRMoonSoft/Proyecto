@@ -15,6 +15,8 @@
 				{{ csrf_field() }}
 				<input name="_method" type="hidden" value="PUT">						
 				<input id="id" name="id" type="hidden" value="{{ $requisicion->id }}">
+				<input id="area_id" name="area_id" type="hidden" value="{{ $requisicion->area_id }}">
+				<input id="cargo_id" name="cargo_id" type="hidden" value="{{ $requisicion->cargo_id }}">
 				<ul class="list-unstyled timeline">
 					<li>
 						<div class="table-responsive">
@@ -40,8 +42,8 @@
 												<td>{{$requisicion->jst_rqs}}</td>
 												<td>{{$requisicion->estadorequisicion->desc_est_req}}</td>
 												<td>{{$reg->user->nom_usr}} {{$reg->user->ape_usr}}</td>
-												<td>{{$reg->user->cargo->des_crg}}</td>
-												<td>{{$reg->user->area->tipoarea->des_tip_are}} / {{$reg->user->area->des_are}}</td>
+												<td>{{$requisicion->cargo->des_crg  }}</td>
+											<td>{{$requisicion->area->tipoarea->des_tip_are}} / {{$requisicion->area->des_are}}</td>
 											</tr> 
 										@if($loop->last)
 											<input id="acc_rqs" name="acc_rqs" type="hidden" value="{{ $reg->acc_rqs_id }}">
@@ -51,7 +53,6 @@
 							</table>
 						</div>
 					</li>
-					@permission('ver-registrar-lista-productos')
 					<li>
 						<div class="block">
 							<div class="tags">
@@ -179,8 +180,6 @@
 							</div>
 						</div>
 					</li>
-					@endpermission
-					@permission('ver-registrar-proveedores-sugeridos
 					<li>
 						<div class="block">
 							<div class="tags">
@@ -327,7 +326,6 @@
 							</div>
 						</div>
 					</li>
-					@endpermission
 				</ul>
 				<div class="form-group right ">						
 					<button type="reset"class="btn btn-danger">Borrar</button>

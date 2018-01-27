@@ -32,6 +32,9 @@ class CreateRequisicionsTable extends Migration
 			$table->integer('area_id')->unsigned()->index();
             $table->foreign('area_id')->references('id')->on('areas') ->onUpdate('cascade') ->onDelete('cascade');
 			
+			$table->integer('cargo_id')->unsigned()->index();
+            $table->foreign('cargo_id')->references('id')->on('cargos') ->onUpdate('cascade') ->onDelete('cascade');
+			
 			$table->integer('est_rqs')->unsigned()->index();
             $table->foreign('est_rqs')->references('id')->on('estadosrequisicions') ->onUpdate('cascade') ->onDelete('cascade');
 			

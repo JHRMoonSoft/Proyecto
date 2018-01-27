@@ -27,6 +27,14 @@ class RolesTableSeeder extends Seeder
 			'updated_at' => Carbon::now()
 		]);
 		DB::table('roles')->insert([
+			'name' => 'jefatura',
+			'display_name' => 'Jefatura',
+			'description' => 'Jefatura de Departamento',
+			'created_at' => Carbon::now()->subDays(1),
+			'updated_at' => Carbon::now()
+		]);
+		
+		DB::table('roles')->insert([
 			'name' => 'compras',
 			'display_name' => 'Compras',
 			'description' => 'Auxiliar de Compras',
@@ -42,14 +50,7 @@ class RolesTableSeeder extends Seeder
 			'updated_at' => Carbon::now()
 		]);
 		
-		DB::table('roles')->insert([
-			'name' => 'jefatura',
-			'display_name' => 'Jefatura',
-			'description' => 'Jefatura de Departamento',
-			'created_at' => Carbon::now()->subDays(1),
-			'updated_at' => Carbon::now()
-		]);
-				
+						
 		DB::table('roles')->insert([
 			'name' => 'funcionario',
 			'display_name' => 'Funcionarios',

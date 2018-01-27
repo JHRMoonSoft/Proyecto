@@ -10,7 +10,7 @@
 						<button type="submit" class="btn btn-success">Crear</button>
 				</div>
 				<div class=" col-md-3 col-sm-3 col-xs-6 right">				
-					<input type="text" class="form-control" id="des_crg" name="des_crg" placeholder=" Nuevo Cargo"/>
+					<input type="text" class="form-control" id="des_crg" name="des_crg" required placeholder=" Nuevo Cargo"/>
 					@if ($errors->has('des_crg'))
 						<span class="help-block">
 							<strong>{{ $errors->first('des_crg') }}</strong>

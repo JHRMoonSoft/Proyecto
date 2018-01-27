@@ -44,8 +44,8 @@
 												<td>{{$requisicion->estadorequisicion->desc_est_req}}</td>
 												<td>{{$reg->created_at->format('d-m-Y')}}</td>
 												<td>{{$reg->user->nom_usr}} {{$reg->user->ape_usr}}</td>
-												<td>{{$reg->user->cargo->des_crg}}</td>
-												<td>{{$reg->user->area->tipoarea->des_tip_are}} / {{$reg->user->area->des_are}}</td>
+												<td>{{$requisicion->cargo->des_crg  }}</td>
+												<td>{{$requisicion->area->tipoarea->des_tip_are}} / {{$requisicion->area->des_are}}</td>
 											</tr> 
 										@endif
 									@endforeach

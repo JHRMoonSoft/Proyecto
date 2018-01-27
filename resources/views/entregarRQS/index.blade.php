@@ -87,12 +87,12 @@
 									@if($registrorqs->user === null)
 										<td>Sin Creación</td>
 									@else
-										<td>{{$registrorqs->user->nom_usr .' '. $registrorqs->user->ape_usr}}</td>
-										<td>{{$registrorqs->user->cargo->des_crg  }}</td>
-										<td>{{$registrorqs->user->area->tipoarea->des_tip_are}} / {{$registrorqs->user->area->des_are}}</td>	
+										<td>{{$registrorqs->user->nom_usr .' '. $registrorqs->user->ape_usr}}</td>	
 									@endif
 								@endif
 							@endforeach
+							<td>{{$requisicion->cargo->des_crg  }}</td>
+							<td>{{$requisicion->area->tipoarea->des_tip_are}} / {{$requisicion->area->des_are}}</td>
 						@endif
 						<td>
 						@permission('ver-editar-entregar-rqs')

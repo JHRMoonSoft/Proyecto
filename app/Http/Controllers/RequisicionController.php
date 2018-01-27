@@ -63,7 +63,7 @@ class RequisicionController extends Controller
      */
     public function store(Request $request)
     {
-        $post_data = $request->all();
+		$post_data = $request->all();
 		$rules = [
             'rol_rqs'=> 'required',
 			'asn_rqs'=> 'required',
@@ -76,10 +76,19 @@ class RequisicionController extends Controller
 			//'crg_rcp_rqs'=> 'required',
 			//'fec_rcp_rqs'=> 'required',
 			'obs_rqs'=> 'required',
-			'est_rqs'=> 'required'
+			'est_rqs'=> 'required',
+			'area_id'=> 'required',
+			'cargo_id'=> 'required'
 			];
+			
+		$areas = User::find(Auth::user()->id)->area->id;
+		$cargos = User::find(Auth::user()->id)->cargo->id;
+		$post_data['area_id'] = $areas;	
+		$post_data['cargo_id'] = $cargos;	
         $validate = Validator::make($post_data, $rules);
-        if ($validate->passes()){
+	
+        if ($validate->passes()){			
+					
 			$requisicion = Requisicion::create($post_data);
 			$numprods = (int)$post_data['cantproductos'];
 			$numprovs = (int)$post_data['cantproveedores'];
@@ -185,7 +194,9 @@ class RequisicionController extends Controller
 			'crg_rcp_rqs'=> 'required',
 			'fec_rcp_rqs'=> 'required',
 			'obs_rcp_rqs'=> 'required',
-			'est_rqs'=> 'required'
+			'est_rqs'=> 'required',
+			'area_id'=> 'required',
+			'cargo_id'=> 'required'
 			];
         $validate = Validator::make($post_data, $rules);
         if (!$validate->failed()) {
@@ -277,8 +288,7 @@ class RequisicionController extends Controller
 	
 	public function requisicionuser ($id)
 	{
-		
-		
+			
 		
 		$requisicions = Requisicion::all();
 		$requisiciones = array();
