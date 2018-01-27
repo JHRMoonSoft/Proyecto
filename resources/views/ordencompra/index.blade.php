@@ -18,9 +18,11 @@
   <div class="x_panel">
 	    <div class="x_title">
 			<h2>Historial Orden de Compras</h2> &nbsp&nbsp&nbsp
-						
 			<a  href="/ordencompra/create" class="btn btn-warning" role="button">Nueva Orden </a>
-			<div class=" col-md-3 col-sm-3 col-xs-12 right">
+			<div class=" col-md-2 col-sm-2 col-xs-6 right">
+				<a  href="/ordencompra/export" class="btn btn-primary  left" role="button"><i class="glyphicon glyphicon-cloud-download" aria-hidden="true"></i>&nbsp&nbsp Descargar </a>
+			</div>
+			<div class=" col-md-3 col-sm-3 col-xs-6 right">
 				<div id="reportrange" class="pull-center" style="background: #fff; cursor: pointer; padding: 8px 10px; border: 1px solid #ccc">
 					<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
 					<span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
@@ -87,7 +89,7 @@
 							<td>
 								<a href="{{ url('/ordencompra/'.$ocp->id.'/edit') }}" title="Editar" class="btn btn-info glyphicon glyphicon-pencil btn-xs" data-title="Editar"></a>
 								<a href="{{ url('/ordencompra/'.$ocp->id) }}" title="Detalle" class="btn btn-success glyphicon glyphicon-file btn-xs" data-title="Detalle"></a>
-									
+								<a href="{{ url('/ordencompra/export-pdf/'.$ocp->id) }}" title="Descargar" class="btn btn-primary glyphicon glyphicon-cloud-download btn-xs" data-title="Descargar"></a>
 							</td>
 					
 						</tr>

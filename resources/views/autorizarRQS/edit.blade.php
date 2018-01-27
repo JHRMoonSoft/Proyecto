@@ -381,7 +381,7 @@
 												<div class="form-group row">
 													
 													<div class="col-sm-8">
-														<input type="checkbox" id="est_prov{{$loop->index + 1}}" name="est_prov{{$loop->index + 1}}" autocomplete="off" @if($prov->est_prov == true)checked="checked"@endif/>
+														<input type="checkbox" id="est_prov{{$loop->index + 1}}" name="est_prov{{$loop->index + 1}}" autocomplete="off" @if($prov->est_prov == true)checked="checked"@endif />
 														<div class="btn-group">
 															<label for="est_prov{{$loop->index + 1}}" class="btn btn-primary">
 																<span class="fa fa-check-square-o fa-lg"></span>

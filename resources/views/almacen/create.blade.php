@@ -5,82 +5,13 @@
 
     <div class="x_panel">
 	    <div class="x_title">
-			<h2>Nueva Requisición Interna</h2>
+			<h2>Alma</h2>
 			<div class="clearfix"></div>
 	    </div>
 		<div class="x_content">
 			<form class="form-horizontal" role="form" method="POST" action="{{ url('/requisicion/') }}">
 				{{ csrf_field() }}
 				<ul class="list-unstyled timeline">
-				@permission('ver-registrar-rqs')
-					<li>
-						<div class="block">
-							<div class="tags">
-							<a href="" class="tag">
-								<span>Paso 1</span>
-							</a>
-							</div>
-							<div class="block_content">
-								<h2 class="title">
-									<a>Registrar la RQS</a>
-								</h2>
-								<div class="panel-body message">
-										<div class="form-group"><br><br>
-											<label for="to" class="col-sm-2 control-label">Para:</label>
-											<div class="col-sm-10">
-												<select id="rol_rqs" class="form-control" name="rol_rqs">
-													<option value="">Seleccionar</option>
-													<option value="{{ $rol->id}}" selected>{{ $rol->display_name }} </option>
-												</select>
-												@if ($errors->has('display_name'))
-													<span class="help-block">
-														<strong>{{ $errors->first('display_name') }}</strong>
-													</span>
-												@endif
-											</div>
-										</div>
-										<input type="hidden" value="{{ $estado->id }}" class="form-control select2-offscreen" id="est_rqs" name="est_rqs"/>
-										<input type="hidden" value="{{ $acciones->id }}" class="form-control select2-offscreen" id="acc_rqs" name="acc_rqs"/>
-										<div class="form-group">
-											<label for="asn_rqs" class="col-sm-2 control-label">Asunto:</label>
-											<div class="col-sm-10">
-												<input type="text" value="" class="form-control select2-offscreen" required id="asn_rqs" name="asn_rqs" tabindex="-1" />
-												@if ($errors->has('asu_est_req'))
-													<span class="help-block">
-														<strong>{{ $errors->first('asu_est_req') }}</strong>
-													</span>
-												@endif
-											</div>
-										</div>
-										<div class="form-group">
-											<label for="jst_rqs" class="col-sm-2 control-label">Justificación:</label>
-											<div class="col-sm-10">
-												<input type="text" class="form-control select2-offscreen" required  id="jst_rqs" name="jst_rqs" tabindex="-1">
-												@if ($errors->has('jst_rqs'))
-													<span class="help-block">
-														<strong>{{ $errors->first('jst_rqs') }}</strong>
-													</span>
-												@endif
-											</div>
-										</div>
-										<div class="form-group">
-											<label for="obs_rqs" class="col-sm-2 control-label">Observación:</label>
-											<div class="col-sm-10">
-												<textarea id="obs_rqs" name="obs_rqs" class="editor-wrapper" style="width:100%" required  ></textarea>
-												@if ($errors->has('obs_rqs'))
-													<span class="help-block">
-														<strong>{{ $errors->first('obs_rqs') }}</strong>
-													</span>
-												@endif
-												<br/>
-											</div>
-										</div>
-								</div>
-							</div>
-						</div>
-					</li>
-					@endpermission
-					@permission('ver-registrar-lista-productos')
 					<li>
 						<div class="block">
 							<div class="tags">
@@ -189,99 +120,10 @@
 						</div>
 					</li>
 					@endpermission
-					@permission('ver-registrar-proveedores-sugeridos')
-					<li>
-						<div class="block">
-							<div class="tags">
-							<a href="" class="tag">
-								<span>Paso 3</span>
-							</a>
-							</div>
-							<div class="block_content">
-								<h2 class="title"><br />
-									<a>Proveedores sugeridos</a>
-								</h2>
-								<br/>
-								<div class="panel panel-default">
-								<div class="panel-heading text-center">
-									<span><strong><span class="glyphicon glyphicon-th-list"> </span> Proveedores</strong></span>
-								</div>
-								<div class="table-responsive">
-									<table class="table table-bordered table-hover" id="education_fields2">
-									<thead>
-										<tr >
-											<th>#</th>
-											<th>Proveedor </th>
-											<th> Nuevo  Proveedor </th>
-											<th>Teléfono </th>	
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>
-											1
-											</td>
-											<td>
-												
-												<select id="proveedor1" class="form-control" name="proveedor1" onchange="cambio_proveedores(1);">
-													<option value="" selected>Seleccionar</option>
-													@if(!$proveedores->isEmpty())
-														@foreach($proveedores as $proveedor)
-															<option value="{{ $proveedor->id}}">{{ $proveedor->raz_soc}} </option>
-														@endforeach
-													@endif
-													<option value="0">Otro</option>
-												</select>
-												@if ($errors->has('proveedor1'))
-													<span class="help-block">
-														<strong>{{ $errors->first('proveedor1') }}</strong>
-													</span>
-												@endif
-												
-											</td>
-											<td class="nopadding" >
-												<div class="form-group">
-													<input type="text" class="form-control" id="nombre1" name="nombre1" value="">
-													@if ($errors->has('nombre1'))
-														<span class="help-block">
-															<strong>{{ $errors->first('nombre1') }}</strong>
-														</span>
-													@endif
-												</div>
-											</td>
-											<td class="nopadding" >
-												<div class="form-group">
-													<input type="text" class="form-control" id="telefono1" name="telefono1" value="">
-													@if ($errors->has('telefono1'))
-														<span class="help-block">
-															<strong>{{ $errors->first('telefono1') }}</strong>
-														</span>
-													@endif
-												</div>
-											</td>
-											
-											<td class="nopadding" >
-												<div class="input-group-btn">
-													<button class="btn btn-sm btn-primary glyphicon glyphicon-plus btn-xs" type="button"  onclick="mas_proveedor({{$proveedores}});"> <span  aria-hidden="true"></span> </button>
-												</div>
-											</td>
-										</tr>
-									</tbody>
-							
-								</table>
-								</div>
-							</div>
-							<br/>
-							</div>
-						</div>
-					</li>
-					@endpermission
 				</ul>
 				<div class="form-group right ">						
-					<button type="reset"class="btn btn-danger">Borrar</button>						
-					@permission('enviar-nueva-rqs')
-						<button type="submit" class="btn btn-success">Enviar</button>
-					@endpermission
+					<button type="reset"class="btn btn-danger">Borrar</button>	
+						<button type="submit" class="btn btn-success">Guardar</button>
 				</div>
 			</form>
         </div>

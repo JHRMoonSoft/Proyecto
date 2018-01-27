@@ -24,7 +24,7 @@ class OrdenCompra extends Model
 	
 	public function productos(){
 		
-		return $this->belongsToMany('App\Producto','productosordencompras')->withPivot('id');
+		return $this->belongsToMany('App\Producto','productosordencompras', 'prod_id', 'ord_comp_id');
 	
 	}
 	

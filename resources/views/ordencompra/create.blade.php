@@ -160,7 +160,7 @@
 										<div class="col-sm-3 col-xs-6">
 											<div class="form-group">
 												<label for="dia_cred">Dias de credito</label>
-												<input class="form-control input-sm" id="dia_cred" name="dia_cred" type="text" >
+												<input class="form-control input-sm" id="dia_cred"  placeholder="(Dias)" name="dia_cred" type="text" >
 												@if ($errors->has('dia_cred'))
 													<span class="help-block">
 														<strong>{{ $errors->first('dia_cred') }}</strong>
@@ -171,7 +171,7 @@
 										<div class="col-sm-3 col-xs-6">
 											<div class="form-group">
 												<label for="tim_entr">Tiempo de entrega</label>
-												<input class="form-control input-sm" id="tim_entr" name="tim_entr" type="text" required>
+												<input class="form-control input-sm" id="tim_entr" placeholder="(Dias)" name="tim_entr" type="text" required>
 												@if ($errors->has('tim_entr'))
 													<span class="help-block">
 														<strong>{{ $errors->first('tim_entr') }}</strong>
@@ -300,7 +300,7 @@
 												</td>
 												<td class="nopadding" >
 													<div class="form-group">
-														<input type="text" class="form-control" id="ivaunitario1" name="ivaunitario1" placeholder="" onchange="calculo_iva_valor(1);" />
+														<input type="text" class="form-control" id="ivaunitario1" name="ivaunitario1" value="19" onchange="calculo_iva_valor(1);" />
 													</div>
 												</td>
 												<td class="nopadding" >
@@ -316,7 +316,7 @@
 												
 												<td class="nopadding" >
 													<div class="form-group">
-														<input class="form-control input-sm" name="vence1" id="vence1" type="date" required />
+														<input class="form-control input-sm" name="vence1" id="vence1" type="date"  />
 														<span class="input-group-btn"></span>
 													</div>
 												</td>
@@ -465,7 +465,7 @@
 				'</select></td>'+
 				//Unidades
 				'<td class="nopadding" >'+
-					'<select class="form-control input-sm" id="unidad'+(producto)+'" name="unidad'+(producto)+'"><option value="">Seleccionar</option></select>'+
+					'<select class="form-control input-sm" required id="unidad'+(producto)+'" name="unidad'+(producto)+'"><option value="">Seleccionar</option></select>'+
 				'</td>'+
 				//Cantidad
 				'<td class="nopadding" >'+
@@ -473,7 +473,7 @@
 				'</td>'+	
 				//IVA
 				'<td class="nopadding" >'+
-					'<div class="form-group"><input type="text" class="form-control input-sm" id="ivaunitario'+(producto)+'" name="ivaunitario'+(producto)+'" onchange="calculo_iva_valor('+(producto)+');" required /></div>'+
+					'<div class="form-group"><input type="text" class="form-control input-sm" id="ivaunitario'+(producto)+'" name="ivaunitario'+(producto)+'" value="19" onchange="calculo_iva_valor('+(producto)+');" required /></div>'+
 				'</td>'+
 				//Valor Unitario
 				'<td class="nopadding" >'+
@@ -533,6 +533,9 @@
 							model.append("<option value='"+ element.id +"'>" + element.des_und + "</option>");
 					});
 			});
+		if(rid == 1)
+			primer_producto_cargado = true;
+		$('#prodsolcompra'+rid).val(0);
 	}
 	
 	function cargarproductosdecategoria() {
@@ -608,7 +611,7 @@
 							'</select></td>'+
 							//Unidades
 							'<td class="nopadding" >'+
-								'<select class="form-control" id="unidad'+(producto)+'" name="unidad'+(producto)+'" required><option value="">Seleccionar</option></select>'+
+								'<select class="form-control"  id="unidad'+(producto)+'" name="unidad'+(producto)+'" required><option value="">Seleccionar</option></select>'+
 							'</td>'+
 							//Cantidad
 							'<td class="nopadding" >'+
@@ -628,7 +631,7 @@
 							'</td>'+
 							//Vence
 							'<td class="nopadding" >'+
-								'<div class="form-group"><input type="date" class="form-control" id="vence'+(producto)+'" name="vence'+(producto)+'" required /></div>'+
+								'<div class="form-group"><input type="date" class="form-control" id="vence'+(producto)+'" name="vence'+(producto)+'"  /></div>'+
 							'</td>'+
 							//Botones
 							'<td class="nopadding" >'+
@@ -658,15 +661,15 @@
 
 	function calculo_iva_valor(rid) {
 		var iva_und = $('#ivaunitario'+rid).val();
-		if (!iva_und){
+		if (!iva_und || iva_und == ""){
 			iva_und = 0;
 		}
 		var val_und = $('#valorunitario'+rid).val();
-		if (!val_und){
+		if (!val_und || val_und == ""){
 			val_und = 0;
 		}
 		var cnt = $('#cantidad'+rid).val();
-		if (!cnt){
+		if (!cnt || cnt == ""){
 			cnt = 1;
 			$('#cantidad'+rid).val(cnt);
 		}

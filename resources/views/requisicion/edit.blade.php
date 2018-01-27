@@ -51,6 +51,7 @@
 							</table>
 						</div>
 					</li>
+					@permission('ver-registrar-lista-productos')
 					<li>
 						<div class="block">
 							<div class="tags">
@@ -178,6 +179,8 @@
 							</div>
 						</div>
 					</li>
+					@endpermission
+					@permission('ver-registrar-proveedores-sugeridos
 					<li>
 						<div class="block">
 							<div class="tags">
@@ -324,6 +327,7 @@
 							</div>
 						</div>
 					</li>
+					@endpermission
 				</ul>
 				<div class="form-group right ">						
 					<button type="reset"class="btn btn-danger">Borrar</button>

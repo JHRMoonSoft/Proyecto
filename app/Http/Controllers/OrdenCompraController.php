@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use App\Role;
 use Validator;
 use \Carbon\Carbon;
+use FPDI;
 
 class OrdenCompraController extends Controller
 {
@@ -90,6 +91,13 @@ class OrdenCompraController extends Controller
 				$producto_i['iva_unt'] = $post_data['ivaunitario'.$i];
 				$producto_i['val_unt'] = $post_data['valorunitario'.$i];
 				$producto_i['val_tol'] = $post_data['valortotal'.$i];
+				
+				$producto_i['unidad_emp_fact_id'] = $post_data['unidad'.$i];	
+				$producto_i['cnt_prd_fact'] = $post_data['cantidad'.$i];
+				$producto_i['iva_unt_fact'] = $post_data['ivaunitario'.$i];
+				$producto_i['val_unt_fact'] = $post_data['valorunitario'.$i];
+				$producto_i['val_tol_fact'] = $post_data['valortotal'.$i];
+				
 				$producto_i['fec_ven'] = Carbon::parse($post_data['vence'.$i]);
 				$producto_i['prod_sol_comp_id'] = $post_data['prodsolcompra'.$i] == 0 ? null : $post_data['prodsolcompra'.$i];
 				$producto_i['ord_comp_id'] = $ordencompra->id;
@@ -261,6 +269,115 @@ class OrdenCompraController extends Controller
 			$unidades = Unidad::all();
 		}
 		return $unidades;
+	}
+	
+	
+	
+	public function exporpdftocp ($id)
+	{
+		
+		// initiate FPDI
+		$pdf = new FPDI();		
+		// add a page
+		$pdf->AddPage('P','Letter');
+		$pdf->setSourceFile('C:/Users/JORGE/Documents/GitHub/Proyecto/resources/views/ordencompra/AF-003-03-Formato-Orden-de-Compras.pdf');
+		// import page 1
+		$tplIdx = $pdf->importPage(1);
+		//$pdf->useTemplate($tplIdx);
+		$pdf->useTemplate($tplIdx, null, null, 0, 0, true);
+		$pdf->SetFont('Helvetica');
+		$pdf->SetTextColor(0, 0, 0);
+		
+		//
+		$pdf->SetXY(144,37);
+		$pdf->Write(0, '1 de 1');
+		$pdf->SetXY(123,65.5);
+		$pdf->Write(0, '0001');
+		$pdf->SetXY(165,70);
+		$pdf->Write(0, 'Fecha');
+		$pdf->SetXY(165,75);
+		$pdf->Write(0, 'Nit');
+		$pdf->SetXY(165,80.5);
+		$pdf->Write(0, ' Pago');
+		$pdf->SetXY(27,75);
+		$pdf->SetXY(165,85.5);
+		$pdf->Write(0, ' Tiempo de entrega');
+		$pdf->SetXY(27,75);
+		$pdf->Write(0, 'Proveedor');
+		$pdf->SetXY(27,80.5);
+		$pdf->Write(0, 'Direccion');
+		$pdf->SetXY(27,85.5);
+		$pdf->Write(0, 'Telefono');
+		$pdf->SetXY(27,90);
+		$pdf->Write(0, 'Contacto');
+		
+		//PRODUCTOS1
+		$pdf->SetXY(20,100);
+		$pdf->Write(0, '1');
+		$pdf->SetXY(40,100);
+		$pdf->Write(0, 'Und');
+		$pdf->SetXY(56,100);
+		$pdf->Write(0, 'Producto');
+		$pdf->SetXY(133,100);
+		$pdf->Write(0, '$');
+		$pdf->SetXY(168,100);
+		$pdf->Write(0, '$');
+		
+		//PRODUCTOS2
+		$pdf->SetXY(20,105.5);
+		$pdf->Write(0, '2');
+		$pdf->SetXY(40,105.5);
+		$pdf->Write(0, 'Und');
+		$pdf->SetXY(56,105.5);
+		$pdf->Write(0, 'Producto');
+		$pdf->SetXY(133,105.5);
+		$pdf->Write(0, '$');
+		$pdf->SetXY(168,105.5);
+		$pdf->Write(0, '$');
+		
+		//
+		$pdf->SetXY(168,171.5);
+		$pdf->Write(0, '$');
+		$pdf->SetXY(168,176.5);
+		$pdf->Write(0, '$');
+		$pdf->SetXY(168,181.5);
+		$pdf->Write(0, '$');
+				
+		$pdf->SetXY(38,187);
+		$pdf->Write(0, 'Producto');
+		
+		
+		
+		$pdf->Output('AF-003-03-Formato-Orden-de-Compras-cod.pdf', 'D');
+		//$pdf->Output('AF-003-03-Formato-Orden-de-Compras-cod-'.$requisicion->id.'.pdf', 'D');		
+	}
+	
+		
+	public function exporOrdencompra ()
+	{
+		\Excel::create('OrdenCompras', function($excel) {
+		 
+			$ordencompras = OrdenCompra:: /*with('proveedoresrequisicion')
+					->with('estadorequisicion')
+					->with('productos')
+					-> */all();
+		 
+			$excel->sheet('ordencompras', function($sheet) use($ordencompras) {
+		 
+			$sheet->row(1, [
+				'Código', 'Asunto','Justificación','Fecha de aprobación','Fecha de Creación', 'Fecha de Actualización'
+			]);
+		
+			foreach($ordencompras as $index => $ocp) {
+				$sheet->row($index+2, [
+					$ocp->id, $ocp->asn_rqs, $ocp->jst_rqs,  $ocp->fec_apr_com,$ocp->created_at, $ocp->updated_at
+				]); 
+			}
+					 
+			});
+			
+		})->export('xlsx');
+		
 	}
 	
 }

@@ -28,6 +28,10 @@ class CreateRequisicionsTable extends Migration
 			$table->string('crg_rcp_rqs')->nullable();
 			$table->date('fec_rcp_rqs')->nullable();
 			$table->string('obs_rcp_rqs')->nullable();
+			
+			$table->integer('area_id')->unsigned()->index();
+            $table->foreign('area_id')->references('id')->on('areas') ->onUpdate('cascade') ->onDelete('cascade');
+			
 			$table->integer('est_rqs')->unsigned()->index();
             $table->foreign('est_rqs')->references('id')->on('estadosrequisicions') ->onUpdate('cascade') ->onDelete('cascade');
 			

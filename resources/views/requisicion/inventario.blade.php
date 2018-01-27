@@ -1,19 +1,20 @@
 @extends('layouts.app')
 @section('content')  
 
-
+  
 @section('x_content') 
-
+ 
     <div class="x_panel"> 
-	    <div class="x_title">
-			<h2>Requisición Interna </h2>
-			<a  href="{{ url('/autorizarRQS') }}" class="btn btn-default  right" role="button"><i class="fa fa-reply" aria-hidden="true"></i>&nbsp&nbsp&nbspVolver al listado </a>
+	    <div class="x_title"> 
+			<h2>Entregar Requisición Interna</h2>
+			<a  href="{{ url('/requisicion/'.$requisicion->id) }}"class="btn btn-danger  right" role="button">Ver </a>
+			<a  href="{{ url('/entregarRQS') }}" class="btn btn-default  right" role="button"><i class="fa fa-reply" aria-hidden="true"></i>&nbsp&nbsp&nbspVolver al listado </a>
 			<div class="clearfix"></div>
-	    </div> 
+	    </div>
 		<div class="x_content">
-			<form name="formulario" id="formulario" class="form-horizontal" role="form" method="POST" action="{{ url('/autorizarRQS/' . $requisicion->id ) }}">
+			<form id="formulario" name="formulario" class="form-horizontal" role="form" method="POST" action="{{ url('/entregarRQS/' . $requisicion->id ) }}">
 				{{ csrf_field() }}
-				<input type="hidden" name="_method" value="PUT">
+				<input name="_method" type="hidden" value="PUT">						
 				<input type="hidden" class="form-control" id="rqs_id" name="rqs_id" value="{{$requisicion->id}}"/>
 				<ul class="list-unstyled timeline">
 					<li>
@@ -51,15 +52,20 @@
 								</tbody>
 							</table>
 						</div>
-					</li>
+					</li>		
 					
 					<li>
-							<br />
-							<h2 >
+					<div class="block">
+						<div class="tags">
+						<a href="" class="tag">
+							<span>Paso 2</span>
+						</a>
+						</div>
+						<div class="block_content">
+							<h2 class="title">
 										<a>Lista de Productos</a>
 							</h2>
-							<br />		
-												
+							<br />					
 								
 							<div class="panel panel-default">
 								<div class="panel-heading text-center">
@@ -67,99 +73,101 @@
 								</div>
 								<div class="table-responsive">
 									<table class="table table-bordered table-hover" id="education_fields2">
-										<thead>
-											
+									<thead>
 										
-											<tr >
-												<th class="text-center">#</th>
-												<th class="text-center">Categoria</th>
-												<th class="text-center">Producto</th>												
-												<th class="text-center">Unidad</th>	
-												<th class="text-center">Cant. Entregada</th>
-												<th class="text-center">Cant. Disponible</th>
-												<th class="text-center">Und. Disponible</th>	
-												<th class="text-center">Cant. Utilizada </th>
-			
-											</tr>
-										</thead>
-										<tbody>
-											@foreach($requisicion->productos as $prod)
-												<tr>
-													@if($loop->last)
-														<input type="hidden" class="form-control" id="productos" name="productos" value="{{$loop->index + 1}}"/>
-													@endif
-													<td>
-														{{$loop->index + 1}}
-														<input type="hidden" class="form-control" id="producto{{$loop->index + 1}}" name="producto{{$loop->index + 1}}" value="{{$prod->id}}"/>
-													</td>
-													
-													<td>
-														<div class="form-group">
-															@if($prod->producto)
-																{{$prod->producto->categoria->des_cat}}
-															@endif
-														</div>
-													</td>
-													
-													<td class="nopadding">
-														@if($prod->producto)
-															{{$prod->producto->des_prd}}
-														@endif
-													</td>
-													
-													<td class="nopadding">
-														@if($prod->producto)
-															{{$prod->unidad_solicitada->des_und}}
-														@endif
-													</td>
-													<td class="nopadding" >
-														<div class="form-group">
-															<input type="text" class="form-control disabled" id="cantidad{{$loop->index + 1}}" name="cantidad{{$loop->index + 1}}" disabled style="background:rgba(247, 247, 247, 0.57);" value="{{$prod->cant_sol_prd}}"/>
-														</div>
-														
-													</td>
-													<td class="nopadding" >
-														<div class="form-group">
-															<input type="text" class="form-control" id="cant_apr_prd{{$loop->index + 1}}" name="cant_apr_prd{{$loop->index + 1}}" value="{{$prod->cant_utl_prd}}"  placeholder="Cantidad"/>
-														</div>
-													</td>
-													<td class="nopadding" >
-														<select class="form-control" id="unidad{{$loop->index + 1}}" name="unidad{{$loop->index + 1}}">
-															<option value="" selected>Seleccionar</option>
-															@if($prod->producto)
-																@foreach($prod->producto->unidades as $und)
-																	<option name="" value="{{$und->id}}" @if($und->id == $prod->unidad_solicitada->id)selected="selected"@endif>{{$und->des_und}}</option>
-																@endforeach
-															@else
-																@foreach($unidades as $und)
-																	<option name="" value="{{$und->id}}" @if($und->id == $prod->unidad_solicitada->id)selected="selected"@endif>{{$und->des_und}}</option>
-																@endforeach
-															@endif
-														</select>
-													</td>
+									
+										<tr >
+											<th class="text-center">#</th>
+											<th class="text-center">Categoria</th>
+											<th class="text-center">Producto</th>
+											<th class="text-center">Unidad</th>									
+											<th class="text-center">Cantidad <br> Entregada</th>
+											<th class="text-center">Unidad <br>Inventario</th>
+											<th class="text-center">Cantidad <br/>Inventario</th>												
+											<th class="text-center">Cantidad <br>Disponible </th>											
+											
+											
+		
+										</tr>
+									</thead>
+									<tbody>
+										@foreach($requisicion->productos as $prod)
+											<tr>
+												@if($loop->last)
+													<input type="hidden" class="form-control" id="productos" name="productos" value="{{$loop->index + 1}}"/>
+												@endif
+												<td>
+													{{$loop->index + 1}}
+													<input type="hidden" class="form-control" id="producto{{$loop->index + 1}}" name="producto{{$loop->index + 1}}" value="{{$prod->id}}"/>
+												</td>
 												
-													
-													<td class="nopadding" >
-														<div class="form-group">
-															<input type="text" class="form-control disabled" id="cantidad{{$loop->index + 1}}" name="cantidad{{$loop->index + 1}}" disabled style="background:rgba(247, 247, 247, 0.57);" value="{{$prod->cant_sol_prd}}"/>
-														</div>
-														
-													</td>
-												</tr>
-											@endforeach
-										</tbody>
-								
-									</table>
+												<td>
+													<div class="form-group">
+														@if($prod->producto)
+															{{$prod->producto->categoria->des_cat}}
+														@endif
+													</div>
+												</td>
+												
+												<td class="nopadding">
+													@if($prod->producto)
+														{{$prod->producto->des_prd}}
+													@endif
+												</td>
+												<td class="nopadding">
+													@if($prod->producto)
+														{{$prod->unidad_solicitada->des_und}}
+													@endif
+												</td>											
+												<td class="nopadding" >
+													<div class="form-group">
+														<input type="text" class="form-control" id="cant_apr_prd{{$loop->index + 1}}" name="cant_apr_prd{{$loop->index + 1}}" value="{{$prod->cant_apr_prd}}" disabled style="background:rgba(247, 247, 247, 0.57);" />
+													</div>
+												</td>
+												<td class="nopadding" >
+													<select class="form-control" id="unidad{{$loop->index + 1}}" name="unidad{{$loop->index + 1}}">
+														<option value="" selected>Seleccionar</option>
+														@if($prod->producto)
+															@foreach($prod->producto->unidades as $und)
+																<option name="" value="{{$und->id}}" @if($und->id == $prod->unidad_solicitada->id)selected="selected"@endif>{{$und->des_und}}</option>
+															@endforeach
+														@else
+															@foreach($unidades as $und)
+																<option name="" value="{{$und->id}}" @if($und->id == $prod->unidad_solicitada->id)selected="selected"@endif>{{$und->des_und}}</option>
+															@endforeach
+														@endif
+													</select>
+												</td>
+												
+												<td class="nopadding" >
+													<div class="form-group">
+														<input type="text" class="form-control " id="cant_entr_prd{{$loop->index + 1}}" name="cant_entr_prd{{$loop->index + 1}}"  value="{{$prod->cant_entr_prd}}" onchange="calculo_diferencia_entrega(this.value, {{$loop->index + 1}});" />
+													</div>
+												</td>
+												<td class="nopadding" >
+													<div class="form-group">
+														<input type="text" class="form-control" id="cant_dif_prd{{$loop->index + 1}}" name="cant_dif_prd{{$loop->index + 1}}" value="{{$prod->cant_dif_prd}}" readonly />
+													</div>
+												</td>
+												
+											</tr>
+										@endforeach
+									</tbody>
+							
+								</table>
 								</div>
 								
 							</div>
+						</div>
+					</div>
 					</li>
-					
 				</ul>			
 				<div class="form-group right">						
-					<button type="reset"class="btn btn-danger">Borrar</button>
+					
+					<a  href="{{ url('/entregarRQS') }}" class="btn btn-danger" role="button">Cancelar </a>
 					<input type="hidden" class="form-control" id="boton" name="boton" value=""/>
 					<button type="button" onClick="validate('guardar')" class="btn btn-default">Guardar</button>
+					<button type="button" onClick="validate('enviar')" class="btn btn-success">Enviar</button>
 				</div>
 			</form>
         </div>
@@ -167,30 +175,40 @@
 
 	
 @stop
+
+@section('postscripts')
      <script>
 	 
 		function validate(valor){
 			$('#boton').val(valor);
 			document.getElementById("formulario").submit();
 		}
-		var room = 1;
-		function education_fields2() {
-		 
-			room++;
-			var objTo = document.getElementById('education_fields2')
-			var divtest = document.createElement("tbody");
-			divtest.setAttribute("class", "form-group tr removeclass"+room);
-			var rdiv = 'removeclass'+room;
-			divtest.innerHTML = '<tr><td>' + (room) + '</td><td><div class="form-group "><select class="form-control"><option value="" selected>Seleccionar</option><option value="">Taller de Cocina</option><option value="">Papeleria</option><option value="" >Didacticos</option><option value="" >Aseo</option></select></div></td><td class="nopadding" ><select class="form-control" id="educationDate" name="educationDate[]"><option value="" selected>Seleccionar</option><option name="" value="">Aceite</option><option value="">Arepas antioqueñas precocidas </option><option value="" >Arroz  (bolsas de medio kilo)</option><option value="" >Bocadillo</option></select></td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Cantidad"></div></td><td class="nopadding" ><select class="form-control" id="educationDate" name="educationDate[]"><option value="" selected>Seleccionar</option><option name="" value="">Barra</option><option name="" value="">Bloque</option><option name="" value="">Bolsa</option><option name="" value="">Botella</option><option name="" value="">Caja</option><option name="" value="">Frasco</option><option value="">Lata</option><option value="">Paquete</option><option value="">Pote</option><option value="">Tarro</option><option value="">Tubo</option><option value="">Vaso</option><option name="" value="">Unidad</option><option value="">Kg</option><option value="">Kilo</option><option value="">Litro</option><option value="">Lonjas</option></select></td><td class="nopadding" ><div class="form-group"><input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Detalle"></div></td><td class="nopadding" ><div class="input-group-btn"><button class="btn btn-sm btn-danger glyphicon glyphicon-minus btn-xs" type="button" onclick="remove_education_fields2('+ room +');"> <span  aria-hidden="true"></span> </button></div></td></tr>';
-			
-			objTo.appendChild(divtest)
-			  
+		
+		function calculo_diferencia_entrega(valor, rid) {
+			var cant_apr = parseInt($('#cant_apr_prd'+rid).val());
+			var cant_entr = parseInt(valor);
+			var cant_dif = 0;
+			if (!cant_entr){
+				alert('Digita un valor.');
+				cant_entr = 0;
+			}
+			else {
+				if( cant_apr < cant_entr ){
+					alert('La cantidad entregada no puede superar la autorizada. ' + cant_entr + ' - ' + cant_apr);
+					cant_entr = 0;
+				}
+				else if(cant_entr < 0){
+					alert('La cantidad entregada debe ser un valor válido.');
+					cant_entr = 0;
+				}
+				else{
+					cant_dif = cant_apr - cant_entr;
+				}
+			}
+			$('#cant_entr_prd'+rid).val(cant_entr);
+			$('#cant_dif_prd'+rid).val(cant_dif);
 		}
-	   function remove_education_fields2(rid) {
-		   $('.removeclass'+rid).remove()
-		   
-		   room--;
-	   }
+		
 		function cambioaccion() {
 		 
 			$.get("{{ url('autorizarRQS/cambioaccion')}}", 
@@ -213,5 +231,7 @@
 		}
 		
 	</script>  
+	
+@stop
 @stop
 

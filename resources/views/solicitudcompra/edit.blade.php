@@ -159,20 +159,21 @@
 								
 													<td class="nopadding" >
 														<div class="form-group">
-															<select id="producto{{$loop->index + 1}}" class="form-control" name="producto{{$loop->index + 1}}" onchange="cambio_productos(1);">
+															<select id="producto{{$loop->index + 1}}" class="form-control" name="producto{{$loop->index + 1}}" required="required"  onchange="cambio_productos(1);" requ>
 																	@if(!$productos->isEmpty())
 																		<option value="" selected>Seleccionar</option>
 																		@foreach($productos as $producto)
 																			<option value="{{$producto->id}}" @if($producto->id == $prodsolcompra->prod_id) selected @endif>{{ $producto->des_prd}} </option>
 																		@endforeach
 																	@endif
-																</select>
+															</select>
+															
 															
 														</div>
 													</td>
 													<td class="nopadding" >
 														<div class="form-group">
-															<select class="form-control" id="unidad{{$loop->index + 1}}" name="unidad{{$loop->index + 1}}">
+															<select class="form-control" id="unidad{{$loop->index + 1}}" required="required" name="unidad{{$loop->index + 1}}">
 																<option value="" selected>Seleccionar</option>
 																@foreach($prodsolcompra->producto->unidades as $und)
 																	<option name="" value="{{$und->id}}" @if($und->id == $prodsolcompra->unidad_solicitada->id)selected="selected"@endif>{{$und->des_und}}</option>
@@ -182,7 +183,7 @@
 													</td>
 													<td class="nopadding" >
 														<div class="form-group">
-															<input type="text" class="form-control" id="cantidad{{$loop->index + 1}}" name="cantidad{{$loop->index + 1}}" value="{{$prodsolcompra->cant_sol_prd}}" placeholder="Cantidad">
+															<input type="text" class="form-control" id="cantidad{{$loop->index + 1}}" name="cantidad{{$loop->index + 1}}" required="required" value="{{$prodsolcompra->cant_sol_prd}}" placeholder="Cantidad">
 														</div>
 													</td>
 													<td>
@@ -375,11 +376,11 @@
 								'</select></td>'+
 								//Unidades
 								'<td class="nopadding" >'+
-									'<select class="form-control" id="unidad'+(producto)+'" name="unidad'+(producto)+'"><option value="">Seleccionar</option></select>'+
+									'<select class="form-control" required="required" id="unidad'+(producto)+'" name="unidad'+(producto)+'"><option value="">Seleccionar</option></select>'+
 								'</td>'+
 								//Cantidad
 								'<td class="nopadding" >'+
-									'<div class="form-group"><input type="text" class="form-control" id="cantidad'+(producto)+'" name="cantidad'+(producto)+'" value="" placeholder="Cantidad"/></div>'+
+									'<div class="form-group"><input type="text" required="required" class="form-control" id="cantidad'+(producto)+'" name="cantidad'+(producto)+'" value="" placeholder="Cantidad"/></div>'+
 								'</td>'+				
 								//Disponible
 								'<td class="nopadding" >'+
@@ -544,11 +545,11 @@
 								'</select></td>'+
 								//Unidades
 								'<td class="nopadding" >'+
-									'<select class="form-control" id="unidad'+(producto)+'" name="unidad'+(producto)+'"><option value="">Seleccionar</option></select>'+
+									'<select class="form-control" required="required" id="unidad'+(producto)+'" name="unidad'+(producto)+'"><option value="">Seleccionar</option></select>'+
 								'</td>'+
 								//Cantidad
 								'<td class="nopadding" >'+
-									'<div class="form-group"><input type="text" class="form-control" id="cantidad'+(producto)+'" name="cantidad'+(producto)+'" value="" placeholder="Cantidad"/></div>'+
+									'<div class="form-group"><input type="text"  required="required" class="form-control" id="cantidad'+(producto)+'" name="cantidad'+(producto)+'" value="" placeholder="Cantidad"/></div>'+
 								'</td>'+				
 								//Disponible
 								'<td class="nopadding" >'+
@@ -662,11 +663,11 @@
 				'</select></td>'+
 				//Unidades
 				'<td class="nopadding" >'+
-					'<select class="form-control" id="unidad'+(producto)+'" name="unidad'+(producto)+'"><option value="">Seleccionar</option></select>'+
+					'<select class="form-control" required="required" required="required"  id="unidad'+(producto)+'" name="unidad'+(producto)+'"><option value="">Seleccionar</option></select>'+
 				'</td>'+
 				//Cantidad
 				'<td class="nopadding" >'+
-					'<div class="form-group"><input type="text" class="form-control" id="cantidad'+(producto)+'" name="cantidad'+(producto)+'" value="" placeholder="Cantidad"/></div>'+
+					'<div class="form-group"><input type="text" required="required" class="form-control" required="required" id="cantidad'+(producto)+'" name="cantidad'+(producto)+'" value="" placeholder="Cantidad"/></div>'+
 				'</td>'+				
 				//Disponible
 				'<td class="nopadding" >'+

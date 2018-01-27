@@ -21,10 +21,25 @@ class CreateProductosordencomprasTable extends Migration
 			$table->double('iva_unt');
 			$table->double('val_unt');
 			$table->double('val_tol');
+			
+			$table->integer('unidad_emp_id')->unsigned()->index();
+            $table->foreign('unidad_emp_id')->references('id')->on('unidads') ->onUpdate('cascade') ->onDelete('cascade');
+			
+			$table->double('cant_prd_fact');
+			$table->double('iva_unt_fact');
+			$table->double('val_unt_fact');
+			$table->double('val_tol_fact');
+			
+			$table->integer('unidad_emp_fact_id')->unsigned()->index();
+            $table->foreign('unidad_emp_fact_id')->references('id')->on('unidads') ->onUpdate('cascade') ->onDelete('cascade');
+			
 			$table->date('fec_ven');
 			
 			$table->integer('ord_comp_id')->unsigned()->index();
             $table->foreign('ord_comp_id')->references('id')->on('ordencompras') ->onUpdate('cascade') ->onDelete('cascade');
+			
+			$table->integer('fact_id')->nullable()->unsigned()->index();
+            $table->foreign('fact_id')->references('id')->on('facturas') ->onUpdate('cascade') ->onDelete('cascade');
 			
 			$table->integer('prod_sol_comp_id')->nullable()->unsigned()->index();
             $table->foreign('prod_sol_comp_id')->references('id')->on('productosolicitudcompras') ->onUpdate('cascade') ->onDelete('cascade');
@@ -33,8 +48,7 @@ class CreateProductosordencomprasTable extends Migration
 			$table->integer('prod_id')->unsigned()->index();
             $table->foreign('prod_id')->references('id')->on('productos') ->onUpdate('cascade') ->onDelete('cascade');
 			
-			$table->integer('unidad_emp_id')->unsigned()->index();
-            $table->foreign('unidad_emp_id')->references('id')->on('unidads') ->onUpdate('cascade') ->onDelete('cascade');
+			
 			
             $table->timestamps();
         });

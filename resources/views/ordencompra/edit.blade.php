@@ -5,14 +5,14 @@
 
     <div class="x_panel">
 	    <div class="x_title">
-			<h2>Editar Orden de Compra</h2>&nbsp&nbsp&nbsp<!--
-			<a  href="{{ url('/proveedor/'.$proveedors->id) }}"class="btn btn-danger  right" role="button">Ver </a>-->
-			<a  href="{{ url('/proveedor') }}" class="btn btn-default  right" role="button"><i class="fa fa-reply" aria-hidden="true"></i>&nbsp&nbsp&nbspVolver al listado </a>
+			<h2>Editar Orden de Compra</h2>&nbsp&nbsp&nbsp
+			<a  href="{{ url('/ordencompra/') }}" class="btn btn-default  right" role="button"><i class="fa fa-reply" aria-hidden="true"></i>&nbsp&nbsp&nbspVolver al listado </a>
 			<div class="clearfix"></div>
 	    </div>
 		<div class="x_content">
 			<form class="form-horizontal" role="form" method="POST" action="{{ url('/ordencompra/') }}">
 			{{ csrf_field() }}
+			<input type="hidden" id="_method" name="_method" value="PUT" />
 			<ul class="list-unstyled timeline">
 				<li>
 					<div class="block ">
@@ -24,7 +24,6 @@
 						<div class="block_content">
 								<h4>Espacio exclusivo para el Asistente de Gestión Administrativa</h4><br>
 								<input type="hidden" id="empre_id" name="empre_id" value="{{ $configuracion->id }}" />
-								<input type="hidden" id="cantproductos" name="cantproductos" value="1"/>
 							<div class="x_content">
 								<div class="panel-default">
 									<div class="x_panel panel-heading ">
@@ -32,25 +31,25 @@
 										    
 											<div class="col-md-2 	col-sm-6 col-xs-12">
 													 <label for="single_cal2">Fecha</label>
-													<input type="text" class="form-control input-sm has-feedback-left " id="single_cal2" placeholder="First Name" aria-describedby="inputSuccess2Status2">
+													<input type="text" class="form-control input-sm has-feedback-left " id="single_cal2" aria-describedby="inputSuccess2Status2" value="{{ $ordencompras->created_at->format('m/d/Y') }}" />
 													
 												</div>
 											<div class="col-md-3 col-sm-6 col-xs-12">
 												<label for="raz_soc">Empresa</label>
-												<input class="form-control input-sm" id="raz_soc" name="raz_soc" type="text" value="{{ $configuracion->raz_soc }}"  readonly  style="background:rgba(247, 247, 247, 0.57);">
+												<input class="form-control input-sm" id="raz_soc" name="raz_soc" type="text" value="{{ $configuracion->raz_soc }}"  readonly  style="background:rgba(247, 247, 247, 0.57);" />
 											</div>
 											<div class="col-md-2 col-sm-6 col-xs-12">
 												<label for="ex1">Nit. Empresa</label>
-												<input class="form-control input-sm" id="num_doc" name="num_doc" type="text" value="{{ $configuracion->num_doc }}"  readonly  style="background:rgba(249, 249, 249, 0.57);">
+												<input class="form-control input-sm" id="num_doc" name="num_doc" type="text" value="{{ $configuracion->num_doc }}"  readonly  style="background:rgba(249, 249, 249, 0.57);" />
 											</div>
 									
 											<div class="col-md-3 col-sm-6 col-xs-12">
 												<label for="ex2">Realizado</label>
-												<input class="form-control input-sm" id="ex2" type="text" value="{{ Auth::user()->nom_usr . ' ' . Auth::user()->ape_usr }}   " readonly  style="background:rgba(247, 247, 247, 0.57);">
+												<input class="form-control input-sm" id="ex2" type="text" value="{{ Auth::user()->nom_usr . ' ' . Auth::user()->ape_usr }}   " readonly  style="background:rgba(247, 247, 247, 0.57);" />
 											</div>
 											<div class="col-md-2 col-sm-6 col-xs-12">
 												<label for="no_ocp">No. OCP</label>
-												<input class="form-control input-sm" id="no_ocp" name="no_ocp" type="text" >
+												<input class="form-control input-sm" id="no_ocp" name="no_ocp" type="text" value="{{$ordencompras->no_ocp}}" />
 												@if ($errors->has('no_ocp'))
 													<span class="help-block">
 														<strong>{{ $errors->first('no_ocp') }}</strong>
@@ -73,69 +72,59 @@
 														<option value="" selected>Seleccionar</option>
 														@if(!$proveedores->isEmpty())
 															@foreach($proveedores as $proveedor)
-																<option value="{{ $proveedor->id}}">{{ $proveedor->raz_soc}} </option>
+																<option value="{{ $proveedor->id}}"  @if($proveedor->id == $ordencompras->prov_id) selected @endif >{{ $proveedor->raz_soc}} </option>
 															@endforeach
 														@endif
 												</select>
 												
-												<!--
-												<select class="form-control input-sm " id="exampleSelect1">
-													<option value="volvo" selected>Seleccionar</option>
-													<option value="">ALMACENES EXITO</option>
-													<option value="">MEGA TIENDAS </option>
-													<option value="">PAPELERÍA TAURO </option>
-													<option value="">EL GIGANTE DEL HOGAR</option>
-													<option value="">SAFARI COMPUTADORES</option>
-													<option value="">DISTRIBUIDORA Y PAPELERÍA VENEPLAS</option>
-												</select>-->
 											</div>
 										</div>
 										
 										<div class=" col-sm-3 col-xs-6">
 											<div class="form-group">
 												<label for="nit_prov">Nit. Proveedor</label>
-												<input class="form-control input-sm" id="nit_prov" type="text" name="nit_prov" readonly style="background:rgba(247, 247, 247, 0.57);">
+												<input class="form-control input-sm" id="nit_prov" type="text" name="nit_prov" value="{{ $ordencompras->proveedor->num_doc }}" readonly style="background:rgba(247, 247, 247, 0.57);" />
 											</div>
 										</div>
 										
 										<div class="col-sm-3 col-xs-6">
 											<div class="form-group">
 												<label for="direccion_prov">Dirección</label>
-												<input class="form-control input-sm" id="direccion_prov" name="direccion_prov" type="text" readonly style="background:rgba(247, 247, 247, 0.57);">
+												<input class="form-control input-sm" id="direccion_prov" name="direccion_prov" type="text" value="{{ $ordencompras->proveedor->dir_prov	}}" readonly style="background:rgba(247, 247, 247, 0.57);" />
 											</div>	
 										</div>
 										<div class="col-sm-3 col-xs-6">
 											<div class="form-group">
 												<label for="ciudad_prov">Ciudad</label>
-												<input class="form-control input-sm" id="ciudad_prov" name="ciudad_prov" type="text" readonly style="background:rgba(247, 247, 247, 0.57);">
+												<input class="form-control input-sm" id="ciudad_prov" name="ciudad_prov" type="text" value="{{ $ordencompras->proveedor->ciu_prov }}" readonly style="background:rgba(247, 247, 247, 0.57);"/>
 											</div>
 										</div>
 										<div class="col-sm-3 col-xs-6">
 											<div class="form-group">
 												<label for="telefono_prov">Teléfono</label>
-												<input class="form-control input-sm" id="telefono_prov" name="telefono_prov" type="text" readonly style="background:rgba(247, 247, 247, 0.57);">
+												<input class="form-control input-sm" id="telefono_prov" name="telefono_prov" type="text" value="{{ $ordencompras->proveedor->tel_fij }}" readonly style="background:rgba(247, 247, 247, 0.57);" />
 											</div>
 										</div>
 								
 										<div class="col-sm-3 col-xs-6">
 											<div class="form-group">
 												<label for="mail_prov">E-mail</label>
-												<input class="form-control input-sm" id="mail_prov" name="mail_prov" type="text" readonly style="background:rgba(247, 247, 247, 0.57);">
+												<input class="form-control input-sm" id="mail_prov" name="mail_prov" type="text" value="{{ $ordencompras->proveedor->dir_mail }}" readonly style="background:rgba(247, 247, 247, 0.57);" />
 											</div>
 										</div>
 										<div class="col-sm-3 col-xs-6">
 											<label for="cnp_ocp">Concepto</label>
-											<input class="form-control input-sm" value="ORDEN DE COMPRA " id="cnp_ocp" name="cnp_ocp" type="text" required>
-											@if ($errors->has('no_ocp'))
+											<input class="form-control input-sm" id="cnp_ocp" name="cnp_ocp" value="{{ $ordencompras->cnp_ocp }}" type="text" required>
+											@if ($errors->has('cnp_ocp'))
 												<span class="help-block">
-													<strong>{{ $errors->first('no_ocp') }}</strong>
+													<strong>{{ $errors->first('cnp_ocp') }}</strong>
 												</span>
 											@endif
 										</div>
 										<div class="col-sm-3 col-xs-6">
 											<div class="form-group">
 												<label for="aut_ocp">Autorizado por</label>
-												<input class="form-control input-sm" id="aut_ocp" name="aut_ocp" type="text" required>
+												<input class="form-control input-sm" id="aut_ocp" name="aut_ocp" type="text" value="{{ $ordencompras->aut_ocp }}" required />
 												@if ($errors->has('aut_ocp'))
 													<span class="help-block">
 														<strong>{{ $errors->first('aut_ocp') }}</strong>
@@ -147,9 +136,9 @@
 											<div class="form-group">
 												<label for="form_pag">Forma de pago</label>
 												<select class="form-control input-sm" id="form_pag" name="form_pag" required>
-													<option value="" selected>Seleccionar</option>
-													<option value="CONTADO">CONTADO</option>
-													<option value="CREDITO">CREDITO</option>
+													<option value="">Seleccionar</option>
+													<option value="CONTADO" @if("CONTADO" == $ordencompras->form_pag) selected @endif >CONTADO</option>
+													<option value="CREDITO" @if("CREDITO" == $ordencompras->form_pag) selected @endif >CREDITO</option>
 												</select>
 												@if ($errors->has('form_pag'))
 													<span class="help-block">
@@ -162,7 +151,7 @@
 										<div class="col-sm-3 col-xs-6">
 											<div class="form-group">
 												<label for="dia_cred">Dias de credito</label>
-												<input class="form-control input-sm" id="dia_cred" name="dia_cred" type="text" >
+												<input class="form-control input-sm" id="dia_cred" name="dia_cred" placeholder="(Dias)" type="text" value="{{ $ordencompras->dia_cred }}" />
 												@if ($errors->has('dia_cred'))
 													<span class="help-block">
 														<strong>{{ $errors->first('dia_cred') }}</strong>
@@ -173,7 +162,7 @@
 										<div class="col-sm-3 col-xs-6">
 											<div class="form-group">
 												<label for="tim_entr">Tiempo de entrega</label>
-												<input class="form-control input-sm" id="tim_entr" name="tim_entr" type="text" required>
+												<input class="form-control input-sm" id="tim_entr" name="tim_entr" placeholder="(Dias)" type="text" value="{{ $ordencompras->tim_entr }}" required />
 												@if ($errors->has('tim_entr'))
 													<span class="help-block">
 														<strong>{{ $errors->first('tim_entr') }}</strong>
@@ -184,7 +173,7 @@
 										<div class="col-sm-3 col-xs-6">
 											<div class="form-group">
 												<label for="otr_ocp">Otro</label>
-												<input class="form-control input-sm" id="otr_ocp" name="otr_ocp" type="text" >
+												<input class="form-control input-sm" id="otr_ocp" name="otr_ocp" type="text" value="{{ $ordencompras->otr_ocp }}" />
 												@if ($errors->has('otr_ocp'))
 													<span class="help-block">
 														<strong>{{ $errors->first('otr_ocp') }}</strong>
@@ -259,77 +248,82 @@
 								
 											</tr>
 										</thead>
-										<tbody>
-											<tr>
-												<td>
-													1
-													<input type="hidden" id="prodsolcompra1" name="prodsolcompra1" value="0"/>
-												</td>								
-												<td class="nopadding" >
-													<div class="form-group input-sm">
-														<select id="producto1" class="form-control" name="producto1" onchange="cambio_productos(1);" required>
-															<option value="" selected>Seleccionar</option>
-															@if(!$productos->isEmpty())
-																@foreach($productos as $producto)
-																	<option value="{{ $producto->id}}">{{ $producto->des_prd}} </option>
-																@endforeach
+										@foreach($ordencompras->productos as $prodsolcmp)
+											<tbody>
+												<tr>
+													$prodsolcmp
+													<td>
+														@if($loop->last)
+															<input type="hidden" id="cantproductos" name="cantproductos" value="{{$loop->index + 1}}"/>
+														@endif
+														{{$loop->index + 1}}
+														<input type="hidden" id="prodsolcompra{{$loop->index + 1}}" name="prodsolcompra{{$loop->index + 1}}" value="0"/>
+													</td>								
+													<td class="nopadding" >
+														<div class="form-group input-sm">
+															<select id="producto{{$loop->index + 1}}" class="form-control" name="producto{{$loop->index + 1}}" onchange="cambio_productos(1);" required>
+																<option value="" selected>Seleccionar</option>
+																@if(!$productos->isEmpty())
+																	@foreach($productos as $producto)
+																		<option value="{{ $producto->id}}">{{ $producto->des_prd}} </option>
+																	@endforeach
+																@endif
+															</select>
+															@if ($errors->has('producto' . ($loop->index + 1)))
+																<span class="help-block">
+																	<strong>{{ $errors->first('producto' . ($loop->index + 1)) }}</strong>
+																</span>
 															@endif
-														</select>
-														@if ($errors->has('producto1'))
-															<span class="help-block">
-																<strong>{{ $errors->first('producto1') }}</strong>
-															</span>
-														@endif
-													</div>
-												</td>
-												<td class="nopadding" >
-													<div class="form-group input-sm">
-														<select class="form-control" id="unidad1" name="unidad1" required>
-															<option value="" selected>Seleccionar</option>
-														</select>
-														@if ($errors->has('unidad1'))
-															<span class="help-block">
-																<strong>{{ $errors->first('unidad1') }}</strong>
-															</span>
-														@endif
-													</div>
-												</td>
-												<td class="nopadding" >
-													<div class="form-group">
-														<input type="text" class="form-control" id="cantidad1" name="cantidad1" placeholder="" onchange="calculo_iva_valor(1);" required />
-													</div>
-												</td>
-												<td class="nopadding" >
-													<div class="form-group">
-														<input type="text" class="form-control" id="ivaunitario1" name="ivaunitario1" placeholder="" onchange="calculo_iva_valor(1);" />
-													</div>
-												</td>
-												<td class="nopadding" >
-													<div class="form-group">
-														<input type="text" class="form-control" id="valorunitario1" name="valorunitario1"  placeholder="" onchange="calculo_iva_valor(1);" required />
-													</div>
-												</td>
-												<td class="nopadding" >
-													<div class="form-group">
-														<input type="text" class="form-control" id="valortotal1" name="valortotal1" placeholder="" readonly required />
-													</div>
-												</td>
-												
-												<td class="nopadding" >
-													<div class="form-group">
-														<input class="form-control input-sm" name="vence1" id="vence1" type="date" required />
-														<span class="input-group-btn"></span>
-													</div>
-												</td>
-												
-												<td class="nopadding">
-													<div class="input-group-btn">
-														<button class="btn btn-sm btn-primary glyphicon glyphicon-plus btn-xs" type="button"  onclick="education_fields({{$productos}});"> <span  aria-hidden="true"></span> </button>
-													</div>
-												</td>
-											</tr>
-										</tbody>
-							  
+														</div>
+													</td>
+													<td class="nopadding" >
+														<div class="form-group input-sm">
+															<select class="form-control" id="unidad1" name="unidad1" required>
+																<option value="" selected>Seleccionar</option>
+															</select>
+															@if ($errors->has('unidad' . ($loop->index + 1)))
+																<span class="help-block">
+																	<strong>{{ $errors->first('unidad' . ($loop->index + 1)) }}</strong>
+																</span>
+															@endif
+														</div>
+													</td>
+													<td class="nopadding" >
+														<div class="form-group">
+															<input type="text" class="form-control" id="cantidad{{$loop->index + 1}}" name="cantidad{{$loop->index + 1}}" placeholder="" onchange="calculo_iva_valor(1);" required />
+														</div>
+													</td>
+													<td class="nopadding" >
+														<div class="form-group">
+															<input type="text" class="form-control" id="ivaunitario{{$loop->index + 1}}" name="ivaunitario{{$loop->index + 1}}" placeholder="" onchange="calculo_iva_valor(1);" />
+														</div>
+													</td>
+													<td class="nopadding" >
+														<div class="form-group">
+															<input type="text" class="form-control" id="valorunitario{{$loop->index + 1}}" name="valorunitario{{$loop->index + 1}}"  placeholder="" onchange="calculo_iva_valor(1);" required />
+														</div>
+													</td>
+													<td class="nopadding" >
+														<div class="form-group">
+															<input type="text" class="form-control" id="valortotal{{$loop->index + 1}}" name="valortotal{{$loop->index + 1}}" placeholder="" readonly required />
+														</div>
+													</td>
+													
+													<td class="nopadding" >
+														<div class="form-group">
+															<input class="form-control input-sm" name="vence1" id="vence{{$loop->index + 1}}" type="date"  />
+															<span class="input-group-btn"></span>
+														</div>
+													</td>
+														
+													<td class="nopadding">
+														<div class="input-group-btn">
+															<button class="btn btn-sm btn-primary glyphicon glyphicon-plus btn-xs" type="button"  onclick="education_fields({{$productos}});"> <span  aria-hidden="true"></span> </button>
+														</div>
+													</td>
+												</tr>
+											</tbody>
+										@endforeach
 									</table>
 								</div>
 						
@@ -463,7 +457,7 @@
 				'</select></td>'+
 				//Unidades
 				'<td class="nopadding" >'+
-					'<select class="form-control input-sm" id="unidad'+(producto)+'" name="unidad'+(producto)+'"><option value="">Seleccionar</option></select>'+
+					'<select class="form-control required input-sm" id="unidad'+(producto)+'" name="unidad'+(producto)+'"><option value="">Seleccionar</option></select>'+
 				'</td>'+
 				//Cantidad
 				'<td class="nopadding" >'+
@@ -626,7 +620,7 @@
 							'</td>'+
 							//Vence
 							'<td class="nopadding" >'+
-								'<div class="form-group"><input type="date" class="form-control" id="vence'+(producto)+'" name="vence'+(producto)+'" required /></div>'+
+								'<div class="form-group"><input type="date" class="form-control" id="vence'+(producto)+'" name="vence'+(producto)+'"  /></div>'+
 							'</td>'+
 							//Botones
 							'<td class="nopadding" >'+

@@ -164,7 +164,7 @@
 							
 												<td class="nopadding" >
 													<div class="form-group">
-														<select id="producto1" class="form-control" name="producto1" onchange="cambio_productos(1);">
+														<select id="producto1" class="form-control" name="producto1" required="required" onchange="cambio_productos(1);">
 															@if(!$productos->isEmpty())
 																<option value="" selected>Seleccionar</option>
 																@foreach($productos as $producto)
@@ -177,14 +177,14 @@
 												</td>
 												<td class="nopadding" >
 													<div class="form-group">
-														<select class="form-control" id="unidad1" name="unidad1">
+														<select class="form-control" id="unidad1" required="required" name="unidad1">
 															<option value="" selected>Seleccionar</option>
 														</select>
 													</div>
 												</td>
 												<td class="nopadding" >
 													<div class="form-group">
-														<input type="text" class="form-control" id="cantidad1" name="cantidad1" value="" placeholder="Cantidad">
+														<input type="text" class="form-control" id="cantidad1" required="required" name="cantidad1" value="" placeholder="Cantidad">
 													</div>
 												</td>
 												<td>
@@ -372,15 +372,15 @@
 								'</select></td>'+
 								//Unidades
 								'<td class="nopadding" >'+
-									'<select class="form-control" id="unidad'+(producto)+'" name="unidad'+(producto)+'"><option value="">Seleccionar</option></select>'+
+									'<select class="form-control" required="required" id="unidad'+(producto)+'" name="unidad'+(producto)+'"><option value="">Seleccionar</option></select>'+
 								'</td>'+
 								//Cantidad
 								'<td class="nopadding" >'+
-									'<div class="form-group"><input type="text" class="form-control" id="cantidad'+(producto)+'" name="cantidad'+(producto)+'" value="" placeholder="Cantidad"/></div>'+
+									'<div class="form-group"><input type="text" required="required" class="form-control" id="cantidad'+(producto)+'" name="cantidad'+(producto)+'" value="" placeholder="Cantidad"/></div>'+
 								'</td>'+				
 								//Disponible
 								'<td class="nopadding" >'+
-									'<div class="form-group"><input type="text" class="form-control" id="disponible'+(producto)+'" name="disponible'+(producto)+'" disabled/></div>'+
+									'<div class="form-group"><input type="text"  class="form-control" id="disponible'+(producto)+'" name="disponible'+(producto)+'" disabled/></div>'+
 								'</td>'+
 								//Botones
 								'<td class="nopadding" >'+
@@ -541,11 +541,11 @@
 								'</select></td>'+
 								//Unidades
 								'<td class="nopadding" >'+
-									'<select class="form-control" id="unidad'+(producto)+'" name="unidad'+(producto)+'"><option value="">Seleccionar</option></select>'+
+									'<select class="form-control" required="required" id="unidad'+(producto)+'" name="unidad'+(producto)+'"><option value="">Seleccionar</option></select>'+
 								'</td>'+
 								//Cantidad
 								'<td class="nopadding" >'+
-									'<div class="form-group"><input type="text" class="form-control" id="cantidad'+(producto)+'" name="cantidad'+(producto)+'" value="" placeholder="Cantidad"/></div>'+
+									'<div class="form-group"><input type="text"  required="required" class="form-control" id="cantidad'+(producto)+'" name="cantidad'+(producto)+'" value="" placeholder="Cantidad"/></div>'+
 								'</td>'+				
 								//Disponible
 								'<td class="nopadding" >'+
@@ -658,15 +658,15 @@
 				'</select></td>'+
 				//Unidades
 				'<td class="nopadding" >'+
-					'<select class="form-control" id="unidad'+(producto)+'" name="unidad'+(producto)+'"><option value="">Seleccionar</option></select>'+
+					'<select class="form-control" required="required" id="unidad'+(producto)+'" name="unidad'+(producto)+'"><option value="">Seleccionar</option></select>'+
 				'</td>'+
 				//Cantidad
 				'<td class="nopadding" >'+
-					'<div class="form-group"><input type="text" class="form-control" id="cantidad'+(producto)+'" name="cantidad'+(producto)+'" value="" placeholder="Cantidad"/></div>'+
+					'<div class="form-group"><input type="text" required="required" class="form-control" id="cantidad'+(producto)+'" name="cantidad'+(producto)+'" value="" placeholder="Cantidad"/></div>'+
 				'</td>'+				
 				//Disponible
 				'<td class="nopadding" >'+
-					'<div class="form-group"><input type="text" class="form-control" id="disponible'+(producto)+'" name="disponible'+(producto)+'" disabled/></div>'+
+					'<div class="form-group"><input type="text"  class="form-control" id="disponible'+(producto)+'" name="disponible'+(producto)+'" disabled/></div>'+
 				'</td>'+
 				
 				//Botones

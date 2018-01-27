@@ -54,7 +54,7 @@ class FacturaController extends Controller
     {
         $post_data = $request->all();
 		$rules = [
-            'lot_prd' =>' ',
+           
 			'no_fact' =>' ',
 			'cnp_fact' =>' ',
 			'comp_fact' =>' ',
@@ -65,13 +65,12 @@ class FacturaController extends Controller
 			'subt_fact' =>' ',
 			'iva_fact' =>' ',
 			'tol_fact' =>' ',
-			'obv_fact' =>' ',
-			'ord_comp_id'=>' '
+			'obv_fact' =>' '
 			];
          $validate = Validator::make($post_data, $rules);
          if ($validate->passes()){
 			 //return $post_data;
-			$ordencompra = FacturaController::create($post_data);
+			$factura = Factura::create($post_data);
 			$numprods = (int)$post_data['cantproductos'];
 			$i = 1;
 			$productos_vacios = true;
@@ -84,7 +83,7 @@ class FacturaController extends Controller
 				$producto_i['val_unt'] = $post_data['valorunitario'.$i];
 				$producto_i['val_tol'] = $post_data['valortotal'.$i];
 				//$producto_i['prod_sol_comp_id'] = $post_data['prodsolcompra'.$i] == 0 ? null : $post_data['prodsolcompra'.$i];
-				$producto_i['ord_comp_id'] = $ordencompra->id;
+				$producto_i['fact_id'] = $factura->id;
 				
 				if(!$this->IsNullOrEmptyString($producto_i['prod_id']) and !$this->IsNullOrEmptyString($producto_i['cant_prd']) and !$this->IsNullOrEmptyString($producto_i['unidad_emp_id'])){
 					ProductosOrdenCompra::create($producto_i);
@@ -94,7 +93,7 @@ class FacturaController extends Controller
 				//return $producto_i;
 			}
 			if($productos_vacios === true){
-				$ordencompra->delete();
+				$factura->delete();
 				$validate->errors()->add('cantproductos', 'Debe existir al menos un producto válido asociado a esta orden de compras.');
 				return redirect()->back()->withInput()->withErrors($validate);
 			}
@@ -142,8 +141,7 @@ class FacturaController extends Controller
     {
          $post_data = $request->all();
 		$rules = [
-            'lot_prd' =>' ',
-			'no_fact' =>' ',
+           	'no_fact' =>' ',
 			'cnp_fact' =>' ',
 			'comp_fact' =>' ',
 			'form_pag' =>' ',
@@ -159,7 +157,6 @@ class FacturaController extends Controller
         $validate = Validator::make($post_data, $rules);
         if (!$validate->failed()) {
             $facturas = Factura::find($post_data['id']);
-            $facturas->lot_prd = $post_data['lot_prd'];
 			$facturas->no_fact = $post_data['no_fact'];
 			$facturas->cnp_fact = $post_data['cnp_fact'];
 			$facturas->comp_fact = $post_data['comp_fact'];
@@ -187,16 +184,35 @@ class FacturaController extends Controller
         //
     }
 	
+	function IsNullOrEmptyString($question){
+		return (!isset($question) || trim($question)==='');
+	}
+	
 	public function cargarproveedorocp(Request $request)
     {
-		$ocp = OrdenCommpra::where('prov_id', '=', $request['option'])->get();
+		$ocp = OrdenCompra::where('prov_id', '=', $request['option'])->get();
 		return response()->json($ocp);
 	}
 	
 	public function cargarproductosocp(Request $request)
     {
-		$productosocp = ProductosOrdenCompra::where('ord_comp_id',$request['option'])->get();
-		return response()->json($productosocp);
+		if($request['option'] == 0){
+			$prod_prvs = OrdenCompra::where('prov_id', '=', $request['prov'])
+							->get(['id']);
+			$productosocp = ProductosOrdenCompra::with('producto')
+					->with('unidad_solicitada_factura')
+					->whereIn('ord_comp_id',$prod_prvs)->get();
+		}
+		else{
+			$productosocp = ProductosOrdenCompra::with('producto')
+					->with('unidad_solicitada_factura')
+					->where('ord_comp_id',$request['option'])->get();
+		}	
+		foreach($productosocp as $prod){
+			$prod->unidades = $prod->producto->unidades;
+		}
+		//return response()->json($productosocp);
+		return $productosocp;
 	}
 	
 	

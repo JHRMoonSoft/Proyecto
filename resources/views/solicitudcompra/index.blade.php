@@ -20,14 +20,14 @@
 			<h2>Historial Solicitud de Compras</h2> &nbsp&nbsp&nbsp
 						
 			<a  href="/solicitudcompra/create" class="btn btn-warning" role="button">Nueva Solicitud</a>
-			
+			<!--
 			<div class=" col-md-3 col-sm-3 col-xs-12 right">
 				<div id="reportrange" class="pull-center" style="background: #fff; cursor: pointer; padding: 8px 10px; border: 1px solid #ccc">
 					<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
 					<span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
 				</div>
 			</div>
-			<!--
+			
 			<ul class="nav navbar-right panel_toolbox">
 			
 			  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>

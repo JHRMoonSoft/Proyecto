@@ -299,23 +299,50 @@ class SolicitudCompraController extends Controller
 	}
 	
 	
-	public function exportSolicitudCompra($id) {
-			\Excel::create('Solicitudcompras'.$id, function ($excel) use($id) {
-				$solicitudcompras =SolicitudCompra::find($id);
-				
-				$excel->sheet('Solicitudcompras'.$id, function($sheet) use($solicitudcompras) {
-			 
-				$sheet->row(1, [
-					'Código', 'Asunto','Observación','Fecha de Creación', 'Fecha de Actualización'
-				]);
+	public function exporscp($id) {
+		
+		\Excel::create('Base_de_datos_Consolidados-SCP', function ($excel) use($id) {
 			
-				$sheet->row(2, [
-						$solicitudcompras->id, $solicitudcompras->asn_scp, $solicitudcompras->obv_scp,$solicitudcompras->created_at, $solicitudcompras->updated_at
-					]); 
-					 
-				});
+			$dia = date ("j/n/Y");
+			$hora= date ("h:i:s");
+			$solicitudcompras =SolicitudCompra::find($id);
+			$productos = $solicitudcompras->productossolicitudcompra()->get();
+			
+				$excel->sheet('Solicitudcompras', function($sheet) use($solicitudcompras, $productos) {
+							
+									
+					$sheet->prependRow(5, array( '' ))->cell('A1:B1', function($cell) { $cell->setFontWeight('bold'); $cell->setFontSize(18); $cell->setFontWeight('FF0f000');   })
+					->cell('C1:E1', function($cell) { $cell->setFontWeight('bold'); $cell->setFontSize(13); $cell->setFontWeight('FF0f000');   })
+					->cell('A6:D6', function($cell) { $cell->setFontWeight('bold'); $cell->setFontSize(12); $cell->setFontWeight('FF0f000');   }); 
+			 
+			 
+					$sheet->row(1, [
+					'Asunto',$solicitudcompras->asn_scp,'Código' ,'' ,'Observación:'
+					]);
+					
+					$sheet->row(2, [
+					'Fecha de Creación',$solicitudcompras->created_at,$solicitudcompras->id,'',$solicitudcompras->obv_scp 
+					]);
+					$sheet->row(3, [
+					'Fecha de Actualización',$solicitudcompras->updated_at
+					]);
 				
-			})->download('xlsx');
+					
+					$sheet->row(6, [
+						'#', 'PRODUCTO','UND','CANTIDAD'
+					]);
+				
+					foreach($productos as $index => $prod) {
+						$sheet->row($index+7, [
+							$index+1, $prod->producto->des_prd, $prod->unidad_solicitada->des_und,$prod->cant_sol_prd
+						]); 
+					}
+			
+					
+				});
+		
+		
+		})->download('xlsx');
 		
 	}
 		

@@ -156,34 +156,45 @@
 										<strong>{{ $errors->first('tip_sol2') }}</strong>
 									</span>
 								@endif
-						</div>
-		
-						<div class="dlk-radio btn-group  col-md-2" >
-							<h5>Aprobado en comite</h5>
-							<label class="btn  btn-primary ">
-								<input name="apr_com"  type="radio" value="1"disabled @if($requisicion->apr_com == true) checked @endif / >
-								<i class="fa fa-check glyphicon glyphicon-ok"></i>SI
-								
-						   </label>
-						   <label class="btn btn-danger">
-							   <input name="apr_com"  type="radio" value="2"   defaultchecked="checked" disabled  @if($requisicion->apr_com == false) checked @endif  /  >
-							   <i class="fa fa-times glyphicon glyphicon-remove"></i>NO
-							   
-						   </label>
-						
 						</div>	
+						<div class="btn-group form-group  col-md-2">
+							<h5>Aprobado en comite</h5>
+							<input type="checkbox" id="apr_com" name="apr_com" disabled  autocomplete="off" @if($requisicion->apr_com == true) checked @endif / >									
+							<div class="btn-group">
+								<label for="" class="btn btn-primary">SI
+									<span class="fa fa-check-square-o fa-lg"></span>
+									<span class="fa fa-square-o fa-lg"></span>
+								</label>
+							</div>
+					
+							<input type="checkbox" id="apr_com" name="apr_com" disabled  autocomplete="off" @if($requisicion->apr_com == false) checked @endif />
+							
+							<div class="btn-group">
+								<label for="" class="btn btn-danger">NO
+									<span class="fa fa-check-square-o fa-lg"></span>
+									<span class="fa fa-square-o fa-lg"></span>
+								</label>
+							</div>
+						</div>
 						
-						<div class="dlk-radio btn-group  col-md-2" >
+						<div class="btn-group form-group  col-md-2">
 							<h5>Proveedor Autorizado</h5>
-							<label class="btn  btn-primary">
-								<input name="choices[1]"  type="radio" value="1"disabled @if($requisicion->prv_apr == true) checked @endif />
-								<i class="fa fa-check glyphicon glyphicon-ok"></i>SI
-						   </label>
-						   <label class="btn btn-danger">
-							   <input name="choices[1]"  type="radio" value="2"   defaultchecked="checked" disabled @if($requisicion->prv_apr == false) checked @endif />
-							   <i class="fa fa-times glyphicon glyphicon-remove"></i>NO
-						   </label>
-						
+							<input type="checkbox" id="prv_apr" name="prv_apr" disabled  autocomplete="off" @if($requisicion->prv_apr == true) checked @endif />									
+							<div class="btn-group">
+								<label for="" class="btn btn-primary">SI
+									<span class="fa fa-check-square-o fa-lg"></span>
+									<span class="fa fa-square-o fa-lg"></span>
+								</label>
+							</div>
+					
+							<input type="checkbox" id="prv_apr" name="prv_apr" disabled  autocomplete="off"@if($requisicion->prv_apr == false) checked @endif />
+							
+							<div class="btn-group">
+								<label for="" class="btn btn-danger">NO
+									<span class="fa fa-check-square-o fa-lg"></span>
+									<span class="fa fa-square-o fa-lg"></span>
+								</label>
+							</div>
 						</div>
 										
 						<div class=" col-md-3 " ><h5>Fecha de aprobación</h5>
@@ -194,6 +205,17 @@
 								</span>
 							</div>
 						</div>	
+						
+						
+											
+								
+							
+						
+						
+						
+						
+						
+						
 					</div>
 						<br/>
 					</div>
@@ -293,7 +315,7 @@
 														<div class="col-sm-8">
 															<input type="checkbox" id="apr_prod{{$loop->index + 1}}" name="apr_prod{{$loop->index + 1}}" disabled  autocomplete="off"  @if($requisicion->registrohistoricorequisicion->count() == 1)  @else  @if($prod->apr_prod == true) checked @endif  @endif  />
 															<div class="btn-group">
-																<label for="apr_prod{{$loop->index + 1}}" class="btn btn-primary">
+																<label for="apr_prod{{$loop->index + 1}}" class="btn btn-default">
 																	<span class="fa fa-check-square-o fa-lg"></span>
 																	<span class="fa fa-square-o fa-lg"></span>
 																</label>
@@ -364,7 +386,7 @@
 														<div class="col-sm-8">
 															<input type="checkbox" id="est_prov{{$loop->index + 1}}" name="est_prov{{$loop->index + 1}}" disabled  autocomplete="off" @if($prov->est_prov == true)checked="checked"@endif/>
 															<div class="btn-group">
-																<label for="est_prov{{$loop->index + 1}}" class="btn btn-primary">
+																<label for="est_prov{{$loop->index + 1}}" class="btn btn-default">
 																	<span class="fa fa-check-square-o fa-lg"></span>
 																	<span class="fa fa-square-o fa-lg"></span>
 																</label>

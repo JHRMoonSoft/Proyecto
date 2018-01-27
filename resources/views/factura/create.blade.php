@@ -67,7 +67,7 @@
 										<div class=" col-sm-3 col-xs-6">
 											<div class="form-group">
 												<label for="prov_id">Proveedor</label>
-												<select id="prov_id" class="form-control input-sm" name="prov_id" onchange="cambio_proveedores();" required>
+												<select id="prov_id" class="form-control input-sm" name="prov_id" onchange="cambio_proveedores();cargarproductosdeproveedor(); " required>
 														<option value="" selected>Seleccionar</option>
 														@if(!$proveedores->isEmpty())
 															@foreach($proveedores as $proveedor)
@@ -112,10 +112,10 @@
 										</div>
 										<div class="col-sm-3 col-xs-6">
 											<label for="cnp_ocp">Concepto</label>
-											<input class="form-control input-sm" value="ORDEN DE COMPRA " id="cnp_ocp" name="cnp_ocp" type="text" required>
-											@if ($errors->has('no_ocp'))
+											<input class="form-control input-sm" value="FACTURA DE COMPRA " id="cnp_fact" name="cnp_fact" type="text" required>
+											@if ($errors->has('cnp_fact'))
 												<span class="help-block">
-													<strong>{{ $errors->first('no_ocp') }}</strong>
+													<strong>{{ $errors->first('cnp_fact') }}</strong>
 												</span>
 											@endif
 										</div>
@@ -195,13 +195,10 @@
 								</div>
 								<div class="col-xs-4"><br/>
 									<h4><h4/><br>
-									<button type="submit" class="btn btn-primary fa fa-download "></button>
+									<button type="button" class="btn btn-primary fa fa-download" onclick="cargarproductosseleccionados({{$productos}});" />
 								</div>
 							</div>
-						
 						</div>
-						
-						
 						<div class="panel-body ">	
 							<div class="panel panel-default">
 								<div class="panel-heading text-center">
@@ -228,7 +225,7 @@
 											<tr>
 												<td>
 													1
-													<input type="hidden" id="prodsolcompra1" name="prodsolcompra1" value="0"/>
+													<input type="hidden" id="ordencompra1" name="ordencompra1" value="0"/>
 												</td>								
 												<td class="nopadding" >
 													<div class="form-group input-sm">
@@ -299,48 +296,48 @@
 							<div class="panel-default ">
 								<div class="row ">
 									<div class="col-xs-9 "><br />
-										<label for="obv_ocp">Obeservaciones</label><br/>
+										<label for="obv_fact">Obeservaciones</label><br/>
 										<div class="col-md-9 col-sm-9 col-xs-12">
-										  <textarea id="obv_ocp"  name="obv_ocp" class="form-control col-md-7 col-xs-12"></textarea>
-										@if ($errors->has('obv_ocp'))
+										  <textarea id="obv_fact"  name="obv_fact" class="form-control col-md-7 col-xs-12"></textarea>
+										@if ($errors->has('obv_fact'))
 											<span class="help-block">
-												<strong>{{ $errors->first('obv_ocp') }}</strong>
+												<strong>{{ $errors->first('obv_fact') }}</strong>
 											</span>
 										@endif
 										</div>
 									</div>
 									<div class="col-xs-3">
 										<div class="form-group">
-											<label class="control-label col-md-4 col-sm-4 col-xs-12" align="right" for="subt_ocp">SUBTOTAL </label>
+											<label class="control-label col-md-4 col-sm-4 col-xs-12" align="right" for="subt_fact">SUBTOTAL </label>
 											<div class="col-md-8 col-sm-8 col-xs-12  right">
-											  <input type="text" id="subt_ocp" name="subt_ocp"  required="required" class="form-control col-md-7 col-xs-12 "  readonly  style="background:rgba(247, 247, 247, 0.57);">
-												@if ($errors->has('subt_ocp'))
+											  <input type="text" id="subt_fact" name="subt_fact"  required="required" class="form-control col-md-7 col-xs-12 "  readonly  style="background:rgba(247, 247, 247, 0.57);">
+												@if ($errors->has('subt_fact'))
 													<span class="help-block">
-														<strong>{{ $errors->first('subt_ocp') }}</strong>
+														<strong>{{ $errors->first('subt_fact') }}</strong>
 													</span>
 												@endif
 											</div>
 										</div>
 									
 										<div class="form-group">
-											<label class="control-label col-md-4 col-sm-4 col-xs-12 " align="right" for="iva_ocp"><br/>IVA</label>
+											<label class="control-label col-md-4 col-sm-4 col-xs-12 " align="right" for="iva_fact"><br/>IVA</label>
 											<div class="col-md-8 col-sm-8 col-xs-12  right">
-											  <input type="text" id="iva_ocp" name="iva_ocp"  required="required" class="form-control col-md-7 col-xs-12"  readonly  style="background:rgba(247, 247, 247, 0.57);">
-												@if ($errors->has('iva_ocp'))
+											  <input type="text" id="iva_fact" name="iva_fact"  required="required" class="form-control col-md-7 col-xs-12"  readonly  style="background:rgba(247, 247, 247, 0.57);">
+												@if ($errors->has('iva_fact'))
 													<span class="help-block">
-														<strong>{{ $errors->first('iva_ocp') }}</strong>
+														<strong>{{ $errors->first('iva_fact') }}</strong>
 													</span>
 												@endif
 											</div>
 										</div>
 								
 										<div class="form-group">
-											<label class="control-label col-md-4 col-sm-4 col-xs-12" align="right" for="tol_ocp"><br/>TOTAL</label>
+											<label class="control-label col-md-4 col-sm-4 col-xs-12" align="right" for="tol_fact"><br/>TOTAL</label>
 											<div class="col-md-8 col-sm-8 col-xs-12  right">
-											  <input type="text" id="tol_ocp" name="tol_ocp"   required="required" class="form-control col-md-7 col-xs-12"  readonly  style="background:rgba(247, 247, 247, 0.57);">
-											  @if ($errors->has('tol_ocp'))
+											  <input type="text" id="tol_fact" name="tol_fact"   required="required" class="form-control col-md-7 col-xs-12"  readonly  style="background:rgba(247, 247, 247, 0.57);">
+											  @if ($errors->has('tol_fact'))
 													<span class="help-block">
-														<strong>{{ $errors->first('tol_ocp') }}</strong>
+														<strong>{{ $errors->first('tol_fact') }}</strong>
 													</span>
 												@endif
 											
@@ -410,7 +407,7 @@
 			var rdiv = 'removeproducto'+producto;
 			var text = '<tr><td>'+
 				(producto)+
-				'<input type="hidden" id="prodsolcompra'+(producto)+'" name="prodsolcompra'+(producto)+'" value="0"/>'+
+				'<input type="hidden" id="ordencompra'+(producto)+'" name="ordencompra'+(producto)+'" value="0"/>'+
 				'</td>'+
 				//Productos
 				'<td class="nopadding" >'+
@@ -488,38 +485,43 @@
 							model.append("<option value='"+ element.id +"'>" + element.des_und + "</option>");
 					});
 			});
+		if(rid == 1)
+			primer_producto_cargado = true;
+		$('#ordencompra'+rid).val(0);
 	}
 	
-	function cargarproductosdecategoria() {
-		   $.get("{{ url('ordencompra/cargarproductosdecategoria')}}", 
+	function cargarproductosdeproveedor() {
+		   $.get("{{ url('factura/cargarproveedorocp')}}", 
 				{
-					option: $('#categorias').val(),
+					option: $('#prov_id').val(),
 					
 				}, 
 				function(data) {
-					var model = $('#productos');
+					var model = $('#doc_ocp');
 					model.empty();
 					model.append("<option value='' selected>Seleccionar</option>");
 					model.append("<option value='0'>Todos</option>");
 						$.each(data, function(index, element) {
-							model.append("<option value='"+ element.id +"'>" + element.des_prd + "</option>");
+							model.append("<option value='"+ element.id +"'> Orden de Compra #" + element.id + "</option>");
 					});
 			});
 	   }
 	
 	function cargarproductosseleccionados(productos) {
-		   $.get("{{ url('ordencompra/cargarproductosseleccionados')}}", 
+		   $.get("{{ url('factura/cargarproductosocp')}}", 
 				{
-					cats: $('#categorias').val(),
-					prds: $('#productos').val(),
-					
+					option: $('#doc_ocp').val(),
+					prov: $('#prov_id').val(),
 				}, 
 				function(data) {
 					$.each(data, function(index, element) {
 						if(producto == 1 && !primer_producto_cargado){
 							$('#producto1').val(element.producto.id);
 							$('#cantidad1').val(element.cant_sol_prd);
-							$('#prodsolcompra1').val(element.id);
+							$('#ordencompra1').val(element.ord_comp_id);
+							$('#ivaunitario1').val(element.iva_unt_fact);
+							$('#valorunitario1').val(element.val_unt_fact);
+							$('#valortotal1').val(element.val_tol_fact);
 							
 							$.get("{{ url('requisicion/cargarunidadesproducto')}}", 
 								{
@@ -532,7 +534,7 @@
 									model.append("<option value='' selected>Seleccionar</option>");
 										$.each(data, function(index, element2) {
 											var text_append="<option value='"+ element2.id +"'";
-											if(element.unidad_solicitada.id == element2.id){
+											if(element.unidad_solicitada_factura.id == element2.id){
 												text_append = text_append + " selected ";
 											}
 											text_append = text_append + ">" + element2.des_und + "</option>"
@@ -581,10 +583,6 @@
 							'<td class="nopadding" >'+
 								'<div class="form-group"><input type="text" class="form-control" id="valortotal'+(producto)+'" name="valortotal'+(producto)+'" readonly required /></div>'+
 							'</td>'+
-							//Vence
-							'<td class="nopadding" >'+
-								'<div class="form-group"><input type="date" class="form-control" id="vence'+(producto)+'" name="vence'+(producto)+'" required /></div>'+
-							'</td>'+
 							//Botones
 							'<td class="nopadding" >'+
 								'<div class="input-group-btn"><button class="btn btn-sm btn-danger glyphicon glyphicon-minus btn-xs" type="button" onclick="remove_education_fields('+ producto +');">'+
@@ -595,8 +593,11 @@
 							objTo.appendChild(divtest);
 							$("#cantproductos").val(producto);  
 							$('#producto'+producto).val(element.producto.id);
-							$('#cantidad'+producto).val(element.cant_sol_prd);
-							$('#prodsolcompra'+producto).val(element.id);
+							$('#cantidad'+producto).val(element.cant_prd_fact);
+							$('#ivaunitario'+producto).val(element.iva_unt_fact);
+							$('#valorunitario'+producto).val(element.val_unt_fact);
+							$('#valortotal'+producto).val(element.val_tol_fact);
+							$('#ordencompra'+producto).val(element.ord_comp_id);
 							var model = $('#unidad'+producto);
 							model.empty();
 							model.append("<option value='' selected>Seleccionar</option>");
@@ -604,7 +605,7 @@
 									var text_append="<option value='"+ element2.id + "'>" + element2.des_und + "</option>"
 									model.append(text_append);
 								});
-							$('#unidad'+producto).val(element.unidad_solicitada.id);
+							$('#unidad'+producto).val(element.unidad_solicitada_factura.id);
 							calculo_iva_valor(producto);
 						}
 					});
@@ -627,17 +628,17 @@
 		}
 		var val_tot = parseFloat(cnt) * (parseFloat(val_und) + parseFloat(val_und * (iva_und/100)));
 		$('#valortotal'+rid).val(val_tot);
-		var subt_ocp = 0;
-		var iva_ocp = 0;
-		var tol_ocp = 0;
+		var subt_fact = 0;
+		var iva_fact = 0;
+		var tol_fact = 0;
 		for(i = 1; i <= producto; i++){
-			subt_ocp = parseFloat(subt_ocp) + parseFloat($('#cantidad'+i).val() * $('#valorunitario'+i).val());
-			iva_ocp = parseFloat(iva_ocp) + parseFloat($('#cantidad'+i).val() * ($('#valorunitario'+i).val() * ($('#ivaunitario'+i).val()/100)));
-			tol_ocp = parseFloat(tol_ocp) + parseFloat($('#valortotal'+i).val());
+			subt_fact = parseFloat(subt_fact) + parseFloat($('#cantidad'+i).val() * $('#valorunitario'+i).val());
+			iva_fact = parseFloat(iva_fact) + parseFloat($('#cantidad'+i).val() * ($('#valorunitario'+i).val() * ($('#ivaunitario'+i).val()/100)));
+			tol_fact = parseFloat(tol_fact) + parseFloat($('#valortotal'+i).val());
 		}
-		$('#subt_ocp').val(subt_ocp);
-		$('#iva_ocp').val(iva_ocp);
-		$('#tol_ocp').val(tol_ocp);
+		$('#subt_fact').val(subt_fact);
+		$('#iva_fact').val(iva_fact);
+		$('#tol_fact').val(tol_fact);
 		
 	}		
 	   

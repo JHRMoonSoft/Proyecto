@@ -16,7 +16,6 @@ class CreateFacturasTable extends Migration
         Schema::create('facturas', function (Blueprint $table) {
             $table->engine = 'InnoDB';
 			$table->increments('id');
-			$table->integer('lot_prd');
 			$table->integer('no_fact')->nullable();
 			$table->string('cnp_fact');
 			$table->string('comp_fact');

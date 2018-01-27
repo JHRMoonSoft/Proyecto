@@ -18,11 +18,12 @@
   <div class="x_panel">
 	    <div class="x_title">
 			<h2>Historial Requisiciones</h2> &nbsp&nbsp&nbsp
-						
-			<a  href="\requisicion\create" class="btn btn-warning" role="button">Nueva Requisicion</a>
+			@permission('ver-nueva-rqs-historial-rqs-usuarios')			
+				<a  href="\requisicion\create" class="btn btn-warning" role="button">Nueva Requisicion</a>
+			@endpermission
 			@permission('ver-descargar-todo-historial-rqs-usuarios')
 				<div class=" col-md-2 col-sm-2 col-xs-6 right">
-						<a  href="/export-requisiciones" class="btn btn-primary  left" role="button"><i class="glyphicon glyphicon-cloud-download" aria-hidden="true"></i>&nbsp&nbsp Descargar </a>
+						<a  href="/requisicion/export" class="btn btn-primary  left" role="button"><i class="glyphicon glyphicon-cloud-download" aria-hidden="true"></i>&nbsp&nbsp Descargar </a>
 				</div>
 			@endpermission
 				<div class=" col-md-3 col-sm-3 col-xs-6 right">

@@ -51,7 +51,7 @@ class RolesTableSeeder extends Seeder
 		]);
 				
 		DB::table('roles')->insert([
-			'name' => 'funcionarios',
+			'name' => 'funcionario',
 			'display_name' => 'Funcionarios',
 			'description' => '',
 			'created_at' => Carbon::now()->subDays(1),
