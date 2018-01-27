@@ -11,6 +11,7 @@ use App\AccionesRequisicion;
 use App\EstadosRequisicion;
 use App\RegistroHistoricoRequisicion;
 use App\Unidad;
+use App\Categoria;
 use App\Almacen;
 use App\Solicitudcompra;
 use App\ProductosSolicitudCompra;
@@ -301,47 +302,52 @@ class SolicitudCompraController extends Controller
 	
 	public function exporscp($id) {
 		
-		\Excel::create('Base_de_datos_Consolidados-SCP', function ($excel) use($id) {
-			
-			$dia = date ("j/n/Y");
-			$hora= date ("h:i:s");
-			$solicitudcompras =SolicitudCompra::find($id);
-			$productos = $solicitudcompras->productossolicitudcompra()->get();
-			
-				$excel->sheet('Solicitudcompras', function($sheet) use($solicitudcompras, $productos) {
-							
-									
-					$sheet->prependRow(5, array( '' ))->cell('A1:B1', function($cell) { $cell->setFontWeight('bold'); $cell->setFontSize(18); $cell->setFontWeight('FF0f000');   })
-					->cell('C1:E1', function($cell) { $cell->setFontWeight('bold'); $cell->setFontSize(13); $cell->setFontWeight('FF0f000');   })
-					->cell('A6:D6', function($cell) { $cell->setFontWeight('bold'); $cell->setFontSize(12); $cell->setFontWeight('FF0f000');   }); 
-			 
-			 
-					$sheet->row(1, [
-					'Asunto',$solicitudcompras->asn_scp,'Código' ,'' ,'Observación:'
-					]);
-					
-					$sheet->row(2, [
-					'Fecha de Creación',$solicitudcompras->created_at,$solicitudcompras->id,'',$solicitudcompras->obv_scp 
-					]);
-					$sheet->row(3, [
-					'Fecha de Actualización',$solicitudcompras->updated_at
-					]);
+		\Excel::create('Base_de_datos_Consolidados-SCP' . $id, function ($excel) use($id) {
 				
-					
-					$sheet->row(6, [
-						'#', 'PRODUCTO','UND','CANTIDAD'
-					]);
+				$solicitudcompras =SolicitudCompra::find($id);
+				$productos = $solicitudcompras->productossolicitudcompra()->get();
+				$categorias = array();
+				foreach($productos as $prod){
+					array_push($categorias, $prod->producto->categoria->id);
+				}
+				$categorias = array_keys(array_flip($categorias));
 				
-					foreach($productos as $index => $prod) {
-						$sheet->row($index+7, [
-							$index+1, $prod->producto->des_prd, $prod->unidad_solicitada->des_und,$prod->cant_sol_prd
-						]); 
-					}
-			
+				foreach($categorias as $cat){
+					$cate = Categoria::find($cat);
+					$excel->sheet($cate->des_cat, function($sheet) use($solicitudcompras, $productos, $cat) {
+						$sheet->prependRow(5, array( '' ))->cell('A1:B1', function($cell) { $cell->setFontWeight('bold'); $cell->setFontSize(18); $cell->setFontWeight('FF0f000');   })
+						->cell('C1:E1', function($cell) { $cell->setFontWeight('bold'); $cell->setFontSize(13); $cell->setFontWeight('FF0f000');   })
+						->cell('A6:D6', function($cell) { $cell->setFontWeight('bold'); $cell->setFontSize(12); $cell->setFontWeight('FF0f000');   }); 
+				
+				
+						$sheet->row(1, [
+						'Asunto',$solicitudcompras->asn_scp,'Código' ,'' ,'Observación:'
+						]);
+						
+						$sheet->row(2, [
+						'Fecha de Creación',$solicitudcompras->created_at,$solicitudcompras->id,'',$solicitudcompras->obv_scp 
+						]);
+						$sheet->row(3, [
+						'Fecha de Actualización',$solicitudcompras->updated_at
+						]);
 					
-				});
-		
-		
+						
+						$sheet->row(6, [
+							'#', 'PRODUCTO','UND','CANTIDAD'
+						]);
+						$linea = 0;
+						foreach($productos as $index => $prod) {
+							if($prod->producto->categoria->id == $cat){
+								$sheet->row($linea+7, [
+									$linea+1, $prod->producto->des_prd, $prod->unidad_solicitada->des_und,$prod->cant_sol_prd
+								]); 
+								$linea++;
+							}
+						}
+					});
+					
+					
+				}
 		})->download('xlsx');
 		
 	}

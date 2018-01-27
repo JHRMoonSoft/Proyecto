@@ -27,7 +27,7 @@ class EntregarRQSController extends Controller
      */
     public function index()
     {
-        $requisiciones = Requisicion::whereIn('est_rqs',array(4,5))->whereIn('rol_rqs',array(3))->get();
+        $requisiciones = Requisicion::whereIn('est_rqs',array(4,5))->get();
 		$now = Carbon::now();
 		return View('entregarRQS.index')->with(compact('requisiciones','now'));
     }
@@ -96,7 +96,8 @@ class EntregarRQSController extends Controller
 		$rules = [
             'rol_rqs'=> 'required',
 			'asn_rqs'=> 'required',
-			'est_rqs'=> 'required'
+			'est_rqs'=> 'required',
+			'obs_rqs'=> 'required'
 			];
 		$validate = Validator::make($post_data, $rules);
 		if ($request->get('boton') == "guardar"){

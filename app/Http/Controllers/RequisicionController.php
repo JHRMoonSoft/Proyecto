@@ -34,7 +34,13 @@ class RequisicionController extends Controller
      */
     public function index()
     {
-		$requisiciones = Requisicion::all();
+		
+		if(Auth::user()->hasRole(['compras','admin'])){
+			$requisiciones = Requisicion::all();
+		}
+		else{
+			$requisiciones = Requisicion::where('area_id',Auth::user()->area->id)->get();
+		}
 		$now = Carbon::now();
         return View('requisicion.index')->with(compact('requisiciones','now'));
     }

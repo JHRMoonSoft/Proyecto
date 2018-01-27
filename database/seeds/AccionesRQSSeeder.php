@@ -28,7 +28,7 @@ class AccionesRQSSeeder extends Seeder
 			'asn_rqs' => 'Requisición Rechazada',
 			'est_rqs_id' => 3,
 			'est_ant_rqs_id' => 1,
-			'rol_asg_rqs_id' => 2,
+			'rol_asg_rqs_id' => 5,
             'created_at' => Carbon::now()->subDays(1),
 			'updated_at' => Carbon::now()		
 		]);
@@ -39,7 +39,7 @@ class AccionesRQSSeeder extends Seeder
 			'asn_rqs' => 'Requisición Autorizada',
 			'est_rqs_id' => 2,
 			'est_ant_rqs_id' => 1,
-			'rol_asg_rqs_id' => 2,
+			'rol_asg_rqs_id' => 3,
             'created_at' => Carbon::now()->subDays(1),
 			'updated_at' => Carbon::now()		
 		]);
@@ -59,7 +59,7 @@ class AccionesRQSSeeder extends Seeder
 			'asn_rqs' => 'Requisición Entrega Parcial',
 			'est_rqs_id' => 5,
 			'est_ant_rqs_id' => 4,
-			'rol_asg_rqs_id' => 3,
+			'rol_asg_rqs_id' => 5,
             'created_at' => Carbon::now()->subDays(1),
 			'updated_at' => Carbon::now()		
 		]);
@@ -69,7 +69,7 @@ class AccionesRQSSeeder extends Seeder
 			'asn_rqs' => 'Requisición Entregada',
 			'est_rqs_id' => 6,
 			'est_ant_rqs_id' => 4,
-			'rol_asg_rqs_id' => 3,
+			'rol_asg_rqs_id' => 5,
             'created_at' => Carbon::now()->subDays(1),
 			'updated_at' => Carbon::now()		
 		]);
@@ -79,7 +79,7 @@ class AccionesRQSSeeder extends Seeder
 			'asn_rqs' => 'Requisición Recibo Parcial',
 			'est_rqs_id' => 7,
 			'est_ant_rqs_id' => 5,
-			'rol_asg_rqs_id' => 4,
+			'rol_asg_rqs_id' => 5,
             'created_at' => Carbon::now()->subDays(1),
 			'updated_at' => Carbon::now()		
 		]);
@@ -89,7 +89,7 @@ class AccionesRQSSeeder extends Seeder
 			'asn_rqs' => 'Requisición en Proceso',
 			'est_rqs_id' => 4,
 			'est_ant_rqs_id' => 7,
-			'rol_asg_rqs_id' => 4,
+			'rol_asg_rqs_id' => 3,
             'created_at' => Carbon::now()->subDays(1),
 			'updated_at' => Carbon::now()		
 		]);
@@ -99,7 +99,7 @@ class AccionesRQSSeeder extends Seeder
 			'asn_rqs' => 'Requisición Entrega Parcial',
 			'est_rqs_id' => 5,
 			'est_ant_rqs_id' => 5,
-			'rol_asg_rqs_id' => 3,
+			'rol_asg_rqs_id' => 5,
             'created_at' => Carbon::now()->subDays(1),
 			'updated_at' => Carbon::now()		
 		]);
@@ -109,7 +109,7 @@ class AccionesRQSSeeder extends Seeder
 			'asn_rqs' => 'Requisición Entregada',
 			'est_rqs_id' => 6,
 			'est_ant_rqs_id' => 5,
-			'rol_asg_rqs_id' => 3,
+			'rol_asg_rqs_id' => 5,
             'created_at' => Carbon::now()->subDays(1),
 			'updated_at' => Carbon::now()		
 		]);
@@ -119,7 +119,7 @@ class AccionesRQSSeeder extends Seeder
 			'asn_rqs' => 'Requisición Recibida',
 			'est_rqs_id' => 8,
 			'est_ant_rqs_id' => 6,
-			'rol_asg_rqs_id' => 4,
+			'rol_asg_rqs_id' => 5,
             'created_at' => Carbon::now()->subDays(1),
 			'updated_at' => Carbon::now()		
 		]);

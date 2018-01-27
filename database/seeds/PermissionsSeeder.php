@@ -11,7 +11,7 @@ class PermissionsSeeder extends Seeder
      */
     public function run()
     {
-        //
+		        //
 		DB::table('permissions')->insert(['name'=>'ver-menu-requisicion','display_name'=>'1.Ver-menu-requisicion','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);	
 		DB::table('permissions')->insert(['name'=>'ver-menu-nueva-rqs','display_name'=>'1.1.Ver-menu-nueva-rqs ','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);	
 		DB::table('permissions')->insert(['name'=>'ver-registrar-rqs','display_name'=>'1.1.1.Ver-registrar-rqs','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);	
@@ -139,9 +139,10 @@ class PermissionsSeeder extends Seeder
 		DB::table('permissions')->insert(['name'=>'ver-descargar-factura','display_name'=>'11.2.4.Ver-descargar-factura','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);	
 		DB::table('permissions')->insert(['name'=>'ver-descargar-todo-factura','display_name'=>'11.2.5.Ver-descargar-todo-factura','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);	
 		DB::table('permissions')->insert(['name'=>'ver-buscar-factura','display_name'=>'11.2.6.Ver-buscar-factura','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);	
-		DB::table('permissions')->insert(['name'=>'ver-ingreso-almacén','display_name'=>'11.2.7.Ver-ingreso-almacén','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);	
+		DB::table('permissions')->insert(['name'=>'ver-ingreso-almacén','display_name'=>'11.2.7.Ver-ingreso-almacén','description'=>'','created_at'=>Carbon::now()->subDays(1),'updated_at'=>Carbon::now()]);
 
-		//1.	ver-menu-requisicion: A,C, D, J, F
+
+		//1.	ver-menu-requisicion: A, J, C, D,  F
 		DB::table('permission_role')->insert([
 			'permission_id' => 1,
 			'role_id' => 1
@@ -149,12 +150,12 @@ class PermissionsSeeder extends Seeder
 		
 		DB::table('permission_role')->insert([
 			'permission_id' => 1,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		
 		DB::table('permission_role')->insert([
 			'permission_id' => 1,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -174,12 +175,12 @@ class PermissionsSeeder extends Seeder
 		
 		DB::table('permission_role')->insert([
 			'permission_id' => 2,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		
 		DB::table('permission_role')->insert([
 			'permission_id' => 2,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -200,12 +201,12 @@ class PermissionsSeeder extends Seeder
 		
 		DB::table('permission_role')->insert([
 			'permission_id' => 3,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		
 		DB::table('permission_role')->insert([
 			'permission_id' => 3,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -226,12 +227,12 @@ class PermissionsSeeder extends Seeder
 		
 		DB::table('permission_role')->insert([
 			'permission_id' => 4,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		
 		DB::table('permission_role')->insert([
 			'permission_id' => 4,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -252,12 +253,12 @@ class PermissionsSeeder extends Seeder
 		
 		DB::table('permission_role')->insert([
 			'permission_id' => 5,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		
 		DB::table('permission_role')->insert([
 			'permission_id' => 5,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -277,12 +278,12 @@ class PermissionsSeeder extends Seeder
 		
 		DB::table('permission_role')->insert([
 			'permission_id' => 6,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		
 		DB::table('permission_role')->insert([
 			'permission_id' => 6,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -301,12 +302,12 @@ class PermissionsSeeder extends Seeder
 		
 		DB::table('permission_role')->insert([
 			'permission_id' => 7,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		
 		DB::table('permission_role')->insert([
 			'permission_id' => 7,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -325,12 +326,12 @@ class PermissionsSeeder extends Seeder
 		
 		DB::table('permission_role')->insert([
 			'permission_id' => 8,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		
 		DB::table('permission_role')->insert([
 			'permission_id' => 8,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -349,12 +350,12 @@ class PermissionsSeeder extends Seeder
 		
 		DB::table('permission_role')->insert([
 			'permission_id' => 9,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		
 		DB::table('permission_role')->insert([
 			'permission_id' => 9,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -373,12 +374,12 @@ class PermissionsSeeder extends Seeder
 		
 		DB::table('permission_role')->insert([
 			'permission_id' => 10,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		
 		DB::table('permission_role')->insert([
 			'permission_id' => 10,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -397,12 +398,12 @@ class PermissionsSeeder extends Seeder
 		
 		DB::table('permission_role')->insert([
 			'permission_id' => 11,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		
 		DB::table('permission_role')->insert([
 			'permission_id' => 11,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -418,12 +419,12 @@ class PermissionsSeeder extends Seeder
 		
 		DB::table('permission_role')->insert([
 			'permission_id' => 12,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		
 		DB::table('permission_role')->insert([
 			'permission_id' => 12,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -442,12 +443,12 @@ class PermissionsSeeder extends Seeder
 		
 		DB::table('permission_role')->insert([
 			'permission_id' => 13,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		
 		DB::table('permission_role')->insert([
 			'permission_id' => 13,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -466,12 +467,12 @@ class PermissionsSeeder extends Seeder
 		
 		DB::table('permission_role')->insert([
 			'permission_id' => 14,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		
 		DB::table('permission_role')->insert([
 			'permission_id' => 14,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -490,12 +491,12 @@ class PermissionsSeeder extends Seeder
 		
 		DB::table('permission_role')->insert([
 			'permission_id' => 15,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		
 		DB::table('permission_role')->insert([
 			'permission_id' => 15,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -515,12 +516,12 @@ class PermissionsSeeder extends Seeder
 		
 		DB::table('permission_role')->insert([
 			'permission_id' => 16,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		
 		DB::table('permission_role')->insert([
 			'permission_id' => 16,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -539,12 +540,12 @@ class PermissionsSeeder extends Seeder
 		
 		DB::table('permission_role')->insert([
 			'permission_id' => 17,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		
 		DB::table('permission_role')->insert([
 			'permission_id' => 17,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -563,12 +564,12 @@ class PermissionsSeeder extends Seeder
 		
 		DB::table('permission_role')->insert([
 			'permission_id' => 18,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		
 		DB::table('permission_role')->insert([
 			'permission_id' => 18,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -587,12 +588,12 @@ class PermissionsSeeder extends Seeder
 		
 		DB::table('permission_role')->insert([
 			'permission_id' => 19,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		
 		DB::table('permission_role')->insert([
 			'permission_id' => 19,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -611,12 +612,12 @@ class PermissionsSeeder extends Seeder
 		
 		DB::table('permission_role')->insert([
 			'permission_id' => 20,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		
 		DB::table('permission_role')->insert([
 			'permission_id' => 20,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -635,12 +636,12 @@ class PermissionsSeeder extends Seeder
 		
 		DB::table('permission_role')->insert([
 			'permission_id' => 21,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		
 		DB::table('permission_role')->insert([
 			'permission_id' => 21,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -659,12 +660,12 @@ class PermissionsSeeder extends Seeder
 		
 		DB::table('permission_role')->insert([
 			'permission_id' => 22,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		
 		DB::table('permission_role')->insert([
 			'permission_id' => 22,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -683,12 +684,12 @@ class PermissionsSeeder extends Seeder
 		
 		DB::table('permission_role')->insert([
 			'permission_id' => 23,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		
 		DB::table('permission_role')->insert([
 			'permission_id' => 23,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -703,7 +704,7 @@ class PermissionsSeeder extends Seeder
 		]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 24,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 			//2.1.	ver-menu-empresa (crear o ver empresa) C, A
 			DB::table('permission_role')->insert([
@@ -712,7 +713,7 @@ class PermissionsSeeder extends Seeder
 		]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 25,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 			//2.1.1.	editar-empresa: C, A
 			DB::table('permission_role')->insert([
@@ -721,7 +722,7 @@ class PermissionsSeeder extends Seeder
 		]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 26,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 			//2.2.	ver-menu-area-programa: A
 			DB::table('permission_role')->insert([
@@ -822,7 +823,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 44,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//6.1.	ver-menu-nuevo-proveedor: A, C
 		DB::table('permission_role')->insert([
@@ -831,7 +832,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 45,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//6.2.	ver-menu-listado-de-proveedores: A, C
 		DB::table('permission_role')->insert([
@@ -840,7 +841,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 46,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//6.2.1.	ver-detalle-proveedor: A,C
 		DB::table('permission_role')->insert([
@@ -849,7 +850,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 47,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//6.2.2.	editar-proveedor: A, C
 		DB::table('permission_role')->insert([
@@ -858,7 +859,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 48,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 
 	//7.	ver-menu-almacen:A, D, J, C}
@@ -868,11 +869,11 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 49,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 49,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -886,7 +887,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 50,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//7.1.1.	crear-categoria: A, C
 		DB::table('permission_role')->insert([
@@ -895,7 +896,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 51,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//7.1.2.	editar-categoria: A, C
 		DB::table('permission_role')->insert([
@@ -904,7 +905,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 52,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//7.2.	ver-menu-productos: A, C
 		DB::table('permission_role')->insert([
@@ -913,7 +914,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 53,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//7.2.1.	crear-producto: A, C
 		DB::table('permission_role')->insert([
@@ -922,7 +923,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 54,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//7.2.2.	editar-producto: A, C
 		DB::table('permission_role')->insert([
@@ -931,7 +932,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 55,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//7.3.	ver-menu-unidades: A, C
 		DB::table('permission_role')->insert([
@@ -940,7 +941,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 56,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//7.3.1.	crear-unidad: A,C
 		DB::table('permission_role')->insert([
@@ -949,7 +950,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 57,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//7.3.2.	editar-unidad: A, C
 		DB::table('permission_role')->insert([
@@ -958,7 +959,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 58,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//7.4.	ver-menu-unidades-empaque: A, C
 		DB::table('permission_role')->insert([
@@ -967,7 +968,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 59,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//7.4.1.	crear-unidad-empaque: A, C
 		DB::table('permission_role')->insert([
@@ -976,7 +977,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 60,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//7.4.2.	editar-unidad-empaque: A, C
 		DB::table('permission_role')->insert([
@@ -985,7 +986,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 61,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//7.5.	ver-menu-producto-almacen:A, C, D, J
 		DB::table('permission_role')->insert([
@@ -994,11 +995,11 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 62,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 62,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -1012,7 +1013,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 63,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//7.5.2.	editar-producto-almacen: A,C
 		DB::table('permission_role')->insert([
@@ -1021,7 +1022,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 64,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//7.6.	ver-menu-kardex-almacen: A, C, D, J
 		DB::table('permission_role')->insert([
@@ -1030,11 +1031,11 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 65,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 65,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -1048,7 +1049,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 66,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//7.6.2.	ver-descargar-todo-kardex-almacen: A, C, D, J
 		DB::table('permission_role')->insert([
@@ -1057,11 +1058,11 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 67,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 67,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -1075,11 +1076,11 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 68,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 68,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -1093,11 +1094,11 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 69,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 69,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -1111,7 +1112,7 @@ class PermissionsSeeder extends Seeder
 	]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 70,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -1125,7 +1126,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 71,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -1140,7 +1141,7 @@ class PermissionsSeeder extends Seeder
 			
 		DB::table('permission_role')->insert([
 			'permission_id' => 72,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -1154,7 +1155,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 73,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -1168,7 +1169,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 74,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -1182,11 +1183,11 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 75,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 75,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -1200,7 +1201,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 76,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -1214,11 +1215,11 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 77,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 77,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -1232,7 +1233,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 78,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -1246,7 +1247,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 79,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -1260,7 +1261,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 80,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -1274,11 +1275,11 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 81,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 81,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -1292,7 +1293,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 82,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//8.2.1.1.	ver-registro-entregar-rqs: A,C
 		DB::table('permission_role')->insert([
@@ -1301,7 +1302,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 83,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//8.2.1.2.	ver-lista-productos-entregar-rqs: A,C
 		DB::table('permission_role')->insert([
@@ -1310,7 +1311,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 84,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//8.2.1.3.	ver-guardar-entregar-rqs A, C
 		DB::table('permission_role')->insert([
@@ -1319,7 +1320,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 85,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//8.2.1.4.	ver-enviar- entregar -rqs A, C
 		DB::table('permission_role')->insert([
@@ -1328,7 +1329,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 86,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//8.2.2.	ver-detalle- entregar -rqs A, C, D, J
 		DB::table('permission_role')->insert([
@@ -1337,11 +1338,11 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 87,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 87,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -1355,11 +1356,11 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 88,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 88,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -1373,11 +1374,11 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 89,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 89,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -1391,11 +1392,11 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 90,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 90,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -1409,11 +1410,11 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 91,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 91,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -1423,11 +1424,11 @@ class PermissionsSeeder extends Seeder
 		/*8.3.1.	ver-nueva-rqs-historial-rqs-usuarios
 		DB::table('permission_role')->insert([
 			'permission_id' => 92,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 92,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -1437,11 +1438,11 @@ class PermissionsSeeder extends Seeder
 		//8.3.2.	ver-buscar-historial-rqs-usuarios
 		DB::table('permission_role')->insert([
 			'permission_id' => 93,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 93,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -1451,11 +1452,11 @@ class PermissionsSeeder extends Seeder
 		//8.3.3.	ver-editar-historial-rqs-usuarios.
 		DB::table('permission_role')->insert([
 			'permission_id' => 94,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 94,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -1465,11 +1466,11 @@ class PermissionsSeeder extends Seeder
 		//8.3.3.1.	editar-lista-de-productos
 		DB::table('permission_role')->insert([
 			'permission_id' => 95,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 95,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -1479,11 +1480,11 @@ class PermissionsSeeder extends Seeder
 		//8.3.3.2.	editar-lista-de-proveedores-sugeridos
 		DB::table('permission_role')->insert([
 			'permission_id' => 96,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 96,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -1493,11 +1494,11 @@ class PermissionsSeeder extends Seeder
 		//8.3.3.3.	guardar-boton
 		DB::table('permission_role')->insert([
 			'permission_id' => 97,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 97,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -1507,11 +1508,11 @@ class PermissionsSeeder extends Seeder
 		//8.3.4.	ver-detalle-historial-rqs-usuarios
 		DB::table('permission_role')->insert([
 			'permission_id' => 98,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 98,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -1521,11 +1522,11 @@ class PermissionsSeeder extends Seeder
 		//8.3.5.	ver-descargar-historial-rqs-usuarios
 		DB::table('permission_role')->insert([
 			'permission_id' => 99,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 99,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -1535,11 +1536,11 @@ class PermissionsSeeder extends Seeder
 		//8.3.6.	ver-descargar-todo-historial-rqs-usuarios
 		DB::table('permission_role')->insert([
 			'permission_id' => 100,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 100,
-			'role_id' => 3
+			'role_id' => 2
 		]);
 		
 		DB::table('permission_role')->insert([
@@ -1554,7 +1555,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 92,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//9.1.	ver-menu-nueva-scp: A,C
 		DB::table('permission_role')->insert([
@@ -1563,7 +1564,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 93,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//9.2.	ver-menu-historial-scp: A,C
 		DB::table('permission_role')->insert([
@@ -1572,7 +1573,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 94,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//9.2.1.	ver-nueva-scp: A,C
 		DB::table('permission_role')->insert([
@@ -1581,7 +1582,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 95,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//9.2.2.	ver-editar-scp: A,C
 		DB::table('permission_role')->insert([
@@ -1590,7 +1591,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 96,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//9.2.3.	ver-detalle-scp: A,C
 		DB::table('permission_role')->insert([
@@ -1599,7 +1600,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 97,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//9.2.4.	ver-descargar-scp: A,C
 		DB::table('permission_role')->insert([
@@ -1608,7 +1609,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 98,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//9.2.5.	ver-descargar-todo-scp: A,C
 		DB::table('permission_role')->insert([
@@ -1617,7 +1618,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 99,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//9.2.6.	ver-buscar-scp: A,C
 		DB::table('permission_role')->insert([
@@ -1626,7 +1627,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 100,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//10.	ver-menu-orden-de-compras: A,C
 		DB::table('permission_role')->insert([
@@ -1635,7 +1636,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 101,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//10.1.	ver-menu-nueva-ocp: A,C
 		DB::table('permission_role')->insert([
@@ -1644,7 +1645,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 102,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//10.2.	ver-menu-historial-ocp: A,C
 		DB::table('permission_role')->insert([
@@ -1653,7 +1654,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 103,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//10.2.1.	ver-nueva-ocp: A,C
 		DB::table('permission_role')->insert([
@@ -1662,7 +1663,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 104,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//10.2.2.	ver-editar-ocp: A,C
 		DB::table('permission_role')->insert([
@@ -1671,7 +1672,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 105,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//10.2.3.	ver-detalle-ocp: A,C
 		DB::table('permission_role')->insert([
@@ -1680,7 +1681,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 106,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//10.2.4.	ver-descargar-ocp: A,C
 		DB::table('permission_role')->insert([
@@ -1689,7 +1690,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 107,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//10.2.5.	ver-descargar-todo-ocp: A,C
 		DB::table('permission_role')->insert([
@@ -1698,7 +1699,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 108,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//10.2.6.	ver-buscar-ocp: A,C
 		DB::table('permission_role')->insert([
@@ -1707,7 +1708,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 109,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//11.	ver-menu-facturas A,C
 		DB::table('permission_role')->insert([
@@ -1716,7 +1717,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 110,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//11.1.	ver-menu-nueva-factura A,C
 		DB::table('permission_role')->insert([
@@ -1725,7 +1726,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 111,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//11.2.	ver-menu-historial-factura A,C
 		DB::table('permission_role')->insert([
@@ -1734,7 +1735,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 112,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//11.2.1.	ver-nueva-factura: A,C
 		DB::table('permission_role')->insert([
@@ -1743,7 +1744,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 113,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//11.2.2.	ver-editar-factura: A,C
 		DB::table('permission_role')->insert([
@@ -1752,7 +1753,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 114,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//11.2.3.	ver-detalle-factura: A,C
 		DB::table('permission_role')->insert([
@@ -1761,7 +1762,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 115,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//11.2.4.	ver-descargar-factura: A,C
 		DB::table('permission_role')->insert([
@@ -1770,7 +1771,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 116,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//11.2.5.	ver-descargar-todo- factura: A,C
 		DB::table('permission_role')->insert([
@@ -1779,7 +1780,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 117,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//11.2.6.	ver-buscar- factura: A,C
 		DB::table('permission_role')->insert([
@@ -1788,7 +1789,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 118,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 		//11.2.7.	ver-ingreso-almacén: A,C
 		DB::table('permission_role')->insert([
@@ -1797,7 +1798,7 @@ class PermissionsSeeder extends Seeder
 			]);
 		DB::table('permission_role')->insert([
 			'permission_id' => 119,
-			'role_id' => 2
+			'role_id' => 3
 		]);
 
 

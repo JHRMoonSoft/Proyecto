@@ -33,7 +33,7 @@ class AutorizarRQSController extends Controller
      */
     public function index()
     {
-	  $requisiciones = Requisicion::where('est_rqs',1)->whereIn('rol_rqs',array(2))->get();
+	  $requisiciones = Requisicion::where('est_rqs',1)->whereIn('rol_rqs',array(2))->where('area_id',Auth::user()->area->id)->get();
       $now = Carbon::now();
       return View('autorizarRQS.index')->with(compact('requisiciones','now'));
     }
@@ -108,7 +108,8 @@ class AutorizarRQSController extends Controller
 			//'nom_rcp_rqs'=> 'required',
 			//'crg_rcp_rqs'=> 'required',
 			//'fec_rcp_rqs'=> 'required',
-			//'obs_rcp_rqs'=> 'required',
+			//'obs_rcp_rqs' => 'required',
+			'obs_rqs' => 'required',
 			'est_rqs'=> 'required'
 			];
 		$validate = Validator::make($post_data, $rules);
@@ -212,15 +213,15 @@ class AutorizarRQSController extends Controller
 			$requisicion = Requisicion::find($post_data['rqs_id']);
 			
 			$tip_sol = 0;
-			if (array_get($post_data, 'tip_sol1'.$i, false)) {
+			if (array_get($post_data, 'tip_sol1', false)) {
 				$tip_sol = $tip_sol + $post_data['tip_sol1'];
 			}
-			if (array_get($post_data, 'tip_sol2'.$i, false)) {
+			if (array_get($post_data, 'tip_sol2', false)) {
 				$tip_sol = $tip_sol + $post_data['tip_sol2'];
 			}
 			$requisicion->tip_sol = $tip_sol;
 			
-			if (array_get($post_data, 'apr_com'.$i, false)) {
+			if (array_get($post_data, 'apr_com', false)) {
 				$requisicion->apr_com = $post_data['apr_com'] == 1;
 			}
 			

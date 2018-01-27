@@ -261,7 +261,7 @@
 									<div class="form-group   col-md-4 col-sm-4 col-xs-12"><br>									
 										<div class="form-group col-md-12 col-xs-12">
 											<h5>Nombre </h5>
-												<input type="text" class="form-control" id="nom_rcp_rqs" name="nom_rcp_rqs" value="" placeholder="¿quien recibe?">
+												<input type="text" class="form-control" id="nom_rcp_rqs" name="nom_rcp_rqs" value="{{$requisicion->nom_rcp_rqs}}" placeholder="¿quien recibe?" />
 												@if ($errors->has('nom_rcp_rqs'))
 													<span class="help-block">
 														<strong>{{ $errors->first('nom_rcp_rqs') }}</strong>
@@ -272,7 +272,7 @@
 									<div class="form-group   col-md-4 col-sm-4 col-xs-12"><br>						
 										<div class="form-group col-md-12 col-xs-12">
 											<h5>Cargo </h5>
-												<input type="text" class="form-control" id="crg_rcp_rqs" name="crg_rcp_rqs" value="" placeholder="cargo">
+												<input type="text" class="form-control" id="crg_rcp_rqs" name="crg_rcp_rqs" value="{{$requisicion->crg_rcp_rqs}}" placeholder="cargo" />
 												@if ($errors->has('crg_rcp_rqs'))
 													<span class="help-block">
 														<strong>{{ $errors->first('crg_rcp_rqs') }}</strong>
@@ -285,7 +285,7 @@
 										<h5>Fecha </h5>
 										<div class="input-group registration-date-time">
 											<span class="input-group-addon" id="fec_rcp_rqs"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
-											<input class="form-control" name="fec_rcp_rqs" id="fec_rcp_rqs" type="date">
+											<input class="form-control" name="fec_rcp_rqs" id="fec_rcp_rqs" type="date" value="{{$requisicion->fec_rcp_rqs}}" />
 											<span class="input-group-btn">
 											</span>
 										</div>
