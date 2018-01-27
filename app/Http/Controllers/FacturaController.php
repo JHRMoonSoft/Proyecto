@@ -9,8 +9,12 @@ use App\Unidad;
 use App\ProductosOrdenCompra;
 use App\Configuracion;
 use App\OrdenCompra;
+use App\Categoria;
+use App\ProductosSolicitudCompra;
 use Validator;
 use Illuminate\Http\Request;
+use \Carbon\Carbon;
+use FPDI;
 
 class FacturaController extends Controller
 {
@@ -25,7 +29,8 @@ class FacturaController extends Controller
      */
     public function index()
     {
-       	return View('factura.index');
+       	$facturas= Factura::all();
+		return View('factura.index')->with(compact('facturas'));
     }
 
     /**
@@ -67,7 +72,8 @@ class FacturaController extends Controller
 			'tol_fact' =>' ',
 			'obv_fact' =>' ',
 			'ord_comp_id'=>' ',
-			'fact_id'=>''
+			'fact_id'=>'',
+			'prov_id'=>''
 			];
          $validate = Validator::make($post_data, $rules);
          if ($validate->passes()){
@@ -77,26 +83,48 @@ class FacturaController extends Controller
 			$i = 1;
 			$productos_vacios = true;
 			while($i <= $numprods){
-				$producto_i = array();
-				$producto_i['prod_id'] = $post_data['producto'.$i];					
-				$producto_i['unidad_emp_id'] = $post_data['unidad'.$i];	
-				$producto_i['cant_prd'] = $post_data['cantidad'.$i];
-				$producto_i['iva_unt'] = $post_data['ivaunitario'.$i];
-				$producto_i['val_unt'] = $post_data['valorunitario'.$i];
-				$producto_i['val_tol'] = $post_data['valortotal'.$i];
-				//$producto_i['prod_sol_comp_id'] = $post_data['prodsolcompra'.$i] == 0 ? null : $post_data['prodsolcompra'.$i];
-				$producto_i['fact_id'] = $factura->id;
-				
-				if(!$this->IsNullOrEmptyString($producto_i['prod_id']) and !$this->IsNullOrEmptyString($producto_i['cant_prd']) and !$this->IsNullOrEmptyString($producto_i['unidad_emp_id'])){
-					ProductosOrdenCompra::create($producto_i);
-					$productos_vacios = false;
+				if ($post_data['ordencompra'.$i] == 0) {
+					$producto_i = array();
+					$producto_i['prod_id'] = $post_data['producto'.$i];					
+					$producto_i['unidad_emp_id'] = $post_data['unidad'.$i];	
+					$producto_i['cant_prd'] = $post_data['cantidad'.$i];
+					$producto_i['iva_unt'] = $post_data['ivaunitario'.$i];
+					$producto_i['val_unt'] = $post_data['valorunitario'.$i];
+					$producto_i['val_tol'] = $post_data['valortotal'.$i];
+					
+					$producto_i['unidad_emp_fact_id'] = $post_data['unidad'.$i];	
+					$producto_i['cant_prd_fact'] = $post_data['cantidad'.$i];
+					$producto_i['iva_unt_fact'] = $post_data['ivaunitario'.$i];
+					$producto_i['val_unt_fact'] = $post_data['valorunitario'.$i];
+					$producto_i['val_tol_fact'] = $post_data['valortotal'.$i];
+					
+					$producto_i['prod_sol_comp_id'] = $post_data['ordencompra'.$i] == 0 ? null : $post_data['ordencompra'.$i];
+					$producto_i['ord_comp_id'] = 1;
+					
+					if(!$this->IsNullOrEmptyString($producto_i['prod_id']) and !$this->IsNullOrEmptyString($producto_i['cant_prd']) and !$this->IsNullOrEmptyString($producto_i['unidad_emp_id'])){
+						ProductosOrdenCompra::create($producto_i);
+						$productos_vacios = false;
+					}
+				}
+				else{
+					$producto_i = ProductosOrdenCompra::find($post_data['ordencompra'.$i]);
+					$producto_i->prod_id = $post_data['producto'.$i];
+					$producto_i->unidad_emp_fact_id = $post_data['unidad'.$i];	
+					$producto_i->cant_prd_fact = $post_data['cantidad'.$i];
+					$producto_i->iva_unt_fact = $post_data['ivaunitario'.$i];
+					$producto_i->val_unt_fact = $post_data['valorunitario'.$i];
+					$producto_i->val_tol_fact = $post_data['valortotal'.$i];
+					//$producto_i['prod_sol_comp_id'] = $post_data['prodsolcompra'.$i] == 0 ? null : $post_data['prodsolcompra'.$i];
+					$producto_i->fact_id = $factura->id;
+					$producto_i->save();
+					
 				}
 				$i = $i + 1;
 				//return $producto_i;
 			}
 			if($productos_vacios === true){
 				$factura->delete();
-				$validate->errors()->add('cantproductos', 'Debe existir al menos un producto válido asociado a esta orden de compras.');
+				$validate->errors()->add('cantproductos', 'Debe existir al menos un producto válido asociado a esta factura.');
 				return redirect()->back()->withInput()->withErrors($validate);
 			}
 			
@@ -114,10 +142,16 @@ class FacturaController extends Controller
      * @param  \App\Factura  $factura
      * @return \Illuminate\Http\Response
      */
-    public function show(Factura $factura)
+    public function show($id)
     {
-        $facturas= Factura::find($factura);
-		return view('factura.show')->with('facturas', $facturas);
+         $factura = Factura::with('productosordencompra')->find($id);
+		foreach($factura->productosordencompra as $prod){
+			$prod->almacen = $this->getAlmacenProducto($prod->prod_id);
+		}
+		$proveedores = Proveedor::all();
+		$configuracion = Configuracion::first();
+		$productos = Producto::all();
+		return view('factura.show')->with(compact('factura','productos','configuracion','proveedores'));
     }
 
     /**
@@ -189,6 +223,19 @@ class FacturaController extends Controller
 	function IsNullOrEmptyString($question){
 		return (!isset($question) || trim($question)==='');
 	}
+	
+	public function getAlmacenProducto(int $id){
+		$producto = Producto::find($id);
+		if($producto){
+			$almacen = $producto->almacen()->first();
+			$almacen['und'] = $producto->unidad->des_und;
+		}
+		else{
+			$almacen = null;
+		}
+		return $almacen;
+	}
+	
 	
 	public function cargarproveedorocp(Request $request)
     {

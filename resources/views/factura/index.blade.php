@@ -66,21 +66,33 @@
 				  </thead>
 				  <tbody>
 					
-					<tr>
-					  <td>0023933</td>
-					   <td>002</td>
-						<td>FACTURA DE COMPRA</td>
-						<td>ALMACENES EXITO S.A </td>
-						<td>NIT </td>
-						<td>890.900.608-9</td>
-						<td>CONTADO</td>
-						<td>Belkis Buelvas</td>	
-						<td>22/4/2017</td>	
-						<td>28/4/2017</td>
-						<td><a href="" title="Detalle" class="btn btn-success glyphicon glyphicon-file btn-xs" data-title="Detalle"></a><!--
-						<td><p data-placement="top" data-toggle="tooltip" title="Eliminar"><a href="" class="btn btn-danger btn-xs" data-title="Eliminar"><span class=" glyphicon glyphicon-trash"></span></a></p></td>-->
-				
-					</tr>                      
+					@foreach($facturas as $fact)
+						<tr>
+							<td>{{$fact->id}}</td>
+							<td>{{$fact->no_fact}}</td>
+							<td>{{$fact->cnp_fact}}</td>
+							<td>{{$fact->proveedor->raz_soc}}</td>
+							<td>{{$fact->proveedor->tip_doc}}. {{$fact->proveedor->num_doc}}</td>
+							<td>{{$fact->form_pag}}</td>
+							<td>{{$fact->comp_fact}}</td>
+							<td>
+								@if($fact->created_at)
+									{{$fact->created_at->format('Y-m-d') }}
+								@endif
+							</td>	
+							<td>
+								@if($fact->modified_at)
+									{{$fact->modified_at->format('Y-m-d') }}
+								@endif
+							</td>
+														
+							<td>
+		
+								<a href="{{ url('/factura/'.$fact->id) }}" title="Detalle" class="btn btn-success glyphicon glyphicon-file btn-xs" data-title="Detalle"></a>
+							</td>
+					
+						</tr>
+					@endforeach                       
 					
 				  </tbody>
 				</table>

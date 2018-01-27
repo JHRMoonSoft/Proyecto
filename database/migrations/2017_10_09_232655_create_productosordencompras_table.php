@@ -33,9 +33,9 @@ class CreateProductosordencomprasTable extends Migration
 			$table->integer('unidad_emp_fact_id')->unsigned()->index();
             $table->foreign('unidad_emp_fact_id')->references('id')->on('unidads') ->onUpdate('cascade') ->onDelete('cascade');
 			
-			$table->date('fec_ven');
+			$table->date('fec_ven')->nullable();
 			
-			$table->integer('ord_comp_id')->unsigned()->index();
+			$table->integer('ord_comp_id')->nullable()->unsigned()->index();
             $table->foreign('ord_comp_id')->references('id')->on('ordencompras') ->onUpdate('cascade') ->onDelete('cascade');
 			
 			$table->integer('fact_id')->nullable()->unsigned()->index();

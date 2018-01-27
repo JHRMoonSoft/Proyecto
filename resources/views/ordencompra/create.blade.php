@@ -282,7 +282,7 @@
 													</div>
 												</td>
 												<td class="nopadding" >
-													<div class="form-group input-sm">
+													<div class="form-group ">
 														<select class="form-control" id="unidad1" name="unidad1" required>
 															<option value="" selected>Seleccionar</option>
 														</select>
@@ -567,6 +567,7 @@
 						if(producto == 1 && !primer_producto_cargado){
 							$('#producto1').val(element.producto.id);
 							$('#cantidad1').val(element.cant_sol_prd);
+							$('#ivaunitario1').val(19);
 							$('#prodsolcompra1').val(element.id);
 							
 							$.get("{{ url('requisicion/cargarunidadesproducto')}}", 
@@ -619,7 +620,7 @@
 							'</td>'+	
 							//IVA
 							'<td class="nopadding" >'+
-								'<div class="form-group"><input type="text" class="form-control" id="ivaunitario'+(producto)+'" name="ivaunitario'+(producto)+'" onchange="calculo_iva_valor('+(producto)+');" required /></div>'+
+								'<div class="form-group"><input type="text" class="form-control" id="ivaunitario'+(producto)+'" name="ivaunitario'+(producto)+'" value="19" onchange="calculo_iva_valor('+(producto)+');" required /></div>'+
 							'</td>'+
 							//Valor Unitario
 							'<td class="nopadding" >'+

@@ -93,7 +93,7 @@ class OrdenCompraController extends Controller
 				$producto_i['val_tol'] = $post_data['valortotal'.$i];
 				
 				$producto_i['unidad_emp_fact_id'] = $post_data['unidad'.$i];	
-				$producto_i['cnt_prd_fact'] = $post_data['cantidad'.$i];
+				$producto_i['cant_prd_fact'] = $post_data['cantidad'.$i];
 				$producto_i['iva_unt_fact'] = $post_data['ivaunitario'.$i];
 				$producto_i['val_unt_fact'] = $post_data['valorunitario'.$i];
 				$producto_i['val_tol_fact'] = $post_data['valortotal'.$i];

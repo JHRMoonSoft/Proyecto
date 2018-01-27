@@ -16,7 +16,7 @@ class CreateFacturasTable extends Migration
         Schema::create('facturas', function (Blueprint $table) {
             $table->engine = 'InnoDB';
 			$table->increments('id');
-			$table->integer('lot_prd');
+			$table->integer('lot_prd')->nullable();
 			$table->integer('no_fact')->nullable();
 			$table->string('cnp_fact');
 			$table->string('comp_fact');
@@ -29,8 +29,11 @@ class CreateFacturasTable extends Migration
 			$table->double('tol_fact');
 			$table->string('obv_fact')->nullable();
 			
-			$table->integer('ord_comp_id')->unsigned()->index();
+			$table->integer('ord_comp_id')->nullable()->unsigned()->index();
             $table->foreign('ord_comp_id')->references('id')->on('ordencompras') ->onUpdate('cascade') ->onDelete('cascade');
+			
+			$table->integer('prov_id')->unsigned()->index();
+            $table->foreign('prov_id')->references('id')->on('proveedors') ->onUpdate('cascade') ->onDelete('cascade');
 			
 			
             $table->timestamps();
