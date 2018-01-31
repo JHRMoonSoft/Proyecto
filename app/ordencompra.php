@@ -22,9 +22,11 @@ class OrdenCompra extends Model
 	    return $this->belongsTo('App\Factura');
 	}
 	
+	
+	
 	public function productos(){
 		
-		return $this->belongsToMany('App\Producto','productosordencompras', 'prod_id', 'ord_comp_id');
+		return $this->hasMany('App\Productosordencompra', 'ord_comp_id');
 	
 	}
 	

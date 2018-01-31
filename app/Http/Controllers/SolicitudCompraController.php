@@ -22,6 +22,7 @@ use App\Requisicion;
 use Validator;
 use \Carbon\Carbon;
 use Excel;
+use PHPExcel_Style_Border;
 
 
 class SolicitudCompraController extends Controller
@@ -302,6 +303,7 @@ class SolicitudCompraController extends Controller
 	
 	public function exporscp($id) {
 		
+		
 		\Excel::create('Base_de_datos_Consolidados-SCP' . $id, function ($excel) use($id) {
 				
 				$solicitudcompras =SolicitudCompra::find($id);
@@ -315,9 +317,16 @@ class SolicitudCompraController extends Controller
 				foreach($categorias as $cat){
 					$cate = Categoria::find($cat);
 					$excel->sheet($cate->des_cat, function($sheet) use($solicitudcompras, $productos, $cat) {
+						
+						
+						$border_style= array('borders' => array('allborders' => array('style' => 
+						PHPExcel_Style_Border::BORDER_THICK,'color' => array('argb' => 'd2d5d8'))));						
+						
 						$sheet->prependRow(5, array( '' ))->cell('A1:B1', function($cell) { $cell->setFontWeight('bold'); $cell->setFontSize(18); $cell->setFontWeight('FF0f000');   })
-						->cell('C1:E1', function($cell) { $cell->setFontWeight('bold'); $cell->setFontSize(13); $cell->setFontWeight('FF0f000');   })
+						->cell('C1:E1', function($cell) { $cell->setFontWeight('bold'); $cell->setFontSize(13); $cell->setFontWeight('FF0f000');  })
 						->cell('A6:D6', function($cell) { $cell->setFontWeight('bold'); $cell->setFontSize(12); $cell->setFontWeight('FF0f000');   }); 
+								
+						$sheet->getStyle("A6:D6")->applyFromArray($border_style);
 				
 				
 						$sheet->row(1, [
@@ -335,12 +344,20 @@ class SolicitudCompraController extends Controller
 						$sheet->row(6, [
 							'#', 'PRODUCTO','UND','CANTIDAD'
 						]);
+						
+					
+						
+						$letters = range('A','Z');
+						$letters2 = range('C','Z');
+						$cell_name="";
 						$linea = 0;
 						foreach($productos as $index => $prod) {
-							if($prod->producto->categoria->id == $cat){
+							if($prod->producto->categoria->id == $cat){							
+								
 								$sheet->row($linea+7, [
 									$linea+1, $prod->producto->des_prd, $prod->unidad_solicitada->des_und,$prod->cant_sol_prd
-								]); 
+								]);/*
+								$sheet->getStyle($cell_name = $letters[$linea]."7:".$cell_name = $letters2[$linea]."7")->applyFromArray($border_style);*/
 								$linea++;
 							}
 						}

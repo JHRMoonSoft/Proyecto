@@ -5,12 +5,13 @@
 
     <div class="x_panel"> 
 	    <div class="x_title">
-			<h2>Información de la Requisición Interna</h2>
+			<h2>Información de la Requisición Interna</h2><!--
 			@if( $requisicion->estadorequisicion->id == 8)
 				<a  href="{{ url('inventarioRQS/'.$requisicion->id) }}" class="btn btn-success  right" role="button"><i class="fa fa-dropbox" aria-hidden="true"></i>&nbsp&nbsp&nbspINVENTARIO </a>
-			@endif
+			@endif-->
 			<a  href="{{ url('requisicion/export-pdf/'.$requisicion->id) }}" class="btn btn-primary  right" role="button"><i class="glyphicon glyphicon-cloud-download" aria-hidden="true"></i>&nbsp&nbsp Descargar </a>
-			<a  href="/home" class="btn btn-default  right" role="button"><i class="fa fa-home " aria-hidden="true"></i>&nbsp&nbsp&nbspHOME </a>
+				<a  href="{{ url('/requisicion-user/'. Auth::user()->id) }}" class="btn btn-default  right" role="button"><i class="fa fa-reply" aria-hidden="true"></i>&nbsp&nbsp&nbspVolver al listado </a>
+			
 		<!--
 			<ul class="nav navbar-right panel_toolbox">
 			

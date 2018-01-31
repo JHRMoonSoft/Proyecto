@@ -265,8 +265,7 @@
 													<input type="hidden" id="prodsolcompra1" name="prodsolcompra1" value="0"/>
 												</td>								
 												<td class="nopadding" >
-													<div class="form-group input-sm">
-														<select id="producto1" class="form-control" name="producto1" onchange="cambio_productos(1);" required>
+														<select id="producto1" class="form-control input-sm" name="producto1" onchange="cambio_productos(1);" required>
 															<option value="" selected>Seleccionar</option>
 															@if(!$productos->isEmpty())
 																@foreach($productos as $producto)
@@ -279,11 +278,9 @@
 																<strong>{{ $errors->first('producto1') }}</strong>
 															</span>
 														@endif
-													</div>
 												</td>
 												<td class="nopadding" >
-													<div class="form-group ">
-														<select class="form-control" id="unidad1" name="unidad1" required>
+														<select class="form-control input-sm" id="unidad1" name="unidad1" required>
 															<option value="" selected>Seleccionar</option>
 														</select>
 														@if ($errors->has('unidad1'))
@@ -291,27 +288,18 @@
 																<strong>{{ $errors->first('unidad1') }}</strong>
 															</span>
 														@endif
-													</div>
 												</td>
 												<td class="nopadding" >
-													<div class="form-group">
-														<input type="text" class="form-control" id="cantidad1" name="cantidad1" placeholder="" onchange="calculo_iva_valor(1);" required />
-													</div>
+														<input type="text" class="form-control input-sm" id="cantidad1" name="cantidad1" placeholder="" onchange="calculo_iva_valor(1);" required />
 												</td>
 												<td class="nopadding" >
-													<div class="form-group">
-														<input type="text" class="form-control" id="ivaunitario1" name="ivaunitario1" value="19" onchange="calculo_iva_valor(1);" />
-													</div>
+														<input type="text" class="form-control input-sm" id="ivaunitario1" name="ivaunitario1" value="19" onchange="calculo_iva_valor(1);" />
 												</td>
 												<td class="nopadding" >
-													<div class="form-group">
-														<input type="text" class="form-control" id="valorunitario1" name="valorunitario1"  placeholder="" onchange="calculo_iva_valor(1);" required />
-													</div>
+														<input type="text" class="form-control input-sm" id="valorunitario1" name="valorunitario1"  placeholder="" onchange="calculo_iva_valor(1);" required />
 												</td>
 												<td class="nopadding" >
-													<div class="form-group">
-														<input type="text" class="form-control" id="valortotal1" name="valortotal1" placeholder="" readonly required />
-													</div>
+														<input type="text" class="form-control input-sm" id="valortotal1" name="valortotal1" placeholder="" readonly required />
 												</td>
 												
 												<td class="nopadding" >

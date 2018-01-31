@@ -98,8 +98,10 @@ class FacturaController extends Controller
 					$producto_i['val_unt_fact'] = $post_data['valorunitario'.$i];
 					$producto_i['val_tol_fact'] = $post_data['valortotal'.$i];
 					
-					$producto_i['prod_sol_comp_id'] = $post_data['ordencompra'.$i] == 0 ? null : $post_data['ordencompra'.$i];
-					$producto_i['ord_comp_id'] = 1;
+					$producto_i['fact_id'] = $factura->id;
+					
+					//$producto_i['prod_sol_comp_id'] = $post_data['ordencompra'.$i] == 0 ? null : $post_data['ordencompra'.$i];
+					//$producto_i['ord_comp_id'] = 1;
 					
 					if(!$this->IsNullOrEmptyString($producto_i['prod_id']) and !$this->IsNullOrEmptyString($producto_i['cant_prd']) and !$this->IsNullOrEmptyString($producto_i['unidad_emp_id'])){
 						ProductosOrdenCompra::create($producto_i);
@@ -107,6 +109,7 @@ class FacturaController extends Controller
 					}
 				}
 				else{
+					$productos_vacios = false;
 					$producto_i = ProductosOrdenCompra::find($post_data['ordencompra'.$i]);
 					$producto_i->prod_id = $post_data['producto'.$i];
 					$producto_i->unidad_emp_fact_id = $post_data['unidad'.$i];	
@@ -129,7 +132,7 @@ class FacturaController extends Controller
 			}
 			
 			
-			return redirect()->intended('/ordencompra');
+			return redirect()->intended('/factura');
 		
 		}
 		

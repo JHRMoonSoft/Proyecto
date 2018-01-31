@@ -98,7 +98,7 @@ class OrdenCompraController extends Controller
 				$producto_i['val_unt_fact'] = $post_data['valorunitario'.$i];
 				$producto_i['val_tol_fact'] = $post_data['valortotal'.$i];
 				
-				$producto_i['fec_ven'] = Carbon::parse($post_data['vence'.$i]);
+				$producto_i['fec_ven'] = $post_data['vence'.$i] != null ? Carbon::parse($post_data['vence'.$i]) : null;
 				$producto_i['prod_sol_comp_id'] = $post_data['prodsolcompra'.$i] == 0 ? null : $post_data['prodsolcompra'.$i];
 				$producto_i['ord_comp_id'] = $ordencompra->id;
 				
@@ -133,6 +133,19 @@ class OrdenCompraController extends Controller
      */
     public function show($id)
     {
+		
+		$ordencompras = OrdenCompra::with('productos')->find($id);
+		foreach($ordencompras->productos as $prod){
+			$prod->almacen = $this->getAlmacenProducto($prod->prod_id);
+		}
+		$proveedores = Proveedor::all();
+		$configuracion = Configuracion::first();
+		$producto = Producto::all();
+		return view('ordencompra.show')->with(compact('ordencompras','productos','configuracion','proveedores'));
+		
+		
+		
+		
        $productos = Producto::all();
 		$proveedores = Proveedor::all();
 		$categorias = Categoria::all();
@@ -271,85 +284,115 @@ class OrdenCompraController extends Controller
 		return $unidades;
 	}
 	
+	public function escribirtexto(string $str = ""){
+		return iconv('UTF-8', 'windows-1252', stripslashes($str));		
+	}
 	
+	public function escribirencabezado(FPDI $pdf, OrdenCompra $ocp, int $hoja_actual, int $cant_hojas){
+		
+		$pdf->SetXY(144,37);
+		$pdf->Write(0, $this->escribirtexto($hoja_actual . ' de ' . $cant_hojas));
+		$pdf->SetXY(123,65.5);
+		$pdf->Write(0, $this->escribirtexto($ocp->no_ocp == null ? "" : $ocp->no_ocp));
+		$pdf->SetXY(165,70);
+		$pdf->Write(0, $this->escribirtexto($ocp->created_at->format('d-m-Y')));
+		$pdf->SetXY(165,75);
+		$pdf->Write(0, $this->escribirtexto($ocp->proveedor->num_doc));
+		$pdf->SetXY(165,80.5);
+		$pdf->Write(0, $this->escribirtexto($ocp->form_pag));
+		$pdf->SetXY(27,75);
+		$pdf->SetXY(165,85.5);
+		$pdf->Write(0, $this->escribirtexto($ocp->tim_entr));
+		$pdf->SetXY(27,75);
+		$pdf->Write(0, $this->escribirtexto($ocp->proveedor->raz_soc));
+		$pdf->SetXY(27,80.5);
+		$pdf->Write(0, $this->escribirtexto($ocp->proveedor->dir_prov));
+		$pdf->SetXY(27,85.5);
+		$pdf->Write(0, $this->escribirtexto($ocp->proveedor->tel_fij));
+		$pdf->SetXY(27,90);
+		$pdf->Write(0, $this->escribirtexto($ocp->otr_ocp == null ? "" : $ocp->otr_ocp));
+		
+	}
+	
+	
+	public function escribirfooter(FPDI $pdf, OrdenCompra $ocp){
+		
+		$pdf->SetXY(168,171.5);
+		$pdf->Write(0, '$' . $ocp->subt_ocp);
+		$pdf->SetXY(168,176.5);
+		$pdf->Write(0, '$' . $ocp->iva_ocp);
+		$pdf->SetXY(168,181.5);
+		$pdf->Write(0, '$' . $ocp->tol_ocp);
+				
+		$pdf->SetXY(38,187);
+		$pdf->Write(0, $ocp->obv_ocp);
+		
+	}
+	
+	public function nuevapaginapdf(FPDI $pdf, string $path = ""){
+		
+		// add a page
+		$pdf->AddPage('P','Letter');
+		// set the source file
+		if(!($path == "")){
+			$pdf->setSourceFile($path);
+			// import page 1
+			$tplIdx = $pdf->importPage(1);
+			//$pdf->useTemplate($tplIdx);
+			$pdf->useTemplate($tplIdx, null, null, 0, 0, true);
+		}
+			
+		
+	}
 	
 	public function exporpdftocp ($id)
 	{
 		
+		$proveedores = Proveedor::all();
+		$ocp = OrdenCompra::find($id);
+		$productos = $ocp->productos()->get();
+		$prod_por_hoja = 14;
+		$cant_productos = $productos->count();
+		$cant_hojas = (int) ($cant_productos / $prod_por_hoja);
+		$hoja = 0;
+		$EDFSDF = 0;
 		// initiate FPDI
 		$pdf = new FPDI();		
-		// add a page
-		$pdf->AddPage('P','Letter');
-		$pdf->setSourceFile('C:/Users/JORGE/Documents/GitHub/Proyecto/resources/views/ordencompra/AF-003-03-Formato-Orden-de-Compras.pdf');
-		// import page 1
-		$tplIdx = $pdf->importPage(1);
-		//$pdf->useTemplate($tplIdx);
-		$pdf->useTemplate($tplIdx, null, null, 0, 0, true);
+		$this->nuevapaginapdf($pdf, 'C:/Users/JORGE/Documents/GitHub/Proyecto/resources/views/documentos/AF-003-03-Formato-Orden-de-Compras.pdf');
+		
 		$pdf->SetFont('Helvetica');
 		$pdf->SetTextColor(0, 0, 0);
 		
-		//
-		$pdf->SetXY(144,37);
-		$pdf->Write(0, '1 de 1');
-		$pdf->SetXY(123,65.5);
-		$pdf->Write(0, '0001');
-		$pdf->SetXY(165,70);
-		$pdf->Write(0, 'Fecha');
-		$pdf->SetXY(165,75);
-		$pdf->Write(0, 'Nit');
-		$pdf->SetXY(165,80.5);
-		$pdf->Write(0, ' Pago');
-		$pdf->SetXY(27,75);
-		$pdf->SetXY(165,85.5);
-		$pdf->Write(0, ' Tiempo de entrega');
-		$pdf->SetXY(27,75);
-		$pdf->Write(0, 'Proveedor');
-		$pdf->SetXY(27,80.5);
-		$pdf->Write(0, 'Direccion');
-		$pdf->SetXY(27,85.5);
-		$pdf->Write(0, 'Telefono');
-		$pdf->SetXY(27,90);
-		$pdf->Write(0, 'Contacto');
+		$this->escribirencabezado($pdf, $ocp, $hoja + 1, $cant_hojas + 1);
 		
-		//PRODUCTOS1
-		$pdf->SetXY(20,100);
-		$pdf->Write(0, '1');
-		$pdf->SetXY(40,100);
-		$pdf->Write(0, 'Und');
-		$pdf->SetXY(56,100);
-		$pdf->Write(0, 'Producto');
-		$pdf->SetXY(133,100);
-		$pdf->Write(0, '$');
-		$pdf->SetXY(168,100);
-		$pdf->Write(0, '$');
-		
-		//PRODUCTOS2
-		$pdf->SetXY(20,105.5);
-		$pdf->Write(0, '2');
-		$pdf->SetXY(40,105.5);
-		$pdf->Write(0, 'Und');
-		$pdf->SetXY(56,105.5);
-		$pdf->Write(0, 'Producto');
-		$pdf->SetXY(133,105.5);
-		$pdf->Write(0, '$');
-		$pdf->SetXY(168,105.5);
-		$pdf->Write(0, '$');
-		
-		//
-		$pdf->SetXY(168,171.5);
-		$pdf->Write(0, '$');
-		$pdf->SetXY(168,176.5);
-		$pdf->Write(0, '$');
-		$pdf->SetXY(168,181.5);
-		$pdf->Write(0, '$');
-				
-		$pdf->SetXY(38,187);
-		$pdf->Write(0, 'Producto');
-		
-		
-		
-		$pdf->Output('AF-003-03-Formato-Orden-de-Compras-cod.pdf', 'D');
-		//$pdf->Output('AF-003-03-Formato-Orden-de-Compras-cod-'.$requisicion->id.'.pdf', 'D');		
+		while($hoja < $cant_hojas || (($hoja * $prod_por_hoja) + $EDFSDF < $cant_productos)){
+			
+			$pdf->SetXY(20,100 + ($EDFSDF * 5.5));
+			$pdf->Write(0, $this->escribirtexto($productos[($hoja * $prod_por_hoja) + $EDFSDF]->cant_prd ));
+			
+			$pdf->SetXY(40,100 + ($EDFSDF * 5.5));
+			$pdf->Write(0, $this->escribirtexto($productos[($hoja * $prod_por_hoja) + $EDFSDF]->unidad_solicitada->des_und));
+			
+			$pdf->SetXY(56,100 + ($EDFSDF * 5.5));
+			$pdf->Write(0, $this->escribirtexto($productos[($hoja * $prod_por_hoja) + $EDFSDF]->producto->des_prd));
+			
+			$pdf->SetXY(133,100 + ($EDFSDF * 5.5));
+			$pdf->Write(0, $this->escribirtexto('$' . $productos[($hoja * $prod_por_hoja) + $EDFSDF]->val_unt));
+			
+			$pdf->SetXY(168,100 + ($EDFSDF * 5.5));
+			$pdf->Write(0, $this->escribirtexto('$' . ($productos[($hoja * $prod_por_hoja) + $EDFSDF]->val_unt * $productos[($hoja * $prod_por_hoja) + $EDFSDF]->cant_prd)));
+			
+			$EDFSDF++;
+			if($EDFSDF % $prod_por_hoja == 0){
+				$hoja++;
+				$EDFSDF = 0;
+				$this->escribirfooter($pdf, $ocp);
+				$this->nuevapaginapdf($pdf,'C:/Users/JORGE/Documents/GitHub/Proyecto/resources/views/documentos/AF-003-03-Formato-Orden-de-Compras.pdf');
+				$this->escribirencabezado($pdf, $justi, $usuario, $hoja + 1, $cant_hojas + 1);
+			}
+		}
+		$this->escribirfooter($pdf, $ocp);
+		$pdf->Output('AF-003-03-Formato-Orden-de-Compras-cod.pdf', 'D');	
 	}
 	
 		
@@ -378,6 +421,18 @@ class OrdenCompraController extends Controller
 			
 		})->export('xlsx');
 		
+	}
+	
+	public function getAlmacenProducto(int $id){
+		$producto = Producto::find($id);
+		if($producto){
+			$almacen = $producto->almacen()->first();
+			$almacen['und'] = $producto->unidad->des_und;
+		}
+		else{
+			$almacen = null;
+		}
+		return $almacen;
 	}
 	
 }

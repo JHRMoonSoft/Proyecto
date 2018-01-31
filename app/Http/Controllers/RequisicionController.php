@@ -359,7 +359,7 @@ class RequisicionController extends Controller
 		
 		$pdf = new FPDI();
 		// add a page
-		$this->nuevapaginapdf($pdf,'C:/Users/JORGE/Documents/GitHub/Proyecto/resources/views/requisicion/AF-003-01-Formato-rqs.pdf');
+		$this->nuevapaginapdf($pdf,'C:/Users/JORGE/Documents/GitHub/Proyecto/resources/views/documentos/AF-003-01-Formato-rqs.pdf');
 		// now write some text above the imported page
 		$pdf->SetFont('Helvetica');
 		$pdf->SetTextColor(0, 0, 0);
@@ -383,7 +383,7 @@ class RequisicionController extends Controller
 				$hoja++;
 				$EDFSDF = 0;
 				$this->escribirfooter($pdf, $requisicion);
-				$this->nuevapaginapdf($pdf,'C:/Users/JORGE/Documents/GitHub/Proyecto/resources/views/requisicion/AF-003-01-Formato-rqs.pdf');
+				$this->nuevapaginapdf($pdf,'C:/Users/JORGE/Documents/GitHub/Proyecto/resources/views/documentos/AF-003-01-Formato-rqs.pdf');
 				$this->escribirencabezado($pdf, $justi, $usuario, $hoja + 1, $cant_hojas + 1);
 			}
 		}
@@ -500,27 +500,48 @@ class RequisicionController extends Controller
 	}
 	
 	
-	public function exportRequisiciones () {
-		\Excel::create('Requisiciones', function($excel) {
-		 
-			$requisicions = Requisicion:: /*with('proveedoresrequisicion')
-					->with('estadorequisicion')
-					->with('productos')
-					->*/
-					all();
-		 
-			$excel->sheet('Requisiciones', function($sheet) use($requisicions) {
-		 
-				$sheet->row(1, [
-					'Código', 'Asunto','Justificación','Fecha de aprobación','Fecha de Creación', 'Fecha de Actualización'
-				]);
-			
-				foreach($requisicions as $index => $requisicion) {
-					$sheet->row($index+2, [
-						$requisicion->id, $requisicion->asn_rqs, $requisicion->jst_rqs,  $requisicion->fec_apr_com,$requisicion->created_at, $requisicion->updated_at
-					]); 
+	public function exportRequisiciones () {  	
+	
+		
+				
+				$requisicion = Requisicion:: all();			
+				$cat = 1;
+				$productorqs= array();
+				foreach($requisicion as $rqs){
+					
+					 $prod = ProductosRequisicion::where('rqs_id','=',$cat)->get();
+					 array_push($producto,$prod);
+					 $cat++;
 				}
-					 
+			 
+		\Excel::create('Requisiciones', function($excel) {
+		
+			
+			$excel->sheet('Requisiciones', function($sheet) use($requisicion, $productorqs) {
+		 
+		/*
+				$sheet->row(1, [
+						'Código', 'Asunto','Justificación','Estado','Fecha de aprobación','Fecha de Creación', 'Fecha de Actualización'
+					]);
+				
+				$sheet->row(2, [
+						$requisicions->id, $requisicions->asn_rqs, $requisicions->jst_rqs, $requisicions->estadorequisicion->desc_est_req, $requisicions->fec_apr_com,$requisicions->created_at, $requisicions->updated_at
+					]); 
+		 
+		 		 
+				$sheet->row(3, [
+							'#', 'PRODUCTO','UND','CANTIDAD'
+						]);
+							*/			
+					
+				$linea = 0;
+				foreach($producto as $index => $prod) {							
+						
+					$sheet->row($linea+4, [
+						$linea+1, $prod->des_prd, $prod->unidad_solicitada->des_und,$prod->cant_sol_prd
+					]);
+					$linea++;
+				}
 			});
 			
 		})->export('xlsx');

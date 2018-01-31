@@ -111,7 +111,7 @@
 											</div>
 										</div>
 										<div class="col-sm-3 col-xs-6">
-											<label for="cnp_ocp">Concepto</label>
+											<label for="cnp_fact">Concepto</label>
 											<input class="form-control input-sm" value="FACTURA DE COMPRA " id="cnp_fact" name="cnp_fact" type="text" required>
 											@if ($errors->has('cnp_fact'))
 												<span class="help-block">
@@ -149,7 +149,7 @@
 										<div class="col-sm-3 col-xs-6">
 											<div class="form-group">
 												<label for="dia_cred">Dias de credito</label>
-												<input class="form-control input-sm" id="dia_cred" name="dia_cred" type="text" >
+												<input class="form-control input-sm" id="dia_cred" name="dia_cred"  placeholder="(Dias)" type="text" >
 												@if ($errors->has('dia_cred'))
 													<span class="help-block">
 														<strong>{{ $errors->first('dia_cred') }}</strong>
@@ -160,7 +160,7 @@
 										<div class="col-sm-3 col-xs-6">
 											<div class="form-group">
 												<label for="tim_entr">Tiempo de entrega</label>
-												<input class="form-control input-sm" id="tim_entr" name="tim_entr" type="text" required>
+												<input class="form-control input-sm" id="tim_entr" name="tim_entr" placeholder="(Dias)" type="text" required>
 												@if ($errors->has('tim_entr'))
 													<span class="help-block">
 														<strong>{{ $errors->first('tim_entr') }}</strong>
@@ -170,11 +170,11 @@
 										</div>
 										<div class="col-sm-3 col-xs-6">
 											<div class="form-group">
-												<label for="otr_ocp">Otro</label>
-												<input class="form-control input-sm" id="otr_ocp" name="otr_ocp" type="text" >
-												@if ($errors->has('otr_ocp'))
+												<label for="otr_fact">Otro</label>
+												<input class="form-control input-sm" id="otr_fact" name="otr_fact" type="text" />
+												@if ($errors->has('otr_fact'))
 													<span class="help-block">
-														<strong>{{ $errors->first('otr_ocp') }}</strong>
+														<strong>{{ $errors->first('otr_fact') }}</strong>
 													</span>
 												@endif
 											</div>
@@ -228,8 +228,7 @@
 													<input type="hidden" id="ordencompra1" name="ordencompra1" value="0"/>
 												</td>								
 												<td class="nopadding" >
-													<div class="form-group input-sm">
-														<select id="producto1" class="form-control" name="producto1" onchange="cambio_productos(1);" required>
+														<select id="producto1" class="form-control input-sm" name="producto1" onchange="cambio_productos(1);" required>
 															<option value="" selected>Seleccionar</option>
 															@if(!$productos->isEmpty())
 																@foreach($productos as $producto)
@@ -242,11 +241,9 @@
 																<strong>{{ $errors->first('producto1') }}</strong>
 															</span>
 														@endif
-													</div>
 												</td>
 												<td class="nopadding" >
-													<div class="form-group input-sm">
-														<select class="form-control" id="unidad1" name="unidad1" required>
+														<select class="form-control input-sm" id="unidad1" name="unidad1" required>
 															<option value="" selected>Seleccionar</option>
 														</select>
 														@if ($errors->has('unidad1'))
@@ -254,27 +251,23 @@
 																<strong>{{ $errors->first('unidad1') }}</strong>
 															</span>
 														@endif
-													</div>
+												</td>
+								
+												<td class="nopadding" >
+														<input type="text" class="form-control input-sm" id="cantidad1" name="cantidad1" placeholder="" onchange="calculo_iva_valor(1);" required />
+												
 												</td>
 												<td class="nopadding" >
-													<div class="form-group">
-														<input type="text" class="form-control" id="cantidad1" name="cantidad1" placeholder="" onchange="calculo_iva_valor(1);" required />
-													</div>
+														<input type="text" class="form-control input-sm" id="ivaunitario1" name="ivaunitario1" value= "19" placeholder="" onchange="calculo_iva_valor(1);" />
+												
 												</td>
 												<td class="nopadding" >
-													<div class="form-group">
-														<input type="text" class="form-control" id="ivaunitario1" name="ivaunitario1" placeholder="" onchange="calculo_iva_valor(1);" />
-													</div>
+														<input type="text" class="form-control input-sm" id="valorunitario1" name="valorunitario1"  placeholder="" onchange="calculo_iva_valor(1);" required />
+												
 												</td>
 												<td class="nopadding" >
-													<div class="form-group">
-														<input type="text" class="form-control" id="valorunitario1" name="valorunitario1"  placeholder="" onchange="calculo_iva_valor(1);" required />
-													</div>
-												</td>
-												<td class="nopadding" >
-													<div class="form-group">
-														<input type="text" class="form-control" id="valortotal1" name="valortotal1" placeholder="" readonly required />
-													</div>
+														<input type="text" class="form-control input-sm" id="valortotal1" name="valortotal1" placeholder="" readonly required />
+											
 												</td>
 												
 											
@@ -428,7 +421,7 @@
 				'</td>'+	
 				//IVA
 				'<td class="nopadding" >'+
-					'<div class="form-group"><input type="text" class="form-control input-sm" id="ivaunitario'+(producto)+'" name="ivaunitario'+(producto)+'" onchange="calculo_iva_valor('+(producto)+');" required /></div>'+
+					'<div class="form-group"><input type="text" class="form-control input-sm" value="19" id="ivaunitario'+(producto)+'" name="ivaunitario'+(producto)+'" onchange="calculo_iva_valor('+(producto)+');" required /></div>'+
 				'</td>'+
 				//Valor Unitario
 				'<td class="nopadding" >'+
@@ -573,7 +566,7 @@
 							'</td>'+	
 							//IVA
 							'<td class="nopadding" >'+
-								'<div class="form-group"><input type="text" class="form-control" id="ivaunitario'+(producto)+'" name="ivaunitario'+(producto)+'" onchange="calculo_iva_valor('+(producto)+');" required /></div>'+
+								'<div class="form-group"><input type="text" class="form-control" value="19" id="ivaunitario'+(producto)+'" name="ivaunitario'+(producto)+'" onchange="calculo_iva_valor('+(producto)+');" required /></div>'+
 							'</td>'+
 							//Valor Unitario
 							'<td class="nopadding" >'+
