@@ -37,12 +37,9 @@ class CreateProductosrequisicionsTable extends Migration
 			$table->double('cant_entr_prd')->default(0);
 			$table->integer('unidad_entr_id')->unsigned()->index()->nullable();
             $table->foreign('unidad_entr_id')->references('id')->on('conversions') ->onUpdate('cascade') ->onDelete('cascade');
-			
-			
+						
 			
 			$table->double('cant_inv_prd')->default(0);
-			$table->integer('unidad_inv_id')->unsigned()->index()->nullable();
-            $table->foreign('unidad_inv_id')->references('id')->on('conversions') ->onUpdate('cascade') ->onDelete('cascade');
 			
 			$table->double('cant_disp_prd')->default(0);
 			$table->double('cant_dif_prd')->default(0);

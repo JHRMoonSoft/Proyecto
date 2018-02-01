@@ -17,7 +17,9 @@ class CreateRegistroAlmacensTable extends Migration
             $table->increments('id');
 			$table->date('fec_reg');
 			$table->string('obs_reg');
-			$table->double('cnt_prd');
+			$table->double('cnt_prd');			
+            $table->integer('lot_prd');
+			$table->date('fec_ven')->nullable();
 			$table->integer('almacen_id')->unsigned()->index();
             $table->foreign('almacen_id')->references('id')->on('almacens')->onDelete('cascade');
 			

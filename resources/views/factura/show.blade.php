@@ -29,26 +29,26 @@
 										<div class="form-horizontal form-label-left">
 											<div class="col-md-2 	col-sm-6 col-xs-12">
 												 <label for="single_cal2">Fecha</label>
-												<input type="text" class="form-control input-sm has-feedback-left " value="{{$factura->created_at}}" placeholder="First Name" aria-describedby="inputSuccess2Status2">
+												<input type="text" class="form-control " value="{{$factura->created_at}}"  aria-describedby="inputSuccess2Status2" disabled style="background:rgba(247, 247, 247, 0.57);" />
 												
 											</div>
 											<div class="col-md-3 col-sm-6 col-xs-12">
 												<label for="raz_soc">Empresa</label>
-												<input class="form-control input-sm" id="raz_soc" disabled style="background:rgba(247, 247, 247, 0.57);" name="raz_soc" type="text" disabled value="{{ $configuracion->raz_soc }}"/>
+												<input class="form-control input-sm" id="raz_soc"  style="background:rgba(247, 247, 247, 0.57);" name="raz_soc" type="text" disabled value="{{ $configuracion->raz_soc }}"/>
 											</div>
 											<div class="col-md-2 col-sm-6 col-xs-12">
 												<label for="ex1">Nit. Empresa</label>
-												<input class="form-control input-sm" id="num_doc" disabled style="background:rgba(247, 247, 247, 0.57);" name="num_doc" type="text" disabled value="{{ $configuracion->num_doc }}" />
+												<input class="form-control input-sm" id="num_doc"  style="background:rgba(247, 247, 247, 0.57);" name="num_doc" type="text" disabled value="{{ $configuracion->num_doc }}" />
 											</div>
 									
 											<div class="col-md-3 col-sm-6 col-xs-12">
 												<label for="nom_rea">Realizado</label>
-												<input class="form-control input-sm" id="nom_rea" disabled style="background:rgba(247, 247, 247, 0.57);" name="nom_rea" type="text" value="{{ Auth::user()->nom_usr . ' ' . Auth::user()->ape_usr }}" disabled />
+												<input class="form-control input-sm" id="nom_rea" style="background:rgba(247, 247, 247, 0.57);" name="nom_rea" type="text" value="{{ Auth::user()->nom_usr . ' ' . Auth::user()->ape_usr }}" disabled />
 											
 											</div>
 											<div class="col-md-2 col-sm-6 col-xs-12">
 												<label for="no_fact">No. Factura</label>
-												<input class="form-control input-sm" id="no_fact" disabled style="background:rgba(247, 247, 247, 0.57);" name="no_fact" type="text" value="{{$factura->no_fact}}" />
+												<input class="form-control input-sm" id="no_fact"  style="background:rgba(247, 247, 247, 0.57);" name="no_fact" type="text" value="{{$factura->no_fact}}" disabled />
 												@if ($errors->has('no_fact'))
 													<span class="help-block">
 														<strong>{{ $errors->first('no_fact') }}</strong>

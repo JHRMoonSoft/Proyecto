@@ -54,8 +54,7 @@
 						<th class="text-center">No. Documento </th>
 						<th class="text-center">Concepto</th>
 						<th class="text-center">Proveedor</th>
-						<th class="text-center">Tipo. Doc</th>
-						<th class="text-center">No. Doc</th>
+						<th class="text-center">Doc. Proveedor</th>
 						<th class="text-center">Forma de pago </th>
 						<th class="text-center">Comprado por</th>
 						<th class="text-center">Fecha Creación </th>

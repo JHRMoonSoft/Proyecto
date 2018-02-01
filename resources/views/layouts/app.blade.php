@@ -178,7 +178,7 @@
 							@endpermission	
 							@permission('ver-menú-unidades')
 							   <li><a href="/unidad">Unidades</a></li>
-							@endpermission	<!--
+							@endpermission	
 							@permission('ver-menú-unidades-empaque')
 							   <li><a href="/conversion"> Unidades de empaque</a></li>
 							@endpermission	
@@ -186,8 +186,8 @@
 							   <li><a href="/almacen">Productos almacén</a></li>
 							@endpermission
 							@permission('ver-menú-kardex-almacén')
-							   <li><a href="/almacen/create">Kárdex almacén</a></li>
-							@endpermission-->
+							   <li><a href="/almacen/kardex">Kárdex almacén</a></li>
+							@endpermission
 						</ul>
 					  </li>
 					@endpermission

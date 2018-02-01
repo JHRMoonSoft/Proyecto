@@ -24,9 +24,7 @@
 								<thead>
 								<tr>
 										<th>Código</th>
-										<th>Fecha RQS</th>																																																				
-										<th>Asunto</th>
-										<th>Justificación</th>
+										<th>Fecha RQS</th>	
 										<th>Estado</th>
 										<th>Solicitante</th>
 										<th>Cargo</th>
@@ -35,22 +33,58 @@
 								</thead>
 								<tbody>
 									@foreach($requisicion->registrohistoricorequisicion as $reg)
+										@if($loop->first)	
 											<tr>
 												<td>{{$requisicion->id}}</td>
 												<td>{{$reg->created_at->format('d-m-Y')}}</td>
-												<td>{{$requisicion->asn_rqs}}</td>
-												<td>{{$requisicion->jst_rqs}}</td>
 												<td>{{$requisicion->estadorequisicion->desc_est_req}}</td>
 												<td>{{$reg->user->nom_usr}} {{$reg->user->ape_usr}}</td>
 												<td>{{$requisicion->cargo->des_crg  }}</td>
-											<td>{{$requisicion->area->tipoarea->des_tip_are}} / {{$requisicion->area->des_are}}</td>
+												<td>{{$requisicion->area->tipoarea->des_tip_are}} / {{$requisicion->area->des_are}}</td>
 											</tr> 
-										@if($loop->last)
-											<input id="acc_rqs" name="acc_rqs" type="hidden" value="{{ $reg->acc_rqs_id }}">
+									
 										@endif
 									@endforeach
 								</tbody>
-							</table>
+							</table><br/>
+						</div>
+					</li>
+						<li>
+						<div class="block">
+							<div class="tags">
+							<a href="" class="tag">
+								<span>Paso 1</span>
+							</a>
+							</div>
+							<div class="block_content">
+								<h2 class="title">
+									<a>Editar la RQS</a>
+								</h2>
+								<div class="panel-body message">
+									<div class="form-group">
+										<label for="asn_rqs" class="col-sm-2 control-label">Asunto:</label>
+										<div class="col-sm-8">
+											<input type="text"  class="form-control select2-offscreen" value="{{$requisicion->asn_rqs}}" required id="asn_rqs" name="asn_rqs"  />
+											@if ($errors->has('asu_est_req'))
+												<span class="help-block">
+													<strong>{{ $errors->first('asu_est_req') }}</strong>
+												</span>
+											@endif
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="jst_rqs" class="col-sm-2 control-label">Justificación:</label>
+										<div class="col-sm-8">
+											<input type="text" class="form-control select2-offscreen" value="{{$requisicion->jst_rqs}}" required   id="jst_rqs" name="jst_rqs" />
+											@if ($errors->has('jst_rqs'))
+												<span class="help-block">
+													<strong>{{ $errors->first('jst_rqs') }}</strong>
+												</span>
+											@endif
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</li>
 					<li>

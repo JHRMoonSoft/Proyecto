@@ -44,7 +44,7 @@
 										<div class="form-group">
 											<label for="asn_rqs" class="col-sm-2 control-label">Asunto:</label>
 											<div class="col-sm-10">
-												<input type="text" value="" class="form-control select2-offscreen" required id="asn_rqs" name="asn_rqs" tabindex="-1" />
+												<input type="text" value="" class="form-control select2-offscreen" required id="asn_rqs" name="asn_rqs"  />
 												@if ($errors->has('asu_est_req'))
 													<span class="help-block">
 														<strong>{{ $errors->first('asu_est_req') }}</strong>
@@ -55,7 +55,7 @@
 										<div class="form-group">
 											<label for="jst_rqs" class="col-sm-2 control-label">Justificación:</label>
 											<div class="col-sm-10">
-												<input type="text" class="form-control select2-offscreen" required  id="jst_rqs" name="jst_rqs" tabindex="-1">
+												<input type="text" class="form-control select2-offscreen" required  id="jst_rqs" name="jst_rqs" />
 												@if ($errors->has('jst_rqs'))
 													<span class="help-block">
 														<strong>{{ $errors->first('jst_rqs') }}</strong>

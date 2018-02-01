@@ -31,25 +31,25 @@
 										    
 											<div class="col-md-2 	col-sm-6 col-xs-12">
 													 <label for="single_cal2">Fecha</label>
-													<input type="text" class="form-control input-sm has-feedback-left "  aria-describedby="inputSuccess2Status2" value="{{ $ordencompras->created_at}}" />
+													<input type="text" class="form-control  "  aria-describedby="inputSuccess2Status2" value="{{ $ordencompras->created_at}}"  disabled style="background:rgba(247, 247, 247, 0.57);"/>
 													
 											</div>
 											<div class="col-md-3 col-sm-6 col-xs-12">
 												<label for="raz_soc">Empresa</label>
-												<input class="form-control input-sm" id="raz_soc" name="raz_soc" type="text" value="{{ $configuracion->raz_soc }}"  readonly  style="background:rgba(247, 247, 247, 0.57);"  />
+												<input class="form-control input-sm" id="raz_soc" name="raz_soc" type="text" value="{{ $configuracion->raz_soc }}"  disabled  style="background:rgba(247, 247, 247, 0.57);"  />
 											</div>
 											<div class="col-md-2 col-sm-6 col-xs-12">
 												<label for="ex1">Nit. Empresa</label>
-												<input class="form-control input-sm" id="num_doc" name="num_doc" type="text" value="{{ $configuracion->num_doc }}"  readonly  style="background:rgba(249, 249, 249, 0.57);" />
+												<input class="form-control input-sm" id="num_doc" name="num_doc" type="text" value="{{ $configuracion->num_doc }}"  disabled style="background:rgba(249, 249, 249, 0.57);" />
 											</div>
 									
 											<div class="col-md-3 col-sm-6 col-xs-12">
 												<label for="ex2">Realizado</label>
-												<input class="form-control input-sm" id="ex2" type="text" value="{{ Auth::user()->nom_usr . ' ' . Auth::user()->ape_usr }}   " readonly  style="background:rgba(247, 247, 247, 0.57);" />
+												<input class="form-control input-sm" id="ex2" type="text" value="{{ Auth::user()->nom_usr . ' ' . Auth::user()->ape_usr }}" disabled  style="background:rgba(247, 247, 247, 0.57);" />
 											</div>
 											<div class="col-md-2 col-sm-6 col-xs-12">
 												<label for="no_ocp">No. OCP</label>
-												<input class="form-control input-sm" id="no_ocp" name="no_ocp" type="text" value="{{$ordencompras->no_ocp}}" />
+												<input class="form-control input-sm" id="no_ocp" name="no_ocp" type="text" value="{{$ordencompras->no_ocp}}"  disabled style="background:rgba(247, 247, 247, 0.57);" />
 												@if ($errors->has('no_ocp'))
 													<span class="help-block">
 														<strong>{{ $errors->first('no_ocp') }}</strong>

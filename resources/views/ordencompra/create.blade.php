@@ -35,16 +35,16 @@
 												</div>
 											<div class="col-md-3 col-sm-6 col-xs-12">
 												<label for="raz_soc">Empresa</label>
-												<input class="form-control input-sm" id="raz_soc" name="raz_soc" type="text" value="{{ $configuracion->raz_soc }}"  readonly  style="background:rgba(247, 247, 247, 0.57);">
+												<input class="form-control input-sm" id="raz_soc" name="raz_soc" type="text" value="{{ $configuracion->raz_soc }}"  style="background:rgba(247, 247, 247, 0.57);" readonly />
 											</div>
 											<div class="col-md-2 col-sm-6 col-xs-12">
 												<label for="ex1">Nit. Empresa</label>
-												<input class="form-control input-sm" id="num_doc" name="num_doc" type="text" value="{{ $configuracion->num_doc }}"  readonly  style="background:rgba(249, 249, 249, 0.57);">
+												<input class="form-control input-sm" id="num_doc" name="num_doc" type="text" value="{{ $configuracion->num_doc }}"   style="background:rgba(249, 249, 249, 0.57);"  readonly />
 											</div>
 									
 											<div class="col-md-3 col-sm-6 col-xs-12">
 												<label for="ex2">Realizado</label>
-												<input class="form-control input-sm" id="ex2" type="text" value="{{ Auth::user()->nom_usr . ' ' . Auth::user()->ape_usr }}   " readonly  style="background:rgba(247, 247, 247, 0.57);">
+												<input class="form-control input-sm" id="ex2" type="text" value="{{ Auth::user()->nom_usr . ' ' . Auth::user()->ape_usr }} "   style="background:rgba(247, 247, 247, 0.57);" readonly />
 											</div>
 											<div class="col-md-2 col-sm-6 col-xs-12">
 												<label for="no_ocp">No. OCP</label>

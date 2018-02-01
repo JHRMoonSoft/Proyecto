@@ -37,21 +37,18 @@ Route::get('requisicion-user/{id}', 'RequisicionController@requisicionuser');
 Route::get('autorizarRQS/create/{id}', 'AutorizarRQSController@create');
 Route::get('autorizarRQS/cambioaccion', 'AutorizarRQSController@cambioaccion');
 
-
-
 Route::get('inventarioRQS/{id}', 'RequisicionController@inventarioRequisicion');
 Route::get('ordencompra/cargarproveedor', 'RequisicionController@cargarproveedor');
-
-
 
 Route::get('requisicion/export-pdf/{id}', 'RequisicionController@exporpdftrqs');
 Route::get('ordencompra/export-pdf/{id}', 'OrdenCompraController@exporpdftocp');
 Route::get('solicitudcompra/export/{id}', 'SolicitudCompraController@exporscp');
 
-
 Route::get('requisicion/export', 'RequisicionController@exportRequisiciones');
 Route::get('ordencompra/export', 'OrdenCompraController@exporOrdencompra');
 
+Route::get('almacen/kardex', 'AlmacenController@kardex');
+Route::get('almacen/cargarunidadesproducto', 'AlmacenController@cargarunidadesproducto');
 
 Route::resource('almacen', 'AlmacenController');
 Route::resource('area', 'AreaController');

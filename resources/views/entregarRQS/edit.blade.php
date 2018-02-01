@@ -123,7 +123,10 @@
 											<th>Unidad</th>									
 											<th>Cant. Autorizada</th>
 											<th>Cant. Entregada</th>
-											<th>Cant. Pendiente</th>											
+											<th>Lote</th>
+											<th>Cant. Pendiente</th>
+											<th>Cant. Disponible</th>
+											
 											
 											
 		
@@ -166,6 +169,16 @@
 												<td class="nopadding" >
 													<div class="form-group">
 														<input type="text" class="form-control " id="cant_entr_prd{{$loop->index + 1}}" name="cant_entr_prd{{$loop->index + 1}}"  value="{{$prod->cant_entr_prd}}" onchange="calculo_diferencia_entrega(this.value, {{$loop->index + 1}});" />
+													</div>
+												</td>
+												<td class="nopadding" >
+													<div class="form-group">
+														<input type="text" class="form-control " id="lote{{$loop->index + 1}}" name="lote{{$loop->index + 1}}"  value="" onchange="calculo_diferencia_entrega(this.value, {{$loop->index + 1}});" />
+													</div>
+												</td>
+												<td class="nopadding" >
+													<div class="form-group">
+														<input type="text" class="form-control" id="cant_dif_prd{{$loop->index + 1}}" name="cant_dif_prd{{$loop->index + 1}}" value="{{$prod->cant_dif_prd}}" readonly />
 													</div>
 												</td>
 												<td class="nopadding" >

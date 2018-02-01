@@ -244,7 +244,7 @@
 												<th>Unidad</th>
 												<th>Cant. Solicitada</th>									
 												<th>Cant. Autorizada</th>	
-												<th>Estado</th>	
+												<th>Autorizar</th>	
 			
 											</tr>
 										</thead>
@@ -354,7 +354,7 @@
 										<th>#</th>
 										<th>Nombre Proveedor</th>
 										<th>Telefono</th>
-										<th>Autorizar</th>
+										<th>Aprobar</th>
 									</tr>
 								</thead>
 								<tbody>

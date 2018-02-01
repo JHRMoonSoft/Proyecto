@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Almacen;
+use App\Producto;
 use Illuminate\Http\Request;
+use Validator;
+use \Carbon\Carbon;
 
 class AlmacenController extends Controller
 {
@@ -18,7 +21,8 @@ class AlmacenController extends Controller
      */
     public function index()
     {
-        return View('almacen.index');
+       $almacen=Almacen::all();
+	   return View('almacen.index')->with(compact('almacen'));
     }
 	
 	
@@ -29,7 +33,8 @@ class AlmacenController extends Controller
      */
     public function create()
     {
-        return View('almacen.kardex');
+		$productos = Producto::all();
+	   return View('almacen.create')->with(compact('productos'));
 	
     }
 
@@ -44,8 +49,8 @@ class AlmacenController extends Controller
         $post_data = $request->all();
 		$rules = [
             'cnt_prd'=> 'required',
-			'lot_prd'=> 'required',
-			'fec_ven'=> 'required',
+			'lot_prd'=> '',
+			'fec_ven'=> '',
 			'producto_id'=> 'required',
 			'unidad_id'=> 'required'
 			];
@@ -65,7 +70,7 @@ class AlmacenController extends Controller
      */
     public function show(Almacen $almacen)
     {
-        //
+        
     }
 
     /**
@@ -91,8 +96,6 @@ class AlmacenController extends Controller
         $post_data = $request->all();
 		$rules = [
             'cnt_prd'=> 'required',
-			'lot_prd'=> 'required',
-			'fec_ven'=> 'required',
 			'producto_id'=> 'required',
 			'unidad_id'=> 'required'
 			];
@@ -118,4 +121,20 @@ class AlmacenController extends Controller
     {
         //
     }
+	
+	public function cargarunidadesproducto(Request $request)
+    {
+		$producto = Producto::find($request['option']);
+		if($producto){
+			$unidades = $producto->unidad()->get();
+		}
+		
+		return response()->json($unidades);
+	}
+	
+	public function kardex()
+	{
+		return View('almacen.kardex');
+	}
+	
 }

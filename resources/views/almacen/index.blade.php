@@ -3,23 +3,17 @@
 @section('pagetitle')
   <h3></h3> 
 @endsection
-@section('x_search')<!--
-	<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search"> 
-						
-		<div class="input-group">
-		<input type="text" class="form-control" placeholder="Buscar ...">
-		<span class="input-group-btn">
-				  <button class="btn btn-default glyphicon glyphicon-search" type="button"></button> 
-			  </span> 
-		</div>
-	</div>-->
+@section('x_search')
 	
 @endsection
 @section('x_content')
 
     <div class="x_panel">
 	    <div class="x_title">
-			<h2>Inventario de Productos </h2> &nbsp&nbsp&nbsp
+			<h2>Productos Almacén </h2> &nbsp&nbsp&nbsp
+			@permission('ver-nueva-rqs-historial-rqs-usuarios')			
+				<a  href="\almacen\create" class="btn btn-warning" role="button">Ingresar Productos</a>
+			@endpermission
 			<div class=" col-md-2 col-sm-2 col-xs-6 right">
 					<a  data-toggle="modal" data-target=".descargar" class="btn btn-primary  left" role="button"><i class="glyphicon glyphicon-cloud-download" aria-hidden="true"></i>&nbsp&nbsp Descargar </a>
 			</div>
@@ -29,177 +23,90 @@
 					<span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
 				</div>
 			</div>
-		<!--				
-			<button type="button" class="btn btn-warning " data-toggle="modal" data-target=".create_unidad">Nueva unidad </button>
-		
-			<ul class="nav navbar-right panel_toolbox">
-			
-			  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-			  </li>
-			  <li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-				<ul class="dropdown-menu" role="menu">
-				  <li><a href="#">Settings 1</a>
-				  </li>
-				  <li><a href="#">Settings 2</a>
-				  </li>
-				</ul>
-			  </li>
-			  <li><a class="close-link"><i class="fa fa-close"></i></a>
-			  </li>
-			</ul>-->
 			<div class="clearfix"></div>
 	    </div>
-		<div class="x_content">
+		<div class="x_content"><br/>
 			<div class="table-responsive">
-				<table id="datatable-buttons" class="table table-striped table-bordered ">
+				<table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
 				  <thead>
 				   <tr>
 						<th>Código</th>
-						<th>Dependencia </th>
 						<th>Categoría</th>
 						<th>Productos</th>												
 						<th>Unidad</th>
-						<th>Cant.Disponible </th>
-						<th>Esatado </th>
+						<th>Cantidad</th>
+						<th>Esatado</th>
+						<th>Lote</th>
 						<!--<th>Eliminar</th>-->
 					</tr>
 				  </thead>
 				  <tbody>
-					
-					<tr>
-						<td>01</td>
-						<td></td>						
-						<td>Categoría</td>
-						<td>Producto</td>
-						<td> Unidad	</td>
-						<td>15</td>								
-						<td>disponibe / agotado</td>
-					</tr> 
+					@foreach($almacen as $almc)
+						<tr>
+							<td>{{$almc->id}}</td>					
+							<td>{{$almc->producto->categoria->des_cat}}</td>
+							<td>{{$almc->producto->des_prd}}</td>
+							<td>{{$almc->producto->unidad->des_und}}</td>
+							<td>{{$almc->cnt_prd}}</td>							
+							<td>
+								@if($almc->cnt_prd==0)
+									Agotado
+								@else
+									Disponibe
+								@endif
+							
+							</td>
+							<td>	
+								<button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-file btn-xs"  data-toggle="modal" data-desc-prod="{{$almc->producto->des_prd}}" data-lote-prod="{{$almc->lot_prd}}" data-lote-prod="{{$almc->fec_ven}}" data-id-prod="{{$almc->id}}" data-target=".lote"></button>
+							</td>
+						</tr> 
+					@endforeach
 				  </tbody>
 				</table>
 			</div>
         </div>
 		
-		 <!-- create Unidad modal -->		  
+		 <!-- create Lote modal -->		  
 
-		  <div class="modal fade create_unidad">" tabindex="-1" role="dialog" aria-hidden="true">
+		  <div class="modal fade lote" tabindex="-1" role="dialog" aria-hidden="true">
 			<div class="modal-dialog modal-sm">
 			  <div class="modal-content">
 
 				<div class="modal-header">
 				  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
 				  </button>
-				  <h4 class="modal-title" id="myModalLabel2">Nueva Unidad </h4>
+				  <h4 class="modal-title" id="myModalLabel2">{{$almc->producto->des_prd}}</h4>
 				</div>
 				<div class="modal-body">
 				
-					<label for="">Cod. Unidad</label>
-					<div class="form-group input-sm">
-						<input class="form-control input-sm" id="inputsm" disabled="disabled" placeholder="01" type="text">
-					</div>
-					<label for="">Detalle Unidad</label>
-					<div class="form-group input-sm">
-						<input class="form-control input-sm" id="inputsm" placeholder="Nombre completo" type="text">
-					</div>
+					<table>
+					  <thead>
+					   <tr>
+							<th>Código</th>
+							<th>Lote</th>
+							<th>Fecha Vence</th>
+						</tr>
+					  </thead>
+					  <tbody>						
+						<tr>
+						  <td></td>
+							<td></td>
+							<td></td>	
+						</tr>   
+					  </tbody>
+					</table>
 				
 				</div>
-				<div class="modal-footer"><!--
-				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-				  <button type="submit" class="btn btn-danger">Deshacer</button>
-				  <button type="button" class="btn btn-primary">Guardar</button>
-				</div>
-
-			  </div>
+			 </div>
 			</div>
 		  </div>
 		 <!-- /modals -->
 		 
-		   <!-- edit Unidad modal -->		  
-
-		  <div class="modal fade edit_unidad">" tabindex="-1" role="dialog" aria-hidden="true">
-			<div class="modal-dialog modal-sm">
-			  <div class="modal-content">
-
-				<div class="modal-header">
-				  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
-				  </button>
-				  <h4 class="modal-title" id="myModalLabel2">Editar Unidad </h4>
-				</div>
-				<div class="modal-body">
-				
-					<label for="">Cod. Unidad</label>
-					<div class="form-group input-sm">
-						<input class="form-control input-sm" id="inputsm" disabled="disabled" placeholder="01" type="text">
-					</div>
-					<label for="">Detalle Unidad</label>
-					<div class="form-group input-sm">
-						<input class="form-control input-sm" id="inputsm" placeholder="Nombre completo" type="text">
-					</div>
-				
-				</div>
-				<div class="modal-footer"><!--
-				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-				  <button type="submit" class="btn btn-danger">Deshacer</button>
-				  <button type="button" class="btn btn-primary">Guardar</button>
-				</div>
-
-			  </div>
-			</div>
-		  </div>
-		  <!-- /modals -->
 		  
-		    <!-- delete Unidad modal -->		  
-
-		  <div class="modal fade delete_unidad">" tabindex="-1" role="dialog" aria-hidden="true">
-			<div class="modal-dialog modal-sm">
-			  <div class="modal-content">
-
-				<div class="modal-header">
-				  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
-				  </button>
-				  <h4 class="modal-title" id="myModalLabel2">Eliminar Unidad </h4>
-				</div>
-				<div class="modal-body">
-						
-				
-					<label for="">Cod. Unidad</label>
-					<div class="form-group input-sm">
-						<input class="form-control input-sm" id="inputsm" disabled="disabled" placeholder="01" type="text">
-					</div>
-					<label for="">Detalle Unidad</label>
-					<div class="form-group input-sm">
-						<input class="form-control input-sm" id="inputsm"  disabled="disabled" placeholder="Nombre completo" type="text">
-					</div>
-					<hr>
-						<h4>¿Deseas eliminar esta Unidad?</h4>	
-				</div>
-
-				<div class="modal-footer"><!--
-				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-				  <button type="button" class="btn btn-primary">Deshacer</button>
-				  <button type="submit" class="btn btn-danger"> Eliminar</button>
-				</div>
-
-			  </div>
-			</div>
-		  </div>
-		  <!-- /modals -->
 		
 	</div>		
 @stop
-        <!-- /page content -->
-		<!--
-		<script type="text/javascript">
-			$(document).ready(function(){
-				function onFinishCallback(){
-				$('#wizard').smartWizard('showMessage','Finish Clicked');
-			} 
-			});
-			
-			
-		</script>
-		-->
+
+     
+	  
 @stop
-<!--6581128-->
-<!--229392650-->

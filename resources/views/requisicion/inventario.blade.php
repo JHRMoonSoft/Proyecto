@@ -6,7 +6,7 @@
  
     <div class="x_panel"> 
 	    <div class="x_title"> 
-			<h2>Entregar Requisición Interna</h2>
+			<h2>Registrar Inventario RQS</h2>
 			<a  href="{{ url('/requisicion/'.$requisicion->id) }}"class="btn btn-danger  right" role="button">Ver </a>
 			<a  href="{{ url('/entregarRQS') }}" class="btn btn-default  right" role="button"><i class="fa fa-reply" aria-hidden="true"></i>&nbsp&nbsp&nbspVolver al listado </a>
 			<div class="clearfix"></div>
@@ -50,20 +50,15 @@
 										@endif
 									@endforeach
 								</tbody>
-							</table>
+							</table>	<br />	
 						</div>
+					</div>
 					</li>		
 					
 					<li>
-					<div class="block">
-						<div class="tags">
-						<a href="" class="tag">
-							<span>Paso 2</span>
-						</a>
-						</div>
 						<div class="block_content">
-							<h2 class="title">
-										<a>Lista de Productos</a>
+							<h2>
+								Lista de Productos
 							</h2>
 							<br />					
 								
@@ -82,7 +77,6 @@
 											<th class="text-center">Producto</th>
 											<th class="text-center">Unidad</th>									
 											<th class="text-center">Cantidad <br> Entregada</th>
-											<th class="text-center">Unidad <br>Inventario</th>
 											<th class="text-center">Cantidad <br/>Inventario</th>												
 											<th class="text-center">Cantidad <br>Disponible </th>											
 											
@@ -121,32 +115,18 @@
 												</td>											
 												<td class="nopadding" >
 													<div class="form-group">
-														<input type="text" class="form-control" id="cant_apr_prd{{$loop->index + 1}}" name="cant_apr_prd{{$loop->index + 1}}" value="{{$prod->cant_apr_prd}}" disabled style="background:rgba(247, 247, 247, 0.57);" />
+														<input type="text" class="form-control" id="cant_entr_prd{{$loop->index + 1}}" name="cant_entr_prd{{$loop->index + 1}}" value="{{$prod->cant_entr_prd}}" disabled style="background:rgba(247, 247, 247, 0.57);" />
 													</div>
 												</td>
-												<td class="nopadding" >
-													<select class="form-control" id="unidad{{$loop->index + 1}}" name="unidad{{$loop->index + 1}}">
-														<option value="" selected>Seleccionar</option>
-														@if($prod->producto)
-															@foreach($prod->producto->unidades as $und)
-																<option name="" value="{{$und->id}}" @if($und->id == $prod->unidad_solicitada->id)selected="selected"@endif>{{$und->des_und}}</option>
-															@endforeach
-														@else
-															@foreach($unidades as $und)
-																<option name="" value="{{$und->id}}" @if($und->id == $prod->unidad_solicitada->id)selected="selected"@endif>{{$und->des_und}}</option>
-															@endforeach
-														@endif
-													</select>
-												</td>
-												
+																						
 												<td class="nopadding" >
 													<div class="form-group">
-														<input type="text" class="form-control " id="cant_entr_prd{{$loop->index + 1}}" name="cant_entr_prd{{$loop->index + 1}}"  value="{{$prod->cant_entr_prd}}" onchange="calculo_diferencia_entrega(this.value, {{$loop->index + 1}});" />
+														<input type="text" class="form-control " id="cant_inv_prd{{$loop->index + 1}}" name="cant_inv_prd{{$loop->index + 1}}"  value="{{$prod->cant_inv_prd}}" onchange="calculo_diferencia_entrega(this.value, {{$loop->index + 1}});" />
 													</div>
 												</td>
 												<td class="nopadding" >
 													<div class="form-group">
-														<input type="text" class="form-control" id="cant_dif_prd{{$loop->index + 1}}" name="cant_dif_prd{{$loop->index + 1}}" value="{{$prod->cant_dif_prd}}" readonly />
+														<input type="text" class="form-control" id="cant_disp_prd{{$loop->index + 1}}" name="cant_disp_prd{{$loop->index + 1}}" value="{{$prod->cant_disp_prd}}" readonly />
 													</div>
 												</td>
 												
@@ -158,8 +138,8 @@
 								</div>
 								
 							</div>
+						
 						</div>
-					</div>
 					</li>
 				</ul>			
 				<div class="form-group right">						
@@ -167,10 +147,10 @@
 					<a  href="{{ url('/entregarRQS') }}" class="btn btn-danger" role="button">Cancelar </a>
 					<input type="hidden" class="form-control" id="boton" name="boton" value=""/>
 					<button type="button" onClick="validate('guardar')" class="btn btn-default">Guardar</button>
-					<button type="button" onClick="validate('enviar')" class="btn btn-success">Enviar</button>
 				</div>
 			</form>
         </div>
+		
 	</div>
 
 	
@@ -185,7 +165,7 @@
 		}
 		
 		function calculo_diferencia_entrega(valor, rid) {
-			var cant_apr = parseInt($('#cant_apr_prd'+rid).val());
+			var cant_apr = parseInt($('#cant_entr_prd'+rid).val());
 			var cant_entr = parseInt(valor);
 			var cant_dif = 0;
 			if (!cant_entr){
@@ -205,8 +185,8 @@
 					cant_dif = cant_apr - cant_entr;
 				}
 			}
-			$('#cant_entr_prd'+rid).val(cant_entr);
-			$('#cant_dif_prd'+rid).val(cant_dif);
+			$('#cant_inv_prd'+rid).val(cant_entr);
+			$('#cant_disp_prd'+rid).val(cant_dif);
 		}
 		
 		function cambioaccion() {
