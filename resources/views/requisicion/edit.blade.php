@@ -13,10 +13,14 @@
 		<div class="x_content">
 			<form class="form-horizontal" role="form" method="POST" action="{{ url('/requisicion/'.$requisicion->id) }}">
 				{{ csrf_field() }}
-				<input name="_method" type="hidden" value="PUT">						
-				<input id="id" name="id" type="hidden" value="{{ $requisicion->id }}">
-				<input id="area_id" name="area_id" type="hidden" value="{{ $requisicion->area_id }}">
-				<input id="cargo_id" name="cargo_id" type="hidden" value="{{ $requisicion->cargo_id }}">
+				<input name="_method" type="hidden" value="PUT" />
+				<input type="hidden" class="form-control" id="cantproductos" name="cantproductos" value="{{count($requisicion->productos)}}"/>
+				<input type="hidden" class="form-control" id="cantproductosinicial" name="cantproductosinicial" value="{{count($requisicion->productos)}}"/>
+				<input type="hidden" class="form-control" id="productos_eliminar" name="productos_eliminar" value=""/>
+				<input id="id" name="id" type="hidden" value="{{ $requisicion->id }}" />
+				<input id="area_id" name="area_id" type="hidden" value="{{ $requisicion->area_id }}" />
+				<input id="cargo_id" name="cargo_id" type="hidden" value="{{ $requisicion->cargo_id }}" />
+				<input id="acc_rqs" name="acc_rqs" type="hidden" value="{{ $requisicion->registrohistoricorequisicion->first()->acc_rqs_id }}" />
 				<ul class="list-unstyled timeline">
 					<li>
 						<div class="table-responsive">
@@ -109,7 +113,6 @@
 									<table class="table table-bordered table-hover" id="education_fields">
 										<thead>
 											<tr >
-												<th class="text-center">#</th>
 												<th class="text-center">Producto</th>
 												<th class="text-center">Nuevo Producto</th>													
 												<th class="text-center">Unidad</th>	
@@ -120,27 +123,23 @@
 										</thead>
 											@if(!$requisicion->productos->isEmpty())
 												@foreach($requisicion->productos as $req_prod)
-													@if($loop->last)
-														<input type="hidden" class="form-control" id="cantproductos" name="cantproductos" value="{{$loop->index + 1}}"/>
-														<script>
-															var producto = {{$loop->index + 1}};
-														</script>
-														<input type="hidden" class="form-control" id="cantproductosinicial" name="cantproductosinicial" value="{{$loop->index + 1}}"/>
+													@if($loop->first)
+														<tbody class="form-group tr">
+													@else
+														<tbody id="removeproducto{{$loop->index + 1}}" class="form-group tr removeproducto{{$loop->index + 1}}">
 													@endif
-													<tbody class="form-group tr">
+													
 													<tr>
-														<td>
-															{{$loop->index + 1}}
-														</td>
 														<td class="nopadding" >
+															<input type="hidden" id="rqsproductoid{{$loop->index + 1}}" name="rqsproductoid{{$loop->index + 1}}" value="{{$req_prod->id}}" required />
 															<select id="producto{{$loop->index + 1}}" class="form-control" name="producto{{$loop->index + 1}}" onchange="cambio_productos({{$loop->index + 1}});" required>
-																<option value="" selected>Seleccionar</option>
+																<option value="">Seleccionar</option>
 																@if(!$productos->isEmpty())
 																	@foreach($productos as $producto)
 																		<option value="{{ $producto->id}}" @if($req_prod->prod_id == $producto->id) selected @endif>{{ $producto->des_prd}} </option>
 																	@endforeach
 																@endif
-																<option value="0">Otro (Nuevo Producto)</option>
+																<option value="0" @if(!$req_prod->producto) selected @endif >Otro (Nuevo Producto)</option>
 															</select>
 															@if ($errors->has('producto' . ($loop->index + 1) ))
 																<span class="help-block">
@@ -151,7 +150,7 @@
 														<td class="nopadding" >
 															<div class="form-group">
 																<div class="form-group">
-																	<input type="text" class="form-control" id="detalle{{$loop->index + 1}}" name="detalle{{$loop->index + 1}}" @if(!$producto->producto) value="{{ $producto->nom_prd }}" @else readonly style="background:rgba(247, 247, 247, 0.57);"   @endif placeholder="Detalle"/>
+																	<input type="text" class="form-control" id="detalle{{$loop->index + 1}}" name="detalle{{$loop->index + 1}}" @if($req_prod->producto) readonly style="background:rgba(247, 247, 247, 0.57);" @else value="{{ $req_prod->nom_prd }}" @endif placeholder="Detalle"/>
 																</div>
 																@if ($errors->has('detalle' . ($loop->index + 1)))
 																	<span class="help-block">
@@ -165,6 +164,10 @@
 																<option value="" selected>Seleccionar</option>
 																@if($req_prod->producto)
 																	@foreach($req_prod->producto->unidades as $unidad)
+																		<option value="{{ $unidad->id}}" @if($unidad->id == $req_prod->unidad_solicitada->id) selected @endif>{{ $unidad->des_und}} </option>
+																	@endforeach
+																@else
+																	@foreach($unidades as $unidad)
 																		<option value="{{ $unidad->id}}" @if($unidad->id == $req_prod->unidad_solicitada->id) selected @endif>{{ $unidad->des_und}} </option>
 																	@endforeach
 																@endif
@@ -189,6 +192,10 @@
 															@if($loop->first)
 																<div class="input-group-btn">
 																	<button class="btn btn-sm btn-primary glyphicon glyphicon-plus btn-xs" type="button"  onclick="education_fields({{$productos}});"> <span  aria-hidden="true"></span></button>
+																</div>
+															@else
+																<div class="input-group-btn">
+																	<button id="boton_remover{{$loop->index + 1}}" class="btn btn-sm btn-danger glyphicon glyphicon-minus btn-xs" type="button"  onclick="remove_education_fields({{$loop->index + 1}});"> <span  aria-hidden="true"></span></button>
 																</div>
 															@endif
 														</td>
@@ -234,7 +241,6 @@
 									<table class="table table-bordered table-hover" id="education_fields2">
 									<thead>
 										<tr >
-											<th>#</th>
 											<th>Proveedor </th>
 											<th> Nuevo  Proveedor </th>
 											<th>Teléfono </th>	
@@ -251,9 +257,6 @@
 													<input type="hidden" class="form-control" id="cantproveedoresinicial" name="cantproveedoresinicial" value="{{$loop->index + 1}}"/>
 												@endif
 												<tr>
-													<td>
-													{{ $loop->index + 1 }}
-													</td>
 													<td>
 														<select id="proveedor{{ $loop->index + 1 }}" class="form-control" name="proveedor{{ $loop->index + 1 }}" onchange="cambio_proveedores({{ $loop->index + 1 }});">
 															<option value="">Seleccionar</option>
@@ -374,15 +377,17 @@
 @stop
 @section('postscripts')
 	<script>
+		var producto = {{count($requisicion->productos)}};
 		function education_fields(productos) {
 			producto++;
 			var objTo = document.getElementById('education_fields')
 			var divtest = document.createElement("tbody");
 			divtest.setAttribute("class", "form-group tr removeproducto"+producto);
 			var rdiv = 'removeproducto'+producto;
-			var text = '<tr><td>' + (producto) +'</td>'+
+			var text = '<tr>'+
 				//Productos
 				'<td class="nopadding" >'+
+				'<input type="hidden" id="rqsproductoid'+(producto)+'" name="rqsproductoid'+(producto)+'" value="0" required />'+
 				'<select class="form-control" id="producto'+(producto)+'" name="producto'+(producto)+'" onchange="cambio_productos('+(producto)+');" required>'+
 				'<option value="" selected>Seleccionar</option>';
 				$.each(productos, function(index, element) {
@@ -449,7 +454,34 @@
 			$("#cantproveedores").val(proveedor);  
 		}
 		function remove_education_fields(rid) {
-			$('.removeproducto'+rid).remove()
+			var val = document.getElementById('rqsproductoid'+rid);
+			if(val)
+				document.getElementById('productos_eliminar').value += val.value + ",";
+			alert(document.getElementById('productos_eliminar').value);
+			$('.removeproducto'+rid).remove();
+			var i = rid;
+			while(i < producto){
+				$('#rqsproductoid'+(i+1)).attr('name','rqsproductoid'+i);
+				$('#producto'+(i+1)).attr('name','producto'+i);
+				$('#detalle'+(i+1)).attr('name','detalle'+i);
+				$('#unidad'+(i+1)).attr('name','unidad'+i);
+				$('#cantidad'+(i+1)).attr('name','cantidad'+i);
+				$('#removeproducto'+(i+1)).attr('class','form-group tr removeproducto'+i);
+				
+				$('#producto'+(i+1)).attr('onchange','cambio_productos('+i+');');
+				$('#boton_remover'+(i+1)).attr('onclick','remove_education_fields('+i+');');
+				
+				$('#rqsproductoid'+(i+1)).attr('id','rqsproductoid'+i);
+				$('#producto'+(i+1)).attr('id','producto'+i);
+				$('#detalle'+(i+1)).attr('id','detalle'+i);
+				$('#unidad'+(i+1)).attr('id','unidad'+i);
+				$('#cantidad'+(i+1)).attr('id','cantidad'+i);
+				$('#boton_remover'+(i+1)).attr('id','boton_remover'+i);
+				$('#removeproducto'+(i+1)).attr('id','removeproducto'+i);
+				
+				i++;
+			}
+			
 			producto--;
 			$("#cantproductos").val(producto);  
 		}
@@ -474,6 +506,7 @@
 					}
 					else{
 						$('#detalle'+rid).attr('readonly', true);
+						$('#detalle'+rid).attr('value', '');
 					}
 					model.empty();
 					model.append("<option value='' selected>Seleccionar</option>");

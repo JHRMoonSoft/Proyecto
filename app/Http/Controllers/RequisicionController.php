@@ -174,11 +174,12 @@ class RequisicionController extends Controller
         $requisicion = Requisicion::find($id);
 		$registrohistoricorequisicion = RegistroHistoricoRequisicion::where('rqs_id',$id)->get();
         $productos = Producto::all();
+		$unidades = Unidad::all();
 		$proveedores = Proveedor::all();
-		return View('requisicion.edit')->with(compact('requisicion','productos','proveedores'));
+		return View('requisicion.edit')->with(compact('requisicion','productos','proveedores','unidades'));
     }
-
-    /**
+	
+	/**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -206,22 +207,44 @@ class RequisicionController extends Controller
 			];
         $validate = Validator::make($post_data, $rules);
         if (!$validate->failed()) {
+			
+			//Elminaciones de Productos
+			$str = rtrim($post_data['productos_eliminar'],",");
+			if(!$this->IsNullOrEmptyString($str)){
+				$datos = explode(",",$str);
+				foreach($datos as $dato){
+					$prd = ProductosRequisicion::find($dato);
+					$prd->delete();
+				}
+			}
             $requisicions = Requisicion::find($post_data['id']);
             $numprods = (int)$post_data['cantproductos'];
-			$i = (int)$post_data['cantproductosinicial'] + 1;
+			$i = 1;
 			$productos_vacios = true;
 			while($i <= $numprods){
-				$producto_i = array();
-				$producto_i['prod_id'] = $post_data['producto'.$i] == 0 ? null : $post_data['producto'.$i];
-				$producto_i['cant_sol_prd'] = $post_data['cantidad'.$i];
-				$producto_i['unidad_sol_id'] = $post_data['unidad'.$i];
-				$producto_i['nom_prd'] = $post_data['detalle'.$i];
-				$producto_i['rqs_id'] = $requisicions->id;
-				if((!$this->IsNullOrEmptyString($producto_i['prod_id']) and !$this->IsNullOrEmptyString($producto_i['cant_sol_prd']) and !$this->IsNullOrEmptyString($producto_i['unidad_sol_id']))
-					or (!$this->IsNullOrEmptyString($producto_i['nom_prd']) and !$this->IsNullOrEmptyString($producto_i['cant_sol_prd']) and !$this->IsNullOrEmptyString($producto_i['unidad_sol_id']))){
-					$producto_i['cant_apr_prd'] = $producto_i['cant_sol_prd'];
-					ProductosRequisicion::create($producto_i);
-					$productos_vacios = false;
+				if($post_data['rqsproductoid'.$i] > 0){
+					$producto_i = ProductosRequisicion::find($post_data['rqsproductoid'.$i]);
+					$producto_i->prod_id = $post_data['producto'.$i] == 0 ? null : $post_data['producto'.$i];
+					$producto_i->cant_sol_prd = $post_data['cantidad'.$i];
+					$producto_i->unidad_sol_id = $post_data['unidad'.$i];
+					$producto_i->nom_prd = $post_data['detalle'.$i];
+					$producto_i->rqs_id = $requisicions->id;
+					$producto_i->cant_apr_prd = $producto_i['cant_sol_prd'];
+					$producto_i->save();
+				}
+				else{
+					$producto_i = array();
+					$producto_i['prod_id'] = $post_data['producto'.$i] == 0 ? null : $post_data['producto'.$i];
+					$producto_i['cant_sol_prd'] = $post_data['cantidad'.$i];
+					$producto_i['unidad_sol_id'] = $post_data['unidad'.$i];
+					$producto_i['nom_prd'] = $post_data['detalle'.$i];
+					$producto_i['rqs_id'] = $requisicions->id;
+					if((!$this->IsNullOrEmptyString($producto_i['prod_id']) and !$this->IsNullOrEmptyString($producto_i['cant_sol_prd']) and !$this->IsNullOrEmptyString($producto_i['unidad_sol_id']))
+						or (!$this->IsNullOrEmptyString($producto_i['nom_prd']) and !$this->IsNullOrEmptyString($producto_i['cant_sol_prd']) and !$this->IsNullOrEmptyString($producto_i['unidad_sol_id']))){
+						$producto_i['cant_apr_prd'] = $producto_i['cant_sol_prd'];
+						ProductosRequisicion::create($producto_i);
+						$productos_vacios = false;
+					}
 				}
 				$i = $i + 1;
 				//return $producto_i;
@@ -247,6 +270,8 @@ class RequisicionController extends Controller
 			$accion_crear['user_id'] = Auth::user()->id;
 			RegistroHistoricoRequisicion::create($accion_crear);
 			
+			$requisicions->asn_rqs = $post_data['asn_rqs'];
+			$requisicions->jst_rqs = $post_data['jst_rqs'];
 			$requisicions->save();
 			return redirect()->intended('/requisicion/' . $requisicions->id);
         }
@@ -363,8 +388,7 @@ class RequisicionController extends Controller
 		// now write some text above the imported page
 		$pdf->SetFont('Helvetica');
 		$pdf->SetTextColor(0, 0, 0);
-		$justi = $requisicion->jst_rqs;
-		$this->escribirencabezado($pdf, $justi, $usuario, $hoja + 1, $cant_hojas + 1);
+		$this->escribirencabezado($pdf, $requisicion, $usuario, $hoja + 1, $cant_hojas + 1);
 		
 		while($hoja < $cant_hojas || (($hoja * 17) + $EDFSDF < $cant_productos)){
 			$pdf->SetXY(26,91 + ($EDFSDF * 6));
@@ -384,7 +408,7 @@ class RequisicionController extends Controller
 				$EDFSDF = 0;
 				$this->escribirfooter($pdf, $requisicion);
 				$this->nuevapaginapdf($pdf,'C:/Users/JORGE/Documents/GitHub/Proyecto/resources/views/documentos/AF-003-01-Formato-rqs.pdf');
-				$this->escribirencabezado($pdf, $justi, $usuario, $hoja + 1, $cant_hojas + 1);
+				$this->escribirencabezado($pdf, $requisicion, $usuario, $hoja + 1, $cant_hojas + 1);
 			}
 		}
 		$this->escribirfooter($pdf, $requisicion);
@@ -412,7 +436,7 @@ class RequisicionController extends Controller
 		
 	}
 	
-	public function escribirencabezado(FPDI $pdf, string $jst, User $user, int $hoja_actual, int $cant_hojas){
+	public function escribirencabezado(FPDI $pdf, Requisicion $rqs, User $user, int $hoja_actual, int $cant_hojas){
 		
 		$pdf->SetXY(137,34);
 		$pdf->Write(0, $this->escribirtexto($hoja_actual . ' de ' . $cant_hojas));
@@ -420,13 +444,24 @@ class RequisicionController extends Controller
 		$pdf->SetXY(42,53);
 		$pdf->Write(0, $this->escribirtexto($user->nom_usr . ' ' . $user->ape_usr));
 		$pdf->SetXY(165,53);
-		$pdf->Write(0, $this->escribirtexto($user->cargo->des_crg));
+		$pdf->Write(0, $this->escribirtexto($rqs->cargo->des_crg));
 		$pdf->SetXY(68,58);
-		$pdf->Write(0, $this->escribirtexto($user->area->des_are));
+		$pdf->Write(0, $this->escribirtexto($rqs->area->des_are));
 		$pdf->SetXY(169,58);
 		$pdf->Write(0, $this->escribirtexto($user->crd_usr));
-		$pdf->SetXY(68,68);
-		$pdf->Write(0, $this->escribirtexto($jst));
+		$pdf->SetXY(68,67.5);
+		if(strlen($rqs->jst_rqs) > 60){
+			$str = $rqs->jst_rqs;
+			$ind = strpos($rqs->jst_rqs," ",60);	
+			$str_s = substr($rqs->jst_rqs,0,$ind);
+			$pdf->Write(0, $this->escribirtexto($str_s));
+			$str = substr($str, $ind, strlen($str) - $ind);
+			$pdf->SetXY(15,73);
+			$pdf->Write(0, $this->escribirtexto($str));
+		}
+		else{
+			$pdf->Write(0, $this->escribirtexto($rqs->jst_rqs));
+		}
 	}
 	
 	public function escribirfooter(FPDI $pdf, Requisicion $requisicion){
@@ -510,8 +545,9 @@ class RequisicionController extends Controller
 				foreach($requisicion as $rqs){
 					
 					 $prod = ProductosRequisicion::where('rqs_id','=',$cat)->get();
-					 array_push($producto,$prod);
+					 array_push($productorqs,$prod);
 					 $cat++;
+					 
 				}
 			 
 		\Excel::create('Requisiciones', function($excel) {
