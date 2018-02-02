@@ -13,7 +13,7 @@ class AccionesAlmacenSeeder extends Seeder
     public function run()
     {
         //
-		DB::table('acciones_almacens')->in7sert([
+		DB::table('acciones_almacens')->insert([
 			'des_acc_alm' => 'Ingreso por Almacén',
 			'tip_acc_alm' => 1,
             'created_at' => Carbon::now()->subDays(1),
@@ -21,7 +21,7 @@ class AccionesAlmacenSeeder extends Seeder
 		]);
 		
 		DB::table('acciones_almacens')->insert([
-			'des_acc_alm' => 'Ingreso por Comprass',
+			'des_acc_alm' => 'Ingreso por Compras',
 			'tip_acc_alm' => 1,
             'created_at' => Carbon::now()->subDays(1),
 			'updated_at' => Carbon::now()		

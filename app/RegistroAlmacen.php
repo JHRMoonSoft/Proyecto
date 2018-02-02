@@ -6,18 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class RegistroAlmacen extends Model
 {
-    protected $table = 'almacens';
+    protected $table = 'registro_almacens';
 	
-	protected $fillable = array('fec_reg','obs_reg','cnt_prd');
+	protected $fillable = array('obs_reg','cnt_prd','lot_prd','fec_ven','almacen_id','accion_id');
 	
 	public function almacen()
     {
-		return $this->belongsTo('Almacen');
+		return $this->belongsTo('App\Almacen','almacen_id');
 	}
 	
 	public function accionalmacen()
     {
-		return $this->belongsTo('AccionesAlmacen');
+		return $this->belongsTo('App\AccionesAlmacen','accion_id');
 	}
 	
 }

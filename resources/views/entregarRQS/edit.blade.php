@@ -183,7 +183,7 @@
 												</td>
 												<td class="nopadding" >
 													<div class="form-group">
-														<input type="text" class="form-control" id="cant_dif_prd{{$loop->index + 1}}" name="cant_dif_prd{{$loop->index + 1}}" value="{{$prod->cant_dif_prd}}" readonly />
+														<input type="text" class="form-control" id="cant_dif_prd{{$loop->index + 1}}" name="cant_dif_prd{{$loop->index + 1}}" value="{{$prod->cant_dif_prd}}" disabled style="background:rgba(247, 247, 247, 0.57);" />
 													</div>
 												</td>
 												
@@ -215,6 +215,13 @@
 
 @section('postscripts')
      <script>
+	 
+	 
+	 
+	 
+	 
+	 
+	 
 	 
 		function validate(valor){
 			$('#boton').val(valor);

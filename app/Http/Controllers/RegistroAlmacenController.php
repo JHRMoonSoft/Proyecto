@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\RegistroAlmacen;
+use App\Producto;
+use App\Almacen;
+use App\AccionesAlmacen;
 use Illuminate\Http\Request;
+use Validator;
+use \Carbon\Carbon;
 
 class RegistroAlmacenController extends Controller
 {
@@ -28,7 +33,8 @@ class RegistroAlmacenController extends Controller
      */
     public function create()
     {
-        //
+       $productos = Producto::all();
+	   return View('almacen.create')->with(compact('productos'));
     }
 
     /**
@@ -41,9 +47,11 @@ class RegistroAlmacenController extends Controller
     {
         $post_data = $request->all();
 		$rules = [
-            'fec_reg'=> 'required',
+            'fec_reg'=> '',
 			'obs_reg'=> 'required',
 			'cnt_prd'=> 'required',
+			'lot_prd'=> '',
+			'fec_ven'=> '',
 			'almacen_id'=> 'required',
 			'accion_id'=> 'required'
 			];
@@ -116,4 +124,15 @@ class RegistroAlmacenController extends Controller
     {
         //
     }
+	
+	public function cargarunidadesproducto(Request $request)
+    {
+		$producto = Producto::find($request['option']);
+		if($producto){
+			$unidades = $producto->unidad()->get();
+		}
+		
+		return response()->json($unidades);
+	}
+	
 }

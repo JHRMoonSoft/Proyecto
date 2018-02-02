@@ -57,7 +57,7 @@
 							
 							</td>
 							<td>	
-								<button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-file btn-xs"  data-toggle="modal" data-desc-prod="{{$almc->producto->des_prd}}" data-lote-prod="{{$almc->lot_prd}}" data-lote-prod="{{$almc->fec_ven}}" data-id-prod="{{$almc->id}}" data-target=".lote"></button>
+								<button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-file btn-xs"  data-toggle="modal" data-id-almacen="{{$almc->id}}"  data-target=".lote"></button>
 							</td>
 						</tr> 
 					@endforeach
@@ -78,7 +78,7 @@
 				  <h4 class="modal-title" id="myModalLabel2">{{$almc->producto->des_prd}}</h4>
 				</div>
 				<div class="modal-body">
-				
+				<input id="loquesea" type="text" value="texto" />
 					<table>
 					  <thead>
 					   <tr>
@@ -106,7 +106,32 @@
 		
 	</div>		
 @stop
+@section('postscripts')
+<script>
+	function getalmacen(id) {
+		   $.get("{{ url('almacen/cargardetallealmace')}}", 
+				{
+					option: id,
+					
+				}, 
+				function(data) {
+					if(data != null)
+						return data;
+					else
+						return null;
+			});
+	   }
 
+
+	$('#lote').on('shown.bs.modal', function(e) {
+		alert('entre!!');
+		var des_prd = $(e.relatedTarget).data('data-id');
+		var res = getalmacen(des_prd);
+		$("#loquesea").val(res);  
+		alert(JSON.stringify(res));
+		
+	});
+</script>
      
 	  
 @stop

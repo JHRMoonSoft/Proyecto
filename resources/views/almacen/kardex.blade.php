@@ -44,69 +44,37 @@
 		<div class="x_content"><br/>
 			<div class="table-responsive">
 				<table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
-				  <thead>
-				   <tr>
-						<th class="text-center">Código </th>
-						<th class="text-center">Fecha</th>
-						<th class="text-center">Detalle</th>
-						<th class="text-center">Producto</th>
-						<th class="text-center">Unidad</th>
-						<th class="text-center">Cant. Entrada</th>
-						<th class="text-center">Cant. Salida</th>
-						<th class="text-center">Saldo</th>
-					</tr>
-				  </thead>
-				  <tbody>
-					
-					<tr>
-					  <td>0023933</td>
-						<td>
-							26-06-2017
-						</td>
-						<td>Inicio almacén </td>
-						<td> Arepas antioqueñas precocidas	</td>
-						<td>Unidad</td>
-						<td></td>
-						<td></td>
-						<td>10</td>
-					</tr> 
-					<tr>
-					  <td>0023945</td>
-						<td>
-							28-06-2017
-						</td>
-						<td>Compra  </td>
-						<td> Arepas antioqueñas precocidas	</td>
-						<td>Unidad</td>
-						<td>5</td>
-						<td></td>
-						<td>15</td>
-					</tr> 
-					<tr>
-					  <td>0023947</td>
-						<td>
-							28-06-2017
-						</td>
-						<td>Requisición  </td>
-						<td> Arepas antioqueñas precocidas	</td>
-						<td>Unidad</td>
-						<td></td>
-						<td>11</td>
-						<td>4</td>
-					</tr> 
-				</tbody>
-				<tfoot>
-					<tr>
-						<th></th>
-						<th>Saldo</th>
-						<th></th>
-						<th></th>
-						<th></th>
-						<th></th>
-						<th></th>
-						<th></th>
-					</tr>
-				</tfoot>
+					<thead>
+					   <tr>
+							<th class="text-center">Código </th>
+							<th class="text-center">Fecha</th>
+							<th class="text-center">Detalle</th>
+							<th class="text-center">Producto</th>
+							<th class="text-center">Unidad</th>
+							<th class="text-center">Cant. Entrada</th>
+							<th class="text-center">Cant. Salida</th>
+							<th class="text-center">Saldo</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach($registroalmacen as $regalm)
+							<tr>
+								<td>{{$regalm->id}}</td>					
+								<td>{{$regalm->created_at->format('Y-m-d')}}</td>
+								<td>{{$regalm->accionalmacen->des_acc_alm}}</td>
+								<td>{{$regalm->almacen->producto->des_prd}}</td>
+								<td>{{$regalm->almacen->producto->unidad->des_und}}</td>
+								@if($regalm->accionalmacen->tip_acc_alm==1)
+									<td>{{$regalm->cnt_prd}}</td>		
+									<td></td>
+								@else	
+									<td></td>
+									<td>{{$regalm->almacen->producto->des_prd}}</td>
+								@endif
+								<td> {{$regalm->almacen->cnt_prd}}</td>
+							</tr> 
+						@endforeach
+					</tbody>
 				</table>
 			</div>
         </div>

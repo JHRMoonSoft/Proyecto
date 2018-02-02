@@ -258,6 +258,7 @@
 												@endif
 												<tr>
 													<td>
+														
 														<select id="proveedor{{ $loop->index + 1 }}" class="form-control" name="proveedor{{ $loop->index + 1 }}" onchange="cambio_proveedores({{ $loop->index + 1 }});">
 															<option value="">Seleccionar</option>
 															<option value="0" selected>Otro</option>
@@ -424,9 +425,7 @@
 			var divtest = document.createElement("tbody");
 			divtest.setAttribute("class", "form-group tr removeproveedor"+proveedor);
 			var rdiv = 'removeproveedor'+proveedor;
-			var text = '<tr><td>' + (proveedor) +'</td>'+
-				//Productos
-				'<td class="nopadding" >'+
+			var text = '<tr><td class="nopadding" >'+
 				'<select class="form-control" id="proveedor'+(proveedor)+'" name="proveedor'+(proveedor)+'" onchange="cambio_proveedores('+(proveedor)+');">'+
 				'<option value="" selected>Seleccionar</option>';
 				$.each(proveedores, function(index, element) {

@@ -12,9 +12,38 @@
 			<form class="form-horizontal" role="form" method="POST" action="{{ url('/almacen/') }}">
 				{{ csrf_field() }}
 				
+						<div class="block_content">
+						
+							<h5>Espacio exclusivo para el Asistente de Gestión Administrativa</h5><br/><br/>
+								
+							<div class="row ">
+								<div class="form-group"><br>
+									<label class="control-label col-md-3 col-sm-3 col-xs-12" for="">Asunto</label>
+									<div class="col-md-6 col-sm-6 col-xs-12">
+									  <input type="text" id=""name="I"  value="INGRESO ALMACÉN"    class="form-control col-md-7 col-xs-12">
+									
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-3 col-sm-3 col-xs-12" for="obs_reg">Observación	</label>																			
+									<div class="col-md-6 col-sm-6 col-xs-12">
+									  <textarea type="text" id="obs_reg"  name="obs_reg"rows="5" required="required" class="form-control col-md-7 col-xs-12"></textarea>
+										@if ($errors->has('obs_reg'))
+											<span class="help-block">
+												<strong>{{ $errors->first('obs_reg') }}</strong>
+											</span>
+										@endif
+									</div><br>
+								</div>
+							</div>
+						</div>
+				
 						<div class="block">
 							<input type="hidden" class="form-control" id="cantproductos" name="cantproductos" value="1"/>
+							<input type="hidden" class="form-control" id="accion_id" name="accion_id" value="1"/>
 							<div class="block_content">
+							
+							
 								<br/>
 								<div class="panel panel-default">
 									<div class="panel-heading text-center">
@@ -44,8 +73,8 @@
 													<select id="producto1" class="form-control" name="producto1" onchange="cambio_productos(1);" required>
 														<option value="" selected>Seleccionar</option>
 														@if(!$productos->isEmpty())
-															@foreach($productos as $producto)
-																<option value="{{ $producto->id}}">{{ $producto->des_prd}} </option>
+															@foreach($productos as $prod)
+																<option value="{{ $prod->producto->id}}">{{ $prod->producto->des_prd}} </option>
 															@endforeach
 														@endif
 													</select>
@@ -147,7 +176,7 @@
 				'<select class="form-control" id="producto'+(producto)+'" name="producto'+(producto)+'" onchange="cambio_productos('+(producto)+');" required>'+
 				'<option value="" selected>Seleccionar</option>';
 				$.each(productos, function(index, element) {
-						text = text + '<option value="'+ element.id +'">' + element.des_prd + '</option>';
+						text = text + '<option value="'+ element.producto.id +'">' + element.producto.des_prd + '</option>';
 					});
 				text = text +
 				'<option value="0">Otro (Nuevo Producto)</option>'+
@@ -170,7 +199,7 @@
 				'</td>'+
 				//Botones
 				 '<td class="nopadding" >'+
-					'<div class="input-group-btn"><button class="btn btn-sm btn-danger glyphicon glyphicon-minus " type="button" onclick="remove_education_fields('+ producto +');">'+
+					'<div class="input-group-btn"><button class="btn btn-sm btn-danger glyphicon glyphicon-minus btn-xs " type="button" onclick="remove_education_fields('+ producto +');">'+
 						'<span aria-hidden="true"></span>'+
 					'</button></div>'+
 				'</td></tr>';

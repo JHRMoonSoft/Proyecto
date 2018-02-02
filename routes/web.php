@@ -49,6 +49,7 @@ Route::get('ordencompra/export', 'OrdenCompraController@exporOrdencompra');
 
 Route::get('almacen/kardex', 'AlmacenController@kardex');
 Route::get('almacen/cargarunidadesproducto', 'AlmacenController@cargarunidadesproducto');
+Route::get('almacen/cargardetallealmacen', 'AlmacenController@cargardetallealmacen');
 
 Route::resource('almacen', 'AlmacenController');
 Route::resource('area', 'AreaController');

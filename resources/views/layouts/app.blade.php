@@ -540,7 +540,7 @@
 	 
 	 <!-- Datatables -->
 	<script src="{{ URL::asset('css/workflow/vendors/datatables.net/js/jquery.dataTables.min.js') }}"></script>
-	<script src="{{ URL::asset('css/workflow/vendors/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+	<script src="{{ URL::asset('css/workflow/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
 	<script src="{{ URL::asset('css/workflow/vendors/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>
 	<script src="{{ URL::asset('css/workflow/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js') }}"></script>
 	<script src="{{ URL::asset('css/workflow/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js') }}"></script>

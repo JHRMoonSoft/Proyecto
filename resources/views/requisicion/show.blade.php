@@ -290,7 +290,7 @@
 												
 												<td class="nopadding" >
 													<div class="form-group">
-														<input type="text" class="form-control" id="cant_apr_prd{{$loop->index + 1}}" name="cant_apr_prd{{$loop->index + 1}}"  disabled style="background:rgba(247, 247, 247, 0.57);" @if($requisicion->registrohistoricorequisicion->count() == 1) value="0" @else   value="{{$prod->cant_apr_prd}}" @endif  />
+														<input type="text" class="form-control" id="cant_apr_prd{{$loop->index + 1}}" name="cant_apr_prd{{$loop->index + 1}}"  disabled style="background:rgba(247, 247, 247, 0.57);" @if($requisicion->estadorequisicion->id == 1) value="0" @else   value="{{$prod->cant_apr_prd}}" @endif  />
 													</div>
 												</td>
 													<td class="nopadding" >
