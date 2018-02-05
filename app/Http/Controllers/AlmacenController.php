@@ -73,18 +73,19 @@ class AlmacenController extends Controller
 				$producto_i = array();
 				$producto['prod_id'] = $post_data['producto'.$i] == 0 ? null : $post_data['producto'.$i];
 				$producto_i['cnt_prd'] = $post_data['cantidad'.$i];
-				$producto_i['lot_prd'] = $post_data['lote'.$i];
-				$producto_i['fec_ven'] = $post_data['vence'.$i];
+				//$producto_i['lot_prd'] = $post_data['lote'.$i];
+				//$producto_i['fec_ven'] = $post_data['vence'.$i];
 				$producto_i['obs_reg'] = $post_data['obs_reg'];
-				$producto_i['accion_id'] = $post_data['accion_id'];
+				$producto_i['accion_id'] = $post_data['accion_id']; 
 							
 				if(!$this->IsNullOrEmptyString($producto['prod_id']) and !$this->IsNullOrEmptyString($producto_i['cnt_prd']))
 				{
 					$almacen = Almacen::find($producto['prod_id']);
+					$almacen['cnt_prd'] = $almacen['cnt_prd'] + $producto_i['cnt_prd'];
 					$producto_i['almacen_id'] = $almacen->id;
+					$producto_i['saldo'] = $almacen['cnt_prd'];				
 					
 					RegistroAlmacen::create($producto_i);
-					$almacen['cnt_prd'] = $almacen['cnt_prd'] + $producto_i['cnt_prd'];
 					$almacen->save();
 					$productos_vacios = false;
 				}

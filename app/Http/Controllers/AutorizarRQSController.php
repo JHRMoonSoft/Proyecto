@@ -15,6 +15,7 @@ use App\Unidad;
 use App\Categoria;
 use App\Role;
 use App\Conversion;
+use App\Almacen;
 use App\Requisicion;
 use Validator;
 use \Carbon\Carbon;
@@ -193,9 +194,15 @@ class AutorizarRQSController extends Controller
 						$prod_nuevo_i->unidades()->sync(array($producto_i->unidad_sol_id));
 						$prod_nuevo_i->save();
 						$producto_i->prod_id = $prod_nuevo_i->id;
+						$a = array();
+						$a['cnt_prd'] = 0;
+						$a['producto_id'] = $producto_i->prod_id;
+						
+						Almacen::create($a);
 					}
 				}
 				$producto_i->save();
+				
 				$i = $i + 1;
 			}
 			

@@ -8,7 +8,7 @@ class RegistroAlmacen extends Model
 {
     protected $table = 'registro_almacens';
 	
-	protected $fillable = array('obs_reg','cnt_prd','lot_prd','fec_ven','almacen_id','accion_id');
+	protected $fillable = array('obs_reg','cnt_prd','saldo','almacen_id','accion_id');
 	
 	public function almacen()
     {

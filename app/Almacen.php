@@ -8,11 +8,11 @@ class Almacen extends Model
 {
     protected $table = 'almacens';
 	
-	protected $fillable = array('cnt_prd');
+	protected $fillable = array('cnt_prd','producto_id');
 
 	public function producto()
     {
-		return $this->belongsTo('App\Producto');
+		return $this->belongsTo('App\Producto','producto_id');
 	}
 
 	public function unidad()

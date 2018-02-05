@@ -69,9 +69,9 @@
 									<td></td>
 								@else	
 									<td></td>
-									<td>{{$regalm->almacen->producto->des_prd}}</td>
+									<td>{{$regalm->cnt_prd}}</td>
 								@endif
-								<td> {{$regalm->almacen->cnt_prd}}</td>
+								<td> {{$regalm->saldo}}</td>
 							</tr> 
 						@endforeach
 					</tbody>

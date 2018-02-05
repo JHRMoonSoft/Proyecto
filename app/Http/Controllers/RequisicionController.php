@@ -249,19 +249,23 @@ class RequisicionController extends Controller
 				$i = $i + 1;
 				//return $producto_i;
 			}
-			$numprovs = (int)$post_data['cantproveedores'];
-			$i = (int)$post_data['cantproveedoresinicial'] + 1;
-			while($i <= $numprovs){
-				$proveedor_i = array();
-				$proveedor_i['raz_soc'] = $post_data['nombre'.$i];
-				$proveedor_i['tel_fij'] = $post_data['telefono'.$i];
-				$proveedor_i['rqs_id'] = $requisicions->id;
-				if(!$this->IsNullOrEmptyString($proveedor_i['raz_soc'])){
-					ProveedoresRequisicion::create($proveedor_i);
-				}
-				$i = $i + 1;
-				//return $proveedor_i;
+			if($request->has('cantproveedores')){
+				$numprovs = (int)$post_data['cantproveedores']; 
+				$i = (int)$post_data['cantproveedoresinicial'] + 1; 
+				while($i <= $numprovs){ 
+					$proveedor_i = array(); 
+					$proveedor_i['raz_soc'] = $post_data['nombre'.$i]; 
+					$proveedor_i['tel_fij'] = $post_data['telefono'.$i]; 
+					$proveedor_i['rqs_id'] = $requisicions->id; 
+					if(!$this->IsNullOrEmptyString($proveedor_i['raz_soc'])){ 
+						ProveedoresRequisicion::create($proveedor_i); 
+					} 
+					$i = $i + 1; 
+					//return $proveedor_i; 
+				} 
 			}
+			
+
 			
 			$accion_crear = array();
 			$accion_crear['obs_reg_rqs'] = "Modificacion de RQS";

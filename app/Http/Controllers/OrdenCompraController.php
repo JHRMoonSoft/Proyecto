@@ -181,7 +181,7 @@ class OrdenCompraController extends Controller
      * @param  \App\OrdenCompra  $ordencompra
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, OrdenCompra $ordencompra)
+    public function update(Request $request, int $id)
     {
         $post_data = $request->all();
 		$rules = [
@@ -201,8 +201,71 @@ class OrdenCompraController extends Controller
 			];
         $validate = Validator::make($post_data, $rules);
         if (!$validate->failed()) {
-            $ordencompras = OrdenCompra::find($post_data['id']);
-            $ordencompras->no_ocp = $post_data['no_ocp'];
+			
+			//Elminaciones de Productos
+			$str = rtrim($post_data['productos_eliminar'],",");
+			if(!$this->IsNullOrEmptyString($str)){
+				$datos = explode(",",$str);
+				foreach($datos as $dato){
+					$prd = ProductosOrdenCompra::find($dato);
+					$prd->delete();
+				}
+			}
+            $ordencompras = OrdenCompra::find($id);
+            $numprods = (int)$post_data['cantproductos'];
+			$i = 1;
+			$productos_vacios = true;
+			while($i <= $numprods){
+				if($post_data['ordcomproductoid'.$i] > 0){
+					$producto_i = ProductosOrdenCompra::find($post_data['ordcomproductoid'.$i]);
+					$producto_i->prod_id = $post_data['producto'.$i] == 0 ? null : $post_data['producto'.$i];
+					$producto_i->unidad_emp_id = $post_data['unidad'.$i];
+					$producto_i->cant_prd = $post_data['cantidad'.$i];
+					$producto_i->iva_unt = $post_data['ivaunitario'.$i];
+					$producto_i->val_unt = $post_data['valorunitario'.$i];
+					$producto_i->val_tol = $post_data['valortotal'.$i];
+					
+					$producto_i->unidad_emp_fact_id = $post_data['unidad'.$i];	
+					$producto_i->cant_prd_fact = $post_data['cantidad'.$i];
+					$producto_i->iva_unt_fact = $post_data['ivaunitario'.$i];
+					$producto_i->val_unt_fact = $post_data['valorunitario'.$i];
+					$producto_i->val_tol_fact = $post_data['valortotal'.$i];
+					
+					$producto_i->fec_ven = $post_data['vence'.$i] != null ? Carbon::parse($post_data['vence'.$i]) : null;
+					$producto_i->prod_sol_comp_id = $post_data['prodsolcompra'.$i] == 0 ? null : $post_data['prodsolcompra'.$i];
+					
+					$producto_i->ord_comp_id = $ordencompras->id;
+					$producto_i->save();
+				}
+				else{
+					$producto_i = array();
+					$producto_i['prod_id'] = $post_data['producto'.$i];					
+					$producto_i['unidad_emp_id'] = $post_data['unidad'.$i];	
+					$producto_i['cant_prd'] = $post_data['cantidad'.$i];
+					$producto_i['iva_unt'] = $post_data['ivaunitario'.$i];
+					$producto_i['val_unt'] = $post_data['valorunitario'.$i];
+					$producto_i['val_tol'] = $post_data['valortotal'.$i];
+					
+					$producto_i['unidad_emp_fact_id'] = $post_data['unidad'.$i];	
+					$producto_i['cant_prd_fact'] = $post_data['cantidad'.$i];
+					$producto_i['iva_unt_fact'] = $post_data['ivaunitario'.$i];
+					$producto_i['val_unt_fact'] = $post_data['valorunitario'.$i];
+					$producto_i['val_tol_fact'] = $post_data['valortotal'.$i];
+					
+					$producto_i['fec_ven'] = $post_data['vence'.$i] != null ? Carbon::parse($post_data['vence'.$i]) : null;
+					$producto_i['prod_sol_comp_id'] = $post_data['prodsolcompra'.$i] == 0 ? null : $post_data['prodsolcompra'.$i];
+					$producto_i['ord_comp_id'] = $ordencompra->id;
+					if(!$this->IsNullOrEmptyString($producto_i['prod_id']) and !$this->IsNullOrEmptyString($producto_i['cant_prd']) and !$this->IsNullOrEmptyString($producto_i['unidad_emp_id'])){
+						ProductosOrdenCompra::create($producto_i);
+						$productos_vacios = false;
+					}
+				}
+				$i = $i + 1;
+				//return $producto_i;
+			}
+			
+			
+			$ordencompras->no_ocp = $post_data['no_ocp'];
 			$ordencompras->cnp_ocp = $post_data['cnp_ocp'];
 			$ordencompras->aut_ocp = $post_data['aut_ocp'];
 			$ordencompras->form_pag = $post_data['form_pag'];
@@ -211,10 +274,11 @@ class OrdenCompraController extends Controller
 			$ordencompras->otr_ocp = $post_data['otr_ocp'];
 			$ordencompras->subt_ocp = $post_data['subt_ocp'];
 			$ordencompras->iva_ocp = $post_data['iva_ocp'];
-			$ordencompras->tol_ocp = $post_data['tot_ocp'];
+			$ordencompras->tol_ocp = $post_data['tol_ocp'];
 			$ordencompras->obv_ocp = $post_data['obv_ocp'];
 			$ordencompras->empre_id = $post_data['empre_id'];
 			$ordencompras->prov_id = $post_data['prov_id'];
+			$ordencompras->save();
 			return view('ordencompra.show')->with('ordencompras', $ordencompras);
         }
     }
@@ -243,7 +307,8 @@ class OrdenCompraController extends Controller
 	
 	public function cargarproductosdecategoria(Request $request)
     {
-		$prodSolCom = ProductosSolicitudCompra::all('prod_id');
+		$prod_orden_compra = ProductosOrdenCompra::select('prod_sol_comp_id')->distinct()->pluck('prod_sol_comp_id')->toArray();
+		$prodSolCom = ProductosSolicitudCompra::select('prod_id')->whereNotIn('id',$prod_orden_compra)->pluck('prod_id')->toArray();
 		$productos = Producto::where('categoria_id','=',$request['option'])
 							->whereIn('id',$prodSolCom)
 							->get();
@@ -253,18 +318,23 @@ class OrdenCompraController extends Controller
 	
 	public function cargarproductosseleccionados(Request $request)
     {
+		$prod_orden_compra = ProductosOrdenCompra::select('prod_sol_comp_id')->distinct()->pluck('prod_sol_comp_id')->toArray();
 		if($request['prds'] == 0){
-			
 			$prod_cats = Producto::where('categoria_id','=',$request['cats'])
 							->get(['id']);
 			$productos = ProductosSolicitudCompra::with('producto')
 					->with('unidad_solicitada')
-					->whereIn('prod_id',$prod_cats)->get();
+					->whereNotIn('id',$prod_orden_compra)
+					->whereIn('prod_id',$prod_cats)
+					->get();
+			
 		}
-		else{			
+		else{
 			$productos = ProductosSolicitudCompra::with('producto')
 					->with('unidad_solicitada')
-					->where('prod_id','=',$request['prds'])->get();
+					->where('prod_id','=',$request['prds'])
+					->whereNotIn('id',$prod_orden_compra)
+					->get();
 		}
 		foreach($productos as $prod){
 			$prod->unidades = $prod->producto->unidades;

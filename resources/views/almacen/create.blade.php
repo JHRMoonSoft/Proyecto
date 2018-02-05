@@ -56,9 +56,9 @@
 												<th class="text-center">#</th>
 												<th class="text-center">Producto</th>												
 												<th class="text-center">Unidad</th>	
-												<th class="text-center">Cantidad</th>
+												<th class="text-center">Cantidad</th><!--
 												<th class="text-center">Lote</th>
-												<th class="text-center">Vence</th>
+												<th class="text-center">Vence</th>-->
 												<th class="text-center"><a></a></th>
 								
 											</tr>
@@ -104,7 +104,7 @@
 															<strong>{{ $errors->first('cantidad1') }}</strong>
 														</span>
 													@endif
-												</td>
+												</td><!--
 												<td class="nopadding" >
 													<div class="form-group">
 														<input type="text" class="form-control" id="lote1" name="lote1" value="" placeholder="Lote" />
@@ -125,7 +125,7 @@
 															<strong>{{ $errors->first('vence1') }}</strong>
 														</span>
 													@endif
-												</td>
+												</td>-->
 																					
 												<td class="nopadding" >
 													<div class="input-group-btn">
@@ -188,7 +188,7 @@
 				//Cantidad
 				'<td class="nopadding" >'+
 					'<div class="form-group"><input type="text" class="form-control" id="cantidad'+(producto)+'" name="cantidad'+(producto)+'" value="" placeholder="Cantidad" required /></div>'+
-				'</td>'+
+				'</td>'+/*
 				//Lote
 				'<td class="nopadding" >'+
 					'<div class="form-group"><input type="text" class="form-control" id="lote'+(producto)+'" name="lote'+(producto)+'" value="" placeholder="Lote" /></div>'+
@@ -196,7 +196,7 @@
 				//Vence
 				'<td class="nopadding" >'+
 					'<div class="form-group"><input type="date" class="form-control " id="vence'+(producto)+'" name="vence'+(producto)+'" /></div>'+
-				'</td>'+
+				'</td>'+*/
 				//Botones
 				 '<td class="nopadding" >'+
 					'<div class="input-group-btn"><button class="btn btn-sm btn-danger glyphicon glyphicon-minus btn-xs " type="button" onclick="remove_education_fields('+ producto +');">'+

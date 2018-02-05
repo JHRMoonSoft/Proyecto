@@ -16,9 +16,10 @@ class CreateRegistroAlmacensTable extends Migration
         Schema::create('registro_almacens', function (Blueprint $table) {
             $table->increments('id');
 			$table->string('obs_reg');
-			$table->double('cnt_prd');			
-            $table->integer('lot_prd');
-			$table->date('fec_ven')->nullable();
+			$table->double('cnt_prd');
+			$table->double('saldo');	
+           // $table->string('lot_prd');
+			//$table->date('fec_ven')->nullable();
 			$table->integer('almacen_id')->unsigned()->index();
             $table->foreign('almacen_id')->references('id')->on('almacens')->onDelete('cascade');
 			

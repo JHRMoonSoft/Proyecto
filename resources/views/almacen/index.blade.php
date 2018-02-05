@@ -13,7 +13,7 @@
 			<h2>Productos Almacén </h2> &nbsp&nbsp&nbsp
 			@permission('ver-nueva-rqs-historial-rqs-usuarios')			
 				<a  href="\almacen\create" class="btn btn-warning" role="button">Ingresar Productos</a>
-			@endpermission
+			@endpermission<!--
 			<div class=" col-md-2 col-sm-2 col-xs-6 right">
 					<a  data-toggle="modal" data-target=".descargar" class="btn btn-primary  left" role="button"><i class="glyphicon glyphicon-cloud-download" aria-hidden="true"></i>&nbsp&nbsp Descargar </a>
 			</div>
@@ -22,7 +22,7 @@
 					<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
 					<span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
 				</div>
-			</div>
+			</div>-->
 			<div class="clearfix"></div>
 	    </div>
 		<div class="x_content"><br/>
@@ -36,13 +36,11 @@
 						<th>Unidad</th>
 						<th>Cantidad</th>
 						<th>Esatado</th>
-						<th>Lote</th>
-						<!--<th>Eliminar</th>-->
 					</tr>
 				  </thead>
 				  <tbody>
-					@foreach($almacen as $almc)
-						<tr>
+					@foreach($almacen as $almc)											
+						<tr>							 
 							<td>{{$almc->id}}</td>					
 							<td>{{$almc->producto->categoria->des_cat}}</td>
 							<td>{{$almc->producto->des_prd}}</td>
@@ -56,54 +54,13 @@
 								@endif
 							
 							</td>
-							<td>	
-								<button type="button" class="btn btn-sm btn-primary glyphicon glyphicon-file btn-xs"  data-toggle="modal" data-id-almacen="{{$almc->id}}"  data-target=".lote"></button>
-							</td>
-						</tr> 
+						</tr>
+						
 					@endforeach
 				  </tbody>
 				</table>
 			</div>
-        </div>
-		
-		 <!-- create Lote modal -->		  
-
-		  <div class="modal fade lote" tabindex="-1" role="dialog" aria-hidden="true">
-			<div class="modal-dialog modal-sm">
-			  <div class="modal-content">
-
-				<div class="modal-header">
-				  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
-				  </button>
-				  <h4 class="modal-title" id="myModalLabel2">{{$almc->producto->des_prd}}</h4>
-				</div>
-				<div class="modal-body">
-				<input id="loquesea" type="text" value="texto" />
-					<table>
-					  <thead>
-					   <tr>
-							<th>Código</th>
-							<th>Lote</th>
-							<th>Fecha Vence</th>
-						</tr>
-					  </thead>
-					  <tbody>						
-						<tr>
-						  <td></td>
-							<td></td>
-							<td></td>	
-						</tr>   
-					  </tbody>
-					</table>
-				
-				</div>
-			 </div>
-			</div>
-		  </div>
-		 <!-- /modals -->
-		 
-		  
-		
+        </div>	
 	</div>		
 @stop
 @section('postscripts')

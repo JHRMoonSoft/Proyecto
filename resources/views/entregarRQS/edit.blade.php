@@ -123,7 +123,7 @@
 											<th>Unidad</th>									
 											<th>Cant. Autorizada</th>
 											<th>Cant. Entregada</th>
-											<th>Lote</th>
+											<!--<th>Lote</th>-->
 											<th>Cant. Pendiente</th>
 											<th>Cant. Disponible</th>
 											
@@ -133,7 +133,7 @@
 										</tr>
 									</thead>
 									<tbody>
-										@foreach($requisicion->productos as $prod)
+										@foreach($productos as $prod)
 											<tr>
 												@if($loop->last)
 													<input type="hidden" class="form-control" id="productos" name="productos" value="{{$loop->index + 1}}"/>
@@ -173,17 +173,12 @@
 												</td>
 												<td class="nopadding" >
 													<div class="form-group">
-														<input type="text" class="form-control " id="lote{{$loop->index + 1}}" name="lote{{$loop->index + 1}}"  value="" onchange="calculo_diferencia_entrega(this.value, {{$loop->index + 1}});" />
-													</div>
-												</td>
-												<td class="nopadding" >
-													<div class="form-group">
 														<input type="text" class="form-control" id="cant_dif_prd{{$loop->index + 1}}" name="cant_dif_prd{{$loop->index + 1}}" value="{{$prod->cant_dif_prd}}" readonly />
 													</div>
 												</td>
 												<td class="nopadding" >
 													<div class="form-group">
-														<input type="text" class="form-control" id="cant_dif_prd{{$loop->index + 1}}" name="cant_dif_prd{{$loop->index + 1}}" value="{{$prod->cant_dif_prd}}" disabled style="background:rgba(247, 247, 247, 0.57);" />
+														<input type="text" class="form-control" id="disponible{{$loop->index + 1}}" name="disponible{{$loop->index + 1}}" value="{{$prod->almacen->cnt_prd}}" disabled style="background:rgba(247, 247, 247, 0.57);" />
 													</div>
 												</td>
 												
@@ -215,13 +210,6 @@
 
 @section('postscripts')
      <script>
-	 
-	 
-	 
-	 
-	 
-	 
-	 
 	 
 		function validate(valor){
 			$('#boton').val(valor);

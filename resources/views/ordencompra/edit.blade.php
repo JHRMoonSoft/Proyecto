@@ -10,9 +10,12 @@
 			<div class="clearfix"></div>
 	    </div>
 		<div class="x_content">
-			<form class="form-horizontal" role="form" method="POST" action="{{ url('/ordencompra/') }}">
+			<form class="form-horizontal" role="form" method="POST" action="{{ url('/ordencompra/' . $ordencompras->id) }}">
 			{{ csrf_field() }}
 			<input type="hidden" id="_method" name="_method" value="PUT" />
+			<input type="hidden" class="form-control" id="cantproductos" name="cantproductos" value="{{count($ordencompras->productos)}}"/>
+			<input type="hidden" class="form-control" id="cantproductosinicial" name="cantproductosinicial" value="{{count($ordencompras->productos)}}"/>
+			<input type="hidden" class="form-control" id="productos_eliminar" name="productos_eliminar" value=""/>
 			<ul class="list-unstyled timeline">
 				<li>
 					<div class="block ">
@@ -236,7 +239,6 @@
 									<table class="table table-bordered table-hover" id="education_fields">
 										<thead>
 											<tr >
-												<th>#</th>
 												<th>Producto</th>
 												<th>Unidad</th>
 												<th>Cantidad</th>
@@ -249,23 +251,21 @@
 											</tr>
 										</thead>
 										@foreach($ordencompras->productos as $prodsolcmp)
-											<tbody>
+											@if($loop->first)
+												<tbody class="form-group tr">
+											@else
+												<tbody id="removeproducto{{$loop->index + 1}}" class="form-group tr removeproducto{{$loop->index + 1}}">
+											@endif
 												<tr>
-													$prodsolcmp
-													<td>
-														@if($loop->last)
-															<input type="hidden" id="cantproductos" name="cantproductos" value="{{$loop->index + 1}}"/>
-														@endif
-														{{$loop->index + 1}}
-														<input type="hidden" id="prodsolcompra{{$loop->index + 1}}" name="prodsolcompra{{$loop->index + 1}}" value="0"/>
-													</td>								
 													<td class="nopadding" >
+														<input type="hidden" id="prodsolcompra{{$loop->index + 1}}" name="prodsolcompra{{$loop->index + 1}}" value="{{$prodsolcmp->prod_sol_comp_id}}"/>
+														<input type="hidden" id="ordcomproductoid{{$loop->index + 1}}" name="ordcomproductoid{{$loop->index + 1}}" value="{{$prodsolcmp->id}}" required />
 														<div class="form-group input-sm">
 															<select id="producto{{$loop->index + 1}}" class="form-control" name="producto{{$loop->index + 1}}" onchange="cambio_productos(1);" required>
 																<option value="" selected>Seleccionar</option>
 																@if(!$productos->isEmpty())
 																	@foreach($productos as $producto)
-																		<option value="{{ $producto->id}}">{{ $producto->des_prd}} </option>
+																		<option value="{{ $producto->id}}" @if($prodsolcmp->prod_id == $producto->id) selected @endif>{{ $producto->des_prd}} </option>
 																	@endforeach
 																@endif
 															</select>
@@ -278,8 +278,11 @@
 													</td>
 													<td class="nopadding" >
 														<div class="form-group input-sm">
-															<select class="form-control" id="unidad1" name="unidad1" required>
+															<select class="form-control" id="unidad{{$loop->index + 1}}" name="unidad{{$loop->index + 1}}" required>
 																<option value="" selected>Seleccionar</option>
+																@foreach($prodsolcmp->producto->unidades as $unidad)
+																	<option value="{{ $unidad->id}}" @if($unidad->id == $prodsolcmp->unidad_solicitada->id) selected @endif>{{ $unidad->des_und}} </option>
+																@endforeach
 															</select>
 															@if ($errors->has('unidad' . ($loop->index + 1)))
 																<span class="help-block">
@@ -290,36 +293,42 @@
 													</td>
 													<td class="nopadding" >
 														<div class="form-group">
-															<input type="text" class="form-control" id="cantidad{{$loop->index + 1}}" name="cantidad{{$loop->index + 1}}" placeholder="" onchange="calculo_iva_valor(1);" required />
+															<input type="text" class="form-control" id="cantidad{{$loop->index + 1}}" name="cantidad{{$loop->index + 1}}" value="{{$prodsolcmp->cant_prd}}" placeholder="" onchange="calculo_iva_valor(1);" required />
 														</div>
 													</td>
 													<td class="nopadding" >
 														<div class="form-group">
-															<input type="text" class="form-control" id="ivaunitario{{$loop->index + 1}}" name="ivaunitario{{$loop->index + 1}}" placeholder="" onchange="calculo_iva_valor(1);" />
+															<input type="text" class="form-control" id="ivaunitario{{$loop->index + 1}}" name="ivaunitario{{$loop->index + 1}}" placeholder="" value="{{$prodsolcmp->iva_unt}}" onchange="calculo_iva_valor(1);" />
 														</div>
 													</td>
 													<td class="nopadding" >
 														<div class="form-group">
-															<input type="text" class="form-control" id="valorunitario{{$loop->index + 1}}" name="valorunitario{{$loop->index + 1}}"  placeholder="" onchange="calculo_iva_valor(1);" required />
+															<input type="text" class="form-control" id="valorunitario{{$loop->index + 1}}" name="valorunitario{{$loop->index + 1}}" value="{{$prodsolcmp->val_unt}}" placeholder="" onchange="calculo_iva_valor(1);" required />
 														</div>
 													</td>
 													<td class="nopadding" >
 														<div class="form-group">
-															<input type="text" class="form-control" id="valortotal{{$loop->index + 1}}" name="valortotal{{$loop->index + 1}}" placeholder="" readonly required />
+															<input type="text" class="form-control" id="valortotal{{$loop->index + 1}}" name="valortotal{{$loop->index + 1}}" value="{{$prodsolcmp->val_tol}}" placeholder="" readonly required />
 														</div>
 													</td>
 													
 													<td class="nopadding" >
 														<div class="form-group">
-															<input class="form-control input-sm" name="vence1" id="vence{{$loop->index + 1}}" type="date"  />
+															<input class="form-control input-sm" name="vence{{$loop->index + 1}}" id="vence{{$loop->index + 1}}" type="date" value="{{$prodsolcmp->fec_ven}}" />
 															<span class="input-group-btn"></span>
 														</div>
 													</td>
 														
 													<td class="nopadding">
-														<div class="input-group-btn">
-															<button class="btn btn-sm btn-primary glyphicon glyphicon-plus btn-xs" type="button"  onclick="education_fields({{$productos}});"> <span  aria-hidden="true"></span> </button>
-														</div>
+														@if($loop->first)
+															<div class="input-group-btn">
+																<button class="btn btn-sm btn-primary glyphicon glyphicon-plus btn-xs" type="button"  onclick="education_fields({{$productos}});"> <span  aria-hidden="true"></span></button>
+															</div>
+														@else
+															<div class="input-group-btn">
+																<button id="boton_remover{{$loop->index + 1}}" class="btn btn-sm btn-danger glyphicon glyphicon-minus btn-xs" type="button"  onclick="remove_education_fields({{$loop->index + 1}});"> <span  aria-hidden="true"></span></button>
+															</div>
+														@endif
 													</td>
 												</tr>
 											</tbody>
@@ -335,7 +344,7 @@
 									<div class="col-xs-9 "><br />
 										<label for="obv_ocp">Obeservaciones</label><br/>
 										<div class="col-md-9 col-sm-9 col-xs-12">
-										  <textarea id="obv_ocp"  name="obv_ocp" class="form-control col-md-7 col-xs-12"></textarea>
+										  <textarea id="obv_ocp"  name="obv_ocp" class="form-control col-md-7 col-xs-12">{{$ordencompras->obv_ocp}}</textarea>
 										@if ($errors->has('obv_ocp'))
 											<span class="help-block">
 												<strong>{{ $errors->first('obv_ocp') }}</strong>
@@ -347,7 +356,7 @@
 										<div class="form-group">
 											<label class="control-label col-md-4 col-sm-4 col-xs-12" align="right" for="subt_ocp">SUBTOTAL </label>
 											<div class="col-md-8 col-sm-8 col-xs-12  right">
-											  <input type="text" id="subt_ocp" name="subt_ocp"  required="required" class="form-control col-md-7 col-xs-12 "  readonly  style="background:rgba(247, 247, 247, 0.57);">
+											  <input type="text" id="subt_ocp" name="subt_ocp" value="{{$ordencompras->subt_ocp}}" required="required" class="form-control col-md-7 col-xs-12 "  readonly  style="background:rgba(247, 247, 247, 0.57);"/>
 												@if ($errors->has('subt_ocp'))
 													<span class="help-block">
 														<strong>{{ $errors->first('subt_ocp') }}</strong>
@@ -359,7 +368,7 @@
 										<div class="form-group">
 											<label class="control-label col-md-4 col-sm-4 col-xs-12 " align="right" for="iva_ocp"><br/>IVA</label>
 											<div class="col-md-8 col-sm-8 col-xs-12  right">
-											  <input type="text" id="iva_ocp" name="iva_ocp"  required="required" class="form-control col-md-7 col-xs-12"  readonly  style="background:rgba(247, 247, 247, 0.57);">
+											  <input type="text" id="iva_ocp" name="iva_ocp" value="{{$ordencompras->iva_ocp}}" required="required" class="form-control col-md-7 col-xs-12"  readonly  style="background:rgba(247, 247, 247, 0.57);" />
 												@if ($errors->has('iva_ocp'))
 													<span class="help-block">
 														<strong>{{ $errors->first('iva_ocp') }}</strong>
@@ -371,8 +380,8 @@
 										<div class="form-group">
 											<label class="control-label col-md-4 col-sm-4 col-xs-12" align="right" for="tol_ocp"><br/>TOTAL</label>
 											<div class="col-md-8 col-sm-8 col-xs-12  right">
-											  <input type="text" id="tol_ocp" name="tol_ocp"   required="required" class="form-control col-md-7 col-xs-12"  readonly  style="background:rgba(247, 247, 247, 0.57);">
-											  @if ($errors->has('tol_ocp'))
+											  <input type="text" id="tol_ocp" name="tol_ocp" value="{{$ordencompras->tol_ocp}}" required="required" class="form-control col-md-7 col-xs-12"  readonly  style="background:rgba(247, 247, 247, 0.57);" />
+												@if ($errors->has('tol_ocp'))
 													<span class="help-block">
 														<strong>{{ $errors->first('tol_ocp') }}</strong>
 													</span>
@@ -434,7 +443,7 @@
 	</div>		
 @stop
 	<script>
-		var producto = 1;
+		var producto = {{count($ordencompras->productos)}};
 		var primer_producto_cargado = false;
 		function education_fields(productos) {
 			producto++;
@@ -442,12 +451,11 @@
 			var divtest = document.createElement("tbody");
 			divtest.setAttribute("class", "form-group tr removeproducto"+producto);
 			var rdiv = 'removeproducto'+producto;
-			var text = '<tr><td>'+
-				(producto)+
-				'<input type="hidden" id="prodsolcompra'+(producto)+'" name="prodsolcompra'+(producto)+'" value="0"/>'+
-				'</td>'+
+			var text = '<tr>'+
 				//Productos
 				'<td class="nopadding" >'+
+				'<input type="hidden" id="prodsolcompra'+(producto)+'" name="prodsolcompra'+(producto)+'" value="0"/>'+
+				'<input type="hidden" id="ordcomproductoid'+(producto)+'" name="ordcomproductoid'+(producto)+'" value="0" />'+
 				'<select class="form-control input-sm" id="producto'+(producto)+'" name="producto'+(producto)+'" onchange="cambio_productos('+(producto)+');">'+
 				'<option value="" selected>Seleccionar</option>';
 				$.each(productos, function(index, element) {
@@ -490,9 +498,37 @@
 			$("#cantproductos").val(producto);  
 		}
 		function remove_education_fields(rid) {
-			$('.removeproducto'+rid).remove()
+			var val = document.getElementById('ordcomproductoid'+rid);
+			if(val)
+				document.getElementById('productos_eliminar').value += val.value + ",";
+			//alert(document.getElementById('productos_eliminar').value);
+			$('.removeproducto'+rid).remove();
+			var i = rid;
+			while(i < producto){
+				$('#ordcomproductoid'+(i+1)).attr('name','ordcomproductoid'+i);
+				$('#producto'+(i+1)).attr('name','producto'+i);
+				$('#detalle'+(i+1)).attr('name','detalle'+i);
+				$('#unidad'+(i+1)).attr('name','unidad'+i);
+				$('#cantidad'+(i+1)).attr('name','cantidad'+i);
+				$('#removeproducto'+(i+1)).attr('class','form-group tr removeproducto'+i);
+				
+				$('#producto'+(i+1)).attr('onchange','cambio_productos('+i+');');
+				$('#boton_remover'+(i+1)).attr('onclick','remove_education_fields('+i+');');
+				
+				$('#ordcomproductoid'+(i+1)).attr('id','ordcomproductoid'+i);
+				$('#producto'+(i+1)).attr('id','producto'+i);
+				$('#detalle'+(i+1)).attr('id','detalle'+i);
+				$('#unidad'+(i+1)).attr('id','unidad'+i);
+				$('#cantidad'+(i+1)).attr('id','cantidad'+i);
+				$('#boton_remover'+(i+1)).attr('id','boton_remover'+i);
+				$('#removeproducto'+(i+1)).attr('id','removeproducto'+i);
+				
+				i++;
+			}
+			
 			producto--;
 			$("#cantproductos").val(producto);  
+			calculo_iva_valor(1);
 		}
 	   
 	// proveedor

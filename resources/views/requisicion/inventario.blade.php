@@ -77,6 +77,7 @@
 											<th class="text-center">Producto</th>
 											<th class="text-center">Unidad</th>									
 											<th class="text-center">Cantidad <br> Entregada</th>
+											<th class="text-center">Unidad <br/>Inventario</th>	
 											<th class="text-center">Cantidad <br/>Inventario</th>												
 											<th class="text-center">Cantidad <br>Disponible </th>											
 											
@@ -107,10 +108,16 @@
 													@if($prod->producto)
 														{{$prod->producto->des_prd}}
 													@endif
+													<input type="hidden" class="form-control" id="producto1" name="producto1" onchange="cambio_productos(1);"/>
 												</td>
-												<td class="nopadding">
-													@if($prod->producto)
-														{{$prod->unidad_solicitada->des_und}}
+												<td class="nopadding" >
+													<select class="form-control" id="unidad1" name="unidad1" required>
+														<option value="" selected>Seleccionar</option>
+													</select>
+													@if ($errors->has('unidad1'))
+														<span class="help-block">
+															<strong>{{ $errors->first('unidad1') }}</strong>
+														</span>
 													@endif
 												</td>											
 												<td class="nopadding" >
@@ -118,7 +125,16 @@
 														<input type="text" class="form-control" id="cant_entr_prd{{$loop->index + 1}}" name="cant_entr_prd{{$loop->index + 1}}" value="{{$prod->cant_entr_prd}}" disabled style="background:rgba(247, 247, 247, 0.57);" />
 													</div>
 												</td>
-																						
+												<td class="nopadding" >
+													<select class="form-control" id="unidad" name="unidad" required>
+														<option value="" selected>Seleccionar</option>
+													</select>
+													@if ($errors->has('unidad'))
+														<span class="help-block">
+															<strong>{{ $errors->first('unidad') }}</strong>
+														</span>
+													@endif
+												</td>																						
 												<td class="nopadding" >
 													<div class="form-group">
 														<input type="text" class="form-control " id="cant_inv_prd{{$loop->index + 1}}" name="cant_inv_prd{{$loop->index + 1}}"  value="{{$prod->cant_inv_prd}}" onchange="calculo_diferencia_entrega(this.value, {{$loop->index + 1}});" />
@@ -209,6 +225,43 @@
 			});
 			
 		}
+		 function cambio_productos(rid) {
+		   var opt = $('#producto'+rid).val();
+		   $.get("{{ url('almacen/cargarunidadesproducto')}}", 
+				{
+					option: opt,
+					
+				}, 
+			function(data) {
+					var model = $('#unidad'+rid);
+					
+					model.empty();
+					model.append("<option value='' selected>Seleccionar</option>");
+						$.each(data, function(index, element) {
+							model.append("<option value='"+ element.id +"'>" + element.des_und + "</option>");
+					});
+			});
+	   }
+		
+		$.get("{{ url('solicitudcompra/cargardisponibleproducto')}}", 
+			{
+				option: $('#producto1').val(),
+				
+			}, 
+			function(data) {
+				if(data){
+					if(data.cnt_prd == null){
+						document.getElementById("disponible1").value = '0 ' + data.und;
+					}
+					else{
+						document.getElementById("disponible1").value = data.cnt_prd + ' ' + data.und;
+					}
+					
+				}
+				
+				//model.setAttribute('value', );
+			});
+			window.primer_producto_cargado = true;
 		
 	</script>  
 	

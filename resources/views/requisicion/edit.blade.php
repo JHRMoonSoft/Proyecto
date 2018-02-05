@@ -249,15 +249,19 @@
 									@if(!$requisicion->proveedoresrequisicion->isEmpty())
 										@foreach($requisicion->proveedoresrequisicion as $req_prov)
 											<tbody>
-												@if($loop->last)
-													<input type="hidden" class="form-control" id="cantproveedores" name="cantproveedores" value="{{$loop->index + 1}}"/>
-													<script>
-														var proveedor = {{$loop->index + 1}};
-													</script>
-													<input type="hidden" class="form-control" id="cantproveedoresinicial" name="cantproveedoresinicial" value="{{$loop->index + 1}}"/>
-												@endif
+												@if($loop->last) 
+ 													<input type="hidden" class="form-control" id="cantproveedores" name="cantproveedores" value="{{$loop->index + 1}}"/> 
+ 													<script> 
+ 														var proveedor = {{$loop->index + 1}}; 
+													</script> 
+ 													<input type="hidden" class="form-control" id="cantproveedoresinicial" name="cantproveedoresinicial" value="{{$loop->index + 1}}"/> 
+												@endif 
+
 												<tr>
-													<td>
+													<td> 
+														{{ $loop->index + 1 }} 
+													</td> 
+
 														
 														<select id="proveedor{{ $loop->index + 1 }}" class="form-control" name="proveedor{{ $loop->index + 1 }}" onchange="cambio_proveedores({{ $loop->index + 1 }});">
 															<option value="">Seleccionar</option>
@@ -312,22 +316,23 @@
 												<td>
 												1
 												</td>
-												<td>
-													<select id="proveedor1" class="form-control" name="proveedor1" onchange="cambio_proveedores(1);">
-														<option value="" selected>Seleccionar</option>
-														@if(!$proveedores->isEmpty())
-															@foreach($proveedores as $proveedor)
-																<option value="{{ $proveedor->id}}">{{ $proveedor->raz_soc}} </option>
-															@endforeach
-														@endif
-														<option value="0">Otro</option>
-													</select>
-													@if ($errors->has('proveedor1'))
-														<span class="help-block">
-															<strong>{{ $errors->first('proveedor1') }}</strong>
-														</span>
-													@endif
-												</td>
+												<td> 
+ 													<select id="proveedor1" class="form-control" name="proveedor1" onchange="cambio_proveedores(1);"> 
+ 														<option value="" selected>Seleccionar</option> 
+ 														@if(!$proveedores->isEmpty()) 
+ 															@foreach($proveedores as $proveedor) 
+ 																<option value="{{ $proveedor->id}}">{{ $proveedor->raz_soc}} </option> 
+ 															@endforeach 
+ 														@endif 
+ 														<option value="0">Otro</option> 
+ 													</select> 
+ 													@if ($errors->has('proveedor1')) 
+ 														<span class="help-block"> 
+ 															<strong>{{ $errors->first('proveedor1') }}</strong> 
+ 														</span> 
+ 													@endif 
+ 												</td> 
+
 												<td class="nopadding" >
 													<div class="form-group">
 														<input type="text" class="form-control" id="nombre1" name="nombre1" value="">
@@ -419,44 +424,48 @@
 			objTo.appendChild(divtest)
 			$("#cantproductos").val(producto);  
 		}
-		function mas_proveedor(proveedores) {
-			proveedor++;
-			var objTo = document.getElementById('education_fields2')
-			var divtest = document.createElement("tbody");
-			divtest.setAttribute("class", "form-group tr removeproveedor"+proveedor);
-			var rdiv = 'removeproveedor'+proveedor;
-			var text = '<tr><td class="nopadding" >'+
-				'<select class="form-control" id="proveedor'+(proveedor)+'" name="proveedor'+(proveedor)+'" onchange="cambio_proveedores('+(proveedor)+');">'+
-				'<option value="" selected>Seleccionar</option>';
-				$.each(proveedores, function(index, element) {
-						text = text + '<option value="'+ element.id +'">' + element.raz_soc + '</option>';
-					});
-				text = text +
-				'<option value="0">Otro</option>' +
-				'</select></td>'+
-				//Nombre
-				'<td class="nopadding" >'+
-					'<div class="form-group"><input type="text" class="form-control" id="nombre'+(proveedor)+'" name="nombre'+(proveedor)+'" value=""></div>'+
-				'</td>'+
-				//Teléfono
-				'<td class="nopadding" >'+
-					'<div class="form-group"><input type="text" class="form-control" id="telefono'+(proveedor)+'" name="telefono'+(proveedor)+'" value=""></div>'+
-				'</td>'+
-				//Botones
-				 '<td class="nopadding" >'+
-					'<div class="input-group-btn"><button class="btn btn-sm btn-danger glyphicon glyphicon-minus btn-xs" type="button" onclick="remove_proveedor('+ proveedor +');">'+
-						'<span aria-hidden="true"></span>'+
-					'</button></div>'+
-				'</td></tr>';
-			divtest.innerHTML = text;
-			objTo.appendChild(divtest);
-			$("#cantproveedores").val(proveedor);  
-		}
+		
+		function mas_proveedor(proveedores) { 
+ 			proveedor++; 
+ 			var objTo = document.getElementById('education_fields2') 
+ 			var divtest = document.createElement("tbody"); 
+ 			divtest.setAttribute("class", "form-group tr removeproveedor"+proveedor); 
+ 			var rdiv = 'removeproveedor'+proveedor; 
+ 			var text = '<tr><td>' + (proveedor) +'</td>'+ 
+ 				//Productos 
+ 				'<td class="nopadding" >'+ 
+ 				'<select class="form-control" id="proveedor'+(proveedor)+'" name="proveedor'+(proveedor)+'" onchange="cambio_proveedores('+(proveedor)+');">'+ 
+				'<option value="" selected>Seleccionar</option>'; 
+ 				$.each(proveedores, function(index, element) { 
+ 						text = text + '<option value="'+ element.id +'">' + element.raz_soc + '</option>'; 
+ 					}); 
+ 				text = text + 
+ 				'<option value="0">Otro</option>' + 
+ 				'</select></td>'+ 
+ 				//Nombre 
+ 				'<td class="nopadding" >'+ 
+ 					'<div class="form-group"><input type="text" class="form-control" id="nombre'+(proveedor)+'" name="nombre'+(proveedor)+'" value=""></div>'+ 
+ 				'</td>'+ 
+ 				//Teléfono 
+ 				'<td class="nopadding" >'+ 
+ 					'<div class="form-group"><input type="text" class="form-control" id="telefono'+(proveedor)+'" name="telefono'+(proveedor)+'" value=""></div>'+ 
+ 				'</td>'+ 
+ 				//Botones 
+ 				 '<td class="nopadding" >'+ 
+ 					'<div class="input-group-btn"><button class="btn btn-sm btn-danger glyphicon glyphicon-minus btn-xs" type="button" onclick="remove_proveedor('+ proveedor +');">'+ 
+ 						'<span aria-hidden="true"></span>'+ 
+ 					'</button></div>'+ 
+ 				'</td></tr>'; 
+ 			divtest.innerHTML = text; 
+ 			objTo.appendChild(divtest); 
+ 			$("#cantproveedores").val(proveedor);   
+ 		} 
+
 		function remove_education_fields(rid) {
 			var val = document.getElementById('rqsproductoid'+rid);
 			if(val)
 				document.getElementById('productos_eliminar').value += val.value + ",";
-			alert(document.getElementById('productos_eliminar').value);
+			//alert(document.getElementById('productos_eliminar').value);
 			$('.removeproducto'+rid).remove();
 			var i = rid;
 			while(i < producto){
@@ -521,7 +530,7 @@
 					option: $('#proveedor'+rid).val(),
 				}, 
 				function(data) {
-					alert(data);
+					
 					if(!jQuery.isEmptyObject(data)) {
 						$('#nombre'+rid).val(data.raz_soc);
 						$('#nombre'+rid).attr('readonly', true);
