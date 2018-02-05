@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Producto;
 use App\Categoria;
 use App\Unidad;
+use App\Almacen;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -58,6 +59,12 @@ class ProductoController extends Controller
 				$producto->unidades()->sync($post_data['unidades']);
 				$producto->save();
 			}
+			$a = array();
+			$a['cnt_prd'] = 0;
+			$a['producto_id'] = $producto->id;
+			
+			Almacen::create($a);
+			
 			
 		}
 		return redirect()->intended('/producto');

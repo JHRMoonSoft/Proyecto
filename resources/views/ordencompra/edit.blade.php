@@ -473,7 +473,7 @@
 				'</td>'+	
 				//IVA
 				'<td class="nopadding" >'+
-					'<div class="form-group"><input type="text" class="form-control input-sm" id="ivaunitario'+(producto)+'" name="ivaunitario'+(producto)+'" onchange="calculo_iva_valor('+(producto)+');" required /></div>'+
+					'<div class="form-group"><input type="text" value="19" class="form-control input-sm" id="ivaunitario'+(producto)+'" name="ivaunitario'+(producto)+'" onchange="calculo_iva_valor('+(producto)+');" required /></div>'+
 				'</td>'+
 				//Valor Unitario
 				'<td class="nopadding" >'+
@@ -644,7 +644,7 @@
 							'</td>'+	
 							//IVA
 							'<td class="nopadding" >'+
-								'<div class="form-group"><input type="text" class="form-control" id="ivaunitario'+(producto)+'" name="ivaunitario'+(producto)+'" onchange="calculo_iva_valor('+(producto)+');" required /></div>'+
+								'<div class="form-group"><input type="text" class="form-control" value="19" id="ivaunitario'+(producto)+'" name="ivaunitario'+(producto)+'" onchange="calculo_iva_valor('+(producto)+');" required /></div>'+
 							'</td>'+
 							//Valor Unitario
 							'<td class="nopadding" >'+

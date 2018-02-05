@@ -11,6 +11,8 @@ use App\Configuracion;
 use App\OrdenCompra;
 use App\Categoria;
 use App\ProductosSolicitudCompra;
+use App\Almacen;
+use App\RegistroAlmacen;
 use Validator;
 use Illuminate\Http\Request;
 use \Carbon\Carbon;
@@ -84,28 +86,33 @@ class FacturaController extends Controller
 			$productos_vacios = true;
 			while($i <= $numprods){
 				if ($post_data['ordencompra'.$i] == 0) {
-					$producto_i = array();
-					$producto_i['prod_id'] = $post_data['producto'.$i];					
-					$producto_i['unidad_emp_id'] = $post_data['unidad'.$i];	
-					$producto_i['cant_prd'] = $post_data['cantidad'.$i];
-					$producto_i['iva_unt'] = $post_data['ivaunitario'.$i];
-					$producto_i['val_unt'] = $post_data['valorunitario'.$i];
-					$producto_i['val_tol'] = $post_data['valortotal'.$i];
+					$producto_ii = array();
+					$producto_ii['prod_id'] = $post_data['producto'.$i];					
+					$producto_ii['unidad_emp_id'] = $post_data['unidad'.$i];	
+					$producto_ii['cant_prd'] = $post_data['cantidad'.$i];
+					$producto_ii['iva_unt'] = $post_data['ivaunitario'.$i];
+					$producto_ii['val_unt'] = $post_data['valorunitario'.$i];
+					$producto_ii['val_tol'] = $post_data['valortotal'.$i];
 					
-					$producto_i['unidad_emp_fact_id'] = $post_data['unidad'.$i];	
-					$producto_i['cant_prd_fact'] = $post_data['cantidad'.$i];
-					$producto_i['iva_unt_fact'] = $post_data['ivaunitario'.$i];
-					$producto_i['val_unt_fact'] = $post_data['valorunitario'.$i];
-					$producto_i['val_tol_fact'] = $post_data['valortotal'.$i];
+					$producto_ii['unidad_emp_fact_id'] = $post_data['unidad'.$i];	
+					$producto_ii['cant_prd_fact'] = $post_data['cantidad'.$i];
+					$producto_ii['iva_unt_fact'] = $post_data['ivaunitario'.$i];
+					$producto_ii['val_unt_fact'] = $post_data['valorunitario'.$i];
+					$producto_ii['val_tol_fact'] = $post_data['valortotal'.$i];
 					
-					$producto_i['fact_id'] = $factura->id;
+									
 					
-					//$producto_i['prod_sol_comp_id'] = $post_data['ordencompra'.$i] == 0 ? null : $post_data['ordencompra'.$i];
-					//$producto_i['ord_comp_id'] = 1;
+					$producto_ii['fact_id'] = $factura->id;
 					
-					if(!$this->IsNullOrEmptyString($producto_i['prod_id']) and !$this->IsNullOrEmptyString($producto_i['cant_prd']) and !$this->IsNullOrEmptyString($producto_i['unidad_emp_id'])){
-						ProductosOrdenCompra::create($producto_i);
+					//$producto_ii['prod_sol_comp_id'] = $post_data['ordencompra'.$i] == 0 ? null : $post_data['ordencompra'.$i];
+					//$producto_ii['ord_comp_id'] = 1;
+					
+					if(!$this->IsNullOrEmptyString($producto_ii['prod_id']) and !$this->IsNullOrEmptyString($producto_ii['cant_prd']) and !$this->IsNullOrEmptyString($producto_ii['unidad_emp_id'])){
+						$producto_i = ProductosOrdenCompra::create($producto_ii);
 						$productos_vacios = false;
+					}
+					else{
+						$producto_i = null;
 					}
 				}
 				else{
@@ -122,11 +129,25 @@ class FacturaController extends Controller
 					$producto_i->save();
 					
 				}
+				if($producto_i != null){
+					$regalm_i['cnt_prd'] = $post_data['cantidad'.$i];
+					//$regalm_i['lot_prd'] = $post_data['lote'.$i];				
+					$regalm_i['obs_reg'] = $post_data['obv_fact'];								
+					$regalm_i['accion_id'] = 2;					
+					$producto = Producto::find($producto_i->producto->id);				
+					$producto->almacen['cnt_prd'] = $producto->almacen['cnt_prd'] + $regalm_i['cnt_prd'];
+					$regalm_i['almacen_id'] = $producto->almacen->id;
+					$regalm_i['saldo'] = $producto->almacen['cnt_prd'];
+					$regalm = RegistroAlmacen::create($regalm_i);
+					$producto->almacen->save();
+				}
 				$i = $i + 1;
+				
 				//return $producto_i;
 			}
 			if($productos_vacios === true){
 				$factura->delete();
+				//$producto->almacen->delete();
 				$validate->errors()->add('cantproductos', 'Debe existir al menos un producto válido asociado a esta factura.');
 				return redirect()->back()->withInput()->withErrors($validate);
 			}

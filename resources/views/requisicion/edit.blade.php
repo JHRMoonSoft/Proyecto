@@ -262,7 +262,7 @@
 														{{ $loop->index + 1 }} 
 													</td> 
 
-														
+													<td>	
 														<select id="proveedor{{ $loop->index + 1 }}" class="form-control" name="proveedor{{ $loop->index + 1 }}" onchange="cambio_proveedores({{ $loop->index + 1 }});">
 															<option value="">Seleccionar</option>
 															<option value="0" selected>Otro</option>

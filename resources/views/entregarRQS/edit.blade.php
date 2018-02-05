@@ -178,7 +178,7 @@
 												</td>
 												<td class="nopadding" >
 													<div class="form-group">
-														<input type="text" class="form-control" id="disponible{{$loop->index + 1}}" name="disponible{{$loop->index + 1}}" value="{{$prod->almacen->cnt_prd}}" disabled style="background:rgba(247, 247, 247, 0.57);" />
+														<input type="text" class="form-control" id="disponible{{$loop->index + 1}}" name="disponible{{$loop->index + 1}}" value=" {{$prod->almacen->cnt_prd}} {{$prod->producto->unidad->des_und}}" disabled style="background:rgba(247, 247, 247, 0.57);" />
 													</div>
 												</td>
 												

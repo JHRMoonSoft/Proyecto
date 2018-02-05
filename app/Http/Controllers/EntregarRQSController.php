@@ -81,7 +81,7 @@ class EntregarRQSController extends Controller
 		$requisicion = Requisicion::find($id);
         $productos = $requisicion->productos()->get();
 		foreach($productos as $p){
-			$p->almacen = $this->getAlmacenProducto($p->id);
+			$p->almacen = $this->getAlmacenProducto($p->prod_id);
 		}
 		$acciones = AccionesRequisicion::where('est_ant_rqs_id','=',$requisicion->estadorequisicion->id)
 										->whereNotIn('est_rqs_id',array(7))
@@ -146,8 +146,11 @@ class EntregarRQSController extends Controller
 				$regalm_i['saldo'] = $producto->almacen['cnt_prd'];									
 				
 				$i = $i + 1;
-				RegistroAlmacen::create($regalm_i);
-				$producto->almacen->save();
+				if($regalm_i['cnt_prd']<>0){
+					RegistroAlmacen::create($regalm_i);
+					$producto->almacen->save();
+				}
+				
 						
 			}
 			

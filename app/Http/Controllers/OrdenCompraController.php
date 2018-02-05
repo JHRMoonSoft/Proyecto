@@ -254,7 +254,7 @@ class OrdenCompraController extends Controller
 					
 					$producto_i['fec_ven'] = $post_data['vence'.$i] != null ? Carbon::parse($post_data['vence'.$i]) : null;
 					$producto_i['prod_sol_comp_id'] = $post_data['prodsolcompra'.$i] == 0 ? null : $post_data['prodsolcompra'.$i];
-					$producto_i['ord_comp_id'] = $ordencompra->id;
+					$producto_i['ord_comp_id'] = $ordencompras->id;
 					if(!$this->IsNullOrEmptyString($producto_i['prod_id']) and !$this->IsNullOrEmptyString($producto_i['cant_prd']) and !$this->IsNullOrEmptyString($producto_i['unidad_emp_id'])){
 						ProductosOrdenCompra::create($producto_i);
 						$productos_vacios = false;
@@ -279,7 +279,7 @@ class OrdenCompraController extends Controller
 			$ordencompras->empre_id = $post_data['empre_id'];
 			$ordencompras->prov_id = $post_data['prov_id'];
 			$ordencompras->save();
-			return view('ordencompra.show')->with('ordencompras', $ordencompras);
+			return redirect()->intended('/ordencompra');;
         }
     }
 
