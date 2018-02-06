@@ -45,7 +45,7 @@ class UsersTableSeeder extends Seeder
 			'usuario'=> 'admin',
 			'crg_usr' => 1,
 			'tip_dep' => 1,
-			'dep_usr' => 1,
+			'dep_usr' => 16,
 			'crd_usr' => 'Sistemas',
 			'tel_fij' => 'No tiene',
 			'tel_cel' => 'No tiene',

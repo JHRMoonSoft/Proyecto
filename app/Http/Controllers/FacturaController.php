@@ -146,8 +146,11 @@ class FacturaController extends Controller
 				//return $producto_i;
 			}
 			if($productos_vacios === true){
+				
 				$factura->delete();
-				//$producto->almacen->delete();
+				$producto->almacen['cnt_prd'] = $producto->almacen['cnt_prd'] - $regalm_i['cnt_prd'];
+				$producto->almacen->save();
+				$regalm->delete();
 				$validate->errors()->add('cantproductos', 'Debe existir al menos un producto válido asociado a esta factura.');
 				return redirect()->back()->withInput()->withErrors($validate);
 			}
@@ -263,23 +266,54 @@ class FacturaController extends Controller
 	
 	public function cargarproveedorocp(Request $request)
     {
-		$ocp = OrdenCompra::where('prov_id', '=', $request['option'])->get();
+		$ocp = OrdenCompra::where('prov_id', '=', $request['option'])
+							->has('productos')
+							->whereHas('productos', function($q){
+								$q->whereNull('fact_id')
+								->OrWhere(function ($query) {
+									$query->whereColumn('cant_prd','>','cant_prd_fact')
+										->whereNotNull('fact_id');
+								});
+							})
+							->get();
+		//si el cant productos de fact es mayor o igual a cant productos de la orden 
 		return response()->json($ocp);
 	}
 	
 	public function cargarproductosocp(Request $request)
     {
-		if($request['option'] == 0){
+		$var = $request['option'];
+		if ($var == 0){
+
 			$prod_prvs = OrdenCompra::where('prov_id', '=', $request['prov'])
 							->get(['id']);
 			$productosocp = ProductosOrdenCompra::with('producto')
 					->with('unidad_solicitada_factura')
-					->whereIn('ord_comp_id',$prod_prvs)->get();
+					->where(function ($query) use($prod_prvs) {
+						$query->whereIn('ord_comp_id',$prod_prvs)
+						->whereNull('fact_id');
+					})
+					->orWhere(function ($query) use($prod_prvs) {
+						$query->whereIn('ord_comp_id',$prod_prvs)
+						->whereColumn('cant_prd','>','cant_prd_fact')
+						->whereNotNull('fact_id');
+					})
+					->get();
 		}
 		else{
+			
+			
 			$productosocp = ProductosOrdenCompra::with('producto')
 					->with('unidad_solicitada_factura')
-					->where('ord_comp_id',$request['option'])->get();
+					->where(function ($query) use($var) {
+						$query->where('ord_comp_id',$var)
+						->whereNull('fact_id');
+					})
+					->orWhere(function ($query) use($var) {
+						$query->where('ord_comp_id',$var)
+						->whereColumn('cant_prd','>','cant_prd_fact')
+						->whereNotNull('fact_id');
+					})->get();
 		}	
 		foreach($productosocp as $prod){
 			$prod->unidades = $prod->producto->unidades;

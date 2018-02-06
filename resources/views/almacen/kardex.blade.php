@@ -12,7 +12,7 @@
   <div class="x_panel">
 	    <div class="x_title"> 
 			<h2>Movimientos  en Almacén   </h2> &nbsp&nbsp&nbsp
-			
+			<!--
 			<div class=" col-md-2 col-sm-2 col-xs-6 right">
 					<a  data-toggle="modal" data-target=".descargar" class="btn btn-primary  left" role="button"><i class="glyphicon glyphicon-cloud-download" aria-hidden="true"></i>&nbsp&nbsp Descargar </a>
 			</div>
@@ -22,7 +22,7 @@
 					<span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
 				</div>
 			</div>
-			<!--
+			
 			<ul class="nav navbar-right panel_toolbox">
 			
 			  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>

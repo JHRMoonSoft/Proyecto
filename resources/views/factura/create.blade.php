@@ -122,7 +122,7 @@
 										<div class="col-sm-3 col-xs-6">
 											<div class="form-group">
 												<label for="comp_fact">Comprado por</label>
-												<input class="form-control input-sm" id="comp_fact" name="comp_fact" type="text">
+												<input class="form-control input-sm" id="comp_fact" required  name="comp_fact" type="text">
 												@if ($errors->has('comp_fact'))
 													<span class="help-block">
 														<strong>{{ $errors->first('comp_fact') }}</strong>
@@ -204,7 +204,7 @@
 								<div class="panel-heading text-center">
 									<span><strong><span class="glyphicon glyphicon-th-list"> </span> Productos</strong></span>
 									 <button type="button" class="btn btn-success btn-xs left "data-toggle="modal" data-target=".registro" >Registro OCP</button>
-									<a  href="" class="btn btn-default  btn-xs right" role="button"><i class="glyphicon glyphicon-refresh " aria-hidden="true"></i></a>
+									<a  href="/factura/create" class="btn btn-default  btn-xs right" role="button"><i class="glyphicon glyphicon-refresh " aria-hidden="true"></i></a>
 								</div>
 								<div class="table-responsive">
 									<table class="table table-bordered table-hover" id="education_fields">
@@ -510,7 +510,7 @@
 					$.each(data, function(index, element) {
 						if(producto == 1 && !primer_producto_cargado){
 							$('#producto1').val(element.producto.id);
-							$('#cantidad1').val(element.cant_sol_prd);
+							$('#cantidad1').val(element.cant_prd_fact);
 							$('#ordencompra1').val(element.id);
 							$('#ivaunitario1').val(element.iva_unt_fact);
 							$('#valorunitario1').val(element.val_unt_fact);

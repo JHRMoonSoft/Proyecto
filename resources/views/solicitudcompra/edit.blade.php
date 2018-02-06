@@ -125,7 +125,7 @@
 								<div class="panel panel-default">
 									<div class="panel-heading text-center">
 										<button type="button" class="btn btn-success btn-xs left "data-toggle="modal" data-target=".registro" >Registro RQS</button>
-										<a  href="" class="btn btn-default  btn-xs right" role="button"><i class="glyphicon glyphicon-refresh " aria-hidden="true"></i></a>
+										<a  href="{{ url('/solicitudcompra/'.$solicitudcompra->id.'/edit') }}" class="btn btn-default  btn-xs right" role="button"><i class="glyphicon glyphicon-refresh " aria-hidden="true"></i></a>
 										<span><strong><span class="glyphicon glyphicon-th-list"> </span> Productos</strong></span>
 										
 									</div>
@@ -292,7 +292,7 @@
 	<script>
 		//var producto = 1;
 		var rq = 1;
-		var primer_producto_cargado = false;
+		var primer_producto_cargado = true;
 		
 		function onlyUnique(value, index, self) { 
 			return self.indexOf(value) === index;

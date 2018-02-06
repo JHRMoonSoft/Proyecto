@@ -233,7 +233,7 @@
 								<div class="panel-heading text-center">
 									<span><strong><span class="glyphicon glyphicon-th-list"> </span> Productos</strong></span>
 									 <button type="button" class="btn btn-success btn-xs left "data-toggle="modal" data-target=".registro" >Registro SCP</button>
-									<a  href="" class="btn btn-default  btn-xs right" role="button"><i class="glyphicon glyphicon-refresh " aria-hidden="true"></i></a>
+									<a  href="{{ url('/ordencompra/'.$ordencompras->id.'/edit') }}" class="btn btn-default  btn-xs right" role="button"><i class="glyphicon glyphicon-refresh " aria-hidden="true"></i></a>
 								</div>
 								<div class="table-responsive">
 									<table class="table table-bordered table-hover" id="education_fields">

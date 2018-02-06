@@ -308,7 +308,11 @@ class OrdenCompraController extends Controller
 	public function cargarproductosdecategoria(Request $request)
     {
 		$prod_orden_compra = ProductosOrdenCompra::select('prod_sol_comp_id')->distinct()->pluck('prod_sol_comp_id')->toArray();
-		$prodSolCom = ProductosSolicitudCompra::select('prod_id')->whereNotIn('id',$prod_orden_compra)->pluck('prod_id')->toArray();
+		$prod_orden_compra = array_filter($prod_orden_compra);
+		$prodSolCom = ProductosSolicitudCompra::select('prod_id')
+		->whereNotIn('id',$prod_orden_compra)
+		->pluck('prod_id')->toArray();
+		
 		$productos = Producto::where('categoria_id','=',$request['option'])
 							->whereIn('id',$prodSolCom)
 							->get();
@@ -319,6 +323,7 @@ class OrdenCompraController extends Controller
 	public function cargarproductosseleccionados(Request $request)
     {
 		$prod_orden_compra = ProductosOrdenCompra::select('prod_sol_comp_id')->distinct()->pluck('prod_sol_comp_id')->toArray();
+		$prod_orden_compra = array_filter($prod_orden_compra);
 		if($request['prds'] == 0){
 			$prod_cats = Producto::where('categoria_id','=',$request['cats'])
 							->get(['id']);

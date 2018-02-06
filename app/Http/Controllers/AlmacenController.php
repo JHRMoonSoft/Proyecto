@@ -93,7 +93,8 @@ class AlmacenController extends Controller
 				//return $producto_i;
 			}
 			if($productos_vacios === true){
-				$almacen->delete();
+				$almacen['cnt_prd'] = $almacen['cnt_prd'] - $producto_i['cnt_prd'];
+				$almacen->save();
 				$validate->errors()->add('cantproductos', 'Debe existir al menos un producto válido asociado a ste ingreso.');
 				return redirect()->back()->withInput()->withErrors($validate);
 			}

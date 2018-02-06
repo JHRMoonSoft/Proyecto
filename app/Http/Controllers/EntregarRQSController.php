@@ -79,8 +79,10 @@ class EntregarRQSController extends Controller
         
 		$unidades = Unidad::all();
 		$requisicion = Requisicion::find($id);
-        $productos = $requisicion->productos()->get();
-		foreach($productos as $p){
+		$productos = ProductosRequisicion::where('rqs_id',$requisicion->id)
+									->where('apr_prod',true)
+									->get();
+        foreach($productos as $p){
 			$p->almacen = $this->getAlmacenProducto($p->prod_id);
 		}
 		$acciones = AccionesRequisicion::where('est_ant_rqs_id','=',$requisicion->estadorequisicion->id)
@@ -150,7 +152,7 @@ class EntregarRQSController extends Controller
 					RegistroAlmacen::create($regalm_i);
 					$producto->almacen->save();
 				}
-				
+				//no aplica cuando el valor 
 						
 			}
 			

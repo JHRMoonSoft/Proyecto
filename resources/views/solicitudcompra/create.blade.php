@@ -140,7 +140,7 @@
 							<div class="panel panel-default">
 								<div class="panel-heading text-center">
 									 <button type="button" class="btn btn-success btn-xs left "data-toggle="modal" data-target=".registro" >Registro RQS</button>									 
-									<a  href="" class="btn btn-default  btn-xs right" role="button"><i class="glyphicon glyphicon-refresh " aria-hidden="true"></i></a>
+									<a  href="/solicitudcompra/create" class="btn btn-default  btn-xs right" role="button"><i class="glyphicon glyphicon-refresh " aria-hidden="true"></i></a>
 									<span><strong><span class="glyphicon glyphicon-th-list"> </span> Productos</strong></span>
 								</div>
 								<div class="table-responsive">
@@ -719,6 +719,7 @@
 					
 					//model.setAttribute('value', );
 			});
+			primer_producto_cargado = true;
 	   }
 		var start = moment().subtract(29, 'days');
 		var end = moment();
